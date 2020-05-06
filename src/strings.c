@@ -356,6 +356,7 @@ const u8 gText_EscapeFromHere[] = _("Escape from here.");
 const u8 gText_LureWildPokemon[] = _("Lure wild POKéMON.");
 const u8 gText_ShareHp[] = _("Share HP.");
 const u8 gText_ReturnToAHealingSpot[] = _("Return to a healing spot.");
+const u8 gText_DiveUnderwater[] = _("Dive underwater.");
 const u8 gText_EscapeFromHereAndReturnTo[] = _("Want to escape from here and return\nto {STR_VAR_1}?");
 const u8 gText_ReturnToHealingSpot[] = _("Want to return to the healing spot\nused last in {STR_VAR_1}?");
 const u8 gText_Attack3[] = _("ATTACK");

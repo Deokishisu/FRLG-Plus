@@ -153,7 +153,6 @@
 #define OBJ_EVENT_GFX_DEOXYS_A 149
 #define OBJ_EVENT_GFX_DEOXYS_N 150
 #define OBJ_EVENT_GFX_SS_ANNE 151
-
 #define NUM_OBJ_EVENT_GFX     152
 
 // These are dynamic object gfx ids.
