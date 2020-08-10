@@ -15,19 +15,20 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_FIVE_ISLAND",
+      "direction": "left",
       "offset": 0,
-      "direction": "left"
+      "map": "MAP_FIVE_ISLAND"
     },
     {
-      "map": "MAP_FIVE_ISLAND_MEMORIAL_PILLAR",
+      "direction": "right",
       "offset": 20,
-      "direction": "right"
+      "map": "MAP_FIVE_ISLAND_MEMORIAL_PILLAR"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_F",
+      "in_connection": false,
       "x": 18,
       "y": 18,
       "elevation": 3,
@@ -41,6 +42,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 17,
       "y": 5,
       "elevation": 3,
@@ -54,6 +56,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 11,
       "y": 27,
       "elevation": 3,
@@ -67,6 +70,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+      "in_connection": false,
       "x": 8,
       "y": 9,
       "elevation": 3,
@@ -76,10 +80,11 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_12"
+      "flag": "FLAG_FIVE_ISLE_MEADOW_CUT_TREE_1"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
+      "in_connection": false,
       "x": 19,
       "y": 12,
       "elevation": 3,
@@ -89,10 +94,11 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_CutTree",
-      "flag": "FLAG_TEMP_13"
+      "flag": "FLAG_FIVE_ISLE_MEADOW_CUT_TREE_2"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 12,
       "y": 11,
       "elevation": 3,
@@ -106,6 +112,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 3,
       "y": 22,
       "elevation": 3,
@@ -127,7 +134,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

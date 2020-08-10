@@ -15,19 +15,20 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_FIVE_ISLAND_WATER_LABYRINTH",
+      "direction": "up",
       "offset": -48,
-      "direction": "up"
+      "map": "MAP_FIVE_ISLAND_WATER_LABYRINTH"
     },
     {
-      "map": "MAP_FIVE_ISLAND_MEADOW",
+      "direction": "right",
       "offset": 0,
-      "direction": "right"
+      "map": "MAP_FIVE_ISLAND_MEADOW"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
+      "in_connection": false,
       "x": 8,
       "y": 5,
       "elevation": 3,
@@ -41,6 +42,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
       "x": 16,
       "y": 10,
       "elevation": 3,
@@ -97,7 +99,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
