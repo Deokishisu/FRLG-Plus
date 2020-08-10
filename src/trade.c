@@ -2619,7 +2619,7 @@ static u32 TestWhetherSelectedMonCanBeTraded(struct Pokemon * party, int partyCo
 
     if (!IsNationalPokedexEnabled())
     {
-        if (species2[cursorPos] > SPECIES_MEW)
+        if (species2[cursorPos] > SPECIES_DEOXYS)
         {
             return 2;
         }

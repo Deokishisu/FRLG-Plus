@@ -1,6 +1,8 @@
+#include "event_data.h"
 #include "global.h"
 #include "save_location.h"
 #include "constants/maps.h"
+#include "constants/vars.h"
 
 static bool32 IsCurMapInLocationList(const u16 *list)
 {
@@ -95,9 +97,17 @@ void TrySetMapSaveWarpStatus(void)
 
 void SetUnlockedPokedexFlags(void)
 {
+    // National Dex enable stuff minus the actual flag
+    u16 *ptr = GetVarPointer(VAR_0x404E);
+    gSaveBlock2Ptr->pokedex.unknown2 = 0xB9;
+    *ptr = 0x6258;
+
     gSaveBlock2Ptr->gcnLinkFlags |= 0x1;
     gSaveBlock2Ptr->gcnLinkFlags |= 0x10;
     gSaveBlock2Ptr->gcnLinkFlags |= 0x20;
+
+    //Allows for trading with all
+    SetPostgameFlags();
 }
 
 void SetPostgameFlags(void)

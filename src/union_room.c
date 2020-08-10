@@ -1539,10 +1539,13 @@ static u32 IsTryingToTradeWithHoennTooSoon(struct UnkStruct_Group * arg0, s32 id
 
     if (sPlayerCurrActivity == ACTIVITY_TRADE && structPtr->gname_uname.gname.unk_00.version != VERSION_FIRE_RED && structPtr->gname_uname.gname.unk_00.version != VERSION_LEAF_GREEN)
     {
+        /* //This commented out should allow trading with RSE from the start
         if (!(gSaveBlock2Ptr->specialSaveWarpFlags & CHAMPION_SAVEWARP))
             return 1;
         else if (structPtr->gname_uname.gname.unk_00.isChampion)
             return 0;
+        */
+        return 0;
     }
     else
     {

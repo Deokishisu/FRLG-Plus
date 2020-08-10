@@ -95,10 +95,13 @@ void EnableNationalPokedex(void)
 
 bool32 IsNationalPokedexEnabled(void)
 {
+    /*  //These must be enabled to allow linking to Colo & XD, and
+        //will be enabled when the player gets the Pokedex.
     if (gSaveBlock2Ptr->pokedex.unknown2 != 0xB9)
         return FALSE;
     if (VarGet(VAR_0x404E) != 0x6258)
         return FALSE;
+    */
     if (!FlagGet(FLAG_SYS_NATIONAL_DEX))
         return FALSE;
     return TRUE;

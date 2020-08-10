@@ -321,11 +321,8 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.language = gGameLanguage;
     gLocalLinkPlayer.version = gGameVersion + 0x4000;
     gLocalLinkPlayer.lp_field_2 = 0x8000;
-    gLocalLinkPlayer.name[8] = IsNationalPokedexEnabled();
-    if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS))
-    {
-        gLocalLinkPlayer.name[8] |= 0x10;
-    }
+    gLocalLinkPlayer.name[8] = TRUE; //IsNationalPokedexEnabled();
+    gLocalLinkPlayer.name[8] |= 0x10;
 }
 
 static void sub_800978C(void)
