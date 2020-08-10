@@ -1359,3 +1359,9 @@ Text_TestMsg:: @ 81ACD45
 	.include "data/text/save.inc"
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
+
+	.include "data/maps/FarawayIsland_Exterior/scripts.inc"
+	.include "data/maps/FarawayIsland_Exterior/text.inc"
+
+	.include "data/maps/FarawayIsland_Interior/scripts.inc"
+	.include "data/maps/FarawayIsland_Interior/text.inc"

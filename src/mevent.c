@@ -52,7 +52,7 @@ extern const u8 gUnknownSerialData_End[];
 static const u16 sGiftItemFlagIds[] = {
     FLAG_GOT_AURORA_TICKET,
     FLAG_GOT_MYSTIC_TICKET,
-    FLAG_0x2A9,
+    FLAG_GOT_OLD_SEA_MAP,
     FLAG_0x2AA,
     FLAG_0x2AB,
     FLAG_0x2AC,

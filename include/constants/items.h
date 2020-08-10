@@ -438,7 +438,7 @@
 #define ITEM_RUBY 373
 #define ITEM_SAPPHIRE 374
 
-#define ITEM_N_A 375
+#define ITEM_N_A 377
 
 // Emerald
 #define ITEM_MAGMA_EMBLEM 375

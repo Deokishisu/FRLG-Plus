@@ -1982,9 +1982,11 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
 static void CreateObedientMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
 {
     bool32 obedient = TRUE;
-
+    u8 version = VERSION_EMERALD;
     CreateMon(mon, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId);
     SetMonData(mon, MON_DATA_OBEDIENCE, &obedient);
+    if(species == SPECIES_MEW)
+        SetMonData(mon, MON_DATA_MET_GAME, &version);
 }
 
 void sub_803E23C(struct Pokemon *mon, struct BattleTowerPokemon *dest)

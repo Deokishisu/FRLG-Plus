@@ -695,7 +695,7 @@
 #define FLAG_GOT_TEA                                     0x2A6
 #define FLAG_GOT_AURORA_TICKET                           0x2A7
 #define FLAG_GOT_MYSTIC_TICKET                           0x2A8
-#define FLAG_0x2A9                                       0x2A9
+#define FLAG_GOT_OLD_SEA_MAP                             0x2A9
 #define FLAG_0x2AA                                       0x2AA
 #define FLAG_0x2AB                                       0x2AB
 #define FLAG_0x2AC                                       0x2AC
@@ -755,10 +755,10 @@
 #define FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL            0x2E2
 #define FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE             0x2E3
 #define FLAG_FOUGHT_DEOXYS                               0x2E4
-#define FLAG_0x2E5                                       0x2E5
-#define FLAG_0x2E6                                       0x2E6
-#define FLAG_0x2E7                                       0x2E7
-#define FLAG_0x2E8                                       0x2E8
+#define FLAG_DEFEATED_MEW                                0x2E5
+#define FLAG_MEW_FLEW_AWAY                               0x2E6
+#define FLAG_HIDE_MEW                                    0x2E7
+#define FLAG_CAUGHT_MEW                                  0x2E8
 #define FLAG_0x2E9                                       0x2E9
 #define FLAG_0x2EA                                       0x2EA
 #define FLAG_0x2EB                                       0x2EB
@@ -1341,7 +1341,7 @@
 
 #define FLAG_SYS_POKEMON_GET (SYS_FLAGS + 0x28)
 #define FLAG_SYS_POKEDEX_GET (SYS_FLAGS + 0x29)
-#define FLAG_0x82A (SYS_FLAGS + 0x2A)
+#define FLAG_SYS_CTRL_OBJ_DELETE (SYS_FLAGS + 0x2A)
 #define FLAG_0x82B (SYS_FLAGS + 0x2B)
 #define FLAG_SYS_GAME_CLEAR (SYS_FLAGS + 0x2C)
 #define FLAG_SYS_SET_TRAINER_CARD_PROFILE (SYS_FLAGS + 0x2D)

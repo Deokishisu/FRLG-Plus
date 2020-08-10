@@ -6057,6 +6057,38 @@
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
+    },
+    {
+      "english": "MAGMA EMBLEM",
+      "itemId": "ITEM_MAGMA_EMBLEM",
+      "price": 0,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A medal-like item in the same shape\\nas TEAM MAGMA's mark.",
+      "importance": 1,
+      "exitsBagOnUse": 1,
+      "pocket": "POCKET_KEY_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
+    },
+    {
+      "english": "OLD SEA MAP",
+      "itemId": "ITEM_OLD_SEA_MAP",
+      "price": 0,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A faded sea chart that shows the\\nway to a certain island.\\nIt is yellow with age.",
+      "importance": 1,
+      "exitsBagOnUse": 1,
+      "pocket": "POCKET_KEY_ITEMS",
+      "type": 4,
+      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "battleUsage": 0,
+      "battleUseFunc": "NULL",
+      "secondaryId": 0
     }
   ]
 }

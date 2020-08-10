@@ -346,6 +346,7 @@ gSongTable:: @ 84A32CC
 	song mus_t_tower, 0, 0
 	song mus_slowmasara, 0, 0
 	song mus_tvnoize, 0, 0
+	song mus_dan02, 0, 0
 
 dummy_song_header: @ 84A3DA4
 	.byte 0, 0, 0, 0

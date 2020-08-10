@@ -489,6 +489,34 @@ static const struct MenuAction sScriptMultiChoiceMenu_TrainerTowerMode[] = {
     { gOtherText_Exit }
 };
 
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_NavelRock },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiBirthFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_BirthIsland },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirthFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_NavelRock },
+    { gText_BirthIsland },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
 static const struct MenuAction sScriptMultiChoiceMenu_Exit[] = {
     { gOtherText_Exit }
 };
@@ -558,7 +586,11 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SeagallopVermilion, NELEMS(sScriptMultiChoiceMenu_SeagallopVermilion) },
     { sScriptMultiChoiceMenu_62, NELEMS(sScriptMultiChoiceMenu_62) },
     { sScriptMultiChoiceMenu_JoinOrLead, NELEMS(sScriptMultiChoiceMenu_JoinOrLead) },
-    { sScriptMultiChoiceMenu_TrainerTowerMode, NELEMS(sScriptMultiChoiceMenu_TrainerTowerMode) }
+    { sScriptMultiChoiceMenu_TrainerTowerMode, NELEMS(sScriptMultiChoiceMenu_TrainerTowerMode) },
+    { sScriptMultiChoiceMenu_SeviiFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiFaraway) },
+    { sScriptMultiChoiceMenu_SeviiNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelFaraway) },
+    { sScriptMultiChoiceMenu_SeviiBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiBirthFaraway) },
+    { sScriptMultiChoiceMenu_SeviiNavelBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirthFaraway) }
 };
 
 // From Cool to Berries goes unused

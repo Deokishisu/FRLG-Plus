@@ -69,6 +69,11 @@
 #define MULTICHOICE_62                                         62
 #define MULTICHOICE_JOIN_OR_LEAD                               63
 #define MULTICHOICE_TRAINER_TOWER_MODE                         64
+#define MULTICHOICE_SEVII_FARAWAY                              65
+#define MULTICHOICE_SEVII_NAVEL_FARAWAY                        66
+#define MULTICHOICE_SEVII_BIRTH_FARAWAY                        67
+#define MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY                  68
+
 
 #define LISTMENU_BADGES                    0
 #define LISTMENU_SILPHCO_FLOORS            1
