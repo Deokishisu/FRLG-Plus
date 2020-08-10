@@ -34,9 +34,12 @@
 #include "battle_interface.h"
 #include "mon_markings.h"
 #include "pokemon_storage_system.h"
+#include "orre_met_location_strings.h"
 
 // needs conflicting header to match (curIndex is s8 in the function, but has to be defined as u8 here)
 extern s16 SeekToNextMonInBox(struct BoxPokemon * boxMons, u8 curIndex, u8 maxIndex, u8 flags);
+extern u8* DetermineOrreMetLocation(struct Pokemon *);
+extern u8 *WriteOrreMapName(u8 *dst0, u8 *string, u16 fill);
 
 static void sub_8138B8C(struct Pokemon * mon);
 static void sub_8135C34(void);
@@ -140,6 +143,7 @@ static void sub_813B068(void);
 static void sub_813B0E4(void);
 static s8 sub_813B20C(s8);
 static s8 sub_813B38C(s8);
+static bool8 IsMonFromOrre(void);
 
 struct PokemonSummaryScreenData
 {
@@ -2660,7 +2664,7 @@ static void sub_8137578(void)
     AddTextPrinterParameterized4(sMonSummaryScreen->unk3000[4], 2, 0, 3, 0, 0, sUnknown_8463FA4[0], TEXT_SPEED_FF, natureMetOrHatchedAtLevelStr);
 }
 
-static void sub_8137724(void)
+static void sub_8137724(void) //if different OT
 {
     u8 nature;
     u8 level;
@@ -2668,6 +2672,8 @@ static void sub_8137724(void)
     u8 levelStr[5];
     u8 mapNameStr[32];
     u8 natureMetOrHatchedAtLevelStr[152];
+    u8 *orreMetLocationString;
+    u8 playerOTNameStr[152];
 
     DynamicPlaceholderTextUtil_Reset();
     nature = GetNature(&sMonSummaryScreen->currentMon);
@@ -2710,12 +2716,24 @@ static void sub_8137724(void)
         return;
     }
 
-    if (sub_813B838(metLocation) == TRUE)
+    if (sub_813B838(metLocation) == TRUE && !IsMonFromOrre())
+    {
         GetMapNameGeneric_(mapNameStr, metLocation);
+    }
+    else if (IsMonFromOrre())
+    {
+        orreMetLocationString = DetermineOrreMetLocation(&sMonSummaryScreen->currentMon);
+        WriteOrreMapName(mapNameStr, orreMetLocationString, 0);
+        //GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_NAME, gStringVar2);
+    }
     else
+    {
         StringCopy(mapNameStr, gUnknown_8419C0B);
-
+    }
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, mapNameStr);
+    //GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_NAME, sMonSummaryScreen->summary.unk3040);
+    //DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, sMonSummaryScreen->summary.unk3040);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, sMonSummaryScreen->summary.unk3040);
 
     if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LEVEL) == 0)
     {
@@ -2745,21 +2763,37 @@ static void sub_8137724(void)
         }
         else
         {
-            if (sub_813B7E0(nature))
-                DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gUnknown_841988A);
+            if(IsMonFromOrre() && (metLocation == 254 || metLocation == 0))
+            {
+                DynamicPlaceholderTextUtil_ExpandPlaceholders(playerOTNameStr, gSummaryMetLocationTextOrreEeveelutionsDuking);
+                DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, playerOTNameStr);
+            }
             else
-                DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gUnknown_8419860);
+            {
+                if (sub_813B7E0(nature))
+                    DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gUnknown_841988A);
+                else
+                    DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gUnknown_8419860);
+            }
         }
     }
 
     AddTextPrinterParameterized4(sMonSummaryScreen->unk3000[4], 2, 0, 3, 0, 0, sUnknown_8463FA4[0], TEXT_SPEED_FF, natureMetOrHatchedAtLevelStr);
 }
 
+static bool8 IsMonFromOrre(void)
+{
+    u8 version = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_GAME);
+    if(version == VERSION_GAMECUBE)
+        return TRUE;
+    return FALSE;
+}
+
 static void sub_8137944(void)
 {
-    if (sub_813847C(&sMonSummaryScreen->currentMon) == TRUE)
+    if (sub_813847C(&sMonSummaryScreen->currentMon) == TRUE) //if same OT
         sub_8137578();
-    else
+    else //if different OT
         sub_8137724();
 }
 
@@ -5179,7 +5213,8 @@ static bool32 sub_813B7F8(void)
         || version == VERSION_FIRE_RED
         || version == VERSION_RUBY
         || version == VERSION_SAPPHIRE
-        || version == VERSION_EMERALD)
+        || version == VERSION_EMERALD
+        || version == VERSION_GAMECUBE)
         return TRUE;
 
     return FALSE;
@@ -5187,7 +5222,9 @@ static bool32 sub_813B7F8(void)
 
 static bool32 sub_813B838(u8 place)
 {
-    if (place >= MAPSECS_KANTO && place < MAPSEC_NONE)
+    if (place < MAPSEC_NONE)
+        return TRUE;
+    if (IsMonFromOrre())
         return TRUE;
     return FALSE;
 }

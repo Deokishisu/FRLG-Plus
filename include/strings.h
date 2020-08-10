@@ -1516,5 +1516,6 @@ extern const u8 gUnknown_8419B18[];
 extern const u8 gUnknown_8419AA2[];
 extern const u8 gUnknown_8419ADE[];
 extern const u8 gUnknown_8419B18[];
+extern const u8 gSummaryMetLocationTextOrreEeveelutionsDuking[];
 
 #endif //GUARD_STRINGS_H

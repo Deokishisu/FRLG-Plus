@@ -13,6 +13,7 @@
 #define VERSION_EMERALD     3
 #define VERSION_FIRE_RED    4
 #define VERSION_LEAF_GREEN  5
+#define VERSION_GAMECUBE    15
 
 #define LANGUAGE_JAPANESE   1
 #define LANGUAGE_ENGLISH    2
