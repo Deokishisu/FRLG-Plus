@@ -1029,7 +1029,14 @@ static void SetCursorMonData(void *pokemon, u8 mode)
             StringGetEnd10(gPSSData->cursorMonNick);
             gPSSData->cursorMonLevel = GetMonData(mon, MON_DATA_LEVEL);
             gPSSData->cursorMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
-            gPSSData->cursorMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
+            if(gPSSData->cursorMonSpecies == SPECIES_DEOXYS)
+            {
+                gPSSData->cursorMonPersonality = GetMonData(mon, MON_DATA_FORME);
+            }
+            else
+            {
+                gPSSData->cursorMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
+            }
             gPSSData->cursorMonPalette = GetMonFrontSpritePal(mon);
             gender = GetMonGender(mon);
             gPSSData->cursorMonItem = GetMonData(mon, MON_DATA_HELD_ITEM);
@@ -1054,7 +1061,14 @@ static void SetCursorMonData(void *pokemon, u8 mode)
             StringGetEnd10(gPSSData->cursorMonNick);
             gPSSData->cursorMonLevel = GetLevelFromBoxMonExp(boxMon);
             gPSSData->cursorMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
-            gPSSData->cursorMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
+            if(gPSSData->cursorMonSpecies == SPECIES_DEOXYS)
+            {
+                gPSSData->cursorMonPersonality = GetMonData(boxMon, MON_DATA_FORME);
+            }
+            else
+            {
+                gPSSData->cursorMonPersonality = GetMonData(boxMon, MON_DATA_PERSONALITY);
+            }
             gPSSData->cursorMonPalette = GetMonSpritePalFromSpeciesAndPersonality(gPSSData->cursorMonSpecies, otId, gPSSData->cursorMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(gPSSData->cursorMonSpecies, gPSSData->cursorMonPersonality);
             gPSSData->cursorMonItem = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);

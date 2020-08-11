@@ -12,6 +12,7 @@ struct PokemonSubstruct0
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
+    u16 forme:2;
 };
 
 struct PokemonSubstruct1

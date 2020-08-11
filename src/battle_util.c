@@ -3097,13 +3097,15 @@ u8 GetMoveTarget(u16 move, u8 setTarget)
     return targetBattler;
 }
 
+// Hacked Mew and Deoxys always obey
 static bool32 HasObedientBitSet(u8 battlerId)
 {
-    if (GetBattlerSide(battlerId) == B_SIDE_OPPONENT
+    /*if (GetBattlerSide(battlerId) == B_SIDE_OPPONENT
      || (GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES, NULL) != SPECIES_DEOXYS
      && GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES, NULL) != SPECIES_MEW))
         return TRUE;
-    return GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_OBEDIENCE, NULL);
+    return GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_OBEDIENCE, NULL);*/
+    return TRUE;
 }
 
 u8 IsMonDisobedient(void)

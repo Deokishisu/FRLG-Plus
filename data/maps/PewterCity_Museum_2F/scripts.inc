@@ -26,5 +26,6 @@ PewterCity_Museum_2F_EventScript_SpaceShuttle:: @ 816A580
 	end
 
 PewterCity_Museum_2F_EventScript_MoonStone:: @ 816A589
+	callnative(SetFirstDeoxysForm)
 	msgbox PewterCity_Museum_1F_Text_MeteoriteThatFellOnMtMoon, MSGBOX_SIGN
 	end

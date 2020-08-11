@@ -4026,6 +4026,10 @@ static void sub_813995C(void)
 
     species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2);
     personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_PERSONALITY);
+    if(species == SPECIES_DEOXYS)
+    {
+        personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_FORME);
+    }
     trainerId = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_ID);
 
     if (sMonSummaryScreen->savedCallback == CB2_ReturnToTradeMenuFromSummary)

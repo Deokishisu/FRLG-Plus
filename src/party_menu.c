@@ -2670,12 +2670,18 @@ static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *m
 {
     bool32 handleDeoxys = TRUE;
     u16 species2;
+    u32 personality;
 
     // If in a multi battle, show partners Deoxys icon as Normal forme
     if (IsMultiBattle() == TRUE && gMain.inBattle)
         handleDeoxys = (sMultiBattlePartnersPartyMask[slot] ^ handleDeoxys) ? TRUE : FALSE;
     species2 = GetMonData(mon, MON_DATA_SPECIES2);
-    CreatePartyMonIconSpriteParameterized(species2, GetMonData(mon, MON_DATA_PERSONALITY), menuBox, 1, handleDeoxys);
+    if(species2 == SPECIES_DEOXYS && handleDeoxys)
+    {
+        personality = GetMonData(mon, MON_DATA_FORME);
+    }
+
+    CreatePartyMonIconSpriteParameterized(species2, personality, menuBox, 1, handleDeoxys);
     UpdatePartyMonHPBar(menuBox->monSpriteId, mon);
 }
 

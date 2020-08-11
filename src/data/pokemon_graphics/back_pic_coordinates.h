@@ -2053,7 +2053,7 @@ const struct MonCoords gMonBackPicCoords[] =
     [SPECIES_DEOXYS] =
     {
         .size = 0x87,
-        .y_offset = 0x07,
+        .y_offset = 0x04,
     },
     [SPECIES_CHIMECHO] =
     {

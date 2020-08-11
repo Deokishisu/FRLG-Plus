@@ -1067,6 +1067,29 @@ u16 GetIconSpecies(u16 species, u32 personality)
             letter += (SPECIES_UNOWN_B - 1);
         result = letter;
     }
+    else if(species == SPECIES_DEOXYS)
+    {
+        switch(personality) //pid was hijacked to hold Deoxys forms
+        {   //setting result to arbitrarily high numbers
+            //picked highest ones to not interfere with
+            //Pokemon expansion.
+            case 1: //Attack Forme
+                result = 65531;
+                break;
+            case 2:
+                result = 65532;
+                break;
+            case 3:
+                result = 65533;
+                break;
+            default: //Normal Forme
+                result = 65530;
+        }
+    }
+    else if(species >= 65530 && species <= 65533)
+    {
+        result = species;
+    }
     else
     {
         if (species > NUM_SPECIES)
@@ -1109,8 +1132,26 @@ u16 MailSpeciesToIconSpecies(u16 species)
 const u8 *GetMonIconTiles(u16 species, bool32 extra)
 {
     const u8 *iconSprite = gMonIconTable[species];
-    if (species == SPECIES_DEOXYS && extra == TRUE)
-        iconSprite += 0x400;
+    if(species >= 65530 && species <= 65533)
+    {
+        iconSprite = (const u8*)gMonIconTable[SPECIES_DEOXYS];
+    }
+    if (extra == TRUE && (species >= 65530 && species <= 65533))
+    {
+        //iconSprite = (const u8*)(0x400 + (u32)iconSprite); // use the specific Deoxys form icon (Speed in this case)
+        switch(species)
+        {   //Normal Forme is already loaded and overwritten here
+            case 65531: //Attack Forme
+                iconSprite = (const u8*)(0x400 + (u32)iconSprite);
+                break;
+            case 65532: //Defense Forme
+                iconSprite = (const u8*)((0x400 * 2) + (u32)iconSprite);
+                break;
+            case 65533: //Speed Forme
+                iconSprite = (const u8*)((0x400 * 3) + (u32)iconSprite);
+                break;
+        }
+    }
     return iconSprite;
 }
 

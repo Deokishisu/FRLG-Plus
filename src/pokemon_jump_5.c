@@ -358,6 +358,7 @@ void sub_814ADCC(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *jumpMon
     u8 *unusedBuffer;
     u8 subpriority;
     u8 spriteId;
+    u32 personality = jumpMon->personality;
 
     spriteTemplate = gUnknown_846E0E8;
     buffer = Alloc(0x2000);
@@ -369,11 +370,16 @@ void sub_814ADCC(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *jumpMon
 
     if (buffer && unusedBuffer)
     {
+        if(jumpMon->species == SPECIES_DEOXYS)
+        {
+            personality = GetMonData(jumpMon, MON_DATA_FORME);
+        }
+
         HandleLoadSpecialPokePic(
             &gMonFrontPicTable[jumpMon->species],
             buffer,
             jumpMon->species,
-            jumpMon->personality);
+            personality);
 
         spriteSheet.data = buffer;
         spriteSheet.tag = multiplayerId;

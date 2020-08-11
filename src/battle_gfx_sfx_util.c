@@ -377,6 +377,10 @@ void BattleLoadPlayerMonSpriteGfx(struct Pokemon *mon, u8 battlerId)
     {
         species = GetMonData(mon, MON_DATA_SPECIES);
         currentPersonality = monsPersonality;
+        if(species == SPECIES_DEOXYS)
+        {
+            currentPersonality = GetMonData(mon, MON_DATA_FORME);
+        }
     }
     else
     {

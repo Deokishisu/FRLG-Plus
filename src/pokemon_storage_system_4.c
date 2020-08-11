@@ -306,6 +306,10 @@ static void sub_80900D4(u8 boxId)
             if (species != SPECIES_NONE)
             {
                 personality = GetBoxMonDataAt(boxId, boxPosition, MON_DATA_PERSONALITY);
+                if(species == SPECIES_DEOXYS)
+                {
+                    personality = GetBoxMonDataAt(boxId, boxPosition, MON_DATA_FORME);
+                }
                 gPSSData->boxMonsSprites[count] = CreateMonIconSprite(species, personality, 8 * (3 * j) + 100, 8 * (3 * i) + 44, 2, 19 - j);
             }
             else
@@ -336,6 +340,11 @@ void sub_80901EC(u8 boxPosition)
         s16 x = 8 * (3 * (boxPosition % IN_BOX_ROWS)) + 100;
         s16 y = 8 * (3 * (boxPosition / IN_BOX_ROWS)) + 44;
         u32 personality = GetCurrentBoxMonData(boxPosition, MON_DATA_PERSONALITY);
+
+        if(species == SPECIES_DEOXYS)
+        {
+            personality = GetCurrentBoxMonData(boxPosition, MON_DATA_FORME);
+        }
 
         gPSSData->boxMonsSprites[boxPosition] = CreateMonIconSprite(species, personality, x, y, 2, 19 - (boxPosition % IN_BOX_ROWS));
         if (gPSSData->boxOption == BOX_OPTION_MOVE_ITEMS)
@@ -420,8 +429,14 @@ static u8 sub_80903A4(u8 row, u16 times, s16 xDelta)
         {
             if (gPSSData->boxSpecies[boxPosition] != SPECIES_NONE)
             {
+                u32 personality = gPSSData->boxPersonalities[boxPosition];
+
+                if(gPSSData->boxSpecies[boxPosition] == SPECIES_DEOXYS)
+                {
+                    personality = GetCurrentBoxMonData(boxPosition, MON_DATA_FORME);
+                }
                 gPSSData->boxMonsSprites[boxPosition] = CreateMonIconSprite(gPSSData->boxSpecies[boxPosition],
-                                                                            gPSSData->boxPersonalities[boxPosition],
+                                                                            personality,
                                                                             x, y, 2, subpriority);
                 if (gPSSData->boxMonsSprites[boxPosition] != NULL)
                 {
@@ -442,8 +457,14 @@ static u8 sub_80903A4(u8 row, u16 times, s16 xDelta)
         {
             if (gPSSData->boxSpecies[boxPosition] != SPECIES_NONE)
             {
+                u32 personality = gPSSData->boxPersonalities[boxPosition];
+
+                if(gPSSData->boxSpecies[boxPosition] == SPECIES_DEOXYS)
+                {
+                    personality = GetCurrentBoxMonData(boxPosition, MON_DATA_FORME);
+                }
                 gPSSData->boxMonsSprites[boxPosition] = CreateMonIconSprite(gPSSData->boxSpecies[boxPosition],
-                                                                            gPSSData->boxPersonalities[boxPosition],
+                                                                            personality,
                                                                             x, y, 2, subpriority);
                 if (gPSSData->boxMonsSprites[boxPosition] != NULL)
                 {
@@ -537,7 +558,33 @@ static void SetBoxSpeciesAndPersonalities(u8 boxId)
         {
             gPSSData->boxSpecies[boxPosition] = GetBoxMonDataAt(boxId, boxPosition, MON_DATA_SPECIES2);
             if (gPSSData->boxSpecies[boxPosition] != SPECIES_NONE)
-                gPSSData->boxPersonalities[boxPosition] = GetBoxMonDataAt(boxId, boxPosition, MON_DATA_PERSONALITY);
+            {
+                if(gPSSData->boxSpecies[boxPosition] == SPECIES_DEOXYS)
+                {
+
+                    gPSSData->boxPersonalities[boxPosition] = GetBoxMonDataAt(boxId, boxPosition, MON_DATA_FORME);
+                    switch(gPSSData->boxPersonalities[boxPosition]) //pid was hijacked to hold Deoxys forms
+                    {   //setting result to arbitrarily high numbers
+                        //picked highest ones to not interfere with
+                        //Pokemon expansion.
+                        case 1: //Attack Forme
+                            gPSSData->boxSpecies[boxPosition] = 65531;
+                            break;
+                        case 2: //Defense Forme
+                            gPSSData->boxSpecies[boxPosition] = 65532;
+                            break;
+                        case 3: //Speed Forme
+                            gPSSData->boxSpecies[boxPosition] = 65533;
+                            break;
+                        default: //Normal Forme
+                            gPSSData->boxSpecies[boxPosition] = 65530;
+                    }
+                }
+                else
+                {
+                    gPSSData->boxPersonalities[boxPosition] = GetBoxMonDataAt(boxId, boxPosition, MON_DATA_PERSONALITY);
+                }
+            }
             boxPosition++;
         }
     }
@@ -568,6 +615,12 @@ void CreatePartyMonsSprites(bool8 arg0)
     u16 species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2);
     u32 personality = GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY);
 
+    if(species == SPECIES_DEOXYS)
+    {
+        personality = GetMonData(&gPlayerParty[0], MON_DATA_FORME);
+    }
+
+
     gPSSData->partySprites[0] = CreateMonIconSprite(species, personality, 104, 64, 1, 12);
     count = 1;
     for (i = 1; i < PARTY_SIZE; i++)
@@ -576,6 +629,10 @@ void CreatePartyMonsSprites(bool8 arg0)
         if (species != SPECIES_NONE)
         {
             personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
+            if(species == SPECIES_DEOXYS)
+            {
+                personality = GetMonData(&gPlayerParty[i], MON_DATA_FORME);
+            }
             gPSSData->partySprites[i] = CreateMonIconSprite(species, personality, 152,  8 * (3 * (i - 1)) + 16, 1, 12);
             count++;
         }
@@ -952,6 +1009,10 @@ struct Sprite *CreateMonIconSprite(u16 species, u32 personality, s16 x, s16 y, u
 
     species = GetIconSpecies(species, personality);
     template.paletteTag = 0xDAC0 + gMonIconPaletteIndices[species];
+    if(species >= 65530 && species <= 65533)
+    {
+        template.paletteTag = 0xDAC0 + gMonIconPaletteIndices[SPECIES_DEOXYS];
+    }
     tileNum = sub_80911D4(species);
     if (tileNum == 0xFFFF)
         return NULL;
