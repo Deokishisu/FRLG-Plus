@@ -614,13 +614,13 @@ static void BuyMenuPrintPriceInList(u8 windowId, s32 item, u8 y)
 
     if (item != INDEX_CANCEL)
     {
-        ConvertIntToDecimalStringN(gStringVar1, itemid_get_market_price(item), 0, 4);
-        x = 4 - StringLength(gStringVar1);
+        ConvertIntToDecimalStringN(gStringVar1, itemid_get_market_price(item), 0, 5);
+        x = 5 - StringLength(gStringVar1);
         loc = gStringVar4;
         while (x-- != 0)
             *loc++ = 0;
         StringExpandPlaceholders(loc, gText_PokedollarVar1);
-        BuyMenuPrint(windowId, 0, gStringVar4, 0x69, y, 0, 0, TEXT_SPEED_FF, 1);
+        BuyMenuPrint(windowId, 0, gStringVar4, 0x68, y, 0, 0, TEXT_SPEED_FF, 1);
     }
 }
 
@@ -910,6 +910,10 @@ static void Task_BuyMenu(u8 taskId)
             if (!IsEnoughMoney(&gSaveBlock1Ptr->money, gShopData.itemPrice))
             {
                 BuyMenuDisplayMessage(taskId, gText_YouDontHaveMoney, BuyMenuReturnToItemList);
+            }
+            else if (ItemId_GetPocket(itemId) == POCKET_TM_CASE && CheckBagHasItem(itemId, 1))
+            {
+               BuyMenuDisplayMessage(taskId, gText_YouAlreadyHaveThisTM, BuyMenuReturnToItemList);
             }
             else
             {

@@ -127,6 +127,7 @@ static void UpdateTMSpritePosition(struct Sprite * sprite, u8 var);
 static void InitSelectedTMSpriteData(u8 a0, u16 itemId);
 static void SpriteCB_MoveTMSpriteInCase(struct Sprite * sprite);
 static void LoadTMTypePalettes(void);
+static void ClearTMHMSlots(void);
 
 static const struct BgTemplate sBGTemplates[] = {
     {
@@ -558,16 +559,16 @@ static void TMCase_ItemPrintFunc(u8 windowId, s32 itemId, u8 y)
 {
     if (itemId != -2)
     {
-        if (!itemid_is_unique(BagGetItemIdByPocketPosition(POCKET_TM_CASE, itemId)))
+        if (BagGetItemIdByPocketPosition(POCKET_TM_CASE, itemId) >= ITEM_HM01)
+        {
+            PlaceHMTileInWindow(windowId, 8, y);
+        }
+        /*else
         {
             ConvertIntToDecimalStringN(gStringVar1, BagGetQuantityByPocketPosition(POCKET_TM_CASE, itemId), STR_CONV_MODE_RIGHT_ALIGN, 3);
             StringExpandPlaceholders(gStringVar4, gText_TimesStrVar1);
             AddTextPrinterParameterized_ColorByIndex(windowId, 0, gStringVar4, 0x7E, y, 0, 0, 0xFF, 1);
-        }
-        else
-        {
-            PlaceHMTileInWindow(windowId, 8, y);
-        }
+        }*/
     }
 }
 
@@ -794,7 +795,7 @@ static void Task_SelectTMAction_FromFieldBag(u8 taskId)
     StringAppend(strbuf, gText_Var1IsSelected + 2); // +2 skips over the stringvar
     AddTextPrinterParameterized_ColorByIndex(2, 2, strbuf, 0, 2, 1, 0, 0, 1);
     Free(strbuf);
-    if (itemid_is_unique(gSpecialVar_ItemId))
+    if (itemid_is_unique(gSpecialVar_ItemId) && gSpecialVar_ItemId > ITEM_TM50)
     {
         PlaceHMTileInWindow(2, 0, 2);
         CopyWindowToVram(2, COPYWIN_GFX);
@@ -966,7 +967,7 @@ static void Task_SelectTMAction_FromSellMenu(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
 
-    if (itemid_get_market_price(gSpecialVar_ItemId) == 0)
+    if (itemid_get_market_price(gSpecialVar_ItemId) == 0 || ItemId_GetPocket(gSpecialVar_ItemId) == POCKET_TM_CASE)
     {
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
         StringExpandPlaceholders(gStringVar4, gText_OhNoICantBuyThat);
@@ -1126,6 +1127,16 @@ static void Task_AfterSale_ReturnToList(u8 taskId)
     }
 }
 
+static void ClearTMHMSlots(void)
+{
+    u16 i;
+
+    for (i = 0; i < 9; i++)
+    {
+        gSaveBlock1Ptr->bagPocket_TMHM[i] = 0;
+    }
+}
+
 void Pokedude_InitTMCase(void)
 {
     sPokedudePackBackup = AllocZeroed(sizeof(*sPokedudePackBackup));
@@ -1133,7 +1144,7 @@ void Pokedude_InitTMCase(void)
     memcpy(sPokedudePackBackup->bagPocket_KeyItems, gSaveBlock1Ptr->bagPocket_KeyItems, sizeof(gSaveBlock1Ptr->bagPocket_KeyItems));
     sPokedudePackBackup->unk_160 = sTMCaseStaticResources.selectedRow;
     sPokedudePackBackup->unk_162 = sTMCaseStaticResources.scrollOffset;
-    ClearItemSlots(gSaveBlock1Ptr->bagPocket_TMHM, NELEMS(gSaveBlock1Ptr->bagPocket_TMHM));
+    ClearTMHMSlots();
     ClearItemSlots(gSaveBlock1Ptr->bagPocket_KeyItems, NELEMS(gSaveBlock1Ptr->bagPocket_KeyItems));
     ResetTMCaseCursorPos();
     AddBagItem(ITEM_TM01, 1);

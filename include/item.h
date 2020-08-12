@@ -30,6 +30,7 @@ struct BagPocket
 };
 
 extern struct BagPocket gBagPockets[];
+extern struct ItemSlot gTmHmItemSlots[BAG_TMHM_COUNT];
 
 void GetBerryCountString(u8* dst, const u8* berryName, u32 quantity);
 void CopyItemName(u16 itemId, u8 *string);
@@ -80,5 +81,6 @@ void SortAndCompactBagPocket(struct BagPocket * pocket);
 u8 CountItemsInPC(void);
 void ApplyNewEncryptionKeyToBagItems_(u32 newKey);
 bool8 CheckHasAtLeastOneBerry(void);
+void DeserializeTmHmItemSlots(void);
 
 #endif // GUARD_ITEM_H

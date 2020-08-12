@@ -735,7 +735,8 @@ struct SaveBlock1
     /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
     /*0x03b8*/ struct ItemSlot bagPocket_KeyItems[BAG_KEYITEMS_COUNT];
     /*0x0430*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
-    /*0x0464*/ struct ItemSlot bagPocket_TMHM[BAG_TMHM_COUNT];
+    /*0x0464*/ u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
+               u8 bagPocket_TMHMPadding[224]; // padding to prevent shifting the saveblock
     /*0x054c*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
     /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused

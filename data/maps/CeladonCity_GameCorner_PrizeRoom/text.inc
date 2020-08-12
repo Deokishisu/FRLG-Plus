@@ -35,3 +35,5 @@ CeladonCity_GameCorner_PrizeRoom_Text_OopsNotEnoughRoom:: @ 81970FE
 CeladonCity_GameCorner_PrizeRoom_Text_OhFineThen:: @ 819710E
     .string "あっ そう$"
 
+CeladonCity_GameCorner_PrizeRoom_Text_YouAlreadyHaveThisTM::
+    .string "You already have this TM.$"

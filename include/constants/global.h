@@ -66,6 +66,8 @@
 #define POCKET_POKE_BALLS   3
 #define POCKET_TM_CASE      4
 #define POCKET_BERRY_POUCH  5
+#define POCKET_MEDICINE     1
+#define POCKET_HELD_ITEMS   1
 
 #define NUM_BAG_POCKETS 5
 

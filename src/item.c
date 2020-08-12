@@ -3,6 +3,7 @@
 #include "berry.h"
 #include "event_data.h"
 #include "item.h"
+#include "party_menu.h"
 #include "item_use.h"
 #include "load_save.h"
 #include "quest_log.h"
@@ -12,6 +13,7 @@
 #include "constants/maps.h"
 
 EWRAM_DATA struct BagPocket gBagPockets[NUM_BAG_POCKETS] = {};
+EWRAM_DATA struct ItemSlot gTmHmItemSlots[BAG_TMHM_COUNT] = {0};
 
 void SortAndCompactBagPocket(struct BagPocket * pocket);
 
@@ -56,6 +58,23 @@ void ApplyNewEncryptionKeyToBagItems_(u32 key)
     ApplyNewEncryptionKeyToBagItems(key);
 }
 
+void DeserializeTmHmItemSlots(void)
+{
+    int i;
+
+    for (i = 0; i < BAG_TMHM_COUNT; ++i)
+    {
+        gTmHmItemSlots[i].itemId = 0;
+        SetBagItemQuantity(&(gTmHmItemSlots[i].quantity), 0);
+    }
+    for (i = 0; i < TMHM_COUNT; ++i)
+    {
+        u8 bit = i % 8;
+        if (gSaveBlock1Ptr->bagPocket_TMHM[i / 8] & (1<<bit))
+            AddBagItem(i + ITEM_TM01, 1);
+    }
+}
+
 void SetBagPocketsPointers(void)
 {
     gBagPockets[POCKET_ITEMS - 1].itemSlots = gSaveBlock1Ptr->bagPocket_Items;
@@ -64,7 +83,7 @@ void SetBagPocketsPointers(void)
     gBagPockets[POCKET_KEY_ITEMS - 1].capacity = BAG_KEYITEMS_COUNT;
     gBagPockets[POCKET_POKE_BALLS - 1].itemSlots = gSaveBlock1Ptr->bagPocket_PokeBalls;
     gBagPockets[POCKET_POKE_BALLS - 1].capacity = BAG_POKEBALLS_COUNT;
-    gBagPockets[POCKET_TM_CASE - 1].itemSlots = gSaveBlock1Ptr->bagPocket_TMHM;
+    gBagPockets[POCKET_TM_CASE - 1].itemSlots = &gTmHmItemSlots[0];
     gBagPockets[POCKET_TM_CASE - 1].capacity = BAG_TMHM_COUNT;
     gBagPockets[POCKET_BERRY_POUCH - 1].itemSlots = gSaveBlock1Ptr->bagPocket_Berries;
     gBagPockets[POCKET_BERRY_POUCH - 1].capacity = BAG_BERRIES_COUNT;
@@ -198,6 +217,12 @@ bool8 CheckBagHasSpace(u16 itemId, u16 count)
     return FALSE;
 }
 
+static void SetTmHmOwned(u16 itemId)
+{
+    u8* flagByte = &gSaveBlock1Ptr->bagPocket_TMHM[(itemId - ITEM_TM01) / 8];
+    *flagByte = (*flagByte) | (1 << ((itemId - ITEM_TM01) % 8));
+}
+
 bool8 AddBagItem(u16 itemId, u16 count)
 {
     u8 i;
@@ -208,6 +233,19 @@ bool8 AddBagItem(u16 itemId, u16 count)
         return FALSE;
 
     pocket = ItemId_GetPocket(itemId) - 1;
+    if (pocket == POCKET_TM_CASE - 1)
+    {
+        if (pocket == POCKET_TM_CASE - 1 && !CheckBagHasItem(ITEM_TM_CASE, 1))
+        {
+            idx = BagPocketGetFirstEmptySlot(POCKET_KEY_ITEMS - 1);
+            if (idx == -1)
+                return FALSE;
+            gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots[idx].itemId = ITEM_TM_CASE;
+            SetBagItemQuantity(&gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots[idx].quantity, 1);
+        }
+        SetTmHmOwned(itemId);
+        //return TRUE;
+    }
     for (i = 0; i < gBagPockets[pocket].capacity; i++)
     {
         if (gBagPockets[pocket].itemSlots[i].itemId == itemId)
@@ -228,15 +266,6 @@ bool8 AddBagItem(u16 itemId, u16 count)
             else
                 return FALSE;
         }
-    }
-
-    if (pocket == POCKET_TM_CASE - 1 && !CheckBagHasItem(ITEM_TM_CASE, 1))
-    {
-        idx = BagPocketGetFirstEmptySlot(POCKET_KEY_ITEMS - 1);
-        if (idx == -1)
-            return FALSE;
-        gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots[idx].itemId = ITEM_TM_CASE;
-        SetBagItemQuantity(&gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots[idx].quantity, 1);
     }
 
     if (pocket == POCKET_BERRY_POUCH - 1 && !CheckBagHasItem(ITEM_BERRY_POUCH, 1))

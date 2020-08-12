@@ -1336,3 +1336,4 @@ const u8 gText_Toss[] = _("TOSS");
 const u8 gUnknown_841EE2B[] = _("DEL. ALL{CLEAR_TO 0x57}CANCEL{CLEAR_TO 0xA4}OK");
 
 const u8 gSummaryMetLocationTextOrreEeveelutionsDuking[] = _("{DYNAMIC 0x00} nature.\nApparently {DYNAMIC 0x02}at {LV_2} {DYNAMIC 0x01}.");
+const u8 gText_YouAlreadyHaveThisTM[] = _("You already have this TM.{PAUSE_UNTIL_PRESS}");
