@@ -18,3 +18,5 @@
 - Infinite TM usage. TM prices have been modified to reflect this.
 - Expanded item pockets.
 - Move Tutors will charge after the first time they teach a move, allowing infinite tutor uses at a cost.
+- Abilities have effects in the OW like in Emerald.
+- LGPE-style bonus Premier Balls in shops.
