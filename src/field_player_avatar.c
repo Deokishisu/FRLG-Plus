@@ -505,19 +505,44 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
 
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
     {
+        if(heldKeys & B_BUTTON)
+            sub_805C164(direction);
+        else
         // speed 2 is fast, same speed as running
-        PlayerGoSpeed2(direction);
+            PlayerGoSpeed2(direction);
         return;
     }
 
-    if ((heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
+    if ((heldKeys & B_BUTTON || FlagGet(FLAG_AUTO_RUN_TOGGLED))
         && !IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
     {
+        //if running
         if (PlayerIsMovingOnRockStairs(direction))
-            PlayerRunSlow(direction);
+        {
+            if(heldKeys & B_BUTTON && FlagGet(FLAG_AUTO_RUN_TOGGLED))
+            {
+                //autorun toggled but B pressed, walk
+                PlayerGoSlow(direction);
+            }
+            else
+            {
+                PlayerRunSlow(direction);
+                gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+            }
+        }
         else
-            PlayerRun(direction);
-        gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+        {
+            if(heldKeys & B_BUTTON && FlagGet(FLAG_AUTO_RUN_TOGGLED))
+            {
+                //autorun toggled but B pressed, walk
+                PlayerGoSpeed1(direction);
+            }
+            else
+            {
+                PlayerRun(direction);
+                gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+            }
+        }
         return;
     }
     else

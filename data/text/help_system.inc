@@ -48,7 +48,7 @@ Help_Text_DescExit:: @ 81B2FA9
 Help_Text_Greetings:: @ 81B2FC9
 	.string "Greetings! This is the HELP System.\n"
 	.string "Call me up whenever and wherever you\l"
-	.string "need by pressing the L or R Button.\l"
+	.string "need by pressing the L Button.\l"
 	.string "The help messages change to suit the\l"
 	.string "situation, so check them often, please.$"
 
@@ -1416,7 +1416,7 @@ Help_Text_DefineSound:: @ 81B92B8
 
 Help_Text_DefineButtonMode:: @ 81B92ED
 	.string "Set to “HELP” to display help messages\n"
-	.string "by pressing the L or R Button.\l"
+	.string "by pressing the L Button.\l"
 	.string "Set to “LR” to enable the switching\l"
 	.string "of the POKéDEX pages and BAG POCKETS\l"
 	.string "using the L and R Buttons.\l"

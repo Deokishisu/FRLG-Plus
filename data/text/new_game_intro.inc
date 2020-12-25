@@ -152,7 +152,7 @@ gNewGame_HelpDocs6:: @ 81C594F
 gNewGame_HelpDocs7:: @ 81C5981
     .string "If you need help playing the\n"
     .string "game, or on how to do things,\n"
-    .string "press the L or R Button.$"
+    .string "press the L Button.$"
 
 gOakText_AskPlayerGender:: @ 81C59D5
     .string "Now tell me. Are you a boy?\n"

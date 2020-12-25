@@ -296,3 +296,9 @@ EventScript_FailSweetScent:: @ 81BE564
 
 Text_LooksLikeNothingHere:: @ 81BE56D
 	.string "Looks like there's nothing here…$"
+    
+EventScript_EnableAutoRun::
+    msgbox AutoRunEnabled MSGBOX_SIGN
+    end
+AutoRunEnabled:
+    .string "Pressing R toggles running by default.\nAuto running is now enabled.$"

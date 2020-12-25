@@ -228,10 +228,10 @@
 #define FLAG_BERRY_FOREST_CUT_TREE_9          0x0DA
 #define FLAG_BERRY_FOREST_CUT_TREE_10         0x0DB
 #define FLAG_ROUTE_9_CUT_TREE                 0x0DC //forgot this one
+#define FLAG_AUTO_RUN_TOGGLED                 0x0DD
+#define FLAG_AUTO_RUN_EXPLAINED               0x0DE
 
 // Unused?
-#define FLAG_0x0DD               0x0DD
-#define FLAG_0x0DE               0x0DE
 #define FLAG_0x0DF               0x0DF
 #define FLAG_0x0E0               0x0E0
 #define FLAG_0x0E1               0x0E1

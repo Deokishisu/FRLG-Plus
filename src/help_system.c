@@ -28,7 +28,7 @@ struct HelpSystemVideoState
 
 static EWRAM_DATA u8 sMapTilesBackup[BG_CHAR_SIZE] = {0};
 EWRAM_DATA u8 gUnknown_203F174 = 0;
-EWRAM_DATA bool8 gHelpSystemToggleWithRButtonDisabled = FALSE;
+EWRAM_DATA bool8 gHelpSystemToggleWithRButtonDisabled = TRUE;
 static EWRAM_DATA u8 sDelayTimer = 0;
 static EWRAM_DATA u8 sInHelpSystem = 0;
 static EWRAM_DATA struct HelpSystemVideoState sVideoState = {0};
@@ -50,7 +50,7 @@ u8 RunHelpSystemCallback(void)
             return 0;
         if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
             return 0;
-        if (JOY_NEW(L_BUTTON | R_BUTTON))
+        if (JOY_NEW(L_BUTTON))
         {
             if (!sub_812B45C() || !gHelpSystemEnabled)
             {

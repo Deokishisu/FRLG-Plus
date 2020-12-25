@@ -20,3 +20,6 @@
 - Move Tutors will charge after the first time they teach a move, allowing infinite tutor uses at a cost.
 - Abilities have effects in the OW like in Emerald.
 - LGPE-style bonus Premier Balls in shops.
+- Hold B while surfing to go faster.
+- Running indoors.
+- Toggle auto running with the R button.
