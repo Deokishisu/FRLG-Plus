@@ -1,6 +1,6 @@
 FuchsiaCity_PokemonCenter_1F_MapScripts:: @ 816D6F1
 	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
 FuchsiaCity_PokemonCenter_1F_OnTransition:: @ 816D6FC

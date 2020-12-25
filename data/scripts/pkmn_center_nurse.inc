@@ -15,7 +15,7 @@ EventScript_PkmnCenterNurse_HealPkmn:: @ 81A65B8
 	waitmessage
 	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
 	special SetUsedPkmnCenterQuestLogEvent
-	goto EventScript_PkmnCenterNurse_CheckTrainerTowerAndUnionRoom
+	goto EventScript_PkmnCenterNurse_ReturnPkmn
 	end
 
 EventScript_PkmnCenterNurse_TakeAndHealPkmn:: @ 81A65CE

@@ -1,6 +1,6 @@
 IndigoPlateau_PokemonCenter_1F_MapScripts:: @ 816EA5A
 	map_script MAP_SCRIPT_ON_TRANSITION, IndigoPlateau_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
 IndigoPlateau_PokemonCenter_1F_OnTransition:: @ 816EA65
