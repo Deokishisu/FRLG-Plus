@@ -55,6 +55,7 @@ POKEBLOCK   = 55 56 57 58 59
 ')'         = 5D
 'â'         = 68
 'í'         = 6F
+ARROW_SPACER = 78
 UP_ARROW    = 79
 DOWN_ARROW  = 7A
 LEFT_ARROW  = 7B

@@ -2143,6 +2143,81 @@ static void sub_8136350(void)
     u16 statValue;
     u32 exp;
     u32 expToNextLevel;
+    u8 plusStat = 0; //0 = none; 1 = Atk; 2 = Def; 3 = Speed; 4 = SpA; 5 = SpD
+    u8 minusStat = 0;
+    u8 nature = GetNature(&sMonSummaryScreen->currentMon);
+
+    switch(nature)
+    {
+        case NATURE_LONELY:
+        case NATURE_BRAVE:
+        case NATURE_ADAMANT:
+        case NATURE_NAUGHTY:
+            plusStat = 1; //Atk
+            break;
+        case NATURE_BOLD:
+        case NATURE_RELAXED:
+        case NATURE_IMPISH:
+        case NATURE_LAX:
+            plusStat = 2; //Def
+            break;
+        case NATURE_TIMID:
+        case NATURE_HASTY:
+        case NATURE_JOLLY:
+        case NATURE_NAIVE:
+            plusStat = 3; //Speed
+            break;
+        case NATURE_MODEST:
+        case NATURE_MILD:
+        case NATURE_QUIET:
+        case NATURE_RASH:
+            plusStat = 4; //SpA
+            break;
+        case NATURE_CALM:
+        case NATURE_GENTLE:
+        case NATURE_SASSY:
+        case NATURE_CAREFUL:
+            plusStat = 5; //SpD
+            break;
+        default:
+            break;
+    }
+
+    switch(nature)
+    {
+        case NATURE_BOLD:
+        case NATURE_TIMID:
+        case NATURE_MODEST:
+        case NATURE_CALM:
+            minusStat = 1; //Atk
+            break;
+        case NATURE_LONELY:
+        case NATURE_HASTY:
+        case NATURE_MILD:
+        case NATURE_GENTLE:
+            minusStat = 2; //Def
+            break;
+        case NATURE_BRAVE:
+        case NATURE_RELAXED:
+        case NATURE_QUIET:
+        case NATURE_SASSY:
+            minusStat = 3; //Speed
+            break;
+        case NATURE_ADAMANT:
+        case NATURE_IMPISH:
+        case NATURE_JOLLY:
+        case NATURE_CAREFUL:
+            minusStat = 4; //SpA
+            break;
+        case NATURE_NAUGHTY:
+        case NATURE_LAX:
+        case NATURE_NAIVE:
+        case NATURE_RASH:
+            minusStat = 5; //SpD
+            break;
+        default:
+            break;
+    }
 
     hp = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_HP);
     ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk3090, hp, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -2157,45 +2232,105 @@ static void sub_8136350(void)
     if (sMonSummaryScreen->savedCallback == CB2_ReturnToTradeMenuFromSummary && sMonSummaryScreen->isEnemyParty == TRUE)
     {
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK2);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 1)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK][0] = 0x79;
+        if(minusStat == 1)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK][0] = 0x7A;
+        if(plusStat != 1 && minusStat != 1)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK][0] = 0x78;
         sUnknown_203B144->unk04 = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF2);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 2)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF][0] = 0x79;
+        if(minusStat == 2)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF][0] = 0x7A;
+        if(plusStat != 2 && minusStat != 2)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF][0] = 0x78;
         sUnknown_203B144->unk06 = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK2);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 4)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA][0] = 0x79;
+        if(minusStat == 4)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA][0] = 0x7A;
+        if(plusStat != 4 && minusStat != 4)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA][0] = 0x78;
         sUnknown_203B144->unk08 = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF2);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 5)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD][0] = 0x79;
+        if(minusStat == 5)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD][0] = 0x7A;
+        if(plusStat != 5 && minusStat != 5)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD][0] = 0x78;
         sUnknown_203B144->unk0A = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED2);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 3)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE][0] = 0x79;
+        if(minusStat == 3)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE][0] = 0x7A;
+        if(plusStat != 3 && minusStat != 3)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE][0] = 0x78;
         sUnknown_203B144->unk0C = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE]);
     }
     else
     {
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ATK);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 1)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK][0] = 0x79;
+        if(minusStat == 1)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK][0] = 0x7A;
+        if(plusStat != 1 && minusStat != 1)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK][0] = 0x78;
         sUnknown_203B144->unk04 = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_DEF);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 2)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF][0] = 0x79;
+        if(minusStat == 2)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF][0] = 0x7A;
+        if(plusStat != 2 && minusStat != 2)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF][0] = 0x78;
         sUnknown_203B144->unk06 = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPATK);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 4)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA][0] = 0x79;
+        if(minusStat == 4)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA][0] = 0x7A;
+        if(plusStat != 4 && minusStat != 4)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA][0] = 0x78;
         sUnknown_203B144->unk08 = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPDEF);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 5)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD][0] = 0x79;
+        if(minusStat == 5)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD][0] = 0x7A;
+        if(plusStat != 5 && minusStat != 5)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD][0] = 0x78;
         sUnknown_203B144->unk0A = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD]);
 
         statValue = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPEED);
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE], statValue, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE], statValue, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        if(plusStat == 3)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE][0] = 0x79;
+        if(minusStat == 3)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE][0] = 0x7A;
+        if(plusStat != 3 && minusStat != 3)
+            sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE][0] = 0x78;
         sUnknown_203B144->unk0C = MACRO_8136350_1(sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE]);
     }
 
@@ -2484,11 +2619,11 @@ static void sub_8136FB0(void)
 static void sub_81370EC(void)
 {
     AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 14 + sUnknown_203B144->unk02, 4, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk3090);
-    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 50 + sUnknown_203B144->unk04, 22, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK]);
-    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 50 + sUnknown_203B144->unk06, 35, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF]);
-    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 50 + sUnknown_203B144->unk08, 48, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA]);
-    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 50 + sUnknown_203B144->unk0A, 61, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD]);
-    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 50 + sUnknown_203B144->unk0C, 74, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE]);
+    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 44 + sUnknown_203B144->unk04, 22, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_ATK]);
+    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 44 + sUnknown_203B144->unk06, 35, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_DEF]);
+    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 44 + sUnknown_203B144->unk08, 48, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_SPA]);
+    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 44 + sUnknown_203B144->unk0A, 61, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_SPD]);
+    AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 44 + sUnknown_203B144->unk0C, 74, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk309C[PSS_STAT_SPE]);
     AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 15 + sUnknown_203B144->unk0E, 87, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk31A4);
     AddTextPrinterParameterized3(sMonSummaryScreen->unk3000[3], 2, 15 + sUnknown_203B144->unk10, 100, sUnknown_8463FA4[0], TEXT_SPEED_FF, sMonSummaryScreen->summary.unk31B0);
 }

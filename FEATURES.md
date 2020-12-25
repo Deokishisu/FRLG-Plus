@@ -24,3 +24,4 @@
 - Running indoors.
 - Toggle auto running with the R button.
 - Instant text option.
+- Indicators for which stats are affected by natures on summary screen.
