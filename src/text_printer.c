@@ -119,24 +119,37 @@ void RunTextPrinters(void)
     int i;
     u16 temp;
 
-    for (i = 0; i < 0x20; ++i)
+    do
     {
-        if (sTextPrinters[i].active != 0)
+        int numEmpty = 0;
+        for (i = 0; i < 0x20; ++i)
         {
-            temp = RenderFont(&sTextPrinters[i]);
-            switch (temp) {
-                case 0:
-                    CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
-                case 3:
-                    if (sTextPrinters[i].callback != 0)
-                        sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, temp);
-                    break;
-                case 1:
-                    sTextPrinters[i].active = 0;
-                    break;
+            if (sTextPrinters[i].active != 0)
+            {
+                temp = RenderFont(&sTextPrinters[i]);
+                switch (temp) {
+                    case 0:
+                        CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+                        if (sTextPrinters[i].callback != 0)
+                            sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, temp);
+                        break;
+                    case 3:
+                        if (sTextPrinters[i].callback != 0)
+                            sTextPrinters[i].callback(&sTextPrinters[i].printerTemplate, temp);
+                        return;
+                    case 1:
+                        sTextPrinters[i].active = 0;
+                        break;
+                }
+            }
+            else
+            {
+                numEmpty++;
             }
         }
-    }
+        if(numEmpty == 0x20)
+            return;
+    }while(gSaveBlock2Ptr->optionsTextSpeed == OPTIONS_TEXT_SPEED_INSTANT);
 }
 
 bool16 IsTextPrinterActive(u8 id)

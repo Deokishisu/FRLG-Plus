@@ -895,6 +895,7 @@ const u8 gUnknown_8419EF9[] = _("レポ-トの かきこみに\nしっぱい し
 const u8 gUnknown_8419F10[] = _("レポ-トが ないので\nじかんの せっていは できません!");
 const u8 gUnknown_8419F2D[] = _("ゲ-ムない じかんの しゅうせい システムが\nつかえる ように なりました!");
 const u8 gText_SavingDontTurnOffThePower2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
+const u8 gText_TextSpeedInstant[] = _("INSTANT");
 
 // Start menu option descriptions
 const u8 gStartMenuDesc_Pokedex[] = _("A device that records POKéMON secrets\nupon meeting or catching them.");
