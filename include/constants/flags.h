@@ -227,9 +227,9 @@
 #define FLAG_BERRY_FOREST_CUT_TREE_8          0x0D9
 #define FLAG_BERRY_FOREST_CUT_TREE_9          0x0DA
 #define FLAG_BERRY_FOREST_CUT_TREE_10         0x0DB
+#define FLAG_ROUTE_9_CUT_TREE                 0x0DC //forgot this one
 
 // Unused?
-#define FLAG_0x0DC               0x0DC
 #define FLAG_0x0DD               0x0DD
 #define FLAG_0x0DE               0x0DE
 #define FLAG_0x0DF               0x0DF
