@@ -1398,6 +1398,9 @@ static bool8 KeyboardKeyHandler_Character(u8 event)
     {
         bool8 var = AppendCharToBuffer_CheckBufferFull();
 
+        if (sNamingScreenData->currentPage == KBPAGE_LETTERS_UPPER && GetTextCaretPosition() == 1)
+            MainState_StartPageSwap();
+
         sub_809EAA8();
         if (var)
         {
