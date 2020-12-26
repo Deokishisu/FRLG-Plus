@@ -128,6 +128,8 @@ FarawayIsland_Interior_Movement_MewFloatUpEast: @ 8267DEB
 	step_end
 
 FarawayIsland_Interior_EventScript_Mew:: @ 8267DF2
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	lock
 	faceplayer
 	applymovement LOCALID_MEW, FarawayIsland_Interior_Movement_MewAppear

@@ -4,7 +4,7 @@
 
 #### Story Changes:
 - The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
-- Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively.
+- Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
 		* This Mew counts as an Emerald Faraway Island Mew for legality purposes.
 - Expanded postgame, focusing on giving the Sevii Islands more content. []

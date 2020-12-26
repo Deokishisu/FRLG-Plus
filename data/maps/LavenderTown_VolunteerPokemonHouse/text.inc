@@ -65,3 +65,45 @@ LavenderTown_VolunteerPokemonHouse_Text_PokemonMagazinesLineShelf:: @ 819392B
     .string "POKéMON INSIDER…\p"
     .string "POKéMON FAN…$"
 
+LavenderTown_VolunteerPokemonHouse_Text_FindFarawayIsland::
+    .string "MR. FUJI: Have you found the\n"
+    .string "island on my OLD SEA MAP?$"
+
+LavenderTown_VolunteerPokemonHouse_Text_FoundMew::
+    .string "MR. FUJI: {PLAYER}!\p"
+    .string "Did my OLD SEA MAP help you?\n"
+    .string "Did you find that POKéMON?$"
+
+LavenderTown_VolunteerPokemonHouse_Text_DefeatedMew::
+    .string "Ah, so the poor thing fled\n"
+    .string "the moment it saw you.\p"
+    .string "Perhaps some wrongs can never\n"
+    .string "be righted…\p"
+    .string "I must thank you for your kind\n"
+    .string "concern anyway, {PLAYER}.\p"
+    .string "Perhaps that POKéMON will return\n"
+    .string "someday…$"
+
+LavenderTown_VolunteerPokemonHouse_Text_CaughtMew::
+    .string "You were able to befriend it?\n"
+    .string "Even after all it's been through?\p"
+    .string "Thank you, {PLAYER}!\p"
+    .string "You have eased my mind and\n"
+    .string "calmed that POKéMON's spirit.\p"
+    .string "I'm sure the both of you will\n"
+    .string "become even closer with time.$"
+
+LavenderTown_VolunteerPokemonHouse_Text_AnsweredNo::
+    .string "The OLD SEA MAP can show you\n"
+    .string "how to get to the island.\p"
+    .string "A sailor should be able to\n"
+    .string "read it and take you there.\p"
+    .string "You know someone with a boat,\n"
+    .string "Don't you, {PLAYER}?$"
+
+LavenderTown_VolunteerPokemonHouse_Text_NotEncounteredMew::
+    .string "Ah, so you haven't found the\n"
+    .string "POKéMON there yet.\p"
+    .string "If I remember correctly, it\n"
+    .string "enjoys playing in the long grass.$"
+

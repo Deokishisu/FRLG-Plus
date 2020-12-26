@@ -37,10 +37,18 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom:: @ 8162D70
 	call EventScript_SetDefeatedEliteFourFlagsVars
 	setrespawn SPAWN_PALLET_TOWN
 	fadescreenspeed FADE_TO_BLACK, 24
+	checkitem ITEM_OLD_SEA_MAP, 1
+	compare VAR_RESULT, TRUE
+	call_if_ne PokemonLeague_HallOfFame_EventScript_ActivateOldSeaMapEvent
 	special EnterHallOfFame
 	waitstate
 	releaseall
 	end
+
+PokemonLeague_HallOfFame_EventScript_ActivateOldSeaMapEvent::
+	clearflag FLAG_HIDE_LAVENDER_OUTSIDE_FUJI
+	setflag FLAG_HIDE_POKEHOUSE_FUJI
+	return
 
 PokemonLeague_HallOfFame_Movement_EnterRoom:: @ 8162DCD
 	walk_up

@@ -1058,6 +1058,7 @@ EventScript_ResetAllMapFlags:: @ 81A6481
 	setflag FLAG_HIDE_FAME_CHECKER_KOGA_JOURNAL
 	setflag FLAG_HIDE_FAME_CHECKER_LT_SURGE_JOURNAL
 	setflag FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS
+	setflag FLAG_HIDE_LAVENDER_OUTSIDE_FUJI
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
 	end
 
@@ -1365,3 +1366,5 @@ Text_TestMsg:: @ 81ACD45
 
 	.include "data/maps/FarawayIsland_Interior/scripts.inc"
 	.include "data/maps/FarawayIsland_Interior/text.inc"
+
+	.include "data/scripts/fuji_event.inc"

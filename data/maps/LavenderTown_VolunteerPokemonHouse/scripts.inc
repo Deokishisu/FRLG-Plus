@@ -16,7 +16,41 @@ LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji:: @ 816B14A
 	end
 
 LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute:: @ 816B196
+	checkitem ITEM_OLD_SEA_MAP, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_HaveOldSeaMap
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_HasPokeFluteHelpedYou
+	release
+	end
+
+LavenderTown_VolunteerPokemonHouse_EventScript_HaveOldSeaMap::
+	goto_if_set FLAG_CAUGHT_MEW, LavenderTown_VolunteerPokemonHouse_EventScript_MewCaught
+	goto_if_set FLAG_DEFEATED_MEW, LavenderTown_VolunteerPokemonHouse_EventScript_MewDefeated
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_FindFarawayIsland, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_NotEncounteredMew
+	release
+	end
+
+LavenderTown_VolunteerPokemonHouse_EventScript_MewDefeated::
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_FoundMew, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_DefeatedMew
+	release
+	end
+
+LavenderTown_VolunteerPokemonHouse_EventScript_MewCaught::
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_FoundMew, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_CaughtMew
+	release
+	end
+
+LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo::
+	msgbox LavenderTown_VolunteerPokemonHouse_Text_AnsweredNo
 	release
 	end
 
