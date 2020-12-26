@@ -22,7 +22,7 @@ static const u8 sDoubleArrowTiles1[]       = INCBIN_U8("graphics/fonts/down_arro
 static const u8 sDoubleArrowTiles2[]       = INCBIN_U8("graphics/fonts/down_arrow_4.4bpp");
 
 static const u8 sDownArrowYCoords[]           = { 0x0, 0x10, 0x20, 0x10 };
-static const u8 sWindowVerticalScrollSpeeds[] = { 0x1, 0x2 , 0x4 , 0x0 };
+static const u8 sWindowVerticalScrollSpeeds[] = { 0x1, 0x2 , 0x4 , 0x4 };
 
 static const struct GlyphWidthFunc sGlyphWidthFuncs[] = {
     { 0x0, GetGlyphWidthFont0 },
