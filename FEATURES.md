@@ -26,6 +26,8 @@
 - Instant text option.
 - Indicators for which stats are affected by natures on summary screen.
 - Health bar drains faster at higher HP levels.
+- EV-reducing berries ported from Emerald. []
+- The EV cap for an individual stat is 252, like in later generations.
 
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
