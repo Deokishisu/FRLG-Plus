@@ -53,7 +53,6 @@ PalletTown_EventScript_OakRatingScene:: @ 81654D8
 	addobject LOCALID_PROF_OAK
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToPlayersDoor
 	waitmovement 0
-	goto_if_unset FLAG_WORLD_MAP_ONE_ISLAND, PalletTown_EventScript_NotBeenToOneIslandYet
 	msgbox PalletTown_Text_OakLetMeSeePokedex
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, GetPokedexCount
@@ -62,9 +61,9 @@ PalletTown_EventScript_OakRatingScene:: @ 81654D8
 	getnumberstring 0, VAR_0x8008
 	getnumberstring 1, VAR_0x8009
 	compare VAR_0x8009, 60
-	goto_if_lt PalletTown_EventScript_NotEnoughMonsForNationalDex
-	msgbox PalletTown_Text_CaughtXImpressiveFollowMe
-	closemessage
+	call_if_lt PalletTown_EventScript_NotEnoughMonsForNationalDex
+	compare VAR_0x8009, 60
+	call_if_ge PalletTown_EventScript_EnoughMonsForNationalDex
 	playbgm MUS_ANNAI, 0
 	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabFromHouse
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabFromHouse
@@ -95,8 +94,13 @@ PalletTown_EventScript_EndOakRatingScene:: @ 816557E
 
 PalletTown_EventScript_NotEnoughMonsForNationalDex:: @ 8165593
 	msgbox PalletTown_Text_CaughtXPuttingInHonestEffort
-	goto PalletTown_EventScript_EndOakRatingScene
-	end
+	closemessage
+	return
+
+PalletTown_EventScript_EnoughMonsForNationalDex::
+	msgbox PalletTown_Text_CaughtXImpressiveFollowMe
+	closemessage
+	return
 
 PalletTown_EventScript_NotBeenToOneIslandYet:: @ 81655A1
 	msgbox PalletTown_Text_OakYouEnjoyingTraveling

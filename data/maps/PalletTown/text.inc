@@ -45,8 +45,10 @@ PalletTown_Text_CaughtXPuttingInHonestEffort:: @ 817D925
     .string "You've caught {STR_VAR_2}…\p"
     .string "Hm, it looks as if you're putting\n"
     .string "in an honest effort.\p"
-    .string "When you manage to fill it some\n"
-    .string "more, come show me, please.$"
+    .string "There's something I wanted to ask\n"
+    .string "of you, {PLAYER}.\p"
+    .string "Come.\n"
+    .string "Follow me.$"
 
 PalletTown_Text_CaughtXImpressiveFollowMe:: @ 817D9AA
     .string "You've caught… {STR_VAR_2}!?\n"
