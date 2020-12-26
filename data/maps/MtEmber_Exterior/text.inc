@@ -20,26 +20,23 @@ Text_ExplosionTaught:: @ 817A756
     .string "volcano…\p"
     .string "What a terrifying thrill!$"
 
-@ Below 4 are unused JP versions of the above texts
-Text_ExplosionTeachJP:: @ 817A797
-    .string "こ　この　かざんが\n"
-    .string "もし　だいばくはつ　したら\l"
-    .string "お　おれら　ひとたまりも\l"
-    .string "ないなあ　‥ブルブル！\p"
-    .string "こ　こわい　ついでに\n"
-    .string "だいばくはつ　でも　おぼえてみる？$"
+Text_ExplosionReteach::
+    .string "This volcano is still active\n"
+    .string "but you came back?\p"
+    .string "So, you like the thrill of\n"
+    .string "risking a volcanic explosion too?$"
 
-Text_ExplosionDeclinedJP:: @ 817A7E5
-    .string "や　やっぱ　こわいもんな\n"
-    .string "ブルブル$"
+Text_ExplosionReteach2::
+    .string "If you want more thrills, I can\n"
+    .string "teach you EXPLOSION for ¥5000.$"
 
-Text_ExplosionWhichMonJP:: @ 817A7F7
-    .string "つ　つよきだね！\n"
-    .string "じゃあ　どの　ポケモンに　する？$"
-
-Text_ExplosionTaughtJP:: @ 817A811
-    .string "かざんで　だいばくはつを‥\n"
-    .string "す　すごい　スリル！$"
+Text_ExplosionNotEnoughMoney::
+    .string "You don't have enough money!\p"
+    .string "You know, if this mountain explodes\n"
+    .string "with us on it, we wouldn't need\l"
+    .string "money anymore…\p"
+    .string "Until that happens, I won't teach\n"
+    .string "you EXPLOSION without ¥5000!$"
 
 MtEmber_Exterior_Text_WellTryDiggingHere:: @ 817A82A
     .string "Over here.\n"

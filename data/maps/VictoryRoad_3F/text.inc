@@ -21,6 +21,22 @@ Text_DoubleEdgeTaught:: @ 8174B0C
     .string "Take a run at them and knock 'em\n"
     .string "out!$"
 
+Text_DoubleEdgeReteach::
+    .string "Back again?\p"
+    .string "I'll teach you the DOUBLE-EDGE\n"
+    .string "technique again, but it'll cost\l"
+    .string "you ¥5000.$"
+
+Text_DoubleEdgeReteach2::
+    .string "Would you like me to teach that\n"
+    .string "technique?$"
+
+Text_DoubleEdgeNotEnoughMoney::
+    .string "Hey! You don't have enough money\n"
+    .string "to pay for this!\p"
+    .string "If you want to learn DOUBLE-EDGE\n"
+    .string "again, come back with ¥5000!$"
+
 VictoryRoad_3F_Text_GeorgeIntro:: @ 8174B60
     .string "I heard rumors of a child prodigy.$"
 

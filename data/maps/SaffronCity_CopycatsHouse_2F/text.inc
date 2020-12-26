@@ -51,32 +51,48 @@ Text_MimicTaughtFemale:: @ 819AE90
     .string "COPYCAT: You bet!\n"
     .string "It's a scream!$"
 
-SaffronCity_CopycatsHouse_2F_Text_TooMuchInBag:: @ 819AF1A
-    .string "にもつが　いっぱいね！$"
+Text_MimicReteach::
+    .string "{PLAYER}: Hi!\n"
+    .string "Could you teach us MIMIC again?\p"
+    .string "{PLAYER}: Pardon?\p"
+    .string "{PLAYER}: Is it that fun to copy my\n"
+    .string "every word?\p"
+    .string "COPYCAT: Absolutely!\n"
+    .string "It's a scream!\p"
+    .string "I can reteach MIMIC if you'll give\n"
+    .string "me ¥5000 for more dolls!$"
 
-SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyMaleJP:: @ 819AF26
-    .string "{PLAYER}“やあ！　こんにちは！\n"
-    .string "きみ　ポケモン　すきかい？\p"
-    .string "{PLAYER}“ぼく　じゃなくって\n"
-    .string "きみに　きいてるんだ　けど\p"
-    .string "{PLAYER}“‥‥　えー　なんだよ！\n"
-    .string "ヘンな　やつ　だなあ！\p"
-    .string "モノマネむすめ“‥‥　なに？\n"
-    .string "ひとの　マネ　すんなって？\p"
-    .string "だって　あたし　\n"
-    .string "ものまね　しゅみ　なんだ　もん！”$"
+Text_MimicReteach2::
+    .string "Is that okay?\n"
+    .string "Should I mimic teaching MIMIC?$"
 
-SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyFemaleJP:: @ 819AFB0
-    .string "{PLAYER}“こんにちは！\n"
-    .string "ポケモン　すきなのね？\p"
-    .string "{PLAYER}“わたし　じゃなくって\n"
-    .string "あなたに　きいてるんだ　けど\p"
-    .string "{PLAYER}“‥　えー　なんなの！\n"
-    .string "おかしなこ　ねー！\p"
-    .string "モノマネむすめ“‥　なに？\n"
-    .string "ひとの　マネ　すんなって？\p"
-    .string "だって　あたし\n"
-    .string "ものまね　しゅみ　なんだ　もん！$"
+Text_MimicNotEnoughMoney::
+    .string "{PLAYER}: ¥5000?\n"
+    .string "But a POKé DOLL only costs ¥1000!\p"
+    .string "I don't have enough money for\n"
+    .string "that right now…\p"
+    .string "COPYCAT: I want to buy five\n"
+    .string "POKé DOLLS! So I need ¥5000!\p"
+    .string "I'll mimic teaching MIMIC to\n"
+    .string "your POKéMON when you have it!$"
+
+Text_MimicTaughtMale2::
+    .string "{PLAYER}: Okay!\n"
+    .string "Thanks for that!\p"
+    .string "{PLAYER}: Pardon?\p"
+    .string "{PLAYER}: Is it that fun to mimic my\n"
+    .string "every move?\p"
+    .string "COPYCAT: You bet!\n"
+    .string "It's a scream!$"
+
+Text_MimicTaughtFemale2:: @ 819AE90
+    .string "{PLAYER}: Okay!\n"
+    .string "Thanks for what you did for us.\p"
+    .string "{PLAYER}: Pardon?\p"
+    .string "{PLAYER}: Is it really that fun to\n"
+    .string "copy what I say and do?\p"
+    .string "COPYCAT: You bet!\n"
+    .string "It's a scream!$"
 
 SaffronCity_CopycatsHouse_2F_Text_Doduo:: @ 819B030
     .string "DODUO: Giiih!\p"

@@ -104,6 +104,22 @@ Text_SoftboiledWhichMon:: @ 8180484
 Text_SoftboiledTaught:: @ 81804C4
     .string "I wish you the best of luck!$"
 
+Text_SoftboiledReteach::
+    .string "Hello again!\p"
+    .string "Did you stop by to chat, or would\n"
+    .string "you like me to teach SOFTBOILED\l"
+    .string "to your POKéMON?\p"
+    .string "I can teach it again for\n"
+    .string "only ¥5000!$"
+
+Text_SoftboiledReteach2::
+    .string "Would you like me to teach\n"
+    .string "your POKéMON SOFTBOILED?$"
+
+Text_SoftboiledNotEnoughMoney::
+    .string "You don't have ¥5000!\n"
+    .string "Come back again when you do.$"
+
 CeladonCity_Text_SomeoneStoleSilphScope:: @ 81804E1
     .string "Oh, what am I to do…\p"
     .string "Someone stole our SILPH SCOPE.\p"

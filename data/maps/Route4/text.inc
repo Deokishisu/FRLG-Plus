@@ -46,6 +46,21 @@ Text_MegaPunchTaught:: @ 8183AE2
     .string "by the misguided fool who trains\l"
     .string "only his silly kicking over there.$"
 
+Text_MegaPunchReteach::
+    .string "A punch so powerful, you can't\n"
+    .string "help but want to learn it again!\p"
+    .string "I can teach you the power-packed\n"
+    .string "MEGA PUNCH again for ¥5000!$"
+
+Text_MegaPunchReteach2::
+    .string "Do you want me to teach MEGA PUNCH\n"
+    .string "to your POKéMON?$"
+
+Text_MegaPunchNotEnoughMoney::
+    .string "Money is packed with power too,\n"
+    .string "and without ¥5000, I can't teach\l"
+    .string "MEGA PUNCH to your POKéMON!$"
+
 Text_MegaKickTeach:: @ 8183B74
     .string "A kick of brutal ferocity!\p"
     .string "Packed with destructive power!\p"
@@ -69,6 +84,21 @@ Text_MegaKickTaught:: @ 8183C94
     .string "You should run before you're seen\n"
     .string "by the deluded nitwit who trains\l"
     .string "only simple punching over there.$"
+
+Text_MegaKickReteach::
+    .string "A kick so powerful, you can't\n"
+    .string "help but want to learn it again!\p"
+    .string "I can teach you the power-packed\n"
+    .string "MEGA KICK again for ¥5000!$"
+
+Text_MegaKickReteach2::
+    .string "Do you want me to teach MEGA KICK\n"
+    .string "to your POKéMON?$"
+
+Text_MegaKickNotEnoughMoney::
+    .string "Money is packed with power too,\n"
+    .string "and without ¥5000, I can't teach\l"
+    .string "MEGA KICK to your POKéMON!$"
 
 Route4_Text_PeopleLikeAndRespectBrock:: @ 8183D26
     .string "Oh, wow, that's the BOULDERBADGE!\n"

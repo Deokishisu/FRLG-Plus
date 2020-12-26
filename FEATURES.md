@@ -6,9 +6,9 @@
 	* This Mew counts as an Emerald Faraway Island Mew for legality purposes.
 - Cut Trees stay cut permanently.
 - No link restrictions
-	* Trade with Ruby, Sapphire, Emerald, Colosseum, and XD the moment that player catches a second Pokémon.
+	* Trade with Ruby, Sapphire, Emerald, Colosseum, and XD the moment that the player catches a second Pokémon.
 		* Unmodified Emerald may need the National Dex before it allows trading.
-- No evolution restrictions; Pokemon will evolve regardless of whether or not their evolution is in the Kanto Dex.
+- No evolution restrictions; Pokémon will evolve regardless of whether or not their evolution is in the Kanto Dex.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
 - Expanded postgame, focusing on giving the Sevii Islands more content. []
@@ -18,7 +18,7 @@
 	* All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. Most Hoenn Pokémon will still need to be traded for. []
 - Infinite TM usage. TM prices have been modified to reflect this.
 - Expanded item pockets. []
-- Move Tutors will charge after the first time they teach a move, allowing infinite tutor uses at a cost. []
+- Move Tutors will charge after the first time they teach a move, allowing infinite tutor uses at a cost. Frenzy Plant, Blast Burn, and Hydro Cannon can be tutored infinitely for free, and no longer have a friendship requirement to learn.
 - Abilities have effects in the OW like in Emerald. []
 - LGPE-style bonus Premier Balls in shops.
 - Hold B while surfing to go faster.

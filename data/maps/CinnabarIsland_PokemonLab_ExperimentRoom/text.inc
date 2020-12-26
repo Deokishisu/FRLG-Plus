@@ -19,6 +19,21 @@ Text_MetronomeTaught:: @ 819A20E
     .string "It tweaks your POKéMON's brain into\n"
     .string "using moves it doesn't even know.$"
 
+Text_MetronomeReteach::
+    .string "Tch-tch-tch!\n"
+    .string "The METRONOME ticks eternally!\p"
+    .string "I'll teach you METRONOME again\n"
+    .string "in exchange for ¥5000.$"
+
+Text_MetronomeReteach2::
+    .string "Tch-tch-tch!\n"
+    .string "Let me teach METRONOME?$"
+
+Text_MetronomeNotEnoughMoney::
+    .string "Tch-tch-tch!\p"
+    .string "Time is money, and you don't\n"
+    .string "have enough!$"
+
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe:: @ 819A282
     .string "Hiya!\p"
     .string "I am important doctor.\n"
@@ -31,12 +46,6 @@ CinnabarIsland_PokemonLab_ExperimentRoom_Text_HaveYouAFossilForMe:: @ 819A282
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoIsTooBad:: @ 819A314
     .string "No!\n"
     .string "Is too bad!$"
-
-@ Unused
-CinnabarIsland_PokemonLab_ExperimentRoom_Text_TakesTimeGoForWalkJP:: @ 819A324
-    .string "ちょっと　じかん　かかるよ！\p"
-    .string "そこらへんを　すこし\n"
-    .string "ブラブラ　してくると　よろしー！$"
 
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife:: @ 819A34F
     .string "You late.\n"

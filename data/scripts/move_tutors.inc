@@ -1,7 +1,7 @@
 VictoryRoad_2F_EventScript_DoubleEdgeTutor:: @ 81C47AE
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_DOUBLE_EDGE, EventScript_DoubleEdgeTaught
+	goto_if_set FLAG_TUTOR_DOUBLE_EDGE, EventScript_DoubleEdgeReteach
 	msgbox Text_DoubleEdgeTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_DoubleEdgeDeclined
@@ -27,10 +27,46 @@ EventScript_DoubleEdgeTaught:: @ 81C480C
 	release
 	end
 
+EventScript_DoubleEdgeReteach::
+	lock
+	faceplayer
+	msgbox Text_DoubleEdgeReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_DoubleEdgeReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_DoubleEdgeDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_DoubleEdgeNotEnoughMoney
+	msgbox Text_DoubleEdgeWhichMon
+	setvar VAR_0x8005, MOVETUTOR_DOUBLE_EDGE
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_DoubleEdgeDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_DoubleEdgeTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_DoubleEdgeNotEnoughMoney::
+	msgbox Text_DoubleEdgeNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_DoubleEdgeDeclined2:: @ 81C4802
+	msgbox Text_DoubleEdgeDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
 EventScript_ThunderWaveTutor:: @ 81C4816
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_THUNDER_WAVE, EventScript_ThunderWaveTaught
+	goto_if_set FLAG_TUTOR_THUNDER_WAVE, EventScript_ThunderWaveReteach
 	msgbox Text_ThunderWaveTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_ThunderWaveDeclined
@@ -56,10 +92,46 @@ EventScript_ThunderWaveTaught:: @ 81C4874
 	release
 	end
 
+EventScript_ThunderWaveReteach::
+	lock
+	faceplayer
+	msgbox Text_ThunderWaveReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_ThunderWaveReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_ThunderWaveDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_ThunderWaveNotEnoughMoney
+	msgbox Text_ThunderWaveWhichMon
+	setvar VAR_0x8005, MOVETUTOR_THUNDER_WAVE
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_ThunderWaveDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_ThunderWaveTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_ThunderWaveNotEnoughMoney::
+	msgbox Text_ThunderWaveNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_ThunderWaveDeclined2:: @ 81C486A
+	msgbox Text_ThunderWaveDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
 RockTunnel_B1F_EventScript_RockSlideTutor:: @ 81C487E
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_ROCK_SLIDE, EventScript_RockSlideTaught
+	goto_if_set FLAG_TUTOR_ROCK_SLIDE, EventScript_RockSlideReteach
 	msgbox Text_RockSlideTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_RockSlideDeclined
@@ -85,10 +157,46 @@ EventScript_RockSlideTaught:: @ 81C48DC
 	release
 	end
 
+EventScript_RockSlideReteach::
+	lock
+	faceplayer
+	msgbox Text_RockSlideReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_RockSlideReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_RockSlideDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_RockSlideNotEnoughMoney
+	msgbox Text_RockSlideWhichMon
+	setvar VAR_0x8005, MOVETUTOR_ROCK_SLIDE
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_RockSlideDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_RockSlideTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_RockSlideNotEnoughMoney::
+	msgbox Text_RockSlideNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_RockSlideDeclined2:: @ 81C48D2
+	msgbox Text_RockSlideDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
 MtEmber_Exterior_EventScript_ExplosionTutor:: @ 81C48E6
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_EXPLOSION, EventScript_ExplosionTaught
+	goto_if_set FLAG_TUTOR_EXPLOSION, EventScript_ExplosionReteach
 	msgbox Text_ExplosionTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_ExplosionDeclined
@@ -114,10 +222,46 @@ EventScript_ExplosionTaught:: @ 81C4944
 	release
 	end
 
+EventScript_ExplosionReteach::
+	lock
+	faceplayer
+	msgbox Text_ExplosionReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_ExplosionReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_ExplosionDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_ExplosionNotEnoughMoney
+	msgbox Text_ExplosionWhichMon
+	setvar VAR_0x8005, MOVETUTOR_EXPLOSION
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_ExplosionDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_ExplosionTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_ExplosionDeclined2:: @ 81C493A
+	msgbox Text_ExplosionDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_ExplosionNotEnoughMoney::
+	msgbox Text_ExplosionNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 Route4_EventScript_MegaPunchTutor:: @ 81C494E
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_MEGA_PUNCH, EventScript_MegaPunchTaught
+	goto_if_set FLAG_TUTOR_MEGA_PUNCH, EventScript_MegaPunchReteach
 	msgbox Text_MegaPunchTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_MegaPunchDeclined
@@ -143,10 +287,46 @@ EventScript_MegaPunchTaught:: @ 81C49AC
 	release
 	end
 
+EventScript_MegaPunchReteach::
+	lock
+	faceplayer
+	msgbox Text_MegaPunchReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_MegaPunchReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_MegaPunchDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MegaPunchNotEnoughMoney
+	msgbox Text_MegaPunchWhichMon
+	setvar VAR_0x8005, MOVETUTOR_MEGA_PUNCH
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MegaPunchDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_MegaPunchTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MegaPunchDeclined2:: @ 81C493A
+	msgbox Text_MegaPunchDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MegaPunchNotEnoughMoney::
+	msgbox Text_MegaPunchNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 Route4_EventScript_MegaKickTutor:: @ 81C49B6
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_MEGA_KICK, EventScript_MegaKickTaught
+	goto_if_set FLAG_TUTOR_MEGA_KICK, EventScript_MegaKickReteach
 	msgbox Text_MegaKickTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_MegaKickDeclined
@@ -172,10 +352,46 @@ EventScript_MegaKickTaught:: @ 81C4A14
 	release
 	end
 
+EventScript_MegaKickReteach::
+	lock
+	faceplayer
+	msgbox Text_MegaKickReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_MegaKickReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_MegaKickDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MegaKickNotEnoughMoney
+	msgbox Text_MegaKickWhichMon
+	setvar VAR_0x8005, MOVETUTOR_MEGA_KICK
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MegaKickDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_MegaKickTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MegaKickDeclined2:: @ 81C493A
+	msgbox Text_MegaKickDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MegaKickNotEnoughMoney::
+	msgbox Text_MegaKickNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 EventScript_DreamEaterTutor:: @ 81C4A1E
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_DREAM_EATER, EventScript_DreamEaterTaught
+	goto_if_set FLAG_TUTOR_DREAM_EATER, EventScript_DreamEaterReteach
 	msgbox Text_DreamEaterTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_DreamEaterDeclined
@@ -201,10 +417,46 @@ EventScript_DreamEaterTaught:: @ 81C4A7C
 	release
 	end
 
+EventScript_DreamEaterReteach::
+	lock
+	faceplayer
+	msgbox Text_DreamEaterReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_DreamEaterReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_DreamEaterDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_DreamEaterNotEnoughMoney
+	msgbox Text_DreamEaterWhichMon
+	setvar VAR_0x8005, MOVETUTOR_DREAM_EATER
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_DreamEaterDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_DreamEaterTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_DreamEaterDeclined2:: @ 81C493A
+	msgbox Text_DreamEaterDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_DreamEaterNotEnoughMoney::
+	msgbox Text_DreamEaterNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 EventScript_SoftboiledTutor:: @ 81C4A86
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_SOFT_BOILED, EventScript_SoftboiledTaught
+	goto_if_set FLAG_TUTOR_SOFT_BOILED, EventScript_SoftboiledReteach
 	msgbox Text_SoftboiledTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_SoftboiledDeclined
@@ -230,10 +482,46 @@ EventScript_SoftboiledTaught:: @ 81C4AE4
 	release
 	end
 
+EventScript_SoftboiledReteach::
+	lock
+	faceplayer
+	msgbox Text_SoftboiledReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_SoftboiledReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_SoftboiledDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SoftboiledNotEnoughMoney
+	msgbox Text_SoftboiledWhichMon
+	setvar VAR_0x8005, MOVETUTOR_SOFT_BOILED
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SoftboiledDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_SoftboiledTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SoftboiledDeclined2:: @ 81C493A
+	msgbox Text_SoftboiledDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SoftboiledNotEnoughMoney::
+	msgbox Text_SoftboiledNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 FuchsiaCity_EventScript_SubstituteTutor:: @ 81C4AEE
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_SUBSTITUTE, EventScript_SubstituteTaught
+	goto_if_set FLAG_TUTOR_SUBSTITUTE, EventScript_SubstituteReteach
 	msgbox Text_SubstituteTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_SubstituteDeclined
@@ -259,10 +547,46 @@ EventScript_SubstituteTaught:: @ 81C4B4C
 	release
 	end
 
+EventScript_SubstituteReteach::
+	lock
+	faceplayer
+	msgbox Text_SubstituteReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_SubstituteReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_SubstituteDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SubstituteNotEnoughMoney
+	msgbox Text_SubstituteWhichMon
+	setvar VAR_0x8005, MOVETUTOR_SUBSTITUTE
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SubstituteDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_SubstituteTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SubstituteDeclined2:: @ 81C493A
+	msgbox Text_SubstituteDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SubstituteNotEnoughMoney::
+	msgbox Text_SubstituteNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 SevenIsland_EventScript_SwordsDanceTutor:: @ 81C4B56
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_SWORDS_DANCE, EventScript_SwordsDanceTaught
+	goto_if_set FLAG_TUTOR_SWORDS_DANCE, EventScript_SwordsDanceReteach
 	msgbox Text_SwordsDanceTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_SwordsDanceDeclined
@@ -288,10 +612,46 @@ EventScript_SwordsDanceTaught:: @ 81C4BB4
 	release
 	end
 
+EventScript_SwordsDanceReteach::
+	lock
+	faceplayer
+	msgbox Text_SwordsDanceReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_SwordsDanceReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_SwordsDanceDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SwordsDanceNotEnoughMoney
+	msgbox Text_SwordsDanceWhichMon
+	setvar VAR_0x8005, MOVETUTOR_SWORDS_DANCE
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SwordsDanceDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_SwordsDanceTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SwordsDanceDeclined2:: @ 81C493A
+	msgbox Text_SwordsDanceDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SwordsDanceNotEnoughMoney::
+	msgbox Text_SwordsDanceNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 PewterCity_Museum_1F_EventScript_SeismicTossTutor:: @ 81C4BBE
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_SEISMIC_TOSS, EventScript_SeismicTossTaught
+	goto_if_set FLAG_TUTOR_SEISMIC_TOSS, EventScript_SeismicTossReteach
 	msgbox Text_SeismicTossTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_SeismicTossDeclined
@@ -317,10 +677,46 @@ EventScript_SeismicTossTaught:: @ 81C4C1C
 	release
 	end
 
+EventScript_SeismicTossReteach::
+	lock
+	faceplayer
+	msgbox Text_SeismicTossReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_SeismicTossReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_SeismicTossDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SeismicTossNotEnoughMoney
+	msgbox Text_SeismicTossWhichMon
+	setvar VAR_0x8005, MOVETUTOR_SEISMIC_TOSS
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SeismicTossDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_SeismicTossTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SeismicTossDeclined2:: @ 81C493A
+	msgbox Text_SeismicTossDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_SeismicTossNotEnoughMoney::
+	msgbox Text_SeismicTossNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 EventScript_CounterTutor:: @ 81C4C26
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_COUNTER, EventScript_CounterTaught
+	goto_if_set FLAG_TUTOR_COUNTER, EventScript_CounterReteach
 	msgbox Text_CounterTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_CounterDeclined
@@ -346,10 +742,46 @@ EventScript_CounterTaught:: @ 81C4C84
 	release
 	end
 
+EventScript_CounterReteach::
+	lock
+	faceplayer
+	msgbox Text_CounterReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_CounterReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_CounterDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_CounterNotEnoughMoney
+	msgbox Text_CounterWhichMon
+	setvar VAR_0x8005, MOVETUTOR_COUNTER
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_CounterDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_CounterTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_CounterDeclined2:: @ 81C493A
+	msgbox Text_CounterDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_CounterNotEnoughMoney::
+	msgbox Text_CounterNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 EventScript_MetronomeTutor:: @ 81C4C8E
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_METRONOME, EventScript_MetronomeTaught
+	goto_if_set FLAG_TUTOR_METRONOME, EventScript_MetronomeReteach
 	msgbox Text_MetronomeTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_MetronomeDeclined
@@ -375,8 +807,44 @@ EventScript_MetronomeTaught:: @ 81C4CEC
 	release
 	end
 
+EventScript_MetronomeReteach::
+	lock
+	faceplayer
+	msgbox Text_MetronomeReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_MetronomeReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_MetronomeDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MetronomeNotEnoughMoney
+	msgbox Text_MetronomeWhichMon
+	setvar VAR_0x8005, MOVETUTOR_METRONOME
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MetronomeDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_MetronomeTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MetronomeDeclined2:: @ 81C493A
+	msgbox Text_MetronomeDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MetronomeNotEnoughMoney::
+	msgbox Text_MetronomeNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
 EventScript_MimicTutor:: @ 81C4CF6
-	goto_if_set FLAG_TUTOR_MIMIC, EventScript_MimicTaught
+	goto_if_set FLAG_TUTOR_MIMIC, EventScript_MimicReteach
 	msgbox Text_MimicTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_MimicDeclined
@@ -417,10 +885,62 @@ EventScript_MimicTaughtFemale:: @ 81C4D7B
 	msgbox Text_MimicTaughtFemale
 	return
 
+EventScript_MimicReteach::
+	lock
+	faceplayer
+	msgbox Text_MimicReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_MimicReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_MimicDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MimicNotEnoughMoney
+	msgbox Text_MimicWhichMon
+	setvar VAR_0x8005, MOVETUTOR_MIMIC
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_MimicDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	goto EventScript_MimicTaught2
+	end
+
+EventScript_MimicDeclined2:: @ 81C493A
+	msgbox Text_MimicDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MimicNotEnoughMoney::
+	msgbox Text_MimicNotEnoughMoney
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MimicTaught2::
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq EventScript_MimicTaughtMale2
+	compare VAR_RESULT, FEMALE
+	call_if_eq EventScript_MimicTaughtFemale2
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_MimicTaughtMale2:: @ 81C4D72
+	msgbox Text_MimicTaughtMale2
+	return
+
+EventScript_MimicTaughtFemale2:: @ 81C4D7B
+	msgbox Text_MimicTaughtFemale2
+	return
+
 FourIsland_House1_EventScript_BodySlamTutor:: @ 81C4D84
 	lock
 	faceplayer
-	goto_if_set FLAG_TUTOR_BODY_SLAM, EventScript_BodySlamTaught
+	goto_if_set FLAG_TUTOR_BODY_SLAM, EventScript_BodySlamReteach
 	msgbox Text_BodySlamTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_BodySlamDeclined
@@ -443,6 +963,42 @@ EventScript_BodySlamDeclined:: @ 81C4DD8
 
 EventScript_BodySlamTaught:: @ 81C4DE2
 	msgbox Text_BodySlamTaught
+	release
+	end
+
+EventScript_BodySlamReteach::
+	lock
+	faceplayer
+	msgbox Text_BodySlamReteach
+	showmoneybox 0, 0, 0
+	msgbox Text_BodySlamReteach2, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_BodySlamDeclined2
+	checkmoney 5000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_BodySlamNotEnoughMoney
+	msgbox Text_BodySlamWhichMon
+	setvar VAR_0x8005, MOVETUTOR_BODY_SLAM
+	call EventScript_ChooseMoveTutorMon
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_BodySlamDeclined
+	showmoneybox 0, 0, 0
+	removemoney 5000, 0
+	updatemoneybox 0, 0, 0
+	msgbox Text_BodySlamTaught
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_BodySlamDeclined2:: @ 81C493A
+	msgbox Text_BodySlamDeclined
+	hidemoneybox 0, 0
+	release
+	end
+
+EventScript_BodySlamNotEnoughMoney::
+	msgbox Text_BodySlamNotEnoughMoney
+	hidemoneybox 0, 0
 	release
 	end
 
@@ -470,9 +1026,6 @@ TwoIsland_CapeBrink_House_EventScript_StarterTutor:: @ 81C4DEC
 	msgbox Text_AllowMeToTeachMonUltimateMove, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq CapeBrinkTutor_EventScript_DeclineMove
-	call EventScript_CanOnlyBeLearnedOnce
-	compare VAR_RESULT, NO
-	goto_if_eq CapeBrinkTutor_EventScript_DeclineMove
 	msgbox Text_LetMeConferUltimateMove
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -491,6 +1044,31 @@ CapeBrinkTutor_EventScript_MoveJustTaught:: @ 81C4E97
 
 CapeBrinkTutor_EventScript_TaughtAllMoves:: @ 81C4EA1
 	msgbox Text_FeelRejuvenated
+	getfirstpartymonname 0
+	specialvar VAR_RESULT, CapeBrinkGetMoveToTeachLeadPokemon
+	compare VAR_RESULT, FALSE
+	goto_if_eq CapeBrinkTutor_EventScript_NoLeadStarter2
+	copyvar VAR_0x8009, VAR_0x8005
+	compare VAR_FACING, DIR_NORTH
+	call_if_eq CapeBrinkTutor_EventScript_JumpInPlaceDown
+	compare VAR_FACING, DIR_SOUTH
+	call_if_eq CapeBrinkTutor_EventScript_JumpInPlaceUp
+	compare VAR_FACING, DIR_EAST
+	call_if_eq CapeBrinkTutor_EventScript_JumpInPlaceLeft
+	compare VAR_FACING, DIR_WEST
+	call_if_eq CapeBrinkTutor_EventScript_JumpInPlaceRight
+	msgbox Text_RightPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq CapeBrinkTutor_EventScript_DeclineMove
+	msgbox Text_LetMeConferUltimateMove
+	closemessage
+	fadescreen FADE_TO_BLACK
+	goto CapeBrinkTutor_EventScript_ChooseMon
+	release
+	end
+
+CapeBrinkTutor_EventScript_NoLeadStarter2::
+	msgbox Text_NotTheRightPokemon
 	release
 	end
 

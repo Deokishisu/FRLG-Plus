@@ -68,3 +68,19 @@ Text_CounterWhichMon:: @ 8195A08
 Text_CounterTaught:: @ 8195A31
     .string "Are you using that COUNTER move\n"
     .string "I taught your POKéMON?$"
+
+Text_CounterReteach::
+    .string "Still working away at POKéMON?\n"
+    .string "I've moved onto the next big thing.\p"
+    .string "If you want, I can teach you\n"
+    .string "COUNTER again for ¥5000.$"
+
+Text_CounterReteach2::
+    .string "Should I teach COUNTER to your\n"
+    .string "POKéMON?$"
+
+Text_CounterNotEnoughMoney::
+    .string "Kid, I need money for the next\n"
+    .string "big game that's coming out soon!\p"
+    .string "I can't help you out with COUNTER\n"
+    .string "if you can't help me out by paying.$"

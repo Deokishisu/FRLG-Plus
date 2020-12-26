@@ -50,4 +50,21 @@ Text_FeelRejuvenated:: @ 81A4972
     .string "After I passed on my knowledge to\n"
     .string "you, I felt so much relief.\p"
     .string "In fact, I feel rejuvenated,\n"
-    .string "as if I were younger again!$"
+    .string "as if I were younger again!\p"
+    .string "I feel young enough to keep\n"
+    .string "teaching my ultimate moves.$"
+
+Text_NotTheRightPokemon::
+    .string "But, that {STR_VAR_1}…\p"
+    .string "No, it cannot learn one\n"
+    .string "of my moves.$"
+
+Text_RightPokemon::
+    .string "But, that {STR_VAR_1}…\n"
+    .string "Oh! Yes! This is the one!\p"
+    .string "This {STR_VAR_1} is worthy of\n"
+    .string "learning an ultimate move!\p"
+    .string "Will you allow it?\p"
+    .string "Will you allow your {STR_VAR_1} to\n"
+    .string "learn my {STR_VAR_2}?$"
+

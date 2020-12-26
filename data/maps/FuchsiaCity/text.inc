@@ -104,6 +104,25 @@ Text_SubstituteTaught:: @ 8180A80
     .string "Boy, what I'd give to crawl inside\n"
     .string "a KANGASKHAN belly pouch…$"
 
+Text_SubstituteReteach::
+    .string "I bet a KANGASKHAN's belly pouch\n"
+    .string "is so comfy and warm…\p"
+    .string "If only I could sub in for the\n"
+    .string "baby, we could take shifts!\p"
+    .string "I can teach SUBSTITUTE to one\n"
+    .string "of your POKéMON again for ¥5000!$"
+
+Text_SubstituteReteach2::
+    .string "Want me to teach SUBSTITUTE to\n"
+    .string "one of your POKéMON?$"
+
+Text_SubstituteNotEnoughMoney::
+    .string "KANGASKHAN is rare, so if I want\n"
+    .string "to catch one, I need money for\l"
+    .string "lots of SAFARI ZONE trips.\p"
+    .string "I can't afford to teach SUBSTITUTE\n"
+    .string "for less than ¥5000 anymore!$"
+
 FuchsiaCity_Text_MyFatherIsGymLeader:: @ 8180ABD
     .string "My father is the GYM LEADER of\n"
     .string "this town.\p"
