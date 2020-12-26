@@ -8,6 +8,7 @@
 - No link restrictions
 	* Trade with Ruby, Sapphire, Emerald, Colosseum, and XD the moment that player catches a second Pokémon.
 		* Unmodified Emerald may need the National Dex before it allows trading.
+- No evolution restrictions; Pokemon will evolve regardless of whether or not their evolution is in the Kanto Dex.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
 - Expanded postgame, focusing on giving the Sevii Islands more content. []
@@ -25,3 +26,4 @@
 - Toggle auto running with the R button.
 - Instant text option.
 - Indicators for which stats are affected by natures on summary screen.
+- Health bar drains faster at higher HP levels.
