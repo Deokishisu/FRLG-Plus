@@ -230,9 +230,9 @@
 #define FLAG_ROUTE_9_CUT_TREE                 0x0DC //forgot this one
 #define FLAG_AUTO_RUN_TOGGLED                 0x0DD
 #define FLAG_AUTO_RUN_EXPLAINED               0x0DE
+#define FLAG_DONT_ADD_TMS                     0x0DF //Needed so the Teachy TV doesn't add TMs
 
 // Unused?
-#define FLAG_0x0DF               0x0DF
 #define FLAG_0x0E0               0x0E0
 #define FLAG_0x0E1               0x0E1
 #define FLAG_0x0E2               0x0E2

@@ -14,6 +14,7 @@
 
 EWRAM_DATA struct BagPocket gBagPockets[NUM_BAG_POCKETS] = {};
 EWRAM_DATA struct ItemSlot gTmHmItemSlots[BAG_TMHM_COUNT] = {0};
+EWRAM_DATA struct ItemSlot gKeyItemSlots[BAG_KEYITEMS_COUNT] = {0};
 
 void SortAndCompactBagPocket(struct BagPocket * pocket);
 
@@ -75,11 +76,29 @@ void DeserializeTmHmItemSlots(void)
     }
 }
 
+void DeserializeKeyItemSlots(void)
+{
+    int i;
+
+    for (i = 0; i < BAG_KEYITEMS_COUNT; ++i)
+    {
+        gKeyItemSlots[i].itemId = 0;
+        SetBagItemQuantity(&(gKeyItemSlots[i].quantity), 0);
+    }
+    for (i = 0; i < BAG_KEYITEMS_COUNT; ++i)
+    {
+        if (gSaveBlock1Ptr->bagPocket_KeyItems[i] != 0 && gSaveBlock1Ptr->bagPocket_KeyItems[i] <= 30)
+            AddBagItem(gSaveBlock1Ptr->bagPocket_KeyItems[i] + 258, 1);
+        if (gSaveBlock1Ptr->bagPocket_KeyItems[i] != 0 && gSaveBlock1Ptr->bagPocket_KeyItems[i] > 30)
+            AddBagItem(gSaveBlock1Ptr->bagPocket_KeyItems[i] + 348 - 30, 1);
+    }
+}
+
 void SetBagPocketsPointers(void)
 {
     gBagPockets[POCKET_ITEMS - 1].itemSlots = gSaveBlock1Ptr->bagPocket_Items;
     gBagPockets[POCKET_ITEMS - 1].capacity = BAG_ITEMS_COUNT;
-    gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots = gSaveBlock1Ptr->bagPocket_KeyItems;
+    gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots = &gKeyItemSlots[0];
     gBagPockets[POCKET_KEY_ITEMS - 1].capacity = BAG_KEYITEMS_COUNT;
     gBagPockets[POCKET_POKE_BALLS - 1].itemSlots = gSaveBlock1Ptr->bagPocket_PokeBalls;
     gBagPockets[POCKET_POKE_BALLS - 1].capacity = BAG_POKEBALLS_COUNT;
@@ -243,8 +262,8 @@ bool8 AddBagItem(u16 itemId, u16 count)
             gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots[idx].itemId = ITEM_TM_CASE;
             SetBagItemQuantity(&gBagPockets[POCKET_KEY_ITEMS - 1].itemSlots[idx].quantity, 1);
         }
-        SetTmHmOwned(itemId);
-        //return TRUE;
+        if(!FlagGet(FLAG_DONT_ADD_TMS)) //don't add if Teachy TV
+            SetTmHmOwned(itemId);
     }
     for (i = 0; i < gBagPockets[pocket].capacity; i++)
     {

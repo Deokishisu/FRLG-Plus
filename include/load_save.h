@@ -33,5 +33,6 @@ void SetContinueGameWarpStatusToDynamicWarp(void);
 void SetContinueGameWarpStatus(void);
 bool32 UseContinueGameWarp(void);
 void ClearContinueGameWarpStatus();
+void SerializeKeyItemSlots(void);
 
 #endif // GUARD_LOAD_SAVE_H

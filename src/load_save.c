@@ -41,6 +41,8 @@ struct SaveBlock1 *gSaveBlock1Ptr;
 struct SaveBlock2 *gSaveBlock2Ptr;
 struct PokemonStorage *gPokemonStoragePtr;
 
+extern struct ItemSlot gKeyItemSlots[BAG_KEYITEMS_COUNT];
+
 void CheckForFlashMemory(void)
 {
     if (!IdentifyFlash())
@@ -192,6 +194,7 @@ void SaveSerializedGame(void)
 {
     SavePlayerParty();
     SaveObjectEvents();
+    SerializeKeyItemSlots();
 }
 
 void LoadSerializedGame(void)
@@ -199,6 +202,23 @@ void LoadSerializedGame(void)
     LoadPlayerParty();
     LoadObjectEvents();
     DeserializeTmHmItemSlots();
+    DeserializeKeyItemSlots();
+}
+
+void SerializeKeyItemSlots(void)
+{
+    u8 i;
+    for (i = 0; i < BAG_KEYITEMS_COUNT; i++)
+    {
+        if(gKeyItemSlots[i].itemId > 258 && gKeyItemSlots[i].itemId < 289) //RS Key Items
+        {
+            gSaveBlock1Ptr->bagPocket_KeyItems[i] = (u8)(gKeyItemSlots[i].itemId - 258);
+        }
+        if(gKeyItemSlots[i].itemId > 348) //FRLGE Key Items
+        {
+            gSaveBlock1Ptr->bagPocket_KeyItems[i] = (u8)(gKeyItemSlots[i].itemId - 348 + 30);
+        }
+    }
 }
 
 void LoadPlayerBag(void)
@@ -211,7 +231,7 @@ void LoadPlayerBag(void)
 
     // load player key items.
     for (i = 0; i < BAG_KEYITEMS_COUNT; i++)
-        gLoadedSaveData.keyItems[i] = gSaveBlock1Ptr->bagPocket_KeyItems[i];
+        gLoadedSaveData.keyItems[i] = gKeyItemSlots[i];
 
     // load player pokeballs.
     for (i = 0; i < BAG_POKEBALLS_COUNT; i++)
@@ -243,7 +263,16 @@ void SavePlayerBag(void)
 
     // save player key items.
     for (i = 0; i < BAG_KEYITEMS_COUNT; i++)
-        gSaveBlock1Ptr->bagPocket_KeyItems[i] = gLoadedSaveData.keyItems[i];
+    {
+        if(gLoadedSaveData.keyItems[i].itemId > 258 && gLoadedSaveData.keyItems[i].itemId < 289) //RS Key Items
+        {
+            gSaveBlock1Ptr->bagPocket_KeyItems[i] = (u8)(gLoadedSaveData.keyItems[i].itemId - 258);
+        }
+        if(gLoadedSaveData.keyItems[i].itemId > 348) //FRLGE Key Items
+        {
+            gSaveBlock1Ptr->bagPocket_KeyItems[i] = (u8)(gLoadedSaveData.keyItems[i].itemId - 348 + 30);
+        }
+    }
 
     // save player pokeballs.
     for (i = 0; i < BAG_POKEBALLS_COUNT; i++)

@@ -733,7 +733,8 @@ struct SaveBlock1
     /*0x0296*/ u16 registeredItem; // registered for use with SELECT button
     /*0x0298*/ struct ItemSlot pcItems[PC_ITEMS_COUNT];
     /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
-    /*0x03b8*/ struct ItemSlot bagPocket_KeyItems[BAG_KEYITEMS_COUNT];
+    /*0x03b8*/ u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices
+               u8 bagPocket_KeyItemsPadding[90]; // padding to prevent shifting the saveblock
     /*0x0430*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
     /*0x0464*/ u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
                u8 bagPocket_TMHMPadding[224]; // padding to prevent shifting the saveblock

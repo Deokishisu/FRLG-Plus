@@ -22,8 +22,11 @@
 #include "menu_indicators.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "event_data.h"
 
 #define TM_CASE_TM_TAG 400
+
+extern void SetBagItemQuantity(u16 * ptr, u16 value);
 
 struct UnkStruct_203B10C
 {
@@ -1133,24 +1136,27 @@ static void ClearTMHMSlots(void)
 
     for (i = 0; i < 9; i++)
     {
-        gSaveBlock1Ptr->bagPocket_TMHM[i] = 0;
+        gTmHmItemSlots[i].itemId = 0;
+        SetBagItemQuantity(&(gTmHmItemSlots[i].quantity), 0);
     }
 }
 
 void Pokedude_InitTMCase(void)
 {
+    FlagSet(FLAG_DONT_ADD_TMS);
     sPokedudePackBackup = AllocZeroed(sizeof(*sPokedudePackBackup));
-    memcpy(sPokedudePackBackup->bagPocket_TMHM, gSaveBlock1Ptr->bagPocket_TMHM, sizeof(gSaveBlock1Ptr->bagPocket_TMHM));
-    memcpy(sPokedudePackBackup->bagPocket_KeyItems, gSaveBlock1Ptr->bagPocket_KeyItems, sizeof(gSaveBlock1Ptr->bagPocket_KeyItems));
+    memcpy(sPokedudePackBackup->bagPocket_TMHM, gTmHmItemSlots, sizeof(gTmHmItemSlots));
+    memcpy(sPokedudePackBackup->bagPocket_KeyItems, gKeyItemSlots, sizeof(gKeyItemSlots));
     sPokedudePackBackup->unk_160 = sTMCaseStaticResources.selectedRow;
     sPokedudePackBackup->unk_162 = sTMCaseStaticResources.scrollOffset;
     ClearTMHMSlots();
-    ClearItemSlots(gSaveBlock1Ptr->bagPocket_KeyItems, NELEMS(gSaveBlock1Ptr->bagPocket_KeyItems));
+    ClearItemSlots(gKeyItemSlots, BAG_KEYITEMS_COUNT);
     ResetTMCaseCursorPos();
     AddBagItem(ITEM_TM01, 1);
     AddBagItem(ITEM_TM03, 1);
     AddBagItem(ITEM_TM09, 1);
     AddBagItem(ITEM_TM35, 1);
+    FlagClear(FLAG_DONT_ADD_TMS);
     InitTMCase(4, CB2_ReturnToTeachyTV, 0);
 }
 
@@ -1271,8 +1277,8 @@ static void Task_TMCaseDude_Playback(u8 taskId)
     case 21:
         if (!gPaletteFade.active)
         {
-            memcpy(gSaveBlock1Ptr->bagPocket_TMHM, sPokedudePackBackup->bagPocket_TMHM, sizeof(gSaveBlock1Ptr->bagPocket_TMHM));
-            memcpy(gSaveBlock1Ptr->bagPocket_KeyItems, sPokedudePackBackup->bagPocket_KeyItems, sizeof(gSaveBlock1Ptr->bagPocket_KeyItems));
+            memcpy(gTmHmItemSlots, sPokedudePackBackup->bagPocket_TMHM, sizeof(gTmHmItemSlots));
+            memcpy(gKeyItemSlots, sPokedudePackBackup->bagPocket_KeyItems, sizeof(gKeyItemSlots));
             DestroyListMenuTask(data[0], NULL, NULL);
             sTMCaseStaticResources.selectedRow = sPokedudePackBackup->unk_160;
             sTMCaseStaticResources.scrollOffset = sPokedudePackBackup->unk_162;
