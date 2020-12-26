@@ -723,11 +723,6 @@ PewterCity_EventScript_AideGiveRunningShoes:: @ 81662DE
 	message PewterCity_Text_ReceivedRunningShoesFromAide
 	waitmessage
 	waitfanfare
-	msgbox PewterCity_Text_SwitchedShoesWithRunningShoes
-	special DisableMsgBoxWalkaway
-	signmsg
-	msgbox PewterCity_Text_ExplainRunningShoes
-	normalmsg
 	call EventScript_RestorePrevTextColor
 	msgbox PewterCity_Text_MustBeGoingBackToLab
 	closemessage
@@ -740,11 +735,21 @@ PewterCity_EventScript_AideGiveRunningShoes:: @ 81662DE
 	compare VAR_TEMP_1, 3
 	call_if_eq PewterCity_EventScript_AideExit3
 	delay 30
+	checkplayergender
+	compare VAR_RESULT, FEMALE
+	goto_if_eq PewterCity_EventScript_LetterFemale
 	textcolor 3
 	msgbox PewterCity_Text_RunningShoesLetterFromMom
 	closemessage
 	removeobject LOCALID_AIDE
-	setflag FLAG_SYS_B_DASH
+	setvar VAR_MAP_SCENE_PEWTER_CITY, 2
+	return
+
+PewterCity_EventScript_LetterFemale::
+	textcolor 3
+	msgbox PewterCity_Text_RunningShoesLetterFromMomFemale
+	closemessage
+	removeobject LOCALID_AIDE
 	setvar VAR_MAP_SCENE_PEWTER_CITY, 2
 	return
 

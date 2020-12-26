@@ -1189,9 +1189,6 @@ int SetCableClubWarp(void)
 extern const u8 EventScript_EnableAutoRun[];
 static bool8 EnableAutoRun(void)
 {
-    if (!FlagGet(FLAG_SYS_B_DASH))
-        return FALSE;   //auto run unusable until you get running shoes
-
     if (!FlagGet(FLAG_AUTO_RUN_TOGGLED))
     {
         FlagSet(FLAG_AUTO_RUN_TOGGLED);

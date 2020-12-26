@@ -113,28 +113,6 @@ PewterCity_Text_CitySign:: @ 817E824
     .string "PEWTER CITY\n"
     .string "A Stone Gray City$"
 
-@ The below 3 JP texts are unused. Possibly a cut NPC meant to give the player the Berry Pouch
-PewterCity_Text_DefeatedBrockYouCanHaveTreasure:: @ 817E842
-    .string "あッれー！\n"
-    .string "その　ジムバッジ‥‥\l"
-    .string "すげえな　タケシに　かったのかよ！\p"
-    .string "かんどう　したから\n"
-    .string "おれの　たからもの　やるよ！$"
-
-PewterCity_Text_BerriesInsideUseCarefully:: @ 817E87E
-    .string "なかには　きのみが　はいってるぜ\p"
-    .string "やくに　たつ　きのみも\n"
-    .string "はいって　いるから\l"
-    .string "だいじに　つかって　くれよ！$"
-
-PewterCity_Text_MonsWillUseHeldBerriesOnTheirOwn:: @ 817E8B4
-    .string "ポケモンに　きのみを\n"
-    .string "もたせて　おけば\l"
-    .string "たたかっている　ときに\l"
-    .string "かってに　つかって　くれるんだ\p"
-    .string "キズぐすり　とか　どくけし　より\n"
-    .string "てがるで　べんり　だろ？$"
-
 PewterCity_Text_OhPlayer:: @ 817E902
     .string "Oh, {PLAYER}{KUN}!$"
 
@@ -146,7 +124,7 @@ PewterCity_Text_AskedToDeliverThis:: @ 817E90C
 
 PewterCity_Text_ReceivedRunningShoesFromAide:: @ 817E970
     .string "{PLAYER} received the\n"
-    .string "RUNNING SHOES from the AIDE.$"
+    .string "letter from the AIDE.$"
 
 PewterCity_Text_SwitchedShoesWithRunningShoes:: @ 817E99D
     .string "{PLAYER} switched shoes with the\n"
@@ -162,11 +140,25 @@ PewterCity_Text_MustBeGoingBackToLab:: @ 817EA06
     .string "Bye-bye!$"
 
 PewterCity_Text_RunningShoesLetterFromMom:: @ 817EA36
-    .string "There's a letter attached…\p"
+    .string "{PLAYER} opened the letter…\p"
     .string "Dear {PLAYER},\p"
-    .string "Here is a pair of RUNNING SHOES\n"
-    .string "for my beloved challenger.\p"
+    .string "I see my beloved challenger\n"
+    .string "left home with his RUNNING SHOES.\p"
+    .string "You can press the B Button to run,\n"
+    .string "and the R Button can make it so\l"
+    .string "you can run without holding B!\p"
     .string "Remember, I'll always cheer for\n"
     .string "you! Don't ever give up!\p"
     .string "From Mom$"
 
+PewterCity_Text_RunningShoesLetterFromMomFemale:: @ 817EA36
+    .string "{PLAYER} opened the letter…\p"
+    .string "Dear {PLAYER},\p"
+    .string "I see my beloved challenger\n"
+    .string "left home with her RUNNING SHOES.\p"
+    .string "You can press the B Button to run,\n"
+    .string "and the R Button can make it so\l"
+    .string "you can run without holding B!\p"
+    .string "Remember, I'll always cheer for\n"
+    .string "you! Don't ever give up!\p"
+    .string "From Mom$"
