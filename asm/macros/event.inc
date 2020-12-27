@@ -1452,6 +1452,11 @@
 	.2byte \index
 	.endm
 
+	.macro fadescreenswapbuffers mode:req
+	.byte 0xd6
+	.byte \mode
+	.endm
+
 
 @ Supplementary
 

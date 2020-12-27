@@ -23,6 +23,7 @@
 #include "field_specials.h"
 #include "constants/items.h"
 #include "script_pokemon_util.h"
+#include "palette.h"
 #include "pokemon_storage_system.h"
 #include "party_menu.h"
 #include "money.h"
@@ -2264,4 +2265,27 @@ bool8 ScrCmd_copyobjectxytoperm(struct ScriptContext *ctx)
 
     TryOverrideObjectEventTemplateCoords(localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
     return FALSE;
+}
+
+bool8 ScrCmd_fadescreenswapbuffers(struct ScriptContext *ctx)
+{
+    u8 mode = ScriptReadByte(ctx);
+
+    switch (mode)
+    {
+        case FADE_TO_BLACK:
+        case FADE_TO_WHITE:   
+        default:
+            CpuCopy32(gPlttBufferUnfaded, gPaletteDecompressionBuffer, PLTT_DECOMP_BUFFER_SIZE);
+            FadeScreen(mode, 0);
+            break;
+        case FADE_FROM_BLACK:
+        case FADE_FROM_WHITE:
+            CpuCopy32(gPaletteDecompressionBuffer, gPlttBufferUnfaded, PLTT_DECOMP_BUFFER_SIZE);
+            FadeScreen(mode, 0);
+            break;
+    }
+
+    SetupNativeScript(ctx, IsPaletteNotActive);
+    return TRUE;
 }

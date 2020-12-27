@@ -203,10 +203,10 @@ FarawayIsland_Interior_EventScript_FoundMewEast:: @ 8267ED0
 
 FarawayIsland_Interior_EventScript_HideMewWhenGrassCut:: @ 8267EDB
 	lockall
-	fadescreen 1
+	fadescreenswapbuffers FADE_TO_BLACK
 	setflag FLAG_HIDE_MEW
 	removeobject LOCALID_MEW
-	fadescreen 0
+	fadescreenswapbuffers FADE_FROM_BLACK
 	msgbox FarawayIsland_Interior_Text_TheFeelingOfBeingWatchedFaded, MSGBOX_DEFAULT
 	closemessage
 	releaseall

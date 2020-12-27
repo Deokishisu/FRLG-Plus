@@ -221,7 +221,7 @@ static void Task_WeatherMain(u8 taskId)
     if (gWeatherPtr->currWeather != gWeatherPtr->nextWeather)
     {
         if (!sWeatherFuncs[gWeatherPtr->currWeather].finish()
-            /*&& gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT*/)
+            && gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
         {
             // Finished cleaning up previous weather. Now transition to next weather.
             sWeatherFuncs[gWeatherPtr->nextWeather].initVars();
@@ -329,21 +329,24 @@ static void BuildGammaShiftTables(void)
 // towards the desired gamma shift.
 static void UpdateWeatherGammaShift(void)
 {
-    if (gWeatherPtr->gammaIndex == gWeatherPtr->gammaTargetIndex)
+    if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_SCREEN_FADING_OUT)
     {
-        gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
-    }
-    else
-    {
-        if (++gWeatherPtr->gammaStepFrameCounter >= gWeatherPtr->gammaStepDelay)
+        if (gWeatherPtr->gammaIndex == gWeatherPtr->gammaTargetIndex)
         {
-            gWeatherPtr->gammaStepFrameCounter = 0;
-            if (gWeatherPtr->gammaIndex < gWeatherPtr->gammaTargetIndex)
-                gWeatherPtr->gammaIndex++;
-            else
-                gWeatherPtr->gammaIndex--;
+            gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
+        }
+        else
+        {
+            if (++gWeatherPtr->gammaStepFrameCounter >= gWeatherPtr->gammaStepDelay)
+            {
+                gWeatherPtr->gammaStepFrameCounter = 0;
+                if (gWeatherPtr->gammaIndex < gWeatherPtr->gammaTargetIndex)
+                    gWeatherPtr->gammaIndex++;
+                else
+                    gWeatherPtr->gammaIndex--;
 
-            ApplyGammaShift(0, 32, gWeatherPtr->gammaIndex);
+                ApplyGammaShift(0, 32, gWeatherPtr->gammaIndex);
+            }
         }
     }
 }
