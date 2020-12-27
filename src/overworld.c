@@ -47,6 +47,7 @@
 #include "trainer_pokemon_sprites.h"
 #include "vs_seeker.h"
 #include "wild_encounter.h"
+#include "constants/abilities.h"
 #include "constants/maps.h"
 #include "constants/flags.h"
 #include "constants/species.h"
@@ -1169,7 +1170,18 @@ void UpdateAmbientCry(s16 *state, u16 *delayCounter)
         *state = 3;
         break;
     case 2:
-        *delayCounter = (Random() % 1200) + 1200;
+        divBy = 1;
+        monsCount = CalculatePlayerPartyCount();
+        for (i = 0; i < monsCount; i++)
+        {
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG)
+                && GetMonAbility(&gPlayerParty[0]) == ABILITY_SWARM)
+            {
+                divBy = 2;
+                break;
+            }
+        }
+        *delayCounter = ((Random() % 1200) + 1200) / divBy;
         *state = 3;
         break;
     case 3:

@@ -34,5 +34,5 @@
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
 - Version exclusives are available through regular gameplay. []
 	* All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. Most Hoenn Pokémon will still need to be traded for. []
-- Abilities have effects in the OW like in Emerald. []
+- Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.

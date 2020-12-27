@@ -68,6 +68,7 @@ static void SpriteCB_EggShard(struct Sprite* sprite);
 static void EggHatchPrintMessage(u8 windowId, u8* string, u8 x, u8 y, u8 speed);
 static void CreateRandomEggShardSprite(void);
 static void CreateEggShardSprite(u8 x, u8 y, s16 data1, s16 data2, s16 data3, u8 spriteAnimIndex);
+static u8 GetEggCyclesToSubtract(void);
 
 // IWRAM bss
 static struct EggHatchData *sEggHatchData;
@@ -1155,6 +1156,7 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
     if (++daycare->stepCounter == 255)
     {
         u32 steps;
+        u8 toSub = GetEggCyclesToSubtract();
 
         for (i = 0; i < gPlayerPartyCount; i++)
         {
@@ -1166,7 +1168,11 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             steps = GetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP);
             if (steps != 0)
             {
-                steps -= 1;
+                if(steps >= toSub)
+                    steps -= toSub;
+                else
+                    steps -= 1;
+                    
                 SetMonData(&gPlayerParty[i], MON_DATA_FRIENDSHIP, &steps);
             }
             else // hatch the egg
@@ -2168,4 +2174,20 @@ static void EggHatchPrintMessage(u8 windowId, u8* string, u8 x, u8 y, u8 speed)
     sEggHatchData->textColor[1] = 5;
     sEggHatchData->textColor[2] = 6;
     AddTextPrinterParameterized4(windowId, 3, x, y, 1, 1, sEggHatchData->textColor, speed, string);
+}
+
+//Magma Armor/Flame Body ability
+static u8 GetEggCyclesToSubtract(void)
+{
+    u8 count, i;
+    for (count = CalculatePlayerPartyCount(), i = 0; i < count; i++)
+    {
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+        {
+            u8 ability = GetMonAbility(&gPlayerParty[i]);
+            if (ability == ABILITY_MAGMA_ARMOR || ability == ABILITY_FLAME_BODY)
+                return 2;
+        }
+    }
+    return 1;
 }

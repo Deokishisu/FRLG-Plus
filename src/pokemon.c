@@ -6053,19 +6053,26 @@ void SetWildMonHeldItem(void)
     {
         u16 rnd = Random() % 100;
         u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, 0);
+        u16 var1 = 45;
+        u16 var2 = 95;
+        if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, 0)
+            && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES)
+        {
+            var1 = 20;
+            var2 = 80;
+        }
         if (gBaseStats[species].item1 == gBaseStats[species].item2)
         {
             SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
             return;
         }
 
-        if (rnd > 44)
-        {
-            if (rnd <= 94)
-                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
-            else
-                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
-        }
+        if (rnd < var1)
+            return;
+        if (rnd < var2)
+            SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
+        else
+            SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
     }
 }
 

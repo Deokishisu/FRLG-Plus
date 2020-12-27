@@ -59,6 +59,9 @@
 // gTileset_General
 #define METATILE_General_CalmWater               0x12B
 #define METATILE_General_Door                    0x03D
+#define METATILE_General_EmeraldMowed            0x229
+#define METATILE_General_LongGrass_Bottom        0x23B
+#define METATILE_General_LongGrass_Top           0x233
 #define METATILE_General_Plain_Grass             0x00D
 #define METATILE_General_Plain_Mowed             0x001
 #define METATILE_General_SlidingDoubleDoor       0x15B
@@ -205,6 +208,9 @@
 #define METATILE_SeviiIslands67_Door                   0x30C
 #define METATILE_SeviiIslands67_DottedHoleDoor_Closed  0x357
 #define METATILE_SeviiIslands67_DottedHoleDoor_Open    0x358
+#define METATILE_SeviiIslands67_LongGrass_Top          0x233
+#define METATILE_SeviiIslands67_LongGrass_Bottom       0x23B
+#define METATILE_SeviiIslands67_EmeraldMowed           0x229
 
 // gTileset_SilphCo
 #define METATILE_SilphCo_Arrow_Down                     0x2A8

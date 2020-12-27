@@ -3,6 +3,7 @@
 #include "event_object_lock.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
+#include "faraway_island.h"
 #include "fieldmap.h"
 #include "field_camera.h"
 #include "field_specials.h"
@@ -14,6 +15,7 @@
 #include "party_menu.h"
 #include "script.h"
 #include "trig.h"
+#include "constants/abilities.h"
 #include "constants/event_objects.h"
 #include "constants/songs.h"
 #include "constants/metatile_labels.h"
@@ -31,6 +33,9 @@ static void SpriteCallback_CutGrass_Init(struct Sprite * sprite);
 static void SpriteCallback_CutGrass_Run(struct Sprite * sprite);
 static void SpriteCallback_CutGrass_Cleanup(struct Sprite * sprite);
 static void FieldMoveCallback_CutTree(void);
+static void CleanupLongGrass(s16 x, s16 y);
+
+extern const u8 FarawayIsland_Interior_EventScript_HideMewWhenGrassCut[];
 
 static const u16 sCutGrassMetatileMapping[][2] = {
     {
@@ -60,6 +65,12 @@ static const u16 sCutGrassMetatileMapping[][2] = {
     }, {
         METATILE_ID(ViridianForest, HugeTreeTopMiddle_Grass),
         METATILE_ID(ViridianForest, HugeTreeTopMiddle_Mowed)
+    }, {
+        METATILE_ID(SeviiIslands67, LongGrass_Top), //long grass top
+        METATILE_ID(SeviiIslands67, EmeraldMowed) //Emerald mowed grass
+    }, {
+        METATILE_ID(SeviiIslands67, LongGrass_Bottom), //long grass bottom
+        METATILE_ID(SeviiIslands67, EmeraldMowed) //Emerald mowed grass
     }, {
         0xffff,
         0xffff
@@ -203,6 +214,10 @@ bool8 FldEff_CutGrass(void)
 {
     u8 i, j;
     s16 x, y;
+    u8 cutRange;
+    u8 userAbility;
+    u8 TileCountFromPlayer_X;
+    u8 TileCountFromPlayer_Y;
     // FIXME: this fakematch
     register s32 neg1 asm("r9");
     struct MapPosition *pos;
@@ -210,14 +225,34 @@ bool8 FldEff_CutGrass(void)
     i = 0;
     PlaySE(SE_W015);
     PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
-
-    for (i = 0, pos = &gPlayerFacingPosition, neg1 = 0xFFFF; i < 3; i++)
+    userAbility = GetMonAbility(&gPlayerParty[GetCursorSelectionMonId()]);
+    if(userAbility == ABILITY_HYPER_CUTTER)
     {
+        cutRange = 5;
+        TileCountFromPlayer_X = 2;
+        TileCountFromPlayer_Y = 2;
+    }
+    else
+    {
+        cutRange = 3;
+        TileCountFromPlayer_X = 1;
+        TileCountFromPlayer_Y = 1;
+    }
 
+    for (i = 0, pos = &gPlayerFacingPosition, neg1 = 0xFFFF; i < cutRange; i++)
+    {
         y = i + neg1 + pos->y;
-        for (j = 0; j < 3; j++)
+        if(userAbility == ABILITY_HYPER_CUTTER)
+        {
+            y -= 1;
+        }
+        for (j = 0; j < cutRange; j++)
         {
             x = j + neg1 + pos->x;
+            if(userAbility == ABILITY_HYPER_CUTTER)
+            {
+                x -= 1;
+            }
             if (MapGridGetZCoordAt(x, y) == pos->height)
             {
                 if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
@@ -228,6 +263,7 @@ bool8 FldEff_CutGrass(void)
             }
         }
     }
+    CleanupLongGrass(gPlayerFacingPosition.x - TileCountFromPlayer_X, gPlayerFacingPosition.y - (1 + TileCountFromPlayer_Y));
     DrawWholeMapView();
     sCutGrassSpriteArrayPtr = Alloc(CUT_GRASS_SPRITE_COUNT);
     for (i = 0; i < 8; i++)
@@ -252,6 +288,41 @@ static void SetCutGrassMetatileAt(s16 x, s16 y)
             break;
         }
         i++;
+    }
+}
+
+static void CleanupLongGrass(s16 x, s16 y)
+{
+    u16 i = 0;
+    s16 lowerY;
+    u8 cutRange;
+    u8 userAbility = GetMonAbility(&gPlayerParty[GetCursorSelectionMonId()]);
+
+    if(userAbility == ABILITY_HYPER_CUTTER)
+    {
+        cutRange = 5;
+    }
+    else
+    {
+        cutRange = 3;
+    }
+
+    lowerY = y + cutRange;
+
+    for (i = 0; i < cutRange; i++)
+    {
+        s16 currentX = x + i;
+        if (MapGridGetMetatileIdAt(currentX, y) == METATILE_SeviiIslands67_LongGrass_Top)
+        {
+            u16 metatileId = MapGridGetMetatileIdAt(currentX, y + 1);
+            if(metatileId == METATILE_SeviiIslands67_EmeraldMowed)
+                MapGridSetMetatileIdAt(currentX, y + 1, METATILE_SeviiIslands67_LongGrass_Bottom);
+        }
+        if (MapGridGetMetatileIdAt(currentX, lowerY) == METATILE_SeviiIslands67_EmeraldMowed)
+        {
+            if (MapGridGetMetatileIdAt(currentX, lowerY + 1) == METATILE_SeviiIslands67_LongGrass_Bottom)
+                MapGridSetMetatileIdAt(currentX, lowerY + 1, METATILE_SeviiIslands67_EmeraldMowed);
+        }
     }
 }
 
@@ -289,6 +360,9 @@ static void SpriteCallback_CutGrass_Cleanup(struct Sprite * sprite)
     Free(sCutGrassSpriteArrayPtr);
     ClearPlayerHeldMovementAndUnfreezeObjectEvents();
     ScriptContext2_Disable();
+
+    if (IsMewPlayingHideAndSeek() == TRUE)
+        ScriptContext1_SetupScript(FarawayIsland_Interior_EventScript_HideMewWhenGrassCut);
 }
 
 static void FieldMoveCallback_CutTree(void)
