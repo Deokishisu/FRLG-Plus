@@ -2199,7 +2199,13 @@ void CalculateMonStats(struct Pokemon *mon)
         if (currentHP == 0 && oldMaxHP == 0)
             currentHP = newMaxHP;
         else if (currentHP != 0)
+        {
             currentHP += newMaxHP - oldMaxHP;
+            if(currentHP <= 0)
+                currentHP = 1;
+            if(currentHP > newMaxHP)
+                currentHP = newMaxHP;
+        }
         else
             return;
     }
@@ -4049,6 +4055,7 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, 
 bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, u8 e)
 {
     u32 data;
+    s32 dataSigned;
     s32 friendship;
     s32 cmdIndex;
     bool8 retVal = TRUE;
@@ -4061,6 +4068,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
     u16 heldItem;
     u8 r10;
     u32 r4;
+    u32 var_28 = 0;
 
     heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
     if (heldItem == ITEM_ENIGMA_BERRY)
@@ -4247,23 +4255,41 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     case 0:
                     case 1:
                         evCount = GetMonEVCount(mon);
-                        if (evCount >= 510)
-                            return TRUE;
-                        data = GetMonData(mon, sGetMonDataEVConstants[sp28], NULL);
-                        if (data < 100)
+                        dataSigned = GetMonData(mon, sGetMonDataEVConstants[sp28], NULL);
+                        if(itemEffect[sp24] != 201)
                         {
-                            if (data + itemEffect[sp24] > 100)
-                                r4 = 100 - (data + itemEffect[sp24]) + itemEffect[sp24];
-                            else
-                                r4 = itemEffect[sp24];
-                            if (evCount + r4 > 510)
-                                r4 += 510 - (evCount + r4);
-                            data += r4;
-                            SetMonData(mon, sGetMonDataEVConstants[sp28], &data);
-                            CalculateMonStats(mon);
-                            sp24++;
-                            retVal = FALSE;
+                            if (evCount >= 510)
+                                return TRUE;
+                            if (dataSigned < 100)
+                            {
+                                if (dataSigned + itemEffect[sp24] > 100)
+                                    r4 = 100 - (dataSigned + itemEffect[sp24]) + itemEffect[sp24];
+                                else
+                                    r4 = itemEffect[sp24];
+                                if (evCount + r4 > 510)
+                                    r4 += 510 - (evCount + r4);
+                                dataSigned += r4;
+                            }
                         }
+                        else
+                        {
+                            if (dataSigned == 0)
+                            {
+                                var_28 = 1; //What is this var in FR? Signifies don't raise friendship if failed?
+                                sp24++;
+                                break;
+                                //do something with vars and break, EV is 0 already
+                            }
+                            dataSigned -= 10;
+                            if(dataSigned < 0)
+                            {
+                                dataSigned = 0;
+                            }
+                        }
+                        SetMonData(mon, sGetMonDataEVConstants[sp28], &dataSigned);
+                        CalculateMonStats(mon);
+                        sp24++;
+                        retVal = FALSE;
                         break;
                     case 2:
                         // revive?
@@ -4431,23 +4457,41 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     case 2:
                     case 3:
                         evCount = GetMonEVCount(mon);
-                        if (evCount >= 510)
-                            return TRUE;
-                        data = GetMonData(mon, sGetMonDataEVConstants[sp28 + 2], NULL);
-                        if (data < 100)
+                        dataSigned = GetMonData(mon, sGetMonDataEVConstants[sp28 + 2], NULL);
+                        if(itemEffect[sp24] != 201)
                         {
-                            if (data + itemEffect[sp24] > 100)
-                                r4 = 100 - (data + itemEffect[sp24]) + itemEffect[sp24];
-                            else
-                                r4 = itemEffect[sp24];
-                            if (evCount + r4 > 510)
-                                r4 += 510 - (evCount + r4);
-                            data += r4;
-                            SetMonData(mon, sGetMonDataEVConstants[sp28 + 2], &data);
-                            CalculateMonStats(mon);
-                            retVal = FALSE;
-                            sp24++;
+                            if (evCount >= 510)
+                                return TRUE;
+                            if (dataSigned < 100)
+                            {
+                                if (dataSigned + itemEffect[sp24] > 100)
+                                    r4 = 100 - (dataSigned + itemEffect[sp24]) + itemEffect[sp24];
+                                else
+                                    r4 = itemEffect[sp24];
+                                if (evCount + r4 > 510)
+                                    r4 += 510 - (evCount + r4);
+                                dataSigned += r4;
+                            }
                         }
+                        else
+                        {
+                            if (dataSigned == 0)
+                            {
+                                var_28 = 1; //What is this var in FR? Signifies don't raise friendship if failed?
+                                sp24++;
+                                break;
+                                //do something with vars and break, EV is 0 already
+                            }
+                            dataSigned -= 10;
+                            if(dataSigned < 0)
+                            {
+                                dataSigned = 0;
+                            }
+                        }
+                        SetMonData(mon, sGetMonDataEVConstants[sp28 + 2], &dataSigned);
+                        CalculateMonStats(mon);
+                        retVal = FALSE;
+                        sp24++;
                         break;
                     case 4:
                         data = (GetMonData(mon, MON_DATA_PP_BONUSES, NULL) & gPPUpGetMask[moveIndex]) >> (moveIndex * 2);
@@ -4466,7 +4510,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         }
                         break;
                     case 5:
-                        if (GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) < 100 && retVal == 0 && sp2C == 0)
+                        if (GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) < 100 && (retVal == 0 || var_28 != 0)  && sp2C == 0)
                         {
                             sp2C = itemEffect[sp24];
                             friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
@@ -4486,12 +4530,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             if (friendship > 255)
                                 friendship = 255;
                             SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+                            retVal = FALSE;
                         }
                         sp24++;
                         break;
                     case 6:
                         if (GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= 100 && GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) < 200
-                         && retVal == 0 && sp2C == 0)
+                         && (retVal == 0 || var_28 != 0) && sp2C == 0)
                         {
                             sp2C = itemEffect[sp24];
                             friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
@@ -4511,11 +4556,12 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             if (friendship > 255)
                                 friendship = 255;
                             SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+                            retVal = FALSE;
                         }
                         sp24++;
                         break;
                     case 7:
-                        if (GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= 200 && retVal == 0 && sp2C == 0)
+                        if (GetMonData(mon, MON_DATA_FRIENDSHIP, NULL) >= 200 && (retVal == 0 || var_28 != 0) && sp2C == 0)
                         {
                             sp2C = itemEffect[sp24];
                             friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);
@@ -4535,6 +4581,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             if (friendship > 255)
                                 friendship = 255;
                             SetMonData(mon, MON_DATA_FRIENDSHIP, &friendship);
+                            retVal = FALSE;
                         }
                         sp24++;
                         break;

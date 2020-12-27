@@ -1521,5 +1521,8 @@ extern const u8 gSummaryMetLocationTextOrreEeveelutionsDuking[];
 extern const u8 gText_YouAlreadyHaveThisTM[];
 extern const u8 gText_ThrowInPremierBall[];
 extern const u8 gText_ThrowInPremierBalls[];
+extern const u8 gText_PkmnFriendlyBaseVar2Fell[];
+extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
+extern const u8 gText_PkmnAdoresBaseVar2Fell[];
 
 #endif //GUARD_STRINGS_H

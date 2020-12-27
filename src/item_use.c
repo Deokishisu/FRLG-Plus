@@ -933,3 +933,9 @@ void ItemUse_SetQuestLogEvent(u8 eventId, struct Pokemon * pokemon, u16 itemId, 
     SetQuestLogEvent(eventId, (void *)questLog);
     Free(questLog);
 }
+
+void ItemUseOutOfBattle_ReduceEV(u8 taskId)
+{
+    gItemUseCB = ItemUseCB_ReduceEV;
+    Task_FadeOuFromBackToField(taskId);
+}

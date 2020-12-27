@@ -26,7 +26,7 @@
 - Instant text option.
 - Indicators for which stats are affected by natures on summary screen.
 - Health bar drains faster at higher HP levels.
-- EV-reducing berries ported from Emerald. []
+- EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port).
 - The EV cap for an individual stat is 252, like in later generations.
 
 #### Miscellaneous Changes

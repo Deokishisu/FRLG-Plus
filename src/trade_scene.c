@@ -1056,6 +1056,7 @@ static void RS_TryEnableNationalPokedex(void)
 static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
 {
     u8 friendship;
+    u16 maxHP;
 
     // Get whether the offered Pokemon have mail
     struct Pokemon * playerMon = &gPlayerParty[playerPartyIdx];
@@ -1085,6 +1086,15 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
     ReceivedMonSetPokedexFlags(playerPartyIdx);
     if (gReceivedRemoteLinkPlayers)
         RS_TryEnableNationalPokedex();
+
+
+    //fixing Pomeg glitched Pokemon coming in from partner
+    maxHP = GetMonData(playerMon, MON_DATA_MAX_HP);
+
+    if(GetMonData(playerMon, MON_DATA_HP) > maxHP)
+    {
+        SetMonData(playerMon, MON_DATA_HP, &maxHP);
+    }
 }
 
 static void HandleLinkDataSend(void)
