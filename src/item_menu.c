@@ -46,8 +46,8 @@ struct BagMenuAlloc
     u16 contextMenuSelectedItem;
     u8 pocketScrollArrowsTask;
     u8 pocketSwitchArrowsTask;
-    u8 nItems[3];
-    u8 maxShowed[3];
+    u8 nItems[5];
+    u8 maxShowed[5];
     u8 data[4];
 };
 
@@ -56,8 +56,10 @@ struct BagSlots
     struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
     struct ItemSlot bagPocket_KeyItems[BAG_KEYITEMS_COUNT];
     struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
-    u16 itemsAbove[3];
-    u16 cursorPos[3];
+    struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
+    struct ItemSlot bagPocket_HoldItems[BAG_HELD_ITEMS_COUNT];
+    u16 itemsAbove[5];
+    u16 cursorPos[5];
     u16 registeredItem;
     u16 pocket;
 };
@@ -181,7 +183,9 @@ static const struct BgTemplate sBgTemplates[2] = {
 
 static const u8 *const sPocketNames[] = {
     gText_Items2,
+    gText_Medicine,
     gText_KeyItems2,
+    gText_HeldItems,
     gText_PokeBalls2
 };
 
@@ -223,7 +227,17 @@ static const u8 sContextMenuItems_Field[][4] = {
         ITEMMENUACTION_CANCEL
     }, {
         ITEMMENUACTION_USE,
+        ITEMMENUACTION_GIVE,
+        ITEMMENUACTION_TOSS,
+        ITEMMENUACTION_CANCEL
+    }, {
+        ITEMMENUACTION_USE,
         ITEMMENUACTION_REGISTER,
+        ITEMMENUACTION_CANCEL,
+        ITEMMENUACTION_DUMMY
+    }, {
+        ITEMMENUACTION_GIVE,
+        ITEMMENUACTION_TOSS,
         ITEMMENUACTION_CANCEL,
         ITEMMENUACTION_DUMMY
     }, {
@@ -301,7 +315,7 @@ static const struct ScrollArrowsTemplate sPocketSwitchArrowPairTemplate = {
     .secondX = 72,
     .secondY = 72,
     .fullyUpThreshold = 0,
-    .fullyDownThreshold = 2,
+    .fullyDownThreshold = 4,
     .tileTag = 111,
     .palTag = 111,
     .palNum = 0,
@@ -627,10 +641,10 @@ static u8 CreateBagInputHandlerTask(u8 location)
 static bool8 TryAllocListMenuBuffers(void)
 {
     // The items pocket has the highest capacity, + 1 for CANCEL
-    sListMenuItems = Alloc((BAG_ITEMS_COUNT + 1) * sizeof(struct ListMenuItem));
+    sListMenuItems = Alloc((BAG_HELD_ITEMS_COUNT + 1) * sizeof(struct ListMenuItem));
     if (sListMenuItems == NULL)
         return FALSE;
-    sListMenuItemStrings = Alloc((BAG_ITEMS_COUNT + 1) * sizeof(*sListMenuItemStrings));
+    sListMenuItemStrings = Alloc((BAG_HELD_ITEMS_COUNT + 1) * sizeof(*sListMenuItemStrings));
     if (sListMenuItemStrings == NULL)
         return FALSE;
     return TRUE;
@@ -837,7 +851,7 @@ void ResetBagCursorPositions(void)
     u8 i;
     gBagMenuState.pocket = POCKET_ITEMS - 1;
     gBagMenuState.bagOpen = FALSE;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 5; i++)
     {
         gBagMenuState.itemsAbove[i] = 0;
         gBagMenuState.cursorPos[i] = 0;
@@ -862,7 +876,7 @@ void PocketCalculateInitialCursorPosAndItemsAbove(u8 pocketId)
 static void CalculateInitialCursorPosAndItemsAbove(void)
 {
     u8 i;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 5; i++)
     {
         PocketCalculateInitialCursorPosAndItemsAbove(i);
     }
@@ -873,7 +887,7 @@ static void UpdatePocketScrollPositions(void)
     u8 i;
     u8 j;
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 5; i++)
     {
         if (gBagMenuState.itemsAbove[i] > 3)
         {
@@ -1016,7 +1030,7 @@ void Pocket_CalculateNItemsAndMaxShowed(u8 pocketId)
 static void All_CalculateNItemsAndMaxShowed(void)
 {
     u8 i;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 5; i++)
         Pocket_CalculateNItemsAndMaxShowed(i);
 }
 
@@ -1390,14 +1404,15 @@ static void OpenContextMenu(u8 taskId)
         {
             switch (gBagMenuState.pocket)
             {
-            case OPEN_BAG_ITEMS:
+            case 0: //pockets in order of Items, Medicine, Key Items, Held Items, Poke Balls
+            case 1:
                 sContextMenuNumItems = 4;
                 if (ItemIsMail(gSpecialVar_ItemId) == TRUE)
                     sContextMenuItemsPtr = sContextMenuItems_CheckGiveTossCancel;
                 else
                     sContextMenuItemsPtr = sContextMenuItems_Field[gBagMenuState.pocket];
                 break;
-            case OPEN_BAG_KEYITEMS:
+            case 2:
                 sContextMenuItemsPtr = sContextMenuItemsBuffer;
                 sContextMenuNumItems = 3;
                 sContextMenuItemsBuffer[2] = ITEMMENUACTION_CANCEL;
@@ -1412,7 +1427,8 @@ static void OpenContextMenu(u8 taskId)
                 else
                     sContextMenuItemsBuffer[0] = ITEMMENUACTION_USE;
                 break;
-            case OPEN_BAG_POKEBALLS:
+            case 3:
+            case 4:
                 sContextMenuItemsPtr = sContextMenuItems_Field[gBagMenuState.pocket];
                 sContextMenuNumItems = 3;
                 break;
@@ -2068,9 +2084,11 @@ static void BackUpPlayerBag(void)
     memcpy(sBackupPlayerBag->bagPocket_Items, gSaveBlock1Ptr->bagPocket_Items, BAG_ITEMS_COUNT * sizeof(struct ItemSlot));
     memcpy(sBackupPlayerBag->bagPocket_KeyItems, gKeyItemSlots, BAG_KEYITEMS_COUNT * sizeof(struct ItemSlot));
     memcpy(sBackupPlayerBag->bagPocket_PokeBalls, gSaveBlock1Ptr->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT * sizeof(struct ItemSlot));
+    memcpy(sBackupPlayerBag->bagPocket_Medicine, gSaveBlock1Ptr->bagPocket_Medicine, BAG_MEDICINE_COUNT * sizeof(struct ItemSlot));
+    memcpy(sBackupPlayerBag->bagPocket_HoldItems, gSaveBlock1Ptr->bagPocket_HoldItems, BAG_HELD_ITEMS_COUNT * sizeof(struct ItemSlot));
     sBackupPlayerBag->registeredItem = gSaveBlock1Ptr->registeredItem;
     sBackupPlayerBag->pocket = gBagMenuState.pocket;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 5; i++)
     {
         sBackupPlayerBag->itemsAbove[i] = gBagMenuState.itemsAbove[i];
         sBackupPlayerBag->cursorPos[i] = gBagMenuState.cursorPos[i];
@@ -2078,6 +2096,8 @@ static void BackUpPlayerBag(void)
     ClearItemSlots(gSaveBlock1Ptr->bagPocket_Items, BAG_ITEMS_COUNT);
     ClearItemSlots(gKeyItemSlots, BAG_KEYITEMS_COUNT);
     ClearItemSlots(gSaveBlock1Ptr->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT);
+    ClearItemSlots(gSaveBlock1Ptr->bagPocket_Medicine, BAG_MEDICINE_COUNT);
+    ClearItemSlots(gSaveBlock1Ptr->bagPocket_HoldItems, BAG_HELD_ITEMS_COUNT);
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ResetBagCursorPositions();
 }
@@ -2088,9 +2108,11 @@ static void RestorePlayerBag(void)
     memcpy(gSaveBlock1Ptr->bagPocket_Items, sBackupPlayerBag->bagPocket_Items, BAG_ITEMS_COUNT * sizeof(struct ItemSlot));
     memcpy(gKeyItemSlots, sBackupPlayerBag->bagPocket_KeyItems, BAG_KEYITEMS_COUNT * sizeof(struct ItemSlot));
     memcpy(gSaveBlock1Ptr->bagPocket_PokeBalls, sBackupPlayerBag->bagPocket_PokeBalls, BAG_POKEBALLS_COUNT * sizeof(struct ItemSlot));
+    memcpy(gSaveBlock1Ptr->bagPocket_Medicine, sBackupPlayerBag->bagPocket_Medicine, BAG_MEDICINE_COUNT * sizeof(struct ItemSlot));
+    memcpy(gSaveBlock1Ptr->bagPocket_HoldItems, sBackupPlayerBag->bagPocket_HoldItems, BAG_HELD_ITEMS_COUNT * sizeof(struct ItemSlot));
     gSaveBlock1Ptr->registeredItem = sBackupPlayerBag->registeredItem;
     gBagMenuState.pocket = sBackupPlayerBag->pocket;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 5; i++)
     {
         gBagMenuState.itemsAbove[i] = sBackupPlayerBag->itemsAbove[i];
         gBagMenuState.cursorPos[i] = sBackupPlayerBag->cursorPos[i];
@@ -2115,17 +2137,19 @@ static void Task_Bag_OldManTutorial(u8 taskId)
         {
         case 102:
         case 204:
+        case 306:
+        case 408:
             PlaySE(SE_BAG2);
             SwitchPockets(taskId, 1, FALSE);
             break;
-        case 306:
+        case 510:
             PlaySE(SE_SELECT);
             bag_menu_print_cursor_(data[0], 2);
             Bag_FillMessageBoxWithPalette(1);
             gSpecialVar_ItemId = ITEM_POKE_BALL;
             OpenContextMenu(taskId);
             break;
-        case 408:
+        case 612:
             PlaySE(SE_SELECT);
             HideBagWindow(10);
             HideBagWindow(6);
@@ -2216,21 +2240,22 @@ static void Task_Bag_TeachyTvRegister(u8 taskId)
         switch (data[8])
         {
         case 102:
+        case 204:
             PlaySE(SE_BAG2);
             SwitchPockets(taskId, 1, FALSE);
             break;
-        case 204:
+        case 306:
             PlaySE(SE_SELECT);
             bag_menu_print_cursor_(data[0], 2);
             Bag_FillMessageBoxWithPalette(1);
             gSpecialVar_ItemId = ITEM_TEACHY_TV;
             OpenContextMenu(taskId);
             break;
-        case 306:
+        case 408:
             PlaySE(SE_SELECT);
             Menu_MoveCursorNoWrapAround(1);
             break;
-        case 408:
+        case 510:
             PlaySE(SE_SELECT);
             gSaveBlock1Ptr->registeredItem = gSpecialVar_ItemId;
             HideBagWindow(10);
@@ -2244,13 +2269,13 @@ static void Task_Bag_TeachyTvRegister(u8 taskId)
             bag_menu_print_cursor_(data[0], 1);
             CopyWindowToVram(0, COPYWIN_MAP);
             break;
-        case 510:
         case 612:
+        case 714:
             gMain.newKeys = 0;
             gMain.newAndRepeatedKeys = DPAD_DOWN;
             ListMenu_ProcessInput(data[0]);
             break;
-        case 714:
+        case 816:
             PlaySE(SE_SELECT);
             DestroyListMenuTask(data[0], NULL, NULL);
             RestorePlayerBag();
@@ -2277,29 +2302,31 @@ static void Task_Bag_TeachyTvCatching(u8 taskId)
         {
         case 102:
         case 204:
-            PlaySE(SE_BAG2);
-            SwitchPockets(taskId, 1, FALSE);
-            break;
         case 306:
         case 408:
-            gMain.newKeys = 0;
-            gMain.newAndRepeatedKeys = DPAD_DOWN;
-            ListMenu_ProcessInput(data[0]);
+            PlaySE(SE_BAG2);
+            SwitchPockets(taskId, 1, FALSE);
             break;
         case 510:
         case 612:
             gMain.newKeys = 0;
-            gMain.newAndRepeatedKeys = DPAD_UP;
+            gMain.newAndRepeatedKeys = DPAD_DOWN;
             ListMenu_ProcessInput(data[0]);
             break;
         case 714:
+        case 816:
+            gMain.newKeys = 0;
+            gMain.newAndRepeatedKeys = DPAD_UP;
+            ListMenu_ProcessInput(data[0]);
+            break;
+        case 918:
             PlaySE(SE_SELECT);
             bag_menu_print_cursor_(data[0], 2);
             Bag_FillMessageBoxWithPalette(1);
             gSpecialVar_ItemId = ITEM_POKE_BALL;
             OpenContextMenu(taskId);
             break;
-        case 816:
+        case 1020:
             PlaySE(SE_SELECT);
             HideBagWindow(10);
             HideBagWindow(6);
@@ -2330,18 +2357,22 @@ static void Task_Bag_TeachyTvStatus(u8 taskId)
         switch (data[8])
         {
         case 102:
+            PlaySE(SE_BAG2);
+            SwitchPockets(taskId, 1, 0);
+            break;
+        case 204:
             gMain.newKeys = 0;
             gMain.newAndRepeatedKeys = DPAD_DOWN;
             ListMenu_ProcessInput(data[0]);
             break;
-        case 204:
+        case 306:
             PlaySE(SE_SELECT);
             bag_menu_print_cursor_(data[0], 2);
             Bag_FillMessageBoxWithPalette(1);
             gSpecialVar_ItemId = ITEM_ANTIDOTE;
             OpenContextMenu(taskId);
             break;
-        case 306:
+        case 408:
             PlaySE(SE_SELECT);
             HideBagWindow(10);
             HideBagWindow(6);
@@ -2367,22 +2398,23 @@ static void Task_Bag_TeachyTvTMs(u8 taskId)
         switch (data[8])
         {
         case 102:
+        case 204:
             PlaySE(SE_BAG2);
             SwitchPockets(taskId, 1, 0);
             break;
-        case 204:
+        case 306:
             gMain.newKeys = 0;
             gMain.newAndRepeatedKeys = DPAD_DOWN;
             ListMenu_ProcessInput(data[0]);
             break;
-        case 306:
+        case 408:
             PlaySE(SE_SELECT);
             bag_menu_print_cursor_(data[0], 2);
             Bag_FillMessageBoxWithPalette(1);
             gSpecialVar_ItemId = ITEM_TM_CASE;
             OpenContextMenu(taskId);
             break;
-        case 408:
+        case 510:
             PlaySE(SE_SELECT);
             HideBagWindow(10);
             HideBagWindow(6);

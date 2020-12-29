@@ -1064,6 +1064,8 @@ extern const u8 gText_CantWriteMailHere[];
 extern const u8 gText_DepositHowManyStrVars1[];
 extern const u8 gText_DepositedStrVar2StrVar1s[];
 extern const u8 gText_NoRoomToStoreItems[];
+extern const u8 gText_HeldItems[];
+extern const u8 gText_Medicine[];
 
 // union_room_battle
 extern const u8 gText_CommStandbyAwaitingOtherPlayer[];

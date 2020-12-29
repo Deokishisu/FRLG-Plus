@@ -1134,7 +1134,7 @@ static void ClearTMHMSlots(void)
 {
     u16 i;
 
-    for (i = 0; i < 9; i++)
+    for (i = 0; i < BAG_TMHM_COUNT; i++)
     {
         gTmHmItemSlots[i].itemId = 0;
         SetBagItemQuantity(&(gTmHmItemSlots[i].quantity), 0);

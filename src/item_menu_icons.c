@@ -20,28 +20,42 @@ static const struct OamData sOamData_BagOrSatchel = {
     .paletteNum = 0
 };
 
-static const union AnimCmd sAnim_BagOrSatchel_OpenItemPocket[] = {
+static const union AnimCmd sAnim_BagOrSatchel_OpenPokeBallsPocket[] = {
     ANIMCMD_FRAME(   0, 5),
     ANIMCMD_FRAME(0x40, 0),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_BagOrSatchel_OpenKeyItemPocket[] = {
+static const union AnimCmd sAnim_BagOrSatchel_OpenItemPocket[] = {
     ANIMCMD_FRAME(   0, 5),
     ANIMCMD_FRAME(0x80, 0),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_BagOrSatchel_OpenPokeBallsPocket[] = {
+static const union AnimCmd sAnim_BagOrSatchel_OpenKeyItemPocket[] = {
     ANIMCMD_FRAME(   0, 5),
     ANIMCMD_FRAME(0xc0, 0),
     ANIMCMD_END
 };
 
+static const union AnimCmd sAnim_BagOrSatchel_OpenMedicinePocket[] = {
+    ANIMCMD_FRAME(   0, 5),
+    ANIMCMD_FRAME(0x100, 0),
+    ANIMCMD_END
+};
+
+static const union AnimCmd sAnim_BagOrSatchel_OpenHeldItemsPocket[] = {
+    ANIMCMD_FRAME(   0, 5),
+    ANIMCMD_FRAME(0x140, 0),
+    ANIMCMD_END
+};
+
 static const union AnimCmd *const sAnimTable_BagOrSatchel[] = {
+    sAnim_BagOrSatchel_OpenItemPocket,
+    sAnim_BagOrSatchel_OpenMedicinePocket,
     sAnim_BagOrSatchel_OpenKeyItemPocket,
+    sAnim_BagOrSatchel_OpenHeldItemsPocket,
     sAnim_BagOrSatchel_OpenPokeBallsPocket,
-    sAnim_BagOrSatchel_OpenItemPocket
 };
 
 static const union AffineAnimCmd sAffineAnim_Idle[] = {
@@ -64,13 +78,13 @@ static const union AffineAnimCmd *const sAffineAnimTable_BagOrSatchel[] = {
 
 const struct CompressedSpriteSheet gSpriteSheet_Backpack = {
     gUnknown_8E8362C,
-    0x2000,
+    0x3000,
     100
 };
 
 const struct CompressedSpriteSheet gSpriteSheet_Satchel = {
     gUnknown_8E83DBC,
-    0x2000,
+    0x3000,
     100
 };
 

@@ -736,6 +736,8 @@ struct SaveBlock1
     /*0x053C*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
                u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
                u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices, 36 slots now for all legal FRLG Key Itens at once + 3 more for cheaters/alignment.
+               struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
+               struct ItemSlot bagPocket_HoldItems[BAG_HELD_ITEMS_COUNT];
                u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
     /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused

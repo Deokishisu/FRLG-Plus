@@ -28,11 +28,13 @@
 #endif
 
 #define PC_ITEMS_COUNT      30
-#define BAG_ITEMS_COUNT     139
+#define BAG_ITEMS_COUNT     47
 #define BAG_KEYITEMS_COUNT  36
 #define BAG_POKEBALLS_COUNT 13
 #define BAG_TMHM_COUNT      58
 #define BAG_BERRIES_COUNT   43
+#define BAG_MEDICINE_COUNT  40
+#define BAG_HELD_ITEMS_COUNT 52
 #define OBJECT_EVENT_TEMPLATES_COUNT 64
 
 #define QUEST_LOG_SCENE_COUNT 4
@@ -63,14 +65,14 @@
 #define OPTIONS_BATTLE_STYLE_SET    1
 
 #define POCKET_ITEMS        1
-#define POCKET_KEY_ITEMS    2
-#define POCKET_POKE_BALLS   3
-#define POCKET_TM_CASE      4
-#define POCKET_BERRY_POUCH  5
-#define POCKET_MEDICINE     1
-#define POCKET_HELD_ITEMS   1
+#define POCKET_MEDICINE     2
+#define POCKET_KEY_ITEMS    3
+#define POCKET_HELD_ITEMS   4
+#define POCKET_POKE_BALLS   5
+#define POCKET_TM_CASE      6
+#define POCKET_BERRY_POUCH  7
 
-#define NUM_BAG_POCKETS 5
+#define NUM_BAG_POCKETS 7
 
 #define MAX_MON_MOVES 4
 
