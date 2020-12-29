@@ -1446,10 +1446,10 @@ static void Task_ItemContext_FieldOrBattle(u8 taskId)
 
 static void Task_FieldItemContextMenuHandleInput(u8 taskId)
 {
-    s8 input;
+    s16 input;
     if (MenuHelpers_CallLinkSomething() != TRUE)
     {
-        input = Menu_ProcessInputNoWrapAround();
+        input = Menu_ProcessInputNoWrapAround2();
         switch (input)
         {
         case -1:

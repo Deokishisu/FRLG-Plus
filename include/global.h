@@ -732,16 +732,14 @@ struct SaveBlock1
     /*0x0294*/ u16 coins;
     /*0x0296*/ u16 registeredItem; // registered for use with SELECT button
     /*0x0298*/ struct ItemSlot pcItems[PC_ITEMS_COUNT];
-    /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT];
-    /*0x03b8*/ u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices
-               u8 bagPocket_KeyItemsPadding[90]; // padding to prevent shifting the saveblock
-    /*0x0430*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
-    /*0x0464*/ u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
-               u8 bagPocket_TMHMPadding[224]; // padding to prevent shifting the saveblock
-    /*0x054c*/ struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT];
+    /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT]; //now holds 139 items
+    /*0x053C*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
+               u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
+               u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices, 36 slots now for all legal FRLG Key Itens at once + 3 more for cheaters/alignment.
+               u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
     /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused
-    /*0x0632*/ u8 field_632[6]; // unused?
+    /*0x0632*/ u8 field_632[6]; // unused; scrapped feature to save link Berry Blender records separate from local records
     /*0x0638*/ u16 trainerRematchStepCounter;
     /*0x063A*/ u8 ALIGNED(2) trainerRematches[100];
     /*0x06A0*/ struct ObjectEvent objectEvents[OBJECT_EVENTS_COUNT];
@@ -759,21 +757,24 @@ struct SaveBlock1
     /*0x2F18*/ OldMan oldMan; // unused
     /*0x2F54*/ struct EasyChatPair easyChatPairs[5]; // unused
     /*0x2F80*/ struct DayCare daycare;
-    /*0x309C*/ u8 giftRibbons[52];
+    /*0x309C*/ u8 giftRibbons[52]; //This should be 11 extra ribbons, & then 20 bytes for extra event work (PokeCoupons) & 20 more bytes for extra event flags (Jirachi). It then gets padded.
     /*0x30D0*/ struct Roamer roamer;
     /*0x30EC*/ struct EnigmaBerry enigmaBerry;
-    /*0x3120*/ struct MEventBuffers mysteryEventBuffers;
-    /*0x348C*/ u8 filler_348C[400];
+    /*0x3120*/ struct MEventBuffers mysteryEventBuffers; //0x36C in length
+    /*0x348C*/ u8 filler_348C[228];
+    //^^^this & the mysteryEventBuffers field are labeled "FreeWork" & combined in the source, though 0x36C of FreeWork is set aside for MEventBuffers in mevent.c,
+    //^^^which is likely where the above field was documented from. The rest of FreeWork is unreferenced in the source, so this field is likely unused.
+               struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT]; //taken from filler_348C field, which was originally 400 bytes
     /*0x361C*/ struct RamScript ramScript;
-    /*0x3A08*/ u8 filler3A08[16];
+    /*0x3A08*/ u8 filler3A08[16]; //Record Mixing gift. Unused.
     /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];
     /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
-    /*0x3A94*/ u8 filler3A94[0x40];
+    /*0x3A94*/ u8 filler3A94[0x40]; //max fame checker people is actually 32, so this is the unused 16 entries
     /*0x3AD4*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;
-    /*0x3D24*/ u8 filler3D24[0x10];
+    /*0x3D24*/ u8 filler3D24[0x10]; //some sort of win/loss/draw records that are never referred to. An RFU thing. Mystery Event?
     /*0x3D34*/ u32 towerChallengeId;
     /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
 };

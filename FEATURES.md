@@ -18,7 +18,7 @@
 - No evolution restrictions; Pokémon will evolve regardless of whether or not their evolution is in the Kanto Dex.
 - Cut Trees stay cut permanently.
 - Infinite TM usage. TM prices have been modified to reflect this.
-- Expanded item pockets. []
+- Expanded item pockets.
 - Move Tutors will charge after the first time they teach a move, allowing infinite tutor uses at a cost. Frenzy Plant, Blast Burn, and Hydro Cannon can be tutored infinitely for free, and no longer have a friendship requirement to learn.
 - Hold B while surfing to go faster.
 - Running indoors.
