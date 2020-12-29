@@ -639,4 +639,7 @@ void FillBagsTest(void)
 
     //Old Sea Map
     AddBagItem(376, 1);
+
+    //Link Bracelet
+    AddBagItem(0x070, 1);
 }

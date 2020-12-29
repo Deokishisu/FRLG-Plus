@@ -3673,6 +3673,8 @@ extern const u8 gFile_graphics_items_icons_magma_emblem_sheet[];
 extern const u8 gFile_graphics_items_icon_palettes_magma_emblem_palette[];
 extern const u8 gFile_graphics_items_icons_old_sea_map_sheet[];
 extern const u8 gFile_graphics_items_icon_palettes_old_sea_map_palette[];
+extern const u32 gFile_graphics_items_icons_link_bracelet_sheet[];
+extern const u32 gFile_graphics_items_icon_palettes_link_bracelet_palette[];
 extern const u8 gFile_graphics_items_icons_return_to_field_arrow_sheet[];
 extern const u8 gFile_graphics_items_icon_palettes_return_to_field_arrow_palette[];
 
