@@ -1526,5 +1526,7 @@ extern const u8 gText_ThrowInPremierBalls[];
 extern const u8 gText_PkmnFriendlyBaseVar2Fell[];
 extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
 extern const u8 gText_PkmnAdoresBaseVar2Fell[];
+extern const u8 gText_HeldItemsPocket[];
+extern const u8 gText_MedicinePocket[];
 
 #endif //GUARD_STRINGS_H

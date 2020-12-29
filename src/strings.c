@@ -1345,3 +1345,5 @@ const u8 gText_PkmnAdoresBaseVar2Fell[] = _("{STR_VAR_1} adores you!\nThe base {
 const u8 gText_PkmnFriendlyBaseVar2CantFall[] = _("{STR_VAR_1} turned friendly.\nThe base {STR_VAR_2} can't fall!{PAUSE_UNTIL_PRESS}");
 const u8 gText_HeldItems[] = _("HELD ITEMS");
 const u8 gText_Medicine[] = _("MEDICINE");
+const u8 gText_HeldItemsPocket[] = _("HELD ITEMS POCKET");
+const u8 gText_MedicinePocket[] = _("MEDICINE POCKET");

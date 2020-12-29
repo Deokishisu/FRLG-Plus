@@ -570,7 +570,7 @@ void FillBagsTest(void)
     }
 
     //regular items starting with HP UP, skipping ??????????s
-    for(i = 63; i < 86; i++)
+    for(i = 63; i < 87; i++)
     {
         if(i == 72 || i == 82) //skipping random ??????????s
         {
@@ -641,5 +641,5 @@ void FillBagsTest(void)
     AddBagItem(376, 1);
 
     //Link Bracelet
-    AddBagItem(0x070, 1);
+    AddBagItem(112, 1);
 }

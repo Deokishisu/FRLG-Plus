@@ -33,6 +33,8 @@ EventScript_BufferPocketNameTryFanfare:: @ 81A66BC
 	case POCKET_POKE_BALLS, EventScript_BufferPokeBallsPocket
 	case POCKET_TM_CASE, EventScript_BufferTMCase
 	case POCKET_BERRY_POUCH, EventScript_BufferBerryPouch
+	case POCKET_MEDICINE, EventScript_BufferMedicinePocket
+	case POCKET_HELD_ITEMS, EventScript_BufferHeldItemsPocket
 	end
 
 EventScript_BufferItemsPocket:: @ 81A66F9
@@ -61,6 +63,18 @@ EventScript_BufferTMCase:: @ 81A6729
 
 EventScript_BufferBerryPouch:: @ 81A6739
 	getstdstring 2, STDSTRING_BERRY_POUCH
+	compare VAR_0x8007, TRUE
+	call_if_eq EventScript_PlayFanfareObtainedItem
+	return
+
+EventScript_BufferMedicinePocket:: @ 81A66F9
+	getstdstring 2, STDSTRING_MEDICINE_POCKET
+	compare VAR_0x8007, TRUE
+	call_if_eq EventScript_PlayFanfareObtainedItem
+	return
+
+EventScript_BufferHeldItemsPocket:: @ 81A66F9
+	getstdstring 2, STDSTRING_HELD_ITEMS_POCKET
 	compare VAR_0x8007, TRUE
 	call_if_eq EventScript_PlayFanfareObtainedItem
 	return

@@ -623,7 +623,9 @@ const u8 *const gStdStringPtrs[] = {
     [STDSTRING_KEY_ITEMS_POCKET] = gText_KeyItemsPocket,
     [STDSTRING_POKEBALLS_POCKET] = gText_PokeBallsPocket,
     [STDSTRING_TM_CASE]          = gText_TmCase,
-    [STDSTRING_BERRY_POUCH]      = gText_BerryPouch_2
+    [STDSTRING_BERRY_POUCH]      = gText_BerryPouch_2,
+    [STDSTRING_MEDICINE_POCKET]  = gText_MedicinePocket,
+    [STDSTRING_HELD_ITEMS_POCKET] = gText_HeldItemsPocket
 };
 
 static const u8 *const sDescriptionPtrs_CableClub_TradeBattleCancel[] = {
