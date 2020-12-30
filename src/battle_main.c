@@ -1435,7 +1435,7 @@ void FreeRestoreBattleData(void)
     gScanlineEffect.state = 3;
     gMain.inBattle = FALSE;
     ZeroEnemyPartyMons();
-    m4aSongNumStop(SE_HINSI);
+    m4aSongNumStop(SE_LOW_HEALTH);
     FreeMonSpritesGfx();
     FreeBattleSpritesData();
     FreeBattleResources();
@@ -1660,7 +1660,7 @@ void sub_801182C(struct Sprite *sprite)
 {
     StartSpriteAffineAnim(sprite, 1);
     sprite->callback = sub_80117BC;
-    PlaySE(SE_BT_START);
+    PlaySE(SE_MUGSHOT);
 }
 
 static void sub_801184C(u8 taskId)
@@ -3674,7 +3674,7 @@ static void HandleEndTurn_BattleWon(void)
     else if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER_TOWER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_BATTLE_TOWER))
     {
         BattleStopLowHpSound();
-        PlayBGM(MUS_WIN_TRE);
+        PlayBGM(MUS_VICTORY_TRAINER);
         gBattlescriptCurrInstr = BattleScript_BattleTowerTrainerBattleWon;
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
@@ -3685,7 +3685,7 @@ static void HandleEndTurn_BattleWon(void)
         {
         case CLASS_LEADER_2:
         case CLASS_CHAMPION_2:
-            PlayBGM(MUS_WIN_GYM);
+            PlayBGM(MUS_VICTORY_GYM_LEADER);
             break;
         case CLASS_BOSS:
         case CLASS_TEAM_ROCKET:
@@ -3693,7 +3693,7 @@ static void HandleEndTurn_BattleWon(void)
         case CLASS_ELITE_FOUR_2:
         case CLASS_GENTLEMAN_2:
         default:
-            PlayBGM(MUS_WIN_TRE);
+            PlayBGM(MUS_VICTORY_TRAINER);
             break;
         }
     }
@@ -3871,7 +3871,7 @@ static void ReturnFromBattleToOverworld(void)
 #endif                                                                                  // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
                 SetRoamerInactive();
         }
-        m4aSongNumStop(SE_HINSI);
+        m4aSongNumStop(SE_LOW_HEALTH);
         SetMainCallback2(gMain.savedCallback);
     }
 }
@@ -4351,7 +4351,7 @@ static void HandleAction_ThrowRock(void)
 static void HandleAction_SafariZoneRun(void)
 {
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
-    PlaySE(SE_NIGERU);
+    PlaySE(SE_FLEE);
     gCurrentTurnActionNumber = gBattlersCount;
     gBattleOutcome = B_OUTCOME_RAN;
 }

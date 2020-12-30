@@ -698,7 +698,7 @@ static void BagListMenuMoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMe
 {
     if (onInit != TRUE)
     {
-        PlaySE(SE_BAG1);
+        PlaySE(SE_BAG_CURSOR);
         sub_8098580();
     }
     if (sBagMenuDisplay->itemOriginalLocation == 0xFF)
@@ -1152,14 +1152,14 @@ static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId)
     {
         if (pocketId == POCKET_ITEMS - 1)
             return 0;
-        PlaySE(SE_BAG2);
+        PlaySE(SE_BAG_POCKET);
         return 1;
     }
     if (JOY_NEW(DPAD_RIGHT) || lrState == 2)
     {
         if (pocketId >= POCKET_POKE_BALLS - 1)
             return 0;
-        PlaySE(SE_BAG2);
+        PlaySE(SE_BAG_POCKET);
         return 2;
     }
     return 0;
@@ -2141,7 +2141,7 @@ static void Task_Bag_OldManTutorial(u8 taskId)
         case 204:
         case 306:
         case 408:
-            PlaySE(SE_BAG2);
+            PlaySE(SE_BAG_POCKET);
             SwitchPockets(taskId, 1, FALSE);
             break;
         case 510:
@@ -2243,7 +2243,7 @@ static void Task_Bag_TeachyTvRegister(u8 taskId)
         {
         case 102:
         case 204:
-            PlaySE(SE_BAG2);
+            PlaySE(SE_BAG_POCKET);
             SwitchPockets(taskId, 1, FALSE);
             break;
         case 306:
@@ -2306,7 +2306,7 @@ static void Task_Bag_TeachyTvCatching(u8 taskId)
         case 204:
         case 306:
         case 408:
-            PlaySE(SE_BAG2);
+            PlaySE(SE_BAG_POCKET);
             SwitchPockets(taskId, 1, FALSE);
             break;
         case 510:
@@ -2401,7 +2401,7 @@ static void Task_Bag_TeachyTvTMs(u8 taskId)
         {
         case 102:
         case 204:
-            PlaySE(SE_BAG2);
+            PlaySE(SE_BAG_POCKET);
             SwitchPockets(taskId, 1, 0);
             break;
         case 306:

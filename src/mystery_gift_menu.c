@@ -421,7 +421,7 @@ bool32 HandleMysteryGiftOrEReaderSetup(s32 mg_or_ereader)
     case 3:
         ShowBg(0);
         ShowBg(3);
-        PlayBGM(MUS_OKURIMONO);
+        PlayBGM(MUS_MYSTERY_GIFT);
         SetVBlankCallback(vblankcb_mystery_gift_e_reader_run);
         EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_VCOUNT | INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
         return TRUE;
@@ -1009,7 +1009,7 @@ bool32 PrintMGSuccessMessage(u8 * state, const u8 * arg1, u16 * arg2)
         {
             AddTextPrinterToWindow1(arg1);
         }
-        PlayFanfare(MUS_FANFA4);
+        PlayFanfare(MUS_OBTAIN_ITEM);
         *arg2 = 0;
         (*state)++;
         break;
@@ -1221,10 +1221,16 @@ void task00_mystery_gift(u8 taskId)
         break;
     case  5:
     {
-        register u8 eos asm("r1");
-        gStringVar1[0] = (eos = EOS);
-        gStringVar2[0] = eos;
-        gStringVar3[0] = eos;
+        #ifndef NONMATCHING
+            register u8 eos asm("r1");
+            gStringVar1[0] = (eos = EOS);
+            gStringVar2[0] = eos;
+            gStringVar3[0] = eos;
+        #else
+            gStringVar1[0] = EOS;
+            gStringVar2[0] = EOS;
+            gStringVar3[0] = EOS;
+        #endif
     }
         switch (data->IsCardOrNews)
         {
@@ -1385,7 +1391,11 @@ void task00_mystery_gift(u8 taskId)
         break;
     case 15:
     {
-        register bool32 flag asm("r1");
+        #ifndef NONMATCHING
+            register bool32 flag asm("r1");
+        #else
+            bool32 flag;
+        #endif
         r1 = mevent_message(&sp0, data->IsCardOrNews, data->source, data->prevPromptWindowId);
         if (r1 == NULL)
         {
@@ -1613,10 +1623,16 @@ void task00_mystery_gift(u8 taskId)
         break;
     case 31:
     {
-        register u8 eos asm("r1");
-        gStringVar1[0] = (eos = EOS);
-        gStringVar2[0] = eos;
-        gStringVar3[0] = eos;
+        #ifndef NONMATCHING
+            register u8 eos asm("r1");
+            gStringVar1[0] = (eos = EOS);
+            gStringVar2[0] = eos;
+            gStringVar3[0] = eos;
+        #else
+            gStringVar1[0] = EOS;
+            gStringVar2[0] = EOS;
+            gStringVar3[0] = EOS;
+        #endif
     }
         if (data->IsCardOrNews == 0)
         {

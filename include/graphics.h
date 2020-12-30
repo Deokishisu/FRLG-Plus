@@ -4492,7 +4492,7 @@ extern const u8 gMonIcon_Slowpoke[];
 extern const u8 gMonIcon_Slowbro[];
 extern const u8 gMonIcon_Magnemite[];
 extern const u8 gMonIcon_Magneton[];
-extern const u8 gMonIcon_Farfetch_d[];
+extern const u8 gMonIcon_Farfetchd[];
 extern const u8 gMonIcon_Doduo[];
 extern const u8 gMonIcon_Dodrio[];
 extern const u8 gMonIcon_Seel[];
@@ -4935,5 +4935,9 @@ extern const u32 gUnknown_8E9CAEC[];
 extern const u16 gPSSMenu_Pal[];
 extern const u16 gUnknown_8E9C3F8[];
 extern const u16 gUnknown_8E9C418[];
+
+// pokedex_screen
+extern const u16 gUnknown_8E9C14C[];
+extern const u16 gUnknown_8E9C16C[];
 
 #endif //GUARD_GRAPHICS_H

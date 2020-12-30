@@ -22,9 +22,7 @@ struct PokedexScreenData
 {
     u8 field_00;
     u8 field_01;
-    u8 field_02;
-    u8 field_03;
-    u8 field_04;
+    u8 field_02[4];
     u32 field_08;
     u32 field_0C;
     u16 field_10;
@@ -33,9 +31,9 @@ struct PokedexScreenData
     u8 field_15;
     u8 field_16;
     u8 field_17;
-    u16 field_18[0x4];
-    u8 field_20[0x4];
-    u8 field_24[0x4];
+    u16 field_18[4];
+    u8 field_20[4];
+    u8 field_24[4];
     u8 field_28;
     u8 field_29;
     u8 field_2A;
@@ -71,38 +69,44 @@ struct PokedexScreenData
 
 struct PokedexScreenWindowGfx
 {
-    const u16 *map;
-    const u16 *pal;
+    const u16 * map;
+    const u16 * pal;
+};
+
+struct PokedexCategoryPage
+{
+    const u16 * species;
+    u8 count;
 };
 
 EWRAM_DATA struct PokedexScreenData * gUnknown_203ACF0 = NULL;
 
-void sub_810287C(u8 taskId);
-void sub_8102C28(void);
-void sub_8102F80(u8 taskId);
-void sub_810317C(void);
-void sub_8103238(u8 taskId);
-void sub_810345C(void);
-u16 sub_8103518(u8 a0);
-void sub_8103924(const struct ListMenuTemplate * a0, u8 a1);
-u8 sub_81039F0(void);
-void sub_8103988(u8 a0);
-void sub_8103AC8(u8 taskId);
-u8 sub_8104234(void);
-int sub_8104284(void);
-void sub_81042EC(u8 taskId);
-bool32 sub_8104664(u8 a0);
+static void sub_810287C(u8 taskId);
+static void sub_8102C28(void);
+static void sub_8102F80(u8 taskId);
+static void sub_810317C(void);
+static void sub_8103238(u8 taskId);
+static void sub_810345C(void);
+static u16 sub_8103518(u8 a0);
+static void sub_8103924(const struct ListMenuTemplate * a0, u8 a1);
+static u8 sub_81039F0(void);
+static void sub_8103988(u8 a0);
+static void sub_8103AC8(u8 taskId);
+static u8 sub_8104234(void);
+static int sub_8104284(void);
+static void sub_81042EC(u8 taskId);
+static bool32 sub_8104664(u8 a0);
 void sub_81047B0(u8 *windowId_p);
 void sub_81047C8(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 colorIdx);
-void sub_810491C(u8 windowId, u8 fontId, u16 num, u8 x, u8 y, u8 colorIdx);
+static void sub_810491C(u8 windowId, u8 fontId, u16 num, u8 x, u8 y, u8 colorIdx);
 void sub_8104A34(u8 windowId, u8 fontId, u16 species, u8 x, u8 y);
-u16 sub_8104BBC(u8 caseId, bool8 whichDex);
+static u16 sub_8104BBC(u8 caseId, bool8 whichDex);
 void sub_8104C2C(const u8 *src);
 void sub_8104E90(void);
 bool8 sub_8104F0C(bool8 a0);
 void sub_8105058(u8 a0);
 void sub_8105178(u8 a0, u8 a1, u8 a2);
-bool8 sub_81052D0(u8 a0);
+static bool8 sub_81052D0(u8 a0);
 void sub_8105594(u8 a0, u8 a1);
 void sub_8105E1C(u8 a0);
 void sub_8106014(void);
@@ -116,12 +120,15 @@ void sub_81068DC(u8 category, u8 a1);
 u8 sub_8106AF8(u16 a0);
 void sub_8106B34(void);
 void sub_8106E78(const u8 *a0, s32 a1);
+static void sub_8102EC0(s32 itemIndex, bool8 onInit, struct ListMenu *list);
+static void sub_8102F48(u8 windowId, s32 itemId, u8 y);
+static void sub_8103A40(u8 windowId, s32 itemId, u8 y);
 
 #include "data/pokemon_graphics/footprint_table.h"
 
-const u32 gUnknown_8440124[] = INCBIN_U32("graphics/pokedex/unk_8440124.bin.lz");
-const u32 gUnknown_8440274[] = INCBIN_U32("graphics/pokedex/unk_8440274.4bpp.lz");
-const u32 gUnknown_84403AC[] = INCBIN_U32("graphics/pokedex/unk_84403AC.4bpp.lz");
+const u8 gUnknown_8440124[] = INCBIN_U8("graphics/pokedex/unk_8440124.bin.lz");
+const u8 gUnknown_8440274[] = INCBIN_U8("graphics/pokedex/unk_8440274.4bpp.lz");
+const u8 gUnknown_84403AC[] = INCBIN_U8("graphics/pokedex/unk_84403AC.4bpp.lz");
 const u16 gUnknown_84404C8[] = INCBIN_U16("graphics/pokedex/unk_84404C8.gbapal");
 
 const u16 gUnknown_84406C8[] = {
@@ -134,21 +141,21 @@ const u16 gUnknown_84406C8[] = {
 };
 
 const u16 gUnknown_84406E0[] = INCBIN_U16("graphics/pokedex/unk_84406E0.gbapal");
-const u32 gUnknown_84408E0[] = INCBIN_U32("graphics/pokedex/unk_84408E0.bin.lz");
-const u32 gUnknown_8440BD8[] = INCBIN_U32("graphics/pokedex/unk_8440BD8.bin.lz");
+const u16 gUnknown_84408E0[] = INCBIN_U16("graphics/pokedex/unk_84408E0.bin.lz");
+const u16 gUnknown_8440BD8[] = INCBIN_U16("graphics/pokedex/unk_8440BD8.bin.lz");
 const u32 gUnknown_8440EF0[] = INCBIN_U32("graphics/pokedex/unk_8440EF0.bin.lz");
-const u32 gUnknown_844112C[] = INCBIN_U32("graphics/pokedex/unk_844112C.bin.lz");
-const u32 gUnknown_84414BC[] = INCBIN_U32("graphics/pokedex/unk_84414BC.bin.lz");
+const u16 gUnknown_844112C[] = INCBIN_U16("graphics/pokedex/unk_844112C.bin.lz");
+const u16 gUnknown_84414BC[] = INCBIN_U16("graphics/pokedex/unk_84414BC.bin.lz");
 const u32 gUnknown_8441808[] = INCBIN_U32("graphics/pokedex/unk_8441808.bin.lz");
-const u32 gUnknown_8441A40[] = INCBIN_U32("graphics/pokedex/unk_8441A40.bin.lz");
-const u32 gUnknown_8441D54[] = INCBIN_U32("graphics/pokedex/unk_8441D54.bin.lz");
-const u32 gUnknown_8442004[] = INCBIN_U32("graphics/pokedex/unk_8442004.bin.lz");
-const u32 gUnknown_844223C[] = INCBIN_U32("graphics/pokedex/unk_844223C.bin.lz");
-const u32 gUnknown_84424E4[] = INCBIN_U32("graphics/pokedex/unk_84424E4.bin.lz");
-const u32 gUnknown_8442838[] = INCBIN_U32("graphics/pokedex/unk_8442838.bin.lz");
-const u32 gUnknown_8442BC0[] = INCBIN_U32("graphics/pokedex/unk_8442BC0.bin.lz");
-const u32 gUnknown_8442EF8[] = INCBIN_U32("graphics/pokedex/unk_8442EF8.bin.lz");
-const u32 gUnknown_844318C[] = INCBIN_U32("graphics/pokedex/unk_844318C.bin.lz");
+const u16 gUnknown_8441A40[] = INCBIN_U16("graphics/pokedex/unk_8441A40.bin.lz");
+const u16 gUnknown_8441D54[] = INCBIN_U16("graphics/pokedex/unk_8441D54.bin.lz");
+const u16 gUnknown_8442004[] = INCBIN_U16("graphics/pokedex/unk_8442004.bin.lz");
+const u16 gUnknown_844223C[] = INCBIN_U16("graphics/pokedex/unk_844223C.bin.lz");
+const u16 gUnknown_84424E4[] = INCBIN_U16("graphics/pokedex/unk_84424E4.bin.lz");
+const u16 gUnknown_8442838[] = INCBIN_U16("graphics/pokedex/unk_8442838.bin.lz");
+const u16 gUnknown_8442BC0[] = INCBIN_U16("graphics/pokedex/unk_8442BC0.bin.lz");
+const u16 gUnknown_8442EF8[] = INCBIN_U16("graphics/pokedex/unk_8442EF8.bin.lz");
+const u16 gUnknown_844318C[] = INCBIN_U16("graphics/pokedex/unk_844318C.bin.lz");
 const u16 gUnknown_8443420[] = INCBIN_U16("graphics/pokedex/unk_8443420.gbapal");
 const u16 gUnknown_8443440[] = INCBIN_U16("graphics/pokedex/unk_8443440.gbapal");
 const u16 gUnknown_8443460[] = INCBIN_U16("graphics/pokedex/unk_8443460.gbapal");
@@ -182,29 +189,622 @@ static const u8 gExpandedPlaceholder_PokedexDescription[] = _("");
 #include "data/pokemon/pokedex_text.h"
 #include "data/pokemon/pokedex_entries.h"
 
-extern const struct BgTemplate gUnknown_8451EBC[4];
-extern const struct WindowTemplate gUnknown_8451ECC[];
-extern const struct PokedexScreenData gUnknown_8451EE4;
-extern const struct WindowTemplate gUnknown_8451F54;
-extern const struct WindowTemplate gUnknown_8451F5C;
-extern const struct WindowTemplate gUnknown_8451F64;
-extern const struct ListMenuTemplate gUnknown_8452004;
-extern const struct ListMenuTemplate gUnknown_84520BC;
-extern const struct ScrollArrowsTemplate gUnknown_84520D4;
-extern const struct ScrollArrowsTemplate gUnknown_84520E4;
-extern const struct PokedexScreenWindowGfx gUnknown_84520F4[];
-extern const struct WindowTemplate gUnknown_845216C;
-extern const struct ListMenuTemplate gUnknown_8452174;
-extern const struct ListMenuWindowRect gUnknown_845218C;
-extern const struct ScrollArrowsTemplate gUnknown_84521B4;
-extern const struct WindowTemplate gUnknown_84521C4;
-extern const struct WindowTemplate gUnknown_84521CC;
-extern const u16 gUnknown_845228C[];
-extern const u8 (*const gUnknown_8452334[])[4];
-extern const u8 *const gDexCategoryNamePtrs[];
-extern const u8 gUnknown_8452388[][30];
-extern const struct ScrollArrowsTemplate gUnknown_84524B4;
-extern const struct CursorStruct gUnknown_84524C4;
+static const struct BgTemplate sUnknown_8451EBC[] = {
+    {
+        .bg = 0,
+        .charBaseIndex = 0,
+        .mapBaseIndex = 5,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 0,
+        .baseTile = 0x0000
+    },
+    {
+        .bg = 1,
+        .charBaseIndex = 2,
+        .mapBaseIndex = 4,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 1,
+        .baseTile = 0x0000
+    },
+    {
+        .bg = 2,
+        .charBaseIndex = 2,
+        .mapBaseIndex = 6,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 2,
+        .baseTile = 0x0000
+    },
+    {
+        .bg = 3,
+        .charBaseIndex = 0,
+        .mapBaseIndex = 7,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 3,
+        .baseTile = 0x0000
+    },
+};
+
+static const struct WindowTemplate sUnknown_8451ECC[] = {
+    {
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 30,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 0x03c4
+    },
+    {
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 18,
+        .width = 30,
+        .height = 2,
+        .paletteNum = 15,
+        .baseBlock = 0x0388
+    },
+    {
+        .bg = 255,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 0,
+        .height = 0,
+        .paletteNum = 0,
+        .baseBlock = 0x0000
+    },
+};
+
+static const struct PokedexScreenData sUnknown_8451EE4 = {
+    .field_10 = 1,
+    .field_14 = -1,
+    .field_15 = -1,
+    .field_16 = -1,
+    .field_18 = {-1, -1, -1, -1},
+    .field_20 = {-1, -1, -1, -1},
+    .field_24 = {-1, -1, -1, -1},
+    .field_40 = -1, 
+    .field_4A = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+    .field_60 = -1, 
+    .field_61 = -1,
+};
+
+
+static const struct WindowTemplate sUnknown_8451F54 = {
+   .bg = 1,
+   .tilemapLeft = 1,
+   .tilemapTop = 2,
+   .width = 20,
+   .height = 16,
+   .paletteNum = 0,
+   .baseBlock = 0x0008
+ };
+
+static const struct WindowTemplate sUnknown_8451F5C = {
+   .bg = 1,
+   .tilemapLeft = 21,
+   .tilemapTop = 11,
+   .width = 8,
+   .height = 6,
+   .paletteNum = 1,
+   .baseBlock = 0x0148
+ };
+
+static const struct WindowTemplate sUnknown_8451F64 = {
+   .bg = 1,
+   .tilemapLeft = 21,
+   .tilemapTop = 2,
+   .width = 9,
+   .height = 9,
+   .paletteNum = 0,
+   .baseBlock = 0x0178
+ };
+
+static const struct ListMenuItem sUnknown_8451F6C[] = {
+    {gText_PokemonList, -3},
+    {gText_NumericalMode, 9},
+    {gText_PokemonHabitats, -3},
+    {gText_DexCategory_GrasslandPkmn, 0},
+    {gText_DexCategory_ForestPkmn, 1},
+    {gText_DexCategory_WatersEdgePkmn, 2},
+    {gText_DexCategory_SeaPkmn, 3},
+    {gText_DexCategory_CavePkmn, 4},
+    {gText_DexCategory_MountainPkmn, 5},
+    {gText_DexCategory_RoughTerrainPkmn, 6},
+    {gText_DexCategory_UrbanPkmn, 7},
+    {gText_DexCategory_RarePkmn, 8},
+    {gText_Search, -3},
+    {gText_AToZMode, 10},
+    {gText_TypeMode, 11},
+    {gText_LightestMode, 12},
+    {gText_SmallestMode, 13},
+    {gText_PokedexOther, -3},
+    {gText_ClosePokedex, -2},
+};
+
+static const struct ListMenuTemplate sUnknown_8452004 = {
+    .items = sUnknown_8451F6C,
+    .moveCursorFunc = sub_8102EC0,
+    .itemPrintFunc = sub_8102F48,
+    .totalItems = NELEMS(sUnknown_8451F6C), 
+    .maxShowed = 9,
+    .windowId = 0, 
+    .header_X = 0, 
+    .item_X = 12, 
+    .cursor_X = 4,
+    .upText_Y = 2,
+    .cursorPal = 1,
+    .fillValue = 0,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = 0,
+    .fontId = 2,
+    .cursorKind = 0,
+};
+
+static const struct ListMenuItem sUnknown_845201C[] = {
+    {gText_PokemonList, -3},
+    {gText_NumericalModeKanto, 9},
+    {gText_NumericalModeNational, 14},
+    {gText_PokemonHabitats, -3},
+    {gText_DexCategory_GrasslandPkmn, 0},
+    {gText_DexCategory_ForestPkmn, 1},
+    {gText_DexCategory_WatersEdgePkmn, 2},
+    {gText_DexCategory_SeaPkmn, 3},
+    {gText_DexCategory_CavePkmn, 4},
+    {gText_DexCategory_MountainPkmn, 5},
+    {gText_DexCategory_RoughTerrainPkmn, 6},
+    {gText_DexCategory_UrbanPkmn, 7},
+    {gText_DexCategory_RarePkmn, 8},
+    {gText_Search, -3},
+    {gText_AToZMode, 10},
+    {gText_TypeMode, 11},
+    {gText_LightestMode, 12},
+    {gText_SmallestMode, 13},
+    {gText_PokedexOther, -3},
+    {gText_ClosePokedex, -2},
+};
+
+static const struct ListMenuTemplate sUnknown_84520BC = {
+    .items = sUnknown_845201C,
+    .moveCursorFunc = sub_8102EC0,
+    .itemPrintFunc = sub_8102F48,
+    .totalItems = NELEMS(sUnknown_845201C),
+    .maxShowed = 9,
+    .windowId = 0, 
+    .header_X = 0, 
+    .item_X = 12, 
+    .cursor_X = 4,
+    .upText_Y = 2,
+    .cursorPal = 1,
+    .fillValue = 0,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = 0,
+    .fontId = 2,
+    .cursorKind = 0,
+};
+
+static const struct ScrollArrowsTemplate sUnknown_84520D4 = {
+    .firstArrowType = 2, 
+    .firstX = 200, 
+    .firstY = 19, 
+    .secondArrowType = 3, 
+    .secondX = 200, 
+    .secondY = 141,
+    .fullyUpThreshold = 0, 
+    .fullyDownThreshold = 10, 
+    .tileTag = 2000, 
+    .palTag = 0xFFFF,
+    .palNum = 1
+};
+
+static const struct ScrollArrowsTemplate sUnknown_84520E4 = {
+    .firstArrowType = 2, 
+    .firstX = 200, 
+    .firstY = 19, 
+    .secondArrowType = 3, 
+    .secondX = 200, 
+    .secondY = 141,
+    .fullyUpThreshold = 0, 
+    .fullyDownThreshold = 11, 
+    .tileTag = 2000, 
+    .palTag = 0xFFFF,
+    .palNum = 1
+};
+
+
+static const struct PokedexScreenWindowGfx sUnknown_84520F4[] = {
+    {.map = gUnknown_84414BC, .pal = gUnknown_84434A0},
+    {.map = gUnknown_844112C, .pal = gUnknown_8443480},
+    {.map = gUnknown_8442838, .pal = gUnknown_8443580},
+    {.map = gUnknown_8442004, .pal = gUnknown_8443520},
+    {.map = gUnknown_84408E0, .pal = gUnknown_8443420},
+    {.map = gUnknown_8441A40, .pal = gUnknown_84434E0},
+    {.map = gUnknown_84424E4, .pal = gUnknown_8443560},
+    {.map = gUnknown_8440BD8, .pal = gUnknown_8443440},
+    {.map = gUnknown_8441D54, .pal = gUnknown_8443500},
+    {.map = gUnknown_844223C, .pal = gUnknown_8443540},
+    {.map = gUnknown_8E9C16C, .pal = gUnknown_8E9C14C},
+    {.map = gUnknown_8442BC0, .pal = gUnknown_84435A0},
+    {.map = gUnknown_8442EF8, .pal = gUnknown_84435C0},
+    {.map = gUnknown_844318C, .pal = gUnknown_84435E0},
+    {.map = gUnknown_844223C, .pal = gUnknown_8443540},
+};
+
+static const struct WindowTemplate sUnknown_845216C = {
+    .bg = 1,
+    .tilemapLeft = 2,
+    .tilemapTop = 2,
+    .width = 23,
+    .height = 16,
+    .paletteNum = 0,
+    .baseBlock = 0x0008
+};
+
+static const struct ListMenuTemplate sUnknown_8452174 = {
+    .items = sUnknown_8451F6C,
+    .moveCursorFunc = ListMenuDefaultCursorMoveFunc,
+    .itemPrintFunc = sub_8103A40,
+    .totalItems = 0, 
+    .maxShowed = 9,
+    .windowId = 0, 
+    .header_X = 0, 
+    .item_X = 56, 
+    .cursor_X = 4,
+    .upText_Y = 2,
+    .cursorPal = 1,
+    .fillValue = 0,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = 1,
+    .fontId = 2,
+    .cursorKind = 0,
+};
+
+static const struct ListMenuWindowRect sUnknown_845218C = {
+    .x = 0, 
+    .y = 0, 
+    .width = 5, 
+    .height = 16, 
+    .palNum = 0,
+};
+
+// Unused
+static const u8 gUnknown_8452194[] = {
+    0x05, 0x00, 0x02, 0x10, 0x01, 0x00, 0x00, 0x00, 
+    0x07, 0x00, 0x08, 0x10, 0x00, 0x00, 0x00, 0x00, 
+    0x0f, 0x00, 0x08, 0x10, 0x02, 0x00, 0x00, 0x00, 
+    0xff, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00
+};
+
+static const struct ScrollArrowsTemplate sUnknown_84521B4 = {
+    .firstArrowType = 2, 
+    .firstX = 200, 
+    .firstY = 19, 
+    .secondArrowType = 3, 
+    .secondX = 200, 
+    .secondY = 141,
+    .fullyUpThreshold = 0, 
+    .fullyDownThreshold = 0, 
+    .tileTag = 2000, 
+    .palTag = 0xFFFF,
+    .palNum = 1,
+};
+
+static const struct WindowTemplate sUnknown_84521C4 = {
+    .bg = 2,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 8,
+    .height = 8,
+    .paletteNum = 0,
+    .baseBlock = 0x0000
+};
+
+static const struct WindowTemplate sUnknown_84521CC = {
+    .bg = 1,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 8,
+    .height = 5,
+    .paletteNum = 0,
+    .baseBlock = 0x0000
+};
+
+const struct WindowTemplate gUnknown_84521D4 = {
+    .bg = 1,
+    .tilemapLeft = 19,
+    .tilemapTop = 3,
+    .width = 8,
+    .height = 8,
+    .paletteNum = 9,
+    .baseBlock = 0x01a8
+};
+
+const struct WindowTemplate gUnknown_84521DC = {
+    .bg = 1,
+    .tilemapLeft = 2,
+    .tilemapTop = 3,
+    .width = 13,
+    .height = 8,
+    .paletteNum = 0,
+    .baseBlock = 0x01e8
+};
+
+const struct WindowTemplate gUnknown_84521E4 = {
+    .bg = 1,
+    .tilemapLeft = 0,
+    .tilemapTop = 11,
+    .width = 30,
+    .height = 7,
+    .paletteNum = 0,
+    .baseBlock = 0x0250
+};
+
+const struct WindowTemplate gUnknown_84521EC = {
+    .bg = 2,
+    .tilemapLeft = 1,
+    .tilemapTop = 2,
+    .width = 4,
+    .height = 4,
+    .paletteNum = 10,
+    .baseBlock = 0x01a8
+};
+
+const struct WindowTemplate gUnknown_84521F4 = {
+    .bg = 2,
+    .tilemapLeft = 5,
+    .tilemapTop = 2,
+    .width = 8,
+    .height = 3,
+    .paletteNum = 0,
+    .baseBlock = 0x01b8
+};
+
+const struct WindowTemplate gUnknown_84521FC = {
+    .bg = 2,
+    .tilemapLeft = 2,
+    .tilemapTop = 7,
+    .width = 10,
+    .height = 2,
+    .paletteNum = 0,
+    .baseBlock = 0x01d0
+};
+
+const struct WindowTemplate gUnknown_8452204 = {
+    .bg = 2,
+    .tilemapLeft = 18,
+    .tilemapTop = 2,
+    .width = 10,
+    .height = 2,
+    .paletteNum = 0,
+    .baseBlock = 0x01e4
+};
+
+const struct WindowTemplate gUnknown_845220C = {
+    .bg = 2,
+    .tilemapLeft = 5,
+    .tilemapTop = 5,
+    .width = 8,
+    .height = 2,
+    .paletteNum = 11,
+    .baseBlock = 0x01f8
+};
+
+const struct WindowTemplate gUnknown_8452214 = {
+    .bg = 2,
+    .tilemapLeft = 17,
+    .tilemapTop = 4,
+    .width = 12,
+    .height = 9,
+    .paletteNum = 0,
+    .baseBlock = 0x0208
+};
+
+static const struct WindowTemplate sUnknown_845221C = {
+    .bg = 2,
+    .tilemapLeft = 13,
+    .tilemapTop = 4,
+    .width = 4,
+    .height = 3,
+    .paletteNum = 0,
+    .baseBlock = 0x0274
+};
+
+static const struct WindowTemplate sUnknown_8452224 = {
+    .bg = 2,
+    .tilemapLeft = 13,
+    .tilemapTop = 7,
+    .width = 4,
+    .height = 3,
+    .paletteNum = 0,
+    .baseBlock = 0x0280
+};
+
+static const struct WindowTemplate sUnknown_845222C = {
+    .bg = 2,
+    .tilemapLeft = 13,
+    .tilemapTop = 10,
+    .width = 4,
+    .height = 3,
+    .paletteNum = 0,
+    .baseBlock = 0x028c
+};
+
+static const struct WindowTemplate sUnknown_8452234 = {
+    .bg = 2,
+    .tilemapLeft = 13,
+    .tilemapTop = 13,
+    .width = 4,
+    .height = 4,
+    .paletteNum = 0,
+    .baseBlock = 0x0298
+};
+
+static const struct WindowTemplate sUnknown_845223C = {
+    .bg = 2,
+    .tilemapLeft = 17,
+    .tilemapTop = 13,
+    .width = 4,
+    .height = 4,
+    .paletteNum = 0,
+    .baseBlock = 0x02a8
+};
+
+static const struct WindowTemplate sUnknown_8452244 = {
+    .bg = 2,
+    .tilemapLeft = 21,
+    .tilemapTop = 13,
+    .width = 4,
+    .height = 4,
+    .paletteNum = 0,
+    .baseBlock = 0x02b8
+};
+
+static const struct WindowTemplate sUnknown_845224C = {
+    .bg = 2,
+    .tilemapLeft = 25,
+    .tilemapTop = 13,
+    .width = 4,
+    .height = 4,
+    .paletteNum = 0,
+    .baseBlock = 0x02c8
+};
+
+struct {
+    const struct WindowTemplate * window;
+    const u32 * tilemap;
+} const gUnknown_8452254[] = {
+    {&sUnknown_845221C, gUnknown_8443910},
+    {&sUnknown_8452224, gUnknown_8443988},
+    {&sUnknown_845222C, gUnknown_84439FC},
+    {&sUnknown_8452234, gUnknown_8443A78},
+    {&sUnknown_845223C, gUnknown_8443AF8},
+    {&sUnknown_8452244, gUnknown_8443BB0},
+    {&sUnknown_845224C, gUnknown_8443C54},
+};
+
+static const u16 sUnknown_845228C[] = INCBIN_U16("graphics/pokedex/unk_845228C.bin");
+
+static const u8 sUnknown_845230C[][4] = {
+    {0x0b, 0x03, 0x0b, 0x0b},
+};
+
+static const u8 sUnknown_8452310[][4] = {
+    {0x03, 0x03, 0x0b, 0x03},
+    {0x12, 0x09, 0x0a, 0x0b},
+};
+
+static const u8 sUnknown_8452318[][4] = {
+    {0x01, 0x02, 0x09, 0x02},
+    {0x0b, 0x09, 0x03, 0x0b},
+    {0x15, 0x03, 0x15, 0x0b}
+};
+
+static const u8 sUnknown_8452324[][4] = {
+    {0x00, 0x02, 0x06, 0x03},
+    {0x07, 0x0a, 0x00, 0x0c},
+    {0x0f, 0x0a, 0x16, 0x0b},
+    {0x16, 0x02, 0x0f, 0x04}
+};
+
+const u8 (*const gUnknown_8452334[])[4] = {
+    sUnknown_845230C,
+    sUnknown_8452310,
+    sUnknown_8452318,
+    sUnknown_8452324,
+};
+
+static const u8 * const sDexCategoryNamePtrs[] = {
+    gText_DexCategory_GrasslandPkmn,
+    gText_DexCategory_ForestPkmn,
+    gText_DexCategory_WatersEdgePkmn,
+    gText_DexCategory_SeaPkmn,
+    gText_DexCategory_CavePkmn,
+    gText_DexCategory_MountainPkmn,
+    gText_DexCategory_RoughTerrainPkmn,
+    gText_DexCategory_UrbanPkmn,
+    gText_DexCategory_RarePkmn,
+};
+
+const u16 gUnknown_8452368[] = INCBIN_U16("graphics/pokedex/unk_8452368.gbapal");
+
+static const u8 sUnknown_8452388[][30] = {
+    {
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x05, 0x0b, 0x11, 0x17, 0x1d, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x02, 0x05, 0x08, 0x0b, 0x0e, 0x11, 0x14, 0x17, 0x1a, 0x1d, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x02, 0x03, 0x05, 0x07, 0x09, 0x0b, 0x0d, 0x0f, 0x11, 0x13, 
+        0x15, 0x17, 0x19, 0x1b, 0x1d, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x02, 0x04, 0x05, 0x07, 0x08, 0x0a, 0x0b, 0x0d, 0x0e, 0x10, 
+        0x11, 0x13, 0x14, 0x16, 0x17, 0x19, 0x1a, 0x1c, 0x1d, 0x1e, 
+        0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x01, 0x02, 0x03, 0x04, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 
+        0x0d, 0x0f, 0x10, 0x11, 0x13, 0x14, 0x15, 0x17, 0x18, 0x19, 
+        0x1b, 0x1c, 0x1d, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x01, 0x02, 0x03, 0x04, 0x05, 0x07, 0x08, 0x09, 0x0a, 0x0b, 
+        0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x14, 0x15, 0x16, 
+        0x17, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1e, 0x1e, 0x1e
+    }, {
+        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0b, 
+        0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x15, 0x16, 
+        0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1e, 0x1e
+    }, {
+        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 
+        0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 
+        0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e
+    }, {
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 
+        0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 
+        0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d
+    },
+};
+
+static const struct ScrollArrowsTemplate sUnknown_84524B4 = {
+    .firstArrowType = 0, 
+    .firstX = 16, 
+    .firstY = 80, 
+    .secondArrowType = 1, 
+    .secondX = 224, 
+    .secondY = 80,
+    .fullyUpThreshold = 0, 
+    .fullyDownThreshold = 0, 
+    .tileTag = 2000, 
+    .palTag = 0xFFFF,
+    .palNum = 1,
+};
+
+const struct CursorStruct gUnknown_84524C4 = {
+    .left = 0, 
+    .top = 160,
+    .rowWidth = 64, 
+    .rowHeight = 40, 
+    .tileTag = 2002, 
+    .palTag = 0xFFFF,
+    .palNum = 4,
+};
+
+#include "data/pokemon/pokedex_categories.h"
 
 void sub_81024C0(void)
 {
@@ -241,23 +841,23 @@ void sub_810250C(void)
     ResetTasks();
     ScanlineEffect_Stop();
     ResetBgsAndClearDma3BusyFlags(TRUE);
-    InitBgsFromTemplates(0, gUnknown_8451EBC, NELEMS(gUnknown_8451EBC));
-    SetBgTilemapBuffer(3, Alloc(BG_SCREEN_SIZE));
-    SetBgTilemapBuffer(2, Alloc(BG_SCREEN_SIZE));
-    SetBgTilemapBuffer(1, Alloc(BG_SCREEN_SIZE));
-    SetBgTilemapBuffer(0, Alloc(BG_SCREEN_SIZE));
+    InitBgsFromTemplates(0, sUnknown_8451EBC, NELEMS(sUnknown_8451EBC));
+    SetBgTilemapBuffer(3, (u16*)Alloc(BG_SCREEN_SIZE));
+    SetBgTilemapBuffer(2, (u16*)Alloc(BG_SCREEN_SIZE));
+    SetBgTilemapBuffer(1, (u16*)Alloc(BG_SCREEN_SIZE));
+    SetBgTilemapBuffer(0, (u16*)Alloc(BG_SCREEN_SIZE));
     if (natDex)
-        DecompressAndLoadBgGfxUsingHeap(3, gUnknown_84403AC, BG_SCREEN_SIZE, 0, 0);
+        DecompressAndLoadBgGfxUsingHeap(3, (void*)gUnknown_84403AC, BG_SCREEN_SIZE, 0, 0);
     else
-        DecompressAndLoadBgGfxUsingHeap(3, gUnknown_8440274, BG_SCREEN_SIZE, 0, 0);
-    InitWindows(gUnknown_8451ECC);
+        DecompressAndLoadBgGfxUsingHeap(3, (void*)gUnknown_8440274, BG_SCREEN_SIZE, 0, 0);
+    InitWindows(sUnknown_8451ECC);
     DeactivateAllTextPrinters();
     m4aSoundVSyncOn();
     SetVBlankCallback(sub_81024C0);
     EnableInterrupts(INTR_FLAG_VBLANK);
     taskId = CreateTask(sub_810287C, 0);
-    gUnknown_203ACF0 = Alloc(sizeof(*gUnknown_203ACF0));
-    *gUnknown_203ACF0 = gUnknown_8451EE4;
+    gUnknown_203ACF0 = Alloc(sizeof(struct PokedexScreenData));
+    *gUnknown_203ACF0 = sUnknown_8451EE4;
     gUnknown_203ACF0->field_00 = taskId;
     gUnknown_203ACF0->field_44 = Alloc(NATIONAL_DEX_COUNT * sizeof(struct ListMenuItem));
     gUnknown_203ACF0->field_6A = sub_8104BBC(0, 1);
@@ -336,7 +936,7 @@ void sub_8102858(void)
     }
 }
 
-void sub_810287C(u8 taskId)
+static void sub_810287C(u8 taskId)
 {
     int i;
     switch (gUnknown_203ACF0->field_01)
@@ -383,9 +983,9 @@ void sub_810287C(u8 taskId)
     case 5:
         ListMenuGetScrollAndRow(gUnknown_203ACF0->field_17, &gUnknown_203ACF0->field_62, NULL);
         if (IsNationalPokedexEnabled())
-            gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&gUnknown_84520E4, &gUnknown_203ACF0->field_62);
+            gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&sUnknown_84520E4, &gUnknown_203ACF0->field_62);
         else
-            gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&gUnknown_84520D4, &gUnknown_203ACF0->field_62);
+            gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&sUnknown_84520D4, &gUnknown_203ACF0->field_62);
         gUnknown_203ACF0->field_01 = 6;
         break;
     case 6:
@@ -474,47 +1074,47 @@ void sub_810287C(u8 taskId)
     }
 }
 
-void sub_8102C28(void)
+static void sub_8102C28(void)
 {
     struct ListMenuTemplate listMenuTemplate;
     FillBgTilemapBufferRect(3, 0x00E, 0, 0, 30, 20, 0x00);
     FillBgTilemapBufferRect(2, 0x000, 0, 0, 30, 20, 0x11);
     FillBgTilemapBufferRect(1, 0x000, 0, 0, 30, 20, 0x11);
-    gUnknown_203ACF0->field_14 = AddWindow(&gUnknown_8451F54);
-    gUnknown_203ACF0->field_15 = AddWindow(&gUnknown_8451F5C);
-    gUnknown_203ACF0->field_16 = AddWindow(&gUnknown_8451F64);
+    gUnknown_203ACF0->field_14 = AddWindow(&sUnknown_8451F54);
+    gUnknown_203ACF0->field_15 = AddWindow(&sUnknown_8451F5C);
+    gUnknown_203ACF0->field_16 = AddWindow(&sUnknown_8451F64);
     if (IsNationalPokedexEnabled())
     {
-        listMenuTemplate = gUnknown_84520BC;
+        listMenuTemplate = sUnknown_84520BC;
         listMenuTemplate.windowId = gUnknown_203ACF0->field_14;
         gUnknown_203ACF0->field_17 = ListMenuInit(&listMenuTemplate, gUnknown_203ACF0->field_12, gUnknown_203ACF0->field_10);
         FillWindowPixelBuffer(gUnknown_203ACF0->field_16, PIXEL_FILL(0));
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gUnknown_8415DC4, 0, 2, 0);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gUnknown_8415DD1, 8, 13, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Seen, 0, 2, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Kanto, 8, 13, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_66, 52, 13, 2);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gUnknown_8415DD7, 8, 24, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 24, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6A, 52, 24, 2);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gUnknown_8415DCA, 0, 37, 0);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gUnknown_8415DD1, 8, 48, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Owned, 0, 37, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Kanto, 8, 48, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_68, 52, 48, 2);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gUnknown_8415DD7, 8, 59, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 59, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6C, 52, 59, 2);
     }
     else
     {
-        listMenuTemplate = gUnknown_8452004;
+        listMenuTemplate = sUnknown_8452004;
         listMenuTemplate.windowId = gUnknown_203ACF0->field_14;
         gUnknown_203ACF0->field_17 = ListMenuInit(&listMenuTemplate, gUnknown_203ACF0->field_12, gUnknown_203ACF0->field_10);
         FillWindowPixelBuffer(gUnknown_203ACF0->field_16, PIXEL_FILL(0));
-        sub_81047C8(gUnknown_203ACF0->field_16, 1, gUnknown_8415DC4, 0, 9, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 1, gText_Seen, 0, 9, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 1, gUnknown_203ACF0->field_66, 32, 21, 2);
-        sub_81047C8(gUnknown_203ACF0->field_16, 1, gUnknown_8415DCA, 0, 37, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 1, gText_Owned, 0, 37, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 1, gUnknown_203ACF0->field_68, 32, 49, 2);
     }
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
-    sub_8106E78(gUnknown_8415D9C, 1);
+    sub_8106E78(gText_PokedexTableOfContents, 1);
     FillWindowPixelBuffer(1, PIXEL_FILL(15));
-    sub_8104C2C(gUnknown_8415DB8);
+    sub_8104C2C(gText_PickOK);
     PutWindowTilemap(0);
     CopyWindowToVram(0, COPYWIN_GFX);
     PutWindowTilemap(1);
@@ -523,7 +1123,7 @@ void sub_8102C28(void)
     CopyWindowToVram(gUnknown_203ACF0->field_16, COPYWIN_GFX);
 }
 
-void sub_8102EC0(s32 itemIndex, bool8 onInit, struct ListMenu *list)
+static void sub_8102EC0(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
     if (!onInit)
         PlaySE(SE_SELECT);
@@ -534,22 +1134,23 @@ void sub_8102EC0(s32 itemIndex, bool8 onInit, struct ListMenu *list)
     }
     else
     {
-        CopyToWindowPixelBuffer(gUnknown_203ACF0->field_15, gUnknown_84520F4[itemIndex].map, 0x000, 0x000);
-        LoadPalette(gUnknown_84520F4[itemIndex].pal, 0x10, 0x20);
+        CopyToWindowPixelBuffer(gUnknown_203ACF0->field_15, sUnknown_84520F4[itemIndex].map, 0x000, 0x000);
+        LoadPalette(sUnknown_84520F4[itemIndex].pal, 0x10, 0x20);
     }
     PutWindowTilemap(gUnknown_203ACF0->field_15);
     CopyWindowToVram(gUnknown_203ACF0->field_15, COPYWIN_GFX);
 }
 
-void sub_8102F48(u8 windowId, s32 itemId, u8 y)
+static void sub_8102F48(u8 windowId, s32 itemId, u8 y)
 {
-    if (itemId < 0 || itemId > 8 || gUnknown_203ACF0->field_08 & (1 << itemId))
+    u32 itemId_ = itemId;
+    if (itemId_ > 8 || gUnknown_203ACF0->field_08 & (1 << itemId_))
         ListMenuOverrideSetColors(1, 0, 3);
     else
         ListMenuOverrideSetColors(10, 0, 11);
 }
 
-void sub_8102F80(u8 taskId)
+static void sub_8102F80(u8 taskId)
 {
     switch (gUnknown_203ACF0->field_01)
     {
@@ -616,26 +1217,26 @@ void sub_8102F80(u8 taskId)
     }
 }
 
-void sub_810317C(void)
+static void sub_810317C(void)
 {
     struct ListMenuTemplate template;
     FillBgTilemapBufferRect(3, 0x00E, 0, 0, 30, 20, 0x00);
     FillBgTilemapBufferRect(1, 0x000, 0, 0, 32, 32, 0x11);
-    gUnknown_203ACF0->field_40 = AddWindow(&gUnknown_845216C);
-    template = gUnknown_8452174;
+    gUnknown_203ACF0->field_40 = AddWindow(&sUnknown_845216C);
+    template = sUnknown_8452174;
     template.items = gUnknown_203ACF0->field_44;
     template.windowId = gUnknown_203ACF0->field_40;
     template.totalItems = gUnknown_203ACF0->field_48;
     sub_8103924(&template, gUnknown_203ACF0->field_42);
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
-    sub_8106E78(gUnknown_8415F3D, 1);
+    sub_8106E78(gText_PokemonListNoColor, 1);
     FillWindowPixelBuffer(1, PIXEL_FILL(15));
     sub_8104C2C(gText_PickOKExit);
     CopyWindowToVram(0, COPYWIN_GFX);
     CopyWindowToVram(1, COPYWIN_GFX);
 }
 
-void sub_8103238(u8 taskId)
+static void sub_8103238(u8 taskId)
 {
     switch (gUnknown_203ACF0->field_01)
     {
@@ -702,26 +1303,26 @@ void sub_8103238(u8 taskId)
     }
 }
 
-void sub_810345C(void)
+static void sub_810345C(void)
 {
     struct ListMenuTemplate template;
     FillBgTilemapBufferRect(3, 0x00E, 0, 0, 30, 20, 0x00);
     FillBgTilemapBufferRect(1, 0x000, 0, 0, 32, 32, 0x11);
-    gUnknown_203ACF0->field_40 = AddWindow(&gUnknown_845216C);
-    template = gUnknown_8452174;
+    gUnknown_203ACF0->field_40 = AddWindow(&sUnknown_845216C);
+    template = sUnknown_8452174;
     template.items = gUnknown_203ACF0->field_44;
     template.windowId = gUnknown_203ACF0->field_40;
     template.totalItems = gUnknown_203ACF0->field_48;
     sub_8103924(&template, gUnknown_203ACF0->field_42);
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
-    sub_8106E78(gUnknown_8415F4A, 1);
+    sub_8106E78(gText_SearchNoColor, 1);
     FillWindowPixelBuffer(1, PIXEL_FILL(15));
     sub_8104C2C(gText_PickOKExit);
     CopyWindowToVram(0, COPYWIN_GFX);
     CopyWindowToVram(1, COPYWIN_GFX);
 }
 
-u16 sub_8103518(u8 a0)
+static u16 sub_8103518(u8 a0)
 {
     s32 max_n = IsNationalPokedexEnabled() ? NATIONAL_DEX_COUNT : KANTO_DEX_COUNT;
     u16 ndex_num;
@@ -746,7 +1347,7 @@ u16 sub_8103518(u8 a0)
             }
             else
             {
-                gUnknown_203ACF0->field_44[i].label = gUnknown_8415F66;
+                gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
             }
             gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
         }
@@ -832,7 +1433,7 @@ u16 sub_8103518(u8 a0)
             }
             else
             {
-                gUnknown_203ACF0->field_44[i].label = gUnknown_8415F66;
+                gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
             }
             gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
         }
@@ -841,27 +1442,27 @@ u16 sub_8103518(u8 a0)
     return ret;
 }
 
-void sub_8103924(const struct ListMenuTemplate * template, u8 a1)
+static void sub_8103924(const struct ListMenuTemplate * template, u8 a1)
 {
     switch (a1)
     {
     default:
     case 0:
-        gUnknown_203ACF0->field_41 = ListMenuInitInRect(template, &gUnknown_845218C, gUnknown_203ACF0->field_36, gUnknown_203ACF0->field_34);
+        gUnknown_203ACF0->field_41 = ListMenuInitInRect(template, &sUnknown_845218C, gUnknown_203ACF0->field_36, gUnknown_203ACF0->field_34);
         break;
     case 1:
     case 2:
     case 3:
     case 4:
-        gUnknown_203ACF0->field_41 = ListMenuInitInRect(template, &gUnknown_845218C, gUnknown_203ACF0->field_3A, gUnknown_203ACF0->field_38);
+        gUnknown_203ACF0->field_41 = ListMenuInitInRect(template, &sUnknown_845218C, gUnknown_203ACF0->field_3A, gUnknown_203ACF0->field_38);
         break;
     case 5:
-        gUnknown_203ACF0->field_41 = ListMenuInitInRect(template, &gUnknown_845218C, gUnknown_203ACF0->field_3E, gUnknown_203ACF0->field_3C);
+        gUnknown_203ACF0->field_41 = ListMenuInitInRect(template, &sUnknown_845218C, gUnknown_203ACF0->field_3E, gUnknown_203ACF0->field_3C);
         break;
     }
 }
 
-void sub_8103988(u8 a0)
+static void sub_8103988(u8 a0)
 {
     switch (a0)
     {
@@ -881,11 +1482,11 @@ void sub_8103988(u8 a0)
     }
 }
 
-u8 sub_81039F0(void)
+static u8 sub_81039F0(void)
 {
-    struct ScrollArrowsTemplate template = gUnknown_84521B4;
-    if (gUnknown_203ACF0->field_48 > gUnknown_8452174.maxShowed)
-        template.fullyDownThreshold = gUnknown_203ACF0->field_48 - gUnknown_8452174.maxShowed;
+    struct ScrollArrowsTemplate template = sUnknown_84521B4;
+    if (gUnknown_203ACF0->field_48 > sUnknown_8452174.maxShowed)
+        template.fullyDownThreshold = gUnknown_203ACF0->field_48 - sUnknown_8452174.maxShowed;
     else
         template.fullyDownThreshold = 0;
     return AddScrollIndicatorArrowPair(&template, &gUnknown_203ACF0->field_62);
@@ -898,7 +1499,7 @@ struct PokedexListItem
     bool8 caught:1;
 };
 
-void sub_8103A40(u8 windowId, s32 itemId, u8 y)
+static void sub_8103A40(u8 windowId, s32 itemId, u8 y)
 {
     u32 itemId_ = itemId;
     u16 species = itemId_;
@@ -916,7 +1517,7 @@ void sub_8103A40(u8 windowId, s32 itemId, u8 y)
     }
 }
 
-void sub_8103AC8(u8 taskId)
+static void sub_8103AC8(u8 taskId)
 {
     int r4;
     u8 *ptr;
@@ -977,68 +1578,66 @@ void sub_8103AC8(u8 taskId)
             RemoveScrollIndicatorArrowPair(gUnknown_203ACF0->field_60);
             ListMenuRemoveCursorObject(gUnknown_203ACF0->field_61, 0);
             gUnknown_203ACF0->field_01 = 12;
+            break;
         }
-        else
+        if (!JOY_HELD(R_BUTTON) && JOY_REPT(DPAD_LEFT))
         {
-            if (!JOY_HELD(R_BUTTON) && JOY_REPT(DPAD_LEFT))
+            if (gUnknown_203ACF0->field_2D != 0)
             {
-                if (gUnknown_203ACF0->field_2D != 0)
+                gUnknown_203ACF0->field_2D--;
+                PlaySE(SE_SELECT);
+                break;
+            }
+            else
+                r4 = 1;
+        }
+        if (!JOY_HELD(R_BUTTON) && JOY_REPT(DPAD_RIGHT))
+        {
+            if (gUnknown_203ACF0->field_2D < gUnknown_203ACF0->field_2C - 1)
+            {
+                gUnknown_203ACF0->field_2D++;
+                PlaySE(SE_SELECT);
+                break;
+            }
+            else
+                r4 = 2;
+        }
+        if (r4 == 0)
+            r4 = sub_8104284();
+        switch (r4)
+        {
+        case 0:
+            break;
+        case 1:
+            while (gUnknown_203ACF0->field_2B > gUnknown_203ACF0->field_29)
+            {
+                gUnknown_203ACF0->field_2B--;
+                if (sub_8106838(gUnknown_203ACF0->field_28, gUnknown_203ACF0->field_2B))
                 {
-                    gUnknown_203ACF0->field_2D--;
-                    PlaySE(SE_SELECT);
+                    gUnknown_203ACF0->field_01 = 8;
                     break;
                 }
-                else
-                    r4 = 1;
             }
-            if (!JOY_HELD(R_BUTTON) && JOY_REPT(DPAD_RIGHT))
-            {
-                if (gUnknown_203ACF0->field_2D < gUnknown_203ACF0->field_2C - 1)
-                {
-                    gUnknown_203ACF0->field_2D++;
-                    PlaySE(SE_SELECT);
-                    break;
-                }
-                else
-                    r4 = 2;
-            }
-            if (r4 == 0)
-                r4 = sub_8104284();
-            switch (r4)
-            {
-            case 0:
-                break;
-            case 1:
-                while (gUnknown_203ACF0->field_2B > gUnknown_203ACF0->field_29)
-                {
-                    gUnknown_203ACF0->field_2B--;
-                    if (sub_8106838(gUnknown_203ACF0->field_28, gUnknown_203ACF0->field_2B))
-                    {
-                        gUnknown_203ACF0->field_01 = 8;
-                        break;
-                    }
-                }
-                if (gUnknown_203ACF0->field_01 != 8)
-                    gUnknown_203ACF0->field_01 = 6;
-                break;
-            case 2:
-                while (gUnknown_203ACF0->field_2B < gUnknown_203ACF0->field_2A - 1)
-                {
-                    gUnknown_203ACF0->field_2B++;
-                    if (sub_8106838(gUnknown_203ACF0->field_28, gUnknown_203ACF0->field_2B))
-                    {
-                        gUnknown_203ACF0->field_01 = 10;
-                        break;
-                    }
-                }
-                if (gUnknown_203ACF0->field_01 != 10)
-                    gUnknown_203ACF0->field_01 = 6;
-                break;
-            }
-            if (JOY_NEW(B_BUTTON))
-            {
+            if (gUnknown_203ACF0->field_01 != 8)
                 gUnknown_203ACF0->field_01 = 6;
+            break;
+        case 2:
+            while (gUnknown_203ACF0->field_2B < gUnknown_203ACF0->field_2A - 1)
+            {
+                gUnknown_203ACF0->field_2B++;
+                if (sub_8106838(gUnknown_203ACF0->field_28, gUnknown_203ACF0->field_2B))
+                {
+                    gUnknown_203ACF0->field_01 = 10;
+                    break;
+                }
             }
+            if (gUnknown_203ACF0->field_01 != 10)
+                gUnknown_203ACF0->field_01 = 6;
+            break;
+        }
+        if (JOY_NEW(B_BUTTON))
+        {
+            gUnknown_203ACF0->field_01 = 6;
         }
         break;
     case 6:
@@ -1054,7 +1653,7 @@ void sub_8103AC8(u8 taskId)
         sub_8105058(0xFF);
         ListMenuUpdateCursorObject(gUnknown_203ACF0->field_61, 0, 0xA0, 0);
         gUnknown_203ACF0->field_2E = 0;
-        gUnknown_203ACF0->field_02 = 0;
+        gUnknown_203ACF0->field_02[0] = 0;
         gUnknown_203ACF0->field_01++;
         break;
     case 9:
@@ -1085,23 +1684,23 @@ void sub_8103AC8(u8 taskId)
         gUnknown_203ACF0->field_01 = 15;
         break;
     case 15:
-        gUnknown_203ACF0->field_02 = 0;
-        gUnknown_203ACF0->field_03 = 0;
+        gUnknown_203ACF0->field_02[0] = 0;
+        gUnknown_203ACF0->field_02[1] = 0;
         gUnknown_203ACF0->field_01++;
         // fallthrough
     case 16:
-        if (gUnknown_203ACF0->field_03 < 6)
+        if (gUnknown_203ACF0->field_02[1] < 6)
         {
-            if (!gUnknown_203ACF0->field_02)
+            if (gUnknown_203ACF0->field_02[0])
             {
-                gUnknown_203ACF0->field_02--;
+                sub_8105594(0, gUnknown_203ACF0->field_02[1]);
+                CopyBgTilemapBufferToVram(0);
+                gUnknown_203ACF0->field_02[0] = 4;
+                gUnknown_203ACF0->field_02[1]++;
             }
             else
             {
-                sub_8105594(0, gUnknown_203ACF0->field_03);
-                CopyBgTilemapBufferToVram(0);
-                gUnknown_203ACF0->field_02 = 4;
-                gUnknown_203ACF0->field_03++;
+                gUnknown_203ACF0->field_02[0]--;
             }
         }
         else
@@ -1112,7 +1711,7 @@ void sub_8103AC8(u8 taskId)
             CopyBgTilemapBufferToVram(1);
             CopyBgTilemapBufferToVram(0);
             PlayCry2(gUnknown_203ACF0->field_5A, 0, 125, 10);
-            gUnknown_203ACF0->field_02 = 0;
+            gUnknown_203ACF0->field_02[0] = 0;
             gUnknown_203ACF0->field_01 = 17;
         }
         break;
@@ -1143,23 +1742,23 @@ void sub_8103AC8(u8 taskId)
         gUnknown_203ACF0->field_01 = 19;
         break;
     case 19:
-        gUnknown_203ACF0->field_02 = 0;
-        gUnknown_203ACF0->field_03 = 6;
+        gUnknown_203ACF0->field_02[0] = 0;
+        gUnknown_203ACF0->field_02[1] = 6;
         gUnknown_203ACF0->field_01++;
         // fallthrough
     case 20:
-        if (gUnknown_203ACF0->field_03)
+        if (gUnknown_203ACF0->field_02[1])
         {
-            if (gUnknown_203ACF0->field_02)
+            if (gUnknown_203ACF0->field_02[0])
             {
-                gUnknown_203ACF0->field_03--;
+                gUnknown_203ACF0->field_02[1]--;
                 FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 2, 30, 16);
-                sub_8105594(0, gUnknown_203ACF0->field_03);
+                sub_8105594(0, gUnknown_203ACF0->field_02[1]);
                 CopyBgTilemapBufferToVram(0);
-                gUnknown_203ACF0->field_02 = 1;
+                gUnknown_203ACF0->field_02[0] = 1;
             }
             else
-                gUnknown_203ACF0->field_02--;
+                gUnknown_203ACF0->field_02[0]--;
         }
         else
         {
@@ -1224,16 +1823,16 @@ void sub_8103AC8(u8 taskId)
     }
 }
 
-u8 sub_8104234(void)
+static u8 sub_8104234(void)
 {
-    struct ScrollArrowsTemplate template = gUnknown_84524B4;
+    struct ScrollArrowsTemplate template = sUnknown_84524B4;
     template.fullyUpThreshold = gUnknown_203ACF0->field_29;
     template.fullyDownThreshold = gUnknown_203ACF0->field_2A - 1;
     gUnknown_203ACF0->field_62 = gUnknown_203ACF0->field_2B;
     return AddScrollIndicatorArrowPair(&template, &gUnknown_203ACF0->field_62);
 }
 
-int sub_8104284(void)
+static int sub_8104284(void)
 {
     switch (gSaveBlock2Ptr->optionsButtonMode)
     {
@@ -1252,13 +1851,13 @@ int sub_8104284(void)
             return 2;
         else
             return 0;
-    default:
     case OPTIONS_BUTTON_MODE_HELP:
+    default:
         return 0;
     }
 }
 
-void sub_81042EC(u8 taskId)
+static void sub_81042EC(u8 taskId)
 {
     switch (gUnknown_203ACF0->field_01)
     {
@@ -1384,18 +1983,15 @@ void sub_81042EC(u8 taskId)
     }
 }
 
-#ifdef NONMATCHING
-// HOLY HECK THIS FUNCTION NotLikeThis
-bool32 sub_8104664(u8 a0)
+static bool32 sub_8104664(u8 a0)
 {
-    u16 *r12;
-    u16 *r6;
     int r3;
+    u16 *r6, *r12;
 
     switch (gUnknown_203ACF0->field_42)
     {
-    case 0:
     default:
+    case 0:
         r12 = &gUnknown_203ACF0->field_36;
         r6 = &gUnknown_203ACF0->field_34;
         break;
@@ -1411,32 +2007,49 @@ bool32 sub_8104664(u8 a0)
         r6 = &gUnknown_203ACF0->field_3C;
         break;
     }
+
     r3 = *r12 + *r6;
     if (a0)
     {
         if (r3 == 0)
             return FALSE;
-        while (--r3 >= 0)
+
+        r3--;
+        while (r3 >= 0) //Should be while (--r3 >= 0) without the r3-- in the body or before the while at all, but this is needed to match.
         {
-            if ((((u32)gUnknown_203ACF0->field_44[r3].index) >> 16) & 1)
+            if ((gUnknown_203ACF0->field_44[r3].index >> 16) & 1)
+            {
                 break;
+            }
+            r3--;
         }
+
         if (r3 < 0)
+        {
             return FALSE;
+        }
     }
     else
     {
         if (r3 == gUnknown_203ACF0->field_48 - 1)
-            return FALSE;
-        while (++r3 < gUnknown_203ACF0->field_48)
         {
-            if ((((u32)gUnknown_203ACF0->field_44[r3].index) >> 16) & 1)
+            return FALSE;
+        }
+
+        r3++;
+        while (r3 < gUnknown_203ACF0->field_48) //Should be while (++r3 < gUnknown_203ACF0->field_48) without the r3++ in the body or before the while at all, but this is needed to match.
+        {
+            if ((gUnknown_203ACF0->field_44[r3].index >> 16) & 1)
                 break;
+            r3++;
         }
         if (r3 >= gUnknown_203ACF0->field_48)
+        {
             return FALSE;
+        }
     }
     gUnknown_203ACF0->field_30 = gUnknown_203ACF0->field_44[r3].index;
+
     if (gUnknown_203ACF0->field_48 > 9)
     {
         if (r3 < 4)
@@ -1444,10 +2057,10 @@ bool32 sub_8104664(u8 a0)
             *r12 = 0;
             *r6 = r3;
         }
-        else if (r3 >= gUnknown_203ACF0->field_48 - 4)
+        else if (r3 >= (gUnknown_203ACF0->field_48 - 4))
         {
-            *r12 = gUnknown_203ACF0->field_48 - 9;
-            *r6 = r3 + 9 - gUnknown_203ACF0->field_48;
+            *r12 = (gUnknown_203ACF0->field_48 - 9);
+            *r6 = r3 + 9 - (gUnknown_203ACF0->field_48);
         }
         else
         {
@@ -1457,201 +2070,11 @@ bool32 sub_8104664(u8 a0)
     }
     else
     {
-        *r12 = 0;
-        *r6 = r3;
-    }
-    return TRUE;
+		*r12 = 0;
+		*r6 = r3;
+	}
+	return TRUE;
 }
-#else
-NAKED
-bool32 sub_8104664(u8 a0)
-{
-    asm_unified("\tpush {r4-r7,lr}\n"
-                "\tmov r7, r8\n"
-                "\tpush {r7}\n"
-                "\tlsls r0, 24\n"
-                "\tlsrs r4, r0, 24\n"
-                "\tldr r0, _08104684 @ =gUnknown_203ACF0\n"
-                "\tldr r3, [r0]\n"
-                "\tadds r2, r3, 0\n"
-                "\tadds r2, 0x42\n"
-                "\tldrb r2, [r2]\n"
-                "\tmov r8, r0\n"
-                "\tcmp r2, 0x4\n"
-                "\tbgt _08104688\n"
-                "\tcmp r2, 0x1\n"
-                "\tbge _0810469C\n"
-                "\tb _0810468C\n"
-                "\t.align 2, 0\n"
-                "_08104684: .4byte gUnknown_203ACF0\n"
-                "_08104688:\n"
-                "\tcmp r2, 0x5\n"
-                "\tbeq _081046A8\n"
-                "_0810468C:\n"
-                "\tmov r1, r8\n"
-                "\tldr r0, [r1]\n"
-                "\tmovs r2, 0x36\n"
-                "\tadds r2, r0\n"
-                "\tmov r12, r2\n"
-                "\tadds r6, r0, 0\n"
-                "\tadds r6, 0x34\n"
-                "\tb _081046B2\n"
-                "_0810469C:\n"
-                "\tmovs r0, 0x3A\n"
-                "\tadds r0, r3\n"
-                "\tmov r12, r0\n"
-                "\tadds r6, r3, 0\n"
-                "\tadds r6, 0x38\n"
-                "\tb _081046B2\n"
-                "_081046A8:\n"
-                "\tmovs r1, 0x3E\n"
-                "\tadds r1, r3\n"
-                "\tmov r12, r1\n"
-                "\tadds r6, r3, 0\n"
-                "\tadds r6, 0x3C\n"
-                "_081046B2:\n"
-                "\tmov r2, r12\n"
-                "\tldrh r1, [r2]\n"
-                "\tldrh r0, [r6]\n"
-                "\tadds r3, r1, r0\n"
-                "\tcmp r4, 0\n"
-                "\tbeq _08104700\n"
-                "\tcmp r3, 0\n"
-                "\tbeq _0810474C\n"
-                "\tsubs r3, 0x1\n"
-                "\tcmp r3, 0\n"
-                "\tblt _0810474C\n"
-                "\tmov r1, r8\n"
-                "\tldr r0, [r1]\n"
-                "\tldr r0, [r0, 0x44]\n"
-                "\tlsls r2, r3, 3\n"
-                "\tadds r0, r2, r0\n"
-                "\tldrh r0, [r0, 0x6]\n"
-                "\tmovs r1, 0x1\n"
-                "\tands r0, r1\n"
-                "\tcmp r0, 0\n"
-                "\tbne _081046FA\n"
-                "\tmov r5, r8\n"
-                "\tmovs r4, 0x1\n"
-                "\tadds r1, r2, 0\n"
-                "_081046E2:\n"
-                "\tsubs r1, 0x8\n"
-                "\tsubs r3, 0x1\n"
-                "\tcmp r3, 0\n"
-                "\tblt _0810474C\n"
-                "\tldr r0, [r5]\n"
-                "\tldr r0, [r0, 0x44]\n"
-                "\tadds r0, r1, r0\n"
-                "\tldrh r0, [r0, 0x6]\n"
-                "\tands r0, r4\n"
-                "\tadds r2, r1, 0\n"
-                "\tcmp r0, 0\n"
-                "\tbeq _081046E2\n"
-                "_081046FA:\n"
-                "\tcmp r3, 0\n"
-                "\tbge _08104750\n"
-                "\tb _0810474C\n"
-                "_08104700:\n"
-                "\tmov r2, r8\n"
-                "\tldr r5, [r2]\n"
-                "\tadds r0, r5, 0\n"
-                "\tadds r0, 0x48\n"
-                "\tldrh r4, [r0]\n"
-                "\tsubs r0, r4, 0x1\n"
-                "\tcmp r3, r0\n"
-                "\tbeq _0810474C\n"
-                "\tadds r3, 0x1\n"
-                "\tcmp r3, r4\n"
-                "\tbge _0810474C\n"
-                "\tldr r0, [r5, 0x44]\n"
-                "\tlsls r2, r3, 3\n"
-                "\tadds r0, r2, r0\n"
-                "\tldrh r0, [r0, 0x6]\n"
-                "\tmovs r1, 0x1\n"
-                "\tands r0, r1\n"
-                "\tcmp r0, 0\n"
-                "\tbne _08104740\n"
-                "\tadds r1, r2, 0\n"
-                "\tmovs r7, 0x1\n"
-                "_0810472A:\n"
-                "\tadds r1, 0x8\n"
-                "\tadds r3, 0x1\n"
-                "\tcmp r3, r4\n"
-                "\tbge _0810474C\n"
-                "\tldr r0, [r5, 0x44]\n"
-                "\tadds r0, r1, r0\n"
-                "\tldrh r0, [r0, 0x6]\n"
-                "\tands r0, r7\n"
-                "\tadds r2, r1, 0\n"
-                "\tcmp r0, 0\n"
-                "\tbeq _0810472A\n"
-                "_08104740:\n"
-                "\tmov r1, r8\n"
-                "\tldr r0, [r1]\n"
-                "\tadds r0, 0x48\n"
-                "\tldrh r0, [r0]\n"
-                "\tcmp r3, r0\n"
-                "\tblt _08104750\n"
-                "_0810474C:\n"
-                "\tmovs r0, 0\n"
-                "\tb _081047A6\n"
-                "_08104750:\n"
-                "\tmov r0, r8\n"
-                "\tldr r1, [r0]\n"
-                "\tldr r0, [r1, 0x44]\n"
-                "\tadds r0, r2, r0\n"
-                "\tldr r0, [r0, 0x4]\n"
-                "\tstr r0, [r1, 0x30]\n"
-                "\tadds r1, 0x48\n"
-                "\tldrh r0, [r1]\n"
-                "\tcmp r0, 0x9\n"
-                "\tbls _0810479C\n"
-                "\tcmp r3, 0x3\n"
-                "\tbgt _08104770\n"
-                "\tmovs r0, 0\n"
-                "\tmov r1, r12\n"
-                "\tstrh r0, [r1]\n"
-                "\tb _081047A2\n"
-                "_08104770:\n"
-                "\tldrh r1, [r1]\n"
-                "\tsubs r0, r1, 0x4\n"
-                "\tcmp r3, r0\n"
-                "\tblt _08104790\n"
-                "\tsubs r0, 0x5\n"
-                "\tmov r2, r12\n"
-                "\tstrh r0, [r2]\n"
-                "\tadds r1, r3, 0\n"
-                "\tadds r1, 0x9\n"
-                "\tmov r2, r8\n"
-                "\tldr r0, [r2]\n"
-                "\tadds r0, 0x48\n"
-                "\tldrh r0, [r0]\n"
-                "\tsubs r1, r0\n"
-                "\tstrh r1, [r6]\n"
-                "\tb _081047A4\n"
-                "_08104790:\n"
-                "\tsubs r0, r3, 0x4\n"
-                "\tmov r1, r12\n"
-                "\tstrh r0, [r1]\n"
-                "\tmovs r0, 0x4\n"
-                "\tstrh r0, [r6]\n"
-                "\tb _081047A4\n"
-                "_0810479C:\n"
-                "\tmovs r0, 0\n"
-                "\tmov r2, r12\n"
-                "\tstrh r0, [r2]\n"
-                "_081047A2:\n"
-                "\tstrh r3, [r6]\n"
-                "_081047A4:\n"
-                "\tmovs r0, 0x1\n"
-                "_081047A6:\n"
-                "\tpop {r3}\n"
-                "\tmov r8, r3\n"
-                "\tpop {r4-r7}\n"
-                "\tpop {r1}\n"
-                "\tbx r1");
-}
-#endif //NONMATCHING
 
 void sub_81047B0(u8 *windowId_p)
 {
@@ -1706,7 +2129,7 @@ void sub_8104880(u8 windowId, u8 fontId, u16 num, u8 x, u8 y, u8 colorIdx)
     sub_81047C8(windowId, fontId, buff, x, y, colorIdx);
 }
 
-void sub_810491C(u8 windowId, u8 fontId, u16 num, u8 x, u8 y, u8 colorIdx)
+static void sub_810491C(u8 windowId, u8 fontId, u16 num, u8 x, u8 y, u8 colorIdx)
 {
     u8 buff[4];
     int i;
@@ -1744,7 +2167,7 @@ void sub_81049FC(u8 windowId, u16 species, u16 paletteOffset)
 void sub_8104A34(u8 windowId, u8 fontId, u16 species, u8 x, u8 y)
 {
     u16 dexNum = SpeciesToNationalPokedexNum(species);
-    sub_81047C8(windowId, fontId, gUnknown_8415FFF, x, y, 0);
+    sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
     sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
 }
 
@@ -1794,7 +2217,7 @@ s8 sub_8104AB0(u16 nationalDexNo, u8 caseId, bool8 indexIsSpecies)
     return retVal;
 }
 
-u16 sub_8104BBC(u8 caseId, bool8 whichDex)
+static u16 sub_8104BBC(u8 caseId, bool8 whichDex)
 {
     u16 count = 0;
     u16 i;
@@ -1829,10 +2252,10 @@ bool8 sub_8104C64(u16 a0, u8 a1, u8 a2)
 {
     struct WindowTemplate template;
     a2--;
-    CopyToBgTilemapBufferRect_ChangePalette(3, gUnknown_845228C, gUnknown_8452334[a2][a1][0], gUnknown_8452334[a2][a1][1], 8, 8, a1 + 5);
+    CopyToBgTilemapBufferRect_ChangePalette(3, sUnknown_845228C, gUnknown_8452334[a2][a1][0], gUnknown_8452334[a2][a1][1], 8, 8, a1 + 5);
     if (gUnknown_203ACF0->field_20[a1] == 0xFF)
     {
-        template = gUnknown_84521C4;
+        template = sUnknown_84521C4;
         template.tilemapLeft = gUnknown_8452334[a2][a1][0];
         template.tilemapTop = gUnknown_8452334[a2][a1][1];
         template.paletteNum = a1 + 1;
@@ -1850,7 +2273,7 @@ bool8 sub_8104C64(u16 a0, u8 a1, u8 a2)
     {
         if (a0 != SPECIES_NONE)
         {
-            template = gUnknown_84521CC;
+            template = sUnknown_84521CC;
             template.tilemapLeft = gUnknown_8452334[a2][a1][2];
             template.tilemapTop = gUnknown_8452334[a2][a1][3];
             template.baseBlock = a1 * 40 + 0x108;
@@ -1883,7 +2306,7 @@ void sub_8104E90(void)
 void sub_8104EC0(u8 unused, u16 a1, u16 a2, u8 unused2, u8 unused3)
 {
     u8 buffer[30];
-    u8 *ptr = StringCopy(buffer, gUnknown_8416002);
+    u8 *ptr = StringCopy(buffer, gText_Page);
     ptr = ConvertIntToDecimalStringN(ptr, a1, STR_CONV_MODE_RIGHT_ALIGN, 2);
     *ptr++ = CHAR_SLASH;
     ptr = ConvertIntToDecimalStringN(ptr, a2, STR_CONV_MODE_RIGHT_ALIGN, 2);
@@ -1899,17 +2322,17 @@ bool8 sub_8104F0C(bool8 a0)
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
     if (a0)
     {
-        sub_8106E78(gDexCategoryNamePtrs[gUnknown_203ACF0->field_28], 1);
+        sub_8106E78(sDexCategoryNamePtrs[gUnknown_203ACF0->field_28], 1);
     }
     else
     {
-        sub_8106E78(gDexCategoryNamePtrs[gUnknown_203ACF0->field_28], 0);
+        sub_8106E78(sDexCategoryNamePtrs[gUnknown_203ACF0->field_28], 0);
         sub_8104EC0(0, sub_8106AF8(gUnknown_203ACF0->field_2B), sub_8106AF8(gUnknown_203ACF0->field_2A - 1), 160, 2);
     }
     CopyWindowToVram(0, COPYWIN_GFX);
     FillWindowPixelBuffer(1, PIXEL_FILL(15));
     if (!a0)
-        sub_8104C2C(gUnknown_8415F6C);
+        sub_8104C2C(gText_PickFlipPageCheckCancel);
     CopyWindowToVram(1, COPYWIN_GFX);
     if (gUnknown_203ACF0->field_18[0] != 0xFFFF)
         sub_8104C64(gUnknown_203ACF0->field_18[0], 0, gUnknown_203ACF0->field_2C);
@@ -2004,7 +2427,7 @@ bool8 sub_81051F0(u8 a0)
     u16 *sp0C = gUnknown_203ACF0->field_5C + 0x000;
     for (i = 0; i < 30; i++)
     {
-        r4 = gUnknown_8452388[a0][i];
+        r4 = sUnknown_8452388[a0][i];
         if (r4 == 30)
         {
             sub_81051D0(0x000, bg1buff, i);
@@ -2024,28 +2447,28 @@ bool8 sub_81051F0(u8 a0)
     return FALSE;
 }
 
-bool8 sub_81052D0(u8 a0)
+static bool8 sub_81052D0(u8 a0)
 {
     u16 r4;
     if (IsNationalPokedexEnabled())
         r4 = gUnknown_84406E0[7];
     else
         r4 = gUnknown_84404C8[7];
-    switch (gUnknown_203ACF0->field_02)
+    switch (gUnknown_203ACF0->field_02[0])
     {
     case 0:
         gUnknown_203ACF0->field_5C = Alloc(3 * BG_SCREEN_SIZE);
         if (a0)
-            gUnknown_203ACF0->field_02 = 6;
+            gUnknown_203ACF0->field_02[0] = 6;
         else
-            gUnknown_203ACF0->field_02 = 2;
+            gUnknown_203ACF0->field_02[0] = 2;
         break;
     case 1:
         Free(gUnknown_203ACF0->field_5C);
         return TRUE;
     case 2:
         BeginNormalPaletteFade(0x00007FFF, 0, 0, 16, r4);
-        gUnknown_203ACF0->field_02++;
+        gUnknown_203ACF0->field_02[0]++;
         break;
     case 3:
         FillBgTilemapBufferRect_Palette0(3, 0x00C, 0, 0, 30, 20);
@@ -2054,7 +2477,7 @@ bool8 sub_81052D0(u8 a0)
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
         CopyBgTilemapBufferToVram(3);
-        gUnknown_203ACF0->field_02++;
+        gUnknown_203ACF0->field_02[0]++;
         break;
     case 4:
         BeginNormalPaletteFade(0x00007FFF, 0, 0, 0, r4);
@@ -2065,40 +2488,42 @@ bool8 sub_81052D0(u8 a0)
         FillBgTilemapBufferRect_Palette0(3, 0x00C, 0, 0, 30, 20);
         FillBgTilemapBufferRect_Palette0(2, 0x000, 0, 0, 32, 20);
         FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, 32, 20);
-        gUnknown_203ACF0->field_03 = 0;
-        gUnknown_203ACF0->field_02++;
-        PlaySE(SE_TB_START);
+        
+        gUnknown_203ACF0->field_02[1] = 0;
+        gUnknown_203ACF0->field_02[0]++;
+        PlaySE(SE_BALL_TRAY_ENTER);
         break;
     case 5:
-        if (gUnknown_203ACF0->field_03 < 10)
+        if (gUnknown_203ACF0->field_02[1] < 10)
         {
-            sub_81051F0(gUnknown_203ACF0->field_03);
-            gUnknown_203ACF0->field_03++;
+            sub_81051F0(gUnknown_203ACF0->field_02[1]);
+            gUnknown_203ACF0->field_02[1]++;
         }
         else
         {
-            gUnknown_203ACF0->field_02 = 1;
+            gUnknown_203ACF0->field_02[0] = 1;
         }
         break;
     case 6:
         CpuFastCopy(GetBgTilemapBuffer(3), &gUnknown_203ACF0->field_5C[0 * BG_SCREEN_SIZE / 2], BG_SCREEN_SIZE);
         CpuFastCopy(GetBgTilemapBuffer(2), &gUnknown_203ACF0->field_5C[1 * BG_SCREEN_SIZE / 2], BG_SCREEN_SIZE);
         CpuFastCopy(GetBgTilemapBuffer(1), &gUnknown_203ACF0->field_5C[2 * BG_SCREEN_SIZE / 2], BG_SCREEN_SIZE);
-        gUnknown_203ACF0->field_03 = 9;
-        gUnknown_203ACF0->field_02++;
-        PlaySE(SE_TB_START);
+
+        gUnknown_203ACF0->field_02[1] = 9;
+        gUnknown_203ACF0->field_02[0]++;
+        PlaySE(SE_BALL_TRAY_ENTER);
         break;
     case 7:
-        if (gUnknown_203ACF0->field_03 != 0)
+        if (gUnknown_203ACF0->field_02[1] != 0)
         {
-            sub_81051F0(gUnknown_203ACF0->field_03);
-            gUnknown_203ACF0->field_03--;
+            sub_81051F0(gUnknown_203ACF0->field_02[1]);
+            gUnknown_203ACF0->field_02[1]--;
         }
         else
         {
-            sub_81051F0(gUnknown_203ACF0->field_02);
+            sub_81051F0(gUnknown_203ACF0->field_02[0]);
             BeginNormalPaletteFade(0x00007FFF, 0, 16, 16, r4);
-            gUnknown_203ACF0->field_02++;
+            gUnknown_203ACF0->field_02[0]++;
         }
         break;
     case 8:
@@ -2107,12 +2532,12 @@ bool8 sub_81052D0(u8 a0)
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(2);
         CopyBgTilemapBufferToVram(3);
-        gUnknown_203ACF0->field_02++;
+        gUnknown_203ACF0->field_02[0]++;
         break;
     case 9:
         gPaletteFade.bufferTransferDisabled = FALSE;
         BeginNormalPaletteFade(0x00007FFF, 0, 16, 0, r4);
-        gUnknown_203ACF0->field_02 = 1;
+        gUnknown_203ACF0->field_02[0] = 1;
         break;
     }
     return FALSE;
