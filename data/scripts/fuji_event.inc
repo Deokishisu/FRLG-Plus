@@ -9,7 +9,7 @@ EventScript_FujiOutside_2:
 	checkitemspace ITEM_OLD_SEA_MAP, 1
 	compare VAR_RESULT, FALSE
 	goto_if_eq EventScript_FujiOutside_6
-	giveitem_msg EventScript_FujiOutside_Text_3, ITEM_OLD_SEA_MAP, 1, MUS_FAN5
+	giveitem_msg EventScript_FujiOutside_Text_3, ITEM_OLD_SEA_MAP, 1, MUS_OBTAIN_KEY_ITEM
 	setflag FLAG_GOT_OLD_SEA_MAP
 	msgbox EventScript_FujiOutside_Text_4, MSGBOX_NPC
 	getplayerxy VAR_RESULT, VAR_0x8003

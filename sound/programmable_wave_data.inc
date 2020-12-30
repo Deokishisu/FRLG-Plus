@@ -32,5 +32,5 @@ gProgrammableWaveData_84A327C:: @ 84A327C
 gProgrammableWaveData_84A328C:: @ 84A328C
 	.incbin "sound/programmable_wave_samples/84A328C.pcm"
 
-gProgrammableWaveData_86B4850:: @ 86B4850 from Emerald
+ProgrammableWaveData_86B4850:: @ 86B4850 from Emerald
 	.incbin "sound/programmable_wave_samples/86B4850.pcm"

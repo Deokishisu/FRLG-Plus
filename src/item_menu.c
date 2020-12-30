@@ -2359,7 +2359,7 @@ static void Task_Bag_TeachyTvStatus(u8 taskId)
         switch (data[8])
         {
         case 102:
-            PlaySE(SE_BAG2);
+            PlaySE(SE_BAG_POCKET);
             SwitchPockets(taskId, 1, 0);
             break;
         case 204:

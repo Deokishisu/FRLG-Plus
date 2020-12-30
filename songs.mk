@@ -282,7 +282,7 @@ $(MID_SUBDIR)/mus_victory_trainer.s: %.s: %.mid
 $(MID_SUBDIR)/mus_victory_wild.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G170 -V090
 
-$(MID_SUBDIR)/mus_dan02.s: %.s: %.mid
+$(MID_SUBDIR)/mus_abandoned_ship.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G030 -V080
 
 $(MID_SUBDIR)/ph_choice_blend.s: %.s: %.mid

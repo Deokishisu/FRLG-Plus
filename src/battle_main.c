@@ -1510,7 +1510,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
     u32 personalityValue;
     u8 fixedIV;
     s32 i, j;
-    u8 levelScaling = GetScaledLevel();
+    s8 levelScaling = GetScaledLevel();
 
     if(trainerNum >= TRAINER_RIVAL_ROUTE22_LATE_SQUIRTLE && trainerNum <= TRAINER_RIVAL_ROUTE22_LATE_CHARMANDER)
     {   //adjust level scaling for penultimate Rival battle

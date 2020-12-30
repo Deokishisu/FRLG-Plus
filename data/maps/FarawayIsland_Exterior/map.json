@@ -2,7 +2,7 @@
   "id": "MAP_FARAWAY_ISLAND_EXTERIOR",
   "name": "FarawayIsland_Exterior",
   "layout": "LAYOUT_FARAWAY_ISLAND_EXTERIOR",
-  "music": "MUS_DAN02",
+  "music": "MUS_ABANDONED_SHIP",
   "region_map_section": "MAPSEC_FARAWAY_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -73,5 +73,5 @@
       "script": "FarawayIsland_Exterior_EventScript_Sign"
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }
