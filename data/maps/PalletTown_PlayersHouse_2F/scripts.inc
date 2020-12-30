@@ -27,6 +27,7 @@ PalletTown_PlayersHouse_2F_EventScript_NES:: @ 8168CD2
 
 PalletTown_PlayersHouse_2F_EventScript_Sign:: @ 8168CDB
 	msgbox PalletTown_PlayersHouse_2F_Text_PressLRForHelp, MSGBOX_SIGN
+	callnative SetDifficultyTest
 	end
 
 PalletTown_PlayersHouse_2F_EventScript_PC:: @ 8168CE4

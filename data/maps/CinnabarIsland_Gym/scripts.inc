@@ -47,7 +47,19 @@ CinnabarIsland_Gym_OnLoadOpenDoor6:: @ 816D9CE
 
 CinnabarIsland_Gym_EventScript_Blaine:: @ 816D9D4
 	famechecker FAMECHECKER_BLAINE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	goto_if_eq CinnabarIsland_Gym_EventScript_Blaine_ChallengeMode
 	trainerbattle_single TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	settrainerflag TRAINER_LEADER_BLAINE_CHALLENGE
+	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
+	msgbox CinnabarIsland_Gym_Text_BlainePostBattle
+	release
+	end
+
+CinnabarIsland_Gym_EventScript_Blaine_ChallengeMode::
+	trainerbattle_single TRAINER_LEADER_BLAINE_CHALLENGE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	settrainerflag TRAINER_LEADER_BLAINE
 	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
 	msgbox CinnabarIsland_Gym_Text_BlainePostBattle
 	release

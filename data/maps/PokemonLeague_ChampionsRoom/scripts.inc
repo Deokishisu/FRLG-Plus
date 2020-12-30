@@ -62,7 +62,7 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom:: @ 8162B76
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	savebgm MUS_VICTORY_GYM_LEADER
-	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_Battle
+	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_GetDifficulty
 	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_Rematch
 	setflag FLAG_TEMP_4
 	clearflag FLAG_TEMP_5
@@ -106,6 +106,24 @@ PokemonLeague_ChampionsRoom_EventScript_QuestLogEnd:: @ 8162C68
 	releaseall
 	end
 
+PokemonLeague_ChampionsRoom_EventScript_GetDifficulty::
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_Battle_ChallengeMode
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT FALSE
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_Battle
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_Battle_ChallengeMode::
+	compare VAR_STARTER_MON, 2
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle_ChallengeMode
+	compare VAR_STARTER_MON, 1
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleBulbasaur_ChallengeMode
+	compare VAR_STARTER_MON, 0
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleCharmander_ChallengeMode
+	return
+
 PokemonLeague_ChampionsRoom_EventScript_Battle:: @ 8162C6F
 	compare VAR_STARTER_MON, 2
 	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle
@@ -130,6 +148,18 @@ PokemonLeague_ChampionsRoom_EventScript_Intro:: @ 8162CB3
 
 PokemonLeague_ChampionsRoom_EventScript_RematchIntro:: @ 8162CBC
 	msgbox PokemonLeague_ChampionsRoom_Text_RematchIntro
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle_ChallengeMode:: @ 8162CC5
+	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_SQUIRTLE_CHALLENGE, PokemonLeague_ChampionsRoom_Text_Defeat
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_BattleBulbasaur_ChallengeMode:: @ 8162CD0
+	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_BULBASAUR_CHALLENGE, PokemonLeague_ChampionsRoom_Text_Defeat
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_BattleCharmander_ChallengeMode:: @ 8162CDB
+	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_CHARMANDER_CHALLENGE, PokemonLeague_ChampionsRoom_Text_Defeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle:: @ 8162CC5

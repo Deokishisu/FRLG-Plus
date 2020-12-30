@@ -3,7 +3,19 @@ CeruleanCity_Gym_MapScripts:: @ 816AAA0
 
 CeruleanCity_Gym_EventScript_Misty:: @ 816AAA1
 	famechecker FAMECHECKER_MISTY, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	goto_if_eq CeruleanCity_Gym_EventScript_Misty_ChallengeMode
 	trainerbattle_single TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC
+	settrainerflag TRAINER_LEADER_MISTY_CHALLENGE
+	goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03
+	msgbox CeruleanCity_Gym_Text_ExplainTM03
+	release
+	end
+
+CeruleanCity_Gym_EventScript_Misty_ChallengeMode::
+	trainerbattle_single TRAINER_LEADER_MISTY_CHALLENGE, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC
+	settrainerflag TRAINER_LEADER_MISTY
 	goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03
 	msgbox CeruleanCity_Gym_Text_ExplainTM03
 	release

@@ -108,7 +108,7 @@ PokemonLeague_LancesRoom_EventScript_Lance:: @ 8162A14
 	call_if_set FLAG_SYS_GAME_CLEAR, PokemonLeague_LancesRoom_EventScript_RematchIntro
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
-	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_LancesRoom_EventScript_Battle
+	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_LancesRoom_EventScript_GetDifficulty
 	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_LancesRoom_EventScript_Rematch
 	clearflag FLAG_TEMP_5
 	goto PokemonLeague_LancesRoom_EventScript_DefeatedLance
@@ -120,6 +120,19 @@ PokemonLeague_LancesRoom_EventScript_Intro:: @ 8162A79
 
 PokemonLeague_LancesRoom_EventScript_RematchIntro:: @ 8162A82
 	msgbox PokemonLeague_LancesRoom_Text_RematchIntro
+	return
+
+PokemonLeague_LancesRoom_EventScript_GetDifficulty::
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	call_if_eq PokemonLeague_LancesRoom_EventScript_Battle_ChallengeMode
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT FALSE
+	call_if_eq PokemonLeague_LancesRoom_EventScript_Battle
+	return
+
+PokemonLeague_LancesRoom_EventScript_Battle_ChallengeMode::
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_LANCE_CHALLENGE, PokemonLeague_LancesRoom_Text_Defeat
 	return
 
 PokemonLeague_LancesRoom_EventScript_Battle:: @ 8162A8B

@@ -3,7 +3,19 @@ FuchsiaCity_Gym_MapScripts:: @ 816D54D
 
 FuchsiaCity_Gym_EventScript_Koga:: @ 816D54E
 	famechecker FAMECHECKER_KOGA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	goto_if_eq FuchsiaCity_Gym_EventScript_Koga_ChallengeMode
 	trainerbattle_single TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	settrainerflag TRAINER_LEADER_KOGA_CHALLENGE
+	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
+	msgbox FuchsiaCity_Gym_Text_KogaPostBattle
+	release
+	end
+
+FuchsiaCity_Gym_EventScript_Koga_ChallengeMode::
+	trainerbattle_single TRAINER_LEADER_KOGA_CHALLENGE, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	settrainerflag TRAINER_LEADER_KOGA
 	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
 	msgbox FuchsiaCity_Gym_Text_KogaPostBattle
 	release

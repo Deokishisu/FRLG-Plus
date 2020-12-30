@@ -3,7 +3,20 @@ CeladonCity_Gym_MapScripts:: @ 816D060
 
 CeladonCity_Gym_EventScript_Erika:: @ 816D061
 	famechecker FAMECHECKER_ERIKA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	goto_if_eq CeladonCity_Gym_EventScript_Erika_ChallengeMode
 	trainerbattle_single TRAINER_LEADER_ERIKA, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
+	settrainerflag TRAINER_LEADER_ERIKA_CHALLENGE
+	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
+	famechecker FAMECHECKER_ERIKA, 4
+	msgbox CeladonCity_Gym_Text_ErikaPostBattle
+	release
+	end
+
+CeladonCity_Gym_EventScript_Erika_ChallengeMode::
+	trainerbattle_single TRAINER_LEADER_ERIKA_CHALLENGE, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
+	settrainerflag TRAINER_LEADER_ERIKA
 	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
 	famechecker FAMECHECKER_ERIKA, 4
 	msgbox CeladonCity_Gym_Text_ErikaPostBattle

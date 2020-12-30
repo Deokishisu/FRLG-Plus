@@ -3,7 +3,23 @@ ViridianCity_Gym_MapScripts:: @ 8169EC9
 
 ViridianCity_Gym_EventScript_Giovanni:: @ 8169ECA
 	famechecker FAMECHECKER_GIOVANNI, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	goto_if_eq ViridianCity_Gym_EventScript_Giovanni_ChallengeMode
 	trainerbattle_single TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniIntro, ViridianCity_Gym_Text_GiovanniDefeat, ViridianCity_Gym_EventScript_DefeatedGiovanni, NO_MUSIC
+	settrainerflag TRAINER_LEADER_GIOVANNI_CHALLENGE
+	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
+	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
+	closemessage
+	fadescreen FADE_TO_BLACK
+	removeobject 8
+	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+ViridianCity_Gym_EventScript_Giovanni_ChallengeMode::
+	trainerbattle_single TRAINER_LEADER_GIOVANNI_CHALLENGE, ViridianCity_Gym_Text_GiovanniIntro, ViridianCity_Gym_Text_GiovanniDefeat, ViridianCity_Gym_EventScript_DefeatedGiovanni, NO_MUSIC
+	settrainerflag TRAINER_LEADER_GIOVANNI
 	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
 	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
 	closemessage

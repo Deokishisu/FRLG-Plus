@@ -573,6 +573,19 @@ void SetDifficultyTest(void)
     }
 }
 
+void IsChallengeModeToVarResult(void)
+{
+    u8 difficulty = gSaveBlock1Ptr->keyFlags.difficulty;
+    if(difficulty == DIFFICULTY_CHALLENGE)
+    {
+        gSpecialVar_Result = TRUE;
+    }
+    else
+    {
+        gSpecialVar_Result = FALSE;
+    }
+}
+
 void FillBagsTest(void)
 {
     u16 i;
