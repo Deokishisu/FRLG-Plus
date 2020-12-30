@@ -711,6 +711,17 @@ struct TrainerNameRecord
     u8 trainerName[PLAYER_NAME_LENGTH + 1];
 };
 
+struct KeySystemFlags
+{
+    u16 difficulty:2;   //0 for normal, 1 for easy, 2 for challenge, 3 for maybe another mode?
+    u16 version:1;      //0 for FR, 1 for LG
+    u16 nuzlocke:1;     //0 for normal, 1 for Nuzlocke mode
+    u16 ivCalcMode:2;   //0 for normal, 1 for all 31, 2 for all zero
+    u16 evCalcMode:1;   //0 for normal, 1 for all zero
+    u16 padding:9;
+    u16 padding2;
+};
+
 #define UNION_ROOM_KB_ROW_COUNT 10
 
 struct SaveBlock1
@@ -735,13 +746,14 @@ struct SaveBlock1
     /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT]; //now holds 139 items
     /*0x053C*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
                u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
-               u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices, 36 slots now for all legal FRLG Key Itens at once + 3 more for cheaters/alignment.
+               u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices, 36 slots now for all legal FRLG Key Itens at once + 2 more for cheaters/alignment.
                struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
                struct ItemSlot bagPocket_HoldItems[BAG_HELD_ITEMS_COUNT];
                u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
     /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused
-    /*0x0632*/ u8 field_632[6]; // unused; scrapped feature to save link Berry Blender records separate from local records
+    /*0x0632*/ u8 field_632[2]; // unused; scrapped feature to save link Berry Blender records separate from local records
+               struct KeySystemFlags keyFlags; //Key System flags
     /*0x0638*/ u16 trainerRematchStepCounter;
     /*0x063A*/ u8 ALIGNED(2) trainerRematches[100];
     /*0x06A0*/ struct ObjectEvent objectEvents[OBJECT_EVENTS_COUNT];

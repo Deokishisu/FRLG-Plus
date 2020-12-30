@@ -15,14 +15,15 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_SIX_ISLAND_GREEN_PATH",
+      "direction": "down",
       "offset": 0,
-      "direction": "down"
+      "map": "MAP_SIX_ISLAND_GREEN_PATH"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 9,
       "y": 24,
       "elevation": 3,
@@ -36,6 +37,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
+      "in_connection": false,
       "x": 12,
       "y": 15,
       "elevation": 3,
@@ -49,6 +51,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
+      "in_connection": false,
       "x": 13,
       "y": 34,
       "elevation": 1,
@@ -62,6 +65,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER",
+      "in_connection": false,
       "x": 14,
       "y": 61,
       "elevation": 1,
@@ -75,6 +79,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER",
+      "in_connection": false,
       "x": 10,
       "y": 44,
       "elevation": 1,
@@ -88,6 +93,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TUBER_M_WATER",
+      "in_connection": false,
       "x": 11,
       "y": 44,
       "elevation": 1,
@@ -101,6 +107,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 11,
       "y": 16,
       "elevation": 3,
@@ -122,7 +129,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
@@ -144,5 +153,6 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "level_scaling": "5"
 }

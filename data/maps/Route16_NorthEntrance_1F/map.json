@@ -180,5 +180,6 @@
       "script": "Route16_NorthEntrance_1F_EventScript_NeedBikeTriggerBottom"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

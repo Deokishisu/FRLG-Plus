@@ -107,5 +107,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CinnabarIsland_PokemonLab_Entrance_EventScript_TestingRoomSign"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

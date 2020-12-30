@@ -60,5 +60,6 @@
       "quantity": 1,
       "underfoot": true
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

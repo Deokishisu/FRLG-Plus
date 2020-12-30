@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": -3,
   "battle_scene": "MAP_BATTLE_SCENE_INDOOR_2",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 19,
       "y": 9,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 2,
       "y": 20,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 12,
       "y": 12,
       "elevation": 3,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 19,
       "y": 14,
       "elevation": 3,
@@ -69,6 +73,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 14,
       "y": 24,
       "elevation": 3,
@@ -97,7 +102,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
@@ -109,5 +116,6 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "level_scaling": "2"
 }

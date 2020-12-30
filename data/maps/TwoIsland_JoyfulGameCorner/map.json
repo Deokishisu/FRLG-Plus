@@ -13,10 +13,11 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
+      "in_connection": false,
       "x": 5,
       "y": 5,
       "elevation": 1,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
+      "in_connection": false,
       "x": 5,
       "y": 8,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "in_connection": false,
       "x": 6,
       "y": 5,
       "elevation": 1,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "in_connection": false,
       "x": 4,
       "y": 2,
       "elevation": 3,
@@ -77,7 +81,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -95,5 +101,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "TwoIsland_JoyfulGameCorner_EventScript_ShowDodrioBerryPickingRecords"
     }
-  ]
+  ],
+  "level_scaling": "4"
 }

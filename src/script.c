@@ -554,6 +554,25 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void SetDifficultyTest(void)
+{
+    u8 difficulty = gSaveBlock1Ptr->keyFlags.difficulty;
+
+    switch(difficulty)
+    {
+        case DIFFICULTY_NORMAL:
+        default:
+            gSaveBlock1Ptr->keyFlags.difficulty = DIFFICULTY_CHALLENGE;
+            return;
+        case DIFFICULTY_CHALLENGE:
+            gSaveBlock1Ptr->keyFlags.difficulty = DIFFICULTY_EASY;
+            return;
+        case DIFFICULTY_EASY:
+            gSaveBlock1Ptr->keyFlags.difficulty = DIFFICULTY_NORMAL;
+            return;
+    }
+}
+
 void FillBagsTest(void)
 {
     u16 i;

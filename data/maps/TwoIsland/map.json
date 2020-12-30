@@ -206,5 +206,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "TwoIsland_EventScript_FastCurrentSign"
     }
-  ]
+  ],
+  "level_scaling": "4"
 }

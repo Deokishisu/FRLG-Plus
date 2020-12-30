@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": 9,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+      "in_connection": false,
       "x": 26,
       "y": 16,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 15,
       "y": 18,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 2,
       "y": 16,
       "elevation": 0,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 1,
       "y": 6,
       "elevation": 3,
@@ -105,7 +109,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
@@ -263,5 +269,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SilphCo_9F_EventScript_FloorSign"
     }
-  ]
+  ],
+  "level_scaling": "3"
 }

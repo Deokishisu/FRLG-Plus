@@ -145,5 +145,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SafariZone_East_EventScript_TrainerTips"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

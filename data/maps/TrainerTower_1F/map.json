@@ -126,5 +126,6 @@
       "script": "TrainerTower_EventScript_DoubleBattleTriggerBottom"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

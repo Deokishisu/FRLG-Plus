@@ -15,14 +15,15 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_SIX_ISLAND_WATER_PATH",
+      "direction": "right",
       "offset": -80,
-      "direction": "right"
+      "map": "MAP_SIX_ISLAND_WATER_PATH"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+      "in_connection": false,
       "x": 24,
       "y": 25,
       "elevation": 3,
@@ -36,6 +37,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 32,
       "y": 11,
       "elevation": 5,
@@ -49,6 +51,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 33,
       "y": 16,
       "elevation": 5,
@@ -62,6 +65,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 31,
       "y": 24,
       "elevation": 5,
@@ -75,6 +79,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 14,
       "y": 10,
       "elevation": 5,
@@ -88,6 +93,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
+      "in_connection": false,
       "x": 21,
       "y": 29,
       "elevation": 5,
@@ -101,6 +107,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 17,
       "y": 10,
       "elevation": 5,
@@ -114,6 +121,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 17,
       "y": 12,
       "elevation": 5,
@@ -127,6 +135,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 18,
       "y": 11,
       "elevation": 5,
@@ -140,6 +149,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 6,
       "y": 33,
       "elevation": 3,
@@ -153,6 +163,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 6,
       "y": 34,
       "elevation": 3,
@@ -166,6 +177,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 41,
       "y": 32,
       "elevation": 3,
@@ -179,6 +191,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 41,
       "y": 33,
       "elevation": 3,
@@ -192,6 +205,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER",
+      "in_connection": false,
       "x": 42,
       "y": 33,
       "elevation": 3,
@@ -205,6 +219,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 5,
       "y": 33,
       "elevation": 3,
@@ -218,6 +233,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 19,
       "y": 11,
       "elevation": 5,
@@ -231,6 +247,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
       "x": 43,
       "y": 32,
       "elevation": 3,
@@ -252,7 +269,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -262,5 +281,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SixIsland_RuinValley_EventScript_DottedHoleDoor"
     }
-  ]
+  ],
+  "level_scaling": "5"
 }

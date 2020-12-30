@@ -143,5 +143,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

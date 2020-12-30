@@ -130,5 +130,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeladonCity_Condominiums_1F_EventScript_SuiteSign"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

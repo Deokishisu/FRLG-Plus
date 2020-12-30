@@ -156,5 +156,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PewterCity_Museum_2F_EventScript_MoonStone"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

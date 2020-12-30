@@ -101,5 +101,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SaffronCity_House_EventScript_Letter"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

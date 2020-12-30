@@ -190,5 +190,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SafariZone_North_EventScript_RestHouseSign"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

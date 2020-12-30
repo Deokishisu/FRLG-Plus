@@ -65,5 +65,6 @@
       "script": "TradeCenter_EventScript_Chair1"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

@@ -82,5 +82,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeruleanCity_House2_EventScript_WallHole"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

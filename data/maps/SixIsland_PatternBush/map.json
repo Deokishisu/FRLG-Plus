@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 48,
       "y": 15,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 10,
       "y": 5,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
       "x": 51,
       "y": 6,
       "elevation": 3,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
       "x": 12,
       "y": 13,
       "elevation": 3,
@@ -69,6 +73,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "in_connection": false,
       "x": 37,
       "y": 23,
       "elevation": 3,
@@ -82,6 +87,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "in_connection": false,
       "x": 32,
       "y": 5,
       "elevation": 3,
@@ -95,6 +101,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "in_connection": false,
       "x": 52,
       "y": 20,
       "elevation": 3,
@@ -108,6 +115,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 8,
       "y": 21,
       "elevation": 3,
@@ -121,6 +129,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 39,
       "y": 6,
       "elevation": 3,
@@ -134,6 +143,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+      "in_connection": false,
       "x": 3,
       "y": 9,
       "elevation": 3,
@@ -147,6 +157,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "in_connection": false,
       "x": 19,
       "y": 24,
       "elevation": 3,
@@ -160,6 +171,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 30,
       "y": 19,
       "elevation": 3,
@@ -216,6 +228,11 @@
       "dest_warp_id": 3
     }
   ],
-  "coord_events": [],
-  "bg_events": []
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "5"
 }

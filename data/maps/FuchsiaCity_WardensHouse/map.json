@@ -125,5 +125,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "FuchsiaCity_WardensHouse_EventScript_DisplaySign2"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

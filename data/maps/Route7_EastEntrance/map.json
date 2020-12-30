@@ -88,5 +88,6 @@
       "script": "Route7_EastEntrance_EventScript_GuardTriggerBottom"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

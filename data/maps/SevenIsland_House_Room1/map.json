@@ -55,5 +55,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SevenIsland_House_Room1_EventScript_Box"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

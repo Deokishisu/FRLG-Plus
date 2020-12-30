@@ -13,10 +13,11 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_GYM",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
+      "in_connection": false,
       "x": 10,
       "y": 12,
       "elevation": 0,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "in_connection": false,
       "x": 4,
       "y": 7,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MISTY",
+      "in_connection": false,
       "x": 8,
       "y": 6,
       "elevation": 3,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
+      "in_connection": false,
       "x": 7,
       "y": 16,
       "elevation": 3,
@@ -91,7 +95,9 @@
       "dest_warp_id": 4
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -109,5 +115,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeruleanCity_Gym_EventScript_GymStatue"
     }
-  ]
+  ],
+  "level_scaling": "1"
 }

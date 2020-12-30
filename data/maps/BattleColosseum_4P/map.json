@@ -83,5 +83,6 @@
       "script": "BattleColosseum_4P_EventScript_PlayerSpot3"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

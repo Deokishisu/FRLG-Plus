@@ -69,5 +69,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CinnabarIsland_PokemonLab_ResearchRoom_EventScript_Computer"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

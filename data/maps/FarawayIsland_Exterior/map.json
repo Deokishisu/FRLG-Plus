@@ -72,5 +72,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "FarawayIsland_Exterior_EventScript_Sign"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

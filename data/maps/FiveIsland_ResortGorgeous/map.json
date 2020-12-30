@@ -15,14 +15,15 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_FIVE_ISLAND_WATER_LABYRINTH",
+      "direction": "down",
       "offset": -48,
-      "direction": "down"
+      "map": "MAP_FIVE_ISLAND_WATER_LABYRINTH"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 44,
       "y": 10,
       "elevation": 3,
@@ -36,6 +37,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 33,
       "y": 12,
       "elevation": 3,
@@ -49,6 +51,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 12,
       "y": 10,
       "elevation": 3,
@@ -62,6 +65,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 23,
       "y": 9,
       "elevation": 3,
@@ -75,6 +79,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 33,
       "y": 8,
       "elevation": 3,
@@ -88,6 +93,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "in_connection": false,
       "x": 33,
       "y": 3,
       "elevation": 3,
@@ -101,6 +107,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
+      "in_connection": false,
       "x": 56,
       "y": 7,
       "elevation": 1,
@@ -114,6 +121,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 39,
       "y": 9,
       "elevation": 3,
@@ -142,7 +150,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
@@ -192,5 +202,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "FiveIsland_ResortGorgeous_EventScript_SelphysHouseSign"
     }
-  ]
+  ],
+  "level_scaling": "5"
 }

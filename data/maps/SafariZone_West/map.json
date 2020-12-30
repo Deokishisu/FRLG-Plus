@@ -191,5 +191,6 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

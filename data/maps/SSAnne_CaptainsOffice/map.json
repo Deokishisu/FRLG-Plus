@@ -64,5 +64,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SSAnne_CaptainsOffice_EventScript_Book"
     }
-  ]
+  ],
+	"level_scaling": "2"
 }

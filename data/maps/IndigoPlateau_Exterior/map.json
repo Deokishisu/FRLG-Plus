@@ -58,5 +58,6 @@
     }
   ],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

@@ -15,19 +15,20 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_SIX_ISLAND_OUTCAST_ISLAND",
+      "direction": "up",
       "offset": 0,
-      "direction": "up"
+      "map": "MAP_SIX_ISLAND_OUTCAST_ISLAND"
     },
     {
-      "map": "MAP_SIX_ISLAND_WATER_PATH",
+      "direction": "right",
       "offset": 0,
-      "direction": "right"
+      "map": "MAP_SIX_ISLAND_WATER_PATH"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "in_connection": false,
       "x": 11,
       "y": 8,
       "elevation": 3,
@@ -70,7 +71,9 @@
       "dest_warp_id": 4
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -98,5 +101,6 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "level_scaling": "5"
 }

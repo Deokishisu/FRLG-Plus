@@ -158,5 +158,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SafariZone_Center_EventScript_AreaSign"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

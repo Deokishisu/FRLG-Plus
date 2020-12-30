@@ -258,5 +258,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PalletTown_ProfessorOaksLab_EventScript_RightSign"
     }
-  ]
+  ],
+	"level_scaling": "0"
 }

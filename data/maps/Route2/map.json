@@ -217,5 +217,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route2_EventScript_RouteSign"
     }
-  ]
+  ],
+  "level_scaling": "1"
 }

@@ -101,5 +101,6 @@
       "script": "FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerLeft"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

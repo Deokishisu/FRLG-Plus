@@ -65,6 +65,7 @@ static bool32 IsPlayerDefeated(u32 battleOutcome);
 static void CB2_EndTrainerBattle(void);
 static const u8 *GetIntroSpeechOfApproachingTrainer(void);
 static const u8 *GetTrainerCantBattleSpeech(void);
+u8 GetScaledLevel(void);
 
 static EWRAM_DATA u16 sTrainerBattleMode = 0;
 EWRAM_DATA u16 gTrainerBattleOpponent_A = 0;
@@ -552,6 +553,8 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
     u8 i;
     u8 sum;
     u32 count = numMons;
+    u8 levelScaling = GetScaledLevel();
+    
 
     if (gTrainers[opponentId].partySize < count)
         count = gTrainers[opponentId].partySize;
@@ -564,7 +567,7 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 
             party = gTrainers[opponentId].party.NoItemDefaultMoves;
             for (i = 0; i < count; ++i)
-                sum += party[i].lvl;
+                sum += (party[i].lvl + levelScaling);
         }
         break;
     case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -573,7 +576,7 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 
             party = gTrainers[opponentId].party.NoItemCustomMoves;
             for (i = 0; i < count; ++i)
-                sum += party[i].lvl;
+                sum += (party[i].lvl + levelScaling);
         }
         break;
     case F_TRAINER_PARTY_HELD_ITEM:
@@ -582,7 +585,7 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 
             party = gTrainers[opponentId].party.ItemDefaultMoves;
             for (i = 0; i < count; ++i)
-                sum += party[i].lvl;
+                sum += (party[i].lvl + levelScaling);
         }
         break;
     case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
@@ -591,7 +594,7 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 
             party = gTrainers[opponentId].party.ItemCustomMoves;
             for (i = 0; i < count; ++i)
-                sum += party[i].lvl;
+                sum += (party[i].lvl + levelScaling);
         }
         break;
     }
@@ -1056,4 +1059,25 @@ const u8 *GetTrainerWonSpeech(void)
 static const u8 *GetTrainerCantBattleSpeech(void)
 {
     return ReturnEmptyStringIfNull(sTrainerCannotBattleSpeech);
+}
+
+u8 GetScaledLevel(void)
+{
+    u8 levelScaling = gMapHeader.levelScaling;
+
+    if(gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE)
+    {
+        //we're good, just return
+        return levelScaling;
+    }
+    else if(gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_EASY)
+    {
+        levelScaling = 0 - levelScaling;
+        return levelScaling;
+    }
+    else
+    {   //normal mode
+        levelScaling = 0;
+        return levelScaling;
+    }
 }

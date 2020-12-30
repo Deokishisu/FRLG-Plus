@@ -15,14 +15,15 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_SEVEN_ISLAND_SEVAULT_CANYON",
+      "direction": "up",
       "offset": 48,
-      "direction": "up"
+      "map": "MAP_SEVEN_ISLAND_SEVAULT_CANYON"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 35,
       "y": 7,
       "elevation": 3,
@@ -36,6 +37,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "in_connection": false,
       "x": 121,
       "y": 11,
       "elevation": 3,
@@ -49,6 +51,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 85,
       "y": 8,
       "elevation": 3,
@@ -62,6 +65,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "in_connection": false,
       "x": 85,
       "y": 5,
       "elevation": 3,
@@ -125,7 +129,9 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
@@ -167,5 +173,6 @@
       "quantity": 1,
       "underfoot": false
     }
-  ]
+  ],
+  "level_scaling": "5"
 }

@@ -153,5 +153,6 @@
       "script": "EventScript_SetEnteringCyclingRoad"
     }
   ],
-  "bg_events": []
+  "bg_events": [],
+	"level_scaling": "0"
 }

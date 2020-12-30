@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 11,
       "y": 14,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 13,
       "y": 14,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LORELEI",
+      "in_connection": false,
       "x": 12,
       "y": 16,
       "elevation": 3,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
+      "in_connection": false,
       "x": 10,
       "y": 15,
       "elevation": 3,
@@ -106,5 +110,8 @@
       "script": "FourIsland_IcefallCave_Back_EventScript_LoreleiRocketsScene"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ],
+  "level_scaling": "5"
 }

@@ -199,6 +199,7 @@ struct MapHeader
     /* 0x19 */ u8 flags;
     /* 0x1A */ s8 floorNum;
     /* 0x1B */ u8 battleType;
+    /* 0x1C */ u8 levelScaling;
 };
 
 // Flags for gMapHeader.flags, as defined in the map_header_flags macro

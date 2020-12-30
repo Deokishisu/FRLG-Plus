@@ -419,5 +419,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CeruleanCity_BikeShop_EventScript_Bicycle"
     }
-  ]
+  ],
+  "level_scaling": "1"
 }

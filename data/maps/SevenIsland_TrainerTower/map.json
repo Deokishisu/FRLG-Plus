@@ -109,5 +109,6 @@
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SevenIsland_TrainerTower_EventScript_TrainerTowerAheadSign"
     }
-  ]
+  ],
+  "level_scaling": "5"
 }
