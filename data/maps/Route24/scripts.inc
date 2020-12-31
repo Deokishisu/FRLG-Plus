@@ -61,9 +61,9 @@ Route24_EventScript_BattleRocket:: @ 81686B9
 	playbgm MUS_ENCOUNTER_ROCKET, 0
 	waitbuttonpress
 	setvar VAR_LAST_TALKED, LOCALID_ROCKET
+	setvar VAR_MAP_SCENE_ROUTE24, 1
 	trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNT_6, Route24_Text_RocketDefeat
 	msgbox Route24_Text_YoudBecomeTopRocketLeader
-	setvar VAR_MAP_SCENE_ROUTE24, 1
 	return
 
 Route24_EventScript_RocketApproachPlayer:: @ 81686FD

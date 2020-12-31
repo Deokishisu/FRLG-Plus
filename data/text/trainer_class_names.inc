@@ -70,7 +70,7 @@
 	.string "FISHERMAN$", 13
 	.string "SWIMMER♂$", 13
 	.string "CUE BALL$", 13
-	.string "GAMER$", 13
+	.string "GAMBLER$", 13
 	.string "BEAUTY$", 13
 	.string "SWIMMER♀$", 13
 	.string "PSYCHIC$", 13

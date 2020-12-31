@@ -81,7 +81,7 @@ Route8_Text_MeganPostBattle:: @ 81843D2
     .string "think he's mean.$"
 
 Route8_Text_RichIntro:: @ 8184432
-    .string "I'm a rambling, gaming dude!$"
+    .string "I'm a rambling, gambling dude!$"
 
 Route8_Text_RichDefeat:: @ 818444F
     .string "Missed the big chance!$"

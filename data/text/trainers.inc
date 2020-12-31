@@ -106,7 +106,7 @@ Route8_Text_MeganRematchIntro:: @ 81C18DC
 	.string "like this, but I can still battle.$"
 
 Route8_Text_RichRematchIntro:: @ 81C191F
-	.string "I'm a rambling, gaming dude!\n"
+	.string "I'm a rambling, gambling dude!\n"
 	.string "I'm on a winning streak!$"
 
 Route8_Text_JuliaRematchIntro:: @ 81C1955
