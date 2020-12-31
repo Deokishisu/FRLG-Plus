@@ -122,11 +122,7 @@ static void SpriteCB_HopToPos(struct Sprite * sprite);
 static void StartNidorinoAnim_LaunchSelfAtGengarAnim(struct IntroSequenceData * ptr);
 static void SpriteCB_NidorinoAnim_LaunchSelfAtGengar(struct Sprite * sprite);
 static void LoadFightSceneSpriteTilesAndPals(void);
-#if REVISION >= 1
 static void Rev1_GameFreakScene_CreatePresentsText(void);
-#else
-#define Rev1_GameFreakScene_CreatePresentsText()
-#endif
 
 extern const u32 gMultiBootProgram_PokemonColosseum_Start[];
 
@@ -1895,7 +1891,6 @@ static struct Sprite * CreateGameFreakLogoArtSprite(void)
     return &gSprites[spriteId];
 }
 
-#if REVISION >= 1
 static void Rev1_GameFreakScene_CreatePresentsText(void)
 {
     int i;
@@ -1904,7 +1899,6 @@ static void Rev1_GameFreakScene_CreatePresentsText(void)
         gSprites[CreateSprite(&sSpriteTemplate_PresentsText, 0x68 + 32 * i, 0x6c, 5)].oam.tileNum += i * 4;
     }
 }
-#endif
 
 static void FightScene4_StartGengarAttack(struct IntroSequenceData * this)
 {

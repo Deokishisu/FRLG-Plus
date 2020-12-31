@@ -186,7 +186,8 @@ const u16 gUnknown_8443D00[] = INCBIN_U16("graphics/pokedex/unk_8443D00.4bpp");
 
 static const u8 gExpandedPlaceholder_PokedexDescription[] = _("");
 
-#include "data/pokemon/pokedex_text.h"
+#include "data/pokemon/pokedex_text_fr.h"
+#include "data/pokemon/pokedex_text_lg.h"
 #include "data/pokemon/pokedex_entries.h"
 
 static const struct BgTemplate sUnknown_8451EBC[] = {
