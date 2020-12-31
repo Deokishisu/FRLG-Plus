@@ -22,7 +22,10 @@ Route11_EastEntrance_2F_EventScript_RightBinoculars:: @ 816FD53
 Route11_EastEntrance_2F_EventScript_Turner:: @ 816FD5C
 	lock
 	faceplayer
-	setvar VAR_0x8008, INGAME_TRADE_NIDORINOA
+	callnative IsVersionFireRedToVarResult
+	compare VAR_RESULT, FALSE
+	goto_if_eq Route11_EastEntrance_2F_EventScript_Turner_LG
+	setvar VAR_0x8008, INGAME_TRADE_NIDORINA_FR
 	call EventScript_GetInGameTradeSpeciesInfo
 	goto_if_set FLAG_DID_NINA_TRADE, Route11_EastEntrance_2F_EventScript_AlreadyTraded
 	msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO
@@ -37,6 +40,25 @@ Route11_EastEntrance_2F_EventScript_Turner:: @ 816FD5C
 	call EventScript_DoInGameTrade
 	msgbox Trade_Text_HeyThanks
 	setflag FLAG_DID_NINA_TRADE
+	release
+	end
+
+Route11_EastEntrance_2F_EventScript_Turner_LG::
+	setvar VAR_0x8008, INGAME_TRADE_NIDORINO_LG
+	call EventScript_GetInGameTradeSpeciesInfo
+	goto_if_set FLAG_DID_NINO_TRADE, Route11_EastEntrance_2F_EventScript_AlreadyTraded
+	msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Route11_EastEntrance_2F_EventScript_DeclineTrade
+	call EventScript_ChooseMonForInGameTrade
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge Route11_EastEntrance_2F_EventScript_DeclineTrade
+	call EventScript_GetInGameTradeSpecies
+	compare VAR_RESULT, VAR_0x8009
+	goto_if_ne Route11_EastEntrance_2F_EventScript_NotRequestedMon
+	call EventScript_DoInGameTrade
+	msgbox Trade_Text_HeyThanks
+	setflag FLAG_DID_NINO_TRADE
 	release
 	end
 

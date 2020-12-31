@@ -14,6 +14,12 @@ Route18_EastEntrance_2F_EventScript_Haden:: @ 817047E
 	faceplayer
 	setvar VAR_0x8008, INGAME_TRADE_LICKITUNG
 	call EventScript_GetInGameTradeSpeciesInfo
+	callnative IsVersionFireRedToVarResult
+	compare VAR_RESULT, TRUE
+	call_if_eq Route18_EastEntrance_2F_EventScript_Haden_SetFRRequestedSpecies
+	callnative IsVersionFireRedToVarResult
+	compare VAR_RESULT, FALSE
+	call_if_eq Route18_EastEntrance_2F_EventScript_Haden_SetLGRequestedSpecies
 	goto_if_set FLAG_DID_MARC_TRADE, Route18_EastEntrance_2F_EventScript_AlreadyTraded
 	msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
@@ -29,6 +35,14 @@ Route18_EastEntrance_2F_EventScript_Haden:: @ 817047E
 	setflag FLAG_DID_MARC_TRADE
 	release
 	end
+
+Route18_EastEntrance_2F_EventScript_Haden_SetFRRequestedSpecies::
+	setvar 0x8009, SPECIES_GOLDUCK
+	return
+
+Route18_EastEntrance_2F_EventScript_Haden_SetLGRequestedSpecies::
+	setvar 0x8009, SPECIES_SLOWBRO
+	return
 
 Route18_EastEntrance_2F_EventScript_DeclineTrade:: @ 81704D8
 	msgbox Trade_Text_AwwOhWell

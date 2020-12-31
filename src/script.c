@@ -573,6 +573,13 @@ void SetDifficultyTest(void)
     }
 }
 
+void IsVersionFireRedToVarResult(void)
+{
+    if(gSaveBlock1Ptr->keyFlags.version == 0)
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
 void IsChallengeModeToVarResult(void)
 {
     u8 difficulty = gSaveBlock1Ptr->keyFlags.difficulty;

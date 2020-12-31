@@ -2423,7 +2423,15 @@ u16 GetInGameTradeSpeciesInfo(void)
     // gStringVar2 with the name of the offered species.
     // Returns the requested species.
     const struct InGameTrade * inGameTrade = &sInGameTrades[gSpecialVar_0x8004];
-    StringCopy(gStringVar1, gSpeciesNames[inGameTrade->requestedSpecies]);
+    if(gSpecialVar_0x8004 == INGAME_TRADE_LICKITUNG)
+    {
+        if(gSaveBlock1Ptr->keyFlags.version == 1)
+            StringCopy(gStringVar1, gSpeciesNames[SPECIES_SLOWBRO]);
+        else
+            StringCopy(gStringVar1, gSpeciesNames[SPECIES_GOLDUCK]);
+    }
+    else
+        StringCopy(gStringVar1, gSpeciesNames[inGameTrade->requestedSpecies]);
     StringCopy(gStringVar2, gSpeciesNames[inGameTrade->species]);
     return inGameTrade->requestedSpecies;
 }

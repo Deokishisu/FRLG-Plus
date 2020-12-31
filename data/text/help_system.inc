@@ -1538,7 +1538,8 @@ Help_Text_DefineVersion:: @ 81B7E0F
 	.string "between FIRERED VERSION and\l"
 	.string "LEAFGREEN VERSION. Your game version\l"
 	.string "determines what wild POKéMON appear,\l"
-	.string "what the titlescreen looks like, and the text\l"
+	.string "some ingame NPC trades, what the\l"
+	.string "titlescreen looks like, and the text\l"
 	.string "entries of your POKéDEX data.$"
 
 Help_Text_DefineDifficulty:: @ 81B7E0F
