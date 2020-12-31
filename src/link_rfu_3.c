@@ -556,7 +556,7 @@ void InitHostRFUtgtGname(struct GFtgtGname *data, u8 activity, bool32 started, s
     data->unk_00.unk_00_6 = 0;
     data->unk_00.isChampion = TRUE; //FlagGet(FLAG_SYS_CAN_LINK_WITH_RS);
     data->unk_00.hasNationalDex = TRUE; //IsNationalPokedexEnabled();
-    data->unk_00.gameClear = FlagGet(FLAG_SYS_GAME_CLEAR);
+    data->unk_00.gameClear = FlagGet(FLAG_SYS_GAME_CLEAR_OLD);
 }
 
 /*

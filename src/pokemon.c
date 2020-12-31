@@ -1811,6 +1811,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 personality;
     u32 value;
     u16 checksum;
+    u8 version;
 
     ZeroBoxMonData(boxMon);
 
@@ -1858,7 +1859,15 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     value = GetCurrentRegionMapSectionId();
     SetBoxMonData(boxMon, MON_DATA_MET_LOCATION, &value);
     SetBoxMonData(boxMon, MON_DATA_MET_LEVEL, &level);
-    SetBoxMonData(boxMon, MON_DATA_MET_GAME, &gGameVersion);
+    if(gSaveBlock1Ptr->keyFlags.version == 0)
+    {
+        version = VERSION_FIRE_RED;
+    }
+    else
+    {
+        version = VERSION_LEAF_GREEN;
+    }
+    SetBoxMonData(boxMon, MON_DATA_MET_GAME, &version);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
     SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);

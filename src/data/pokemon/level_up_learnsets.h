@@ -670,13 +670,8 @@ static const u16 sDiglettLevelUpLearnset[] = {
 
 static const u16 sDugtrioLevelUpLearnset[] = {
     LEVEL_UP_MOVE(1, MOVE_TRI_ATTACK),
-#if defined(FIRERED)
     LEVEL_UP_MOVE(1, MOVE_SCRATCH),
     LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),
-#elif defined(LEAFGREEN)
-    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),
-    LEVEL_UP_MOVE(1, MOVE_SCRATCH),
-#endif
     LEVEL_UP_MOVE(1, MOVE_GROWL),
     LEVEL_UP_MOVE(5, MOVE_GROWL),
     LEVEL_UP_MOVE(9, MOVE_MAGNITUDE),
@@ -5653,8 +5648,7 @@ static const u16 sJirachiLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_DOOM_DESIRE),
     LEVEL_UP_END
 };
-
-#if defined(FIRERED)
+// overwritten in pokemon.c where formes are handled.
 static const u16 sDeoxysLevelUpLearnset[] = {
     LEVEL_UP_MOVE(1, MOVE_LEER),
     LEVEL_UP_MOVE(1, MOVE_WRAP),
@@ -5670,25 +5664,6 @@ static const u16 sDeoxysLevelUpLearnset[] = {
     LEVEL_UP_MOVE(50, MOVE_HYPER_BEAM),
     LEVEL_UP_END
 };
-#elif defined(LEAFGREEN)
-static const u16 sDeoxysLevelUpLearnset[] = {
-    LEVEL_UP_MOVE(1, MOVE_LEER),
-    LEVEL_UP_MOVE(1, MOVE_WRAP),
-    LEVEL_UP_MOVE(5, MOVE_NIGHT_SHADE),
-    LEVEL_UP_MOVE(10, MOVE_TELEPORT),
-    LEVEL_UP_MOVE(15, MOVE_KNOCK_OFF),
-    LEVEL_UP_MOVE(20, MOVE_SPIKES),
-    LEVEL_UP_MOVE(25, MOVE_PSYCHIC),
-    LEVEL_UP_MOVE(30, MOVE_SNATCH),
-    LEVEL_UP_MOVE(35, MOVE_IRON_DEFENSE),
-    LEVEL_UP_MOVE(35, MOVE_AMNESIA),
-    LEVEL_UP_MOVE(40, MOVE_RECOVER),
-    LEVEL_UP_MOVE(45, MOVE_PSYCHO_BOOST),
-    LEVEL_UP_MOVE(50, MOVE_COUNTER),
-    LEVEL_UP_MOVE(50, MOVE_MIRROR_COAT),
-    LEVEL_UP_END
-};
-#endif
 
 static const u16 sChimechoLevelUpLearnset[] = {
     LEVEL_UP_MOVE(1, MOVE_WRAP),

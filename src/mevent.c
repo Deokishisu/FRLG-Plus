@@ -744,11 +744,7 @@ bool32 MEvent_ReceiveDistributionMon(const u16 * data)
     return FALSE;
 }
 
-#if defined(FIRERED)
 #define MEVENT_HEADER_VERSION_CODE 1
-#elif defined(LEAFGREEN)
-#define MEVENT_HEADER_VERSION_CODE 2
-#endif
 
 void BuildMEventClientHeader(struct MEventClientHeaderStruct * data)
 {

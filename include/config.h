@@ -14,11 +14,7 @@
 // to the inclusion of asserts in the retail ROM.
 
 // Define the game version for use elsewhere
-#if defined(FIRERED)
 #define GAME_VERSION VERSION_FIRE_RED
-#else // Default version seems to be LeafGreen
-#define GAME_VERSION VERSION_LEAF_GREEN
-#endif // GAME_VERSION
 
 // rev1 renamed the source folder for reasons
 #if REVISION == 0
