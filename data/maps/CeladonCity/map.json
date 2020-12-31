@@ -206,7 +206,7 @@
       "trainer_type": "34",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "0x0",
-      "flag": "0"
+      "flag": "FLAG_ROUTE_16_CUT_TREE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
