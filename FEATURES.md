@@ -2,6 +2,14 @@
 
 ###### [] indicates NYI
 
+#### Mechanical Additions:
+- A Key System has been implemented, similar to Black2 and White2. Press the L Button while on the Key System Menu to access the Help System, which has detailed information on each key. Use the keys to change various settings about your game. Those settings are:
+	*  __Version__: Switch between FireRed and LeafGreen to catch version exclusive Pokémon.
+	* __Difficulty__: Like in Black2 and White2, there is a Challenge and an Easy Mode difficulty. These difficulties scale trainer levels up or down, and in Challenge Mode important trainers will have an extra Pokémon.
+	* __Nuzlocke Toggle__: Can toggle on a Nuzlocke mode. Press the L Button on the Key System menu to read the special ruleset for this mode.[]
+	* __IV Calculation__: Can make the game treat your Pokémon's IVs as all perfect (31), all zero, or use their actual IVs as is standard for the purposes of stat calculation. This does not affect your Pokémon's actual IVs or Hidden Power, just how thier stats are calculated. If set to all perfect, enemy Pokémon will also be treated as if they have all perfect IVs.[]
+	* __EV Calculation__: Can make the game treat your Pokémon's EVs as all zero, or use their actual EVs as is standard for the purposes of stat calculation. This does not affect your Pokémon's actual EVs, (they will still gain/lose EVs as normal), just how their stats are calculated.[]
+
 #### Story Changes:
 - The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
 - Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
@@ -34,7 +42,6 @@
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
-- Version exclusives are available through regular gameplay. []
-	* All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. Most Hoenn Pokémon will still need to be traded for. []
+- All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. Most Hoenn Pokémon will still need to be traded for. []
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
