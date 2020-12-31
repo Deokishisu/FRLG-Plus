@@ -716,6 +716,11 @@ static void SetTitleScreenScene_Cry(s16 * data)
     case 2:
         if (!gPaletteFade.active)
         {
+            u8 KeyVersionBackup = gSaveBlock1Ptr->keyFlags.version;
+            u8 KeyDifficultyBackup = gSaveBlock1Ptr->keyFlags.difficulty;
+            u8 KeyNuzlockeBackup = gSaveBlock1Ptr->keyFlags.nuzlocke;
+            u8 KeyIvCalcBackup = gSaveBlock1Ptr->keyFlags.ivCalcMode;
+            u8 KeyEvCalcBackup = gSaveBlock1Ptr->keyFlags.evCalcMode;
             SeedRngAndSetTrainerId();
             SetSaveBlocksPointers();
             ResetMenuAndMonGlobals();
@@ -723,6 +728,11 @@ static void SetTitleScreenScene_Cry(s16 * data)
             Save_LoadGameData(SAVE_NORMAL);
             if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_INVALID)
                 Sav2_ClearSetDefault();
+            gSaveBlock1Ptr->keyFlags.version = KeyVersionBackup;
+            gSaveBlock1Ptr->keyFlags.difficulty = KeyDifficultyBackup;
+            gSaveBlock1Ptr->keyFlags.nuzlocke = KeyNuzlockeBackup;
+            gSaveBlock1Ptr->keyFlags.ivCalcMode = KeyIvCalcBackup;
+            gSaveBlock1Ptr->keyFlags.evCalcMode = KeyEvCalcBackup;
             SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
             InitHeap(gHeap, HEAP_SIZE);
             SetMainCallback2(CB2_InitMainMenu);
