@@ -278,3 +278,5 @@
 	.include "src/trainer_tower.o"
 	.align 2
 	.include "src/berry_powder.o"
+	.align 2
+	.include "src/key_system_menu.o"

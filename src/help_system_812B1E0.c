@@ -263,6 +263,7 @@ enum
     HELP_USING_BAIT,
     HELP_USING_ROCK,
     HELP_USING_HALL_OF_FAME,
+    HELP_USING_KEY_SYSTEM,
 };
 
 static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
@@ -314,7 +315,8 @@ static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
     [HELP_USING_BALL]                   = Help_Text_UsingBall,
     [HELP_USING_BAIT]                   = Help_Text_UsingBait,
     [HELP_USING_ROCK]                   = Help_Text_UsingRock,
-    [HELP_USING_HALL_OF_FAME]           = Help_Text_UsingHallOfFame
+    [HELP_USING_HALL_OF_FAME]           = Help_Text_UsingHallOfFame,
+    [HELP_USING_KEY_SYSTEM]             = Help_Text_UsingKeySystem
 };
 
 static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
@@ -366,7 +368,8 @@ static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
     [HELP_USING_BALL]                   = Help_Text_HowToUseBall,
     [HELP_USING_BAIT]                   = Help_Text_HowToUseBait,
     [HELP_USING_ROCK]                   = Help_Text_HowToUseRock,
-    [HELP_USING_HALL_OF_FAME]           = Help_Text_HowToUseHallOfFame
+    [HELP_USING_HALL_OF_FAME]           = Help_Text_HowToUseHallOfFame,
+    [HELP_USING_KEY_SYSTEM]             = Help_Text_HowToUseKeySystemSettings
 };
 
 // Submenu IDs for TOPIC_TERMS
@@ -415,6 +418,13 @@ enum
     HELP_TERM_ID_NO2,
     HELP_TERM_MONEY2,
     HELP_TERM_BADGES2,
+    HELP_TERM_VERSION,
+    HELP_TERM_DIFFICULTY,
+    HELP_TERM_NUZLOCKE,
+    HELP_TERM_NUZLOCKE_CATCHING,
+    HELP_TERM_NUZLOCKE_LOSING,
+    HELP_TERM_IV_CALC,
+    HELP_TERM_EV_CALC
 };
 
 static const u8 *const sHelpSystemTermTextPtrs[] = {
@@ -461,7 +471,14 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_POKEMON]        = Help_Text_Pokemon,
     [HELP_TERM_ID_NO2]         = Help_Text_IDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_Money2,
-    [HELP_TERM_BADGES2]        = Help_Text_Badges2
+    [HELP_TERM_BADGES2]        = Help_Text_Badges2,
+    [HELP_TERM_VERSION]        = Help_Text_Version,
+    [HELP_TERM_DIFFICULTY]     = Help_Text_Difficulty,
+    [HELP_TERM_NUZLOCKE]       = Help_Text_Nuzlocke,
+    [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_Nuzlocke_Catching,
+    [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_NuzlockeLosing,
+    [HELP_TERM_IV_CALC]        = Help_Text_IvCalc,
+    [HELP_TERM_EV_CALC]        = Help_Text_EvCalc
 };
 
 static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
@@ -508,7 +525,14 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_POKEMON]        = Help_Text_DefinePokemon,
     [HELP_TERM_ID_NO2]         = Help_Text_DefineIDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_DefineMoney2,
-    [HELP_TERM_BADGES2]        = Help_Text_DefineBadges2
+    [HELP_TERM_BADGES2]        = Help_Text_DefineBadges2,
+    [HELP_TERM_VERSION]        = Help_Text_DefineVersion,
+    [HELP_TERM_DIFFICULTY]     = Help_Text_DefineDifficulty,
+    [HELP_TERM_NUZLOCKE]       = Help_Text_DefineNuzlocke,
+    [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_DefineNuzlocke_Catching,
+    [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_DefineNuzlockeLosing,
+    [HELP_TERM_IV_CALC]        = Help_Text_DefineIvCalc,
+    [HELP_TERM_EV_CALC]        = Help_Text_DefineEvCalc
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -1588,6 +1612,23 @@ static const u8 sTerms_Basic[] = {
     HELP_END
 };
 
+static const u8 sHowTo_KeySystem[] = {
+    HELP_USING_KEY_SYSTEM, 
+    HELP_END
+};
+
+static const u8 sTerms_KeySystem[] = {
+    HELP_TERM_VERSION,
+    HELP_TERM_DIFFICULTY,
+    HELP_TERM_NUZLOCKE,
+    HELP_TERM_NUZLOCKE_CATCHING,
+    HELP_TERM_NUZLOCKE_LOSING,
+    HELP_TERM_IV_CALC,
+    HELP_TERM_EV_CALC,
+    HELP_TERM_CANCEL, 
+    HELP_END
+};
+
 
 // Cant get this to match as a 2D array but it probably should be one, [HELPCONTEXT_COUNT][TOPIC_COUNT - 1] (Excludes TOPIC_EXIT)
 static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_COUNT - 1)] = {
@@ -1626,7 +1667,7 @@ static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_CO
     NULL,                          sHowTo_BedroomPC,           NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC
     NULL,                          sHowTo_BedroomPCItems,      NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC_ITEMS
     NULL,                          sHowTo_BedroomPCMailbox,    NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC_MAILBOX
-    NULL,                          NULL,                       NULL,                       NULL,                    NULL  // HELPCONTEXT_UNUSED
+    NULL,                          sHowTo_KeySystem,           sTerms_KeySystem,           NULL,                    NULL  // HELPCONTEXT_KEY_SYSTEM
 };
 
 static const u16 unref_845BCB0[] = INCBIN_U16("graphics/help_system/unk_845BCB0.bin");
@@ -1686,7 +1727,7 @@ static const bool8 sHelpSystemContextTopicFlags[HELPCONTEXT_COUNT + 1][TOPIC_COU
     [HELPCONTEXT_BEDROOM_PC]            = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE, FALSE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_BEDROOM_PC_ITEMS]      = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE, FALSE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_BEDROOM_PC_MAILBOX]    = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE, FALSE, FALSE, FALSE,  TRUE),
-    [HELPCONTEXT_UNUSED]                = {},
+    [HELPCONTEXT_KEY_SYSTEM]            = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_COUNT]                 = {}
 };
 
@@ -2105,6 +2146,7 @@ static bool8 IsHelpSystemSubmenuEnabled(u8 id)
         case HELP_USING_BALL:
         case HELP_USING_BAIT:
         case HELP_USING_ROCK:
+        case HELP_USING_KEY_SYSTEM:
             return TRUE;
         case HELP_USING_POKEDEX:
         case HELP_USING_PROF_OAKS_PC:

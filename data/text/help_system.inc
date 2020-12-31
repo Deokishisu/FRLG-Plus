@@ -672,6 +672,9 @@ Help_Text_UsingRock:: @ 81B5A29
 Help_Text_UsingHallOfFame:: @ 81B5A37
 	.string " Using “HALL OF FAME”$"
 
+Help_Text_UsingKeySystem:: @ 81B5A37
+	.string " Using “KEY SYSTEM SETTINGS”$"
+
 Help_Text_HowToUsePokedex:: @ 81B5A4D
 	.string "{CIRCLE_1} Select “POKéDEX” on the MENU.\n"
 	.string "{CIRCLE_2} Choose POKéMON using commands such\n"
@@ -1060,6 +1063,15 @@ Help_Text_HowToUseHallOfFame:: @ 81B7C57
 	.string "{CIRCLE_2} The POKéMON that have entered the\n"
 	.string "   HALL OF FAME can be examined.$"
 
+Help_Text_HowToUseKeySystemSettings::
+	.string "{CIRCLE_1} Select “KEY SYSTEM SETTINGS” on\n"
+	.string "   the MENU.\n"
+	.string "{CIRCLE_2} Press up or down on the {PLUS} Control\n"
+	.string "   Pad to select a key, then press left\n"
+	.string "   or right to alter the settings.\n"
+	.string "{CIRCLE_3} Select “CANCEL” or press the\n"
+	.string "   B Button after making changes.$"
+
 Help_Text_HP:: @ 81B7CC1
 	.string "HP$"
 
@@ -1188,6 +1200,27 @@ Help_Text_Money2:: @ 81B7E09
 
 Help_Text_Badges2:: @ 81B7E0F
 	.string "BADGES$"
+
+Help_Text_Version:: @ 81B7E0F
+	.string "VERSION$"
+
+Help_Text_Difficulty:: @ 81B7E0F
+	.string "DIFFICULTY$"
+
+Help_Text_Nuzlocke:: @ 81B7E0F
+	.string "NUZLOCKE$"
+
+Help_Text_Nuzlocke_Catching::
+	.string "  Catching POKéMON in NUZLOCKE MODE$"
+
+Help_Text_NuzlockeLosing::
+	.string "  Losing battles in NUZLOCKE MODE$"
+
+Help_Text_IvCalc:: @ 81B7E0F
+	.string "IV CALCULATION$"
+
+Help_Text_EvCalc:: @ 81B7E0F
+	.string "EV CALCULATION$"
 
 Help_Text_DefineHP:: @ 81B7E16
 	.string "HP indicates a POKéMON's vitality.\n"
@@ -1396,7 +1429,7 @@ Help_Text_DefineBadges:: @ 81B90E8
 Help_Text_DefineTextSpeed:: @ 81B9170
 	.string "You can adjust how quickly the text is\n"
 	.string "displayed. Choose one: SLOW, MID,\l"
-	.string "or FAST.$"
+	.string "FAST, or INSTANT.$"
 
 Help_Text_DefineBattleScene:: @ 81B91C2
 	.string "You can choose to turn the battle\n"
@@ -1504,6 +1537,68 @@ Help_Text_DefineBadges2:: @ 81B9B2F
 	.string "LEAGUE BADGES that you have won.\l"
 	.string "Earn BADGES by defeating GYM LEADERS\l"
 	.string "in various cities and towns.$"
+
+Help_Text_DefineVersion:: @ 81B7E0F
+	.string "You can change your game version\n"
+	.string "between FIRERED VERSION and\l"
+	.string "LEAFGREEN VERSION. Your game version\l"
+	.string "determines what wild POKéMON appear,\l"
+	.string "what the titlescreen looks like, and the text\l"
+	.string "entries of your POKéDEX data.$"
+
+Help_Text_DefineDifficulty:: @ 81B7E0F
+	.string "You can adjust the game's difficulty.\n"
+	.string "In EASY MODE, POKéMON battles with\l"
+	.string "TRAINERS are easier than normal.\l"
+	.string "In CHALLENGE MODE, POKéMON battles\l"
+	.string "with TRAINERS are more difficult than\l"
+	.string "normal.\l"
+	.string "NORMAL MODE is the standard difficulty.$"
+
+Help_Text_DefineNuzlocke:: @ 81B7E0F
+	.string "Turning on the NUZLOCKE key imposes\n"
+	.string "additional rules on your journey to\l"
+	.string "increase the difficulty. POKéMON that\l"
+	.string "have fainted cannot be healed, and only\l"
+	.string "the first wild POKéMON seen in an area\l"
+	.string "is usable in battle. If you run out of\l"
+	.string "POKéMON, this key will be turned off.$"
+
+Help_Text_DefineNuzlocke_Catching::
+	.string "Only the first POKéMON encountered in\n"
+	.string "an area will be usable in battle.\l"
+	.string "POKéMON caught in the same area after\l"
+	.string "the first encounter will be fainted upon\l"
+	.string "capture. If the first encounter is an\l"
+	.string "already-owned POKéMON, it won't count\l"
+	.string "as the first encounter if not caught.$"
+
+Help_Text_DefineNuzlockeLosing::
+	.string "If you lose a battle and white out in\n"
+	.string "NUZLOCKE MODE, you will be prompted\l"
+	.string "to withdraw non-fainted POKéMON from\l"
+	.string "the PC STORAGE SYSTEM. If you do not\l"
+	.string "have any POKéMON left that can battle,\l"
+	.string "NUZLOCKE MODE will be turned off and\l"
+	.string "your party will be healed.$"
+
+Help_Text_DefineIvCalc:: @ 81B7E0F
+	.string "You can alter how your POKéMON's\n"
+	.string "potential, or INDIVIDUAL VALUES,\l"
+	.string "affect their stats. ALL ZERO calculates\l"
+	.string "stats as if there is no potential, ALL\l"
+	.string "PERFECT with the best potential, and\l"
+	.string "STANDARD with actual IVs. This only\l"
+	.string "alters calculation, not actual IVs.$"
+
+Help_Text_DefineEvCalc:: @ 81B7E0F
+	.string "You can adjust how your POKéMON's\n"
+	.string "growth from defeating other POKéMON,\l"
+	.string "or EFFORT VALUES, affect their stats.\l"
+	.string "ALL ZERO makes stats not affected by\l"
+	.string "EFFORT VALUES. STANDARD is the normal\l"
+	.string "way. This only alters stat calculation,\l"
+	.string "POKéMON will still gain EFFORT VALUES.$"
 
 Help_Text_TheHelpSystem:: @ 81B9BB7
 	.string "The HELP System$"

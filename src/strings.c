@@ -1347,3 +1347,24 @@ const u8 gText_HeldItems[] = _("HELD ITEMS");
 const u8 gText_Medicine[] = _("MEDICINE");
 const u8 gText_HeldItemsPocket[] = _("HELD ITEMS POCKET");
 const u8 gText_MedicinePocket[] = _("MEDICINE POCKET");
+
+const u8 gText_Version[] = _("VERSION");
+const u8 gText_FireredVersion[] = _("FIRERED VERSION");
+const u8 gText_LeafgreenVersion[] = _("LEAFGREEN VERSION");
+const u8 gText_Difficulty[] = _("DIFFICULTY");
+const u8 gText_EasyDifficulty[] = _("EASY MODE");
+const u8 gText_NormalDifficulty[] = _("NORMAL MODE");
+const u8 gText_ChallengeDifficulty[] = _("CHALLENGE MODE");
+const u8 gText_Nuzlocke[] = _("NUZLOCKE");
+const u8 gText_Nuzlocke_On[] = _("ON");
+const u8 gText_Nuzlocke_Off[] = _("OFF");
+const u8 gText_IVCalc[] = _("IV CALCULATION");
+const u8 gText_IVCalcZero[] = _("ALL ZERO");
+const u8 gText_IVCalcStandard[] = _("STANDARD");
+const u8 gText_IVCalcPerfect[] = _("ALL PERFECT");
+const u8 gText_EVCalc[] = _("EV CALCULATION");
+const u8 gText_EVCalcZero[] = _("ALL ZERO");
+const u8 gText_EVCalcStandard[] = _("STANDARD");
+
+const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
+const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");

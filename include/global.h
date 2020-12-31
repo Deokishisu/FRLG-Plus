@@ -713,12 +713,13 @@ struct TrainerNameRecord
 
 struct KeySystemFlags
 {
-    u16 difficulty:2;   //0 for normal, 1 for easy, 2 for challenge, 3 for maybe another mode?
+    u16 difficulty:2;   //0 for normal, 1 for challenge, 2 for easy, 3 for maybe another mode?
     u16 version:1;      //0 for FR, 1 for LG
     u16 nuzlocke:1;     //0 for normal, 1 for Nuzlocke mode
     u16 ivCalcMode:2;   //0 for normal, 1 for all 31, 2 for all zero
     u16 evCalcMode:1;   //0 for normal, 1 for all zero
-    u16 padding:9;
+    u16 padding:8;
+    u16 inKeySystemMenu:1; //Needed for Help Menu regardless of Button Mode
     u16 padding2;
 };
 

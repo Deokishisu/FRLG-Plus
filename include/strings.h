@@ -1560,5 +1560,24 @@ extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
 extern const u8 gText_PkmnAdoresBaseVar2Fell[];
 extern const u8 gText_HeldItemsPocket[];
 extern const u8 gText_MedicinePocket[];
+extern const u8 gText_Version[];
+extern const u8 gText_FireredVersion[];
+extern const u8 gText_LeafgreenVersion[];
+extern const u8 gText_Difficulty[];
+extern const u8 gText_EasyDifficulty[];
+extern const u8 gText_NormalDifficulty[];
+extern const u8 gText_ChallengeDifficulty[];
+extern const u8 gText_Nuzlocke[];
+extern const u8 gText_Nuzlocke_On[];
+extern const u8 gText_Nuzlocke_Off[];
+extern const u8 gText_IVCalc[];
+extern const u8 gText_IVCalcZero[];
+extern const u8 gText_IVCalcStandard[];
+extern const u8 gText_IVCalcPerfect[];
+extern const u8 gText_EVCalc[];
+extern const u8 gText_EVCalcZero[];
+extern const u8 gText_EVCalcStandard[];
+extern const u8 gText_KeySystemSettings[];
+extern const u8 gText_HelpPickSwitchCancel[];
 
 #endif //GUARD_STRINGS_H
