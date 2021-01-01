@@ -811,6 +811,7 @@ static void QuestLog_AdvancePlayhead(void)
 
 static void QuestLog_StartFinalScene(void)
 {
+    u8 i;
     u8 KeyVersionBackup = gSaveBlock1Ptr->keyFlags.version;
     u8 KeyDifficultyBackup = gSaveBlock1Ptr->keyFlags.difficulty;
     u8 KeyNuzlockeBackup = gSaveBlock1Ptr->keyFlags.nuzlocke;
@@ -824,6 +825,11 @@ static void QuestLog_StartFinalScene(void)
     gSaveBlock1Ptr->keyFlags.nuzlocke = KeyNuzlockeBackup;
     gSaveBlock1Ptr->keyFlags.ivCalcMode = KeyIvCalcBackup;
     gSaveBlock1Ptr->keyFlags.evCalcMode = KeyEvCalcBackup;
+    //recalculate party stats for IV and EV keys
+    for (i = 0; i < gPlayerPartyCount; i++)
+    {
+        CalculateMonStats(&gPlayerParty[i], FALSE);
+    }
     SetMainCallback2(CB2_EnterFieldFromQuestLog);
     gFieldCallback2 = FieldCB2_FinalScene;
     FreeAllWindowBuffers();

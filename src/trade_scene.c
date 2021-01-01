@@ -2488,7 +2488,7 @@ static void CreateInGameTradePokemonInternal(u8 playerSlot, u8 inGameTradeIdx)
             SetMonData(tradeMon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
         }
     }
-    CalculateMonStats(&gEnemyParty[0]);
+    CalculateMonStats(&gEnemyParty[0], FALSE);
 }
 
 static void GetInGameTradeMail(struct MailStruct * mail, const struct InGameTrade * inGameTrade)

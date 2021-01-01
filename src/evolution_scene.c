@@ -565,7 +565,7 @@ static void CreateShedinja(u16 preEvoSpecies, struct Pokemon* mon)
         data = 0xFF;
         SetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_MAIL, (&data));
 
-        CalculateMonStats(&gPlayerParty[gPlayerPartyCount]);
+        CalculateMonStats(&gPlayerParty[gPlayerPartyCount], FALSE);
         CalculatePlayerPartyCount();
 
         // can't match it otherwise, ehh
@@ -727,7 +727,7 @@ static void Task_EvolutionScene(u8 taskId)
             PlayBGM(MUS_EVOLVED);
             gTasks[taskId].tState++;
             SetMonData(mon, MON_DATA_SPECIES, (void*)(&gTasks[taskId].tPostEvoSpecies));
-            CalculateMonStats(mon);
+            CalculateMonStats(mon, FALSE);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_CAUGHT);
@@ -1086,11 +1086,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
         }
         break;
     case 11:
-        /*
-         * BUG: This check causes the evolved Pokemon's cry to play over the sfx.
-         * Negate the below condition.
-         */
-        if (IsSEPlaying())
+        if (!IsSEPlaying())
         {
 //            Free(sEvoMovingBgPtr);
             PlayCry1(gTasks[taskId].tPostEvoSpecies, 0);
@@ -1106,7 +1102,7 @@ static void Task_TradeEvolutionScene(u8 taskId)
             PlayFanfare(MUS_EVOLVED);
             gTasks[taskId].tState++;
             SetMonData(mon, MON_DATA_SPECIES, (&gTasks[taskId].tPostEvoSpecies));
-            CalculateMonStats(mon);
+            CalculateMonStats(mon, FALSE);
             EvolutionRenameMon(mon, gTasks[taskId].tPreEvoSpecies, gTasks[taskId].tPostEvoSpecies);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_SEEN);
             GetSetPokedexFlag(SpeciesToNationalPokedexNum(gTasks[taskId].tPostEvoSpecies), FLAG_SET_CAUGHT);

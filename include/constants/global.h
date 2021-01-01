@@ -94,4 +94,11 @@
 #define DIFFICULTY_CHALLENGE 1
 #define DIFFICULTY_EASY      2
 
+#define IV_CALC_NORMAL 0
+#define IV_CALC_PERFECT 1
+#define IV_CALC_ZERO 2
+
+#define EV_CALC_NORMAL 0
+#define EV_CALC_ZERO 1
+
 #endif //GUARD_CONSTANTS_GLOBAL_H

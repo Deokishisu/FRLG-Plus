@@ -1802,7 +1802,7 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     SetMonData(mon, MON_DATA_LEVEL, &level);
     arg = 255;
     SetMonData(mon, MON_DATA_MAIL, &arg);
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, TRUE);
 }
 
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -1971,10 +1971,10 @@ void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level)
 }
 
 void CreateMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u32 ivs, u32 personality)
-{
+{   //used for roamer
     CreateMon(mon, species, level, 0, 1, personality, OT_ID_PLAYER_ID, 0);
     SetMonData(mon, MON_DATA_IVS, &ivs);
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, TRUE);
 }
 
 static void CreateMonWithIVsOTID(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 otId)
@@ -1986,7 +1986,7 @@ static void CreateMonWithIVsOTID(struct Pokemon *mon, u16 species, u8 level, u8 
     SetMonData(mon, MON_DATA_SPEED_IV, &ivs[3]);
     SetMonData(mon, MON_DATA_SPATK_IV, &ivs[4]);
     SetMonData(mon, MON_DATA_SPDEF_IV, &ivs[5]);
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, TRUE);
 }
 
 void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 evSpread)
@@ -2018,7 +2018,7 @@ void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedI
         evsBits <<= 1;
     }
 
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, TRUE);
 }
 
 void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
@@ -2069,7 +2069,7 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
     SetMonData(mon, MON_DATA_SPATK_IV, &value);
     value = src->spDefenseIV;
     SetMonData(mon, MON_DATA_SPDEF_IV, &value);
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, TRUE);
 }
 
 static void CreateObedientMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -2152,8 +2152,11 @@ static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon)
     SetMonData(mon, field, &n);                                 \
 }
 
-void CalculateMonStats(struct Pokemon *mon)
+void CalculateMonStats(struct Pokemon *mon, bool8 calcOverride)
 {
+    u8 ivCalcMode = gSaveBlock1Ptr->keyFlags.ivCalcMode;
+    u8 evCalcMode = gSaveBlock1Ptr->keyFlags.evCalcMode;
+
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
     s32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
     s32 hpIV = GetMonData(mon, MON_DATA_HP_IV, NULL);
@@ -2171,6 +2174,36 @@ void CalculateMonStats(struct Pokemon *mon)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     s32 level = GetLevelFromMonExp(mon);
     s32 newMaxHP;
+
+    if(ivCalcMode == IV_CALC_PERFECT && calcOverride != TRUE)
+    {
+        hpIV = 31;
+        attackIV = 31;
+        defenseIV = 31;
+        speedIV = 31;
+        spAttackIV = 31;
+        spDefenseIV = 31;
+    }
+
+    if(ivCalcMode == IV_CALC_ZERO && calcOverride != TRUE)
+    {
+        hpIV = 0;
+        attackIV = 0;
+        defenseIV = 0;
+        speedIV = 0;
+        spAttackIV = 0;
+        spDefenseIV = 0;
+    }
+
+    if(evCalcMode == EV_CALC_ZERO)
+    {
+        hpEV = 0;
+        attackEV = 0;
+        defenseEV = 0;
+        speedEV = 0;
+        spAttackEV = 0;
+        spDefenseEV = 0;
+    }
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
 
@@ -2231,7 +2264,7 @@ void BoxMonToMon(struct BoxPokemon *src, struct Pokemon *dest)
     SetMonData(dest, MON_DATA_MAX_HP, &value);
     value = 255;
     SetMonData(dest, MON_DATA_MAIL, &value);
-    CalculateMonStats(dest);
+    CalculateMonStats(dest, FALSE);
 }
 
 static u8 GetLevelFromMonExp(struct Pokemon *mon)
@@ -3789,6 +3822,7 @@ u8 GiveMonToPlayer(struct Pokemon *mon)
         return SendMonToPC(mon);
 
     CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
+    CalculateMonStats(&gPlayerParty[i], FALSE);
     gPlayerPartyCount = i + 1;
     return MON_GIVEN_TO_PARTY;
 }
@@ -4207,7 +4241,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             {
                 data = gExperienceTables[gBaseStats[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + 1];
                 SetMonData(mon, MON_DATA_EXP, &data);
-                CalculateMonStats(mon);
+                CalculateMonStats(mon, TRUE);
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & 0x20)
@@ -4296,7 +4330,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             }
                         }
                         SetMonData(mon, sGetMonDataEVConstants[sp28], &dataSigned);
-                        CalculateMonStats(mon);
+                        CalculateMonStats(mon, TRUE);
                         sp24++;
                         retVal = FALSE;
                         break;
@@ -4498,7 +4532,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             }
                         }
                         SetMonData(mon, sGetMonDataEVConstants[sp28 + 2], &dataSigned);
-                        CalculateMonStats(mon);
+                        CalculateMonStats(mon, TRUE);
                         retVal = FALSE;
                         sp24++;
                         break;

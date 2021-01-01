@@ -1511,6 +1511,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
     u8 fixedIV;
     s32 i, j;
     s8 levelScaling = GetScaledLevel();
+    u8 ivCalcMode = gSaveBlock1Ptr->keyFlags.ivCalcMode;
 
     if(trainerNum >= TRAINER_RIVAL_ROUTE22_LATE_SQUIRTLE && trainerNum <= TRAINER_RIVAL_ROUTE22_LATE_CHARMANDER)
     {   //adjust level scaling for penultimate Rival battle
@@ -1550,7 +1551,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; ++j)
                     nameHash += gSpeciesNames[partyData[i].species][j];
                 personalityValue += nameHash << 8;
-                fixedIV = partyData[i].iv * 31 / 255;
+                if(ivCalcMode == IV_CALC_PERFECT)
+                    fixedIV = 31;
+                else
+                    fixedIV = partyData[i].iv * 31 / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 break;
             }
@@ -1561,7 +1565,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; ++j)
                     nameHash += gSpeciesNames[partyData[i].species][j];
                 personalityValue += nameHash << 8;
-                fixedIV = partyData[i].iv * 31 / 255;
+                if(ivCalcMode == IV_CALC_PERFECT)
+                    fixedIV = 31;
+                else
+                    fixedIV = partyData[i].iv * 31 / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 for (j = 0; j < MAX_MON_MOVES; ++j)
                 {
@@ -1577,7 +1584,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; ++j)
                     nameHash += gSpeciesNames[partyData[i].species][j];
                 personalityValue += nameHash << 8;
-                fixedIV = partyData[i].iv * 31 / 255;
+                if(ivCalcMode == IV_CALC_PERFECT)
+                    fixedIV = 31;
+                else
+                    fixedIV = partyData[i].iv * 31 / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
@@ -1590,7 +1600,14 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; ++j)
                     nameHash += gSpeciesNames[partyData[i].species][j];
                 personalityValue += ((nameHash << 8) - partyData[i].abilityNum);
-                fixedIV = partyData[i].iv * 31 / 255;
+                if(ivCalcMode == IV_CALC_PERFECT)
+                    fixedIV = 31;
+                else if((trainerNum == TRAINER_LEADER_LT_SURGE_CHALLENGE || TRAINER_CHAMPION_FIRST_SQUIRTLE_CHALLENGE) &&  i == 3) //preserving Hidden Power IVs
+                    fixedIV = partyData[i].iv * 31 / 255;
+                else if(trainerNum == TRAINER_CHAMPION_FIRST_BULBASAUR_CHALLENGE && i == 4) //preserving Hidden Power IVs
+                    fixedIV = partyData[i].iv * 31 / 255;
+                else
+                    fixedIV = partyData[i].iv * 31 / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                 for (j = 0; j < MAX_MON_MOVES; ++j)

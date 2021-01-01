@@ -501,7 +501,7 @@ static void ApplyDaycareExperience(struct Pokemon *mon)
     }
 
     // Re-calculate the mons stats at its new level.
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, FALSE);
 }
 
 static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
@@ -1681,7 +1681,7 @@ static void AddHatchedMonToParty(u8 id)
     SetMonData(mon, MON_DATA_MET_LOCATION, &mapNameID);
 
     MonRestorePP(mon);
-    CalculateMonStats(mon);
+    CalculateMonStats(mon, FALSE);
 }
 
 void ScriptHatchMon(void)
