@@ -817,6 +817,7 @@ static void QuestLog_StartFinalScene(void)
     u8 KeyNuzlockeBackup = gSaveBlock1Ptr->keyFlags.nuzlocke;
     u8 KeyIvCalcBackup = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     u8 KeyEvCalcBackup = gSaveBlock1Ptr->keyFlags.evCalcMode;
+    u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
     ResetSpecialVars();
     Save_ResetSaveCounters();
     Save_LoadGameData(SAVE_NORMAL);
@@ -825,10 +826,14 @@ static void QuestLog_StartFinalScene(void)
     gSaveBlock1Ptr->keyFlags.nuzlocke = KeyNuzlockeBackup;
     gSaveBlock1Ptr->keyFlags.ivCalcMode = KeyIvCalcBackup;
     gSaveBlock1Ptr->keyFlags.evCalcMode = KeyEvCalcBackup;
-    //recalculate party stats for IV and EV keys
-    for (i = 0; i < gPlayerPartyCount; i++)
+    gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
+    //recalculate party stats for IV and EV keys if they were changed
+    if(ChangedCalcBackup == 1)
     {
-        CalculateMonStats(&gPlayerParty[i], FALSE);
+        for (i = 0; i < gPlayerPartyCount; i++)
+        {
+            CalculateMonStats(&gPlayerParty[i], FALSE);
+        }
     }
     SetMainCallback2(CB2_EnterFieldFromQuestLog);
     gFieldCallback2 = FieldCB2_FinalScene;

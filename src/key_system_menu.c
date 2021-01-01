@@ -210,6 +210,7 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->option[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
     sKeySystemMenuPtr->option[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     sKeySystemMenuPtr->option[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
+    gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
 
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
@@ -501,6 +502,10 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.version = sKeySystemMenuPtr->option[MENUITEM_VERSION];
     gSaveBlock1Ptr->keyFlags.difficulty = sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY];
     gSaveBlock1Ptr->keyFlags.nuzlocke = sKeySystemMenuPtr->option[MENUITEM_NUZLOCKE];
+    if(gSaveBlock1Ptr->keyFlags.ivCalcMode != sKeySystemMenuPtr->option[MENUITEM_IV] || gSaveBlock1Ptr->keyFlags.evCalcMode != sKeySystemMenuPtr->option[MENUITEM_EV])
+    {
+        gSaveBlock1Ptr->keyFlags.changedCalcMode = 1; //iv or ev calc mode changed, recalculate party stats on saveload.
+    }
     gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->option[MENUITEM_IV];
     gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->option[MENUITEM_EV];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
