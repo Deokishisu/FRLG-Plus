@@ -37,7 +37,18 @@ ThreeIsland_DunsparceTunnel_EventScript_Prospector:: @ 8164D60
 
 ThreeIsland_DunsparceTunnel_EventScript_ProspectorStruckGold:: @ 8164D90
 	msgbox ThreeIsland_DunsparceTunnel_Text_StruckGoldThisIsForYou
-	giveitem ITEM_NUGGET
+	goto_if_set FLAG_GOT_DOME_FOSSIL, ThreeIsland_DunsparceTunnel_EventScript_GiveHelixFossil
+	bufferitemnameplural 0, ITEM_DOME_FOSSIL, 1
+	giveitem_msg ThreeIsland_DunsparceTunnel_Text_ObtainedFossil, ITEM_DOME_FOSSIL, 1, MUS_OBTAIN_KEY_ITEM
+	compare VAR_RESULT, FALSE
+	goto_if_eq ThreeIsland_DunsparceTunnel_EventScript_NoRoomForNugget
+	setflag FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL
+	goto ThreeIsland_DunsparceTunnel_EventScript_ProspectorAlreadyGaveNugget
+	end
+
+ThreeIsland_DunsparceTunnel_EventScript_GiveHelixFossil::
+	bufferitemnameplural 0, ITEM_HELIX_FOSSIL, 1
+	giveitem_msg ThreeIsland_DunsparceTunnel_Text_ObtainedFossil, ITEM_HELIX_FOSSIL, 1, MUS_OBTAIN_KEY_ITEM
 	compare VAR_RESULT, FALSE
 	goto_if_eq ThreeIsland_DunsparceTunnel_EventScript_NoRoomForNugget
 	setflag FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL
