@@ -1150,6 +1150,7 @@ extern const u8 Help_Text_Nuzlocke[];
 extern const u8 Help_Text_Nuzlocke_Catching[];
 extern const u8 Help_Text_IvCalc[];
 extern const u8 Help_Text_EvCalc[];
+extern const u8 Help_Text_NoFreeHeals[];
 extern const u8 Help_Text_DefineVersion[];
 extern const u8 Help_Text_DefineDifficulty[];
 extern const u8 Help_Text_DefineNuzlocke[];
@@ -1158,6 +1159,7 @@ extern const u8 Help_Text_DefineEvCalc[];
 extern const u8 Help_Text_DefineNuzlocke_Catching[];
 extern const u8 Help_Text_NuzlockeLosing[];
 extern const u8 Help_Text_DefineNuzlockeLosing[];
+extern const u8 Help_Text_DefineNoFreeHeals[];
 
 extern const u8 EventScript_FldEffStrength[];
 extern const u8 EventScript_FailSweetScent[];

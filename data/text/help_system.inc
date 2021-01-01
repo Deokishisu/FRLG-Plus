@@ -1217,6 +1217,9 @@ Help_Text_IvCalc:: @ 81B7E0F
 Help_Text_EvCalc:: @ 81B7E0F
 	.string "EV CALCULATION$"
 
+Help_Text_NoFreeHeals:: @ 81B7E0F
+	.string "NO FREE HEALS$"
+
 Help_Text_DefineHP:: @ 81B7E16
 	.string "HP indicates a POKéMON's vitality.\n"
 	.string "If a POKéMON's HP drops to zero, it\l"
@@ -1595,6 +1598,15 @@ Help_Text_DefineEvCalc:: @ 81B7E0F
 	.string "EFFORT VALUES. STANDARD is the normal\l"
 	.string "way. This only alters stat calculation,\l"
 	.string "POKéMON will still gain EFFORT VALUES.$"
+
+Help_Text_DefineNoFreeHeals::
+	.string "You can disable free POKéMON party\n"
+	.string "heals by switching NO FREE HEALS to ON.\l"
+	.string "This will disable several full party\l"
+	.string "heals, most notably from POKéMON\l"
+	.string "CENTERS. Additionally, the PC STORAGE\l"
+	.string "SYSTEM will not heal POKéMON sent to\l"
+	.string "it when ON. To heal, use items instead.$"
 
 Help_Text_TheHelpSystem:: @ 81B9BB7
 	.string "The HELP System$"

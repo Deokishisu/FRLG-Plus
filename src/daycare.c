@@ -436,9 +436,11 @@ static void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycar
         daycareMon->mail.message = gSaveBlock1Ptr->mail[mailId];
         TakeMailFromMon(mon);
     }
+    StoreHPAndStatusInBoxMon(mon);
 
     daycareMon->mon = mon->box;
-    BoxMonRestorePP(&daycareMon->mon);
+    if(gSaveBlock1Ptr->keyFlags.noPMC != 1)
+        BoxMonRestorePP(&daycareMon->mon);
     daycareMon->steps = 0;
     ZeroMonData(mon);
     CompactPartySlots();
@@ -513,6 +515,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     DayCare_GetBoxMonNickname(&daycareMon->mon, gStringVar1);
     species = GetBoxMonData(&daycareMon->mon, MON_DATA_SPECIES);
     BoxMonToMon(&daycareMon->mon, &pokemon);
+    PopulateBoxHpAndStatusToPartyMon(&pokemon);
 
     if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
     {

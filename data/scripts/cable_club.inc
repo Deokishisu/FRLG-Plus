@@ -825,6 +825,8 @@ CableClub_EventScript_EnterUnionRoom:: @ 81BBA94
 	goto_if_eq CableClub_EventScript_AbortLink
 	msgbox CableClub_Text_EnjoyUnionRoom
 	closemessage
+	setflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	special HealPlayerParty
 	setvar VAR_0x8004, USING_UNION_ROOM
 	copyvar VAR_CABLE_CLUB_STATE, VAR_0x8004

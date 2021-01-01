@@ -12,6 +12,8 @@ struct PokemonSubstruct0
     u32 experience;
     u8 ppBonuses;
     u8 friendship;
+    u16 boxHP:10;
+    u16 boxStatus:4;
     u16 forme:2;
 };
 

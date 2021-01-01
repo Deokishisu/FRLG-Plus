@@ -23,6 +23,7 @@ enum
     MENUITEM_NUZLOCKE,
     MENUITEM_IV,
     MENUITEM_EV,
+    MENUITEM_NO_PMC,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
 };
@@ -132,7 +133,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 };
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 2, 3, 2, 0};
+static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 2, 3, 2, 2, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -141,6 +142,7 @@ static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_NUZLOCKE] = gText_Nuzlocke,
     [MENUITEM_IV]       = gText_IVCalc,
     [MENUITEM_EV]  = gText_EVCalc,
+    [MENUITEM_NO_PMC] = gText_NoPMC,
     [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
 };
 
@@ -210,6 +212,7 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->option[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
     sKeySystemMenuPtr->option[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     sKeySystemMenuPtr->option[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
+    sKeySystemMenuPtr->option[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
     gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
 
@@ -487,6 +490,9 @@ static void BufferKeySystemMenuString(u8 selection)
     case MENUITEM_EV:
         AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sEVCalcOptions[sKeySystemMenuPtr->option[selection]]);
         break;
+    case MENUITEM_NO_PMC:
+        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNuzlockeOptions[sKeySystemMenuPtr->option[selection]]);
+        break;
     default:
         break;
     }
@@ -508,6 +514,7 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     }
     gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->option[MENUITEM_IV];
     gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->option[MENUITEM_EV];
+    gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->option[MENUITEM_NO_PMC];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);
     DestroyTask(taskId);

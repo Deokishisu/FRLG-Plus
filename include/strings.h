@@ -1579,5 +1579,6 @@ extern const u8 gText_KeySystemSettings[];
 extern const u8 gText_HelpPickSwitchCancel[];
 extern const u8 gChooseVersionNewGame[];
 extern const u8 gFRLG_Multichoice[];
+extern const u8 gText_NoPMC[];
 
 #endif //GUARD_STRINGS_H

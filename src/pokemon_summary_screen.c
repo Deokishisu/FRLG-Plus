@@ -3567,6 +3567,7 @@ static void sub_8138B8C(struct Pokemon * mon)
     {
         struct BoxPokemon * boxMons = sMonSummaryScreen->monList.boxMons;
         BoxMonToMon(&boxMons[GetLastViewedMonIndex()], mon);
+        PopulateBoxHpAndStatusToPartyMon(mon);
     }
 }
 
@@ -3906,6 +3907,7 @@ static void sub_8139328(struct Pokemon * mon)
         struct BoxPokemon * boxMons;
         boxMons = sMonSummaryScreen->monList.boxMons;
         BoxMonToMon(&boxMons[GetLastViewedMonIndex()], mon);
+        PopulateBoxHpAndStatusToPartyMon(mon);
     }
 }
 

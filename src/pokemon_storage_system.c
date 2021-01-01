@@ -105,7 +105,10 @@ void ZeroBoxMonAt(u8 boxId, u8 boxPosition)
 void BoxMonAtToMon(u8 boxId, u8 boxPosition, struct Pokemon * dst)
 {
     if (boxId < TOTAL_BOXES_COUNT && boxPosition < IN_BOX_COUNT)
+    {
         BoxMonToMon(&gPokemonStoragePtr->boxes[boxId][boxPosition], dst);
+        PopulateBoxHpAndStatusToPartyMon(dst);
+    }
 }
 
 struct BoxPokemon * GetBoxedMonPtr(u8 boxId, u8 boxPosition)

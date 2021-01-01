@@ -2260,8 +2260,44 @@ void CalculateMonStats(struct Pokemon *mon, bool8 calcOverride)
 void BoxMonToMon(struct BoxPokemon *src, struct Pokemon *dest)
 {
     u32 value = 0;
+    u32 statusField;
     dest->box = *src;
-    SetMonData(dest, MON_DATA_STATUS, &value);
+
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1)
+    {
+        value = GetBoxMonData(src, MON_DATA_BOX_STATUS, 0);
+        if(value < 8) //Sleep
+        {
+            statusField = value; //preserves sleep turns?
+        }
+        else
+        {
+            switch(value)
+            {
+                case 8: //PSN
+                    statusField = STATUS1_POISON;
+                    break;
+                case 9: //BRN
+                    statusField = STATUS1_BURN;
+                    break;
+                case 10: //FRZ
+                    statusField = STATUS1_FREEZE;
+                    break;
+                case 11: //PRZ
+                    statusField = STATUS1_PARALYSIS;
+                    break;
+                default: //FNT, none, or invalid
+                    statusField = 0;
+                    break;
+            }
+        }
+        SetMonData(dest, MON_DATA_STATUS, &statusField);
+    }
+    else
+    {
+        SetMonData(dest, MON_DATA_STATUS, &value); //to 0
+    }
+       
     SetMonData(dest, MON_DATA_HP, &value);
     SetMonData(dest, MON_DATA_MAX_HP, &value);
     value = 255;
@@ -3441,6 +3477,12 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_FORME:
         retVal = substruct0->forme;
         break;
+    case MON_DATA_BOX_HP:
+        retVal = substruct0->boxHP;
+        break;
+    case MON_DATA_BOX_STATUS:
+        retVal = substruct0->boxStatus;
+        break;
     default:
         break;
     }
@@ -3790,6 +3832,17 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         substruct0->forme = forme;
         break;
     }
+    case MON_DATA_BOX_HP:
+    {
+        //u16 hp = *data;
+        SET16(substruct0->boxHP);
+        break;
+    }
+    case MON_DATA_BOX_STATUS:
+    {
+        u8 status = *data;
+        substruct0->boxStatus = status;
+    }
     default:
         break;
     }
@@ -3844,7 +3897,9 @@ static u8 SendMonToPC(struct Pokemon* mon)
             struct BoxPokemon* checkingMon = GetBoxedMonPtr(boxNo, boxPos);
             if (GetBoxMonData(checkingMon, MON_DATA_SPECIES, NULL) == SPECIES_NONE)
             {
-                MonRestorePP(mon);
+                if(gSaveBlock1Ptr->keyFlags.noPMC != 1)
+                    MonRestorePP(mon);
+                StoreHPAndStatusInBoxMon(mon);
                 CopyMon(checkingMon, &mon->box, sizeof(mon->box));
                 gSpecialVar_MonBoxId = boxNo;
                 gSpecialVar_MonBoxPos = boxPos;

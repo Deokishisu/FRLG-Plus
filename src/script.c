@@ -563,21 +563,18 @@ void RecalculatePartyStats(void)
     }
 }
 
-void SetDifficultyTest(void)
+void SetNoPMCTest(void)
 {
-    u8 difficulty = gSaveBlock1Ptr->keyFlags.difficulty;
+    u8 noPMC = gSaveBlock1Ptr->keyFlags.noPMC;
 
-    switch(difficulty)
+    switch(noPMC)
     {
-        case DIFFICULTY_NORMAL:
+        case 0:
         default:
-            gSaveBlock1Ptr->keyFlags.difficulty = DIFFICULTY_CHALLENGE;
+            gSaveBlock1Ptr->keyFlags.noPMC = 1;
             return;
-        case DIFFICULTY_CHALLENGE:
-            gSaveBlock1Ptr->keyFlags.difficulty = DIFFICULTY_EASY;
-            return;
-        case DIFFICULTY_EASY:
-            gSaveBlock1Ptr->keyFlags.difficulty = DIFFICULTY_NORMAL;
+        case 1:
+            gSaveBlock1Ptr->keyFlags.noPMC = 0;
             return;
     }
 }

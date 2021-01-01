@@ -9,11 +9,16 @@
 #include "pokedex.h"
 #include "script_pokemon_util.h"
 #include "constants/items.h"
+#include "constants/maps.h"
 #include "constants/species.h"
 #include "constants/pokemon.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleTowerParty(void);
+
+ #define IN_OAKS_LAB \
+    (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN_PROFESSOR_OAKS_LAB) \
+  && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN_PROFESSOR_OAKS_LAB))    \
 
 void HealPlayerParty(void)
 {
@@ -21,20 +26,30 @@ void HealPlayerParty(void)
     u8 ppBonuses;
     u8 arg[4];
 
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1 && !FlagGet(FLAG_SYS_IS_LINKING) && !IN_OAKS_LAB)
+    {   //do nothing if noPMC on and not linking and not in first battle
+        return;
+    }
     // restore HP.
     for(i = 0; i < gPlayerPartyCount; i++)
     {
         u16 maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
         arg[0] = maxHP;
         arg[1] = maxHP >> 8;
-        SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
+        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1
+         && !IN_OAKS_LAB && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except after 1st battle & when linking
+            SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
         ppBonuses = GetMonData(&gPlayerParty[i], MON_DATA_PP_BONUSES);
 
-        // restore PP.
-        for(j = 0; j < MAX_MON_MOVES; j++)
+        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1
+         && !IN_OAKS_LAB && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except after 1st battle & when linking
         {
-            arg[0] = CalculatePPWithBonus(GetMonData(&gPlayerParty[i], MON_DATA_MOVE1 + j), ppBonuses, j);
-            SetMonData(&gPlayerParty[i], MON_DATA_PP1 + j, arg);
+            // restore PP.
+            for(j = 0; j < MAX_MON_MOVES; j++)
+            {
+                arg[0] = CalculatePPWithBonus(GetMonData(&gPlayerParty[i], MON_DATA_MOVE1 + j), ppBonuses, j);
+                SetMonData(&gPlayerParty[i], MON_DATA_PP1 + j, arg);
+            }
         }
 
         // since status is u32, the four 0 assignments here are probably for safety to prevent undefined data from reaching SetMonData.

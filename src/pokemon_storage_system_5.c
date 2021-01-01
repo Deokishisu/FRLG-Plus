@@ -3,11 +3,14 @@
 #include "data.h"
 #include "item.h"
 #include "mail_data.h"
+#include "party_menu.h"
 #include "pokemon_storage_system_internal.h"
 #include "pokemon_summary_screen.h"
 #include "strings.h"
+#include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "constants/party_menu.h"
 
 static EWRAM_DATA struct Pokemon gUnknown_20397BC = {};
 static EWRAM_DATA s8 sBoxCursorArea = 0;
@@ -48,6 +51,139 @@ static void sub_8094C84(void);
 static const u16 sHandCursorPalette[] = INCBIN_U16("graphics/interface/pss_unk_83D2BCC.gbapal");
 static const u16 sHandCursorTiles[] = INCBIN_U16("graphics/interface/pss_unk_83D2BEC.4bpp");
 static const u16 sHandCursorShadowTiles[] = INCBIN_U16("graphics/interface/pss_unk_83D33EC.4bpp");
+
+void StoreHPAndStatusInBoxMon(struct Pokemon *mon)
+{
+    u16 currentHP;
+    u32 statusField;
+    u8 actualStatus;
+    u8 boxStatusCondition = 0;
+
+    currentHP = GetMonData(mon, MON_DATA_HP);
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1)
+    {   //save status and HP to boxmon if noPMC
+        actualStatus = GetMonAilment(mon);
+        statusField = GetMonData(mon, MON_DATA_STATUS);
+        switch(actualStatus)
+        {
+            case AILMENT_SLP:
+                boxStatusCondition = statusField & STATUS1_SLEEP; //0b0XXX where X is the sleep turns
+                break;
+            case AILMENT_PSN:
+                boxStatusCondition = 8; //0b1000
+                break;
+            case AILMENT_BRN:
+                boxStatusCondition = 9; //0b1001
+                break;
+            case AILMENT_FRZ:
+                boxStatusCondition = 10; //0b1010
+                break;
+            case AILMENT_PRZ:
+                boxStatusCondition = 11; //0b1011
+                break;
+            case AILMENT_FNT:
+                boxStatusCondition = 0; //No status condition; fainted
+                break;
+        }
+        currentHP = GetMonData(mon, MON_DATA_HP);
+        if(currentHP > 714)
+        {
+            currentHP = 714; //Highest legal HP value
+        }
+        SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        SetMonData(mon, MON_DATA_BOX_STATUS, &boxStatusCondition);
+    }
+    else if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   //keep fainted when deposited in Nuzlocke Mode
+        if(currentHP == 0)
+        {
+            SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        }
+        else
+        {
+            if(currentHP > 714)
+            {
+                currentHP = 714; //Highest legal HP value
+            }
+            currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+            SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        }
+        boxStatusCondition = 0;
+        SetMonData(mon, MON_DATA_BOX_STATUS, &boxStatusCondition);
+    }
+    else
+    {   //neither key active, store max HP and 0 status
+        currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+        boxStatusCondition = 0;
+        SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        SetMonData(mon, MON_DATA_BOX_STATUS, &boxStatusCondition);
+    }
+}
+
+void PopulateBoxHpAndStatusToPartyMon(struct Pokemon *mon)
+{
+    u16 currentHP;
+    u32 statusField;
+    u8 boxStatus;
+
+    currentHP = GetMonData(mon, MON_DATA_BOX_HP);
+    boxStatus = GetMonData(mon, MON_DATA_BOX_STATUS);
+
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1)
+    {   //PC no longer heals mons in noPMC
+        currentHP = GetMonData(mon, MON_DATA_BOX_HP);
+        SetMonData(mon, MON_DATA_HP, &currentHP);
+        statusField = 0;
+
+        if(boxStatus < 8) //Sleep
+        {
+            statusField = boxStatus; //preserves sleep turns?
+        }
+        else
+        {
+            switch(boxStatus)
+            {
+                case 8: //PSN
+                    statusField = STATUS1_POISON;
+                    break;
+                case 9: //BRN
+                    statusField = STATUS1_BURN;
+                    break;
+                case 10: //FRZ
+                    statusField = STATUS1_FREEZE;
+                    break;
+                case 11: //PRZ
+                    statusField = STATUS1_PARALYSIS;
+                    break;
+                default: //FNT, none, or invalid
+                    statusField = 0;
+                    break;
+            }
+        }
+        SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+    else if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   //keep fainted when withdrawn in Nuzlocke Mode
+        if(currentHP == 0)
+        {
+            SetMonData(mon, MON_DATA_HP, &currentHP);
+        }
+        else
+        {
+            currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+            SetMonData(mon, MON_DATA_HP, &currentHP);
+        }
+        statusField = 0;
+        SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+    else
+    {   //neither key active, populate max HP and 0 status
+        currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+        statusField = 0;
+        SetMonData(mon, MON_DATA_HP, &currentHP);
+        SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+}
 
 void sub_80922C0(void)
 {
@@ -590,10 +726,15 @@ void sub_8092F54(void)
 static void SetMovedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
+    {
         gPSSData->movingMon = gPlayerParty[sBoxCursorPosition];
+        StoreHPAndStatusInBoxMon(&gPSSData->movingMon);
+    }
     else
+    {
         BoxMonAtToMon(boxId, position, &gPSSData->movingMon);
-
+        PopulateBoxHpAndStatusToPartyMon(&gPSSData->movingMon);
+    }
     PurgeMonOrBoxMon(boxId, position);
     sMovingMonOrigBoxId = boxId;
     sMovingMonOrigBoxPos = position;
@@ -604,10 +745,13 @@ static void SetPlacedMonData(u8 boxId, u8 position)
     if (boxId == TOTAL_BOXES_COUNT)
     {
         gPlayerParty[position] = gPSSData->movingMon;
+        PopulateBoxHpAndStatusToPartyMon(&gPlayerParty[position]);
     }
     else
     {
-        BoxMonRestorePP(&gPSSData->movingMon.box);
+        if(gSaveBlock1Ptr->keyFlags.noPMC != 1)
+            BoxMonRestorePP(&gPSSData->movingMon.box);
+        StoreHPAndStatusInBoxMon(&gPSSData->movingMon);
         SetBoxMonAt(boxId, position, &gPSSData->movingMon.box);
     }
 }
