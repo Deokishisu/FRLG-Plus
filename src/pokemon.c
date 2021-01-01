@@ -2175,36 +2175,38 @@ void CalculateMonStats(struct Pokemon *mon, bool8 calcOverride)
     s32 level = GetLevelFromMonExp(mon);
     s32 newMaxHP;
 
-    if(ivCalcMode == IV_CALC_PERFECT && calcOverride != TRUE)
+    if(!FlagGet(FLAG_SYS_IS_LINKING))
     {
-        hpIV = 31;
-        attackIV = 31;
-        defenseIV = 31;
-        speedIV = 31;
-        spAttackIV = 31;
-        spDefenseIV = 31;
-    }
+        if(ivCalcMode == IV_CALC_PERFECT && calcOverride != TRUE)
+        {
+            hpIV = 31;
+            attackIV = 31;
+            defenseIV = 31;
+            speedIV = 31;
+            spAttackIV = 31;
+            spDefenseIV = 31;
+        }
 
-    if(ivCalcMode == IV_CALC_ZERO && calcOverride != TRUE)
-    {
-        hpIV = 0;
-        attackIV = 0;
-        defenseIV = 0;
-        speedIV = 0;
-        spAttackIV = 0;
-        spDefenseIV = 0;
-    }
+        if(ivCalcMode == IV_CALC_ZERO && calcOverride != TRUE)
+        {
+            hpIV = 0;
+            attackIV = 0;
+            defenseIV = 0;
+            speedIV = 0;
+            spAttackIV = 0;
+            spDefenseIV = 0;
+        }
 
-    if(evCalcMode == EV_CALC_ZERO)
-    {
-        hpEV = 0;
-        attackEV = 0;
-        defenseEV = 0;
-        speedEV = 0;
-        spAttackEV = 0;
-        spDefenseEV = 0;
+        if(evCalcMode == EV_CALC_ZERO && calcOverride != TRUE)
+        {
+            hpEV = 0;
+            attackEV = 0;
+            defenseEV = 0;
+            speedEV = 0;
+            spAttackEV = 0;
+            spDefenseEV = 0;
+        }
     }
-
     SetMonData(mon, MON_DATA_LEVEL, &level);
 
     if (species == SPECIES_SHEDINJA)

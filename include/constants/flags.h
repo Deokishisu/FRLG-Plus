@@ -1344,7 +1344,7 @@
 #define FLAG_SYS_POKEMON_GET (SYS_FLAGS + 0x28)
 #define FLAG_SYS_POKEDEX_GET (SYS_FLAGS + 0x29)
 #define FLAG_SYS_CTRL_OBJ_DELETE (SYS_FLAGS + 0x2A)
-#define FLAG_0x82B (SYS_FLAGS + 0x2B)
+#define FLAG_SYS_IS_LINKING (SYS_FLAGS + 0x2B)
 #define FLAG_SYS_GAME_CLEAR_OLD (SYS_FLAGS + 0x2C) //Needs to be set to link with XD. New FLAG_SYS_GAME_CLEAR (now used in scripts) is at the bottom.
 #define FLAG_SYS_SET_TRAINER_CARD_PROFILE (SYS_FLAGS + 0x2D)
 #define FLAG_0x82E (SYS_FLAGS + 0x2E)

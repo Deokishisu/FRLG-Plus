@@ -554,6 +554,15 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void RecalculatePartyStats(void)
+{
+    u8 i;
+    for (i = 0; i < gPlayerPartyCount; i++)
+    {
+        CalculateMonStats(&gPlayerParty[i], FALSE);
+    }
+}
+
 void SetDifficultyTest(void)
 {
     u8 difficulty = gSaveBlock1Ptr->keyFlags.difficulty;

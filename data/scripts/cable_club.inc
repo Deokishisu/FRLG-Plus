@@ -90,6 +90,8 @@ CableClub_OnFrame:: @ 81BB2A3
 
 CableClub_EventScript_ExitLinkRoom:: @ 81BB2E5
 	lockall
+	clearflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	call CableClub_EventScript_CloseLinkAndExitLinkRoom
 	call CableClub_EventScript_CloseDirectCornerBarrier
 	special DrawWholeMapView
@@ -126,6 +128,8 @@ CableClub_EventScript_CloseLinkAndExitLinkRoom:: @ 81BB315
 
 CableClub_EventScript_ExitTradeCenter:: @ 81BB34F
 	lockall
+	clearflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	call CableClub_EventScript_PlayerExitTradeCenter
 	call CableClub_EventScript_CloseDirectCornerBarrier
 	special DrawWholeMapView
@@ -151,6 +155,8 @@ CableClub_EventScript_PlayerExitTradeCenter:: @ 81BB367
 
 CableClub_EventScript_ExitUnionRoom:: @ 81BB39C
 	lockall
+	clearflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	call CableClub_EventScript_PlayerExitUnionRoom
 	call CableClub_EventScript_CloseUnionRoomBarrier
 	special DrawWholeMapView
@@ -304,6 +310,8 @@ CableClub_EventScript_TryEnterColosseum:: @ 81BB54C
 	end
 
 CableClub_EventScript_EnterColosseum:: @ 81BB5B3
+	setflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	special HealPlayerParty
 	special SavePlayerParty
 	special LoadPlayerBag
@@ -415,6 +423,8 @@ CableClub_EventScript_TradeCenter:: @ 81BB6AB
 	end
 
 CableClub_EventScript_EnterTradeCenter:: @ 81BB73D
+	setflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	setvar VAR_0x8004, USING_TRADE_CENTER
 	copyvar VAR_CABLE_CLUB_STATE, VAR_0x8004
 	messageautoscroll CableClub_Text_PleaseEnter
@@ -1119,6 +1129,8 @@ CableClub_EventScript_TryJoinLinkGroup:: @ 81BBF80
 	return
 
 CableClub_EventScript_EnterWirelessLinkRoom:: @ 81BBF88
+	setflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	messageautoscroll CableClub_Text_DirectYouToYourRoom
 	waitmessage
 	delay 60
