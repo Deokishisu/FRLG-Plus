@@ -21,14 +21,6 @@
 	.set OBJ_IMAGE_ANIM_H_FLIP, 1 << 6
 	.set OBJ_IMAGE_ANIM_V_FLIP, 1 << 7
 
-	.ifdef ENGLISH
-	.equiv GAME_LANGUAGE, 2
-	.else
-	.ifdef GERMAN
-	.equiv GAME_LANGUAGE, 5
-	.endif
-	.endif
-
 	.equiv ENEMY_TYPE1,  0
 	.equiv ENEMY_TYPE2,  1
 	.equiv PLAYER_TYPE1,  2

@@ -18,7 +18,7 @@
 #define MULTICHOICE_EXIT_2                                     11
 #define MULTICHOICE_EXIT_3                                     12
 #define MULTICHOICE_BIKE_SHOP                                  13
-#define MULTICHOICE_GAME_CORNER_POKEMON_PRIZES                 14
+#define MULTICHOICE_GAME_CORNER_POKEMON_PRIZES_FR              14
 #define MULTICHOICE_TRAINER_SCHOOL_WHITEBOARD                  15
 #define MULTICHOICE_YES_NO_INFO                                16
 #define MULTICHOICE_SINGLE_DOUBLE_MULTI_INFO_EXIT              17
@@ -66,7 +66,7 @@
 #define MULTICHOICE_SEAGALLOP_V13                              59
 #define MULTICHOICE_SEAGALLOP_V12                              60
 #define MULTICHOICE_SEAGALLOP_VERMILION                        61
-#define MULTICHOICE_62                                         62
+#define MULTICHOICE_GAME_CORNER_POKEMON_PRIZES_LG              62
 #define MULTICHOICE_JOIN_OR_LEAD                               63
 #define MULTICHOICE_TRAINER_TOWER_MODE                         64
 #define MULTICHOICE_SEVII_FARAWAY                              65

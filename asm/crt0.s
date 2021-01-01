@@ -1,6 +1,5 @@
 	.include "constants/gba_constants.inc"
 	.include "constants/misc_constants.inc"
-	.include "constants/version.inc"
 
 	.syntax unified
 
@@ -50,16 +49,10 @@ GPIOPortReadEnable: @ 80000C8
 @ 8000100
 	.global CartIdent
 CartIdent:
-	.4byte GAME_VERSION
-	.4byte GAME_LANGUAGE
+	.4byte 4
+	.4byte 2
 .game_name:
-	.ifdef FIRERED
 	.ascii "pokemon red version"
-	.else
-	.ifdef LEAFGREEN
-	.ascii "pokemon green version"
-	.endif
-	.endif
 	.space .game_name+0x20-.
 	.4byte  gMonFrontPicTable
 	.4byte  gMonBackPicTable

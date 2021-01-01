@@ -311,20 +311,21 @@ static const struct MenuAction sScriptMultiChoiceMenu_BikeShop[] = {
     { gText_NoThanks }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_GameCornerPokemonPrizes[] = {
-#if defined(FIRERED)
+static const struct MenuAction sScriptMultiChoiceMenu_GameCornerPokemonPrizes_FR[] = {
     { gText_Abra_180Coins },
     { gText_Clefairy_500Coins },
     { gText_Dratini_2800Coins },
     { gText_Scyther_5500Coins },
     { gText_Porygon_9999Coins },
-#elif defined(LEAFGREEN)
+    { gText_NoThanks_2 }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_GameCornerPokemonPrizes_LG[] = {
     { gText_Abra_120Coins },
     { gText_Clefairy_750Coins },
     { gText_Pinsir_2500Coins },
     { gText_Dratini_4600Coins },
     { gText_Porygon_6500Coins },
-#endif
     { gText_NoThanks_2 }
 };
 
@@ -469,12 +470,6 @@ static const struct MenuAction sScriptMultiChoiceMenu_SeagallopVermilion[] = {
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_62[] = {
-    { gText_Dummy_8417F68 },
-    { gText_Dummy_8417F67 },
-    { gOtherText_Exit }
-};
-
 static const struct MenuAction sScriptMultiChoiceMenu_JoinOrLead[] = {
     { gText_JoinGroup },
     { gText_BecomeLeader },
@@ -536,7 +531,7 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_Exit, NELEMS(sScriptMultiChoiceMenu_Exit) },
     { sScriptMultiChoiceMenu_Exit, NELEMS(sScriptMultiChoiceMenu_Exit) },
     { sScriptMultiChoiceMenu_BikeShop, NELEMS(sScriptMultiChoiceMenu_BikeShop) },
-    { sScriptMultiChoiceMenu_GameCornerPokemonPrizes, NELEMS(sScriptMultiChoiceMenu_GameCornerPokemonPrizes) },
+    { sScriptMultiChoiceMenu_GameCornerPokemonPrizes_FR, NELEMS(sScriptMultiChoiceMenu_GameCornerPokemonPrizes_FR) },
     { sScriptMultiChoiceMenu_TrainerSchoolWhiteboard, NELEMS(sScriptMultiChoiceMenu_TrainerSchoolWhiteboard) },
     { sScriptMultiChoiceMenu_YesNoInfo, NELEMS(sScriptMultiChoiceMenu_YesNoInfo) },
     { sScriptMultiChoiceMenu_SingleDoubleMultiInfoExit, NELEMS(sScriptMultiChoiceMenu_SingleDoubleMultiInfoExit) },
@@ -584,7 +579,7 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SeagallopV13, NELEMS(sScriptMultiChoiceMenu_SeagallopV13) },
     { sScriptMultiChoiceMenu_SeagallopV12, NELEMS(sScriptMultiChoiceMenu_SeagallopV12) },
     { sScriptMultiChoiceMenu_SeagallopVermilion, NELEMS(sScriptMultiChoiceMenu_SeagallopVermilion) },
-    { sScriptMultiChoiceMenu_62, NELEMS(sScriptMultiChoiceMenu_62) },
+    { sScriptMultiChoiceMenu_GameCornerPokemonPrizes_LG, NELEMS(sScriptMultiChoiceMenu_GameCornerPokemonPrizes_LG) },
     { sScriptMultiChoiceMenu_JoinOrLead, NELEMS(sScriptMultiChoiceMenu_JoinOrLead) },
     { sScriptMultiChoiceMenu_TrainerTowerMode, NELEMS(sScriptMultiChoiceMenu_TrainerTowerMode) },
     { sScriptMultiChoiceMenu_SeviiFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiFaraway) },

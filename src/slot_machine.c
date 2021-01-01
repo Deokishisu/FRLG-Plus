@@ -308,37 +308,50 @@ static const u16 sSpritePal_ReelIcons_1[] = INCBIN_U16("graphics/slot_machine/un
 static const u16 sSpritePal_ReelIcons_2[] = INCBIN_U16("graphics/slot_machine/unk_84649b4.gbapal");
 static const u16 sSpritePal_ReelIcons_3[] = INCBIN_U16("graphics/slot_machine/unk_84649d4.gbapal");
 static const u16 sSpritePal_ReelIcons_4[] = INCBIN_U16("graphics/slot_machine/unk_84649f4.gbapal");
-#if defined(FIRERED)
-static const u32 sSpriteTiles_ReelIcons[] = INCBIN_U32("graphics/slot_machine/unk_8464a14.4bpp.lz");
-static const u16 sSpritePal_Clefairy[] = INCBIN_U16("graphics/slot_machine/unk_846506c.gbapal");
-static const u32 sSpriteTiles_Clefairy[] = INCBIN_U32("graphics/slot_machine/unk_846506c.4bpp.lz");
-#elif defined(LEAFGREEN)
-static const u32 sSpriteTiles_ReelIcons[] = INCBIN_U32("graphics/slot_machine/unk_lg_8464434.4bpp.lz");
-static const u16 sSpritePal_Clefairy[] = INCBIN_U16("graphics/slot_machine/unk_lg_8464a3c.gbapal");
-static const u32 sSpriteTiles_Clefairy[] = INCBIN_U32("graphics/slot_machine/unk_lg_8464a3c.4bpp.lz");
-#endif
+static const u32 sSpriteTiles_ReelIcons_FR[] = INCBIN_U32("graphics/slot_machine/unk_8464a14.4bpp.lz");
+static const u16 sSpritePal_Clefairy_FR[] = INCBIN_U16("graphics/slot_machine/unk_846506c.gbapal");
+static const u32 sSpriteTiles_Clefairy_FR[] = INCBIN_U32("graphics/slot_machine/unk_846506c.4bpp.lz");
+static const u32 sSpriteTiles_ReelIcons_LG[] = INCBIN_U32("graphics/slot_machine/unk_lg_8464434.4bpp.lz");
+static const u16 sSpritePal_Clefairy_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_8464a3c.gbapal");
+static const u32 sSpriteTiles_Clefairy_LG[] = INCBIN_U32("graphics/slot_machine/unk_lg_8464a3c.4bpp.lz");
 static const u16 sSpritePal_Digits[] = INCBIN_U16("graphics/slot_machine/unk_8465524.gbapal");
 static const u32 sSpriteTiles_Digits[] = INCBIN_U32("graphics/slot_machine/unk_8465544.4bpp.lz");
 
-static const struct CompressedSpriteSheet sSpriteSheets[] = {
-    {(const void *)sSpriteTiles_ReelIcons, 0xe00, 0},
-    {(const void *)sSpriteTiles_Clefairy,  0xc00, 1},
+static const struct CompressedSpriteSheet sSpriteSheets_FR[] = {
+    {(const void *)sSpriteTiles_ReelIcons_FR, 0xe00, 0},
+    {(const void *)sSpriteTiles_Clefairy_FR,  0xc00, 1},
     {(const void *)sSpriteTiles_Digits,    0x280, 2},
 };
 
-static const struct SpritePalette sSpritePalettes[] = {
+static const struct CompressedSpriteSheet sSpriteSheets_LG[] = {
+    {(const void *)sSpriteTiles_ReelIcons_LG, 0xe00, 0},
+    {(const void *)sSpriteTiles_Clefairy_LG,  0xc00, 1},
+    {(const void *)sSpriteTiles_Digits,    0x280, 2},
+};
+
+static const struct SpritePalette sSpritePalettes_FR[] = {
     {sSpritePal_ReelIcons_0, 0},
     {sSpritePal_ReelIcons_1, 1},
     {sSpritePal_ReelIcons_2, 2},
     {sSpritePal_ReelIcons_3, 3},
     {sSpritePal_ReelIcons_4, 4},
-    {sSpritePal_Clefairy,    5},
+    {sSpritePal_Clefairy_FR,    5},
     {sSpritePal_Digits,      6},
     {NULL}
 };
 
-#if defined(FIRERED)
-static const u16 sReelIconPaletteTags[] = {
+static const struct SpritePalette sSpritePalettes_LG[] = {
+    {sSpritePal_ReelIcons_0, 0},
+    {sSpritePal_ReelIcons_1, 1},
+    {sSpritePal_ReelIcons_2, 2},
+    {sSpritePal_ReelIcons_3, 3},
+    {sSpritePal_ReelIcons_4, 4},
+    {sSpritePal_Clefairy_LG,    5},
+    {sSpritePal_Digits,      6},
+    {NULL}
+};
+
+static const u16 sReelIconPaletteTags_FR[] = {
     [SLOT_IMAGE_7]         = 2,
     [SLOT_IMAGE_ROCKET]    = 2,
     [SLOT_IMAGE_PIKACHU]   = 0,
@@ -347,8 +360,8 @@ static const u16 sReelIconPaletteTags[] = {
     [SLOT_IMAGE_MAGNEMITE] = 4,
     [SLOT_IMAGE_SHELLDER]  = 3
 };
-#elif defined(LEAFGREEN)
-static const u16 sReelIconPaletteTags[] = {
+
+static const u16 sReelIconPaletteTags_LG[] = {
     [SLOT_IMAGE_7]         = 2,
     [SLOT_IMAGE_ROCKET]    = 2,
     [SLOT_IMAGE_PIKACHU]   = 0,
@@ -357,7 +370,7 @@ static const u16 sReelIconPaletteTags[] = {
     [SLOT_IMAGE_MAGNEMITE] = 1,
     [SLOT_IMAGE_SHELLDER]  = 1
 };
-#endif
+
 
 static const u16 sReelIconAffineParams[] = {
     0x0120, 0x011f, 0x011e, 0x011d, 0x011c, 0x011b, 0x011a, 0x0119, 0x0118, 0x0117, 0x0116, 0x0115, 0x0114, 0x0113, 0x0112, 0x0111,
@@ -648,38 +661,32 @@ bool8 (*const sSlotMachineSetupTasks[])(u8 *, struct SlotMachineSetupTaskData *)
     [SLOTTASK_HIDEHELP] = SlotsTask_HideHelp
 };
 
-#if defined(FIRERED)
-static const u16 sBgPal_00[] = INCBIN_U16("graphics/slot_machine/unk_8465930.gbapal");
-static const u16 sBgPal_10[] = INCBIN_U16("graphics/slot_machine/unk_8465950.gbapal");
-static const u16 sBgPal_20[] = INCBIN_U16("graphics/slot_machine/unk_8465970.gbapal");
-static const u16 sBgPal_30[] = INCBIN_U16("graphics/slot_machine/unk_8465990.gbapal");
-static const u16 sBgPal_40[] = INCBIN_U16("graphics/slot_machine/unk_84659b0.gbapal");
-static const u32 sBg2Tiles_00[] = INCBIN_U32("graphics/slot_machine/unk_84659d0.4bpp.lz");
-static const u32 sBg2Map[] = INCBIN_U32("graphics/slot_machine/unk_84661d4.bin.lz");
-static const u16 sBgPal_50[] = INCBIN_U16("graphics/slot_machine/unk_84664bc.gbapal");
-static const u16 sBgPal_VictoryFlash[] = INCBIN_U16("graphics/slot_machine/unk_84664dc.gbapal","graphics/slot_machine/unk_84664fc.gbapal", "graphics/slot_machine/unk_846651c.gbapal");
-#elif defined(LEAFGREEN)
-static const u16 sBgPal_00[] = INCBIN_U16("graphics/slot_machine/unk_lg_84652bc.gbapal");
-static const u16 sBgPal_10[] = INCBIN_U16("graphics/slot_machine/unk_lg_84652dc.gbapal");
-static const u16 sBgPal_20[] = INCBIN_U16("graphics/slot_machine/unk_lg_84652fc.gbapal");
-static const u16 sBgPal_30[] = INCBIN_U16("graphics/slot_machine/unk_lg_846531c.gbapal");
-static const u16 sBgPal_40[] = INCBIN_U16("graphics/slot_machine/unk_lg_846533c.gbapal");
-static const u32 sBg2Tiles_00[] = INCBIN_U32("graphics/slot_machine/unk_lg_846535c.4bpp.lz");
-static const u32 sBg2Map[] = INCBIN_U32("graphics/slot_machine/unk_lg_8465ab8.bin.lz");
-static const u16 sBgPal_50[] = INCBIN_U16("graphics/slot_machine/unk_lg_8465d9c.gbapal");
-static const u16 sBgPal_VictoryFlash[] = INCBIN_U16("graphics/slot_machine/unk_lg_8465dbc.gbapal","graphics/slot_machine/unk_lg_8465ddc.gbapal", "graphics/slot_machine/unk_lg_8465dfc.gbapal");
-#endif
+static const u16 sBgPal_00_FR[] = INCBIN_U16("graphics/slot_machine/unk_8465930.gbapal");
+static const u16 sBgPal_10_FR[] = INCBIN_U16("graphics/slot_machine/unk_8465950.gbapal");
+static const u16 sBgPal_20_FR[] = INCBIN_U16("graphics/slot_machine/unk_8465970.gbapal");
+static const u16 sBgPal_30_FR[] = INCBIN_U16("graphics/slot_machine/unk_8465990.gbapal");
+static const u16 sBgPal_40_FR[] = INCBIN_U16("graphics/slot_machine/unk_84659b0.gbapal");
+static const u32 sBg2Tiles_00_FR[] = INCBIN_U32("graphics/slot_machine/unk_84659d0.4bpp.lz");
+static const u32 sBg2Map_FR[] = INCBIN_U32("graphics/slot_machine/unk_84661d4.bin.lz");
+static const u16 sBgPal_50_FR[] = INCBIN_U16("graphics/slot_machine/unk_84664bc.gbapal");
+static const u16 sBgPal_VictoryFlash_FR[] = INCBIN_U16("graphics/slot_machine/unk_84664dc.gbapal","graphics/slot_machine/unk_84664fc.gbapal", "graphics/slot_machine/unk_846651c.gbapal");
+static const u16 sBgPal_00_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_84652bc.gbapal");
+static const u16 sBgPal_10_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_84652dc.gbapal");
+static const u16 sBgPal_20_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_84652fc.gbapal");
+static const u16 sBgPal_30_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_846531c.gbapal");
+static const u16 sBgPal_40_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_846533c.gbapal");
+static const u32 sBg2Tiles_00_LG[] = INCBIN_U32("graphics/slot_machine/unk_lg_846535c.4bpp.lz");
+static const u32 sBg2Map_LG[] = INCBIN_U32("graphics/slot_machine/unk_lg_8465ab8.bin.lz");
+static const u16 sBgPal_50_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_8465d9c.gbapal");
+static const u16 sBgPal_VictoryFlash_LG[] = INCBIN_U16("graphics/slot_machine/unk_lg_8465dbc.gbapal","graphics/slot_machine/unk_lg_8465ddc.gbapal", "graphics/slot_machine/unk_lg_8465dfc.gbapal");
 static const u32 sBg2Tiles_C0[] = INCBIN_U32("graphics/slot_machine/unk_846653c.4bpp.lz");
 static const u16 sBgPal_70[] = INCBIN_U16("graphics/slot_machine/unk_84665c0.gbapal");
 static const u16 sBgPal_80[] = INCBIN_U16("graphics/slot_machine/unk_84665e0.gbapal");
 static const u16 sBgPal_90[] = INCBIN_U16("graphics/slot_machine/unk_8466600.gbapal");
-#if defined(FIRERED)
-static const u32 sBg1Tiles[] = INCBIN_U32("graphics/slot_machine/unk_8466620.4bpp.lz");
-static const u32 sBg1Map[] = INCBIN_U32("graphics/slot_machine/unk_8466998.bin.lz");
-#elif defined(LEAFGREEN)
-static const u32 sBg1Tiles[] = INCBIN_U32("graphics/slot_machine/unk_lg_8465f00.4bpp.lz");
-static const u32 sBg1Map[] = INCBIN_U32("graphics/slot_machine/unk_lg_8466278.bin.lz");
-#endif
+static const u32 sBg1Tiles_FR[] = INCBIN_U32("graphics/slot_machine/unk_8466620.4bpp.lz");
+static const u32 sBg1Map_FR[] = INCBIN_U32("graphics/slot_machine/unk_8466998.bin.lz");
+static const u32 sBg1Tiles_LG[] = INCBIN_U32("graphics/slot_machine/unk_lg_8465f00.4bpp.lz");
+static const u32 sBg1Map_LG[] = INCBIN_U32("graphics/slot_machine/unk_lg_8466278.bin.lz");
 
 static const struct BgTemplate sBgTemplates[] = {
     {
@@ -1708,9 +1715,18 @@ static bool32 LoadSpriteGraphicsAndAllocateManager(void)
 {
     s32 i;
 
-    for (i = 0; i < NELEMS(sSpriteSheets); i++)
-        LoadCompressedSpriteSheet(&sSpriteSheets[i]);
-    LoadSpritePalettes(sSpritePalettes);
+    if(gSaveBlock1Ptr->keyFlags.version == 0)
+    {
+        for (i = 0; i < NELEMS(sSpriteSheets_FR); i++)
+            LoadCompressedSpriteSheet(&sSpriteSheets_FR[i]);
+        LoadSpritePalettes(sSpritePalettes_FR);
+    }
+    else
+    {
+        for (i = 0; i < NELEMS(sSpriteSheets_LG); i++)
+            LoadCompressedSpriteSheet(&sSpriteSheets_LG[i]);
+        LoadSpritePalettes(sSpritePalettes_LG);
+    }
     sSlotMachineGfxManager = Alloc(sizeof(*sSlotMachineGfxManager));
     if (sSlotMachineGfxManager == NULL)
         return FALSE;
@@ -1755,7 +1771,14 @@ static void CreateReelIconSprites(void)
             animId =  sReelIconAnimByReelAndPos[i][j];
             sprite = &gSprites[spriteId];
             StartSpriteAnim(sprite, animId);
-            sprite->oam.paletteNum = IndexOfSpritePaletteTag(sReelIconPaletteTags[animId]);
+            if(gSaveBlock1Ptr->keyFlags.version == 0)
+            {
+                sprite->oam.paletteNum = IndexOfSpritePaletteTag(sReelIconPaletteTags_FR[animId]);
+            }
+            else
+            {
+                sprite->oam.paletteNum = IndexOfSpritePaletteTag(sReelIconPaletteTags_LG[animId]);
+            }
             sprite->data[0] = i;
             sprite->data[1] = j;
             sprite->data[2] = j;
@@ -1789,7 +1812,14 @@ static void UpdateReelIconSprites(const s16 * reelPosPtr, const s16 * yposPtr)
                 struct Sprite * sprite = sSlotMachineGfxManager->reelIconSprites[i][j];
                 StartSpriteAnim(sprite, animId);
             }
-            sSlotMachineGfxManager->reelIconSprites[i][j]->oam.paletteNum = IndexOfSpritePaletteTag(sReelIconPaletteTags[sReelIconAnimByReelAndPos[i][reelPos]]);
+            if(gSaveBlock1Ptr->keyFlags.version == 0)
+            {
+                sSlotMachineGfxManager->reelIconSprites[i][j]->oam.paletteNum = IndexOfSpritePaletteTag(sReelIconPaletteTags_FR[sReelIconAnimByReelAndPos[i][reelPos]]);
+            }
+            else
+            {
+                sSlotMachineGfxManager->reelIconSprites[i][j]->oam.paletteNum = IndexOfSpritePaletteTag(sReelIconPaletteTags_LG[sReelIconAnimByReelAndPos[i][reelPos]]);
+            }
             reelPos++;
             if (reelPos >= 21)
                 reelPos = 0;
@@ -1966,13 +1996,27 @@ static bool8 SlotsTask_GraphicsInit(u8 * state, struct SlotMachineSetupTaskData 
         CopyBgTilemapBufferToVram(3);
 
         ResetTempTileDataBuffers();
-        DecompressAndCopyTileDataToVram(2, sBg2Tiles_00, 0, 0x00, 0);
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+            DecompressAndCopyTileDataToVram(2, sBg2Tiles_00_FR, 0, 0x00, 0);
+        else
+            DecompressAndCopyTileDataToVram(2, sBg2Tiles_00_LG, 0, 0x00, 0);
         DecompressAndCopyTileDataToVram(2, sBg2Tiles_C0, 0, 0xC0, 0);
         SetBgTilemapBuffer(2, ptr->bg2TilemapBuffer);
-        CopyToBgTilemapBuffer(2, sBg2Map, 0, 0x00);
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+            CopyToBgTilemapBuffer(2, sBg2Map_FR, 0, 0x00);
+        else
+            CopyToBgTilemapBuffer(2, sBg2Map_LG, 0, 0x00);
         CopyBgTilemapBufferToVram(2);
-        LoadPalette(sBgPal_00, 0x00, 0xA0);
-        LoadPalette(sBgPal_50, 0x50, 0x20);
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+        {
+            LoadPalette(sBgPal_00_FR, 0x00, 0xA0);
+            LoadPalette(sBgPal_50_FR, 0x50, 0x20);
+        }
+        else
+        {
+            LoadPalette(sBgPal_00_LG, 0x00, 0xA0);
+            LoadPalette(sBgPal_50_LG, 0x50, 0x20);
+        }
         LoadPalette(sBgPal_70, 0x70, 0x60);
         LoadColor(RGB(30, 30, 31), pal);
         LoadUserWindowBorderGfx(0, 0x00A, 0xD0);
@@ -1980,8 +2024,16 @@ static bool8 SlotsTask_GraphicsInit(u8 * state, struct SlotMachineSetupTaskData 
 
         SetBgTilemapBuffer(0, ptr->bg0TilemapBuffer);
         FillBgTilemapBufferRect_Palette0(0, 0, 0, 2, 32, 30);
-        DecompressAndCopyTileDataToVram(1, sBg1Tiles, 0, 0, 0);
-        DecompressAndCopyTileDataToVram(1, sBg1Map, 0, 0, 1);
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+        {
+            DecompressAndCopyTileDataToVram(1, sBg1Tiles_FR, 0, 0, 0);
+            DecompressAndCopyTileDataToVram(1, sBg1Map_FR, 0, 0, 1);
+        }
+        else
+        {
+            DecompressAndCopyTileDataToVram(1, sBg1Tiles_LG, 0, 0, 0);
+            DecompressAndCopyTileDataToVram(1, sBg1Map_LG, 0, 0, 1);
+        }
         CopyBgTilemapBufferToVram(1);
 
         LoadPalette(stdpal_get(2), 0xE0, 0x20);
@@ -2318,7 +2370,10 @@ static void Task_FlashWinningLine(u8 taskId)
     switch (data[0])
     {
     case 0:
-        LoadPalette(sBgPal_50, 0x60, 0x20);
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+            LoadPalette(sBgPal_50_FR, 0x60, 0x20);
+        else
+            LoadPalette(sBgPal_50_LG, 0x60, 0x20);
         for (i = 0; i < 5; i++)
         {
             if (GetWinFlagByLine(i))
@@ -2331,7 +2386,10 @@ static void Task_FlashWinningLine(u8 taskId)
         if (data[1] == 0)
         {
             u16 y = gSineTable[data[2]] >> 7;
-            LoadPalette(&sBgPal_VictoryFlash[16 * y], 0x10, 0x20);
+            if(gSaveBlock1Ptr->keyFlags.version == 0)
+                LoadPalette(&sBgPal_VictoryFlash_FR[16 * y], 0x10, 0x20);
+            else
+                LoadPalette(&sBgPal_VictoryFlash_LG[16 * y], 0x10, 0x20);
             data[2] += 32;
             data[2] &= 0x7F;
             data[1] = 8;
@@ -2369,7 +2427,10 @@ static void Task_FlashWinningLine(u8 taskId)
             if (GetWinFlagByLine(i))
                 SetLineState(GetBgTilemapBuffer(2), i, 4);
         }
-        LoadPalette(sBgPal_10, 0x10, 0x20);
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+            LoadPalette(sBgPal_10_FR, 0x10, 0x20);
+        else
+            LoadPalette(sBgPal_10_LG, 0x10, 0x20);
         CopyBgTilemapBufferToVram(2);
         data[0]++;
         break;

@@ -23,9 +23,7 @@
     // 6 goes unused but the theory is it was meant to be Korean
 #define LANGUAGE_SPANISH    7
 
-#ifdef ENGLISH
 #define GAME_LANGUAGE (LANGUAGE_ENGLISH)
-#endif
 
 #define PC_ITEMS_COUNT      30
 #define BAG_ITEMS_COUNT     47

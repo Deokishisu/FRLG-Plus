@@ -805,8 +805,6 @@ extern const u8 gText_Charcoal_1000Coins[];
 extern const u8 gText_MysticWater_1000Coins[];
 extern const u8 gText_YellowFlute_1600Coins[];
 extern const u8 gText_SmokeBall_800Coins[];
-extern const u8 gText_Dummy_8417F67[];
-extern const u8 gText_Dummy_8417F68[];
 extern const u8 gText_BecomeLeader[];
 extern const u8 gText_JoinGroup[];
 extern const u8 gText_Cool_2[];
