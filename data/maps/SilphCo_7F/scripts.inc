@@ -58,6 +58,7 @@ SilphCo_7F_EventScript_RivalScene:: @ 81619D4
 	call_if_eq SilphCo_7F_EventScript_RivalExitTop
 	compare VAR_TEMP_1, 1
 	call_if_eq SilphCo_7F_EventScript_RivalExitBottom
+	call SilphCo_7F_EventScript_RivalGivesLinkBracelet
 	playse SE_WARP_IN
 	fadedefaultbgm
 	removeobject 1
@@ -90,11 +91,15 @@ SilphCo_7F_EventScript_RivalCharmander:: @ 8161A96
 SilphCo_7F_EventScript_RivalExitTop:: @ 8161AA1
 	applymovement 1, SilphCo_7F_Movement_RivalExitTop
 	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
+    waitmovement 0
 	return
 
 SilphCo_7F_EventScript_RivalExitBottom:: @ 8161AAC
 	applymovement 1, SilphCo_7F_Movement_RivalExitBottom
 	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
+    waitmovement 0
 	return
 
 SilphCo_7F_Movement_RivalApproachTop:: @ 8161AB7
@@ -105,8 +110,12 @@ SilphCo_7F_Movement_RivalExitTop:: @ 8161AB9
 	walk_right
 	walk_right
 	walk_right
-	walk_up
 	delay_16
+	face_left
+	delay_16
+	walk_left
+	walk_up
+	walk_left
 	step_end
 
 SilphCo_7F_Movement_RivalExitBottom:: @ 8161ABF
@@ -116,8 +125,12 @@ SilphCo_7F_Movement_RivalExitBottom:: @ 8161ABF
 	walk_right
 	walk_right
 	walk_right
-	walk_right
 	delay_16
+	face_left
+	delay_16
+	walk_left
+	walk_left
+	face_down
 	step_end
 
 SilphCo_7F_EventScript_LaprasGuy:: @ 8161AC8
@@ -247,3 +260,46 @@ SilphCo_7F_EventScript_Grunt3:: @ 8161C48
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_35, SilphCo_7F_Text_Grunt3Intro, SilphCo_7F_Text_Grunt3Defeat
 	msgbox SilphCo_7F_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SilphCo_7F_EventScript_RivalGivesLinkBracelet::
+	msgbox SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_0
+	giveitem_msg SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_1, ITEM_LINK_BRACELET, 1, MUS_OBTAIN_KEY_ITEM
+	msgbox SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_2
+	closemessage
+	compare VAR_TEMP_1, 0
+	call_if_eq SilphCo_7F_EventScript_RivalToWarpTileTop
+	compare VAR_TEMP_1, 1
+	call_if_eq SilphCo_7F_EventScript_RivalToWarpTileBottom
+	return
+
+SilphCo_7F_EventScript_RivalToWarpTileTop:
+	applymovement 1, Movement_RivalToWarpTileTop
+	waitmovement 0
+	return
+
+SilphCo_7F_EventScript_RivalToWarpTileBottom:
+	applymovement 1, Movement_RivalToWarpTileBottom
+	waitmovement 0
+	return
+
+Movement_RivalToWarpTileTop:
+	walk_right
+	walk_right
+	delay_16
+	step_end
+
+Movement_RivalToWarpTileBottom:
+	walk_right
+	walk_right
+	walk_right
+	delay_16
+	step_end
+
+SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_0:
+	.string "Oh, yeah, right.\pYou're so far behind me now that\nthis probably won't matter but…\pI found a pair of bracelets that\ncan evolve certain POKéMON, but\lthey barely work unless you give\lone to someone else.\pHere, {PLAYER}. I feel sorry for\nyou, so you can have this.$"
+
+SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_1:
+	.string "{PLAYER} received a LINK BRACELET\nfrom {RIVAL}!$"
+
+SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_2:
+	.string "All right, I'm really going this\ntime. Smell ya!$"
