@@ -7,6 +7,7 @@
 #include "new_menu_helpers.h"
 #include "link.h"
 #include "menu.h"
+#include "random.h"
 #include "save.h"
 #include "new_game.h"
 #include "title_screen.h"
@@ -1757,6 +1758,14 @@ static void IntroCB_CleanUp(struct IntroSequenceData * this)
             Free(this);
             DisableInterrupts(INTR_FLAG_HBLANK);
             SetHBlankCallback(NULL);
+            if(gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_NO_FLASH || gSaveFileStatus == SAVE_STATUS_INVALID)
+            {
+                u16 rand = Random();
+                if(rand % 2 == 0)
+                    gSaveBlock1Ptr->keyFlags.version = 0;
+                else
+                    gSaveBlock1Ptr->keyFlags.version = 1;
+            }
             SetMainCallback2(CB2_InitTitleScreen);
         }
         break;

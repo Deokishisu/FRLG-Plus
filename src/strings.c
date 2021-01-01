@@ -1366,3 +1366,5 @@ const u8 gText_EVCalcStandard[] = _("STANDARD");
 
 const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
 const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");
+const u8 gChooseVersionNewGame[] = _("Start NEW GAME on which version?\nOther KEY SYSTEM SETTINGS can\lbe set later from the main menu.");
+const u8 gFRLG_Multichoice[] = _("FIRERED\nLEAFGREEN");

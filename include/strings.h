@@ -1577,5 +1577,7 @@ extern const u8 gText_EVCalcZero[];
 extern const u8 gText_EVCalcStandard[];
 extern const u8 gText_KeySystemSettings[];
 extern const u8 gText_HelpPickSwitchCancel[];
+extern const u8 gChooseVersionNewGame[];
+extern const u8 gFRLG_Multichoice[];
 
 #endif //GUARD_STRINGS_H
