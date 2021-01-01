@@ -71,7 +71,7 @@ const u8 gTrainerClassNames[][13] = {
     _("FISHERMAN"),
     _("SWIMMER♂"),
     _("CUE BALL"),
-    _("GAMER"),
+    _("GAMBLER"),
     _("BEAUTY"),
     _("SWIMMER♀"),
     _("PSYCHIC"),
