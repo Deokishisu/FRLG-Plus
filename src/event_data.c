@@ -30,6 +30,7 @@ EWRAM_DATA u8 sSpecialFlags[SPECIAL_FLAGS_COUNT] = {};
 u16 gLastQuestLogStoredFlagOrVarIdx;
 
 extern u16 *const gSpecialVars[];
+extern u8 NuzlockeLUT[];
 
 void InitEventData(void)
 {
@@ -326,4 +327,28 @@ void ResetSpecialVars(void)
     gSpecialVar_TextColor = 0;
     gSpecialVar_PrevTextColor = 0;
     gSpecialVar_0x8014 = 0;
+}
+
+u8 NuzlockeFlagSet(u8 mapsec)
+{
+    u8 id = NuzlockeLUT[mapsec];
+    if(id != 0)
+        FlagSet(NUZLOCKE_FLAGS_START + (id - 1));
+    return 0;
+}
+
+u8 NuzlockeFlagClear(u8 mapsec)
+{
+    u8 id = NuzlockeLUT[mapsec];
+    if(id != 0)
+        FlagClear(NUZLOCKE_FLAGS_START + (id - 1));
+    return 0;
+}
+
+u8 NuzlockeFlagGet(u8 mapsec)
+{
+    u8 id = NuzlockeLUT[mapsec];
+    if(id != 0)
+        return FlagGet(NUZLOCKE_FLAGS_START + (id - 1));
+    return 0;
 }

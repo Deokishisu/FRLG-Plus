@@ -506,7 +506,7 @@ PalletTown_ProfessorOaksLab_Movement_RivalApproachForBattleBulbasaurRight:: @ 81
 	step_end
 
 PalletTown_ProfessorOaksLab_EventScript_EndRivalBattle:: @ 81694C2
-	special HealPlayerParty
+	callnative HealPlayerPartyOak
 	msgbox PalletTown_ProfessorOaksLab_Text_RivalGoToughenMyMon
 	closemessage
 	playbgm MUS_RIVAL_EXIT, 0

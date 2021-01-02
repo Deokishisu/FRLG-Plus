@@ -26,10 +26,12 @@
 #include "battle.h"
 #include "battle_transition.h"
 #include "battle_controllers.h"
+#include "pokedex.h"
 #include "constants/battle_setup.h"
 #include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/maps.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/species.h"
 #include "constants/pokemon.h"
@@ -77,6 +79,7 @@ static EWRAM_DATA u8 *sTrainerCannotBattleSpeech = NULL;
 static EWRAM_DATA u8 *sTrainerBattleEndScript = NULL;
 static EWRAM_DATA u8 *sTrainerABattleScriptRetAddr = NULL;
 static EWRAM_DATA u16 sRivalBattleFlags = 0;
+EWRAM_DATA u8 HasAlreadyCapturedHere = 0;
 
 static const u8 sBattleTransitionTable_Wild[][2] =
 {
@@ -170,6 +173,88 @@ static const struct TrainerBattleParameter sContinueScriptDoubleBattleParams[] =
     {&sTrainerCannotBattleSpeech,   TRAINER_PARAM_LOAD_VAL_32BIT},
     {&sTrainerABattleScriptRetAddr, TRAINER_PARAM_LOAD_VAL_32BIT},
     {&sTrainerBattleEndScript,      TRAINER_PARAM_LOAD_SCRIPT_RET_ADDR},
+};
+
+const u8 NuzlockeLUT[MAPSEC_COUNT] = //77 used, 214 total
+{   //any mapsec not in this list = 0x0
+    [MAPSEC_PALLET_TOWN] = 0x1,
+    [MAPSEC_VIRIDIAN_CITY] = 0x2,
+    [MAPSEC_CERULEAN_CITY] = 0x3,
+    [MAPSEC_VERMILION_CITY] = 0x4,
+    [MAPSEC_CELADON_CITY] = 0x5,
+    [MAPSEC_FUCHSIA_CITY] = 0x6,
+    [MAPSEC_CINNABAR_ISLAND] = 0x7,
+    [MAPSEC_ROUTE_1] = 0x8,
+    [MAPSEC_ROUTE_2] = 0x9,
+    [MAPSEC_ROUTE_3] = 0xA,
+    [MAPSEC_ROUTE_4] = 0xB,
+    [MAPSEC_ROUTE_5] = 0xC,
+    [MAPSEC_ROUTE_6] = 0xD,
+    [MAPSEC_ROUTE_7] = 0xE,
+    [MAPSEC_ROUTE_8] = 0xF,
+    [MAPSEC_ROUTE_9] = 0x10,
+    [MAPSEC_ROUTE_10] = 0x11,
+    [MAPSEC_ROUTE_11] = 0x12,
+    [MAPSEC_ROUTE_12] = 0x13,
+    [MAPSEC_ROUTE_13] = 0x14,
+    [MAPSEC_ROUTE_14] = 0x15,
+    [MAPSEC_ROUTE_15] = 0x16,
+    [MAPSEC_ROUTE_16] = 0x17,
+    [MAPSEC_ROUTE_17] = 0x18,
+    [MAPSEC_ROUTE_18] = 0x19,
+    [MAPSEC_ROUTE_19] = 0x1A,
+    [MAPSEC_ROUTE_20] = 0x1B,
+    [MAPSEC_ROUTE_21] = 0x1C,
+    [MAPSEC_ROUTE_22] = 0x1D,
+    [MAPSEC_ROUTE_23] = 0x1E,
+    [MAPSEC_ROUTE_24] = 0x1F,
+    [MAPSEC_ROUTE_25] = 0x20,
+    [MAPSEC_VIRIDIAN_FOREST] = 0x21,
+    [MAPSEC_MT_MOON] = 0x22,
+    [MAPSEC_S_S_ANNE] = 0x23,
+    [MAPSEC_DIGLETTS_CAVE] = 0x24,
+    [MAPSEC_KANTO_VICTORY_ROAD] = 0x25,
+    [MAPSEC_POKEMON_MANSION] = 0x26,
+    [MAPSEC_KANTO_SAFARI_ZONE] = 0x27,
+    [MAPSEC_ROCK_TUNNEL] = 0x28,
+    [MAPSEC_SEAFOAM_ISLANDS] = 0x29,
+    [MAPSEC_POKEMON_TOWER] = 0x2A,
+    [MAPSEC_CERULEAN_CAVE] = 0x2B,
+    [MAPSEC_POWER_PLANT] = 0x2C,
+    [MAPSEC_ONE_ISLAND] = 0x2D,
+    [MAPSEC_FOUR_ISLAND] = 0x2E,
+    [MAPSEC_FIVE_ISLAND] = 0x2F,
+    [MAPSEC_KINDLE_ROAD] = 0x30,
+    [MAPSEC_TREASURE_BEACH] = 0x31,
+    [MAPSEC_CAPE_BRINK] = 0x32,
+    [MAPSEC_BOND_BRIDGE] = 0x33,
+    [MAPSEC_THREE_ISLE_PORT] = 0x34,
+    [MAPSEC_RESORT_GORGEOUS] = 0x35,
+    [MAPSEC_WATER_LABYRINTH] = 0x36,
+    [MAPSEC_FIVE_ISLE_MEADOW] = 0x37,
+    [MAPSEC_MEMORIAL_PILLAR] = 0x38,
+    [MAPSEC_OUTCAST_ISLAND] = 0x39,
+    [MAPSEC_GREEN_PATH] = 0x3A,
+    [MAPSEC_WATER_PATH] = 0x3B,
+    [MAPSEC_RUIN_VALLEY] = 0x3C,
+    [MAPSEC_TRAINER_TOWER] = 0x3D,
+    [MAPSEC_CANYON_ENTRANCE] = 0x3E,
+    [MAPSEC_SEVAULT_CANYON] = 0x3F,
+    [MAPSEC_TANOBY_RUINS] = 0x40,
+    [MAPSEC_NAVEL_ROCK] = 0x41,
+    [MAPSEC_MT_EMBER] = 0x42,
+    [MAPSEC_BERRY_FOREST] = 0x43,
+    [MAPSEC_ICEFALL_CAVE] = 0x44,
+    [MAPSEC_LOST_CAVE] = 0x45,
+    [MAPSEC_PATTERN_BUSH] = 0x46,
+    [MAPSEC_ALTERING_CAVE] = 0x47,
+    [MAPSEC_MONEAN_CHAMBER] = 0x48,
+    [MAPSEC_LIPTOO_CHAMBER] = 0x49,
+    [MAPSEC_WEEPTH_CHAMBER] = 0x4A,
+    [MAPSEC_DILFORD_CHAMBER] = 0x4B,
+    [MAPSEC_SCUFIB_CHAMBER] = 0x4C,
+    [MAPSEC_RIXY_CHAMBER] = 0x4D,
+    [MAPSEC_VIAPOIS_CHAMBER] = 0x4E //77
 };
 
 
@@ -410,8 +495,26 @@ static void sub_807FB08(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
 
+bool8 IsWildMonNuzlockeDupe(u16 species)
+{
+    u8 i;
+    for (i = 0; i < EVOS_PER_LINE; i++)
+    {
+        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gEvolutionLines[species][i]), FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+    return TRUE;
+}
+
 static void CB2_EndWildBattle(void)
 {
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   
+        if(IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
+        {
+            NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+        }
+    }
     CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);
     ResetOamRange(0, 128);
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
@@ -427,6 +530,13 @@ static void CB2_EndWildBattle(void)
 
 static void CB2_EndScriptedWildBattle(void)
 {
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   
+        if(IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
+        {
+            NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+        }
+    }
     CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);
     ResetOamRange(0, 128);
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
@@ -904,7 +1014,7 @@ static void CB2_EndTrainerBattle(void)
             gSpecialVar_Result = TRUE;
             if (sRivalBattleFlags & RIVAL_BATTLE_HEAL_AFTER)
             {
-                HealPlayerParty();
+                HealPlayerPartyOak();
             }
             else
             {

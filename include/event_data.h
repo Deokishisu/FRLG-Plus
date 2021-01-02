@@ -59,5 +59,8 @@ void ResetMysteryEventVars(void);
 bool32 IsNationalPokedexEnabled(void);
 void sub_806E190(void);
 void ClearTempFieldEventData(void);
+u8 NuzlockeFlagSet(u8 mapsec);
+u8 NuzlockeFlagClear(u8 mapsec);
+u8 NuzlockeFlagGet(u8 mapsec);
 
 #endif // GUARD_EVENT_DATA_H

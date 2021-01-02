@@ -27,6 +27,7 @@
 #include "reshow_battle_screen.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
+#include "battle_setup.h"
 #include "constants/battle_anim.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_script_commands.h"
@@ -9091,6 +9092,16 @@ static void atkEF_handleballthrow(void)
                 MarkBattlerForControllerExec(gActiveBattler);
                 gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
+                if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+                {
+                    u8 i;
+                    if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
+                    {
+                        u16 zeroHP = 0;
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
+                    }
+                    NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+                }
                 if (CalculatePlayerPartyCount() == 6)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                 else
@@ -9111,6 +9122,15 @@ static void atkEF_handleballthrow(void)
                 {
                     gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                     SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
+                    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+                    {
+                        if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
+                        {
+                            u16 zeroHP = 0;
+                            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
+                        }
+                        NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+                    }
                     if (CalculatePlayerPartyCount() == 6)
                         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                     else

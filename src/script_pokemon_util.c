@@ -1,5 +1,6 @@
 #include "global.h"
 #include "gflib.h"
+#include "battle_setup.h"
 #include "berry.h"
 #include "daycare.h"
 #include "event_data.h"
@@ -26,8 +27,8 @@ void HealPlayerParty(void)
     u8 ppBonuses;
     u8 arg[4];
 
-    if(gSaveBlock1Ptr->keyFlags.noPMC == 1 && !FlagGet(FLAG_SYS_IS_LINKING) && !IN_OAKS_LAB)
-    {   //do nothing if noPMC on and not linking and not in first battle
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1 && !FlagGet(FLAG_SYS_IS_LINKING))
+    {   //do nothing if noPMC on and not linking
         return;
     }
     // restore HP.
@@ -36,13 +37,11 @@ void HealPlayerParty(void)
         u16 maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
         arg[0] = maxHP;
         arg[1] = maxHP >> 8;
-        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1
-         && !IN_OAKS_LAB && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except after 1st battle & when linking
+        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except when linking
             SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
         ppBonuses = GetMonData(&gPlayerParty[i], MON_DATA_PP_BONUSES);
 
-        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1
-         && !IN_OAKS_LAB && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except after 1st battle & when linking
+        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except when linking
         {
             // restore PP.
             for(j = 0; j < MAX_MON_MOVES; j++)
@@ -61,17 +60,60 @@ void HealPlayerParty(void)
     }
 }
 
+void HealPlayerPartyOak(void)
+{
+    u8 i, j;
+    u8 ppBonuses;
+    u8 arg[4];
+
+    // restore HP.
+    for(i = 0; i < gPlayerPartyCount; i++)
+    {
+        u16 maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
+        arg[0] = maxHP;
+        arg[1] = maxHP >> 8;
+        SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
+        ppBonuses = GetMonData(&gPlayerParty[i], MON_DATA_PP_BONUSES);
+
+        // restore PP.
+        for(j = 0; j < MAX_MON_MOVES; j++)
+        {
+            arg[0] = CalculatePPWithBonus(GetMonData(&gPlayerParty[i], MON_DATA_MOVE1 + j), ppBonuses, j);
+            SetMonData(&gPlayerParty[i], MON_DATA_PP1 + j, arg);
+        }
+
+        // since status is u32, the four 0 assignments here are probably for safety to prevent undefined data from reaching SetMonData.
+        arg[0] = 0;
+        arg[1] = 0;
+        arg[2] = 0;
+        arg[3] = 0;
+        SetMonData(&gPlayerParty[i], MON_DATA_STATUS, arg);
+    }
+}
+
 u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
 {
     u16 nationalDexNum;
     int sentToPc;
     u8 heldItem[2];
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
+    u16 zeroHP = 0;
 
     CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
     SetMonData(mon, MON_DATA_HELD_ITEM, heldItem);
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && !IN_OAKS_LAB) //if this is Oak's Lab, don't set Nuzlocke flags
+    {
+        if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
+        {
+            SetMonData(mon, MON_DATA_HP, &zeroHP);
+        }
+        if(IsWildMonNuzlockeDupe(species))
+        {
+            NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+        }
+    }
     CalculateMonStats(mon, FALSE);
     sentToPc = GiveMonToPlayer(mon);
     nationalDexNum = SpeciesToNationalPokedexNum(species);

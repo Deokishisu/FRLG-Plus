@@ -1,7 +1,9 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_setup.h"
 #include "event_scripts.h"
 #include "overworld.h"
+#include "pokedex.h"
 #include "script.h"
 #include "event_data.h"
 #include "field_screen_effect.h"
@@ -59,6 +61,13 @@ void SafariZoneRetirePrompt(void)
 
 void CB2_EndSafariBattle(void)
 {
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   
+        if(IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
+        {
+            NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+        }
+    }
     if (gNumSafariBalls != 0)
     {
         SetMainCallback2(CB2_ReturnToField);

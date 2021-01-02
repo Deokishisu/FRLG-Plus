@@ -4,6 +4,7 @@
 #include "global.h"
 #include "sprite.h"
 #include "constants/pokemon.h"
+#include "constants/species.h"
 
 struct PokemonSubstruct0
 {
@@ -316,6 +317,7 @@ struct Evolution
 };
 
 #define EVOS_PER_MON 5
+#define EVOS_PER_LINE 6
 
 extern u8 gPlayerPartyCount;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
@@ -333,6 +335,7 @@ extern const u8 gFacilityClassToPicIndex[];
 extern const u8 gFacilityClassToTrainerClass[];
 extern const struct SpriteTemplate gUnknown_825DEF0[];
 extern const u8 gPPUpGetMask[];
+extern const u16 gEvolutionLines[NUM_SPECIES][EVOS_PER_LINE];
 
 void ZeroBoxMonData(struct BoxPokemon *boxMon);
 void ZeroMonData(struct Pokemon *mon);

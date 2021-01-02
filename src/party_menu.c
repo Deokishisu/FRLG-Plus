@@ -5240,6 +5240,15 @@ static void DisplayMonLearnedMove(u8 taskId, u16 move)
 
 void ItemUseCB_SacredAsh(u8 taskId, UNUSED TaskFunc func)
 {
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   //Sacred Ash always fails in Nuzlocke mode
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ClosePartyMenuAfterText;
+        gPartyMenu.slotId = 0;
+        return;
+    }
     sPartyMenuInternal->tUsedOnSlot = FALSE;
     sPartyMenuInternal->tHadEffect = FALSE;
     sPartyMenuInternal->tLastSlotUsed = gPartyMenu.slotId;
