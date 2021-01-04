@@ -109,7 +109,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
         {
             SetMonData(mon, MON_DATA_HP, &zeroHP);
         }
-        if(IsWildMonNuzlockeDupe(species))
+        if(!IsWildMonNuzlockeDupe(species))
         {
             NuzlockeFlagSet(GetCurrentRegionMapSectionId());
         }
@@ -124,6 +124,13 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     case MON_GIVEN_TO_PC:
         GetSetPokedexFlag(nationalDexNum, FLAG_SET_SEEN);
         GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
+        if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+        {
+            if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+            {   //if first catch in area, set dupe flag for this species.
+                SetNuzlockeDupeFlags(species);
+            }
+        }
         break;
     }
 

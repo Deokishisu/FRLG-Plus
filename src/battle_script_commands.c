@@ -9100,6 +9100,10 @@ static void atkEF_handleballthrow(void)
                         u16 zeroHP = 0;
                         SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
                     }
+                    if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+                    {   //if first catch in area, set dupe flag for this species.
+                        SetNuzlockeDupeFlags(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES)));
+                    }
                     NuzlockeFlagSet(GetCurrentRegionMapSectionId());
                 }
                 if (CalculatePlayerPartyCount() == 6)
@@ -9128,6 +9132,10 @@ static void atkEF_handleballthrow(void)
                         {
                             u16 zeroHP = 0;
                             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
+                        }
+                        if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+                        {   //if first catch in area, set dupe flag for this species.
+                            SetNuzlockeDupeFlags(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES)));
                         }
                         NuzlockeFlagSet(GetCurrentRegionMapSectionId());
                     }

@@ -495,22 +495,40 @@ static void sub_807FB08(void)
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
 
+bool8 CheckNuzlockeDupeFlags(u16 species)
+{
+    u8 index = species / 8; //get byte in array
+    u8 bit = species % 8;   //get bit in byte
+    u8 mask = 1 << bit;
+
+    return (gSaveBlock1Ptr->nuzlockeDupeFlags[index] & mask) != 0;
+}
+
 bool8 IsWildMonNuzlockeDupe(u16 species)
 {
     u8 i;
     for (i = 0; i < EVOS_PER_LINE; i++)
-    {
-        if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gEvolutionLines[species][i]), FLAG_GET_CAUGHT))
-            return FALSE;
+    {   
+        if (CheckNuzlockeDupeFlags(SpeciesToNationalPokedexNum(gEvolutionLines[species][i])))
+            return TRUE;
     }
-    return TRUE;
+    return FALSE;
+}
+
+void SetNuzlockeDupeFlags(u16 species)
+{
+    u8 index = species / 8; //get byte in array
+    u8 bit = species % 8;   //get bit in byte
+    u8 mask = 1 << bit;
+
+    gSaveBlock1Ptr->nuzlockeDupeFlags[index] |= mask;
 }
 
 static void CB2_EndWildBattle(void)
 {
     if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
     {   
-        if(IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
+        if(!IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
         {
             NuzlockeFlagSet(GetCurrentRegionMapSectionId());
         }
@@ -532,7 +550,7 @@ static void CB2_EndScriptedWildBattle(void)
 {
     if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
     {   
-        if(IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
+        if(!IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
         {
             NuzlockeFlagSet(GetCurrentRegionMapSectionId());
         }

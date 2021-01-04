@@ -2,10 +2,13 @@
 #include "gflib.h"
 #include "battle_anim.h"
 #include "battle_interface.h"
+#include "battle_setup.h"
 #include "battle_message.h"
+#include "event_data.h"
 #include "decompress.h"
 #include "graphics.h"
 #include "menu.h"
+#include "overworld.h"
 #include "pokedex.h"
 #include "pokemon_summary_screen.h"
 #include "safari_zone.h"
@@ -152,6 +155,7 @@ enum
     HEALTHBOX_GFX_115,
     HEALTHBOX_GFX_116, //unknown_D12FEC
     HEALTHBOX_GFX_117, //unknown_D1300C
+    HEALTHBOX_GFX_118, //Nuzlocke indicator
 };
 
 static void SpriteCB_HealthBoxOther(struct Sprite * sprite);
@@ -1548,9 +1552,48 @@ void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
     if (CheckBattleTypeGhost(&gEnemyParty[gBattlerPartyIndexes[battlerId]], battlerId))
         return;
     if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES)), FLAG_GET_CAUGHT))
-        return;
+    {
+        if(gSaveBlock1Ptr->keyFlags.nuzlocke == 0)
+        {
+            return;
+        }
+        else
+        {
+            if(FlagGet(FLAG_SYS_POKEDEX_GET)) //don't print indicator before has Pokedex
+            {
+                if(!IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES)) && 
+                    NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+                {   //not dupe && first encounter
+                    healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
+
+                    if (noStatus)
+                        CpuCopy32(gNuzlockeFirstEncounterIndicator, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
+                    else
+                    CpuFill32(0, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
+                    return;
+                }
+            }
+            return;
+        }
+    }
 
     healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
+
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {
+        if(FlagGet(FLAG_SYS_POKEDEX_GET)) //don't print indicator before has Pokedex
+        {
+            if(!IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES)) && 
+                    NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+            {   //not dupe && first encounter
+                if (noStatus)
+                    CpuCopy32(gNuzlockeFirstEncounterIndicator, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
+                else
+                CpuFill32(0, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);
+                return;
+            }
+        }
+    }
 
     if (noStatus)
         CpuCopy32(GetHealthboxElementGfxPtr(HEALTHBOX_GFX_70), (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);

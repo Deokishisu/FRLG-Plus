@@ -63,7 +63,7 @@ void CB2_EndSafariBattle(void)
 {
     if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
     {   
-        if(IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
+        if(!IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[0], MON_DATA_SPECIES)))
         {
             NuzlockeFlagSet(GetCurrentRegionMapSectionId());
         }

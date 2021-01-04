@@ -35,5 +35,7 @@ const u8 *GetTrainerALoseText(void);
 const u8 *GetTrainerWonSpeech(void);
 s8 GetScaledLevel(void);
 bool8 IsWildMonNuzlockeDupe(u16 species);
+bool8 CheckNuzlockeDupeFlags(u16 species);
+void SetNuzlockeDupeFlags(u16 species);
 
 #endif // GUARD_BATTLE_SETUP_H

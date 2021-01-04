@@ -332,6 +332,10 @@ void ResetSpecialVars(void)
 u8 NuzlockeFlagSet(u8 mapsec)
 {
     u8 id = NuzlockeLUT[mapsec];
+    if(!FlagGet(FLAG_SYS_POKEDEX_GET))
+    {   //don't start keeping track until has Pokedex
+        return 1;
+    }
     if(id != 0)
         FlagSet(NUZLOCKE_FLAGS_START + (id - 1));
     return 0;
@@ -350,5 +354,5 @@ u8 NuzlockeFlagGet(u8 mapsec)
     u8 id = NuzlockeLUT[mapsec];
     if(id != 0)
         return FlagGet(NUZLOCKE_FLAGS_START + (id - 1));
-    return 0;
+    return FALSE;
 }
