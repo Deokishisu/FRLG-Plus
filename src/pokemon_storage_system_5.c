@@ -52,6 +52,8 @@ static const u16 sHandCursorPalette[] = INCBIN_U16("graphics/interface/pss_unk_8
 static const u16 sHandCursorTiles[] = INCBIN_U16("graphics/interface/pss_unk_83D2BEC.4bpp");
 static const u16 sHandCursorShadowTiles[] = INCBIN_U16("graphics/interface/pss_unk_83D33EC.4bpp");
 
+extern void CopyBoxMonAt(u8 boxId, u8 boxPosition, struct BoxPokemon * dst);
+
 void StoreHPAndStatusInBoxMon(struct Pokemon *mon)
 {
     u16 currentHP;
@@ -182,6 +184,44 @@ void PopulateBoxHpAndStatusToPartyMon(struct Pokemon *mon)
         statusField = 0;
         SetMonData(mon, MON_DATA_HP, &currentHP);
         SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+}
+
+u16 GetFirstAliveBoxMon(void)
+{
+    u16 i;
+    u16 j;
+
+    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT; j++)
+        {
+            if (GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SPECIES) != SPECIES_NONE &&
+            !GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_IS_EGG))
+            {
+                if(GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_BOX_HP) != 0)
+                    return (i * IN_BOX_COUNT) + j;
+            }
+        }
+    }
+    return IN_BOX_COUNT * TOTAL_BOXES_COUNT; // none found
+}
+
+void SwapFirstAliveBoxPokemon(void)
+{
+    u16 position = GetFirstAliveBoxMon();
+    if (position != IN_BOX_COUNT * TOTAL_BOXES_COUNT)
+    {
+        struct BoxPokemon tempMon;
+        u16 boxNum = position / IN_BOX_COUNT;
+        u16 boxIndex = position - (boxNum * IN_BOX_COUNT);
+
+        CopyBoxMonAt(boxNum, boxIndex, &tempMon); //backing up first alive box mon
+        StoreHPAndStatusInBoxMon(&gPlayerParty[0]); //storing box info in party mon
+        SetBoxMonAt(boxNum, boxIndex, &gPlayerParty[0].box); //copying first Pokemon to box
+        ZeroMonData(&gPlayerParty[0]); //purging first party slot
+        BoxMonToMon(&tempMon, &gPlayerParty[0]); //copying saved box mon to first spot in party
+        PopulateBoxHpAndStatusToPartyMon(&gPlayerParty[0]); //getting box stuff to party stuff in saved box mon
     }
 }
 

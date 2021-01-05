@@ -1190,6 +1190,16 @@ extern const u8 EventScript_PalletTown_PlayersHouse_2F_ShutDownPC[];
 // field_screen_effect
 extern const u8 EventScript_AfterWhiteOutMomHeal[];
 extern const u8 EventScript_AfterWhiteOutHeal[];
+extern const u8 EventScript_NuzlockeGameOver[];
+extern const u8 EventScript_NuzlockeHaveMons_Nurse[];
+extern const u8 EventScript_NoPMCHaveMons_Nurse[];
+extern const u8 EventScript_NuzlockeGameOver_Mom[];
+extern const u8 EventScript_NuzlockeHaveMons_Mom[];
+extern const u8 EventScript_NoPMCHaveMons_Mom[];
+extern const u8 EventScript_BothGameOver[];
+extern const u8 EventScript_NoPMCGameOver[];
+extern const u8 EventScript_BothGameOver_Mom[];
+extern const u8 EventScript_NoPMCGameOver_Mom[];
 
 // start_menu
 extern const u8 gText_WouldYouLikeToSaveTheGame[];

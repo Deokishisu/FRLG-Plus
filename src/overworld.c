@@ -32,6 +32,7 @@
 #include "new_menu_helpers.h"
 #include "overworld.h"
 #include "play_time.h"
+#include "pokemon_storage_system.h"
 #include "quest_log.h"
 #include "quest_log_objects.h"
 #include "random.h"
@@ -146,7 +147,6 @@ static void VBlankCB_Field(void);
 static bool32 map_loading_iteration_3(u8 *state);
 static bool32 sub_8056CD8(u8 *state);
 static bool32 map_loading_iteration_2_link(u8 *state);
-static void do_load_map_stuff_loop(u8 *state);
 static void MoveSaveBlocks_ResetHeap_(void);
 static void sub_8056E80(void);
 static void sub_8056F08(void);
@@ -837,7 +837,7 @@ void ResetInitialPlayerAvatarState(void)
     sInitialPlayerAvatarState.unk2 = FALSE;
 }
 
-static void SetInitialPlayerAvatarStateWithDirection(u8 dirn)
+void SetInitialPlayerAvatarStateWithDirection(u8 dirn)
 {
     sInitialPlayerAvatarState.direction = dirn;
     sInitialPlayerAvatarState.transitionFlags = PLAYER_AVATAR_FLAG_ON_FOOT;
@@ -1565,6 +1565,13 @@ void CB2_WhiteOut(void)
         ScriptContext2_Disable();
         gFieldCallback = FieldCB_RushInjuredPokemonToCenter;
         val = 0;
+        if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 || gSaveBlock1Ptr->keyFlags.noPMC == 1)
+        {
+            if(GetFirstAliveBoxMon() == 420) //no usable Pokemon
+            {
+                gUnknown_2036E28 = 1; //should grayscale palettes?
+            }
+        }
         do_load_map_stuff_loop(&val);
         QuestLog_CutRecording();
         SetFieldVBlankCallback();
@@ -2048,7 +2055,7 @@ static bool32 map_loading_iteration_2_link(u8 *state)
     return FALSE;
 }
 
-static void do_load_map_stuff_loop(u8 *state)
+void do_load_map_stuff_loop(u8 *state)
 {
     while (!load_map_stuff(state, FALSE))
         ;

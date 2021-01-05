@@ -27,6 +27,12 @@ void HealPlayerParty(void)
     u8 ppBonuses;
     u8 arg[4];
 
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 0)
+    {
+        HealPlayerPartyOak();
+        return;
+    }
+
     if(gSaveBlock1Ptr->keyFlags.noPMC == 1 && !FlagGet(FLAG_SYS_IS_LINKING))
     {   //do nothing if noPMC on and not linking
         return;
@@ -37,8 +43,11 @@ void HealPlayerParty(void)
         u16 maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
         arg[0] = maxHP;
         arg[1] = maxHP >> 8;
-        if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except when linking
-            SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
+        if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+        {
+            if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except when linking
+                SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);
+        }
         ppBonuses = GetMonData(&gPlayerParty[i], MON_DATA_PP_BONUSES);
 
         if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0 && gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && !FlagGet(FLAG_SYS_IS_LINKING)) //don't heal fainted Pokemon in Nuzlocke except when linking

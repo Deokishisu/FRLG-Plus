@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "field_screen_effect.h"
 #include "overworld.h"
+#include "pokemon_storage_system.h"
 #include "scanline_effect.h"
 #include "script.h"
 #include "task.h"
@@ -435,6 +436,29 @@ static void Task_RushInjuredPokemonToCenter(u8 taskId)
         if (FieldFadeTransitionBackgroundEffectIsFinished() == TRUE)
         {
             DestroyTask(taskId);
+            if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 || gSaveBlock1Ptr->keyFlags.noPMC == 1)
+            {
+                if(GetFirstAliveBoxMon() == 420) //no usable Pokemon
+                {
+                    gUnknown_2036E28 = 1; //should grayscale palettes?
+                    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && gSaveBlock1Ptr->keyFlags.noPMC == 1)
+                        ScriptContext1_SetupScript(EventScript_BothGameOver); //both noPMC and Nuzlocke
+                    else if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
+                        ScriptContext1_SetupScript(EventScript_NuzlockeGameOver); //just Nuzlocke
+                    else
+                        ScriptContext1_SetupScript(EventScript_NoPMCGameOver); //just noPMC
+                    break;
+                }
+                else
+                {
+                    SwapFirstAliveBoxPokemon();
+                    if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
+                        ScriptContext1_SetupScript(EventScript_NuzlockeHaveMons_Nurse);
+                    else
+                        ScriptContext1_SetupScript(EventScript_NoPMCHaveMons_Nurse);
+                    break;
+                }
+            }
             ScriptContext1_SetupScript(EventScript_AfterWhiteOutHeal);
         }
         break;
@@ -442,6 +466,29 @@ static void Task_RushInjuredPokemonToCenter(u8 taskId)
         if (FieldFadeTransitionBackgroundEffectIsFinished() == TRUE)
         {
             DestroyTask(taskId);
+            if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 || gSaveBlock1Ptr->keyFlags.noPMC == 1)
+            {
+                if(GetFirstAliveBoxMon() == 420) //no usable Pokemon
+                {
+                    gUnknown_2036E28 = 1; //should grayscale palettes?
+                    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && gSaveBlock1Ptr->keyFlags.noPMC == 1)
+                        ScriptContext1_SetupScript(EventScript_BothGameOver_Mom); //both noPMC and Nuzlocke
+                    else if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
+                        ScriptContext1_SetupScript(EventScript_NuzlockeGameOver_Mom); //just Nuzlocke
+                    else
+                        ScriptContext1_SetupScript(EventScript_NoPMCGameOver_Mom); //just noPMC
+                    break;
+                }
+                else
+                {
+                    SwapFirstAliveBoxPokemon();
+                    if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
+                        ScriptContext1_SetupScript(EventScript_NuzlockeHaveMons_Mom);
+                    else
+                        ScriptContext1_SetupScript(EventScript_NoPMCHaveMons_Mom);
+                    break;
+                }
+            }
             ScriptContext1_SetupScript(EventScript_AfterWhiteOutMomHeal);
         }
         break;

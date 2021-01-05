@@ -1,6 +1,8 @@
 #include "global.h"
 #include "item.h"
+#include "overworld.h"
 #include "script.h"
+#include "sound.h"
 #include "event_data.h"
 #include "quest_log.h"
 
@@ -560,6 +562,31 @@ void RecalculatePartyStats(void)
     for (i = 0; i < gPlayerPartyCount; i++)
     {
         CalculateMonStats(&gPlayerParty[i], FALSE);
+    }
+}
+
+void ResetTintFilter(void)
+{
+    u8 val = 0;
+    gUnknown_2036E28 = 0;
+    SetInitialPlayerAvatarStateWithDirection(DIR_NORTH);
+    StopMapMusic();
+    do_load_map_stuff_loop(&val);
+}
+
+void TurnOffNuzlockeMode(void)
+{
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {
+        gSaveBlock1Ptr->keyFlags.nuzlocke = 0;
+    }
+}
+
+void TurnOffNoPMC(void)
+{
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1)
+    {
+        gSaveBlock1Ptr->keyFlags.noPMC = 0;
     }
 }
 
