@@ -341,7 +341,7 @@ void StartTransitionToFlipBikeState(u8 flags)
 
 void InitPlayerAvatarBikeState(u32 directionHistory, u32 abStartSelectHistory)
 {
-    u8 i;
+    u32 i;
 
     gPlayerAvatar.acroBikeState = ACRO_STATE_NORMAL;
     gPlayerAvatar.newDirBackup = 0;

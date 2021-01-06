@@ -39,7 +39,7 @@ extern u8 gExpandedPlaceholder_Green[];
 
 u8 *StringCopy10(u8 *dest, const u8 *src)
 {
-    u8 i;
+    u32 i;
     u32 limit = 10;
 
     for (i = 0; i < limit; i++)
@@ -56,7 +56,7 @@ u8 *StringCopy10(u8 *dest, const u8 *src)
 
 u8 *StringGetEnd10(u8 *str)
 {
-    u8 i;
+    u32 i;
     u32 limit = 10;
 
     for (i = 0; i < limit; i++)
@@ -107,7 +107,7 @@ u8 *StringAppend(u8 *dest, const u8 *src)
 
 u8 *StringCopyN(u8 *dest, const u8 *src, u8 n)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < n; i++)
         dest[i] = src[i];
@@ -220,7 +220,7 @@ u8 *ConvertIntToDecimalStringN(u8 *dest, s32 value, enum StringConvertMode mode,
 u8 *ConvertIntToHexStringN(u8 *dest, s32 value, enum StringConvertMode mode, u8 n)
 {
     enum { WAITING_FOR_NONZERO_DIGIT, WRITING_DIGITS, WRITING_SPACES } state;
-    u8 i;
+    u32 i;
     s32 powerOfSixteen;
     s32 largestPowerOfSixteen = 1;
 
@@ -467,7 +467,7 @@ u8 *GetExpandedPlaceholder(u32 id)
 
 u8 *StringFill(u8 *dest, u8 c, u16 n)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < n; i++)
         *dest++ = c;
@@ -653,7 +653,7 @@ void ConvertInternationalString(u8 *s, u8 language)
 {
     if (language == LANGUAGE_JAPANESE)
     {
-        u8 i;
+        u32 i;
 
         StripExtCtrlCodes(s);
         i = StringLength(s);

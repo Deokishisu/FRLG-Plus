@@ -195,7 +195,7 @@ static EWRAM_DATA u8 sOpenWindows[11] = {};
 
 void InitBagWindows(void)
 {
-    u8 i;
+    u32 i;
 
     if (gBagMenuState.location != 3)
         InitWindows(sDefaultBagWindowsStd);

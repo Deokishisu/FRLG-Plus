@@ -4897,7 +4897,7 @@ void AnimTask_Conversion2AlphaBlend(u8 taskId)
 
 void sub_80A5E34(u8 taskId)
 {
-    u8 i;
+    u32 i;
     
     for (i = 0; i < gBattlersCount; i++)
     {
@@ -4913,7 +4913,7 @@ void sub_80A5E34(u8 taskId)
 
 void sub_80A5EA8(u8 taskId)
 {
-    u8 i;
+    u32 i;
     
     for (i = 0; i < gBattlersCount; i++)
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[i]);
@@ -5016,8 +5016,8 @@ void AnimTask_FadeScreenBlueStep(u8 taskId)
             u16 color;
             u16 bitmask;
             u16 r3;
-            u16 i;
-            u16 j;
+            u32 i;
+            u32 j;
             task->data[1] = 0;
             if (++task->data[2] <= 15)
             {
@@ -5148,7 +5148,7 @@ static void AnimHornHitStep(struct Sprite* sprite)
 
 void AnimTask_DoubleTeam(u8 taskId)
 {
-    u16 i;
+    u32 i;
     int obj;
     u16 r3;
     u16 r4;
@@ -5228,8 +5228,8 @@ void AnimSuperFang(struct Sprite* sprite)
 
 void AnimTask_MusicNotesRainbowBlend(u8 taskId)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
     u16 index;
 
     index = IndexOfSpritePaletteTag(sParticlesColorBlendTable[0][0]);
@@ -5256,7 +5256,7 @@ void AnimTask_MusicNotesRainbowBlend(u8 taskId)
 // clears the rainbow effect for musical notes.
 void AnimTask_MusicNotesClearRainbowBlend(u8 taskId)
 {
-    u16 i;
+    u32 i;
     
     for (i = 1; i < NELEMS(sParticlesColorBlendTable); i++)
         FreeSpritePaletteByTag(sParticlesColorBlendTable[i][0]);

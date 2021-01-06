@@ -488,7 +488,7 @@ static void CreateTMCaseListMenuBuffers(void)
 static void InitTMCaseListMenuItems(void)
 {
     struct BagPocket * pocket = &gBagPockets[POCKET_TM_CASE - 1];
-    u16 i;
+    u32 i;
 
     for (i = 0; i < sTMCaseDynamicResources->numTMs; i++)
     {
@@ -643,7 +643,7 @@ void ResetTMCaseCursorPos(void)
 static void TMCaseSetup_GetTMCount(void)
 {
     struct BagPocket * pocket = &gBagPockets[POCKET_TM_CASE - 1];
-    u16 i;
+    u32 i;
 
     BagPocketCompaction(pocket->itemSlots, pocket->capacity);
     sTMCaseDynamicResources->numTMs = 0;
@@ -674,7 +674,7 @@ static void TMCaseSetup_InitListMenuPositions(void)
 
 static void TMCaseSetup_UpdateVisualMenuOffset(void)
 {
-    u8 i;
+    u32 i;
     if (sTMCaseStaticResources.selectedRow > 3)
     {
         for (i = 0; i <= sTMCaseStaticResources.selectedRow - 3 && sTMCaseStaticResources.scrollOffset + sTMCaseDynamicResources->maxTMsShown != sTMCaseDynamicResources->numTMs + 1; i++)
@@ -1132,7 +1132,7 @@ static void Task_AfterSale_ReturnToList(u8 taskId)
 
 static void ClearTMHMSlots(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < BAG_TMHM_COUNT; i++)
     {
@@ -1303,7 +1303,7 @@ static void Task_TMCaseDude_Playback(u8 taskId)
 
 static void InitWindowTemplatesAndPals(void)
 {
-    u8 i;
+    u32 i;
 
     InitWindows(sWindowTemplates);
     DeactivateAllTextPrinters();
@@ -1363,7 +1363,7 @@ static void DrawMoveInfoUIMarkers(void)
 
 static void TMCase_MoveCursor_UpdatePrintedTMInfo(u16 itemId)
 {
-    u8 i;
+    u32 i;
     u16 move;
     const u8 * str;
 

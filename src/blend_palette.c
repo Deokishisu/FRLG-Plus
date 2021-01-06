@@ -4,7 +4,7 @@
 
 void BlendPalette(u16 palOffset, u16 numEntries, u8 coeff, u16 blendColor)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < numEntries; i++)
     {
         u16 index = i + palOffset;

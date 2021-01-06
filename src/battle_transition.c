@@ -799,7 +799,7 @@ static bool8 BT_Phase2HorizontalCorrugate_Init(struct Task *task)
 
 static bool8 BT_Phase2HorizontalCorrugate_UpdateWave(struct Task *task)
 {
-    u8 i;
+    u32 i;
     u16 theta, amplitude;
 
     sTransitionStructPtr->vblankDma = FALSE;
@@ -1139,7 +1139,7 @@ static void BT_Phase2ClockwiseBlackFade(u8 taskId)
 
 static bool8 BT_Phase2ClockwiseBlackFade_Init(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -1345,7 +1345,7 @@ static void BT_Phase2FullScreenWave(u8 taskId)
 
 static bool8 BT_Phase2FullScreenWave_Init(struct Task *task)
 {
-    u8 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -1360,7 +1360,7 @@ static bool8 BT_Phase2FullScreenWave_Init(struct Task *task)
 
 static bool8 BT_Phase2FullScreenWave_UpdateWave(struct Task *task)
 {
-    u8 i;
+    u32 i;
     s16 amplitude;
     u16 theta, frequency;
 
@@ -1421,7 +1421,7 @@ static void BT_Phase2BlackWaveToRight(u8 taskId)
 
 static bool8 BT_Phase2BlackWaveToRight_Init(struct Task *task)
 {
-    u8 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -1800,7 +1800,7 @@ static void BT_Phase2Mugshot(u8 taskId)
 
 static bool8 BT_Phase2Mugshot_Init(struct Task *task)
 {
-    u8 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -1884,7 +1884,7 @@ static bool8 BT_Phase2Mugshot_VsBarsSlideIn(struct Task *task)
 
 static bool8 BT_Phase2Mugshot_StartSpriteSlide(struct Task *task)
 {
-    u8 i;
+    u32 i;
     u16 *winVal;
 
     sTransitionStructPtr->vblankDma = FALSE;
@@ -1952,7 +1952,7 @@ static bool8 BT_Phase2Mugshot_ExpandWhiteBand(struct Task *task)
         task->tHalfBandwidth = 80;
     if (++task->tCounter & 1)
     {
-        s16 i;
+        s32 i;
 
         for (i = 0, nextFunc = FALSE; i <= task->tHalfBandwidth; ++i)
         {
@@ -2163,7 +2163,7 @@ static void BT_Phase2SlicedScreen(u8 taskId)
 
 static bool8 BT_Phase2SlicedScreen_Init(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -2186,7 +2186,7 @@ static bool8 BT_Phase2SlicedScreen_Init(struct Task *task)
 
 static bool8 BT_Phase2SlicedScreen_UpdateOffsets(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     sTransitionStructPtr->vblankDma = FALSE;
     task->tSpeed += (task->tAcc >> 8);
@@ -2263,7 +2263,7 @@ static void BT_Phase2WhiteFadeInStripes(u8 taskId)
 
 static bool8 BT_Phase2WhiteFadeInStripes_Init(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -2386,7 +2386,7 @@ static void SpriteCB_BT_Phase2WhiteFadeInStripes(struct Sprite *sprite)
     }
     else
     {
-        u16 i;
+        u32 i;
         u16 *bldY = &gScanlineEffectRegBuffers[0][sprite->pos1.y];
         u16 *win0H = &gScanlineEffectRegBuffers[0][sprite->pos1.y + 160];
         u32 stripeWidth = sprite->spLastSprite ? 0x19 : 0x1B;
@@ -2490,7 +2490,7 @@ static void BT_Phase2BlackDoodles(u8 taskId)
 
 static bool8 BT_Phase2BlackDoodles_Init(struct Task *task)
 {
-    u16 i;
+    u32 i;
 
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
@@ -2515,7 +2515,7 @@ static bool8 BT_Phase2BlackDoodles_InitSingleBrush(struct Task *task)
 
 static bool8 BT_Phase2BlackDoodles_DrawSingleBrush(struct Task *task)
 {
-    s16 i;
+    s32 i;
     bool8 nextFunc;
 
     sTransitionStructPtr->vblankDma = FALSE;
@@ -2722,7 +2722,7 @@ static void BT_BlendPalettesToBlack(void)
 
 static void BT_LoadWaveIntoBuffer(s16 *buffer, s16 offset, s16 theta, s16 frequency, s16 amplitude, s16 bufSize)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; bufSize > 0; --bufSize, ++i, theta += frequency)
         buffer[i] = offset + Sin(0xFF & theta, amplitude);
@@ -2730,7 +2730,7 @@ static void BT_LoadWaveIntoBuffer(s16 *buffer, s16 offset, s16 theta, s16 freque
 
 static void BT_GenerateCircle(s16 *buffer, s16 x, s16 y, s16 radius)
 {
-    s16 i;
+    s32 i;
 
     memset(buffer, 0xA, 320);
     // 64 iterations because we only want to cover [0, π/2) discretely.

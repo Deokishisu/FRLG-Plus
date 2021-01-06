@@ -188,7 +188,7 @@ void ShowTownMap(void)
 
 bool8 PlayerHasGrassPokemonInParty(void)
 {
-    u8 i;
+    u32 i;
     struct Pokemon * pokemon;
     u16 species;
 
@@ -420,7 +420,7 @@ bool8 IsStarterFirstStageInParty(void)
 {
     u16 species = GetStarterSpeciesById(VarGet(VAR_STARTER_MON));
     u8 partyCount = CalculatePlayerPartyCount();
-    u8 i;
+    u32 i;
     for (i = 0; i < partyCount; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == species)
@@ -431,8 +431,8 @@ bool8 IsStarterFirstStageInParty(void)
 
 bool8 IsThereRoomInAnyBoxForMorePokemon(void)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
     for (i = 0; i < TOTAL_BOXES_COUNT; i++)
     {
         for (j = 0; j < IN_BOX_COUNT; j++)
@@ -510,7 +510,7 @@ static void Task_EndScreenShake(u8 taskId)
 u8 GetLeadMonIndex(void)
 {
     u8 partyCount = CalculatePlayerPartyCount();
-    u8 i;
+    u32 i;
     struct Pokemon * pokemon;
     for (i = 0; i < partyCount; i++)
     {
@@ -690,7 +690,7 @@ void SampleResortGorgeousMonAndReward(void)
 
 static u16 SampleResortGorgeousMon(void)
 {
-    u16 i;
+    u32 i;
     u16 species;
     for (i = 0; i < 100; i++)
     {
@@ -1129,8 +1129,8 @@ static void AnimateElevatorWindowView(u16 nfloors, u8 direction)
 
 static void Task_AnimateElevatorWindowView(u8 taskId)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     s16 *data = gTasks[taskId].data;
     if (data[1] == 6)
     {
@@ -1332,7 +1332,7 @@ static const u8 *const sListMenuLabels[][12] = {
 static void Task_CreateScriptListMenu(u8 taskId)
 {
     struct WindowTemplate template;
-    u8 i;
+    u32 i;
     s32 width;
     s32 mwidth;
     struct Task * task = &gTasks[taskId];
@@ -1704,7 +1704,7 @@ void UpdateTrainerCardPhotoIcons(void)
 {
     u16 species[PARTY_SIZE];
     u32 personality[PARTY_SIZE];
-    u8 i;
+    u32 i;
     u8 partyCount;
     for (i = 0; i < PARTY_SIZE; i++)
         species[i] = SPECIES_NONE;
@@ -1760,7 +1760,7 @@ u16 GetHiddenItemAttr(u32 hiddenItem, u8 attr)
 bool8 DoesPlayerPartyContainSpecies(void)
 {
     u8 partyCount = CalculatePlayerPartyCount();
-    u8 i;
+    u32 i;
     for (i = 0; i < partyCount; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == gSpecialVar_0x8004)
@@ -1786,7 +1786,7 @@ static const u8 sMartMaps[][3] = {
 
 u8 GetMartClerkObjectId(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sMartMaps); i++)
     {
         if (gSaveBlock1Ptr->location.mapGroup == sMartMaps[i][0] && gSaveBlock1Ptr->location.mapNum == sMartMaps[i][1])
@@ -1861,7 +1861,7 @@ static const struct {
 
 void sub_80CC534(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sInsideOutsidePairs); i++)
     {
         if (gSaveBlock1Ptr->location.mapGroup == sInsideOutsidePairs[i].grp && gSaveBlock1Ptr->location.mapNum == sInsideOutsidePairs[i].num)
@@ -2221,7 +2221,7 @@ bool8 CapeBrinkGetMoveToTeachLeadPokemon(void)
     u8 tutorMonId = 0;
     u8 numMovesKnown = 0;
     u8 leadMonSlot = GetLeadMonIndex();
-    u8 i;
+    u32 i;
     gSpecialVar_0x8007 = leadMonSlot;
     for (i = 0; i < NELEMS(sCapeBrinkCompatibleSpecies); i++)
     {
@@ -2447,7 +2447,7 @@ void SetDeoxysTrianglePalette(void)
 bool8 IsBadEggInParty(void)
 {
     u8 partyCount = CalculatePlayerPartyCount();
-    u8 i;
+    u32 i;
     for (i = 0; i < partyCount; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG) == TRUE)
@@ -2484,7 +2484,7 @@ bool8 PlayerPartyContainsSpeciesWithPlayerID(void)
 {
     // 8004 = species
     u8 playerCount = CalculatePlayerPartyCount();
-    u8 i;
+    u32 i;
     for (i = 0; i < playerCount; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) == gSpecialVar_0x8004 

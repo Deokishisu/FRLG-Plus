@@ -389,7 +389,7 @@ static void sub_80BAF38(u8 taskId)
 
 void sub_80BB088(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     sAnimStatsChangeData = AllocZeroed(sizeof(struct AnimStatsChangeData));
     for (i = 0; i < 8; ++i)
@@ -593,7 +593,7 @@ void AnimTask_Flash(u8 taskId)
 
 static void sub_80BB6CC(u8 taskId)
 {
-    u16 i;
+    u32 i;
     struct Task *task = &gTasks[taskId];
 
     switch (task->data[0])

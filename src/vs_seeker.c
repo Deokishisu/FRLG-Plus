@@ -596,7 +596,7 @@ void VsSeekerFreezeObjectsAfterChargeComplete(void)
 static void Task_ResetObjectsRematchWantedState(u8 taskId)
 {
     struct Task * task = &gTasks[taskId];
-    u8 i;
+    u32 i;
 
     if (task->data[0] == 0 && walkrun_is_standing_still() == TRUE)
     {
@@ -629,7 +629,7 @@ static void Task_ResetObjectsRematchWantedState(u8 taskId)
 void VsSeekerResetObjectMovementAfterChargeComplete(void)
 {
     struct ObjectEventTemplate * templates = gSaveBlock1Ptr->objectEventTemplates;
-    u8 i;
+    u32 i;
     u8 movementType;
     u8 objEventId;
     struct ObjectEvent * objectEvent;
@@ -694,7 +694,7 @@ void MapResetTrainerRematches(u16 mapGroup, u16 mapNum)
 
 static void ResetMovementOfRematchableTrainers(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -736,7 +736,7 @@ static void VsSeekerSetStepCounterFullyCharged(void)
 
 void Task_VsSeeker_0(u8 taskId)
 {
-    u8 i;
+    u32 i;
     u8 respval;
 
     for (i = 0; i < 16; i++)
@@ -1213,7 +1213,7 @@ static bool32 IsThisTrainerRematchable(u32 a0)
 
 static void ClearAllTrainerRematchStates(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NELEMS(gSaveBlock1Ptr->trainerRematches); i++)
         gSaveBlock1Ptr->trainerRematches[i] = 0;
@@ -1267,7 +1267,7 @@ static u8 GetNextAvailableRematchTrainer(const VsSeekerData * vsSeekerData, u16 
 static u8 GetRematchableTrainerLocalId(void)
 {
     u8 idx;
-    u8 i;
+    u32 i;
 
     for (i = 0; sVsSeeker->trainerInfo[i].localId != 0xFF; i++)
     {

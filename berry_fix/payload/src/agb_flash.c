@@ -112,7 +112,7 @@ u8 ReadFlash1(u8 *addr)
 void SetReadFlash1(u16 *dest)
 {
     u16 *src;
-    u16 i;
+    u32 i;
 
     PollFlashStatus = (u8 (*)(u8 *))((s32)dest + 1);
 
@@ -139,7 +139,7 @@ void ReadFlash_Core(u8 *src, u8 *dest, u32 size)
 void ReadFlash(u16 sectorNum, u32 offset, void *dest, u32 size)
 {
     u8 *src;
-    u16 i;
+    u32 i;
     u16 readFlash_Core_Buffer[0x40];
     u16 *funcSrc;
     u16 *funcDest;
@@ -185,7 +185,7 @@ u32 VerifyFlashSector_Core(u8 *src, u8 *tgt, u32 size)
 
 u32 VerifyFlashSector(u16 sectorNum, u8 *src)
 {
-    u16 i;
+    u32 i;
     u16 verifyFlashSector_Core_Buffer[0x80];
     u16 *funcSrc;
     u16 *funcDest;
@@ -223,7 +223,7 @@ u32 VerifyFlashSector(u16 sectorNum, u8 *src)
 
 u32 VerifyFlashSectorNBytes(u16 sectorNum, u8 *src, u32 n)
 {
-    u16 i;
+    u32 i;
     u16 verifyFlashSector_Core_Buffer[0x80];
     u16 *funcSrc;
     u16 *funcDest;
@@ -259,7 +259,7 @@ u32 VerifyFlashSectorNBytes(u16 sectorNum, u8 *src, u32 n)
 
 u32 ProgramFlashSectorAndVerify(u16 sectorNum, u8 *src)
 {
-    u8 i;
+    u32 i;
     u32 result;
 
     for (i = 0; i < 3; i++)
@@ -278,7 +278,7 @@ u32 ProgramFlashSectorAndVerify(u16 sectorNum, u8 *src)
 
 u32 ProgramFlashSectorAndVerifyNBytes(u16 sectorNum, void *src, u32 n)
 {
-    u8 i;
+    u32 i;
     u32 result;
 
     for (i = 0; i < 3; i++)

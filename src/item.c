@@ -127,7 +127,7 @@ void CopyItemName(u16 itemId, u8 * dest)
 
 s16 BagPocketGetFirstEmptySlot(u8 pocketId)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < gBagPockets[pocketId].capacity; i++)
     {
@@ -140,7 +140,7 @@ s16 BagPocketGetFirstEmptySlot(u8 pocketId)
 
 bool8 IsPocketNotEmpty(u8 pocketId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < gBagPockets[pocketId - 1].capacity; i++)
     {
@@ -153,7 +153,7 @@ bool8 IsPocketNotEmpty(u8 pocketId)
 
 bool8 CheckBagHasItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u8 pocket;
 
     if (ItemId_GetPocket(itemId) == 0)
@@ -208,7 +208,7 @@ bool8 CheckHasAtLeastOneBerry(void)
 
 bool8 CheckBagHasSpace(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u8 pocket;
 
     if (ItemId_GetPocket(itemId) == 0)
@@ -248,7 +248,7 @@ static void SetTmHmOwned(u16 itemId)
 
 bool8 AddBagItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u8 pocket;
     s16 idx;
 
@@ -315,7 +315,7 @@ bool8 AddBagItem(u16 itemId, u16 count)
 
 bool8 RemoveBagItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u8 pocket;
 
     if (ItemId_GetPocket(itemId) == 0)
@@ -359,7 +359,7 @@ u8 GetPocketByItemId(u16 itemId)
 
 void ClearItemSlots(struct ItemSlot * slots, u8 capacity)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < capacity; i++)
     {
@@ -370,7 +370,7 @@ void ClearItemSlots(struct ItemSlot * slots, u8 capacity)
 
 void ClearPCItemSlots(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
     {
@@ -381,7 +381,7 @@ void ClearPCItemSlots(void)
 
 void ClearBag(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < 5; i++)
     {
@@ -391,7 +391,7 @@ void ClearBag(void)
 
 s8 PCItemsGetFirstEmptySlot(void)
 {
-    s8 i;
+    s32 i;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
     {
@@ -405,7 +405,7 @@ s8 PCItemsGetFirstEmptySlot(void)
 u8 CountItemsInPC(void)
 {
     u8 count = 0;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
     {
@@ -418,7 +418,7 @@ u8 CountItemsInPC(void)
 
 bool8 CheckPCHasItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u16 quantity;
 
     for (i = 0; i < PC_ITEMS_COUNT; i++)
@@ -436,7 +436,7 @@ bool8 CheckPCHasItem(u16 itemId, u16 count)
 
 bool8 AddPCItem(u16 itemId, u16 count)
 {
-    u8 i;
+    u32 i;
     u16 quantity;
     s8 idx;
 
@@ -546,9 +546,9 @@ void BagPocketCompaction(struct ItemSlot * slots, u8 capacity)
 
 void SortPocketAndPlaceHMsFirst(struct BagPocket * pocket)
 {
-    u16 i;
+    u32 i;
     u16 j = 0;
-    u16 k;
+    u32 k;
     struct ItemSlot * buff;
 
     SortAndCompactBagPocket(pocket);
@@ -605,7 +605,7 @@ u16 BagGetQuantityByPocketPosition(u8 pocketId, u16 slotId)
 
 u16 BagGetQuantityByItemId(u16 itemId)
 {
-    u16 i;
+    u32 i;
     struct BagPocket * pocket = &gBagPockets[ItemId_GetPocket(itemId) - 1];
 
     for (i = 0; i < pocket->capacity; i++)

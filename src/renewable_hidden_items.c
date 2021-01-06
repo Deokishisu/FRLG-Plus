@@ -561,7 +561,7 @@ void IncrementRenewableHiddenItemStepCounter(void)
 
 void TryRegenerateRenewableHiddenItems(void)
 {
-    u8 i;
+    u32 i;
     u8 found_map = 0xFF;
     for (i = 0; i < 15; i++)
     {

@@ -29,7 +29,7 @@ s8 GetSetPokedexFlag(u16 nationalDexNo, u8 caseID)
 u16 GetNationalPokedexCount(u8 caseID)
 {
     u16 count = 0;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NATIONAL_DEX_COUNT; i++)
     {
@@ -51,7 +51,7 @@ u16 GetNationalPokedexCount(u8 caseID)
 u16 GetKantoPokedexCount(u8 caseID)
 {
     u16 count = 0;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < KANTO_DEX_COUNT; i++)
     {
@@ -72,7 +72,7 @@ u16 GetKantoPokedexCount(u8 caseID)
 
 bool16 HasAllHoennMons(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < HOENN_DEX_COUNT - 2; i++)
     {
@@ -84,7 +84,7 @@ bool16 HasAllHoennMons(void)
 
 bool16 HasAllKantoMons(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < KANTO_DEX_COUNT - 1; i++)
     {
@@ -96,7 +96,7 @@ bool16 HasAllKantoMons(void)
 
 bool16 HasAllMons(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NATIONAL_DEX_MEWTWO; i++)
     {

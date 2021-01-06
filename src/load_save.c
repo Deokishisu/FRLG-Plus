@@ -207,7 +207,7 @@ void LoadSerializedGame(void)
 
 void SerializeKeyItemSlots(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < BAG_KEYITEMS_COUNT; i++)
     {
         if(gKeyItemSlots[i].itemId > 258 && gKeyItemSlots[i].itemId < 289) //RS Key Items

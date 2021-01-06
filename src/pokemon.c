@@ -5147,7 +5147,7 @@ u8 GetItemEffectParamOffset(u16 itemId, u8 effectByte, u8 effectBit)
     const u8 *itemEffect;
     u8 offset;
     int i;
-    u8 j;
+    u32 j;
     u8 val;
 
     offset = 6;
@@ -6787,7 +6787,7 @@ void *OakSpeechNidoranFGetBuffer(u8 bufferId)
 void SetFirstDeoxysForm(void)
 {
     #define SPECIES_DEOXYS 410
-    u8 i;
+    u32 i;
     u8 forme;
     for(i = 0; i < 6; i++)
     {

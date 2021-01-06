@@ -466,7 +466,7 @@ static void NamingScreen_Init(void)
 
 static void sub_809DB70(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < MAX_SPRITES; i++)
     {
         if (gSprites[i].inUse)
@@ -477,7 +477,7 @@ static void sub_809DB70(void)
 
 static void NamingScreen_InitBGs(void)
 {
-    u8 i;
+    u32 i;
 
     DmaClearLarge16(3, (void *)VRAM, VRAM_SIZE, 0x1000);
     DmaClear32(3, (void *)OAM, OAM_SIZE);
@@ -1257,7 +1257,7 @@ static void CreateUnderscoreSprites(void)
 {
     u8 spriteId;
     s16 xPos;
-    u8 i;
+    u32 i;
 
     xPos = sNamingScreenData->inputCharBaseXPos - 5;
     spriteId = CreateSprite(&sSpriteTemplate_InputArrow, xPos, 0x38, 0);
@@ -1681,7 +1681,7 @@ static u8 GetCharAtKeyboardPos(s16 x, s16 y)
 
 static u8 GetTextCaretPosition(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < sNamingScreenData->template->maxChars; i++)
     {
@@ -1693,7 +1693,7 @@ static u8 GetTextCaretPosition(void)
 
 static u8 GetPreviousTextCaretPosition(void)
 {
-    s8 i;
+    s32 i;
 
     for (i = sNamingScreenData->template->maxChars - 1; i > 0; i--)
     {
@@ -1747,7 +1747,7 @@ static void AddTextCharacter(u8 ch)
 static void CopyStringToDestBuffer(void)
 {
     // Copy from the first non-whitespace character
-    u8 i;
+    u32 i;
 
     for (i = 0; i < sNamingScreenData->template->maxChars; i++)
     {
@@ -1789,7 +1789,7 @@ static void DecompressToBgTilemapBuffer(u8 bg, const u32 *src)
 
 static void PrintBufferCharactersOnScreen(void)
 {
-    u8 i;
+    u32 i;
     u8 temp[2];
     u16 xoff;
     u8 maxChars = sNamingScreenData->template->maxChars;
@@ -1838,7 +1838,7 @@ static const u8 *const sKeyboardTextColors[KBPAGE_COUNT] = {
 
 static void sub_809F9E8(u8 window, u8 page)
 {
-    u8 i;
+    u32 i;
 
     FillWindowPixelBuffer(window, sFillValues[page]);
 
@@ -1935,7 +1935,7 @@ static void ShowAllBgs(void)
 
 static bool8 IsLetter(u8 character)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; gText_AlphabetUpperLower[i] != EOS; i++)
     {

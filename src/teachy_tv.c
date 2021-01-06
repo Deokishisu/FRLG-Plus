@@ -1349,7 +1349,7 @@ static void TeachyTvComputeSingleMapTileBlockFromTilesetAndMetaTiles(u8 *blockBu
 
 static u16 TeachyTvComputePalIndexArrayEntryByMetaTile(u8 *palIndexArrayBuf, u16 metaTile)
 {
-    u16 i;
+    u32 i;
     int firstEntry;
     int temp;
     u32 pal = metaTile >> 12;
@@ -1381,7 +1381,7 @@ static u16 TeachyTvComputePalIndexArrayEntryByMetaTile(u8 *palIndexArrayBuf, u16
 
 static void TeachyTvLoadMapPalette(const struct MapLayout * mStruct, const u8 * palIndexArray)
 {
-    u8 i;
+    u32 i;
     const struct Tileset * ts;
     u16 * dest;
 

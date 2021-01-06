@@ -103,7 +103,7 @@ u32 * GetDamagedSaveSectorsPtr(void)
 
 s32 flash_write_save_block_chunks(u8 a0)
 {
-    u8 i;
+    u32 i;
 
     switch (a0)
     {
@@ -180,7 +180,7 @@ void msg_display(enum MsgBoxUpdateMessage a0)
 
 void Save_EraseAllData(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < 32; i++)
         EraseFlashSector(i);
 }
@@ -216,7 +216,7 @@ bool32 SetSectorDamagedStatus(u8 op, u8 sectorNum)
 u8 WriteSaveBlockChunks(u16 chunkId, const struct SaveBlockChunk *chunks)
 {
     u32 retVal;
-    u16 i;
+    u32 i;
 
     gFastSaveSection = eSaveSection;
 
@@ -250,7 +250,7 @@ u8 WriteSaveBlockChunks(u16 chunkId, const struct SaveBlockChunk *chunks)
 
 u8 WriteSingleChunk(u16 chunkId, const struct SaveBlockChunk * chunks)
 {
-    u16 i;
+    u32 i;
     u16 sectorNum;
     u8 *chunkData;
     u16 chunkSize;
@@ -280,7 +280,7 @@ u8 WriteSingleChunk(u16 chunkId, const struct SaveBlockChunk * chunks)
 
 u8 HandleWriteSectorNBytes(u8 sectorNum, u8 *data, u16 size)
 {
-    u16 i;
+    u32 i;
     struct SaveSector *section = eSaveSection;
 
     for (i = 0; i < sizeof(struct SaveSector); i++)
@@ -372,7 +372,7 @@ u8 ErasePreviousChunk(u16 a1, const struct SaveBlockChunk *chunk)
 
 u8 EraseCurrentChunk(u16 chunkId, const struct SaveBlockChunk *chunks)
 {
-    u16 i;
+    u32 i;
     u16 sector;
     u8 *data;
     u16 size;
@@ -513,7 +513,7 @@ u8 TryReadAllSaveSectorsCurrentSlot(u16 a1, const struct SaveBlockChunk *chunk)
 
 u8 ReadAllSaveSectorsCurrentSlot(u16 a1, const struct SaveBlockChunk *chunks)
 {
-    u16 i;
+    u32 i;
     u16 checksum;
     u16 sector = NUM_SECTORS_PER_SAVE_SLOT * (gSaveCounter % 2);
     u16 id;
@@ -528,7 +528,7 @@ u8 ReadAllSaveSectorsCurrentSlot(u16 a1, const struct SaveBlockChunk *chunks)
         if (gFastSaveSection->signature == FILE_SIGNATURE
             && gFastSaveSection->checksum == checksum)
         {
-            u16 j;
+            u32 j;
             for (j = 0; j < chunks[id].size; j++)
                 chunks[id].data[j] = gFastSaveSection->data[j];
         }
@@ -661,7 +661,7 @@ u8 GetSaveValidStatus(const struct SaveBlockChunk *chunks)
 
 u8 ReadSomeUnknownSectorAndVerify(u8 sector, u8 *data, u16 size)
 {
-    u16 i;
+    u32 i;
     struct SaveSector *section = eSaveSection;
 
     DoReadFlashWholeSection(sector, section);
@@ -693,7 +693,7 @@ u32 DoReadFlashWholeSection(u8 sector, struct SaveSector *section)
 
 u16 CalculateChecksum(const void *data, u16 size)
 {
-    u16 i;
+    u32 i;
     u32 checksum = 0;
 
     for (i = 0; i < (size / 4); i++)

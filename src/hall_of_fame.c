@@ -382,8 +382,8 @@ void CB2_DoHallOfFameScreenDontSaveData(void)
 
 static void Task_Hof_InitMonData(u8 taskId)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
     u8 nick[11];
 
     gTasks[taskId].data[2] = 0;
@@ -422,7 +422,7 @@ static void Task_Hof_InitMonData(u8 taskId)
 
 static void Task_Hof_InitTeamSaveData(u8 taskId)
 {
-    u16 i;
+    u32 i;
     struct HallofFameTeam* lastSavedTeam = (struct HallofFameTeam *)(gDecompressionBuffer);
 
     SaveQuestLogData();
@@ -561,7 +561,7 @@ static void Task_Hof_TryDisplayAnotherMon(u8 taskId)
 
 static void Task_Hof_PaletteFadeAndPrintWelcomeText(u8 taskId)
 {
-    u16 i;
+    u32 i;
 
     BeginNormalPaletteFade(0xFFFF0000, 0, 0, 0, RGB_BLACK);
     for (i = 0; i < PARTY_SIZE; i++)
@@ -586,7 +586,7 @@ static void Task_Hof_ApplauseAndConfetti(u8 taskId)
     }
     else
     {
-        u16 i;
+        u32 i;
         for (i = 0; i < PARTY_SIZE; i++)
         {
             if (gTasks[taskId].data[5 + i] != 0xFF)
@@ -758,7 +758,7 @@ void CB2_InitHofPC(void)
 
 static void Task_HofPC_CopySaveData(u8 taskId)
 {
-    u16 i;
+    u32 i;
     struct HallofFameTeam* savedTeams;
 
     CreateTopBarWindowLoadPalette(0, 30, 0, 0x0C, 0x226);
@@ -791,7 +791,7 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
 {
     struct HallofFameTeam *savedTeams = sHofMonPtr;
     struct HallofFameMon *currMon;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < gTasks[taskId].data[0]; i++)
         savedTeams++;
@@ -855,7 +855,7 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 {
     struct HallofFameTeam* savedTeams = sHofMonPtr;
     struct HallofFameMon* currMon;
-    u16 i;
+    u32 i;
     u16 currMonId;
 
     for (i = 0; i < gTasks[taskId].data[0]; i++)
@@ -886,7 +886,7 @@ static void Task_HofPC_PrintMonInfo(u8 taskId)
 
 static void Task_HofPC_HandleInput(u8 taskId)
 {
-    u16 i;
+    u32 i;
 
     if (JOY_NEW(A_BUTTON))
     {
@@ -995,7 +995,7 @@ static void HallOfFame_PrintMonInfo(struct HallofFameMon* currMon, u8 unused1, u
 {
     u8 text[16];
     u8 text2[24];
-    u16 i;
+    u32 i;
     u8 *stringPtr;
     u16 dexNumber;
     u8 gender;

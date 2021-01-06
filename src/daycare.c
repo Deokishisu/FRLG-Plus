@@ -382,7 +382,7 @@ u8 CountPokemonInDaycare(struct DayCare *daycare)
 
 void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDayCareMail *daycareMail)
 {
-    u8 i;
+    u32 i;
     u8 numDaycareMons = 0;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
@@ -410,7 +410,7 @@ void InitDaycareMailRecordMixing(struct DayCare *daycare, struct RecordMixingDay
 
 static s8 Daycare_FindEmptySpot(struct DayCare *daycare)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
@@ -634,7 +634,7 @@ static void ClearDaycareMon(struct DaycareMon *daycareMon)
 
 static void ClearAllDaycareData(struct DayCare *daycare)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
         ClearDaycareMon(&daycare->mons[i]);
@@ -792,7 +792,7 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv)
 
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
-    u8 i;
+    u32 i;
     u8 selectedIvs[INHERITED_IV_COUNT];
     u8 availableIVs[NUM_STATS];
     u8 whichParent[ARRAY_COUNT(selectedIvs)];
@@ -858,7 +858,7 @@ static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
     u16 eggMoveIdx;
     u16 numEggMoves;
     u16 species;
-    u16 i;
+    u32 i;
 
     numEggMoves = 0;
     eggMoveIdx = 0;
@@ -1019,7 +1019,7 @@ static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare
 
 static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parentSlots)
 {
-    u16 i;
+    u32 i;
     u16 species[DAYCARE_MON_COUNT];
     u16 eggSpecies;
 
@@ -1363,7 +1363,7 @@ void SetDaycareCompatibilityString(void)
 
 bool8 NameHasGenderSymbol(const u8 *name, u8 genderRatio)
 {
-    u8 i;
+    u32 i;
     u8 symbolsCount[GENDER_COUNT];
     symbolsCount[MALE] = symbolsCount[FEMALE] = 0;
 
@@ -1407,7 +1407,7 @@ static u8 *AppendMonGenderSymbol(u8 *name, struct BoxPokemon *boxMon)
 static void GetDaycareLevelMenuText(struct DayCare *daycare, u8 *dest)
 {
     u8 monNames[DAYCARE_MON_COUNT][20];
-    u8 i;
+    u32 i;
 
     *dest = EOS;
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
@@ -1425,7 +1425,7 @@ static void GetDaycareLevelMenuText(struct DayCare *daycare, u8 *dest)
 
 static void GetDaycareLevelMenuLevelText(struct DayCare *daycare, u8 *dest)
 {
-    u8 i;
+    u32 i;
     u8 level;
     u8 text[20];
 
@@ -2102,7 +2102,7 @@ static void SpriteCB_Egg_3(struct Sprite* sprite)
 
 static void SpriteCB_Egg_4(struct Sprite* sprite)
 {
-    s16 i;
+    s32 i;
     if (sprite->data[0] == 0)
         BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 0x10, 0xFFFF);
     if (sprite->data[0] < 4u)

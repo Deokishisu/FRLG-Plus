@@ -824,14 +824,14 @@ static int PlaceSelectedWord(void)
 
 static void CommitECWords(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < sEasyChatScreen->numWords; i++)
         sEasyChatScreen->words[i] = sEasyChatScreen->ecWordBuffer[i];
 }
 
 static void DeleteAllECFields(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < sEasyChatScreen->numWords; i++)
         sEasyChatScreen->ecWordBuffer[i] = 0xFFFF;
 }
@@ -844,7 +844,7 @@ static void SetEasyChatWordToField(u16 easyChatWord)
 
 static bool8 HasECMessageChanged(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < sEasyChatScreen->numWords; i++)
     {
         if (sEasyChatScreen->ecWordBuffer[i] != sEasyChatScreen->words[i])
@@ -1325,7 +1325,7 @@ bool32 ShouldDrawECDownArrow(void)
 
 static bool8 IsPhraseDifferentThanPlayerInput(const u16 *phrase, u8 phraseLength)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < phraseLength; i++)
     {

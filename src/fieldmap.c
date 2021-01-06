@@ -525,7 +525,7 @@ void save_serialize_map(void)
 
 static bool32 SavedMapViewIsEmpty(void)
 {
-    u16 i;
+    u32 i;
     u32 marker = 0;
 
     // BUG: This loop extends past the bounds of the mapView array. Its size is only 0x100.

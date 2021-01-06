@@ -46,7 +46,7 @@ static u8 GetMewObjectEventId(void)
 // This function returns the direction Mew will take a step, and is run every time the player takes a step
 u32 GetMewMoveDirection(void)
 {
-    u8 i;
+    u32 i;
     int mewSafeFromTrap;
     struct ObjectEvent *mew = &gObjectEvents[GetMewObjectEventId()];
 
@@ -282,7 +282,7 @@ static bool8 CanMewMoveToCoords(s16 x, s16 y)
 // Last ditch effort to move, clear move candidates and try all directions again
 static u8 GetValidMewMoveDirection(u8 ignoredDir)
 {
-    u8 i;
+    u32 i;
     u8 count = 0;
     struct ObjectEvent *mew = &gObjectEvents[GetMewObjectEventId()];
 

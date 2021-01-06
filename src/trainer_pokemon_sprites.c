@@ -138,7 +138,7 @@ void AssignSpriteAnimsTable(bool8 isTrainer)
 
 u16 CreatePicSprite(u16 species, u32 otId, u32 personality, bool8 isFrontPic, s16 x, s16 y, u8 paletteSlot, u16 paletteTag, bool8 isTrainer, bool8 ignoreDeoxys)
 {
-    u8 i;
+    u32 i;
     u8 *framePics;
     struct SpriteFrameImage *images;
     int j;
@@ -203,7 +203,7 @@ u16 CreatePicSprite_HandleDeoxys(u16 species, u32 otId, u32 personality, bool8 i
 
 u16 FreeAndDestroyPicSpriteInternal(u16 spriteId)
 {
-    u8 i;
+    u32 i;
     u8 *framePics;
     struct SpriteFrameImage *images;
 

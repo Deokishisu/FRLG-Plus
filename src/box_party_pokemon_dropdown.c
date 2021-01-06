@@ -54,7 +54,7 @@ static const struct {
 
 void AllocBoxPartyPokemonDropdowns(u8 num)
 {
-    u16 i;
+    u32 i;
     sBoxPartyPokemonDropdownPtr = Alloc(num * sizeof(struct BPPD_Struct));
     sBoxPartyPokemonDropdownCount = sBoxPartyPokemonDropdownPtr == NULL ? 0 : num;
     for (i = 0; i < sBoxPartyPokemonDropdownCount; i++)

@@ -1167,7 +1167,7 @@ void DestroyMonIcon(struct Sprite * sprite)
 
 void LoadMonIconPalettes(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(gMonIconPaletteTable); i++)
         LoadSpritePalette(&gMonIconPaletteTable[i]);
 }
@@ -1192,7 +1192,7 @@ void LoadMonIconPalette(u16 species)
 
 void FreeMonIconPalettes(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 6; i++)
         FreeSpritePaletteByTag(gMonIconPaletteTable[i].tag);
 }

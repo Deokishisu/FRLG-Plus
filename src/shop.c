@@ -234,7 +234,7 @@ static u8 CreateShopMenu(u8 a0)
 
 static u8 GetMartTypeFromItemList(u32 a0)
 {    
-    u16 i;
+    u32 i;
     
     if (a0)
         return a0;
@@ -861,7 +861,7 @@ static void BuyMenuDrawObjectEvents(void)
 
 static void BuyMenuCopyTilemapData(void)
 {
-    s16 i;
+    s32 i;
     u16 *dst = *gShopTilemapBuffer2;
     u16 *src = *gShopTilemapBuffer1;
 

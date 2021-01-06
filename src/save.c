@@ -86,7 +86,7 @@ EWRAM_DATA u32 gSaveUnusedVar2 = 0;
 
 void ClearSaveData(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NUM_SECTORS; i++)
         EraseFlashSector(i);
@@ -125,7 +125,7 @@ bool32 SetSectorDamagedStatus(u8 op, u8 sectorNum)
 u8 save_write_to_flash(u16 chunkId, const struct SaveBlockChunk *chunks)
 {
     u32 retVal;
-    u16 i;
+    u32 i;
 
     gFastSaveSection = &gSaveDataBuffer;
 
@@ -159,7 +159,7 @@ u8 save_write_to_flash(u16 chunkId, const struct SaveBlockChunk *chunks)
 
 u8 HandleWriteSector(u16 chunkId, const struct SaveBlockChunk *chunks)
 {
-    u16 i;
+    u32 i;
     u16 sectorNum;
     u8 *chunkData;
     u16 chunkSize;
@@ -190,7 +190,7 @@ u8 HandleWriteSector(u16 chunkId, const struct SaveBlockChunk *chunks)
 
 u8 HandleWriteSectorNBytes(u8 sector, u8 *data, u16 size)
 {
-    u16 i;
+    u32 i;
     struct SaveSection *section = &gSaveDataBuffer;
 
     for (i = 0; i < sizeof(struct SaveSection); i++)
@@ -283,7 +283,7 @@ u8 sub_80D9B04(u16 a1, const struct SaveBlockChunk *chunk)
 
 u8 ClearSaveData_2(u16 chunkId, const struct SaveBlockChunk *chunks)
 {
-    u16 i;
+    u32 i;
     u16 sector;
     u8 *data;
     u16 size;
@@ -424,7 +424,7 @@ u8 sub_80D9E14(u16 a1, const struct SaveBlockChunk *chunk)
 
 u8 sub_80D9E54(u16 a1, const struct SaveBlockChunk *chunks)
 {
-    u16 i;
+    u32 i;
     u16 checksum;
     u16 sector = NUM_SECTORS_PER_SAVE_SLOT * (gSaveCounter % 2);
     u16 id;
@@ -439,7 +439,7 @@ u8 sub_80D9E54(u16 a1, const struct SaveBlockChunk *chunks)
         if (gFastSaveSection->signature == FILE_SIGNATURE
          && gFastSaveSection->checksum == checksum)
         {
-            u16 j;
+            u32 j;
             for (j = 0; j < chunks[id].size; j++)
                 chunks[id].data[j] = gFastSaveSection->data[j];
         }
@@ -572,7 +572,7 @@ u8 GetSaveValidStatus(const struct SaveBlockChunk *chunks)
 
 u8 sub_80DA120(u8 sector, u8 *data, u16 size)
 {
-    u16 i;
+    u32 i;
     struct SaveSection *section = &gSaveDataBuffer;
 
     DoReadFlashWholeSection(sector, section);
@@ -604,7 +604,7 @@ u8 DoReadFlashWholeSection(u8 sector, struct SaveSection *section)
 
 u16 CalculateChecksum(void *data, u16 size)
 {
-    u16 i;
+    u32 i;
     u32 checksum = 0;
 
     for (i = 0; i < (size / 4); i++)
@@ -642,7 +642,7 @@ void UpdateSaveAddresses(void)
 
 u8 HandleSavingData(u8 saveType)
 {
-    u8 i;
+    u32 i;
     u32 *backupPtr = gMain.vblankCounter1;
     u8 *tempAddr;
 

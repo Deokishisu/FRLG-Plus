@@ -385,7 +385,7 @@ void HelpSystemRenderText(u8 font, u8 * dest, const u8 * src, u8 x, u8 y, u8 wid
     // height -> sp+30
     struct Bitmap srcBlit;
     struct Bitmap destBlit;
-    u8 i;
+    u32 i;
     u8 orig_x = x;
     s32 clearPixels;
 

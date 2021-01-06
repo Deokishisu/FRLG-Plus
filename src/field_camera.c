@@ -98,8 +98,8 @@ void DrawWholeMapView(void)
 
 static void DrawWholeMapViewInternal(int x, int y, const struct MapLayout *mapLayout)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u32 r6;
     u8 temp;
 
@@ -136,7 +136,7 @@ static void RedrawMapSlicesForCameraUpdate(struct FieldCameraOffset *cameraOffse
 
 static void RedrawMapSliceNorth(struct FieldCameraOffset *cameraOffset, const struct MapLayout *mapLayout)
 {
-    u8 i;
+    u32 i;
     u8 temp;
     u32 r7;
 
@@ -155,7 +155,7 @@ static void RedrawMapSliceNorth(struct FieldCameraOffset *cameraOffset, const st
 
 static void RedrawMapSliceSouth(struct FieldCameraOffset *cameraOffset, const struct MapLayout *mapLayout)
 {
-    u8 i;
+    u32 i;
     u8 temp;
     u32 r7 = cameraOffset->yTileOffset * 32;
 
@@ -170,7 +170,7 @@ static void RedrawMapSliceSouth(struct FieldCameraOffset *cameraOffset, const st
 
 static void RedrawMapSliceEast(struct FieldCameraOffset *cameraOffset, const struct MapLayout *mapLayout)
 {
-    u8 i;
+    u32 i;
     u8 temp;
     u32 r6 = cameraOffset->xTileOffset;
 
@@ -185,7 +185,7 @@ static void RedrawMapSliceEast(struct FieldCameraOffset *cameraOffset, const str
 
 static void RedrawMapSliceWest(struct FieldCameraOffset *cameraOffset, const struct MapLayout *mapLayout)
 {
-    u8 i;
+    u32 i;
     u8 temp;
     u8 r5 = cameraOffset->xTileOffset + 28;
 

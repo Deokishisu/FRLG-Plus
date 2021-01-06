@@ -176,7 +176,7 @@ static bool32 TryWipeDamagedSectors(void)
 static bool16 VerifySectorWipe(u32 sector)
 {
     u16 sector0 = sector;
-    u16 i;
+    u32 i;
     u32 *saveDataBuffer = (void *)&gSaveDataBuffer;
     ReadFlash(sector0, 0, saveDataBuffer, 0x1000);
     for (i = 0; i < 0x1000 / sizeof(u32); i++, saveDataBuffer++)

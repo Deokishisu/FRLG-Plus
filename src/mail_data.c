@@ -8,7 +8,7 @@
 
 void ClearMailData(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAIL_COUNT; i++)
         ClearMailStruct(&gSaveBlock1Ptr->mail[i]);

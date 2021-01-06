@@ -506,7 +506,7 @@ bool8 CheckNuzlockeDupeFlags(u16 species)
 
 bool8 IsWildMonNuzlockeDupe(u16 species)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < EVOS_PER_LINE; i++)
     {   
         if (CheckNuzlockeDupeFlags(SpeciesToNationalPokedexNum(gEvolutionLines[species][i])))
@@ -678,7 +678,7 @@ static u16 GetSumOfPlayerPartyLevel(u8 numMons)
 
 static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
 {
-    u8 i;
+    u32 i;
     u8 sum;
     u32 count = numMons;
     s8 levelScaling = GetScaledLevel();

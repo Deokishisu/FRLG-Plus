@@ -189,8 +189,8 @@ void PopulateBoxHpAndStatusToPartyMon(struct Pokemon *mon)
 
 u16 GetFirstAliveBoxMon(void)
 {
-    u16 i;
-    u16 j;
+    u32 i;
+    u32 j;
 
     for (i = 0; i < TOTAL_BOXES_COUNT; i++)
     {
@@ -952,7 +952,7 @@ void InitCanReleaseMonVars(void)
 
 s8 RunCanReleaseMon(void)
 {
-    u16 i;
+    u32 i;
     u16 knownMoves;
 
     if (gPSSData->field_216D)

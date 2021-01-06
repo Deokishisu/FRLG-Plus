@@ -1976,7 +1976,7 @@ static void BuildAndPrintMainTopicsListMenu(struct HelpSystemListMenu * helpList
 
 static void BuildMainTopicsListAndMoveToH00(struct HelpSystemListMenu * helpListMenu, struct ListMenuItem * listMenuItemsBuffer)
 {
-    u8 i;
+    u32 i;
     u8 totalItems = 0;
     for (i = 0; i < TOPIC_COUNT; i++)
     {
@@ -2011,7 +2011,7 @@ static void SetHelpSystemSubmenuItems(struct HelpSystemListMenu * helpListMenu, 
 {
     u8 totalItems = 0;
     const u8 * submenuItems = sHelpSystemSubmenuItemLists[sHelpSystemContextId * 5 + gHelpSystemState[1]]; // accessing as 2D array
-    u8 i;
+    u32 i;
     for (i = 0; submenuItems[i] != HELP_END; i++)
     {
         if (IsHelpSystemSubmenuEnabled(submenuItems[i]) == TRUE)

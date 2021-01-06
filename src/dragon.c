@@ -323,7 +323,7 @@ void AnimTask_DragonDanceWaver(u8 taskId)
 {
     struct ScanlineEffectParams sp;
     struct Task *task = &gTasks[taskId];
-    u16 i;
+    u32 i;
     u8 r1;
 
     if (GetBattlerSpriteBGPriorityRank(gBattleAnimAttacker) == 1)

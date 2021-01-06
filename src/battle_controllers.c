@@ -484,7 +484,7 @@ static void Task_HandleSendLinkBuffersData(u8 taskId)
 
 void sub_800DD28(void)
 {
-    u8 i;
+    u32 i;
     s32 j;
     u8 *recvBuffer;
 

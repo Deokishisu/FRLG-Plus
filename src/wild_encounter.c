@@ -199,7 +199,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon * info)
 
 static u16 GetCurrentMapWildMonHeaderId(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; ; i++)
     {
@@ -745,7 +745,7 @@ bool8 UpdateRepelCounter(void)
 
 static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
-    u8 i;
+    u32 i;
 
     if (!VarGet(VAR_REPEL_STEP_COUNT))
         return TRUE;

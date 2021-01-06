@@ -50,7 +50,7 @@ void SelectMoveDeleterMove(void)
 
 void GetNumMovesSelectedMonHas(void)
 {
-    u8 i;
+    u32 i;
 
     gSpecialVar_Result = 0;
     for (i = 0; i < MAX_MON_MOVES; ++i)
@@ -91,7 +91,7 @@ static void ShiftMoveSlot(struct Pokemon *mon, u8 slotTo, u8 slotFrom)
 
 void MoveDeleterForgetMove(void)
 {
-    u16 i;
+    u32 i;
 
     SetMonMoveSlot(&gPlayerParty[gSpecialVar_0x8004], MOVE_NONE, gSpecialVar_0x8005);
     RemoveMonPPBonus(&gPlayerParty[gSpecialVar_0x8004], gSpecialVar_0x8005);

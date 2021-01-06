@@ -558,7 +558,7 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
 
 void RecalculatePartyStats(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < gPlayerPartyCount; i++)
     {
         CalculateMonStats(&gPlayerParty[i], FALSE);
@@ -628,7 +628,7 @@ void IsChallengeModeToVarResult(void)
 
 void FillBagsTest(void)
 {
-    u16 i;
+    u32 i;
     //pokeballs
     for(i = 1; i < 13; i++)
     {

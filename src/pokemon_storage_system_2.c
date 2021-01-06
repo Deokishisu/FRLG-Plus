@@ -133,7 +133,7 @@ static u8 CountMonsInBox(u8 boxId)
 
 s16 GetFirstFreeBoxSpot(u8 boxId)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < IN_BOX_COUNT; i++)
     {
@@ -211,7 +211,7 @@ static u8 *StringCopyAndFillWithSpaces(u8 *dst, const u8 *src, u16 n)
 
 static void sub_808C25C(u16 *dest, u16 dest_left, u16 dest_top, const u16 *src, u16 src_left, u16 src_top, u16 dest_width, u16 dest_height, u16 src_width)
 {
-    u16 i;
+    u32 i;
 
     dest_width *= 2;
     dest += dest_top * 0x20 + dest_left;
@@ -226,7 +226,7 @@ static void sub_808C25C(u16 *dest, u16 dest_left, u16 dest_top, const u16 *src, 
 
 static void sub_808C2D8(u16 *dest, u16 dest_left, u16 dest_top, u16 width, u16 height)
 {
-    u16 i;
+    u32 i;
 
     dest += dest_top * 0x20 + dest_left;
     width *= 2;
@@ -517,7 +517,7 @@ static const union AffineAnimCmd *const gUnknown_83CDA90[] = {
 
 static void sub_808C9C4(u8 curBox)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
     struct SpriteTemplate template;
     struct OamData oamData = {};
@@ -576,7 +576,7 @@ static void sub_808C9C4(u8 curBox)
 
 static void sub_808CBA4(void)
 {
-    u16 i;
+    u32 i;
     if (sBoxSelectionPopupSpriteManager->unk_0000)
     {
         DestroySprite(sBoxSelectionPopupSpriteManager->unk_0000);

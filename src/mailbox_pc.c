@@ -46,7 +46,7 @@ static const u8 sString_Dummy[] = _("");
 
 bool8 MailboxPC_InitBuffers(u8 num)
 {
-    u8 i;
+    u32 i;
 
     sListMenuItems = Alloc(sizeof(struct ListMenuItem) * (num + 1));
     if (sListMenuItems == NULL)
@@ -93,7 +93,7 @@ static void ItemPrintFunc(u8 windowId, s32 itemId, u8 y)
 
 u8 MailboxPC_InitListMenu(struct PlayerPCItemPageStruct * playerPcStruct)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < playerPcStruct->count; i++)
     {
         sListMenuItems[i].label = sString_Dummy;

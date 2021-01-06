@@ -1731,8 +1731,8 @@ void InitRegionMapWithExitCB(u8 type, MainCallback cb)
 
 static void InitRegionMapType(void)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     u8 region;
 
     switch (sRegionMap->type)
@@ -2217,8 +2217,8 @@ static void ClearMapsecNameText(void)
 
 static void BufferRegionMapBg(u8 bg, u16 *map)
 {
-    s16 i;
-    s16 j;
+    s32 i;
+    s32 j;
     u8 whichMap;
     u16 *buffer = sRegionMap->bgTilemapBuffers[bg];
     for (i = 0; i < 20; i++)
@@ -2462,8 +2462,8 @@ static bool8 sub_80C12EC(void)
 
 static void LoadSwitchMapTilemap(u8 bg, u16 *map)
 {
-    s16 i;
-    s16 j;
+    s32 i;
+    s32 j;
     u16 *buffer = sRegionMap->bgTilemapBuffers[bg];
     for (i = 0; i < 20; i++)
     {
@@ -2627,7 +2627,7 @@ static void CreateSwitchMapCursorSubsprite_(u8 whichSprite, u16 tileTag, u16 pal
 
 static void FreeSwitchMapCursor(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sSwitchMapMenu->cursorSubsprite); i++)
     {
         if (sSwitchMapMenu->cursorSubsprite[i].sprite != NULL)
@@ -2641,7 +2641,7 @@ static void FreeSwitchMapCursor(void)
 
 static const u8 *GetDungeonFlavorText(u16 mapsec)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sDungeonInfo); i++)
     {
         if (sDungeonInfo[i].id == mapsec)
@@ -2652,7 +2652,7 @@ static const u8 *GetDungeonFlavorText(u16 mapsec)
 
 static const u8 *GetDungeonName(u16 mapsec)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sDungeonInfo); i++)
     {
         if (sDungeonInfo[i].id == mapsec)
@@ -2940,7 +2940,7 @@ static void CreateMapEdgeSprite(u8 mapEdgeNum, u8 tileTag, u8 palTag)
 
 static void InitMapOpenAnim(u8 taskId, TaskFunc taskFunc)
 {
-    u8 i;
+    u32 i;
 
     sMapOpenCloseAnim = AllocZeroed(sizeof(struct MapOpenCloseAnim));
     for (i = 0; i < NELEMS(sMapOpenCloseAnim->mapEdges); i++)
@@ -2959,7 +2959,7 @@ static void InitMapOpenAnim(u8 taskId, TaskFunc taskFunc)
 
 static void SetMapEdgeInvisibility(u8 mapEdgeNum, bool8 invisible)
 {
-    u8 i;
+    u32 i;
     if (mapEdgeNum == NELEMS(sMapOpenCloseAnim->mapEdges))
     {
         for (i = 0; i < NELEMS(sMapOpenCloseAnim->mapEdges); i++)
@@ -3050,7 +3050,7 @@ static void FinishMapOpenAnim(u8 taskId)
 
 static void FreeMapOpenCloseAnim(void)
 {
-    u8 i;
+    u32 i;
     FreeMapEdgeSprites();
     for (i = 0; i < NELEMS(sMapOpenCloseAnim->mapEdges); i++)
     {
@@ -3061,7 +3061,7 @@ static void FreeMapOpenCloseAnim(void)
 
 static void FreeMapEdgeSprites(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sMapOpenCloseAnim->mapEdges); i++)
     {
         sMapOpenCloseAnim->mapEdges[i]->x = sMapOpenCloseAnim->mapEdges[i]->sprite->pos1.x;
@@ -4340,7 +4340,7 @@ static void CreateDungeonIcons(void)
 
 static void SetFlyIconInvisibility(u8 whichMap, u8 iconNum, bool8 invisible)
 {
-    u8 i;
+    u32 i;
     if (iconNum == NELEMS(sMapIcons->flyIcons))
     {
         // Set for all fly icons
@@ -4359,7 +4359,7 @@ static void SetFlyIconInvisibility(u8 whichMap, u8 iconNum, bool8 invisible)
 
 static void SetDungeonIconInvisibility(u8 whichMap, u8 iconNum, bool8 invisible)
 {
-    u8 i;
+    u32 i;
     if (iconNum == NELEMS(sMapIcons->dungeonIcons))
     {
         // Set for all dungeon icons
@@ -4378,7 +4378,7 @@ static void SetDungeonIconInvisibility(u8 whichMap, u8 iconNum, bool8 invisible)
 
 static void FreeMapIcons(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sMapIcons->flyIcons); i++)
     {
         if (sMapIcons->flyIcons[i].sprite != NULL)
@@ -4436,7 +4436,7 @@ static bool8 SetRegionMapGpuRegs(u8 idx)
 
 static void FreeRegionMapGpuRegs(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sRegionMapGpuRegs); i++)
         FREE_IF_NOT_NULL(sRegionMapGpuRegs[i]);
 }
@@ -4534,7 +4534,7 @@ static bool32 IsCeladonDeptStoreMapsec(u16 mapsec)
 u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
 {
     u8 *dst;
-    u16 i;
+    u32 i;
     u16 idx;;
     if ((idx = mapsec) < MAPSEC_NONE )
     {

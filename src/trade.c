@@ -2187,7 +2187,7 @@ static u8 GetNicknameStringWidthByPartyAndMonIdx(u8 *dest, u8 whichParty, u8 par
 static void BuildMovesString(u8 *movesString, u8 whichParty, u8 whichMon)
 {
     u16 moves[MAX_MON_MOVES];
-    u16 i;
+    u32 i;
 
     if (!sTradeMenuResourcesPtr->eggFlags[whichParty][whichMon])
     {

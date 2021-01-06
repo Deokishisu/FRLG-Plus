@@ -115,7 +115,7 @@ static u16 EasyChat_GetNumWordsInGroup(u8 groupId)
 
 static bool8 IsECWordInvalid(u16 easyChatWord)
 {
-    u16 i;
+    u32 i;
     u8 groupId;
     u32 index;
     u16 numWords;
@@ -343,7 +343,7 @@ void EnableRareWord(u8 additionalPhraseId)
 
 static u8 GetNumUnlockedTrendySayings(void)
 {
-    u8 i;
+    u32 i;
     u8 numAdditionalPhrasesUnlocked;
 
     for (i = 0, numAdditionalPhrasesUnlocked = 0; i < 33; i++)
@@ -357,7 +357,7 @@ static u8 GetNumUnlockedTrendySayings(void)
 
 static u16 UnlockRandomTrendySaying(void)
 {
-    u16 i;
+    u32 i;
     u16 additionalPhraseId;
     u8 numAdditionalPhrasesUnlocked = GetNumUnlockedTrendySayings();
     if (numAdditionalPhrasesUnlocked == 33)
@@ -385,7 +385,7 @@ static u16 UnlockRandomTrendySaying(void)
 
 static u16 GetRandomUnlockedTrendySaying(void)
 {
-    u16 i;
+    u32 i;
     u16 additionalPhraseId = GetNumUnlockedTrendySayings();
     if (additionalPhraseId == 0)
         return EC_WORD_UNDEFINED;
@@ -412,7 +412,7 @@ static bool8 EC_IsNationalPokedexEnabled(void)
 
 static u16 GetRandomECPokemon(void)
 {
-    u16 i;
+    u32 i;
     u16 numWords;
     const u16 *species;
     u16 index = EasyChat_GetNumWordsInGroup(EC_GROUP_POKEMON_2);
@@ -531,7 +531,7 @@ u8 GetSelectedGroupByIndex(u8 index)
 
 static u8 *unref_sub_80BDF6C(u8 *dest, u8 groupId, u16 totalChars)
 {
-    u16 i;
+    u32 i;
     u8 *str = StringCopy(dest, sEasyChatGroupNamePointers[groupId]);
     for (i = str - dest; i < totalChars; i++)
     {
@@ -550,7 +550,7 @@ const u8 *GetEasyChatWordGroupName(u8 groupId)
 
 u8 *CopyEasyChatWordPadded(u8 *dest, u16 easyChatWord, u16 totalChars)
 {
-    u16 i;
+    u32 i;
     u8 *str = CopyEasyChatWord(dest, easyChatWord);
     for (i = str - dest; i < totalChars; i++)
     {
@@ -630,7 +630,7 @@ u16 GetNumDisplayedWords(void)
 
 static u16 GetUnlockedWordsInECGroup(u16 groupId)
 {
-    u16 i;
+    u32 i;
     u16 totalWords;
     const u16 *list;
     const struct EasyChatWordInfo * wordInfo;
@@ -664,7 +664,7 @@ static u16 GetUnlockedWordsInECGroup(u16 groupId)
 
 static u16 GetUnlockedWordsInAlphabeticalGroup(u16 alphabeticalGroup)
 {
-    u16 i;
+    u32 i;
     u16 totalWords;
 
     for (i = 0, totalWords = 0; i < sEasyChatSelectionData->alphabeticalGroups[alphabeticalGroup]; i++)

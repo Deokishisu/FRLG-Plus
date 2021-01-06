@@ -411,7 +411,7 @@ static const struct SpriteTemplate sSpriteTemplate_BerryPouch = {
 
 void InitBerryPouch(u8 type, void (*savedCallback)(void), u8 allowSelect)
 {
-    u8 i;
+    u32 i;
 
     sResources = Alloc(sizeof(struct BerryPouchStruct_203F36C));
     if (sResources == NULL)
@@ -649,7 +649,7 @@ static bool8 AllocateListMenuBuffers(void)
 
 static void SetUpListMenuTemplate(void)
 {
-    u16 i;
+    u32 i;
     struct BagPocket *pocket = &gBagPockets[POCKET_BERRY_POUCH - 1];
     for (i = 0; i < sResources->listMenuNumItems; i++)
     {
@@ -831,7 +831,7 @@ static void SanitizeListMenuSelectionParams(void)
 static void UpdateListMenuScrollOffset(void)
 {
     u8 lim;
-    u8 i;
+    u32 i;
     if (sStaticCnt.type != BERRYPOUCH_FROMBERRYCRUSH)
         lim = sResources->listMenuNumItems + 1;
     else
@@ -881,7 +881,7 @@ static void Task_BerryPouchFadeToExitCallback(u8 taskId)
 
 static void SortAndCountBerries(void)
 {
-    u16 i;
+    u32 i;
     u32 r2;
     struct BagPocket *pocket = &gBagPockets[POCKET_BERRY_POUCH - 1];
     SortAndCompactBagPocket(pocket);
@@ -1408,7 +1408,7 @@ static void Task_SellBerries_WaitButton(u8 taskId)
 
 static void BerryPouchInitWindows(void)
 {
-    u8 i;
+    u32 i;
     InitWindows(sWindowTemplates_Main);
     DeactivateAllTextPrinters();
     TextWindow_SetUserSelectedFrame(0, 0x001, 0xE0);

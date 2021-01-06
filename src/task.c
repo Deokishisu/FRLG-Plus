@@ -11,7 +11,7 @@ static u8 FindFirstActiveTask();
 
 void ResetTasks(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_TASKS; i++)
     {
@@ -29,7 +29,7 @@ void ResetTasks(void)
 
 u8 CreateTask(TaskFunc func, u8 priority)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_TASKS; i++)
     {
@@ -169,7 +169,7 @@ void SwitchTaskToFollowupFunc(u8 taskId)
 
 bool8 FuncIsActiveTask(TaskFunc func)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_TASKS; i++)
         if (gTasks[i].isActive == TRUE && gTasks[i].func == func)
@@ -191,7 +191,7 @@ u8 FindTaskIdByFunc(TaskFunc func)
 
 u8 GetTaskCount(void)
 {
-    u8 i;
+    u32 i;
     u8 count = 0;
 
     for (i = 0; i < NUM_TASKS; i++)

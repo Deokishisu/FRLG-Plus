@@ -816,7 +816,7 @@ void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent)
         else
         {
             u32 var;
-            u8 i;
+            u32 i;
 
             if (GetBattlerSide(gSprites[healthboxSpriteId].data[6]) == B_SIDE_PLAYER)
             {
@@ -864,7 +864,7 @@ static void UpdateHpTextInHealthboxInDoubles(u8 healthboxSpriteId, s16 value, u8
         u8 var = 4;
         u8 r7;
         u8 *txtPtr;
-        u8 i;
+        u32 i;
 
         if (maxOrCurrent == HP_CURRENT)
             var = 0;
@@ -1905,7 +1905,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar)
     u8 array[8];
     u8 filledPixelsCount, level;
     u8 barElementId;
-    u8 i;
+    u32 i;
 
     switch (whichBar)
     {
@@ -2040,7 +2040,7 @@ static s32 CalcNewBarValue(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *c
 static u8 CalcBarFilledPixels(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *currValue, u8 *arg4, u8 scale)
 {
     u8 pixels, filledPixels, totalPixels;
-    u8 i;
+    u32 i;
 
     s32 newValue = oldValue - receivedValue;
     if (newValue < 0)
@@ -2121,7 +2121,7 @@ static void sub_804A510(struct TestingBar *barInfo, s32 *currValue, u8 bg, u8 x,
 {
     u8 spC[B_HEALTHBAR_PIXELS / 8];
     u16 tiles[B_HEALTHBAR_PIXELS / 8];
-    u8 i;
+    u32 i;
 
     CalcBarFilledPixels(barInfo->maxValue,
                         barInfo->oldValue,

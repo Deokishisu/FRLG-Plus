@@ -1494,7 +1494,7 @@ void DrawLevelUpWindowPg1(u16 windowId, u16 *beforeStats, u16 *afterStats, u8 bg
     s16 diffStats[6];
     u8 textbuf[12];
     u8 textColor[3];
-    u16 i;
+    u32 i;
     u8 x;
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(bgColor));
@@ -1527,7 +1527,7 @@ void DrawLevelUpWindowPg2(u16 windowId, u16 *currStats, u8 bgColor, u8 fgColor, 
     s16 statsRearrange[6];
     u8 textbuf[12];
     u8 textColor[3];
-    u16 i;
+    u32 i;
     u8 ndigits;
     u16 x;
 

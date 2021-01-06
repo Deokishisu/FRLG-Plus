@@ -1298,7 +1298,7 @@ static void OakOldManHandleGetRawMonData(void)
 static void OakOldManHandleSetMonData(void)
 {
     u8 monToCheck;
-    u8 i;
+    u32 i;
 
     if (gBattleBufferA[gActiveBattler][2] == 0)
     {

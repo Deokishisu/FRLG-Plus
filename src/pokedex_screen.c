@@ -2221,7 +2221,7 @@ s8 sub_8104AB0(u16 nationalDexNo, u8 caseId, bool8 indexIsSpecies)
 static u16 sub_8104BBC(u8 caseId, bool8 whichDex)
 {
     u16 count = 0;
-    u16 i;
+    u32 i;
 
     switch (whichDex)
     {

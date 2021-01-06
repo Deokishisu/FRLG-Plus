@@ -53,7 +53,7 @@ void sub_8112F18(u8 windowId)
     u8* buffer;
     u8 i, j;
     u8 width, height;
-    u8 k;
+    u32 k;
 
     width = (u8)GetWindowAttribute(windowId, WINDOW_WIDTH);
     height = (u8)GetWindowAttribute(windowId, WINDOW_HEIGHT);

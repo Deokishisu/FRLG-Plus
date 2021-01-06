@@ -673,7 +673,7 @@ static bool8 ECInterfaceCmd_01(void)
 
 static bool8 ECInterfaceCmd_02(void)
 {
-    u8 i;
+    u32 i;
     u16 *ecWordBuffer;
     u16 *ecWord;
     u8 frameId;

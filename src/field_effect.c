@@ -486,7 +486,7 @@ void FieldEffectStop(struct Sprite * sprite, u8 fldeff)
 
 static void FieldEffectFreeTilesIfUnused(u16 tileStart)
 {
-    u8 i;
+    u32 i;
     u16 tileTag = GetSpriteTileTagByTileStart(tileStart);
     if (tileTag == SPRITE_INVALID_TAG)
         return;
@@ -500,7 +500,7 @@ static void FieldEffectFreeTilesIfUnused(u16 tileStart)
 
 static void FieldEffectFreePaletteIfUnused(u8 paletteNum)
 {
-    u8 i;
+    u32 i;
     u16 paletteTag = GetSpritePaletteTagByPaletteNum(paletteNum);
     if (paletteTag == SPRITE_INVALID_TAG)
         return;
@@ -514,7 +514,7 @@ static void FieldEffectFreePaletteIfUnused(u8 paletteNum)
 
 void FieldEffectActiveListClear(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < FIELD_EFFECT_COUNT; i++)
     {
         sFieldEffectActiveList[i] = 0xFF;
@@ -523,7 +523,7 @@ void FieldEffectActiveListClear(void)
 
 static void FieldEffectActiveListAdd(u8 fldeff)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < FIELD_EFFECT_COUNT; i++)
     {
         if (sFieldEffectActiveList[i] == 0xFF)
@@ -536,7 +536,7 @@ static void FieldEffectActiveListAdd(u8 fldeff)
 
 void FieldEffectActiveListRemove(u8 fldeff)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < FIELD_EFFECT_COUNT; i++)
     {
         if (sFieldEffectActiveList[i] == fldeff)
@@ -549,7 +549,7 @@ void FieldEffectActiveListRemove(u8 fldeff)
 
 bool8 FieldEffectActiveListContains(u8 fldeff)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < FIELD_EFFECT_COUNT; i++)
     {
         if (sFieldEffectActiveList[i] == fldeff)
@@ -2640,7 +2640,7 @@ static void VBlankCB_ShowMonEffect_Outdoors(void)
 
 static void LoadFieldMoveStreaksTilemapToVram(u16 screenbase)
 {
-    u16 i;
+    u32 i;
     u16 *dest;
     dest = (u16 *)(VRAM + (10 * 32) + screenbase);
     for (i = 0; i < (10 * 32); i++, dest++)
@@ -2764,7 +2764,7 @@ static void sub_8086728(struct Task * task)
 
 static bool8 sub_8086738(struct Task * task)
 {
-    u16 i;
+    u32 i;
     u16 srcOffs;
     u16 dstOffs;
     u16 *dest;
@@ -2793,7 +2793,7 @@ static bool8 sub_8086738(struct Task * task)
 
 static bool8 sub_80867F0(struct Task * task)
 {
-    u16 i;
+    u32 i;
     u16 dstOffs;
     u16 *dest;
     if (task->data[4] >= 32)

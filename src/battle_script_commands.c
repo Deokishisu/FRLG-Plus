@@ -3529,7 +3529,7 @@ static void atk2C_jumpifarrayequal(void)
     const u8 *mem2 = T2_READ_PTR(gBattlescriptCurrInstr + 5);
     u32 size = gBattlescriptCurrInstr[9];
     const u8 *jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 10);
-    u8 i;
+    u32 i;
 
     for (i = 0; i < size; ++i)
     {
@@ -3551,7 +3551,7 @@ static void atk2D_jumpifarraynotequal(void)
     const u8 *mem2 = T2_READ_PTR(gBattlescriptCurrInstr + 5);
     u32 size = gBattlescriptCurrInstr[9];
     const u8 *jumpPtr = T2_READ_PTR(gBattlescriptCurrInstr + 10);
-    u8 i;
+    u32 i;
 
     for (i = 0; i < size; ++i)
     {
@@ -6627,7 +6627,7 @@ static void atk8F_forcerandomswitch(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        u8 i;
+        u32 i;
         struct Pokemon *party;
         u8 valid;
         u8 val;
@@ -9094,7 +9094,7 @@ static void atkEF_handleballthrow(void)
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
                 if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
                 {
-                    u8 i;
+                    u32 i;
                     if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
                     {
                         u16 zeroHP = 0;

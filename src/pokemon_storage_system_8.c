@@ -377,7 +377,7 @@ u16 GetMovingItem(void)
 
 static u8 sub_80961D8(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_ITEM_ICONS; i++)
     {
@@ -408,7 +408,7 @@ static bool32 sub_8096210(u8 cursorArea, u8 cursorPos)
 
 static u8 sub_8096258(u8 cursorArea, u8 cursorPos)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_ITEM_ICONS; i++)
     {
@@ -423,7 +423,7 @@ static u8 sub_8096258(u8 cursorArea, u8 cursorPos)
 
 static u8 sub_80962A8(struct Sprite *sprite)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_ITEM_ICONS; i++)
     {

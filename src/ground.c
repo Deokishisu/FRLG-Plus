@@ -540,7 +540,7 @@ static void AnimDigDirtMound(struct Sprite *sprite)
 
 void AnimTask_HorizontalShake(u8 taskId)
 {
-    u16 i;
+    u32 i;
     struct Task *task = &gTasks[taskId];
 
     if (gBattleAnimArgs[1])
@@ -632,7 +632,7 @@ static void sub_80B9584(u8 taskId)
 
 static void sub_80B967C(u8 taskId)
 {
-    u16 i;
+    u32 i;
     struct Task *task = &gTasks[taskId];
 
     switch (task->data[0])

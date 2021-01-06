@@ -1513,7 +1513,7 @@ static void sub_81351A0(u8 taskId)
 
 static void sub_813546C(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 11; i++)
     {
         sUnknown_203B160->unk2C[i] = (8 * i) + 396;
@@ -1528,7 +1528,7 @@ static void sub_813546C(void)
 
 static void sub_81354C4(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 11; i++)
     {
         sUnknown_203B160->unk2C[i] = (8 * i) + 156;
@@ -1729,7 +1729,7 @@ static u8 sub_81357A0(u8 a0)
 
 static void sub_81358DC(u8 a0, u8 a1)
 {
-    u8 i;
+    u32 i;
     u32 bg0Priority;
     u32 bg1Priority;
     u32 bg2Priority;
@@ -2361,7 +2361,7 @@ static void sub_8136350(void)
 
 static void sub_81367B0(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 4; i++)
         sub_81367E8(i);
@@ -2632,7 +2632,7 @@ static void sub_81370EC(void)
 
 static void sub_8137270(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 4; i++)
         sub_81372E4(i);
@@ -3056,7 +3056,7 @@ static void sub_8137C18(void)
 
 static void sub_8137C90(void)
 {
-    u8 i;
+    u32 i;
 
     FillWindowPixelBuffer(sMonSummaryScreen->unk3000[5], 0);
 
@@ -3149,7 +3149,7 @@ static void sub_8137EE8(void)
 
 static void sub_8137F00(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 11; i++)
     {
@@ -3172,7 +3172,7 @@ static void sub_8137F00(void)
 
 static void sub_8137F68(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 11; i++)
     {
@@ -3289,7 +3289,7 @@ static void sub_81381C0(void)
 
 static void sub_81381D0(void)
 {
-    u8 i;
+    u32 i;
 
     InitWindows(sUnknown_8463F9C);
 
@@ -3316,7 +3316,7 @@ static void sub_81381D0(void)
 
 static void sub_8138280(u8 curPageIndex)
 {
-    u8 i;
+    u32 i;
     u32 bgPriority1 = GetGpuReg(REG_OFFSET_BG1CNT) & 3;
     u32 bgPriority2 = GetGpuReg(REG_OFFSET_BG2CNT) & 3;
 
@@ -3362,7 +3362,7 @@ static void sub_8138280(u8 curPageIndex)
 
 static void sub_8138414(u8 curPageIndex)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 7; i++)
         RemoveWindow(sMonSummaryScreen->unk3000[i]);
@@ -3388,7 +3388,7 @@ static void sub_8138440(void)
 
 static u8 sub_813847C(struct Pokemon * mon)
 {
-    u8 i;
+    u32 i;
     u8 multiplayerId;
     u32 trainerId = 0;
 
@@ -3642,7 +3642,7 @@ static u8 sub_8138C5C(u32 status)
 
 static void sub_8138CD8(u8 id)
 {
-    u8 i;
+    u32 i;
 
     switch (sMonSummaryScreen->unk3288)
     {
@@ -3925,7 +3925,7 @@ static u8 sub_8139388(void)
 
 static void sub_81393D4(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     switch (sMonSummaryScreen->unk3288)
     {
@@ -4335,7 +4335,7 @@ static void sub_8139F20(void)
 
 static void sub_8139F64(u16 tileTag, u16 palTag)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     void * gfxBufferPtrs[2];
     gfxBufferPtrs[0] = AllocZeroed(0x20 * 64);
@@ -4390,14 +4390,14 @@ static void sub_8139F64(u16 tileTag, u16 palTag)
 
 static void sub_813A0E8(u8 invisible)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 4; i++)
         sUnknown_203B148[i]->sprite->invisible = invisible;
 }
 
 static void sub_813A124(struct Sprite * sprite)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 4; i++)
     {
@@ -4440,7 +4440,7 @@ static void sub_813A124(struct Sprite * sprite)
 
 static void sub_813A21C(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 4; i++)
     {
@@ -4542,7 +4542,7 @@ static void sub_813A3B8(u8 invisible)
 
 static void sub_813A45C(u16 tileTag, u16 palTag)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     void * gfxBufferPtr;
     u32 curHp;
@@ -4610,7 +4610,7 @@ static void sub_813A45C(u16 tileTag, u16 palTag)
 static void sub_813A620(void)
 {
     u8 numWholeHpBarTiles = 0;
-    u8 i;
+    u32 i;
     u8 animNum;
     u8 two = 2;
     u8 hpBarPalOffset = 0;
@@ -4683,7 +4683,7 @@ static void sub_813A620(void)
 
 static void sub_813A800(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 9; i++)
         if (sUnknown_203B15C->sprites[i] != NULL)
@@ -4694,7 +4694,7 @@ static void sub_813A800(void)
 
 static void sub_813A838(u8 invisible)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 9; i++)
         sUnknown_203B15C->sprites[i]->invisible = invisible;
@@ -4702,7 +4702,7 @@ static void sub_813A838(u8 invisible)
 
 static void sub_813A874(u16 tileTag, u16 palTag)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     void * gfxBufferPtr;
 
@@ -4752,7 +4752,7 @@ static void sub_813A874(u16 tileTag, u16 palTag)
 static void sub_813A994(void)
 {
     u8 numWholeExpBarTiles = 0;
-    u8 i;
+    u32 i;
     u8 level;
     u32 exp;
     u32 totalExpToNextLevel;
@@ -4815,7 +4815,7 @@ static void sub_813A994(void)
 
 static void sub_813AB38(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 11; i++)
         if (sUnknown_203B160->sprites[i] != NULL)
@@ -4826,7 +4826,7 @@ static void sub_813AB38(void)
 
 static void sub_813AB70(u8 invisible)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 11; i++)
         sUnknown_203B160->sprites[i]->invisible = invisible;
@@ -5177,7 +5177,7 @@ static s8 sub_813B348(u8 a0)
 static s8 sub_813B38C(s8 a0)
 {
     u8 v0 = 0;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
         if (sUnknown_8463FB8[i] == GetLastViewedMonIndex())

@@ -120,7 +120,7 @@ static u8 PlayerGainRandomTrainerFan(struct TrainerFanClub *fanClub)
             FANCLUB_MEMBER3
         };
 
-    u8 i;
+    u32 i;
     u8 idx = 0;
 
     for (i = 0; i < NUM_TRAINER_FAN_CLUB_MEMBERS; i++)
@@ -154,7 +154,7 @@ static u8 PlayerLoseRandomTrainerFan(struct TrainerFanClub *fanClub)
             FANCLUB_MEMBER3
         };
 
-    u8 i;
+    u32 i;
     u8 idx = 0;
 
     if (GetNumFansOfPlayerInTrainerFanClub(fanClub) == 1)
@@ -187,7 +187,7 @@ u16 Script_GetNumFansOfPlayerInTrainerFanClub(void)
 static u16 GetNumFansOfPlayerInTrainerFanClub(struct TrainerFanClub *fanClub)
 {
     u8 count = 0;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_TRAINER_FAN_CLUB_MEMBERS; i++)
     {

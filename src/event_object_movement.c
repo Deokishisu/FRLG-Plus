@@ -1228,7 +1228,7 @@ static void ClearObjectEvent(struct ObjectEvent *objectEvent)
 
 static void ClearAllObjectEvents(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
         ClearObjectEvent(&gObjectEvents[i]);
@@ -1259,7 +1259,7 @@ static void CreateReflectionEffectSprites(void)
 
 u8 GetFirstInactiveObjectEventId(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (!gObjectEvents[i].active)
@@ -1289,7 +1289,7 @@ bool8 TryGetObjectEventIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroupId, u
 
 u8 GetObjectEventIdByXY(s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (gObjectEvents[i].active && gObjectEvents[i].currentCoords.x == x && gObjectEvents[i].currentCoords.y == y)
@@ -1301,7 +1301,7 @@ u8 GetObjectEventIdByXY(s16 x, s16 y)
 
 static u8 GetObjectEventIdByLocalIdAndMapInternal(u8 localId, u8 mapNum, u8 mapGroupId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (gObjectEvents[i].active && gObjectEvents[i].localId == localId && gObjectEvents[i].mapNum == mapNum && gObjectEvents[i].mapGroup == mapGroupId)
@@ -1313,7 +1313,7 @@ static u8 GetObjectEventIdByLocalIdAndMapInternal(u8 localId, u8 mapNum, u8 mapG
 
 static u8 GetObjectEventIdByLocalId(u8 localId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (gObjectEvents[i].active && gObjectEvents[i].localId == localId)
@@ -1730,7 +1730,7 @@ static void sub_805E384(struct ObjectEventTemplate *template)
 
 u8 Unref_TryInitLocalObjectEvent(u8 localId)
 {
-    u8 i;
+    u32 i;
     u8 objectEventCount;
     struct ObjectEventTemplate *template;
 
@@ -1803,7 +1803,7 @@ static void RemoveObjectEventInternal(struct ObjectEvent *objectEvent)
 
 void Unref_RemoveAllObjectEventsExceptPlayer(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -2061,7 +2061,7 @@ u8 sub_805EB44(u8 graphicsId, u8 a1, s16 x, s16 y)
 
 void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
 {
-    u8 i;
+    u32 i;
     u8 objectCount;
 
     if (gMapHeader.events != NULL)
@@ -2126,7 +2126,7 @@ static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
 
 void sub_805EDF0(s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
 
     ClearPlayerAvatarInfo();
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
@@ -2427,7 +2427,7 @@ static void LoadObjectEventPalette(u16 paletteTag)
 
 void Unused_LoadObjectEventPaletteSet(u16 *paletteTags)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; paletteTags[i] != OBJ_EVENT_PAL_TAG_NONE; i++)
     {
@@ -2464,7 +2464,7 @@ void PatchObjectPaletteRange(const u16 *paletteTags, u8 minSlot, u8 maxSlot)
 
 static u8 FindObjectEventPaletteIndexByTag(u16 tag)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; sObjectEventSpritePalettes[i].tag != OBJ_EVENT_PAL_TAG_NONE; i++)
     {
@@ -2478,7 +2478,7 @@ static u8 FindObjectEventPaletteIndexByTag(u16 tag)
 
 void LoadPlayerObjectReflectionPalette(u16 tag, u8 slot)
 {
-    u8 i;
+    u32 i;
 
     PatchObjectPalette(tag, slot);
     for (i = 0; gPlayerReflectionPaletteSets[i].tag != OBJ_EVENT_PAL_TAG_NONE; i++)
@@ -2493,7 +2493,7 @@ void LoadPlayerObjectReflectionPalette(u16 tag, u8 slot)
 
 void LoadSpecialObjectReflectionPalette(u16 tag, u8 slot)
 {
-    u8 i;
+    u32 i;
 
     sCurrentSpecialObjectPaletteTag = tag;
     PatchObjectPalette(tag, slot);
@@ -2572,7 +2572,7 @@ void ShiftStillObjectEventCoords(struct ObjectEvent *objectEvent)
 
 void UpdateObjectEventCoordsForCameraUpdate(void)
 {
-    u8 i;
+    u32 i;
     s16 dx;
     s16 dy;
 
@@ -2597,7 +2597,7 @@ void UpdateObjectEventCoordsForCameraUpdate(void)
 
 u8 GetObjectEventIdByXYZ(u16 x, u16 y, u8 z)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -2675,7 +2675,7 @@ static void CameraObject_2(struct Sprite *sprite)
 
 static struct Sprite *FindCameraObject(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_SPRITES; i++)
     {
@@ -2730,7 +2730,7 @@ void CameraObjectReset2(void)
 
 u8 CopySprite(struct Sprite *sprite, s16 x, s16 y, u8 subpriority)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_SPRITES; i++)
     {
@@ -2748,7 +2748,7 @@ u8 CopySprite(struct Sprite *sprite, s16 x, s16 y, u8 subpriority)
 
 u8 CreateCopySpriteAt(struct Sprite *sprite, s16 x, s16 y, u8 subpriority)
 {
-    s16 i;
+    s32 i;
 
     for (i = MAX_SPRITES - 1; i > -1; i--)
     {
@@ -2855,7 +2855,7 @@ static struct ObjectEventTemplate *GetObjectEventTemplateByLocalIdAndMap(u8 loca
 
 static struct ObjectEventTemplate *FindObjectEventTemplateByLocalId(u8 localId, struct ObjectEventTemplate *templates, u8 count)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < count; i++)
     {
@@ -2933,7 +2933,7 @@ void InitObjectEventPalettes(u8 palSlot)
 
 u16 GetObjectPaletteTag(u8 palSlot)
 {
-    u8 i;
+    u32 i;
 
     if (palSlot < 10)
     {
@@ -5187,7 +5187,7 @@ static bool8 IsMetatileDirectionallyImpassable(struct ObjectEvent *objectEvent, 
 
 static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
     struct ObjectEvent *curObject;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
@@ -8533,7 +8533,7 @@ static void GetGroundEffectFlags_JumpLanding(struct ObjectEvent *objEvent, u32 *
 
     if (objEvent->landingJump && !objEvent->disableJumpLandingGroundEffect)
     {
-        u8 i;
+        u32 i;
 
         for (i = 0; i < NELEMS(metatileFuncs); i++)
         {
@@ -8553,8 +8553,8 @@ static u8 ObjectEventCheckForReflectiveSurface(struct ObjectEvent *objEvent)
     // ceil div by tile width?
     s16 width = 1;
     s16 height = 2;
-    s16 i;
-    s16 j;
+    s32 i;
+    s32 j;
     u8 result;
     u8 b;
     s16 one;
@@ -8982,7 +8982,7 @@ static void (*const sGroundEffectFuncs[])(struct ObjectEvent *objEvent, struct S
 
 static void DoFlaggedGroundEffects(struct ObjectEvent *objEvent, struct Sprite *sprite, u32 flags)
 {
-    u8 i;
+    u32 i;
 
     if (objEvent->localId == OBJ_EVENT_ID_CAMERA && objEvent->invisible)
         return;
@@ -9081,7 +9081,7 @@ bool8 FreezeObjectEvent(struct ObjectEvent * objectEvent)
 
 void FreezeObjectEvents(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (gObjectEvents[i].active && i != gPlayerAvatar.objectEventId)
@@ -9091,7 +9091,7 @@ void FreezeObjectEvents(void)
 
 void FreezeObjectEventsExceptOne(u8 noFreeze)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (i != noFreeze && gObjectEvents[i].active && i != gPlayerAvatar.objectEventId)
@@ -9111,7 +9111,7 @@ void UnfreezeObjectEvent(struct ObjectEvent * objectEvent)
 
 void UnfreezeObjectEvents(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         if (gObjectEvents[i].active)

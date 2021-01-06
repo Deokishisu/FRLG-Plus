@@ -130,7 +130,7 @@ static const struct SpriteSheet sArrowAndStarSpriteSheet = {
 
 void ItemUseOnFieldCB_Itemfinder(u8 taskId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 16; i++)
         gTasks[taskId].data[i] = 0;
     if (HiddenItemIsWithinRangeOfPlayer(gMapHeader.events, taskId) == TRUE)

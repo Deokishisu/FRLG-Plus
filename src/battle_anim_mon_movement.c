@@ -331,7 +331,7 @@ static void AnimTask_ShakeAndSinkMonStep(u8 taskId)
 void AnimTask_TranslateMonElliptical(u8 taskId)
 {
     u8 wavePeriod = 1;
-    u8 i;
+    u32 i;
     u8 spriteId = GetAnimBattlerSpriteId(gBattleAnimArgs[0]);
     if (gBattleAnimArgs[4] > 5)
         gBattleAnimArgs[4] = 5;

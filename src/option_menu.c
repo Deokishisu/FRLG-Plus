@@ -198,7 +198,7 @@ static void VBlankCB_OptionMenu(void)
 
 void CB2_OptionsMenuFromStartMenu(void)
 {
-    u8 i;
+    u32 i;
     
     if (gMain.savedCallback == NULL)
         gMain.savedCallback = CB2_ReturnToFieldWithOpenMenu;
@@ -556,7 +556,7 @@ static void DrawOptionMenuBg(void)
 
 static void LoadOptionMenuItemNames(void)
 {
-    u8 i;
+    u32 i;
     
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)

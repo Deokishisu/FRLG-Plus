@@ -796,7 +796,7 @@ static u8 GetTrainerStarCount(struct TrainerCard *trainerCard)
 static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
 {
     u32 playTime;
-    u8 i;
+    u32 i;
 
     trainerCard->rse.gender = gSaveBlock2Ptr->playerGender;
     trainerCard->rse.playTimeHours = gSaveBlock2Ptr->playTimeHours;
@@ -912,7 +912,7 @@ void TrainerCard_GenerateCardForLinkPlayer(struct TrainerCard *trainerCard)
 static void SetDataFromTrainerCard(void)
 {
     u32 badgeFlag;
-    u8 i;
+    u32 i;
 
     sTrainerCardDataPtr->hasPokedex = FALSE;
     sTrainerCardDataPtr->hasHofResult = FALSE;
@@ -1392,7 +1392,7 @@ static void PrintUnionStringOnCard(void)
 
 static void PrintPokemonIconsOnCard(void)
 {
-    u8 i;
+    u32 i;
     u8 paletteSlots[PARTY_SIZE];
     u8 xOffsets[PARTY_SIZE];
 
@@ -1413,7 +1413,7 @@ static void PrintPokemonIconsOnCard(void)
 
 static void LoadMonIconGfx(void)
 {
-    u8 i;
+    u32 i;
 
     CpuSet(gMonIconPalettes, sTrainerCardDataPtr->monIconPals, NELEMS(sTrainerCardDataPtr->monIconPals));
     switch (sTrainerCardDataPtr->trainerCard.monIconTint)
@@ -1440,7 +1440,7 @@ static void LoadMonIconGfx(void)
 
 static void PrintStickersOnCard(void)
 {
-    u8 i;
+    u32 i;
     u8 palSlots[4];
 
     memcpy(palSlots, sStickerPalSlots, sizeof(sStickerPalSlots));
@@ -1668,7 +1668,7 @@ static bool8 Task_BeginCardFlip(struct Task* task)
 static bool8 Task_AnimateCardFlipDown(struct Task* task)
 {
     u32 r4, r5, r10, r7, r6, var_24, r9, var;
-    s16 i;
+    s32 i;
 
     sTrainerCardDataPtr->allowDMACopy = FALSE;
     if (task->data[1] >= 77)
@@ -1794,7 +1794,7 @@ static bool8 Task_SetCardFlipped(struct Task* task)
 static bool8 Task_AnimateCardFlipUp(struct Task* task)
 {
     u32 r4, r5, r10, r7, r6, var_24, r9, var;
-    s16 i;
+    s32 i;
 
     sTrainerCardDataPtr->allowDMACopy = FALSE;
     if (task->data[1] <= 5)
@@ -1877,7 +1877,7 @@ void ShowTrainerCardInLink(u8 cardId, void (*callback)(void))
 
 static void InitTrainerCardData(void)
 {
-    u8 i;
+    u32 i;
 
     sTrainerCardDataPtr->mainState = 0;
     sTrainerCardDataPtr->timeColonBlinkTimer = gSaveBlock2Ptr->playTimeVBlanks;

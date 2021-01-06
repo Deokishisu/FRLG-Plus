@@ -199,7 +199,7 @@ static void VBlankCB_KeySystemMenu(void)
 
 void CB2_KeySystemMenuFromContinueScreen(void)
 {
-    u8 i;
+    u32 i;
     if (gMain.savedCallback == NULL)
         gMain.savedCallback = CB2_InitMainMenu; //changed to continue screen callback
     sKeySystemMenuPtr = AllocZeroed(sizeof(struct KeySystemMenu));
@@ -554,7 +554,7 @@ static void DrawKeySystemMenuBg(void)
 
 static void LoadKeySystemMenuItemNames(void)
 {
-    u8 i;
+    u32 i;
     
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     for (i = 0; i < MENUITEM_COUNT; i++)

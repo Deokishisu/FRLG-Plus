@@ -687,7 +687,7 @@ static const u8 gUnknown_835B83C[] = {
 
 static void CheckAcroBikeCollision(s16 x, s16 y, u8 metatileBehavior, u8 *collision)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NELEMS(gUnknown_835B828); i++)
     {
@@ -718,7 +718,7 @@ static void (*const gUnknown_835B844[])(struct ObjectEvent *) = {
 
 static void DoPlayerAvatarTransition(void)
 {
-    u8 i;
+    u32 i;
     u8 flags = gPlayerAvatar.transitionFlags;
 
     if (flags != 0)
@@ -1204,7 +1204,7 @@ u8 GetPlayerAvatarGenderByGraphicsId(u8 gfxId)
 
 bool8 PartyHasMonWithSurf(void)
 {
-    u8 i;
+    u32 i;
 
     if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
     {
@@ -1275,7 +1275,7 @@ static const u8 gUnknown_835B882[][3][2] = {
 
 u8 GetPlayerAvatarStateTransitionByGraphicsId(u8 graphicsId, u8 gender)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NELEMS(*gUnknown_835B882); i++)
     {
@@ -1287,7 +1287,7 @@ u8 GetPlayerAvatarStateTransitionByGraphicsId(u8 graphicsId, u8 gender)
 
 u8 GetPlayerAvatarGraphicsIdByCurrentState(void)
 {
-    u8 i;
+    u32 i;
     u8 r5 = gPlayerAvatar.flags;
 
     for (i = 0; i < NELEMS(*gUnknown_835B882); i++)

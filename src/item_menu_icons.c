@@ -563,7 +563,7 @@ static const void *const sItemIconGfxPtrs[][2] = {
 
 void ResetItemMenuIconState(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < NELEMS(sItemMenuIconSpriteIds); i++)
         sItemMenuIconSpriteIds[i] = 0xFF;
@@ -612,7 +612,7 @@ static void sub_80985BC(struct Sprite * sprite)
 
 void ItemMenuIcons_CreateInsertIndicatorBarHidden(void)
 {
-    u8 i;
+    u32 i;
     u8 * ptr = &sItemMenuIconSpriteIds[1];
 
     for (i = 0; i < 9; i++)
@@ -635,7 +635,7 @@ void ItemMenuIcons_CreateInsertIndicatorBarHidden(void)
 
 void ItemMenuIcons_ToggleInsertIndicatorBarVisibility(bool8 invisible)
 {
-    u8 i;
+    u32 i;
     u8 * ptr = &sItemMenuIconSpriteIds[1];
 
     for (i = 0; i < 9; i++)
@@ -646,7 +646,7 @@ void ItemMenuIcons_ToggleInsertIndicatorBarVisibility(bool8 invisible)
 
 void ItemMenuIcons_MoveInsertIndicatorBar(s16 x, u16 y)
 {
-    u8 i;
+    u32 i;
     u8 * ptr = &sItemMenuIconSpriteIds[1];
 
     for (i = 0; i < 9; i++)
@@ -676,7 +676,7 @@ static bool8 TryAllocItemIconTilesBuffers(void)
 
 void CopyItemIconPicTo4x4Buffer(const void * src, void * dest)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 3; i++)
     {

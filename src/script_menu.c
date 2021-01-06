@@ -699,7 +699,7 @@ static u16 GetStringTilesWide(const u8 *str)
 
 static u8 GetMenuWidthFromList(const struct MenuAction * items, u8 count)
 {
-    u16 i;
+    u32 i;
     u8 width = GetStringTilesWide(items[0].text);
     u8 tmp;
 
@@ -1232,7 +1232,7 @@ void DrawSeagallopDestinationMenu(void)
     u8 cursorWidth;
     u8 fontHeight;
     u8 windowId;
-    u8 i;
+    u32 i;
     gSpecialVar_Result = SCR_MENU_UNSET;
     if (QuestLog_SchedulePlaybackCB(QLPlaybackCB_DestroyScriptMenuMonPicSprites) != TRUE)
     {

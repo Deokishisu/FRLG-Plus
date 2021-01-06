@@ -743,7 +743,7 @@ static void AnimShakeMonOrBattleTerrain(struct Sprite *sprite)
 
 static void sub_80BA320(struct Sprite *sprite)
 {
-    u8 i;
+    u32 i;
     u16 var0;
 
     if (sprite->data[3] > 0)

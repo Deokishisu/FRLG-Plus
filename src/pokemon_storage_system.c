@@ -146,7 +146,7 @@ s16 SeekToNextMonInBox(struct BoxPokemon * boxMons, s8 curIndex, u8 maxIndex, u8
     // flags:
     // bit 0: Allow eggs
     // bit 1: Search backwards
-    s16 i;
+    s32 i;
     s16 adder;
     if (flags == 0 || flags == 1)
         adder = 1;

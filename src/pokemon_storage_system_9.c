@@ -17,7 +17,7 @@ void sub_8096BE4(struct UnkStruct_2000020 *arg0, struct UnkStruct_2000028 *arg1,
 
 void sub_8096BF8(void)
 {
-    u16 i;
+    u32 i;
 
     if (gUnknown_203982C->unk_04)
     {
@@ -50,7 +50,7 @@ static bool8 sub_8096C40(u8 *dest, u16 dLeft, u16 dTop, const u8 *src, u16 sLeft
 
 static void sub_8096CDC(struct UnkStruct_2000028 *unkStruct)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < unkStruct->newField; i++)
     {
@@ -77,7 +77,7 @@ static bool8 sub_8096D14(void *dest, u16 dLeft, u16 dTop, u16 width, u16 height)
 
 static void sub_8096D70(struct UnkStruct_2000028 *unkStruct)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < unkStruct->newField; i++)
     {

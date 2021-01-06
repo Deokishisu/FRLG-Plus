@@ -527,7 +527,7 @@ static void Task_WaitFadeOnInit(u8 taskId)
 static void Task_TopMenuHandleInput(u8 taskId)
 {
     u16 cursorPos;
-    u8 i;
+    u32 i;
     struct Task *task = &gTasks[taskId];
     s16 * data = gTasks[taskId].data;
     if (FindTaskIdByFunc(Task_FCOpenOrCloseInfoBox) == 0xFF)
@@ -670,7 +670,7 @@ static void Task_FlavorTextDisplayHandleInput(u8 taskId)
     }
     if (JOY_NEW(B_BUTTON))
     {
-        u8 i;
+        u32 i;
         PlaySE(SE_SELECT);
         for (i = 0; i < 6; i++)
             SetMessageSelectorIconObjMode(sFameCheckerData->spriteIds[i], ST_OAM_OBJ_NORMAL);
@@ -727,7 +727,7 @@ static void Task_FlavorTextDisplayHandleInput(u8 taskId)
 
 static void FC_MoveSelectorCursor(u8 taskId, s8 dx, s8 dy)
 {
-    u8 i;
+    u32 i;
     s16 *data = gTasks[taskId].data;
     PlaySE(SE_M_SWAGGER2);
     gSprites[data[0]].pos1.x += dx;
@@ -814,7 +814,7 @@ static void Task_StartToCloseFameChecker(u8 taskId)
 
 static void Task_DestroyAssetsAndCloseFameChecker(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     if (!gPaletteFade.active)
     {
@@ -887,7 +887,7 @@ static void PrintUIHelp(u8 state)
 
 static void DestroyAllFlavorTextIcons(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 6; i++)
     {
         DestroySprite(&gSprites[sFameCheckerData->spriteIds[i]]);
@@ -897,7 +897,7 @@ static void DestroyAllFlavorTextIcons(void)
 static bool8 CreateAllFlavorTextIcons(u8 who)
 {
     bool8 result = FALSE;
-    u8 i;
+    u32 i;
     for (i = 0; i < 6; i++)
     {
         if ((gSaveBlock1Ptr->fameChecker[sFameCheckerData->unlockedPersons[who]].flavorTextFlags >> i) & 1)
@@ -937,7 +937,7 @@ static bool8 CreateAllFlavorTextIcons(u8 who)
 
 void ResetFameChecker(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NUM_FAMECHECKER_PERSONS; i++)
     {
         gSaveBlock1Ptr->fameChecker[i].pickState = FCPICKSTATE_NO_DRAW;
@@ -1043,7 +1043,7 @@ void UpdatePickStateFromSpecialVar8005(void)
 
 static bool8 HasUnlockedAllFlavorTextsForCurrentPerson(void)
 {
-    u8 i;
+    u32 i;
     u8 who = sFameCheckerData->unlockedPersons[FameCheckerGetCursorY()];
     for (i = 0; i < 6; i++)
     {
@@ -1289,7 +1289,7 @@ static void FC_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *list
             }
             else
             {
-                u8 i;
+                u32 i;
                 for (i = 0; i < 6; i++)
                 {
                     gSprites[sFameCheckerData->spriteIds[i]].invisible = TRUE;
@@ -1340,7 +1340,7 @@ static void FC_DoMoveCursor(s32 itemIndex, bool8 onInit)
 static u8 FC_PopulateListMenu(void)
 {
     u8 nitems = 0;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NUM_FAMECHECKER_PERSONS; i++)
     {

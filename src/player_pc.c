@@ -141,7 +141,7 @@ static const struct WindowTemplate sWindowTemplate_ItemStorageSubmenu = {
 
 void NewGameInitPCItems(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0, ClearPCItemSlots(); NEW_GAME_PC_ITEMS(i, PC_ITEM_ID) && NEW_GAME_PC_ITEMS(i, PC_QUANTITY) &&
                                     AddPCItem(NEW_GAME_PC_ITEMS(i, PC_ITEM_ID), NEW_GAME_PC_ITEMS(i, PC_QUANTITY)) == TRUE; i++)
@@ -422,7 +422,7 @@ static void Task_SetPageItemVars(u8 taskId)
 static u8 CountPCMail(void)
 {
     u8 count = 0;
-    u8 i;
+    u32 i;
 
     for (i = PC_MAIL_NUM(0); i < MAIL_COUNT; i++)
     {
@@ -434,8 +434,8 @@ static u8 CountPCMail(void)
 
 static void PCMailCompaction(void)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     for (i = PC_MAIL_NUM(0); i < MAIL_COUNT - 1; i++)
     {
         for (j = i + 1; j < MAIL_COUNT; j++)

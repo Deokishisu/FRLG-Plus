@@ -2175,7 +2175,7 @@ static void PSS_CreateMonMarkingSprite(void)
 
 static void CreateWaveformSprites(void)
 {
-    u16 i;
+    u32 i;
     struct SpriteSheet sheet = sWaveformSpriteSheet;
 
     LoadSpriteSheet(&sheet);
@@ -2227,7 +2227,7 @@ static void SpriteCB_CursorMon_Mosaic(struct Sprite *sprite)
 
 static void LoadCursorMonSprite(void)
 {
-    u16 i;
+    u32 i;
     u16 tileStart;
     u8 palSlot;
     u8 spriteId;
@@ -2289,7 +2289,7 @@ static void LoadCursorMonGfx(u16 species, u32 pid)
 
 static void PrintCursorMonInfo(void)
 {
-    u16 i;
+    u32 i;
     u16 y;
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     if (gPSSData->boxOption != BOX_OPTION_MOVE_ITEMS)
@@ -2323,7 +2323,7 @@ static void PrintCursorMonInfo(void)
 
 static void sub_808F5E8(void)
 {
-    u16 i;
+    u32 i;
 
     if (gPSSData->cursorMonSpecies != SPECIES_NONE)
     {
@@ -2478,7 +2478,7 @@ static void sub_808F99C(void)
 
 static void sub_808F9FC(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 1; i < PARTY_SIZE; i++)
     {

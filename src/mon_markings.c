@@ -225,7 +225,7 @@ static void GetUserFrameForMonMarkings(void)
 
 static bool8 DoLoadMonMarkingsFrameGfx(void)
 {
-    u16 i;
+    u32 i;
     u8 *menuWindowSpriteTiles = &sMenu->menuWindowSpriteTiles[256 * sMenu->tileLoadState];
     switch (sMenu->tileLoadState)
     {
@@ -265,7 +265,7 @@ void LoadMonMarkingsFrameGfx(void)
 
 void DrawMonMarkingsMenu(u8 markings, s16 x, s16 y)
 {
-    u16 i;
+    u32 i;
     sMenu->cursorPos = 0;
     sMenu->markings = markings;
     for (i = 0; i < 4; i++)
@@ -277,7 +277,7 @@ void DrawMonMarkingsMenu(u8 markings, s16 x, s16 y)
 
 void TeardownMonMarkingsMenu(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < 3; i++)
         FreeSpriteTilesByTag(sMenu->baseTileTag + i);
     FreeSpritePaletteByTag(sMenu->basePaletteTag);
@@ -302,7 +302,7 @@ void TeardownMonMarkingsMenu(void)
 
 bool8 MonMarkingsHandleInput(void)
 {
-    u16 i;
+    u32 i;
     if (JOY_NEW(DPAD_UP))
     {
         PlaySE(SE_SELECT);
@@ -343,7 +343,7 @@ bool8 MonMarkingsHandleInput(void)
 
 static void CreateMonMarkingsMenuSprites(s16 x, s16 y, u16 tilesTag, u16 paletteTag)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
     struct SpriteSheet sheets[] = {
         {

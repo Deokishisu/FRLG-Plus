@@ -326,7 +326,7 @@ static const u8 sBlit_SelectButton[] = INCBIN_U8("graphics/interface/select_butt
 
 void GoToBagMenu(u8 location, u8 pocket, MainCallback bagCallback)
 {
-    u8 i;
+    u32 i;
 
     NullBagMenuBufferPtrs();
     sBagMenuDisplay = Alloc(sizeof(struct BagMenuAlloc));
@@ -653,7 +653,7 @@ static bool8 TryAllocListMenuBuffers(void)
 
 static void Bag_BuildListMenuTemplate(u8 pocket)
 {
-    u16 i;
+    u32 i;
     struct BagPocket * bagPocket = &gBagPockets[pocket];
     for (i = 0; i < sBagMenuDisplay->nItems[pocket]; i++)
     {
@@ -850,7 +850,7 @@ static void BagDestroyPocketSwitchArrowPair(void)
 
 void ResetBagCursorPositions(void)
 {
-    u8 i;
+    u32 i;
     gBagMenuState.pocket = POCKET_ITEMS - 1;
     gBagMenuState.bagOpen = FALSE;
     for (i = 0; i < 5; i++)
@@ -877,7 +877,7 @@ void PocketCalculateInitialCursorPosAndItemsAbove(u8 pocketId)
 
 static void CalculateInitialCursorPosAndItemsAbove(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 5; i++)
     {
         PocketCalculateInitialCursorPosAndItemsAbove(i);
@@ -886,8 +886,8 @@ static void CalculateInitialCursorPosAndItemsAbove(void)
 
 static void UpdatePocketScrollPositions(void)
 {
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
 
     for (i = 0; i < 5; i++)
     {
@@ -1013,7 +1013,7 @@ void MoveItemSlotInList(struct ItemSlot * itemSlots_, u32 from, u32 to_)
 
 void Pocket_CalculateNItemsAndMaxShowed(u8 pocketId)
 {
-    u16 i;
+    u32 i;
     struct BagPocket * pocket = &gBagPockets[pocketId];
     BagPocketCompaction(pocket->itemSlots, pocket->capacity);
     sBagMenuDisplay->nItems[pocketId] = 0;
@@ -1031,7 +1031,7 @@ void Pocket_CalculateNItemsAndMaxShowed(u8 pocketId)
 
 static void All_CalculateNItemsAndMaxShowed(void)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 5; i++)
         Pocket_CalculateNItemsAndMaxShowed(i);
 }

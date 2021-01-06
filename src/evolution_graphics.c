@@ -97,7 +97,7 @@ static void SpriteCallbackDummy_EvoSparkles(struct Sprite * sprite)
 
 static void SetEvoSparklesMatrices(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < NELEMS(sEvolutionSparkleMatrixScales); i++)
         SetOamMatrix(i + 20, sEvolutionSparkleMatrixScales[i], 0, 0, sEvolutionSparkleMatrixScales[i]);
 }
@@ -277,7 +277,7 @@ static void EvoTask_PreEvoSparkleSet1Init(u8 taskId)
 
 static void EvoTask_CreatePreEvoSparkleSet1(u8 taskId)
 {
-    u8 i;
+    u32 i;
     if (gTasks[taskId].data[15] < 64)
     {
         if ((gTasks[taskId].data[15] & 7) == 0)
@@ -318,7 +318,7 @@ static void EvoTask_PreEvoSparkleSet2Init(u8 taskId)
 
 static void EvoTask_CreatePreEvoSparklesSet2(u8 taskId)
 {
-    u8 i;
+    u32 i;
     if (gTasks[taskId].data[15] < 96)
     {
         if (gTasks[taskId].data[15] < 6)
@@ -355,7 +355,7 @@ static void EvoTask_PostEvoSparklesSet1Init(u8 taskId)
 
 static void EvoTask_CreatePostEvoSparklesSet1(u8 taskId)
 {
-    u8 i;
+    u32 i;
     if (gTasks[taskId].data[15] < 48)
     {
         if (gTasks[taskId].data[15] == 0)
@@ -405,7 +405,7 @@ static void EvoTask_PostEvoSparklesSet2Init(u8 taskId)
 
 static void EvoTask_CreatePostEvoSparklesSet2(u8 taskId)
 {
-    u8 i;
+    u32 i;
     if (gTasks[taskId].data[15] < 128)
     {
         switch (gTasks[taskId].data[15])
@@ -456,7 +456,7 @@ static void EvoTask_PostEvoSparklesSet2TradeInit(u8 taskId)
 
 static void EvoTask_CreatePostEvoSparklesSet2Trade(u8 taskId)
 {
-    u8 i;
+    u32 i;
     if (gTasks[taskId].data[15] < 128)
     {
         switch (gTasks[taskId].data[15])
@@ -495,7 +495,7 @@ static void SpriteCallbackDummy_MonSprites(struct Sprite * sprite)
 
 u8 LaunchTask_PrePostEvoMonSprites(u8 preEvoSpriteId, u8 postEvoSpriteId)
 {
-    u16 i;
+    u32 i;
     u8 taskId;
     u16 palette[16];
     for (i = 0; i < 16; i++)

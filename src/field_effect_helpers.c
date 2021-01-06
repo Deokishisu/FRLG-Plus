@@ -355,7 +355,7 @@ u32 FldEff_JumpTallGrass(void)
 u8 FindTallGrassFieldEffectSpriteId(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s16 y)
 {
     struct Sprite * sprite;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_SPRITES; i++)
     {
@@ -1019,7 +1019,7 @@ static void SynchroniseSurfAnim(struct ObjectEvent * objectEvent, struct Sprite 
 
 void sub_80DC588(struct ObjectEvent * objectEvent, struct Sprite * sprite)
 {
-    u8 i;
+    u32 i;
     s16 x = objectEvent->currentCoords.x;
     s16 y = objectEvent->currentCoords.y;
     s32 spriteY = sprite->pos2.y;
@@ -1378,7 +1378,7 @@ void WaitFieldEffectSpriteAnim(struct Sprite * sprite)
 
 static void sub_80DCD48(struct Sprite * sprite, u8 z, u8 offset)
 {
-    u8 i;
+    u32 i;
     s16 var, xhi, lyhi, yhi, ylo;
     const struct ObjectEventGraphicsInfo * graphicsInfo; // Unused Variable
     struct Sprite * linkedSprite;

@@ -635,7 +635,7 @@ static void CB2_InitMailView(void)
 
 static void BufferMailMessage(void)
 {
-    u16 i;
+    u32 i;
     u8 j = 0;
     for (i = 0; i < sMailViewResources->messageLayout->numRows; i++)
     {
@@ -659,7 +659,7 @@ static void BufferMailMessage(void)
 static void AddMailMessagePrinters(void)
 {
     u8 y = 0;
-    u16 i;
+    u32 i;
     u32 width;
 
     PutWindowTilemap(0);

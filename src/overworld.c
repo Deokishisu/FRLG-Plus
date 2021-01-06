@@ -392,7 +392,7 @@ void SetGameStat(u8 statId, u32 statVal)
 
 void ApplyNewEncryptionKeyToGameStats(u32 newKey)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NUM_GAME_STATS; i++)
     {
         ApplyNewEncryptionKeyToWord(&gSaveBlock1Ptr->gameStats[i], newKey);
@@ -2199,7 +2199,7 @@ static void sub_8057178(void)
 
 static void sub_80571A8(void)
 {
-    u16 i;
+    u32 i;
     u16 x, y;
 
     GetCameraFocusCoords(&x, &y);
@@ -2216,7 +2216,7 @@ static void sub_80571A8(void)
 
 static void CreateLinkPlayerSprites(void)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < gFieldLinkPlayerCount; i++)
         CreateLinkPlayerSprite(i, gLinkPlayers[i].version);
 }
@@ -3376,7 +3376,7 @@ static s32 GetLinkPlayerObjectStepTimer(u8 linkPlayerId)
 
 static u8 GetLinkPlayerIdAt(s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < MAX_LINK_PLAYERS; i++)
     {
         if (gLinkPlayerObjectEvents[i].active
@@ -3506,7 +3506,7 @@ static u8 FlipVerticalAndClearForced(u8 newFacing, u8 oldFacing)
 
 static bool8 LinkPlayerDetectCollision(u8 selfObjEventId, u8 a2, s16 x, s16 y)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < 16; i++)
     {
         if (i != selfObjEventId)

@@ -709,7 +709,7 @@ void AnimTask_ImprisonOrbs(u8 taskId)
 
 static void sub_80B3618(u8 taskId)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
     struct Task *task = &gTasks[taskId];
 
@@ -883,7 +883,7 @@ static void AnimSkillSwapOrb(struct Sprite *sprite)
 
 void AnimTask_ExtrasensoryDistortion(u8 taskId)
 {
-    s16 i;
+    s32 i;
     u8 yOffset;
     struct ScanlineEffectParams scanlineParams;
     struct Task *task = &gTasks[taskId];

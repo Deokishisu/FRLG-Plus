@@ -62,7 +62,7 @@ static u32 GetMonSizeHash(struct Pokemon * pkmn)
 
 static u8 TranslateBigMonSizeTableIndex(u16 a)
 {
-    u8 i;
+    u32 i;
 
     for (i = 1; i < 15; i++)
     {

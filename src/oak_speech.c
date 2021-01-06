@@ -686,7 +686,7 @@ static void Task_OaksSpeech2(u8 taskId)
 static void Task_OakSpeech3(u8 taskId)
 {
     u8 r8 = 0;
-    u8 i;
+    u32 i;
 
     if (!gPaletteFade.active)
     {
@@ -1505,7 +1505,7 @@ static void Task_OakSpeech38_2(u8 taskId)
 static void Task_OakSpeech38_sub2(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
-    u8 i;
+    u32 i;
 
     if (data[0] != 0)
         data[0]--;
@@ -1708,7 +1708,7 @@ static void CreatePikaOrGrassPlatformSpriteAndLinkToCurrentTask(u8 taskId, u8 st
 
 static void DestroyLinkedPikaOrGrassPlatformSprites(u8 taskId, u8 state)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 3; i++)
     {
@@ -1884,7 +1884,7 @@ static void PrintNameChoiceOptions(u8 taskId, u8 state)
 {
     s16 * data = gTasks[taskId].data;
     const u8 *const * textPtrs;
-    u8 i;
+    u32 i;
 
     data[13] = AddWindow(&sNewGameAdventureIntroWindowTemplates[3]);
     PutWindowTilemap(data[13]);
@@ -1917,7 +1917,7 @@ static void GetDefaultName(u8 arg0, u8 namePick)
 {
     const u8 * src;
     u8 * dest;
-    u8 i;
+    u32 i;
 
     if (arg0 == 0)
     {

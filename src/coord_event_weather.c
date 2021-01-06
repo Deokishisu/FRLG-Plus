@@ -37,7 +37,7 @@ static struct {
 
 void DoCoordEventWeather(u8 weatherId)
 {
-    u8 i;
+    u32 i;
     for (i = 0; i < NELEMS(sWeatherCoordEventFuncs); i++)
     {
         if (sWeatherCoordEventFuncs[i].weatherId == weatherId)

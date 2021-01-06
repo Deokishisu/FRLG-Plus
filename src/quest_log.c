@@ -313,7 +313,7 @@ static void SetPlayerInitialCoordsAtScene(u8 sceneNum)
 static void SetNPCInitialCoordsAtScene(u8 sceneNum)
 {
     struct QuestLog * questLog = &gSaveBlock1Ptr->questLog[sceneNum];
-    u16 i;
+    u32 i;
 
     SetQuestLogObjectEventsData(questLog);
 
@@ -385,7 +385,7 @@ static void TryRecordEvent39_GoToNextScene(void)
 
 static bool8 TryRecordQuestLogEntrySequence(struct QuestLogEntry * entry)
 {
-    u16 i;
+    u32 i;
 
     for (i = gUnknown_203ADFC; i < sQuestLogCursor; i++)
     {
@@ -419,7 +419,7 @@ static bool8 TryRecordQuestLogEntrySequence(struct QuestLogEntry * entry)
 
 void TrySetUpQuestLogScenes_ElseContinueFromSave(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     sub_811381C();
     sNumScenes = 0;
@@ -483,7 +483,7 @@ static bool8 FieldCB2_QuestLogStartPlaybackStandingInPlace(void)
 
 void DrawPreviouslyOnQuestHeader(u8 sceneNum)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < NELEMS(sQuestLogHeaderWindowTemplates); i++)
     {
@@ -517,7 +517,7 @@ void CommitQuestLogWindow1(void)
 static void QuestLogPlaybackSetObjectEventTemplates(u8 sceneNum)
 {
     struct QuestLog *questLog = &gSaveBlock1Ptr->questLog[sceneNum];
-    u16 i;
+    u32 i;
     
     for (i = 0; i < 64; i++)
     {
@@ -678,7 +678,7 @@ static void QuestLog_GetSaneMonCounts(void)
 static u16 QuestLog_GetSanePartyCount(void)
 {
     u16 count = 0;
-    u16 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -740,7 +740,7 @@ void sub_8111708(void)
 
 static void ReadQuestLogScriptFromSav1(u8 sceneNum, struct QuestLogEntry * a1)
 {
-    u16 i;
+    u32 i;
     u16 *r4;
     u16 r6 = 0;
     u16 r9 = 0;
@@ -811,7 +811,7 @@ static void QuestLog_AdvancePlayhead(void)
 
 static void QuestLog_StartFinalScene(void)
 {
-    u8 i;
+    u32 i;
     u8 KeyVersionBackup = gSaveBlock1Ptr->keyFlags.version;
     u8 KeyDifficultyBackup = gSaveBlock1Ptr->keyFlags.difficulty;
     u8 KeyNuzlockeBackup = gSaveBlock1Ptr->keyFlags.nuzlocke;
@@ -946,7 +946,7 @@ static void HandleShowQuestLogMessage(void)
 
 static u8 GetQuestLogTextDisplayDuration(void)
 {
-    u16 i;
+    u32 i;
     u16 count = 0;
 
     for (i = 0; i < 0x400 && gStringVar4[i] != EOS; i++)
@@ -1007,7 +1007,7 @@ void QuestLog_DrawPreviouslyOnQuestHeaderIfInPlaybackMode(void)
 
 static void DrawQuestLogSceneDescription(void)
 {
-    u16 i;
+    u32 i;
     u8 numLines = 0;
 
     for (i = 0; i < 0x100 && gStringVar4[i] != EOS; i++)
@@ -1169,7 +1169,7 @@ static void Task_WaitAtEndOfQuestLog(u8 taskId)
 static void Task_EndQuestLog(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    u8 i;
+    u32 i;
 
     switch (tState)
     {
@@ -1281,7 +1281,7 @@ void QuestLog_CutRecording(void)
 static void SortQuestLogInSav1(void)
 {
     struct QuestLog * buffer = AllocZeroed(QUEST_LOG_SCENE_COUNT * sizeof(struct QuestLog));
-    u8 i;
+    u32 i;
     u8 sceneNum = sCurrentSceneNum;
     u8 count = 0;
     for (i = 0; i < QUEST_LOG_SCENE_COUNT; i++)

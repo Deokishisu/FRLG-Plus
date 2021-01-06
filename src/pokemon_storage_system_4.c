@@ -258,7 +258,7 @@ static const struct SpriteTemplate gUnknown_83D2BB4 = {
 
 void sub_808FFAC(void)
 {
-    u16 i;
+    u32 i;
 
     LoadMonIconPalettes();
     for (i = 0; i < MAX_MON_ICONS; i++)
@@ -354,7 +354,7 @@ void sub_80901EC(u8 boxPosition)
 
 static void sub_809029C(s16 arg0)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < IN_BOX_COUNT; i++)
     {
@@ -771,7 +771,7 @@ void DestroyPartyMonIcon(u8 partyId)
 
 void DestroyAllPartyMonIcons(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -988,7 +988,7 @@ static u16 sub_80911D4(u16 species)
 
 static void sub_8091290(u16 species)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < MAX_MON_ICONS; i++)
     {
@@ -1144,7 +1144,7 @@ bool8 ScrollToBox(void)
 
 static s8 sub_80916F4(u8 boxId)
 {
-    u8 i;
+    u32 i;
     u8 currentBox = StorageGetCurrentBox();
 
     for (i = 0; currentBox != boxId; i++)
@@ -1257,7 +1257,7 @@ static void sub_8091984(void *buffer, const void *tilemap, s8 direction, u8 arg2
 
 static void sub_8091A24(void *arg0)
 {
-    u16 i;
+    u32 i;
     u16 *dest = arg0;
     s16 r3 = ((gPSSData->bg2_X / 8) + 30) & 0x3F;
 
@@ -1281,7 +1281,7 @@ static void sub_8091A94(u8 boxId)
 {
     u8 tagIndex;
     s16 r6;
-    u16 i;
+    u32 i;
 
     struct SpriteSheet spriteSheet = {gPSSData->field_2F8, 0x200, TAG_TILE_3};
     struct SpritePalette palettes[] = {
@@ -1322,7 +1322,7 @@ static void sub_8091C48(u8 boxId, s8 direction)
 {
     u16 r8;
     s16 x, x2;
-    u16 i;
+    u32 i;
     struct SpriteSheet spriteSheet = {gPSSData->field_2F8, 0x200, TAG_TILE_3};
     struct SpriteTemplate template = gUnknown_83D2B7C;
 
@@ -1416,7 +1416,7 @@ static s16 sub_8091F60(const u8 *string)
 
 static void sub_8091F80(void)
 {
-    u16 i;
+    u32 i;
 
     LoadSpriteSheet(&gUnknown_83D2B54);
     for (i = 0; i < 2; i++)
@@ -1436,7 +1436,7 @@ static void sub_8091F80(void)
 
 static void sub_809200C(s8 direction)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < 2; i++)
     {
@@ -1463,7 +1463,7 @@ static void sub_809200C(s8 direction)
 
 static void sub_80920AC(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < 2; i++)
     {
@@ -1476,7 +1476,7 @@ static void sub_80920AC(void)
 
 void sub_80920FC(bool8 a0)
 {
-    u16 i;
+    u32 i;
 
     if (a0)
     {

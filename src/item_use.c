@@ -359,7 +359,7 @@ void FieldUseFunc_PowderJar(u8 taskId)
 void FieldUseFunc_PokeFlute(u8 taskId)
 {
     bool8 wokeSomeoneUp = FALSE;
-    u8 i;
+    u32 i;
 
     for (i = 0; i < CalculatePlayerPartyCount(); i++)
     {

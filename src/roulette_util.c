@@ -48,7 +48,7 @@ u8 sub_80D8C7C(struct UnkStruct0 *r0, u8 r1)
 
 u8 sub_80D8CB0(struct UnkStruct3 *r0)
 {
-    u8 i;
+    u32 i;
     u8 returnval;
 
     for (i = 0; i < r0->var04.var04; i++)
@@ -169,7 +169,7 @@ void sub_80D8FB4(struct UnkStruct0 *r0, u16 r1)
 
 void sub_80D9008(struct UnkStruct0 *r0, u16 r1)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < 16; i++)
     {
@@ -250,7 +250,7 @@ int InitPulseBlendPaletteSettings(struct PulseBlend *pulseBlend, const struct Pu
 
 static void ClearPulseBlendPalettesSettings(struct PulseBlendPalette *pulseBlendPalette)
 {
-    u16 i;
+    u32 i;
 
     if (!pulseBlendPalette->available && pulseBlendPalette->pulseBlendSettings.restorePaletteOnUnload)
     {
@@ -317,7 +317,7 @@ void MarkUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendPal
 
 void UnmarkUsedPulseBlendPalettes(struct PulseBlend *pulseBlend, u16 pulseBlendPaletteSelector, u8 multiSelection)
 {
-    u16 i;
+    u32 i;
     struct PulseBlendPalette *pulseBlendPalette;
     u8 j = 0;
 
@@ -430,8 +430,8 @@ void UpdatePulseBlend(struct PulseBlend *pulseBlend)
 void sub_80D9574(u16 *dest, u16 src, u8 left, u8 top, u8 width, u8 height)
 {
     u16 *_dest;
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     i = 0;
     dest = &dest[top * 32 + left];
     for (; i < height; i++)
@@ -448,8 +448,8 @@ void sub_80D95C4(u16 *dest, u16 *src, u8 left, u8 top, u8 width, u8 height)
 {
     u16 *_dest;
     u16 *_src = src;
-    u8 i;
-    u8 j;
+    u32 i;
+    u32 j;
     i = 0;
     dest = &dest[top * 32 + left];
     for (; i < height; i++)

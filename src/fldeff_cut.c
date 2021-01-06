@@ -359,7 +359,7 @@ static void SpriteCallback_CutGrass_Run(struct Sprite * sprite)
 
 static void SpriteCallback_CutGrass_Cleanup(struct Sprite * sprite)
 {
-    u8 i;
+    u32 i;
     for (i = 1; i < CUT_GRASS_SPRITE_COUNT; i++)
     {
         DestroySprite(&gSprites[sCutGrassSpriteArrayPtr[i]]);

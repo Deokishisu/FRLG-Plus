@@ -148,7 +148,7 @@ bool8 Sunny_Finish(void)
 
 static void CreateCloudSprites(void)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
     struct Sprite *sprite;
 
@@ -178,7 +178,7 @@ static void CreateCloudSprites(void)
 
 static void DestroyCloudSprites(void)
 {
-    u16 i;
+    u32 i;
 
     if (!gWeatherPtr->cloudSpritesCreated)
         return;
@@ -660,7 +660,7 @@ static bool8 CreateRainSprite(void)
 
     if (++gWeatherPtr->rainSpriteCount == MAX_RAIN_SPRITES)
     {
-        u16 i;
+        u32 i;
         for (i = 0; i < MAX_RAIN_SPRITES; i++)
         {
             if (gWeatherPtr->sprites.s1.rainSprites[i])
@@ -702,7 +702,7 @@ static bool8 UpdateVisibleRainSprites(void)
 
 static void DestroyRainSprites(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < gWeatherPtr->rainSpriteCount; i++)
     {
@@ -743,7 +743,7 @@ void Snow_InitVars(void)
 
 void Snow_InitAll(void)
 {
-    u16 i;
+    u32 i;
 
     Snow_InitVars();
     while (!gWeatherPtr->weatherGfxLoaded)
@@ -1372,7 +1372,7 @@ static void FogHorizontalSpriteCallback(struct Sprite *sprite)
 
 static void CreateFogHorizontalSprites(void)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
     struct Sprite *sprite;
 
@@ -1407,7 +1407,7 @@ static void CreateFogHorizontalSprites(void)
 
 static void DestroyFogHorizontalSprites(void)
 {
-    u16 i;
+    u32 i;
 
     if (gWeatherPtr->fogHSpritesCreated)
     {
@@ -1562,7 +1562,7 @@ static const struct SpriteTemplate sAshSpriteTemplate = {
 
 static void CreateAshSprites(void)
 {
-    u8 i;
+    u32 i;
     u8 spriteId;
     struct Sprite *sprite;
 
@@ -1592,7 +1592,7 @@ static void CreateAshSprites(void)
 
 static void DestroyAshSprites(void)
 {
-    u16 i;
+    u32 i;
 
     if (gWeatherPtr->ashSpritesCreated)
     {
@@ -1772,7 +1772,7 @@ static const struct SpriteTemplate sFogDiagonalSpriteTemplate = {
 
 static void CreateFogDiagonalSprites(void)
 {
-    u16 i;
+    u32 i;
     struct SpriteSheet fogDiagonalSpriteSheet;
     u8 spriteId;
     struct Sprite *sprite;
@@ -1803,7 +1803,7 @@ static void CreateFogDiagonalSprites(void)
 
 static void DestroyFogDiagonalSprites(void)
 {
-    u16 i;
+    u32 i;
 
     if (gWeatherPtr->fogDSpritesCreated)
     {
@@ -1945,7 +1945,7 @@ static void UpdateSandstormMovement(void)
 
 static void DestroySandstormSprites(void)
 {
-    u16 i;
+    u32 i;
 
     if (gWeatherPtr->sandstormSpritesCreated)
     {
@@ -2027,7 +2027,7 @@ static const struct SpriteSheet sSandstormSpriteSheet = {
 
 static void CreateSandstormSprites(void)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
 
     if (!gWeatherPtr->sandstormSpritesCreated)
@@ -2057,7 +2057,7 @@ static const u16 sSwirlEntranceDelays[] = {0, 120, 80, 160, 40, 0};
 
 static void CreateSwirlSandstormSprites(void)
 {
-    u16 i;
+    u32 i;
     u8 spriteId;
 
     if (!gWeatherPtr->sandstormSwirlSpritesCreated)
@@ -2280,7 +2280,7 @@ static void CreateBubbleSprite(u16 coordsIndex)
 
 static void DestroyBubbleSprites(void)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < MAX_SPRITES; i++)
     {
