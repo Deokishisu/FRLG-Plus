@@ -57,10 +57,6 @@ CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReceivedMonFromDoctor:: @ 819A39E
     .string "{PLAYER} received the {STR_VAR_1}\n"
     .string "from the doctor.$"
 
-@ Unused
-CinnabarIsland_PokemonLab_ExperimentRoom_Text_NoRoomForPokemon:: @ 819A3C2
-    .string "ポケモン　いっぱいで　もてないね！$"
-
 CinnabarIsland_PokemonLab_ExperimentRoom_Text_ThatFossilIsOfMonMakeItLiveAgain:: @ 819A3D4
     .string "Oh!\n"
     .string "That is {STR_VAR_2}, it is!\p"

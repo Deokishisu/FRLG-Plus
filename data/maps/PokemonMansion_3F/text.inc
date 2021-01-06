@@ -1,13 +1,3 @@
-PokemonMansion_Text_PressSecretSwitchJP:: @ 81775B4
-    .string "ひみつの　スイッチが　ある！\p"
-    .string "おして　みますか？$"
-
-PokemonMansion_Text_LetsTryIt:: @ 81775CD
-    .string "おしてみよう！　‥ポチッとな$"
-
-PokemonMansion_Text_GaveUpOnPressingSwitch:: @ 81775DC
-    .string "おすのは　あきらめた$"
-
 PokemonMansion_1F_Text_SimonIntro:: @ 81775E7
     .string "This place is, like, huge!$"
 

@@ -114,5 +114,3 @@ SaffronCity_CopycatsHouse_2F_Text_MySecrets:: @ 819B0D0
     .string "Hobby: Collecting dolls!\l"
     .string "Favorite POKéMON: CLEFAIRY!$"
 
-SaffronCity_CopycatsHouse_2F_Text_HuhCantSee:: @ 819B123
-    .string "？　みえないぞ‥$"

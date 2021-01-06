@@ -114,27 +114,6 @@ const union AnimCmd * const gDummySpriteAnimTable[];
 const union AffineAnimCmd * const gDummySpriteAffineAnimTable[];
 const struct SpriteTemplate gDummySpriteTemplate;
 
-// Unreferenced error message.
-// It means "The DMA transfer request table has exceeded its limit."
-static const u8 sDmaOverErrorMsg[] =
-    _(
-    "DMA OVER\n"
-    "DMAてんそう\n"
-    "リクエストテーブルが\n"
-    "オーバーしました"
-);
-
-// Unreferenced data. Also unreferenced in R/S.
-static const u8 sUnknownData[24] =
-{
-    0x01, 0x04, 0x10, 0x40,
-    0x02, 0x04, 0x08, 0x20,
-    0x02, 0x04, 0x08, 0x20,
-    0x01, 0x04, 0x10, 0x40,
-    0x02, 0x04, 0x08, 0x20,
-    0x02, 0x04, 0x08, 0x20,
-};
-
 static const u8 sCenterToCornerVecTable[3][4][2] =
 {
     {   // square

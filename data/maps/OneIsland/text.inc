@@ -52,10 +52,6 @@ OneIsland_Text_PokemonNetCenterSign:: @ 8181A0A
     .string "Expanding the POKéMON World!\n"
     .string "POKéMON NET CENTER$"
 
-@ Unused
-OneIsland_Text_ReturnToCinnabar:: @ 8181A3A
-    .string "グレンタウンに　もどりますか？$"
-
 OneIsland_Text_IsntWarmClimateHereGreat:: @ 8181A4A
     .string "Hi, sight-seeing, are you?\n"
     .string "Isn't the warm climate here great?$"

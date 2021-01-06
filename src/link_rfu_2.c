@@ -2104,8 +2104,6 @@ static void LmanCallback_Parent2(u8 msg, u8 param_count)
     }
 }
 
-static const u8 unref_843EDF3[] = _("　あきと");
-
 static void LmanCallback_Child(u8 msg, u8 param_count)
 {
     switch (msg)

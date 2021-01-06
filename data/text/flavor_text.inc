@@ -4,10 +4,6 @@ gUnknown_81C0DB0:: @ 81C0DB0
 	.string "It's crammed full of POKéMON\n"
 	.string "books.$"
 
-Text_NothingButPokemonBooks:: @ 81C0DD4
-	.string "ほんだなに　ならんでいるのは\n"
-	.string "ポケモンの　ほん　ばかりだ$"
-
 Text_ATownMap:: @ 81C0DF1
 	.string "A TOWN MAP.$"
 

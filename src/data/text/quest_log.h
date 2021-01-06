@@ -65,7 +65,6 @@ const u8 gText_QuestLog_UsedStrength[] = _("{STR_VAR_1} used the Hidden Move\nST
 const u8 gText_QuestLog_UsedFlash[] = _("{STR_VAR_1} used the Hidden Move\nFLASH and illuminated a pitch-black\ncave.");
 const u8 gText_QuestLog_UsedRockSmash[] = _("{STR_VAR_1} used the Hidden Move\nROCK SMASH here.");
 const u8 gText_QuestLog_UsedWaterfall[] = _("{STR_VAR_1} used the Hidden Move\nWATERFALL to scale a raging torrent."); // Unused
-const u8 gText_QuestLog_UsedDive[] = _("{STR_VAR_1}は　ふかい　ところを　めざし\nひでんわざ\nダイビングを　つかった！");
 const u8 gText_QuestLog_UsedDigInLocation[] = _("{STR_VAR_1} used DIG to escape from\n{STR_VAR_2}.");
 const u8 gText_QuestLog_UsedSweetScent[] = _("{STR_VAR_1} used SWEET SCENT to attract\nwild POKéMON.");
 const u8 gText_QuestLog_UsedTeleportToLocation[] = _("{STR_VAR_1} used TELEPORT, transporting\nthe party to {STR_VAR_2}'s\n{STR_VAR_3}.");

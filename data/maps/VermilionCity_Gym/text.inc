@@ -122,12 +122,6 @@ VermilionCity_Gym_Text_SwitchUnderTrashFirstLockOpened:: @ 81952A8
     .string "trash! Turn it on!\p"
     .string "The first electric lock opened!$"
 
-VermilionCity_Gym_Text_AnotherSwitchInTrash:: @ 81952FB
-    .string "ガサゴソ‥！\n"
-    .string "おっと！　ゴミばこの　そこに\l"
-    .string "また　スイッチが　あった！\l"
-    .string "おして　みよう！　‥　ポチッとな$"
-
 VermilionCity_Gym_Text_SecondLockOpened:: @ 8195330
     .string "The second electric lock opened!\n"
     .string "The motorized door opened!$"

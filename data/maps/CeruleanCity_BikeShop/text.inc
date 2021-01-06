@@ -46,12 +46,6 @@ CeruleanCity_BikeShop_Text_WowYourBikeIsCool:: @ 8192968
     .string "Wow.\n"
     .string "Your BIKE is really cool!$"
 
-@ Unused
-CeruleanCity_BikeShop_Text_GermanFoldableBicyleFinallyOnMarket:: @ 8192987
-    .string "ついに　はつばい！\p"
-    .string "ドイツ　せい　さいこうきゅう\n"
-    .string "おりたたみ　じてんしゃ！$"
-
 CeruleanCity_BikeShop_Text_ShinyNewBicycle:: @ 81929AD
     .string "A shiny new BICYCLE!$"
 

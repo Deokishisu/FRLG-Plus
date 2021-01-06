@@ -37,8 +37,6 @@ struct BattleWindowText
 static EWRAM_DATA u8 sBattlerAbilities[MAX_BATTLERS_COUNT] = {};
 static EWRAM_DATA struct BattleMsgData *sBattleMsgDataPtr = NULL;
 
-static void ChooseMoveUsedParticle(u8 *textPtr);
-static void ChooseTypeOfMoveUsedString(u8 *textPtr);
 static void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst);
 
 static const u8 sText_Empty1[] = _("");
@@ -417,12 +415,7 @@ static const u8 sText_FoePkmnPrefix3[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix2[] = _("Ally");
 static const u8 sText_FoePkmnPrefix4[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
-static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}");
-static const u8 sText_ExclamationMark[] = _("!");
-static const u8 sText_ExclamationMark2[] = _("!");
-static const u8 sText_ExclamationMark3[] = _("!");
-static const u8 sText_ExclamationMark4[] = _("!");
-static const u8 sText_ExclamationMark5[] = _("!");
+static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}!");
 
 static const u8 sText_HP2[] = _("HP");
 static const u8 sText_Attack2[] = _("ATTACK");
@@ -470,7 +463,6 @@ static const u8 sText_PkmnBrokeFree[] = _("Oh, no!\nThe POKéMON broke free!");
 static const u8 sText_ItAppearedCaught[] = _("Aww!\nIt appeared to be caught!");
 static const u8 sText_AarghAlmostHadIt[] = _("Aargh!\nAlmost had it!");
 static const u8 sText_ShootSoClose[] = _("Shoot!\nIt was so close, too!");
-const u8 gUnknown_83FD78A[] = _("よけられた!\nこいつは つかまりそうにないぞ!");
 static const u8 sText_GotchaPkmnCaught[] = _("Gotcha!\n{B_OPPONENT_MON1_NAME} was caught!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}\p");
 static const u8 sText_GotchaPkmnCaught2[] = _("Gotcha!\n{B_OPPONENT_MON1_NAME} was caught!{WAIT_SE}{PLAY_BGM MUS_CAUGHT}{PAUSE 127}");
 static const u8 sText_GiveNicknameCaptured[] = _("Give a nickname to the\ncaptured {B_OPPONENT_MON1_NAME}?");
@@ -483,7 +475,6 @@ static const u8 sText_SandstormIsRaging[] = _("A sandstorm is raging.");
 static const u8 sText_BoxIsFull[] = _("The BOX is full!\nYou can't catch any more!\p");
 static const u8 sText_EnigmaBerry[] = _("ENIGMA BERRY");
 static const u8 sText_BerrySuffix[] = _(" BERRY");
-static const u8 gUnknown_83FD8B6[] = _("ナゾ");
 static const u8 sText_PkmnsItemCuredParalysis[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\ncured paralysis!");
 static const u8 sText_PkmnsItemCuredPoison[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\ncured poison!");
 static const u8 sText_PkmnsItemHealedBurn[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX}'s {B_LAST_ITEM}\nhealed its burn!");
@@ -1228,7 +1219,6 @@ const u8 gUnknown_83FE747[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}BAL
 const u8 gText_MoveInterfacePP[] = _("PP ");
 const u8 gText_MoveInterfaceType[] = _("TYPE/");
 const u8 gUnknown_83FE770[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}");
-const u8 gUnknown_83FE779[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}どの わざを\nわすれさせたい?");
 const u8 gText_BattleYesNoChoice[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}Yes\nNo");
 const u8 gText_BattleSwitchWhich[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}Switch\nwhich?");
 const u8 gUnknown_83FE7B6[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}");
@@ -1333,130 +1323,6 @@ static const u8 *const sATypeMove_Table[] = {
     gUnknown_83FE95C,
     gUnknown_83FE968,
     gUnknown_83FE976
-};
-
-static const u16 sGrammarMoveUsedTable[] = {
-    MOVE_SWORDS_DANCE,
-    MOVE_STRENGTH,
-    MOVE_GROWTH,
-    MOVE_HARDEN,
-    MOVE_MINIMIZE,
-    MOVE_SMOKESCREEN,
-    MOVE_WITHDRAW,
-    MOVE_DEFENSE_CURL,
-    MOVE_EGG_BOMB,
-    MOVE_SMOG,
-    MOVE_BONE_CLUB,
-    MOVE_FLASH,
-    MOVE_SPLASH,
-    MOVE_ACID_ARMOR,
-    MOVE_BONEMERANG,
-    MOVE_REST,
-    MOVE_SHARPEN,
-    MOVE_SUBSTITUTE,
-    MOVE_MIND_READER,
-    MOVE_SNORE,
-    MOVE_PROTECT,
-    MOVE_SPIKES,
-    MOVE_ENDURE,
-    MOVE_ROLLOUT,
-    MOVE_SWAGGER,
-    MOVE_SLEEP_TALK,
-    MOVE_HIDDEN_POWER,
-    MOVE_PSYCH_UP,
-    MOVE_EXTREME_SPEED,
-    MOVE_FOLLOW_ME,
-    MOVE_TRICK,
-    MOVE_ASSIST,
-    MOVE_INGRAIN,
-    MOVE_KNOCK_OFF,
-    MOVE_CAMOUFLAGE,
-    MOVE_ASTONISH,
-    MOVE_ODOR_SLEUTH,
-    MOVE_GRASS_WHISTLE,
-    MOVE_SHEER_COLD,
-    MOVE_MUDDY_WATER,
-    MOVE_IRON_DEFENSE,
-    MOVE_BOUNCE,
-    MOVE_NONE,
-
-    MOVE_TELEPORT,
-    MOVE_RECOVER,
-    MOVE_BIDE,
-    MOVE_AMNESIA,
-    MOVE_FLAIL,
-    MOVE_TAUNT,
-    MOVE_BULK_UP,
-    MOVE_NONE,
-
-    MOVE_MEDITATE,
-    MOVE_AGILITY,
-    MOVE_MIMIC,
-    MOVE_DOUBLE_TEAM,
-    MOVE_BARRAGE,
-    MOVE_TRANSFORM,
-    MOVE_STRUGGLE,
-    MOVE_SCARY_FACE,
-    MOVE_CHARGE,
-    MOVE_WISH,
-    MOVE_BRICK_BREAK,
-    MOVE_YAWN,
-    MOVE_FEATHER_DANCE,
-    MOVE_TEETER_DANCE,
-    MOVE_MUD_SPORT,
-    MOVE_FAKE_TEARS,
-    MOVE_WATER_SPORT,
-    MOVE_CALM_MIND,
-    MOVE_NONE,
-
-    MOVE_POUND,
-    MOVE_SCRATCH,
-    MOVE_VICE_GRIP,
-    MOVE_WING_ATTACK,
-    MOVE_FLY,
-    MOVE_BIND,
-    MOVE_SLAM,
-    MOVE_HORN_ATTACK,
-    MOVE_WRAP,
-    MOVE_THRASH,
-    MOVE_TAIL_WHIP,
-    MOVE_LEER,
-    MOVE_BITE,
-    MOVE_GROWL,
-    MOVE_ROAR,
-    MOVE_SING,
-    MOVE_PECK,
-    MOVE_ABSORB,
-    MOVE_STRING_SHOT,
-    MOVE_EARTHQUAKE,
-    MOVE_FISSURE,
-    MOVE_DIG,
-    MOVE_TOXIC,
-    MOVE_SCREECH,
-    MOVE_METRONOME,
-    MOVE_LICK,
-    MOVE_CLAMP,
-    MOVE_CONSTRICT,
-    MOVE_POISON_GAS,
-    MOVE_BUBBLE,
-    MOVE_SLASH,
-    MOVE_SPIDER_WEB,
-    MOVE_NIGHTMARE,
-    MOVE_CURSE,
-    MOVE_FORESIGHT,
-    MOVE_CHARM,
-    MOVE_ATTRACT,
-    MOVE_ROCK_SMASH,
-    MOVE_UPROAR,
-    MOVE_SPIT_UP,
-    MOVE_SWALLOW,
-    MOVE_TORMENT,
-    MOVE_FLATTER,
-    MOVE_ROLE_PLAY,
-    MOVE_ENDEAVOR,
-    MOVE_TICKLE,
-    MOVE_COVET,
-    MOVE_NONE
 };
 
 // code
@@ -1622,14 +1488,11 @@ void BufferStringBattle(u16 stringId)
         }
         break;
     case STRINGID_USEDMOVE: // pokemon used a move msg
-        ChooseMoveUsedParticle(gBattleTextBuff1); // buff1 doesn't appear in the string, leftover from japanese move names
-
         if (sBattleMsgDataPtr->currentMove >= MOVES_COUNT)
             StringCopy(gBattleTextBuff2, sATypeMove_Table[*(&gBattleStruct->stringMoveType)]);
         else
             StringCopy(gBattleTextBuff2, gMoveNames[sBattleMsgDataPtr->currentMove]);
 
-        ChooseTypeOfMoveUsedString(gBattleTextBuff2);
         stringPtr = sText_AttackerUsedX;
         break;
     case STRINGID_BATTLEEND: // battle end
@@ -2266,86 +2129,6 @@ static void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst)
             srcId += 3;
             break;
         }
-    }
-}
-
-// Loads one of two text strings into the provided buffer. This is functionally
-// unused, since the value loaded into the buffer is not read; it loaded one of
-// two particles (either "は" or "の") which works in tandem with ChooseTypeOfMoveUsedString
-// below to effect changes in the meaning of the line.
-static void ChooseMoveUsedParticle(u8* textBuff)
-{
-    s32 counter = 0;
-    u32 i = 0;
-
-    while (counter != MAX_MON_MOVES)
-    {
-        if (sGrammarMoveUsedTable[i] == 0)
-            counter++;
-        if (sGrammarMoveUsedTable[i++] == sBattleMsgDataPtr->currentMove)
-            break;
-    }
-
-    if (counter >= 0)
-    {
-        if (counter <= 2)
-            StringCopy(textBuff, sText_SpaceIs); // is
-        else if (counter <= MAX_MON_MOVES)
-            StringCopy(textBuff, sText_ApostropheS); // 's
-    }
-}
-
-// Appends "!" to the text buffer `dst`. In the original Japanese this looked
-// into the table of moves at sGrammarMoveUsedTable and varied the line accordingly.
-//
-// sText_ExclamationMark was a plain "!", used for any attack not on the list.
-// It resulted in the translation "<NAME>'s <ATTACK>!".
-//
-// sText_ExclamationMark2 was "を つかった！". This resulted in the translation
-// "<NAME> used <ATTACK>!", which was used for all attacks in English.
-//
-// sText_ExclamationMark3 was "した！". This was used for those moves whose
-// names were verbs, such as Recover, and resulted in translations like "<NAME>
-// recovered itself!".
-//
-// sText_ExclamationMark4 was "を した！" This resulted in a translation of
-// "<NAME> did an <ATTACK>!".
-//
-// sText_ExclamationMark5 was " こうげき！" This resulted in a translation of
-// "<NAME>'s <ATTACK> attack!".
-static void ChooseTypeOfMoveUsedString(u8* dst)
-{
-    s32 counter = 0;
-    s32 i = 0;
-
-    while (*dst != EOS)
-        dst++;
-
-    while (counter != MAX_MON_MOVES)
-    {
-        if (sGrammarMoveUsedTable[i] == MOVE_NONE)
-            counter++;
-        if (sGrammarMoveUsedTable[i++] == sBattleMsgDataPtr->currentMove)
-            break;
-    }
-
-    switch (counter)
-    {
-    case 0:
-        StringCopy(dst, sText_ExclamationMark);
-        break;
-    case 1:
-        StringCopy(dst, sText_ExclamationMark2);
-        break;
-    case 2:
-        StringCopy(dst, sText_ExclamationMark3);
-        break;
-    case 3:
-        StringCopy(dst, sText_ExclamationMark4);
-        break;
-    case 4:
-        StringCopy(dst, sText_ExclamationMark5);
-        break;
     }
 }
 

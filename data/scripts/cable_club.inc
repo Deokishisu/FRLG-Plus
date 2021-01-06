@@ -1408,10 +1408,6 @@ CableClub_Text_BattleUsingLinkCable:: @ 81BC3C7
 	.string "You may battle another TRAINER\n"
 	.string "using a GBA Game Link cable.$"
 
-@ Unused, translated in Emerald
-CableClub_Text_CloseThisMenu:: @ 81BC403
-	.string "おわります$"
-
 CableClub_Text_NeedTwoMonsForDoubleBattle:: @ 81BC409
 	.string "For a DOUBLE BATTLE, you must\n"
 	.string "have at least two POKéMON.$"
@@ -1441,11 +1437,6 @@ CableClub_Text_StartLinkWithXPlayersAConfirmBCancel:: @ 81BC50D
 CableClub_Text_AwaitingLinkupBCancel:: @ 81BC54C
 	.string "Awaiting linkup…\n"
 	.string "… … B Button: Cancel$"
-
-@ Unused, translated in Emerald
-CableClub_Text_OkayToSaveProgress:: @ 81BC572
-	.string "はじめる　まえに　レポートを\n"
-	.string "かきますが　よろしいですか？$"
 
 CableClub_Text_PleaseEnter:: @ 81BC590
 	.string "Please enter.$"
@@ -1519,10 +1510,6 @@ Text_TakeSeatStartTrade:: @ 81BC8DA
 	.string "Please take your seat and start\n"
 	.string "your trade.$"
 
-@ Unused, leftover from RS
-RecordCorner_Text_ThanksForComing:: @ 81BC906
-	.string "ごりよう　ありがとう　ございました$"
-
 CableClub_Text_TrainerCardDataOverwritten:: @ 81BC918
 	.string "The TRAINER CARD data will\n"
 	.string "be overwritten.$"
@@ -1551,14 +1538,6 @@ CableClub_Text_ParticipantsStepUpToCounter:: @ 81BCA43
 	.string "Participants are asked to step up\n"
 	.string "to the reception counter.$"
 
-@ Unused, translated in Emerald
-CableClub_Text_Hello:: @ 81BCA7F
-	.string "こんにちは！$"
-
-@ Unused, translated in Emerald
-CableClub_Text_PleaseWait:: @ 81BCA86
-	.string "しょうしょう　おまちください$"
-
 CableClub_Text_YouMayTradeHere:: @ 81BCA95
 	.string "You may trade your POKéMON here\n"
 	.string "with another TRAINER.$"
@@ -1571,21 +1550,8 @@ CableClub_Text_CanMakeBerryPowder:: @ 81BCAF2
 	.string "Two to five TRAINERS can make\n"
 	.string "BERRY POWDER together.$"
 
-@ Unused, Record Mix nopped
-CableClub_Text_CanMixRecords:: @ 81BCB27
-	.string "ワイヤレス　クラブでの\n"
-	.string "あそびかたを　せつめいします$"
-
 CableClub_Text_CancelSelectedItem:: @ 81BCB42
 	.string "Cancels the selected MENU item.$"
-
-@ Unused, translated in Emerald
-CableClub_Text_WhichBattleMode:: @ 81BCB62
-	.string "どちらの　しょうぶに　しますか？$"
-
-@ Unused, translated in Emerald
-CableClub_Text_ReturnsToPreviousStep:: @ 81BCB73
-	.string "ひとつ　まえに　もどります$"
 
 CableClub_Text_NeedBerryForBerryCrush:: @ 81BCB81
 	.string "To use the BERRY CRUSH service,\n"
@@ -1605,11 +1571,6 @@ CableClub_Text_UnionRoomAdapterNotConnected:: @ 81BCC3A
 	.string "Unfortunately, your Wireless\n"
 	.string "Adapter is not connected properly.\p"
 	.string "Please do come again.$"
-
-@ Unused, translated in Emerald
-CableClub_Text_OhExcuseMe:: @ 81BCCBE
-	.string "あ‥‥\n"
-	.string "おきゃくさま！$"
 
 Text_PlayerIsPlayingRightNowGoForIt:: @ 81BCCCA
 	.string "It appears as if {STR_VAR_1} is playing\n"
@@ -1673,11 +1634,6 @@ Text_AllGoodToGo:: @ 81BD080
 	.string "Okay, you're all good to go.\n"
 	.string "Don't let the others beat you!$"
 
-@ Unused, translated in Emerald
-Text_LeavingDoComeAgain:: @ 81BD0BC
-	.string "きょうは　けえるのか？\n"
-	.string "またこいよ！$"
-
 EventScript_ExplainPokemonJumpRequirements:: @ 81BD0CF
 	.string "It doesn't look like you have any\n"
 	.string "POKéMON that you can enter…\p"
@@ -1698,11 +1654,6 @@ Text_OnlyDodrioAllowed:: @ 81BD213
 	.string "Well, the name says it all.\p"
 	.string "You have to have a DODRIO to play\n"
 	.string "this game.$"
-
-@ Unused, translated in Emerald
-Text_RetryFromStartPlease:: @ 81BD274
-	.string "もういちど　はじめから\n"
-	.string "やりなおして　みて　くれ$"
 
 CableClub_Text_WelcomeWhichDirectCornerRoom:: @ 81BD28D
 	.string "Welcome to the POKéMON WIRELESS\n"

@@ -33,12 +33,6 @@ static const u32 gUnknown_84147C0[] = INCBIN_U32("graphics/diploma/unk_84147C0.4
 static const u32 gUnknown_84154E8[] = INCBIN_U32("graphics/diploma/unk_84154E8.bin.lz");
 static const u16 gUnknown_8415954[] = INCBIN_U16("graphics/diploma/unk_8415954.gbapal");
 
-static const u8 gUnknown_8415994[] = _("{HIGHLIGHT TRANSPARENT}プレイヤー");
-static const u8 gUnknown_841599D[] = _("{HIGHLIGHT TRANSPARENT}さま");
-static const u8 gUnknown_84159A3[] = _("{HIGHLIGHT TRANSPARENT}ホウエン");
-static const u8 gUnknown_84159AB[] = _("{HIGHLIGHT TRANSPARENT}ぜんこく");
-static const u8 gUnknown_84159B3[] = _("{HIGHLIGHT TRANSPARENT}　　　　　ポケモンずかんを\nみごと　かんせい　させた\nいだいなこうせきを　たたえ\nここに　しょうめい　します");
-static const u8 gUnknown_84159ED[] = _("{COLOR RED}{HIGHLIGHT TRANSPARENT}ゲームフリーク");
 static const u8 gUnknown_84159FB[] = _("{COLOR RED}{HIGHLIGHT TRANSPARENT}");
 
 static const ALIGNED(4) u8 gUnknown_8415A04[3] = {0, 2, 3};

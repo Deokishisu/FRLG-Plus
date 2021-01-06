@@ -82,9 +82,6 @@ TrainerTower_Roof_Text_IdLikeToSeeBetterTime:: @ 817CBF5
 TrainerTower_Text_XMinYZSec:: @ 817CC56
     .string "{STR_VAR_1} min. {STR_VAR_2}.{STR_VAR_3} sec.$"
 
-TrainerTower_Lobby_Text_HereAreTheResults:: @ 817CC69
-    .string "せいせきひょうです$"
-
 TrainerTower_Lobby_Text_NeedTwoMonsForDouble:: @ 817CC73
     .string "This is a two-on-two battle.\p"
     .string "You may not battle unless you have\n"

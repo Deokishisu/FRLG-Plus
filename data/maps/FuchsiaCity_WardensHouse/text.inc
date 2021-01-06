@@ -50,11 +50,6 @@ FuchsiaCity_WardensHouse_Text_ExplainStrength:: @ 819908A
     .string "Oh yes, did you find the SECRET\n"
     .string "HOUSE in the SAFARI ZONE?$"
 
-@ Unused
-FuchsiaCity_WardensHouse_Text_YouHaveTooMuchStuff:: @ 819912B
-    .string "なんや　にもつ\n"
-    .string "いっぱいやんけ！$"
-
 FuchsiaCity_WardensHouse_Text_MonPhotosFossilsOnDisplay:: @ 819913C
     .string "POKéMON photos and fossils are on\n"
     .string "display.$"

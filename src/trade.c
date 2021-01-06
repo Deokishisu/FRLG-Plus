@@ -651,20 +651,7 @@ static const struct WindowTemplate sWindowTemplate_YesNo = {
     .baseBlock = 0x24e
 };
 
-static const u8 gUnknown_8261FCC[][13] = {
-    _("かいめの そうしん"),
-    _("かいめの じゅしん"),
-    _("ポケモンアイコンセット"),
-    _("OBJテキストセット"),
-    _("セルセット"),
-    _("OBJテキストADD"),
-    _("システムメッセージADD"),
-    _("はいけいセット")
-};
-
 static const u8 gJPText_Shedinja[] = _("ヌケニン");
-static const u8 gUnknown_8262039[] = _("こうかんせいりつ     ");
-static const u8 gUnknown_8262047[] = _("だめだたらしいよ     ");
 
 static const u8 gUnknown_8262055[][2] = {
     { 4,  3},

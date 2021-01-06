@@ -15,9 +15,6 @@ CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes:: @ 8197057
 CeladonCity_GameCorner_PrizeRoom_Text_WhichPrize:: @ 819707A
     .string "Which prize would you like?$"
 
-CeladonCity_GameCorner_PrizeRoom_Text_HereYouGo:: @ 8197096
-    .string "はい どうぞ$"
-
 CeladonCity_GameCorner_PrizeRoom_Text_YouWantPrize:: @ 819709D
     .string "So, you want the {STR_VAR_1}?$"
 
@@ -28,12 +25,6 @@ CeladonCity_GameCorner_PrizeRoom_Text_YouWantTM:: @ 81970B2
 CeladonCity_GameCorner_PrizeRoom_Text_NeedMoreCoins:: @ 81970D5
     .string "Sorry, you'll need more COINS\n"
     .string "than that.$"
-
-CeladonCity_GameCorner_PrizeRoom_Text_OopsNotEnoughRoom:: @ 81970FE
-    .string "おきゃくさん もう もてないよ$"
-
-CeladonCity_GameCorner_PrizeRoom_Text_OhFineThen:: @ 819710E
-    .string "あっ そう$"
 
 CeladonCity_GameCorner_PrizeRoom_Text_YouAlreadyHaveThisTM::
     .string "You already have this TM.$"

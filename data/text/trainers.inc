@@ -610,11 +610,6 @@ Route21_North_Text_WadeRematchIntro:: @ 81C3231
 Route21_North_Text_SpencerRematchIntro:: @ 81C3264
 	.string "The sea cleanses my body and soul!$"
 
-@ Unused trainer from RB that had a rematch intro added
-Route21_North_Text_CueBallRematchIntro:: @ 81C3287
-	.string "きょうも　およぎに\n"
-	.string "きちまったぜ$"
-
 Route21_South_Text_JackRematchIntro:: @ 81C3298
 	.string "I caught my POKéMON at sea.\n"
 	.string "And that's where I train them.$"

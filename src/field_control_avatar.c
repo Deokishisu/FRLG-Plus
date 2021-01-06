@@ -471,7 +471,7 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
     if (bgEvent == NULL)
         return NULL;
     if (bgEvent->bgUnion.script == NULL)
-        return EventScript_TestSignpostMsg;
+        return EventScript_ReleaseEnd;
 
     signpostType = GetFacingSignpostType(metatileBehavior, direction);
 
@@ -824,7 +824,7 @@ static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition * position)
         return NULL;
     if (event->bgUnion.script != NULL)
         return event->bgUnion.script;
-    return EventScript_TestSignpostMsg;
+    return EventScript_ReleaseEnd;
 }
 
 static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, u8 direction)

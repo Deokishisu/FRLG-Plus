@@ -35,10 +35,6 @@ DayCare_Text_ReceivedEgg:: @ 81BF72A
 DayCare_Text_TakeGoodCareOfIt:: @ 81BF755
 	.string "Take good care of it.$"
 
-DayCare_Text_SeeWifeIfYouWantToPickUpMon:: @ 81BF76B
-	.string "ポケモンを　ひきとりたい　ときは\n"
-	.string "ばさんに　いって　おくれ$"
-
 DayCare_Text_YourMonsAreDoingFine:: @ 81BF789
 	.string "Ah, it's you! Your {STR_VAR_1} and\n"
 	.string "{STR_VAR_2} are doing fine.$"
@@ -97,9 +93,6 @@ DayCare_Text_YourMonHasGrownXLevels:: @ 81BF9CC
 DayCare_Text_YourPartyIsFull:: @ 81BF9EF
 	.string "Your POKéMON party is full.\n"
 	.string "Make room, then come see me.$"
-
-DayCare_Text_TakeBackWhichMon:: @ 81BFA28
-	.string "どっちの　ポケモンを　ひきとるかい？$"
 
 DayCare_Text_ItWillCostX:: @ 81BFA3B
 	.string "If you want your {STR_VAR_1} back,\n"

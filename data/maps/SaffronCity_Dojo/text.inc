@@ -84,10 +84,6 @@ SaffronCity_Dojo_Text_YouWantHitmonchan:: @ 819B49E
     .string "You want the piston-punching\n"
     .string "HITMONCHAN?$"
 
-SaffronCity_Dojo_Text_ReceivedMonFromKarateMaster2:: @ 819B4C7
-    .string "{PLAYER}は　カラテ　だいおう　から\n"
-    .string "{STR_VAR_1}を　もらった！$"
-
 SaffronCity_Dojo_Text_BetterNotGetGreedy:: @ 819B4E1
     .string "Better not get greedy…$"
 

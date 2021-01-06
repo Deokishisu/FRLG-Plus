@@ -19,9 +19,6 @@ Help_Text_Exit:: @ 81B2E6A
 Help_Text_Cancel:: @ 81B2E6F
 	.string "CANCEL$"
 
-Help_Text_TryDoingItOnYourOwn::
-	.string "じぶんの ちからで やってみよう！$"
-
 Help_Text_DescWhatShouldIDo:: @ 81B2E88
 	.string "Select to obtain hints for getting\n"
 	.string "over challenging situations.$"

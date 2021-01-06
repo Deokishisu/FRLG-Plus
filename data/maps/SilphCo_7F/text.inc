@@ -25,12 +25,6 @@ SilphCo_7F_Text_RocketBossWentToBoardroom:: @ 81763DD
     .string "Is our PRESIDENT okay?\n"
     .string "I'm worried.$"
 
-SilphCo_7F_Text_OhNo:: @ 817642B
-    .string "あ‥　もう　もてないぞ$"
-
-SilphCo_7F_Text_SavedAtLast:: @ 8176437
-    .string "たすかったよ　ありがと！$"
-
 SilphCo_7F_Text_RocketsAfterMasterBall:: @ 8176444
     .string "TEAM ROCKET was after the MASTER\n"
     .string "BALL, which catches any POKéMON.$"
@@ -118,12 +112,6 @@ SilphCo_7F_Text_RivalDefeat:: @ 81767D0
     .string "Oh, man!\n"
     .string "So, you are ready for BOSS\l"
     .string "ROCKET!$"
-
-SilphCo_7F_Text_RivalVictory:: @ 81767FC
-    .string "{RIVAL}“おまえなあ‥\p"
-    .string "こんな　うでまえじゃ\n"
-    .string "まだまだ‥\l"
-    .string "いちにんまえ　とは　いえないぜ$"
 
 SilphCo_7F_Text_RivalPostBattle:: @ 8176827
     .string "Well, {PLAYER}!\n"

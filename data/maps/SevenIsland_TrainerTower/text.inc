@@ -30,12 +30,4 @@ SevenIsland_TrainerTower_Text_TrainerTowerSign:: @ 818C338
 SevenIsland_TrainerTower_Text_TrainerTowerAhead:: @ 818C370
     .string "TRAINER TOWER AHEAD$"
 
-@ Unused text perhaps indicating Trainer Tower was planned to be unlocked by something
-SevenIsland_TrainerTower_Text_LooksLikeTrainerTowerIsClosed:: @ 818C384
-    .string "トレーナータワーには\n"
-    .string "いまは　はいれない　みたい‥$"
-
-SevenIsland_TrainerTower_Text_TrainerTowerIsOpenLetsGoIn:: @ 818C39E
-    .string "トレーナータワーが　あいてる！\n"
-    .string "さっそく　はいってみよう！$"
 

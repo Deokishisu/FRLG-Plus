@@ -1179,7 +1179,6 @@ extern const u8 EventScript_TryDoNormalTrainerBattle[];
 extern const u8 EventScript_TryDoDoubleRematchBattle[];
 extern const u8 EventScript_TryDoRematchBattle[];
 extern const u8 EventScript_DoTrainerBattleFromApproach[];
-extern const u8 EventScript_TestSignpostMsg[];
 
 // new_game
 extern const u8 EventScript_ResetAllMapFlags[];

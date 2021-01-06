@@ -103,8 +103,6 @@ extern const u8 gUnionRoomActivity_PokemonJump[];
 extern const u8 gUnionRoomActivity_BerryCrush[];
 extern const u8 gUnionRoomActivity_BerryPicking[];
 extern const u8 gUnionRoomActivity_Search[];
-extern const u8 gUnionRoomActivity_SpinTradeJP[];
-extern const u8 gUnionRoomActivity_ItemTradeJP[];
 extern const u8 *const gUnknown_84594B0[];
 extern const u8 gUnknown_84594C4[];
 extern const u8 gUnknown_8459504[];

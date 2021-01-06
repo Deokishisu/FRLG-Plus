@@ -34,10 +34,6 @@ PewterCity_Museum_1F_Text_AmberIsFossilizedSap:: @ 8190627
     .string "The ancient sap fossilized over\n"
     .string "time to become rock-hard AMBER.$"
 
-@ Unused
-PewterCity_Museum_1F_Text_PleaseGoAround:: @ 81906A6
-    .string "あちらへ　おまわりください$"
-
 PewterCity_Museum_1F_Text_ShouldBeGratefulForLongLife:: @ 81906B4
     .string "I should be grateful for my long\n"
     .string "life.\p"

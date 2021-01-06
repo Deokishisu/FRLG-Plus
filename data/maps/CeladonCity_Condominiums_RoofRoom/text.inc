@@ -9,10 +9,6 @@ CeladonCity_Condominiums_RoofRoom_Text_TheresNothingIDontKnow:: @ 81964D7
 CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee:: @ 8196591
     .string "{PLAYER} obtained an EEVEE!$"
 
-CeladonCity_Condominiums_RoofRoom_Text_BoxIsFull:: @ 81965A7
-    .string "ポケモンが　いっぱいだ\n"
-    .string "ボックスを　かえて　きなさい$"
-
 CeladonCity_Condominiums_RoofRoom_Text_WirelessAdapterLecture:: @ 81965C2
     .string "POKéMON Lecture\p"
     .string "Playing with the Wireless Adapter$"

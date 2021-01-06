@@ -105,9 +105,6 @@ PokedexRating_Text_YouveCompletedDex:: @ 81A722F
 PokedexRating_Text_Wroooaaarrr:: @ 81A7291
 	.string "Wroooooooaaaaaarrrr!$"
 
-PokedexRating_Text_HaHa:: @ 81A72A6
-	.string "はあ はあ‥$"
-
 PokedexRating_Text_ThankYouMadeDreamReality:: @ 81A72AD
 	.string "Thank you, {PLAYER}!\n"
 	.string "Sincerely, thank you!\l"

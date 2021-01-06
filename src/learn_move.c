@@ -180,30 +180,6 @@ static const u8 sMoveTutorMenuWindowFrameDimensions[][4] =
     { 2, 14, 27, 19}
 };
 
-static const u8 sJPText_TatakauWaza[] = _("たたかうわざ");
-static const u8 sJPText_Taipu[] = _("タイプ/");
-static const u8 sJPText_PP[] = _("PP/");
-static const u8 sJPText_Iryoku[] = _("いりょく/");
-static const u8 sJPText_Meichuu[] = _("めいちゅう/");
-
-static const struct MoveTutorMoveInfoHeaders sMoveTutorMoveInfoHeaders[][5] =
-{
-    {
-        {sJPText_TatakauWaza,  7, 1, 0},
-        {sJPText_Taipu,        1, 4, 1},
-        {sJPText_Iryoku,      11, 4, 2},
-        {sJPText_PP,           2, 6, 3},
-        {sJPText_Meichuu,     10, 6, 4},
-    },
-    {
-        {NULL,        0, 0, 0},
-        {NULL,        0, 0, 0},
-        {NULL,        0, 0, 0},
-        {NULL,        0, 0, 0},
-        {NULL,        0, 0, 0},
-    },
-};
-
 static const struct SpriteSheet sSpriteSheet_ListMenuScrollIndicators = {
     sLearnMoveInterfaceSpritesTiles, 0x180, 5525
 };

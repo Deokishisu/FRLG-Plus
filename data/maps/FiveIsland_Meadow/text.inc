@@ -1,8 +1,3 @@
-@ Unused
-FiveIsland_Meadow_Text_DoorNeedsTwoPasswords:: @ 818AB73
-    .string "とびらを　あけるには\n"
-    .string "パスワードが　2つ　いるようだ$"
-
 FiveIsland_Meadow_Text_EnteredPasswordAnotherNeeded:: @ 818AB8E
     .string "{PLAYER} entered a password.\p"
     .string "“GOLDEEN need log.”\p"
