@@ -1537,10 +1537,10 @@ Help_Text_DefineVersion:: @ 81B7E0F
 	.string "You can change your game version\n"
 	.string "between FIRERED VERSION and\l"
 	.string "LEAFGREEN VERSION. Your game version\l"
-	.string "determines what wild POKéMON appear,\l"
-	.string "some ingame NPC trades, what the\l"
-	.string "titlescreen looks like, and the text\l"
-	.string "entries of your POKéDEX data.$"
+	.string "determines what POKéMON are available,\l"
+	.string "themes graphics for some interfaces,\l"
+	.string "what the titlescreen looks like, and the\l"
+	.string "text entries of your POKéDEX data.$"
 
 Help_Text_DefineDifficulty:: @ 81B7E0F
 	.string "You can adjust the game's difficulty.\n"
@@ -1558,25 +1558,25 @@ Help_Text_DefineNuzlocke:: @ 81B7E0F
 	.string "have fainted cannot be healed, and only\l"
 	.string "the first wild POKéMON seen in an area\l"
 	.string "is usable in battle. If you run out of\l"
-	.string "POKéMON, this key will be turned off.$"
+	.string "POKéMON, this key can be turned off.$"
 
 Help_Text_DefineNuzlocke_Catching::
 	.string "Only the first POKéMON encountered in\n"
 	.string "an area will be usable in battle.\l"
-	.string "POKéMON caught in the same area after\l"
-	.string "the first encounter will be fainted upon\l"
-	.string "capture. If the first encounter is an\l"
-	.string "already-owned POKéMON, it won't count\l"
-	.string "as the first encounter if not caught.$"
+	.string "Further POKéMON caught in the area will\l"
+	.string "be fainted upon capture. If the first\l"
+	.string "encounter is a POKéMON that was caught\l"
+	.string "previously and wasn't fainted, it won't\l"
+	.string "count as the first if not caught.$"
 
 Help_Text_DefineNuzlockeLosing::
 	.string "If you lose a battle and white out in\n"
-	.string "NUZLOCKE MODE, you will be prompted\l"
-	.string "to withdraw non-fainted POKéMON from\l"
-	.string "the PC STORAGE SYSTEM. If you do not\l"
-	.string "have any POKéMON left that can battle,\l"
-	.string "NUZLOCKE MODE will be turned off and\l"
-	.string "your party will be healed.$"
+	.string "NUZLOCKE MODE, a non-fainted POKéMON\l"
+	.string "will be withdrawn from the PC STORAGE\l"
+	.string "SYSTEM. If you don't have any POKéMON\l"
+	.string "left that can battle, you will be given\l"
+	.string "the choice to soft reset or to turn off\l"
+	.string "NUZLOCKE MODE and heal your party.$"
 
 Help_Text_DefineIvCalc:: @ 81B7E0F
 	.string "You can alter how your POKéMON's\n"
@@ -1979,3 +1979,12 @@ Help_Text_TypeMatchupOwnPokemonBug:: @ 81BB156
 	.string "   {CIRCLE_DOT}: FIRE, FLYING, ROCK\p"
 	.string "   {TRIANGLE}: GRASS, FIGHTING, GROUND$"
 
+Help_Text_DefineBattleAnimSpeed::
+	.string "By setting this option to FAST, you can\n"
+	.string "choose to skip the slide-in animation\l"
+	.string "that occurs at the beginning of every\l"
+	.string "battle and increase the speed at which\l"
+	.string "healthbars drop from damage.$"
+
+Help_Text_BattleAnimSpeed::
+	.string "BATTLE ANIM SPEED$"

@@ -1723,6 +1723,8 @@ static void PokedudeHandleDrawTrainerPic(void)
                                             30);
         gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = 240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
+        if(gSaveBlock2Ptr->battleAnimSpeed == 1)
+            gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
         gSprites[gBattlerSpriteIds[gActiveBattler]].callback = sub_8033EEC;
     }
@@ -1737,6 +1739,8 @@ static void PokedudeHandleDrawTrainerPic(void)
                                                          GetBattlerSpriteSubpriority(gActiveBattler));
         gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = -240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 2;
+        if(gSaveBlock2Ptr->battleAnimSpeed == 1)
+            gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerFrontPicPaletteTable[tranerPicid].tag);
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[5] = gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum;
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum = GetSpriteTileStartByTag(gTrainerFrontPicTable[tranerPicid].tag);

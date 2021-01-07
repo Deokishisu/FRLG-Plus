@@ -618,6 +618,9 @@ static void LoadBattleTerrainGfx(u16 terrain)
 
 static void LoadBattleTerrainEntryGfx(u16 terrain)
 {
+    if(gSaveBlock2Ptr->battleAnimSpeed == 1) //don't do entry anim graphics if set to Fast
+        return;
+
     if (terrain >= NELEMS(sBattleTerrainTable))
         terrain = 9;
     // Copy to bg1

@@ -759,6 +759,7 @@ const u8 gText_Sound[] = _("SOUND");
 const u8 gText_ButtonMode[] = _("BUTTON MODE");
 const u8 gText_Frame[] = _("FRAME");
 const u8 gText_OptionMenuCancel[] = _("CANCEL");
+const u8 gText_OptionMenuBattleAnimSpeed[] = _("BATTLE ANIM SPEED");
 const u8 gText_TextSpeedSlow[] = _("SLOW");
 const u8 gText_TextSpeedMid[] = _("MID");
 const u8 gText_TextSpeedFast[] = _("FAST");
@@ -772,7 +773,7 @@ const u8 gText_ButtonTypeHelp[] = _("HELP");
 const u8 gText_ButtonTypeLEqualsA[] = _("L=A");
 const u8 gText_ButtonTypeLR[] = _("LR");
 const u8 gText_FrameType[] = _("TYPE");
-const u8 gText_PickSwitchCancel[] = _("{DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");
+const u8 gText_PickSwitchCancel[] = _("{DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}SAVE");
 const u8 gText_SavingDontTurnOffThePower2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
 const u8 gText_TextSpeedInstant[] = _("INSTANT");
 
@@ -1239,6 +1240,6 @@ const u8 gText_EVCalcStandard[] = _("STANDARD");
 const u8 gText_NoPMC[] = _("NO FREE HEALS");
 
 const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
-const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");
+const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}SAVE");
 const u8 gChooseVersionNewGame[] = _("Start NEW GAME on which version?\nOther KEY SYSTEM SETTINGS can\lbe set later from the main menu.");
 const u8 gFRLG_Multichoice[] = _("FIRERED\nLEAFGREEN");

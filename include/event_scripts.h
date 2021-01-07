@@ -1308,4 +1308,7 @@ extern const u8 TradeCenter_EventScript_Chair1[];
 extern const u8 TradeCenter_ConfirmLeaveRoom[];
 extern const u8 TradeCenter_TerminateLink[];
 
+extern const u8 Help_Text_DefineBattleAnimSpeed[];
+extern const u8 Help_Text_BattleAnimSpeed[];
+
 #endif //GUARD_EVENT_SCRIPTS_H

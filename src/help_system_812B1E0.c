@@ -425,7 +425,8 @@ enum
     HELP_TERM_NUZLOCKE_LOSING,
     HELP_TERM_IV_CALC,
     HELP_TERM_EV_CALC,
-    HELP_TERM_NO_PMC
+    HELP_TERM_NO_PMC,
+    HELP_TERM_BATTLE_ANIM_SPEED
 };
 
 static const u8 *const sHelpSystemTermTextPtrs[] = {
@@ -480,7 +481,8 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_NuzlockeLosing,
     [HELP_TERM_IV_CALC]        = Help_Text_IvCalc,
     [HELP_TERM_EV_CALC]        = Help_Text_EvCalc,
-    [HELP_TERM_NO_PMC]         = Help_Text_NoFreeHeals
+    [HELP_TERM_NO_PMC]         = Help_Text_NoFreeHeals,
+    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_BattleAnimSpeed
 };
 
 static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
@@ -535,7 +537,8 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_DefineNuzlockeLosing,
     [HELP_TERM_IV_CALC]        = Help_Text_DefineIvCalc,
     [HELP_TERM_EV_CALC]        = Help_Text_DefineEvCalc,
-    [HELP_TERM_NO_PMC]         = Help_Text_DefineNoFreeHeals
+    [HELP_TERM_NO_PMC]         = Help_Text_DefineNoFreeHeals,
+    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_DefineBattleAnimSpeed
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -819,11 +822,11 @@ static const u8 sHowTo_Options[] = {
 static const u8 sTerms_Options[] = {
     HELP_TERM_TEXT_SPEED, 
     HELP_TERM_BATTLE_SCENE, 
-    HELP_TERM_BATTLE_STYLE, 
+    HELP_TERM_BATTLE_STYLE,
+    HELP_TERM_BATTLE_ANIM_SPEED, 
     HELP_TERM_SOUND, 
     HELP_TERM_BUTTON_MODE, 
     HELP_TERM_FRAME, 
-    HELP_TERM_CANCEL, 
     HELP_END
 };
 
