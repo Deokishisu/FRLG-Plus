@@ -231,11 +231,11 @@
 #define FLAG_AUTO_RUN_TOGGLED                 0x0DD
 #define FLAG_AUTO_RUN_EXPLAINED               0x0DE
 #define FLAG_DONT_ADD_TMS                     0x0DF //Needed so the Teachy TV doesn't add TMs
+#define FLAG_CELADON_GYM_LEFT_CUT_TREE        0x0E0 //forgot these...
+#define FLAG_CELADON_GYM_BOTTOM_CUT_TREE      0x0E1 // ^
+#define FLAG_CELADON_GYM_RIGHT_CUT_TREE       0x0E2 // ^
 
 // Unused?
-#define FLAG_0x0E0               0x0E0
-#define FLAG_0x0E1               0x0E1
-#define FLAG_0x0E2               0x0E2
 #define FLAG_0x0E3               0x0E3
 #define FLAG_0x0E4               0x0E4
 #define FLAG_0x0E5               0x0E5
