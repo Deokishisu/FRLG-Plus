@@ -1,36 +1,74 @@
+ProgrammableWaveData_86B4830:: @ 86B4830
+	.incbin "sound/programmable_wave_samples/86B4830.pcm"
 
-gProgrammableWaveData_84A31EC:: @ 84A31EC
-	.incbin "sound/programmable_wave_samples/84A31EC.pcm"
+ProgrammableWaveData_86B4840:: @ 86B4840
+	.incbin "sound/programmable_wave_samples/86B4840.pcm"
 
-gProgrammableWaveData_84A31FC:: @ 84A31FC
-	.incbin "sound/programmable_wave_samples/84A31FC.pcm"
-
-gProgrammableWaveData_84A320C:: @ 84A320C
-	.incbin "sound/programmable_wave_samples/84A320C.pcm"
-
-gProgrammableWaveData_84A321C:: @ 84A321C
-	.incbin "sound/programmable_wave_samples/84A321C.pcm"
-
-gProgrammableWaveData_84A322C:: @ 84A322C
-	.incbin "sound/programmable_wave_samples/84A322C.pcm"
-
-gProgrammableWaveData_84A323C:: @ 84A323C
-	.incbin "sound/programmable_wave_samples/84A323C.pcm"
-
-gProgrammableWaveData_84A324C:: @ 84A324C
-	.incbin "sound/programmable_wave_samples/84A324C.pcm"
-
-gProgrammableWaveData_84A325C:: @ 84A325C
-	.incbin "sound/programmable_wave_samples/84A325C.pcm"
-
-gProgrammableWaveData_84A326C:: @ 84A326C
-	.incbin "sound/programmable_wave_samples/84A326C.pcm"
-
-gProgrammableWaveData_84A327C:: @ 84A327C
-	.incbin "sound/programmable_wave_samples/84A327C.pcm"
-
-gProgrammableWaveData_84A328C:: @ 84A328C
-	.incbin "sound/programmable_wave_samples/84A328C.pcm"
-
-ProgrammableWaveData_86B4850:: @ 86B4850 from Emerald
+ProgrammableWaveData_86B4850:: @ 86B4850
 	.incbin "sound/programmable_wave_samples/86B4850.pcm"
+
+ProgrammableWaveData_86B4860:: @ 86B4860
+	.incbin "sound/programmable_wave_samples/86B4860.pcm"
+
+ProgrammableWaveData_86B4870:: @ 86B4870
+	.incbin "sound/programmable_wave_samples/86B4870.pcm"
+
+ProgrammableWaveData_86B4880:: @ 86B4880
+	.incbin "sound/programmable_wave_samples/86B4880.pcm"
+
+ProgrammableWaveData_86B4890:: @ 86B4890
+	.incbin "sound/programmable_wave_samples/86B4890.pcm"
+
+ProgrammableWaveData_86B48A0:: @ 86B48A0
+	.incbin "sound/programmable_wave_samples/86B48A0.pcm"
+
+ProgrammableWaveData_86B48B0:: @ 86B48B0
+	.incbin "sound/programmable_wave_samples/86B48B0.pcm"
+
+ProgrammableWaveData_86B48C0:: @ 86B48C0
+	.incbin "sound/programmable_wave_samples/86B48C0.pcm"
+
+ProgrammableWaveData_86B48D0:: @ 86B48D0
+	.incbin "sound/programmable_wave_samples/86B48D0.pcm"
+
+ProgrammableWaveData_86B48E0:: @ 86B48E0
+	.incbin "sound/programmable_wave_samples/86B48E0.pcm"
+
+ProgrammableWaveData_86B48F0:: @ 86B48F0
+	.incbin "sound/programmable_wave_samples/86B48F0.pcm"
+
+ProgrammableWaveData_86B4900:: @ 86B4900
+	.incbin "sound/programmable_wave_samples/86B4900.pcm"
+
+ProgrammableWaveData_86B4910:: @ 86B4910
+	.incbin "sound/programmable_wave_samples/86B4910.pcm"
+
+ProgrammableWaveData_86B4920:: @ 86B4920
+	.incbin "sound/programmable_wave_samples/86B4920.pcm"
+
+ProgrammableWaveData_Unused_86B4930:: @ 86B4930
+	.incbin "sound/programmable_wave_samples/unused_86B4930.pcm"
+
+ProgrammableWaveData_Unused_86B4940:: @ 86B4940
+	.incbin "sound/programmable_wave_samples/unused_86B4940.pcm"
+
+ProgrammableWaveData_Unused_86B4950:: @ 86B4950
+	.incbin "sound/programmable_wave_samples/unused_86B4950.pcm"
+
+ProgrammableWaveData_Unused_86B4960:: @ 86B4960
+	.incbin "sound/programmable_wave_samples/unused_86B4960.pcm"
+
+ProgrammableWaveData_86B4970:: @ 86B4970
+	.incbin "sound/programmable_wave_samples/86B4970.pcm"
+
+ProgrammableWaveData_86B4980:: @ 86B4980
+	.incbin "sound/programmable_wave_samples/86B4980.pcm"
+
+ProgrammableWaveData_86B4990:: @ 86B4990
+	.incbin "sound/programmable_wave_samples/86B4990.pcm"
+
+ProgrammableWaveData_86B49A0:: @ 86B49A0
+	.incbin "sound/programmable_wave_samples/86B49A0.pcm"
+
+ProgrammableWaveData_86B49B0:: @ 86B49B0
+	.incbin "sound/programmable_wave_samples/86B49B0.pcm"

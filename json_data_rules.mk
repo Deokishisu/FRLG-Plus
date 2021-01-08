@@ -8,8 +8,3 @@ $(DATA_C_SUBDIR)/items.h: $(DATA_C_SUBDIR)/items.json $(DATA_C_SUBDIR)/items.jso
 
 $(C_BUILDDIR)/item.o: c_dep += $(DATA_C_SUBDIR)/items.h
 
-AUTO_GEN_TARGETS += $(DATA_C_SUBDIR)/wild_encounters.h
-$(DATA_C_SUBDIR)/wild_encounters.h: $(DATA_C_SUBDIR)/wild_encounters.json $(DATA_C_SUBDIR)/wild_encounters.json.txt
-	$(JSONPROC) $^ $@
-
-$(C_BUILDDIR)/wild_encounter.o: c_dep += $(DATA_C_SUBDIR)/wild_encounters.h
