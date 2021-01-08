@@ -1011,9 +1011,6 @@ $(MID_SUBDIR)/se_shop.s: %.s: %.mid
 $(MID_SUBDIR)/se_rg_bag_cursor.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G129 -P5
 
-$(MID_SUBDIR)/se_rg_bag_pocket.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G129 -P5
-
 $(MID_SUBDIR)/se_rg_card_flip.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G129 -P5
 

@@ -879,7 +879,7 @@ SECTIONS {
         sound/songs/midi/se_rg_card_flipping.o(.rodata);
         sound/songs/midi/se_rg_card_open.o(.rodata);
         sound/songs/midi/se_rg_bag_cursor.o(.rodata);
-        sound/songs/midi/se_rg_bag_pocket.o(.rodata);
+        sound/songs/se_rg_bag_pocket.o(.rodata);
         sound/songs/midi/se_rg_ball_click.o(.rodata);
         sound/songs/midi/se_rg_shop.o(.rodata);
         sound/songs/midi/se_rg_ss_anne_horn.o(.rodata);
