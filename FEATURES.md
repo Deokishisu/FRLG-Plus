@@ -27,6 +27,7 @@
 	* Trade with Ruby, Sapphire, Emerald, Colosseum, and XD the moment that the player catches a second Pokémon.
 		* Unmodified Emerald may need the National Dex before it allows trading.
 - No evolution restrictions; Pokémon will evolve regardless of whether or not their evolution is in the Kanto Dex.
+	* Eevee evolves into Espeon by happiness outdoors and Umbreon by happiness indoors.
 - Cut Trees stay cut permanently.
 - Infinite TM usage. TM prices have been modified to reflect this.
 - Expanded item pockets. The player can hold one stack of every legally obtainable item at once.
