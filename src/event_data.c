@@ -2,6 +2,9 @@
 #include "event_data.h"
 #include "item_menu.h"
 #include "quest_log.h"
+#include "constants/maps.h"
+#include "constants/map_groups.h"
+#include "constants/region_map_sections.h"
 
 static bool8 IsFlagOrVarStoredInQuestLog(u16 idx, u8 a1);
 
@@ -336,13 +339,37 @@ u8 NuzlockeFlagSet(u8 mapsec)
     {   //don't start keeping track until has Pokedex
         return 1;
     }
+    if(id == 0x27) //Safari Zone
+    {
+        if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_EAST))
+        {
+            FlagSet(FLAG_NUZLOCKE_SAFARI_EAST);
+            return 0;
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH))
+        {
+            FlagSet(FLAG_NUZLOCKE_SAFARI_NORTH);
+            return 0;
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_WEST))
+        {
+            FlagSet(FLAG_NUZLOCKE_SAFARI_WEST);
+            return 0;
+        }
+        else
+        {
+            FlagSet(NUZLOCKE_FLAGS_START + (id - 1)); //base Safari Zone flag
+            return 0;
+        }
+        return 0;
+    }
     if(id != 0)
         FlagSet(NUZLOCKE_FLAGS_START + (id - 1));
     return 0;
 }
 
 u8 NuzlockeFlagClear(u8 mapsec)
-{
+{   //can't handle additional Safari Zone flags
     u8 id = NuzlockeLUT[mapsec];
     if(id != 0)
         FlagClear(NUZLOCKE_FLAGS_START + (id - 1));
@@ -352,6 +379,26 @@ u8 NuzlockeFlagClear(u8 mapsec)
 u8 NuzlockeFlagGet(u8 mapsec)
 {
     u8 id = NuzlockeLUT[mapsec];
+    if(id == 0x27) //Safari Zone
+    {
+        if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_EAST))
+        {
+            return FlagGet(FLAG_NUZLOCKE_SAFARI_EAST);
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH))
+        {
+            return FlagGet(FLAG_NUZLOCKE_SAFARI_NORTH);
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_WEST))
+        {
+            return FlagGet(FLAG_NUZLOCKE_SAFARI_WEST);
+        }
+        else
+        {
+            return FlagGet(NUZLOCKE_FLAGS_START + (id - 1)); //base Safari Zone flag
+        }
+        return 0;
+    }
     if(id != 0)
         return FlagGet(NUZLOCKE_FLAGS_START + (id - 1));
     return FALSE;
