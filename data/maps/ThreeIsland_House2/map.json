@@ -2,7 +2,7 @@
   "id": "MAP_THREE_ISLAND_HOUSE2",
   "name": "ThreeIsland_House2",
   "layout": "LAYOUT_HOUSE3",
-  "music": "MUS_SEVII_123",
+  "music": "MUS_RUSTBORO",
   "region_map_section": "MAPSEC_THREE_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,10 +13,11 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "in_connection": false,
       "x": 4,
       "y": 4,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "in_connection": false,
       "x": 7,
       "y": 4,
       "elevation": 3,
@@ -51,7 +53,11 @@
       "dest_warp_id": 3
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-	"level_scaling": "0"
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
 }

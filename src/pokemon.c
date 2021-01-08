@@ -6172,6 +6172,8 @@ static u16 GetBattleBGM(void)
         return MUS_VS_KYOGRE_GROUDON;
     if (gBattleTypeFlags & BATTLE_TYPE_REGI)
         return MUS_VS_REGI;
+    if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
+        return MUS_C_VS_LEGEND_BEAST;
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
         return MUS_RS_VS_TRAINER;
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
