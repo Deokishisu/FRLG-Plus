@@ -184,6 +184,7 @@ static const struct MenuAction sScriptMultiChoiceMenu_GameCornerBattleItemPrizes
 static const struct MenuAction sScriptMultiChoiceMenu_GameCornerCoinPurchaseCounter[] = {
     { gText_50Coins_1000 },
     { gText_500Coins_10000 },
+    { gText_1000Coins_20000 },
     { gOtherText_Exit }
 };
 

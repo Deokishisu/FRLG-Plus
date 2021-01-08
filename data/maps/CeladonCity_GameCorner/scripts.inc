@@ -31,7 +31,8 @@ CeladonCity_GameCorner_EventScript_CoinsClerk:: @ 816C68D
 	switch VAR_RESULT
 	case 0, CeladonCity_GameCorner_EventScript_BuyCoins
 	case 1, CeladonCity_GameCorner_EventScript_BuyCoins
-	case 2, CeladonCity_GameCorner_EventScript_ClerkDeclineBuy
+	case 2, CeladonCity_GameCorner_EventScript_BuyCoins
+	case 3, CeladonCity_GameCorner_EventScript_ClerkDeclineBuy
 	case 127, CeladonCity_GameCorner_EventScript_ClerkDeclineBuy
 	end
 
@@ -41,6 +42,20 @@ CeladonCity_GameCorner_EventScript_BuyCoins:: @ 816C6E6
 	goto_if_eq CeladonCity_GameCorner_EventScript_Buy50Coins
 	compare VAR_0x8009, 1
 	goto_if_eq CeladonCity_GameCorner_EventScript_Buy500Coins
+	compare VAR_0x8009, 2
+	goto_if_eq CeladonCity_GameCorner_EventScript_Buy1000Coins
+	end
+
+CeladonCity_GameCorner_EventScript_Buy1000Coins:: @ 816C706
+	checkcoins VAR_TEMP_1
+	compare VAR_TEMP_1, (MAX_COINS + 1) - 1000
+	goto_if_ge CeladonCity_GameCorner_EventScript_ClerkNoRoomForCoins
+	checkmoney 20000, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq CeladonCity_GameCorner_EventScript_ClerkNotEnoughMoney
+	addcoins 1000
+	removemoney 20000, 0
+	goto CeladonCity_GameCorner_EventScript_BoughtCoins
 	end
 
 CeladonCity_GameCorner_EventScript_Buy500Coins:: @ 816C706

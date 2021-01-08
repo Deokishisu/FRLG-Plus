@@ -1150,14 +1150,24 @@ EventScript_BufferPutAwayPocketName:: @ 81A8E6F
 	case POCKET_POKE_BALLS,  EventScript_BufferPutAwayPocketPokeBalls
 	case POCKET_TM_CASE,     EventScript_BufferPutAwayPocketTMCase
 	case POCKET_BERRY_POUCH, EventScript_BufferPutAwayPocketBerryPouch
+	case POCKET_MEDICINE,	 EventScript_BufferPutAwayPocketMedicine
+	case POCKET_HELD_ITEMS,  EventScript_BufferPutAwayPocketHeldItems
 	end
 
 EventScript_BufferPutAwayPocketItems:: @ 81A8EAC
 	getstdstring 2, STDSTRING_ITEMS_POCKET
 	return
 
+EventScript_BufferPutAwayPocketMedicine::
+	getstdstring 2, STDSTRING_MEDICINE_POCKET
+	return
+
 EventScript_BufferPutAwayPocketKeyItems:: @ 81A8EB1
 	getstdstring 2, STDSTRING_KEY_ITEMS_POCKET
+	return
+
+EventScript_BufferPutAwayPocketHeldItems::
+	getstdstring 2, STDSTRING_HELD_ITEMS_POCKET
 	return
 
 EventScript_BufferPutAwayPocketPokeBalls:: @ 81A8EB6

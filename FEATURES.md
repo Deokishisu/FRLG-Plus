@@ -42,6 +42,7 @@
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port).
 - The EV cap for an individual stat is 252, like in later generations.
 - Pokémon that evolve by trade can evolve by using an unmissable Key Item on them that is obtained during the story. Pokémon like Scyther also need to be holding their evolution items to evolve in this way.
+- Game Corner coins can be bought in increments of 1000 in addition to the other two options.
 
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.

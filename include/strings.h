@@ -733,6 +733,7 @@ extern const u8 gText_SodaPop_300[];
 extern const u8 gText_Lemonade_350[];
 extern const u8 gText_50Coins_1000[];
 extern const u8 gText_500Coins_10000[];
+extern const u8 gText_1000Coins_20000[];
 extern const u8 gText_Excellent[];
 extern const u8 gText_NotSoBad[];
 extern const u8 gText_RedShard[];
