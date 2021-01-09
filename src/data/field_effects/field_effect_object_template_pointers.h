@@ -33,6 +33,7 @@ const struct SpriteTemplate gUnknown_83A5EC0;
 const struct SpriteTemplate gUnknown_83A5F24;
 const struct SpriteTemplate gUnknown_83A5FA4;
 const struct SpriteTemplate gUnknown_83A5FE0;
+const struct SpriteTemplate gUnknown_83A5420_OneIsland;
 
 const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[] = {
     &gUnknown_83A537C,
@@ -71,4 +72,5 @@ const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[] = {
     &gUnknown_83A5F24,
     &gUnknown_83A5FA4,
     &gUnknown_83A5FE0,
+    &gUnknown_83A5420_OneIsland,
 };

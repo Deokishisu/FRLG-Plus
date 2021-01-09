@@ -6,6 +6,7 @@
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
 #include "fieldmap.h"
+#include "item.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "quest_log.h"
@@ -13,6 +14,7 @@
 #include "task.h"
 #include "constants/field_tasks.h"
 #include "constants/flags.h"
+#include "constants/items.h"
 #include "constants/metatile_labels.h"
 #include "constants/songs.h"
 #include "constants/vars.h"
@@ -224,7 +226,6 @@ static void IcefallCaveIcePerStepCallback(u8 taskId)
     }
 }
 
-// This is leftover from pokeruby and effectively a no-op.
 static void AshGrassPerStepCallback(u8 taskId)
 {
     s16 x, y;
@@ -235,12 +236,17 @@ static void AshGrassPerStepCallback(u8 taskId)
     {
         data[1] = x;
         data[2] = y;
-        if (MetatileBehavior_ReturnFalse_4((u8)MapGridGetMetatileBehaviorAt(x, y)))
+        if (MetatileBehavior_IsAshGrass(MapGridGetMetatileBehaviorAt(x, y)))
         {
-            if (MapGridGetMetatileIdAt(x, y) == 0x20a)
-                StartAshFieldEffect(x, y, 0x212, 4);
-            else
-                StartAshFieldEffect(x, y, 0x206, 4);
+            if (MapGridGetMetatileIdAt(x, y) == METATILE_SeviiIslands123_OneIsland_AshGrass)
+                StartAshFieldEffect(x, y, METATILE_SeviiIslands123_OneIsland_Grass, 4);
+
+            if (CheckBagHasItem(ITEM_SOOT_SACK, 1))
+            {
+                ashGatherCount = GetVarPointer(VAR_ASH_GATHER_COUNT);
+                if (*ashGatherCount < 9999)
+                    (*ashGatherCount)++;
+            }
         }
     }
 }

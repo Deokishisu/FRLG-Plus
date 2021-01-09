@@ -451,11 +451,12 @@
 #define MAP_SEVEN_ISLAND_HARBOR            (6 | (31 << 8))
 
 // Map Group 32
-#define MAP_ONE_ISLAND_POKEMON_CENTER_1F (0 | (32 << 8))
-#define MAP_ONE_ISLAND_POKEMON_CENTER_2F (1 | (32 << 8))
-#define MAP_ONE_ISLAND_HOUSE1            (2 | (32 << 8))
-#define MAP_ONE_ISLAND_HOUSE2            (3 | (32 << 8))
-#define MAP_ONE_ISLAND_HARBOR            (4 | (32 << 8))
+#define MAP_ONE_ISLAND_POKEMON_CENTER_1F          (0 | (32 << 8))
+#define MAP_ONE_ISLAND_POKEMON_CENTER_2F          (1 | (32 << 8))
+#define MAP_ONE_ISLAND_HOUSE1                     (2 | (32 << 8))
+#define MAP_ONE_ISLAND_HOUSE2                     (3 | (32 << 8))
+#define MAP_ONE_ISLAND_HARBOR                     (4 | (32 << 8))
+#define MAP_ONE_ISLAND_KINDLE_ROAD_GLASS_WORKSHOP (5 | (32 << 8))
 
 // Map Group 33
 #define MAP_TWO_ISLAND_JOYFUL_GAME_CORNER (0 | (33 << 8))

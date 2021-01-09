@@ -72,6 +72,12 @@ static const u16 sCutGrassMetatileMapping[][2] = {
         METATILE_ID(SeviiIslands67, LongGrass_Bottom), //long grass bottom
         METATILE_ID(SeviiIslands67, EmeraldMowed) //Emerald mowed grass
     }, {
+        METATILE_ID(SeviiIslands123, OneIsland_Grass), //One Island tall grass
+        METATILE_ID(SeviiIslands123, OneIsland_Mowed) //One Island mowed grass
+    }, {
+        METATILE_ID(SeviiIslands123, OneIsland_AshGrass), //One Island tall grass
+        METATILE_ID(SeviiIslands123, OneIsland_Mowed) //One Island mowed grass
+    },{
         0xffff,
         0xffff
     }

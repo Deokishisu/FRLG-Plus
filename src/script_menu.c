@@ -381,9 +381,19 @@ static const struct MenuAction sScriptMultiChoiceMenu_TradeColosseumCrush[] = {
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_48[] = {
-    { gText_Dummy_8417E66 },
-    { gText_Dummy_8417E67 },
+extern const u8 gText_BlueFlute_Ash[];
+extern const u8 gText_YellowFlute_Ash[];
+extern const u8 gText_RedFlute_Ash[];
+extern const u8 gText_WhiteFlute_Ash[];
+extern const u8 gText_BlackFlute_Ash[];
+
+
+static const struct MenuAction sScriptMultiChoiceMenu_GlassWorkshopVendor[] = {
+    { gText_BlueFlute_Ash },
+    { gText_YellowFlute_Ash },
+    { gText_RedFlute_Ash },
+    { gText_WhiteFlute_Ash },
+    { gText_BlackFlute_Ash },
     { gOtherText_Exit }
 };
 
@@ -566,7 +576,7 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_Island13, NELEMS(sScriptMultiChoiceMenu_Island13) },
     { sScriptMultiChoiceMenu_Island12, NELEMS(sScriptMultiChoiceMenu_Island12) },
     { sScriptMultiChoiceMenu_TradeColosseumCrush, NELEMS(sScriptMultiChoiceMenu_TradeColosseumCrush) },
-    { sScriptMultiChoiceMenu_48, NELEMS(sScriptMultiChoiceMenu_48) },
+    { sScriptMultiChoiceMenu_GlassWorkshopVendor, NELEMS(sScriptMultiChoiceMenu_GlassWorkshopVendor) },
     { sScriptMultiChoiceMenu_PokejumpDodrio, NELEMS(sScriptMultiChoiceMenu_PokejumpDodrio) },
     { sScriptMultiChoiceMenu_TradeColosseum_2, NELEMS(sScriptMultiChoiceMenu_TradeColosseum_2) },
     { sScriptMultiChoiceMenu_Mushrooms, NELEMS(sScriptMultiChoiceMenu_Mushrooms) },

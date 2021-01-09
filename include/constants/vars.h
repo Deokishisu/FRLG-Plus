@@ -90,9 +90,9 @@
 #define VAR_0x402B                         0x402B
 #define VAR_RESET_RTC_ENABLE               0x402C
 #define VAR_0x402D                         0x402D
-#define VAR_0x402E                         0x402E
 
-#define VAR_0x402F                         0x402F
+#define VAR_GLASS_WORKSHOP_STATE           0x402E
+#define VAR_ASH_GATHER_COUNT               0x402F
 
 #define VAR_ICE_STEP_COUNT                 0x4030
 #define VAR_STARTER_MON                    0x4031 // 0: Bulbasaur, 1: Squirtle, 2: Charmander

@@ -4331,7 +4331,7 @@
       "exitsBagOnUse": 0,
       "pocket": "POCKET_KEY_ITEMS",
       "type": 4,
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "fieldUseFunc": "FieldUseFunc_SootSack",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0

@@ -6,7 +6,9 @@
 #include "field_weather.h"
 #include "fieldmap.h"
 #include "metatile_behavior.h"
+#include "overworld.h"
 #include "constants/field_effects.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF // duplicate of define in event_object_movement.c
@@ -269,11 +271,15 @@ u32 FldEff_TallGrass(void)
     s16 y;
     u8 spriteId;
     struct Sprite * sprite;
+    u8 mapsec = GetCurrentRegionMapSectionId();
 
     x = gFieldEffectArguments[0];
     y = gFieldEffectArguments[1];
     sub_8063BC4(&x, &y, 8, 8);
-    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[4], x, y, 0);
+    if(mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD || mapsec == MAPSEC_MT_EMBER)
+        spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[36], x, y, 0);
+    else
+        spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[4], x, y, 0);
     if (spriteId != MAX_SPRITES)
     {
         sprite = &gSprites[spriteId];

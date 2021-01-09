@@ -27,6 +27,7 @@
 #include "util.h"
 #include "constants/event_object_movement.h"
 #include "constants/metatile_behaviors.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
@@ -398,6 +399,9 @@ static bool8 FieldEffectCmd_loadtiles_callnative(const u8 **script, u32 *result)
     return TRUE;
 }
 
+extern const struct SpritePalette gUnknown_83A5340; //sand footprints pal
+extern const struct SpritePalette gBlackSandFootprintsPal;
+
 static bool8 FieldEffectCmd_loadfadedpal_callnative(const u8 **script, u32 *result)
 {
     (*script)++;
@@ -443,8 +447,24 @@ void sub_8083598(u8 paletteIdx)
 
 static void FieldEffectScript_LoadFadedPal(const u8 **script)
 {
-    const struct SpritePalette * spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
+    u8 mapsec = GetCurrentRegionMapSectionId();
+    const struct SpritePalette * spritePalette;
     u8 idx = IndexOfSpritePaletteTag(spritePalette->tag);
+    if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gUnknown_83A5340) //overwrite sand footprints palette
+    {
+        if(mapsec == MAPSEC_ONE_ISLAND || mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD) //if one island
+        {
+            spritePalette = &gBlackSandFootprintsPal;
+        }
+        else 
+        {
+            spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
+        }
+    }
+    else
+    {
+        spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
+    }
     LoadSpritePalette(spritePalette);
     if (idx == 0xFF)
         sub_8083598(IndexOfSpritePaletteTag(spritePalette->tag));

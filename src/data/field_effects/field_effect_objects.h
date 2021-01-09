@@ -1,5 +1,6 @@
-const struct SpritePalette gUnknown_83A5340 = { .data = gUnknown_8398FA8, .tag = 0x1004 };
+const struct SpritePalette gUnknown_83A5340 = { .data = gUnknown_8398FA8, .tag = 0x1004 }; //sand footprints pal
 const struct SpritePalette gUnknown_83A5348 = { .data = gUnknown_8398FC8, .tag = 0x1005 };
+const struct SpritePalette gBlackSandFootprintsPal = { .data = gBlackSandFootPrints_Pal, .tag = 0x1004 }; 
 
 const union AnimCmd gUnknown_83A5350[] =
 {
@@ -70,6 +71,15 @@ const struct SpriteFrameImage gUnknown_83A53DC[] =
     overworld_frame(gUnknown_839A008, 2, 2, 4),
 };
 
+const struct SpriteFrameImage gUnknown_83A53DC_OneIsland[] =
+{
+    overworld_frame(gUnknown_839A008, 2, 2, 0),
+    overworld_frame(gUnknown_839A008, 2, 2, 0),
+    overworld_frame(gUnknown_839A008, 2, 2, 2),
+    overworld_frame(gUnknown_839A008, 2, 2, 3),
+    overworld_frame(gUnknown_839A008, 2, 2, 4),
+};
+
 const union AnimCmd gUnknown_83A5404[] =
 {
     ANIMCMD_FRAME(1, 10),
@@ -92,6 +102,17 @@ const struct SpriteTemplate gUnknown_83A5420 =
     .oam = &gObjectEventBaseOam_16x16,
     .anims = gUnknown_83A541C,
     .images = gUnknown_83A53DC,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateTallGrassFieldEffect,
+};
+
+const struct SpriteTemplate gUnknown_83A5420_OneIsland =
+{
+    .tileTag = SPRITE_INVALID_TAG,
+    .paletteTag = 0x1005,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = gUnknown_83A541C,
+    .images = gUnknown_83A53DC_OneIsland,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = UpdateTallGrassFieldEffect,
 };

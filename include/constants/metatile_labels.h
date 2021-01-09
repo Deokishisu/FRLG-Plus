@@ -194,9 +194,12 @@
 #define METATILE_SeafoamIslands_UncrackedIce  0x359
 
 // gTileset_SeviiIslands123
-#define METATILE_SeviiIslands123_Door            0x297
-#define METATILE_SeviiIslands123_GameCornerDoor  0x29B
-#define METATILE_SeviiIslands123_PokeCenterDoor  0x2EB
+#define METATILE_SeviiIslands123_Door                0x297
+#define METATILE_SeviiIslands123_GameCornerDoor      0x29B
+#define METATILE_SeviiIslands123_OneIsland_AshGrass  0x3DA
+#define METATILE_SeviiIslands123_OneIsland_Grass     0x3EC
+#define METATILE_SeviiIslands123_OneIsland_Mowed     0x3ED
+#define METATILE_SeviiIslands123_PokeCenterDoor      0x2EB
 
 // gTileset_SeviiIslands45
 #define METATILE_SeviiIslands45_DayCareDoor                   0x2B9
@@ -208,9 +211,9 @@
 #define METATILE_SeviiIslands67_Door                   0x30C
 #define METATILE_SeviiIslands67_DottedHoleDoor_Closed  0x357
 #define METATILE_SeviiIslands67_DottedHoleDoor_Open    0x358
-#define METATILE_SeviiIslands67_LongGrass_Top          0x233
-#define METATILE_SeviiIslands67_LongGrass_Bottom       0x23B
 #define METATILE_SeviiIslands67_EmeraldMowed           0x229
+#define METATILE_SeviiIslands67_LongGrass_Bottom       0x23B
+#define METATILE_SeviiIslands67_LongGrass_Top          0x233
 
 // gTileset_SilphCo
 #define METATILE_SilphCo_Arrow_Down                     0x2A8

@@ -52,7 +52,7 @@
 #define MULTICHOICE_ISLAND_13                                  45
 #define MULTICHOICE_ISLAND_12                                  46
 #define MULTICHOICE_TRADE_COLOSSEUM_CRUSH                      47
-#define MULTICHOICE_48                                         48
+#define MULTICHOICE_GLASS_WORKSHOP_VENDOR                      48
 #define MULTICHOICE_POKEJUMP_DODRIO                            49
 #define MULTICHOICE_TRADE_COLOSSEUM_2                          50
 #define MULTICHOICE_MUSHROOMS                                  51

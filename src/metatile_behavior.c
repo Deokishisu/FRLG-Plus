@@ -63,7 +63,7 @@ bool8 MetatileBehavior_IsJumpSouth(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsPokeGrass(u8 metatileBehavior)
 {
-    if(metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS || metatileBehavior == MB_LONG_GRASS)
+    if(metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS || metatileBehavior == MB_LONG_GRASS || metatileBehavior == MB_ASHGRASS)
         return TRUE;
     else
         return FALSE;
@@ -430,7 +430,7 @@ bool8 MetatileBehavior_IsPuddle(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsTallGrass_2(u8 metatileBehavior)
 {
-    if(metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS)
+    if(metatileBehavior == MB_TALL_GRASS || metatileBehavior == MB_CYCLING_ROAD_PULL_DOWN_GRASS || metatileBehavior == MB_ASHGRASS)
         return TRUE;
     else
         return FALSE;
@@ -1039,6 +1039,14 @@ bool8 MetatileBehavior_IsBurglary(u8 metatileBehavior)
 bool8 MetatileBehavior_IsMBA3(u8 metatileBehavior)
 {
     if(metatileBehavior == MB_A3)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsAshGrass(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_ASHGRASS)
         return TRUE;
     else
         return FALSE;

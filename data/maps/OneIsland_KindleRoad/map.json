@@ -2,7 +2,7 @@
   "id": "MAP_ONE_ISLAND_KINDLE_ROAD",
   "name": "OneIsland_KindleRoad",
   "layout": "LAYOUT_ONE_ISLAND_KINDLE_ROAD",
-  "music": "MUS_ROUTE3",
+  "music": "MUS_ROUTE120",
   "region_map_section": "MAPSEC_KINDLE_ROAD",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -449,10 +449,97 @@
       "elevation": 3,
       "dest_map": "MAP_ONE_ISLAND_KINDLE_ROAD_EMBER_SPA",
       "dest_warp_id": 0
+    },
+    {
+      "x": 6,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_ONE_ISLAND_KINDLE_ROAD_GLASS_WORKSHOP",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 68,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_AshWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 68,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_AshWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 113,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 112,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 112,
+      "elevation": 3,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 113,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 114,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 115,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 114,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    }
   ],
   "bg_events": [
     {
@@ -470,6 +557,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "OneIsland_KindleRoad_EventScript_RouteSign"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 18,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OneIsland_KindleRoad_EventScript_GlassWorkshopSign"
     }
   ],
   "level_scaling": "4"

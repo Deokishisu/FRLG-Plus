@@ -4404,6 +4404,18 @@
       "secondary_tileset": "gTileset_SeviiIslands67",
       "border_filepath": "data/layouts/FarawayIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/FarawayIsland_Interior/map.bin"
+    },
+    {
+      "id": "LAYOUT_ONE_ISLAND_KINDLE_ROAD_GLASS_WORKSHOP",
+      "name": "OneIsland_KindleRoad_GlassWorkshop_Layout",
+      "width": 11,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_HoennBuilding",
+      "border_filepath": "data/layouts/OneIsland_KindleRoad_GlassWorkshop/border.bin",
+      "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_GlassWorkshop/map.bin"
     }
   ]
 }

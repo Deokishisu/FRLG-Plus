@@ -1,7 +1,12 @@
 MtEmber_Exterior_MapScripts:: @ 8163946
+	map_script MAP_SCRIPT_ON_RESUME, MtEmber_Exterior_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, MtEmber_Exterior_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, MtEmber_Exterior_OnLoad
 	.byte 0
+
+MtEmber_Exterior_OnResume:
+	setstepcallback STEP_CB_ASH
+	end
 
 MtEmber_Exterior_OnTransition:: @ 8163951
 	setworldmapflag FLAG_WORLD_MAP_MT_EMBER_EXTERIOR

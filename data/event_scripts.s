@@ -1239,3 +1239,6 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 	.include "data/maps/FarawayIsland_Interior/text.inc"
 
 	.include "data/scripts/fuji_event.inc"
+
+	.include "data/maps/OneIsland_KindleRoad_GlassWorkshop/scripts.inc"
+	.include "data/maps/OneIsland_KindleRoad_GlassWorkshop/text.inc"
