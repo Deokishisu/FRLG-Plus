@@ -480,7 +480,7 @@
     {
       "type": "trigger",
       "x": 14,
-      "y": 113,
+      "y": 114,
       "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -489,7 +489,7 @@
     {
       "type": "trigger",
       "x": 15,
-      "y": 112,
+      "y": 113,
       "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -498,7 +498,7 @@
     {
       "type": "trigger",
       "x": 13,
-      "y": 112,
+      "y": 114,
       "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -507,7 +507,7 @@
     {
       "type": "trigger",
       "x": 12,
-      "y": 113,
+      "y": 115,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -516,7 +516,7 @@
     {
       "type": "trigger",
       "x": 11,
-      "y": 114,
+      "y": 116,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
@@ -534,7 +534,25 @@
     {
       "type": "trigger",
       "x": 9,
-      "y": 114,
+      "y": 116,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 116,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "OneIsland_KindleRoad_DefaultWeatherTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 117,
       "elevation": 0,
       "var": "VAR_TEMP_0",
       "var_value": "0",
