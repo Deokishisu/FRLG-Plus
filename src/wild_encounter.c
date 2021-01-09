@@ -346,7 +346,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
         break;
     }
     level = ChooseWildMonLevel(&info->wildPokemon[slot]);
-    if (flags == WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
+    if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
     {
         return FALSE;
     }
