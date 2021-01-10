@@ -276,7 +276,7 @@ u32 FldEff_TallGrass(void)
     x = gFieldEffectArguments[0];
     y = gFieldEffectArguments[1];
     sub_8063BC4(&x, &y, 8, 8);
-    if(mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD || mapsec == MAPSEC_MT_EMBER)
+    if(mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD || mapsec == MAPSEC_MT_EMBER || mapsec == MAPSEC_THREE_ISLE_PORT || mapsec == MAPSEC_BERRY_FOREST || mapsec == MAPSEC_BOND_BRIDGE)
         spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[36], x, y, 0);
     else
         spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[4], x, y, 0);

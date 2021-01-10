@@ -2565,7 +2565,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands123",
+      "secondary_tileset": "gTileset_BerryForest",
       "border_filepath": "data/layouts/ThreeIsland/border.bin",
       "blockdata_filepath": "data/layouts/ThreeIsland/map.bin"
     },
@@ -2661,7 +2661,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands123",
+      "secondary_tileset": "gTileset_BerryForest",
       "border_filepath": "data/layouts/ThreeIsland_BondBridge/border.bin",
       "blockdata_filepath": "data/layouts/ThreeIsland_BondBridge/map.bin"
     },
@@ -2673,7 +2673,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands123",
+      "secondary_tileset": "gTileset_BerryForest",
       "border_filepath": "data/layouts/ThreeIsland_Port/border.bin",
       "blockdata_filepath": "data/layouts/ThreeIsland_Port/map.bin"
     },

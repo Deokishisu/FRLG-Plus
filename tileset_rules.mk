@@ -48,9 +48,6 @@ $(TILESETGFXDIR)/secondary/restaurant_hotel/tiles.4bpp: %.4bpp: %.png
 $(TILESETGFXDIR)/secondary/burgled_house/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 172
 
-$(TILESETGFXDIR)/secondary/berry_forest/tiles.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 101
-
 $(TILESETGFXDIR)/secondary/sevii_islands_45/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 374
 

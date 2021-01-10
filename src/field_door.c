@@ -258,7 +258,7 @@ static const struct DoorGraphics sDoorGraphics[] = {
     {METATILE_CinnabarIsland_LabDoor,                      DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_CinnabarLab, sDoorAnimPalettes_CinnabarLab},
     {METATILE_SeviiIslands123_Door,                        DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Sevii123, sDoorAnimPalettes_Sevii123},
     {METATILE_SeviiIslands123_GameCornerDoor,              DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_JoyfulGameCorner, sDoorAnimPalettes_JoyfulGameCorner},
-    {METATILE_SeviiIslands123_PokeCenterDoor,              DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_OneIslandPokeCenter, sDoorAnimPalettes_OneIslandPokeCenter},
+    {METATILE_SeviiIslands123_PokeCenterDoor,              DOOR_SOUND_SLIDING,  0, sDoorAnimTiles_OneIslandPokeCenter, sDoorAnimPalettes_OneIslandPokeCenter},
     {METATILE_SeviiIslands45_Door,                         DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Sevii45, sDoorAnimPalettes_Sevii45},
     {METATILE_SeviiIslands45_DayCareDoor,                  DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_FourIslandDayCare, sDoorAnimPalettes_FourIslandDayCare},
     {METATILE_SeviiIslands45_RocketWarehouseDoor_Unlocked, DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_RocketWarehouse, sDoorAnimPalettes_RocketWarehouse},
@@ -271,6 +271,7 @@ static const struct DoorGraphics sDoorGraphics[] = {
     {METATILE_SeaCottage_Teleporter_Door,                  DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_Teleporter, sDoorAnimPalettes_Teleporter},
     {METATILE_TrainerTower_LobbyElevatorDoor,              DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerTowerLobbyElevator, sDoorAnimPalettes_TrainerTowerLobbyElevator},
     {METATILE_TrainerTower_RoofElevatorDoor,               DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerTowerRoofElevator, sDoorAnimPalettes_TrainerTowerRoofElevator},
+    {METATILE_BerryForest_Door,                            DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Sevii45, sDoorAnimPalettes_Sevii45},
     {}
 };
 

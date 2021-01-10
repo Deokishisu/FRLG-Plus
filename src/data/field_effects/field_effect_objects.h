@@ -1,6 +1,7 @@
 const struct SpritePalette gUnknown_83A5340 = { .data = gUnknown_8398FA8, .tag = 0x1004 }; //sand footprints pal
-const struct SpritePalette gUnknown_83A5348 = { .data = gUnknown_8398FC8, .tag = 0x1005 };
+const struct SpritePalette gUnknown_83A5348 = { .data = gUnknown_8398FC8, .tag = 0x1005 }; //tall grass pal
 const struct SpritePalette gBlackSandFootprintsPal = { .data = gBlackSandFootPrints_Pal, .tag = 0x1004 }; 
+const struct SpritePalette gThreeIslandGrassPal = { .data = gThreeIslandGrass_Pal, .tag = 0x1005 };
 
 const union AnimCmd gUnknown_83A5350[] =
 {
@@ -71,13 +72,13 @@ const struct SpriteFrameImage gUnknown_83A53DC[] =
     overworld_frame(gUnknown_839A008, 2, 2, 4),
 };
 
-const struct SpriteFrameImage gUnknown_83A53DC_OneIsland[] =
+const struct SpriteFrameImage gUnknown_83A53DC_OneIsland[] = //also Three Island
 {
-    overworld_frame(gUnknown_839A008, 2, 2, 0),
-    overworld_frame(gUnknown_839A008, 2, 2, 0),
-    overworld_frame(gUnknown_839A008, 2, 2, 2),
-    overworld_frame(gUnknown_839A008, 2, 2, 3),
-    overworld_frame(gUnknown_839A008, 2, 2, 4),
+    overworld_frame(gUnknown_839A008, 2, 2, 5),
+    overworld_frame(gUnknown_839A008, 2, 2, 5),
+    overworld_frame(gUnknown_839A008, 2, 2, 6),
+    overworld_frame(gUnknown_839A008, 2, 2, 7),
+    overworld_frame(gUnknown_839A008, 2, 2, 8),
 };
 
 const union AnimCmd gUnknown_83A5404[] =

@@ -1,6 +1,10 @@
 #ifndef GUARD_METATILE_LABELS_H
 #define GUARD_METATILE_LABELS_H
 
+// gTileset_BerryForest
+#define METATILE_BerryForest_Door               0x2BB
+#define METATILE_BerryForest_ThreeIsland_Grass  0x2BF
+
 // gTileset_Building
 #define METATILE_Building_PCOff  0x062
 #define METATILE_Building_PCOn   0x063

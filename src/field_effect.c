@@ -401,6 +401,8 @@ static bool8 FieldEffectCmd_loadtiles_callnative(const u8 **script, u32 *result)
 
 extern const struct SpritePalette gUnknown_83A5340; //sand footprints pal
 extern const struct SpritePalette gBlackSandFootprintsPal;
+extern const struct SpritePalette gThreeIslandGrassPal;
+extern const struct SpritePalette gUnknown_83A5348; //tall grass pal
 
 static bool8 FieldEffectCmd_loadfadedpal_callnative(const u8 **script, u32 *result)
 {
@@ -456,7 +458,18 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
         {
             spritePalette = &gBlackSandFootprintsPal;
         }
-        else 
+        else
+        {
+            spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
+        }
+    }
+    else if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gUnknown_83A5348) //overwrite tall grass palette
+    {
+        if(mapsec == MAPSEC_BOND_BRIDGE || mapsec == MAPSEC_THREE_ISLE_PORT || mapsec == MAPSEC_BERRY_FOREST) //if three island
+        {
+            spritePalette = &gThreeIslandGrassPal;
+        }
+        else
         {
             spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
         }
