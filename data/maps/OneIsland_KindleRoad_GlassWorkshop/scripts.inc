@@ -170,7 +170,7 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem:: @ 826F00F
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_IllMakeItemForYou, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
-	playse SE_SELECT
+	playse SE_GLASS_FLUTE
 	delay 30
 	fadescreen FADE_FROM_BLACK
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_IveFinishedGlassItem, MSGBOX_DEFAULT
