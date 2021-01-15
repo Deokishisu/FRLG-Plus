@@ -32,6 +32,7 @@
 #include "constants/flags.h"
 #include "constants/map_types.h"
 #include "constants/moves.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/trainer_classes.h"
 #include "constants/facility_trainer_classes.h"
@@ -6358,13 +6359,17 @@ void SetWildMonHeldItem(void)
         u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, 0);
         u16 var1 = 45;
         u16 var2 = 95;
+        bool8 isHighLeveledPikachu = FALSE;
+        if(species == SPECIES_PIKACHU && GetCurrentRegionMapSectionId() != MAPSEC_VIRIDIAN_FOREST)
+            isHighLeveledPikachu = TRUE;
+
         if (!GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG, 0)
             && GetMonAbility(&gPlayerParty[0]) == ABILITY_COMPOUND_EYES)
         {
             var1 = 20;
             var2 = 80;
         }
-        if (gBaseStats[species].item1 == gBaseStats[species].item2)
+        if (gBaseStats[species].item1 == gBaseStats[species].item2 && !isHighLeveledPikachu)
         {
             SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
             return;
@@ -6373,9 +6378,25 @@ void SetWildMonHeldItem(void)
         if (rnd < var1)
             return;
         if (rnd < var2)
-            SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
+        {
+            if(isHighLeveledPikachu)
+            {   //Pikachu holds its RS items if not in Viridian Forest
+                u16 item = ITEM_ORAN_BERRY;
+                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &item);
+            }
+            else
+                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
+        }
         else
-            SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
+        {
+            if(isHighLeveledPikachu)
+            {   //Pikachu holds its RS items if not in Viridian Forest 
+                u16 item = ITEM_LIGHT_BALL;
+                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &item);
+            }
+            else
+                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
+        }
     }
 }
 

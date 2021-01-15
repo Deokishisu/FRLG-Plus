@@ -40,7 +40,7 @@
 - Instant text option.
 - Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, and healthbars drop much faster.
 - Indicators for which stats are affected by natures on summary screen.
-- EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port).
+- EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.
 - The EV cap for an individual stat is 252, like in later generations.
 - Pokémon that evolve by trade can evolve by using an unmissable Key Item on them that is obtained during the story. Pokémon like Scyther also need to be holding their evolution items to evolve in this way.
 - Game Corner coins can be bought in increments of 1000 in addition to the other two options.
@@ -52,3 +52,4 @@
 - All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. Most Hoenn Pokémon will still need to be traded for. []
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
+- The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
