@@ -64,3 +64,4 @@
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
+- Like in Emerald, baby Pichu can hatch knowing Volt Tackle if either of its parents held a Light Ball.
