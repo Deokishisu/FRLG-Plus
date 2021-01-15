@@ -2,7 +2,7 @@
   "id": "MAP_CELADON_CITY_DEPARTMENT_STORE_2F",
   "name": "CeladonCity_DepartmentStore_2F",
   "layout": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_2F",
-  "music": "MUS_POKE_CENTER",
+  "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": 2,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "in_connection": false,
       "x": 5,
       "y": 10,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CLERK",
+      "in_connection": false,
       "x": 1,
       "y": 8,
       "elevation": 0,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CLERK",
+      "in_connection": false,
       "x": 1,
       "y": 6,
       "elevation": 3,
@@ -56,6 +59,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "in_connection": false,
       "x": 11,
       "y": 6,
       "elevation": 3,
@@ -91,7 +95,9 @@
       "dest_warp_id": 1
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -102,5 +108,5 @@
       "script": "CeladonCity_DepartmentStore_2F_EventScript_FloorSign"
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }

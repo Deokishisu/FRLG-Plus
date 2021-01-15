@@ -2,7 +2,7 @@
   "id": "MAP_CELADON_CITY_DEPARTMENT_STORE_ELEVATOR",
   "name": "CeladonCity_DepartmentStore_Elevator",
   "layout": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_ELEVATOR",
-  "music": "MUS_POKE_CENTER",
+  "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,8 +13,10 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
-  "object_events": [],
+  "connections": 0,
+  "object_events": [
+
+  ],
   "warp_events": [
     {
       "x": 2,
@@ -31,7 +33,9 @@
       "dest_warp_id": 127
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -50,5 +54,5 @@
       "script": "CeladonCity_DepartmentStore_Elevator_EventScript_FloorSelect"
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }
