@@ -756,7 +756,7 @@ struct SaveBlock1
                u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
     /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused
-    /*0x0632*/ u8 field_632[2]; // unused; scrapped feature to save link Berry Blender records separate from local records
+    /*0x0632*/ u16 lastViewedPokedexEntry; // For easier viewing of roamers
                struct KeySystemFlags keyFlags; //Key System flags
     /*0x0638*/ u16 trainerRematchStepCounter;
     /*0x063A*/ u8 ALIGNED(2) trainerRematches[100];

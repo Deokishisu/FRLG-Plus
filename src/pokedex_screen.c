@@ -1040,6 +1040,21 @@ static void sub_810287C(u8 taskId)
         {
             gUnknown_203ACF0->field_01 = 1;
         }
+        if ((JOY_NEW(SELECT_BUTTON)))
+        {
+            RemoveScrollIndicatorArrowPair(gUnknown_203ACF0->field_60);
+            BeginNormalPaletteFade(0xFFFF7FFF, 0, 0, 16, RGB_WHITEALPHA);
+            gUnknown_203ACF0->field_5A = gSaveBlock1Ptr->lastViewedPokedexEntry; //species for entry
+            //Below commented out code adjusts the cursor position that the last Pokedex entry backs out to.
+            //It works IF the Pokemon is in the Kanto Dex and is not in the last position possible.
+            //I could not get it to work. Instead, the cursor defaults to position 0 of the Kanto Dex.
+            /*gUnknown_203ACF0->field_36 = gUnknown_203ACF0->field_5A - 1; //cursor position; Kanto?
+            gUnknown_203ACF0->field_48 = sub_8103518(gUnknown_203ACF0->field_42); //setting up max shown? idk
+            sub_8104664(0); //fixing cursor position at endpoints? Kanto?
+            gUnknown_203ACF0->field_34 -= 1; //is items above cursor position, automatically adjusted by above call; Kanto?
+            */
+            gUnknown_203ACF0->field_01 = 10;
+        }
         break;
     case 7:
         DestroyListMenuTask(gUnknown_203ACF0->field_17, &gUnknown_203ACF0->field_12, &gUnknown_203ACF0->field_10);
@@ -1071,6 +1086,16 @@ static void sub_810287C(u8 taskId)
         sub_81047B0(&gUnknown_203ACF0->field_16);
         gTasks[taskId].func = sub_8102F80;
         gUnknown_203ACF0->field_01 = 0;
+        break;
+    case 10:
+        DestroyListMenuTask(gUnknown_203ACF0->field_17, &gUnknown_203ACF0->field_12, &gUnknown_203ACF0->field_10);
+        HideBg(1);
+        sub_81047B0(&gUnknown_203ACF0->field_14);
+        sub_81047B0(&gUnknown_203ACF0->field_15);
+        sub_81047B0(&gUnknown_203ACF0->field_16);
+        sub_810317C();
+        gTasks[taskId].func = sub_8102F80;
+        gUnknown_203ACF0->field_01 = 7;
         break;
     }
 }
@@ -1712,6 +1737,7 @@ static void sub_8103AC8(u8 taskId)
             CopyBgTilemapBufferToVram(1);
             CopyBgTilemapBufferToVram(0);
             PlayCry2(gUnknown_203ACF0->field_5A, 0, 125, 10);
+            gSaveBlock1Ptr->lastViewedPokedexEntry = gUnknown_203ACF0->field_5A;
             gUnknown_203ACF0->field_02[0] = 0;
             gUnknown_203ACF0->field_01 = 17;
         }
@@ -1885,6 +1911,7 @@ static void sub_81042EC(u8 taskId)
         CopyBgTilemapBufferToVram(1);
         CopyBgTilemapBufferToVram(0);
         PlayCry2(gUnknown_203ACF0->field_5A, 0, 125, 10);
+        gSaveBlock1Ptr->lastViewedPokedexEntry = gUnknown_203ACF0->field_5A;
         gUnknown_203ACF0->field_01 = 4;
         break;
     case 4:

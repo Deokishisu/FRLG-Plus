@@ -1,5 +1,6 @@
 #include "global.h"
 #include "item.h"
+#include "field_specials.h"
 #include "overworld.h"
 #include "script.h"
 #include "sound.h"
@@ -572,6 +573,11 @@ void ResetTintFilter(void)
     SetInitialPlayerAvatarStateWithDirection(DIR_NORTH);
     StopMapMusic();
     do_load_map_stuff_loop(&val);
+}
+
+void SetLastViewedPokedexEntry(void)
+{
+    gSaveBlock1Ptr->lastViewedPokedexEntry = GetStarterSpecies();
 }
 
 void TurnOffNuzlockeMode(void)
