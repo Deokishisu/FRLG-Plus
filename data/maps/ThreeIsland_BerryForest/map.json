@@ -260,8 +260,8 @@
       "x": 31,
       "y": 25,
       "elevation": 3,
-      "item": "ITEM_RAZZ_BERRY",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_RAZZ_BERRY",
+      "item": "ITEM_POMEG_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_POMEG_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -270,8 +270,8 @@
       "x": 15,
       "y": 15,
       "elevation": 3,
-      "item": "ITEM_BLUK_BERRY",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_BLUK_BERRY",
+      "item": "ITEM_KELPSY_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_KELPSY_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -280,8 +280,8 @@
       "x": 25,
       "y": 24,
       "elevation": 3,
-      "item": "ITEM_NANAB_BERRY",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_NANAB_BERRY",
+      "item": "ITEM_QUALOT_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_QUALOT_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -290,8 +290,8 @@
       "x": 11,
       "y": 24,
       "elevation": 3,
-      "item": "ITEM_WEPEAR_BERRY",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_WEPEAR_BERRY",
+      "item": "ITEM_HONDEW_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_HONDEW_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -370,8 +370,8 @@
       "x": 43,
       "y": 16,
       "elevation": 3,
-      "item": "ITEM_PINAP_BERRY",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_PINAP_BERRY",
+      "item": "ITEM_GREPA_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_GREPA_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -382,6 +382,26 @@
       "elevation": 3,
       "item": "ITEM_LUM_BERRY",
       "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_LUM_BERRY",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 49,
+      "y": 25,
+      "elevation": 3,
+      "item": "ITEM_TAMATO_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_TAMATO_BERRY",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 38,
+      "y": 11,
+      "elevation": 3,
+      "item": "ITEM_SITRUS_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_SITRUS_BERRY",
       "quantity": 1,
       "underfoot": false
     }

@@ -267,8 +267,8 @@
       "x": 19,
       "y": 53,
       "elevation": 3,
-      "item": "ITEM_PINAP_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE14_PINAP_BERRY",
+      "item": "ITEM_GREPA_BERRY",
+      "flag": "HIDDEN_ITEM_ROUTE14_GREPA_BERRY",
       "quantity": 1,
       "underfoot": false
     }

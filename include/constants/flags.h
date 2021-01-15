@@ -1066,13 +1066,13 @@
 #define HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL                         37
 #define HIDDEN_ITEM_VICTORY_ROAD_1F_FULL_RESTORE                       38
 #define HIDDEN_ITEM_CERULEAN_CAVE_1F_ULTRA_BALL                        39
-#define HIDDEN_ITEM_UNUSED_0x28                                        40
+#define HIDDEN_ITEM_ROUTE11_TAMATO_BERRY                               40 //New
 #define HIDDEN_ITEM_ROUTE11_ESCAPE_ROPE                                41
 #define HIDDEN_ITEM_ROUTE12_HYPER_POTION                               42
-#define HIDDEN_ITEM_UNUSED_0x2B                                        43
-#define HIDDEN_ITEM_UNUSED_0x2C                                        44
-#define HIDDEN_ITEM_UNUSED_0x2D                                        45
-#define HIDDEN_ITEM_UNUSED_0x2E                                        46
+#define HIDDEN_ITEM_CAPE_BRINK_GREPA_BERRY                             43 //New
+#define HIDDEN_ITEM_THREE_ISLAND_PORT_TAMATO_BERRY                     44 //New
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_SITRUS_BERRY             45 //New
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_TAMATO_BERRY             46 //New
 #define HIDDEN_ITEM_CELADON_CITY_PP_UP                                 47
 #define HIDDEN_ITEM_VERMILION_CITY_MAX_ETHER                           48
 #define HIDDEN_ITEM_CERULEAN_CITY_RARE_CANDY                           49
@@ -1116,10 +1116,10 @@
 #define HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM                           87
 #define HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_2                         88
 #define HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_3                         89
-#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_RAZZ_BERRY               90
-#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_BLUK_BERRY               91
-#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_NANAB_BERRY              92
-#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_WEPEAR_BERRY             93
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_POMEG_BERRY              90   //Changed from Razz
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_KELPSY_BERRY             91   //Changed from Bluk
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_QUALOT_BERRY             92   //Changed from Nanab
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_HONDEW_BERRY             93   //Changed from Wepear
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_ORAN_BERRY               94
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_CHERI_BERRY              95
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_CHESTO_BERRY             96
@@ -1127,7 +1127,7 @@
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_RAWST_BERRY              98
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_ASPEAR_BERRY             99
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_PERSIM_BERRY            100
-#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_PINAP_BERRY             101
+#define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_GREPA_BERRY             101   //Changed from Pinap
 #define HIDDEN_ITEM_THREE_ISLAND_BERRY_FOREST_LUM_BERRY               102
 #define HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STARDUST                103
 #define HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STARDUST_2              104
@@ -1143,7 +1143,7 @@
 #define HIDDEN_ITEM_ROUTE4_PERSIM_BERRY                               114
 #define HIDDEN_ITEM_ROUTE24_PECHA_BERRY                               115
 #define HIDDEN_ITEM_ROUTE25_ORAN_BERRY                                116
-#define HIDDEN_ITEM_ROUTE25_BLUK_BERRY                                117
+#define HIDDEN_ITEM_ROUTE25_POMEG_BERRY                               117   //Changed from Bluk
 #define HIDDEN_ITEM_ROUTE6_SITRUS_BERRY                               118
 #define HIDDEN_ITEM_ROUTE6_RARE_CANDY                                 119
 #define HIDDEN_ITEM_SSANNE_KITCHEN_PECHA_BERRY                        120
@@ -1177,13 +1177,13 @@
 #define HIDDEN_ITEM_ROUTE23_LEPPA_BERRY                               148
 #define HIDDEN_ITEM_ROUTE14_ZINC                                      149
 #define HIDDEN_ITEM_ROUTE9_CHESTO_BERRY                               150
-#define HIDDEN_ITEM_ROUTE10_NANAB_BERRY                               151
-#define HIDDEN_ITEM_ROUTE7_WEPEAR_BERRY                               152
+#define HIDDEN_ITEM_ROUTE10_KELPSY_BERRY                              151   //Changed from Nanab
+#define HIDDEN_ITEM_ROUTE7_QUALOT_BERRY                               152   //Changed from Wepear
 #define HIDDEN_ITEM_ROUTE20_STARDUST                                  153
 #define HIDDEN_ITEM_ROUTE21_NORTH_PEARL                               154
 #define HIDDEN_ITEM_ROUTE23_MAX_ELIXIR                                155
-#define HIDDEN_ITEM_ROUTE4_RAZZ_BERRY                                 156
-#define HIDDEN_ITEM_ROUTE14_PINAP_BERRY                               157
+#define HIDDEN_ITEM_ROUTE4_HONDEW_BERRY                               156   //Changed from Razz
+#define HIDDEN_ITEM_ROUTE14_GREPA_BERRY                               157   //Changed from Pinap
 #define HIDDEN_ITEM_MT_EMBER_EXTERIOR_FIRE_STONE                      158
 #define HIDDEN_ITEM_POKEMON_TOWER_7F_SOOTHE_BELL                      159
 #define HIDDEN_ITEM_NAVEL_ROCK_SUMMIT_SACRED_ASH                      160
@@ -1197,9 +1197,9 @@
 #define HIDDEN_ITEM_FOUR_ISLAND_PEARL                                 168
 #define HIDDEN_ITEM_FOUR_ISLAND_ULTRA_BALL                            169
 #define HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_BIG_PEARL             170
-#define HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_RAZZ_BERRY            171
+#define HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_POMEG_BERRY           171   //Changed from Razz
 #define HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_SITRUS_BERRY          172
-#define HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_BLUK_BERRY            173
+#define HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_KELPSY_BERRY          173   //Changed from Bluk
 #define HIDDEN_ITEM_FIVE_ISLAND_RESORT_GORGEOUS_NEST_BALL             174
 #define HIDDEN_ITEM_FIVE_ISLAND_RESORT_GORGEOUS_STARDUST              175
 #define HIDDEN_ITEM_FIVE_ISLAND_RESORT_GORGEOUS_STAR_PIECE            176
@@ -1209,11 +1209,11 @@
 #define HIDDEN_ITEM_SIX_ISLAND_GREEN_PATH_ULTRA_BALL                  180
 #define HIDDEN_ITEM_SIX_ISLAND_WATER_PATH_ASPEAR_BERRY                181
 #define HIDDEN_ITEM_SIX_ISLAND_WATER_PATH_ORAN_BERRY                  182
-#define HIDDEN_ITEM_SIX_ISLAND_WATER_PATH_PINAP_BERRY                 183
+#define HIDDEN_ITEM_SIX_ISLAND_WATER_PATH_QUALOT_BERRY                183   //Changed from Pinap
 #define HIDDEN_ITEM_SIX_ISLAND_LEPPA_BERRY                            184
 #define HIDDEN_ITEM_SEVEN_ISLAND_TRAINER_TOWER_BIG_PEARL              185
 #define HIDDEN_ITEM_SEVEN_ISLAND_TRAINER_TOWER_PEARL                  186
-#define HIDDEN_ITEM_SEVEN_ISLAND_TRAINER_TOWER_NANAB_BERRY            187
+#define HIDDEN_ITEM_SEVEN_ISLAND_TRAINER_TOWER_HONDEW_BERRY           187   //Changed from Nanab
 #define HIDDEN_ITEM_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE_RAWST_BERRY  188
 #define HIDDEN_ITEM_VIRIDIAN_CITY_GYM_MACHO_BRACE                     189
 #define HIDDEN_ITEM_SSANNE_EXTERIOR_LAVA_COOKIE                       190

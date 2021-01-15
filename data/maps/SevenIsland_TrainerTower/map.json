@@ -88,8 +88,8 @@
       "x": 21,
       "y": 32,
       "elevation": 3,
-      "item": "ITEM_NANAB_BERRY",
-      "flag": "HIDDEN_ITEM_SEVEN_ISLAND_TRAINER_TOWER_NANAB_BERRY",
+      "item": "ITEM_HONDEW_BERRY",
+      "flag": "HIDDEN_ITEM_SEVEN_ISLAND_TRAINER_TOWER_HONDEW_BERRY",
       "quantity": 1,
       "underfoot": false
     },

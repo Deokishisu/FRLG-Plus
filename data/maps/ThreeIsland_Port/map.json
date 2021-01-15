@@ -91,7 +91,16 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 39,
+      "y": 7,
+      "elevation": 3,
+      "item": "ITEM_TAMATO_BERRY",
+      "flag": "HIDDEN_ITEM_THREE_ISLAND_PORT_TAMATO_BERRY",
+      "quantity": 1,
+      "underfoot": false
+    }
   ],
   "level_scaling": "4"
 }

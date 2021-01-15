@@ -4780,7 +4780,7 @@
     {
       "english": "TM10",
       "itemId": "ITEM_TM10",
-      "price": 3000,
+      "price": 10000,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A variable move that changes type\\nand power depending on the POKéMON\\nusing it.",

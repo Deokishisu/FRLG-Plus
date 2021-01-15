@@ -277,8 +277,8 @@
       "x": 20,
       "y": 57,
       "elevation": 3,
-      "item": "ITEM_NANAB_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE10_NANAB_BERRY",
+      "item": "ITEM_KELPSY_BERRY",
+      "flag": "HIDDEN_ITEM_ROUTE10_KELPSY_BERRY",
       "quantity": 1,
       "underfoot": false
     }
