@@ -9097,7 +9097,14 @@ static void atkEF_handleballthrow(void)
                     u32 i;
                     if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
                     {
+                        u8 arg[4];
                         u16 zeroHP = 0;
+                        // since status is u32, the four 0 assignments here are probably for safety to prevent undefined data from reaching SetMonData.
+                        arg[0] = 0;
+                        arg[1] = 0;
+                        arg[2] = 0;
+                        arg[3] = 0;
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, arg); //clear status
                         SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
                     }
                     if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
@@ -9130,7 +9137,14 @@ static void atkEF_handleballthrow(void)
                     {
                         if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
                         {
+                            u8 arg[4];
                             u16 zeroHP = 0;
+                            // since status is u32, the four 0 assignments here are probably for safety to prevent undefined data from reaching SetMonData.
+                            arg[0] = 0;
+                            arg[1] = 0;
+                            arg[2] = 0;
+                            arg[3] = 0;
+                            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, arg); //clear status
                             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
                         }
                         if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
