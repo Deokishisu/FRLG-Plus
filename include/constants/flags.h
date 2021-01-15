@@ -692,7 +692,7 @@
 #define FLAG_SEVII_DETOUR_FINISHED                       0x2A1
 #define FLAG_VISITED_TWO_ISLAND                          0x2A2
 #define FLAG_RESCUED_LOSTELLE                            0x2A3
-#define FLAG_0x2A4                                       0x2A4
+#define FLAG_FOUGHT_MEW                                  0x2A4
 #define FLAG_CAN_USE_ROCKET_HIDEOUT_LIFT                 0x2A5
 #define FLAG_GOT_TEA                                     0x2A6
 #define FLAG_GOT_AURORA_TICKET                           0x2A7

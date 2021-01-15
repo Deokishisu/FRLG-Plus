@@ -22,6 +22,9 @@ Route12_OnResume:: @ 8168006
 	end
 
 Route12_EventScript_TryRemoveSnorlax:: @ 8168010
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_CAUGHT
+	goto_if_ne EventScript_Return
 	removeobject VAR_LAST_TALKED
 	return
 
@@ -42,7 +45,6 @@ Route12_EventScript_Snorlax:: @ 8168014
 	waitmoncry
 	setflag FLAG_HIDE_ROUTE_12_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-	setflag FLAG_WOKE_UP_ROUTE_12_SNORLAX
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome
@@ -52,6 +54,7 @@ Route12_EventScript_Snorlax:: @ 8168014
 	goto_if_eq Route12_EventScript_FoughtSnorlax
 	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
 	goto_if_eq Route12_EventScript_FoughtSnorlax
+	setflag FLAG_WOKE_UP_ROUTE_12_SNORLAX
 	release
 	end
 
@@ -60,8 +63,11 @@ Route12_EventScript_DontUsePokeFlute:: @ 816808D
 	end
 
 Route12_EventScript_FoughtSnorlax:: @ 816808F
-	msgbox Text_SnorlaxReturnedToMountains
 	setflag FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS
+	fadescreenswapbuffers FADE_TO_BLACK
+    removeobject VAR_LAST_TALKED
+    fadescreenswapbuffers FADE_FROM_BLACK
+	msgbox Text_SnorlaxReturnedToMountains
 	release
 	end
 

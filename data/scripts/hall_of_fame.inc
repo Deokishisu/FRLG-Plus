@@ -16,6 +16,7 @@ EventScript_ResetLegendaries:: @ 81A6541
 	clearflag FLAG_LUGIA_FLEW_AWAY
 	clearflag FLAG_HO_OH_FLEW_AWAY
 	clearflag FLAG_DEOXYS_FLEW_AWAY
+	clearflag FLAG_MEW_FLEW_AWAY
 	clearflag FLAG_MEWTWO_FLEW_AWAY
 	clearflag FLAG_ARTICUNO_FLEW_AWAY
 	clearflag FLAG_ZAPDOS_FLEW_AWAY

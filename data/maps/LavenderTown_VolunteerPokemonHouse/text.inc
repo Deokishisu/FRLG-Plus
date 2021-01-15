@@ -81,7 +81,7 @@ LavenderTown_VolunteerPokemonHouse_Text_DefeatedMew::
     .string "be righted…\p"
     .string "I must thank you for your kind\n"
     .string "concern anyway, {PLAYER}.\p"
-    .string "Perhaps that POKéMON will return\n"
+    .string "Maybe that POKéMON will return\n"
     .string "someday…$"
 
 LavenderTown_VolunteerPokemonHouse_Text_CaughtMew::
@@ -106,4 +106,8 @@ LavenderTown_VolunteerPokemonHouse_Text_NotEncounteredMew::
     .string "POKéMON there yet.\p"
     .string "If I remember correctly, it\n"
     .string "enjoys playing in the long grass.$"
+
+LavenderTown_VolunteerPokemonHouse_Text_HowAreYouAndMew:: @ 8193878
+    .string "MR. FUJI: {PLAYER}! Welcome!\n"
+    .string "How are you and MEW doing?$"
 

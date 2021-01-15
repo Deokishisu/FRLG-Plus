@@ -42,11 +42,16 @@ FarawayIsland_Interior_EventScript_TryRemoveMew:: @ 8267D5E
 FarawayIsland_Interior_OnTransition: @ 8267D72
 	setvar VAR_FARAWAY_ISLAND_STEP_COUNTER, 0
 	setvar VAR_TEMP_1, 1
-	call_if_unset FLAG_CAUGHT_MEW, FarawayIsland_Interior_EventScript_TryShowMew
+	call_if_set FLAG_FOUGHT_MEW, FarawayIsland_Interior_EventScript_HideMew
+	call_if_unset FLAG_FOUGHT_MEW, FarawayIsland_Interior_EventScript_TryShowMew
 	end
 
+FarawayIsland_Interior_EventScript_HideMew::
+	setflag FLAG_HIDE_MEW
+	return
+
 FarawayIsland_Interior_EventScript_TryShowMew:: @ 8267D86
-	goto_if_set FLAG_DEFEATED_MEW, EventScript_Return
+	goto_if_set FLAG_MEW_FLEW_AWAY, EventScript_Return
 	clearflag FLAG_HIDE_MEW
 	setvar VAR_TEMP_1, 0
 	return
@@ -166,12 +171,12 @@ FarawayIsland_Interior_EventScript_Mew:: @ 8267DF2
 	goto_if_eq FarawayIsland_Interior_EventScript_PlayerOrMewRan
 	compare VAR_RESULT, B_OUTCOME_MON_TELEPORTED
 	goto_if_eq FarawayIsland_Interior_EventScript_PlayerOrMewRan
-	setflag FLAG_CAUGHT_MEW
+	setflag FLAG_FOUGHT_MEW
 	release
 	end
 
 FarawayIsland_Interior_EventScript_MewDefeated:: @ 8267E96
-	setflag FLAG_DEFEATED_MEW
+	setflag FLAG_MEW_FLEW_AWAY
 	setvar VAR_0x8004, SPECIES_MEW
 	goto EventScript_MonFlewAway
 	end

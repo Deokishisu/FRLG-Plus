@@ -9,6 +9,9 @@ Route16_OnResume:: @ 81680F5
 	end
 
 Route16_EventScript_RemoveSnorlax:: @ 81680FF
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_CAUGHT
+	goto_if_ne EventScript_Return
 	removeobject VAR_LAST_TALKED
 	return
 
@@ -56,7 +59,6 @@ Route16_EventScript_Snorlax:: @ 8168121
 	delay 40
 	waitmoncry
 	setflag FLAG_HIDE_ROUTE_16_SNORLAX
-	setflag FLAG_WOKE_UP_ROUTE_16_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
@@ -67,6 +69,7 @@ Route16_EventScript_Snorlax:: @ 8168121
 	goto_if_eq Route16_EventScript_FoughtSnorlax
 	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
 	goto_if_eq Route16_EventScript_FoughtSnorlax
+	setflag FLAG_WOKE_UP_ROUTE_16_SNORLAX
 	release
 	end
 
@@ -76,6 +79,9 @@ Route16_EventScript_DontUsePokeFlute:: @ 8168197
 
 Route16_EventScript_FoughtSnorlax:: @ 8168199
 	setflag FLAG_ROUTE_16_SNORLAX_RETURNED_TO_MOUNTAINS
+	fadescreenswapbuffers FADE_TO_BLACK
+    removeobject VAR_LAST_TALKED
+    fadescreenswapbuffers FADE_FROM_BLACK
 	msgbox Text_SnorlaxReturnedToMountains
 	release
 	end
