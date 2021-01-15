@@ -618,15 +618,15 @@
 #define FLAG_DID_MARC_TRADE                              0x257
 #define FLAG_BEAT_RIVAL_IN_OAKS_LAB                      0x258
 #define FLAG_GOT_TM06_FROM_KOGA                          0x259
-#define FLAG_0x25A                                       0x25A
+#define FLAG_WOKE_UP_ROUTE_16_SNORLAX                    0x25A //New
 #define FLAG_GOT_TM27                                    0x25B
-#define FLAG_0x25C                                       0x25C
-#define FLAG_0x25D                                       0x25D
+#define FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS      0x25C //New
+#define FLAG_ROUTE_16_SNORLAX_RETURNED_TO_MOUNTAINS      0x25D //New
 #define FLAG_GOT_OLD_AMBER                               0x25E
-#define FLAG_0x25F                                       0x25F
-#define FLAG_0x260                                       0x260
-#define FLAG_0x261                                       0x261
-#define FLAG_0x262                                       0x262
+#define FLAG_MEWTWO_FLEW_AWAY                            0x25F //New
+#define FLAG_ARTICUNO_FLEW_AWAY                          0x260 //New
+#define FLAG_ZAPDOS_FLEW_AWAY                            0x261 //New
+#define FLAG_MOLTRES_FLEW_AWAY                           0x262 //New
 #define FLAG_GOT_EEVEE                                   0x263
 #define FLAG_FOUND_BOTH_VERMILION_GYM_SWITCHES           0x264
 #define FLAG_CINNABAR_GYM_QUIZ_1                         0x265
@@ -761,9 +761,9 @@
 #define FLAG_MEW_FLEW_AWAY                               0x2E6
 #define FLAG_HIDE_MEW                                    0x2E7
 #define FLAG_CAUGHT_MEW                                  0x2E8
-#define FLAG_0x2E9                                       0x2E9
-#define FLAG_0x2EA                                       0x2EA
-#define FLAG_0x2EB                                       0x2EB
+#define FLAG_CAUGHT_RAIKOU                               0x2E9
+#define FLAG_CAUGHT_ENTEI                                0x2EA
+#define FLAG_CAUGHT_SUICUNE                              0x2EB
 #define FLAG_REVIVED_DOME                                0x2EC
 #define FLAG_REVIVED_HELIX                               0x2ED
 #define FLAG_REVIVED_AMBER                               0x2EE

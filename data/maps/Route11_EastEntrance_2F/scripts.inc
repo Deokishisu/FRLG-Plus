@@ -6,11 +6,13 @@ Route11_EastEntrance_2F_MapScripts:: @ 816FD34
 Route11_EastEntrance_2F_EventScript_LeftBinoculars:: @ 816FD35
 	lockall
 	goto_if_set FLAG_WOKE_UP_ROUTE_12_SNORLAX, Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone
+Route11_EastEntrance_2F_EventScript_SnorlaxPresent:
 	msgbox Route11_EastEntrance_2F_Text_BigMonAsleepOnRoad
 	releaseall
 	end
 
 Route11_EastEntrance_2F_EventScript_LeftBinocularsSnorlaxGone:: @ 816FD49
+	goto_if_unset FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS, Route11_EastEntrance_2F_EventScript_SnorlaxPresent
 	msgbox Route11_EastEntrance_2F_Text_WhatABreathtakingView
 	releaseall
 	end

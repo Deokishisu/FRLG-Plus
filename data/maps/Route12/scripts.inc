@@ -1,6 +1,21 @@
 Route12_MapScripts:: @ 8168000
+	map_script MAP_SCRIPT_ON_TRANSITION, Route12_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route12_OnResume
 	.byte 0
+
+Route12_OnTransition::
+	call_if_set FLAG_WOKE_UP_ROUTE_12_SNORLAX, Route12_EventScript_HideSnorlax
+	call_if_unset FLAG_WOKE_UP_ROUTE_12_SNORLAX, Route12_EventScript_TryShowSnorlax
+	end
+
+Route12_EventScript_HideSnorlax::
+	setflag FLAG_HIDE_ROUTE_12_SNORLAX
+	return
+
+Route12_EventScript_TryShowSnorlax::
+	goto_if_set FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS, EventScript_Return
+	clearflag FLAG_HIDE_ROUTE_12_SNORLAX
+	return
 
 Route12_OnResume:: @ 8168006
 	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, Route12_EventScript_TryRemoveSnorlax
@@ -46,6 +61,7 @@ Route12_EventScript_DontUsePokeFlute:: @ 816808D
 
 Route12_EventScript_FoughtSnorlax:: @ 816808F
 	msgbox Text_SnorlaxReturnedToMountains
+	setflag FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS
 	release
 	end
 

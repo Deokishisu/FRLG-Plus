@@ -1,7 +1,9 @@
 #include "global.h"
+#include "event_data.h"
 #include "random.h"
 #include "overworld.h"
 #include "field_specials.h"
+#include "constants/flags.h"
 #include "constants/species.h"
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
@@ -59,22 +61,49 @@ void ClearRoamerData(void)
     }
 }
 
-#define GetRoamerSpecies() ({\
-    u16 a;\
-    switch (GetStarterSpecies())\
-    {\
-    default:\
-        a = SPECIES_RAIKOU;\
-        break;\
-    case SPECIES_BULBASAUR:\
-        a = SPECIES_ENTEI;\
-        break;\
-    case SPECIES_CHARMANDER:\
-        a = SPECIES_SUICUNE;\
-        break;\
-    }\
-    a;\
-})
+u16 GetRoamerSpecies(void)
+{
+    u16 species = SPECIES_NONE;
+    u16 starter = GetStarterSpecies();
+
+    while(species == SPECIES_NONE)
+    {
+        switch(starter)
+        {
+            case SPECIES_SQUIRTLE:
+                if(!FlagGet(FLAG_CAUGHT_RAIKOU))
+                {
+                    species = SPECIES_RAIKOU;
+                }
+                else
+                {
+                    starter = SPECIES_BULBASAUR;
+                }
+                break;
+            case SPECIES_BULBASAUR:
+                if(!FlagGet(FLAG_CAUGHT_ENTEI))
+                {
+                    species = SPECIES_ENTEI;
+                }
+                else
+                {
+                    starter = SPECIES_CHARMANDER;
+                }
+                break;
+            case SPECIES_CHARMANDER:
+                if(!FlagGet(FLAG_CAUGHT_SUICUNE))
+                {
+                    species = SPECIES_SUICUNE;
+                }
+                else
+                {
+                    starter = SPECIES_SQUIRTLE;
+                }
+                break;
+        }
+    }
+    return species;
+}
 
 void CreateInitialRoamerMon(void)
 {
@@ -100,6 +129,10 @@ void CreateInitialRoamerMon(void)
 
 void InitRoamer(void)
 {
+    if (saveRoamer.active)
+        return;
+    if(FlagGet(FLAG_CAUGHT_RAIKOU) && FlagGet(FLAG_CAUGHT_ENTEI) && FlagGet(FLAG_CAUGHT_SUICUNE))
+        return;
     ClearRoamerData();
     CreateInitialRoamerMon();
 }
@@ -134,7 +167,6 @@ void RoamerMoveToOtherLocationSet(void)
         }
     }
 }
-
 
 void RoamerMove(void)
 {

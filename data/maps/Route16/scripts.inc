@@ -13,12 +13,23 @@ Route16_EventScript_RemoveSnorlax:: @ 81680FF
 	return
 
 Route16_OnTransition:: @ 8168103
+	call_if_set FLAG_WOKE_UP_ROUTE_16_SNORLAX, Route16_EventScript_HideSnorlax
+	call_if_unset FLAG_WOKE_UP_ROUTE_16_SNORLAX, Route16_EventScript_TryShowSnorlax
 	compare VAR_MAP_SCENE_ROUTE16, 1
 	call_if_eq Route16_OnTransitionCyclingRoad
 	end
 
 Route16_OnTransitionCyclingRoad:: @ 816810F
 	setflag FLAG_SYS_ON_CYCLING_ROAD
+	return
+
+Route16_EventScript_HideSnorlax::
+	setflag FLAG_HIDE_ROUTE_16_SNORLAX
+	return
+
+Route16_EventScript_TryShowSnorlax::
+	goto_if_set FLAG_ROUTE_16_SNORLAX_RETURNED_TO_MOUNTAINS, EventScript_Return
+	clearflag FLAG_HIDE_ROUTE_16_SNORLAX
 	return
 
 Route16_OnWarp:: @ 8168113
@@ -45,6 +56,7 @@ Route16_EventScript_Snorlax:: @ 8168121
 	delay 40
 	waitmoncry
 	setflag FLAG_HIDE_ROUTE_16_SNORLAX
+	setflag FLAG_WOKE_UP_ROUTE_16_SNORLAX
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	dowildbattle
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
@@ -63,6 +75,7 @@ Route16_EventScript_DontUsePokeFlute:: @ 8168197
 	end
 
 Route16_EventScript_FoughtSnorlax:: @ 8168199
+	setflag FLAG_ROUTE_16_SNORLAX_RETURNED_TO_MOUNTAINS
 	msgbox Text_SnorlaxReturnedToMountains
 	release
 	end

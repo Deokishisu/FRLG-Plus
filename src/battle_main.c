@@ -3885,8 +3885,26 @@ static void ReturnFromBattleToOverworld(void)
         if (gBattleTypeFlags & BATTLE_TYPE_ROAMER)
         {
             UpdateRoamerHPStatus(&gEnemyParty[0]);
-            if ((gBattleOutcome == B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT)                                                                              // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
+            if ((gBattleOutcome == B_OUTCOME_WON) || gBattleOutcome == B_OUTCOME_CAUGHT) // & with B_OUTCOME_WON (1) will return TRUE and deactivates the roamer.
+            {
                 SetRoamerInactive();
+                if(gBattleOutcome == B_OUTCOME_CAUGHT) //caught roamer
+                {
+                    u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, 0);
+                    switch(species)
+                    {
+                        case SPECIES_RAIKOU:
+                            FlagSet(FLAG_CAUGHT_RAIKOU);
+                            break;
+                        case SPECIES_ENTEI:
+                            FlagSet(FLAG_CAUGHT_ENTEI);
+                            break;
+                        default:
+                            FlagSet(FLAG_CAUGHT_SUICUNE);
+                            break;
+                    }
+                }
+            }
         }
         m4aSongNumStop(SE_LOW_HEALTH);
         SetMainCallback2(gMain.savedCallback);

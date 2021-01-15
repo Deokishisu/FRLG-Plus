@@ -15,11 +15,17 @@ CeruleanCave_B1F_EventScript_TryRemoveMewtwo:: @ 81624D3
 	return
 
 CeruleanCave_B1F_OnTransition:: @ 81624E7
-	call_if_unset FLAG_FOUGHT_MEWTWO, CeruleanCave_B1F_EventScript_ShowMewtwo
+	call_if_set FLAG_FOUGHT_MEWTWO, CeruleanCave_B1F_EventScript_HideMewtwo
+	call_if_unset FLAG_FOUGHT_MEWTWO, CeruleanCave_B1F_EventScript_TryShowMewtwo
 	end
 
-CeruleanCave_B1F_EventScript_ShowMewtwo:: @ 81624F1
+CeruleanCave_B1F_EventScript_TryShowMewtwo:: @ 81624F1
+	goto_if_set FLAG_MEWTWO_FLEW_AWAY, EventScript_Return
 	clearflag FLAG_HIDE_MEWTWO
+	return
+
+CeruleanCave_B1F_EventScript_HideMewtwo::
+	setflag FLAG_HIDE_MEWTWO
 	return
 
 CeruleanCave_B1F_EventScript_Mewtwo:: @ 81624F5
@@ -52,8 +58,9 @@ CeruleanCave_B1F_EventScript_Mewtwo:: @ 81624F5
 	end
 
 CeruleanCave_B1F_EventScript_DefeatedMewtwo:: @ 8162558
-	setflag FLAG_FOUGHT_MEWTWO
-	goto EventScript_RemoveStaticMon
+	setflag FLAG_MEWTWO_FLEW_AWAY
+	setvar VAR_0x8004, SPECIES_MEWTWO
+	goto EventScript_MonFlewAway
 	end
 
 CeruleanCave_B1F_EventScript_RanFromMewtwo:: @ 8162561

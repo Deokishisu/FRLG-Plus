@@ -20,7 +20,8 @@ SeafoamIslands_B4F_EventScript_TryRemoveArticuno:: @ 8163052
 	return
 
 SeafoamIslands_B4F_OnTransition:: @ 8163066
-	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno
+	call_if_set FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_HideArticuno
+	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_TryShowArticuno
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
 	end
@@ -41,8 +42,13 @@ SeafoamIslands_B4F_EventScript_SetNoCurrentLayout:: @ 81630A9
 	setmaplayoutindex LAYOUT_SEAFOAM_ISLANDS_B4F_CURRENT_STOPPED
 	return
 
-SeafoamIslands_B4F_EventScript_ShowArticuno:: @ 81630AD
+SeafoamIslands_B4F_EventScript_TryShowArticuno:: @ 81630AD
+	goto_if_set FLAG_ARTICUNO_FLEW_AWAY, EventScript_Return
 	clearflag FLAG_HIDE_ARTICUNO
+	return
+
+SeafoamIslands_B4F_EventScript_HideArticuno::
+	setflag FLAG_HIDE_ARTICUNO
 	return
 
 SeafoamIslands_B4F_OnLoad:: @ 81630B1
@@ -187,8 +193,9 @@ SeafoamIslands_B4F_EventScript_Articuno:: @ 81631AC
 	end
 
 SeafoamIslands_B4F_EventScript_DefeatedArticuno:: @ 816320F
-	setflag FLAG_FOUGHT_ARTICUNO
-	goto EventScript_RemoveStaticMon
+	setflag FLAG_ARTICUNO_FLEW_AWAY
+	setvar VAR_0x8004, SPECIES_ARTICUNO
+	goto EventScript_MonFlewAway
 	end
 
 SeafoamIslands_B4F_EventScript_RanFromArticuno:: @ 8163218

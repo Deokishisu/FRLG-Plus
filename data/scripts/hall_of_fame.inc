@@ -16,6 +16,13 @@ EventScript_ResetLegendaries:: @ 81A6541
 	clearflag FLAG_LUGIA_FLEW_AWAY
 	clearflag FLAG_HO_OH_FLEW_AWAY
 	clearflag FLAG_DEOXYS_FLEW_AWAY
+	clearflag FLAG_MEWTWO_FLEW_AWAY
+	clearflag FLAG_ARTICUNO_FLEW_AWAY
+	clearflag FLAG_ZAPDOS_FLEW_AWAY
+	clearflag FLAG_MOLTRES_FLEW_AWAY
+	clearflag FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS
+	clearflag FLAG_ROUTE_16_SNORLAX_RETURNED_TO_MOUNTAINS
+	special InitRoamer
 	return
 
 EventScript_ResetEliteFourEnd:: @ 81A654B

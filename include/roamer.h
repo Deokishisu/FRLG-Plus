@@ -4,6 +4,7 @@
 #include "global.h"
 
 void ClearRoamerData(void);
+u16 GetRoamerSpecies(void);
 void ClearRoamerLocationData(void);
 void InitRoamer(void);
 void UpdateLocationHistoryForRoamer(void);

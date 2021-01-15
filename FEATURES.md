@@ -15,6 +15,7 @@
 
 #### Story Changes:
 - The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
+- A legendary beast will begin roaming when the player first enters the Hall of Fame, instead of upon delivering the Sapphire.
 - Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
 		* This Mew counts as an Emerald Faraway Island Mew for legality purposes.
@@ -45,6 +46,16 @@
 - Pokémon that evolve by trade can evolve by using an unmissable Key Item on them that is obtained during the story. Pokémon like Scyther also need to be holding their evolution items to evolve in this way.
 - Game Corner coins can be bought in increments of 1000 in addition to the other two options.
 - Press the select button in the party menu to switch Pokémon without having to use the menu option.
+- Uncaptured legendary Pokémon, roaming Pokémon, and Snorlax will be regenerated upon entering the Hall of Fame, keeping them from being missable.
+- If, upon entering the Hall of Fame, a legendary beast is not currently roaming, one will begin to roam. This allows the player to capture all three legendary beasts in one playthrough.
+
+#### Vanilla Bug Fixes
+- All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
+- The Nugget Bridge Rocket can no longer give the player infinite Nuggets.
+- Vital Throw displays as --- accuracy instead of 100 accuracy.
+- The misspelling of "Pokcet" in the Teachy TV program has been fixed.
+- Raikou and Entei will not disappear if they Roar the player out of their battles.
+	* The roaming IV glitch will __not__ be fixed, as it affects the legality of the legendary beasts.
 
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.

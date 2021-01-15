@@ -15,11 +15,17 @@ MtEmber_Summit_EventScript_TryRemoveMoltres:: @ 8163B11
 	return
 
 MtEmber_Summit_OnTransition:: @ 8163B25
-	call_if_unset FLAG_FOUGHT_MOLTRES, MtEmber_Summit_EventScript_ShowMoltres
+	call_if_set FLAG_FOUGHT_MOLTRES, MtEmber_Summit_EventScript_HideMoltres
+	call_if_unset FLAG_FOUGHT_MOLTRES, MtEmber_Summit_EventScript_TryShowMoltres
 	end
 
-MtEmber_Summit_EventScript_ShowMoltres:: @ 8163B2F
+MtEmber_Summit_EventScript_TryShowMoltres:: @ 8163B2F
+	goto_if_set FLAG_MOLTRES_FLEW_AWAY, EventScript_Return
 	clearflag FLAG_HIDE_MOLTRES
+	return
+
+MtEmber_Summit_EventScript_HideMoltres::
+	setflag FLAG_HIDE_MOLTRES
 	return
 
 MtEmber_Summit_EventScript_Moltres:: @ 8163B33
@@ -52,8 +58,9 @@ MtEmber_Summit_EventScript_Moltres:: @ 8163B33
 	end
 
 MtEmber_Summit_EventScript_DefeatedMoltres:: @ 8163B96
-	setflag FLAG_FOUGHT_MOLTRES
-	goto EventScript_RemoveStaticMon
+	setflag FLAG_MOLTRES_FLEW_AWAY
+	setvar VAR_0x8004, SPECIES_MOLTRES
+	goto EventScript_MonFlewAway
 	end
 
 MtEmber_Summit_EventScript_RanFromMoltres:: @ 8163B9F
