@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": 1,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
+      "in_connection": false,
       "x": 6,
       "y": 10,
       "elevation": 3,
@@ -87,7 +88,9 @@
       "dest_warp_id": 1
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -106,5 +109,5 @@
       "script": "CeladonCity_DepartmentStore_1F_EventScript_FloorSign"
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }
