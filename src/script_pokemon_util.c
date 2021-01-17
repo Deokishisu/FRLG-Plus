@@ -107,6 +107,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     u8 heldItem[2];
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
     u16 zeroHP = 0;
+    u32 wasFirstCatch = 0;
 
     CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
     heldItem[0] = item;
@@ -121,6 +122,7 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
         if(!IsWildMonNuzlockeDupe(species))
         {
             NuzlockeFlagSet(GetCurrentRegionMapSectionId());
+            wasFirstCatch = 1;
         }
     }
     CalculateMonStats(mon, FALSE);
@@ -135,9 +137,9 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
         GetSetPokedexFlag(nationalDexNum, FLAG_SET_CAUGHT);
         if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
         {
-            if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+            if(wasFirstCatch)
             {   //if first catch in area, set dupe flag for this species.
-                SetNuzlockeDupeFlags(species);
+                SetNuzlockeDupeFlags(SpeciesToNationalPokedexNum(species));
             }
         }
         break;
