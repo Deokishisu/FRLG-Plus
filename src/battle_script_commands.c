@@ -9094,7 +9094,6 @@ static void atkEF_handleballthrow(void)
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
                 if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
                 {
-                    u32 i;
                     if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == TRUE) //already caught something here, faint mon
                     {
                         u8 arg[4];
@@ -9107,7 +9106,7 @@ static void atkEF_handleballthrow(void)
                         SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, arg); //clear status
                         SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
                     }
-                    if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+                    else
                     {   //if first catch in area, set dupe flag for this species.
                         SetNuzlockeDupeFlags(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES)));
                     }
@@ -9147,7 +9146,7 @@ static void atkEF_handleballthrow(void)
                             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_STATUS, arg); //clear status
                             SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_HP, &zeroHP);
                         }
-                        if(NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+                        else
                         {   //if first catch in area, set dupe flag for this species.
                             SetNuzlockeDupeFlags(SpeciesToNationalPokedexNum(GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_SPECIES)));
                         }
