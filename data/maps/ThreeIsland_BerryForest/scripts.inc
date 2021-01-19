@@ -27,7 +27,7 @@ ThreeIsland_BerryForest_EventScript_Lostelle:: @ 8163C83
 	applymovement 1, Movement_FacePlayer
 	waitmovement 0
 	msgbox ThreeIsland_BerryForest_Text_ThankYouHaveThis
-	giveitem ITEM_IAPAPA_BERRY
+	giveitem ITEM_KELPSY_BERRY
 	compare VAR_RESULT, FALSE
 	call_if_eq ThreeIsland_BerryForest_EventScript_NoRoomForBerry
 	special BufferBigGuyOrBigGirlString

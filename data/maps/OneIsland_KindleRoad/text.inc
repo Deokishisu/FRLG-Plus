@@ -1,5 +1,5 @@
 OneIsland_KindleRoad_Text_MariaIntro:: @ 818961F
-    .string "The weather's gorgeous!\n"
+    .string "The weather's treacherous!\n"
     .string "Perfect for a battle!$"
 
 OneIsland_KindleRoad_Text_MariaDefeat:: @ 818964D
