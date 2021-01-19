@@ -2,12 +2,14 @@
 #include "bike.h"
 #include "field_player_avatar.h"
 #include "metatile_behavior.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
 #include "field_camera.h"
 #include "overworld.h"
 #include "constants/map_types.h"
 #include "constants/songs.h"
+#include "constants/flags.h"
 
 static u8 GetMovePlayerOnBikeFuncId(u8 *, u16, u16);
 static void sub_80BD664(void);
@@ -193,13 +195,24 @@ static void BikeTryMoveFastInDirection(u8 direction)
         }
         else
         {
-            
-            if (collision == COLLISION_COUNT)
-                PlayerGoSpeed2(direction);
-            else if (PlayerIsMovingOnRockStairs(direction))
-                PlayerGoSpeed2(direction);
+            if(!FlagGet(FLAG_BIKE_GEAR)) //if not set, FRLG speed
+            {
+                if (collision == COLLISION_COUNT)
+                    PlayerGoSpeed2(direction);
+                else if (PlayerIsMovingOnRockStairs(direction))
+                    PlayerGoSpeed2(direction);
+                else
+                    PlayerRideWaterCurrent(direction);
+            }
             else
-                PlayerRideWaterCurrent(direction);
+            {
+                if (collision == COLLISION_COUNT)
+                    PlayerGoSpeed2(direction);
+                else if (PlayerIsMovingOnRockStairs(direction))
+                    PlayerGoSpeed2(direction);
+                else
+                    sub_805C164(direction);
+            }
         }
     }
 }
@@ -209,7 +222,7 @@ static void BikeLetGravityTakeTheWheel(UNUSED u8 v)
     u8 collision = CheckNextTileForBikingCollision(DIR_SOUTH);
 
     if (collision == COLLISION_NONE)
-        sub_805C164(DIR_SOUTH);
+        sub_805C164(DIR_SOUTH); // mach bike speed
     else if (collision == COLLISION_LEDGE_JUMP)
         PlayerJumpLedge(DIR_SOUTH);
 }

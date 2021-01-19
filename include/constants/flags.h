@@ -234,9 +234,9 @@
 #define FLAG_CELADON_GYM_LEFT_CUT_TREE        0x0E0 //forgot these...
 #define FLAG_CELADON_GYM_BOTTOM_CUT_TREE      0x0E1 // ^
 #define FLAG_CELADON_GYM_RIGHT_CUT_TREE       0x0E2 // ^
+#define FLAG_BIKE_GEAR                        0x0E3 // Swaps between FRLG bike speed and Mach Bike speed
 
 // Unused?
-#define FLAG_0x0E3               0x0E3
 #define FLAG_0x0E4               0x0E4
 #define FLAG_0x0E5               0x0E5
 #define FLAG_0x0E6               0x0E6
