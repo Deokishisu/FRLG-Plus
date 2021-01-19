@@ -207,9 +207,9 @@ static void BikeTryMoveFastInDirection(u8 direction)
             else
             {
                 if (collision == COLLISION_COUNT)
-                    PlayerGoSpeed2(direction);
+                    PlayerRideWaterCurrent(direction);
                 else if (PlayerIsMovingOnRockStairs(direction))
-                    PlayerGoSpeed2(direction);
+                    PlayerRideWaterCurrent(direction);
                 else
                     sub_805C164(direction);
             }
