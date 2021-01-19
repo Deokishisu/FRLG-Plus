@@ -22,7 +22,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
       "in_connection": false,
       "x": 35,
       "y": 7,
@@ -36,7 +36,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_RUIN_MANIAC",
       "in_connection": false,
       "x": 121,
       "y": 11,
@@ -50,7 +50,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_PAINTER",
       "in_connection": false,
       "x": 85,
       "y": 8,

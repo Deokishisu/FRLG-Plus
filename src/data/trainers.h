@@ -3421,9 +3421,9 @@ const struct Trainer gTrainers[] = {
     },
     [TRAINER_ROCKER_LUCA] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_ROCKER,
+        .trainerClass = CLASS_ENGINEER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_ROCKER,
+        .trainerPic = TRAINER_PIC_ENGINEER,
         .trainerName = _("LUCA"),
         .items = {},
         .doubleBattle = FALSE,
@@ -7849,9 +7849,9 @@ const struct Trainer gTrainers[] = {
     },
     [TRAINER_ROCKER_LUCA_2] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_ROCKER,
+        .trainerClass = CLASS_ENGINEER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_ROCKER,
+        .trainerPic = TRAINER_PIC_ENGINEER,
         .trainerName = _("LUCA"),
         .items = {},
         .doubleBattle = FALSE,

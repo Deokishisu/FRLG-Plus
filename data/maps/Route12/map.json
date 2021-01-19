@@ -102,7 +102,7 @@
       "flag": "FLAG_HIDE_ROUTE_12_SNORLAX"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "graphics_id": "OBJ_EVENT_GFX_ENGINEER",
       "in_connection": false,
       "x": 13,
       "y": 92,
@@ -186,7 +186,7 @@
       "flag": "FLAG_HIDE_ROUTE12_IRON"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_F",
       "in_connection": false,
       "x": 19,
       "y": 64,
@@ -200,7 +200,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_M",
       "in_connection": false,
       "x": 19,
       "y": 63,

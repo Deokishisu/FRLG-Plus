@@ -16,7 +16,7 @@
   "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "graphics_id": "OBJ_EVENT_GFX_JUGGLER",
       "in_connection": false,
       "x": 12,
       "y": 16,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "graphics_id": "OBJ_EVENT_GFX_JUGGLER",
       "in_connection": false,
       "x": 2,
       "y": 9,
@@ -44,7 +44,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "graphics_id": "OBJ_EVENT_GFX_JUGGLER",
       "in_connection": false,
       "x": 11,
       "y": 11,
@@ -58,7 +58,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_TAMER",
       "in_connection": false,
       "x": 13,
       "y": 4,
@@ -72,7 +72,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_TAMER",
       "in_connection": false,
       "x": 4,
       "y": 6,
@@ -86,7 +86,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "graphics_id": "OBJ_EVENT_GFX_JUGGLER",
       "in_connection": false,
       "x": 2,
       "y": 16,

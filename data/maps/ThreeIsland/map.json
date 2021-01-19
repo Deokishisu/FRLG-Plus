@@ -55,7 +55,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_ANTIBIKERS"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BIKER",
+      "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
       "in_connection": false,
       "x": 8,
       "y": 24,

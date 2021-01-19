@@ -6,11 +6,11 @@ static EWRAM_DATA const u8 *sStringPointers[8] = {0};
 
 static const u8 sTextColorTable[] =
 {
- // [LOW_NYBBLE / 2]                               = 0xXY, // HIGH_NYBBLE
+ // [LOW_NYBBLE / 2]                            = 0xXY, // HIGH_NYBBLE
     [OBJ_EVENT_GFX_RED_NORMAL / 2]              = 0x00, // OBJ_EVENT_GFX_RED_BIKE
-    [OBJ_EVENT_GFX_RED_SURF / 2]                 = 0x00, // OBJ_EVENT_GFX_RED_ITEM
+    [OBJ_EVENT_GFX_RED_SURF / 2]                = 0x00, // OBJ_EVENT_GFX_RED_ITEM
     [OBJ_EVENT_GFX_RED_FISH / 2]                = 0x00, // OBJ_EVENT_GFX_RED_VS_SEEKER
-    [OBJ_EVENT_GFX_RED_VS_SEEKER_BIKE / 2]           = 0x10, // OBJ_EVENT_GFX_GREEN_NORMAL
+    [OBJ_EVENT_GFX_RED_VS_SEEKER_BIKE / 2]      = 0x10, // OBJ_EVENT_GFX_GREEN_NORMAL
     [OBJ_EVENT_GFX_GREEN_BIKE / 2]              = 0x11, // OBJ_EVENT_GFX_GREEN_SURF
     [OBJ_EVENT_GFX_GREEN_ITEM / 2]              = 0x11, // OBJ_EVENT_GFX_GREEN_FISH
     [OBJ_EVENT_GFX_GREEN_VS_SEEKER / 2]         = 0x11, // OBJ_EVENT_GFX_GREEN_VS_SEEKER_BIKE
@@ -83,6 +83,15 @@ static const u8 sTextColorTable[] =
     [OBJ_EVENT_GFX_CELEBI / 2]                  = 0x22, // OBJ_EVENT_GFX_KABUTO
     [OBJ_EVENT_GFX_DEOXYS_D / 2]                = 0x22, // OBJ_EVENT_GFX_DEOXYS_A
     [OBJ_EVENT_GFX_DEOXYS_N / 2]                = 0x32, // OBJ_EVENT_GFX_SS_ANNE
+    [OBJ_EVENT_GFX_CUE_BALL / 2]                = 0x10, // OBJ_EVENT_GFX_PAINTER
+    [OBJ_EVENT_GFX_BIRD_KEEPER / 2]             = 0x00, // OBJ_EVENT_GFX_BURGLAR
+    [OBJ_EVENT_GFX_POKEMON_RANGER_F / 2]        = 0x01, // OBJ_EVENT_GFX_POKEMON_RANGER_M
+    [OBJ_EVENT_GFX_RUIN_MANIAC / 2]             = 0x00, // OBJ_EVENT_GFX_POKE_MANIAC
+    [OBJ_EVENT_GFX_PSYCHIC_M / 2]               = 0x10, // OBJ_EVENT_GFX_PSYCHIC_F
+    [OBJ_EVENT_GFX_AROMA_LADY / 2]              = 0x11, // OBJ_EVENT_GFX_TWIN
+    [OBJ_EVENT_GFX_YOUNG_COUPLE_M / 2]          = 0x10, // OBJ_EVENT_GFX_YOUNG_COUPLE_F
+    [OBJ_EVENT_GFX_ENGINEER / 2]                = 0x00, // OBJ_EVENT_GFX_JUGGLER
+    [OBJ_EVENT_GFX_TAMER / 2]                   = 0x10, // OBJ_EVENT_GFX_POKEMON_BREEDER
 };
 
 void DynamicPlaceholderTextUtil_Reset(void)

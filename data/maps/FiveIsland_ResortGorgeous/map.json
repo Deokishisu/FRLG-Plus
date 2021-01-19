@@ -22,7 +22,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_PAINTER",
       "in_connection": false,
       "x": 44,
       "y": 10,
@@ -36,7 +36,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_PAINTER",
       "in_connection": false,
       "x": 33,
       "y": 12,
@@ -50,7 +50,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_PAINTER",
       "in_connection": false,
       "x": 12,
       "y": 10,

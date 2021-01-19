@@ -150,7 +150,24 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysD;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysA;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_DeoxysN;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAnne;
-
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CueBall;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Painter;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BirdKeeper;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Burglar;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokemonRangerF;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokemonRangerM;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RuinManiac;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokeManiac;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PsychicM;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PsychicF;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AromaLady;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Twin;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_YoungCoupleM;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_YoungCoupleF;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Engineer;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Juggler;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Tamer;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokemonBreeder;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -305,4 +322,22 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DEOXYS_A]                 = &gObjectEventGraphicsInfo_DeoxysA,
     [OBJ_EVENT_GFX_DEOXYS_N]                 = &gObjectEventGraphicsInfo_DeoxysN,
     [OBJ_EVENT_GFX_SS_ANNE]                  = &gObjectEventGraphicsInfo_SSAnne,
+    [OBJ_EVENT_GFX_CUE_BALL]                 = &gObjectEventGraphicsInfo_CueBall,
+    [OBJ_EVENT_GFX_PAINTER]                  = &gObjectEventGraphicsInfo_Painter,
+    [OBJ_EVENT_GFX_BIRD_KEEPER]              = &gObjectEventGraphicsInfo_BirdKeeper,
+    [OBJ_EVENT_GFX_BURGLAR]                  = &gObjectEventGraphicsInfo_Burglar,
+    [OBJ_EVENT_GFX_POKEMON_RANGER_F]         = &gObjectEventGraphicsInfo_PokemonRangerF,
+    [OBJ_EVENT_GFX_POKEMON_RANGER_M]         = &gObjectEventGraphicsInfo_PokemonRangerM,
+    [OBJ_EVENT_GFX_RUIN_MANIAC]              = &gObjectEventGraphicsInfo_RuinManiac,
+    [OBJ_EVENT_GFX_POKE_MANIAC]              = &gObjectEventGraphicsInfo_PokeManiac,
+    [OBJ_EVENT_GFX_PSYCHIC_M]                = &gObjectEventGraphicsInfo_PsychicM,
+    [OBJ_EVENT_GFX_PSYCHIC_F]                = &gObjectEventGraphicsInfo_PsychicF,
+    [OBJ_EVENT_GFX_AROMA_LADY]               = &gObjectEventGraphicsInfo_AromaLady,
+    [OBJ_EVENT_GFX_TWIN]                     = &gObjectEventGraphicsInfo_Twin,
+    [OBJ_EVENT_GFX_YOUNG_COUPLE_M]           = &gObjectEventGraphicsInfo_YoungCoupleM,
+    [OBJ_EVENT_GFX_YOUNG_COUPLE_F]           = &gObjectEventGraphicsInfo_YoungCoupleF,
+    [OBJ_EVENT_GFX_ENGINEER]                 = &gObjectEventGraphicsInfo_Engineer,
+    [OBJ_EVENT_GFX_JUGGLER]                  = &gObjectEventGraphicsInfo_Juggler,
+    [OBJ_EVENT_GFX_TAMER]                    = &gObjectEventGraphicsInfo_Tamer,
+    [OBJ_EVENT_GFX_POKEMON_BREEDER]          = &gObjectEventGraphicsInfo_PokemonBreeder,
 };

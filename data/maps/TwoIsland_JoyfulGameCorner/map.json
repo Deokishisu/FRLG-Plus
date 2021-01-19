@@ -44,7 +44,7 @@
       "flag": "FLAG_HIDE_TWO_ISLAND_GAME_CORNER_BIKER"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "in_connection": false,
       "x": 6,
       "y": 5,

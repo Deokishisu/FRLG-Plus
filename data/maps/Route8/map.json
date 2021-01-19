@@ -181,7 +181,7 @@
       "flag": "FLAG_ROUTE_8_CUT_TREE_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "in_connection": false,
       "x": 40,
       "y": 3,
@@ -195,7 +195,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
+      "graphics_id": "OBJ_EVENT_GFX_TWIN",
       "in_connection": false,
       "x": 41,
       "y": 3,

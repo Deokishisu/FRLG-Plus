@@ -41,7 +41,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BIKER",
+      "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
       "in_connection": false,
       "x": 14,
       "y": 14,
@@ -55,7 +55,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BIKER",
+      "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
       "in_connection": false,
       "x": 12,
       "y": 12,
@@ -97,7 +97,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BIKER",
+      "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
       "in_connection": false,
       "x": 6,
       "y": 14,
@@ -125,7 +125,7 @@
       "flag": "FLAG_ROUTE_16_CUT_TREE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_F",
       "in_connection": false,
       "x": 30,
       "y": 5,
@@ -139,7 +139,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_M",
       "in_connection": false,
       "x": 31,
       "y": 5,
