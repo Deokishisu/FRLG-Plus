@@ -140,6 +140,30 @@ const struct SpriteFrameImage gObjectEventPicTable_GreenVSSeekerBike[] = {
     overworld_frame(gObjectEventPic_GreenVSSeekerBike, 4, 4, 5),
 };
 
+const struct SpriteFrameImage gObjectEventPicTable_RedUnderwater[] = {
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_RedUnderwater, 4, 4, 2),
+};
+
+const struct SpriteFrameImage gObjectEventPicTable_GreenUnderwater[] = {
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 0),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 1),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 2),
+    overworld_frame(gObjectEventPic_GreenUnderwater, 4, 4, 2),
+};
+
 const struct SpriteFrameImage gObjectEventPicTable_RSBrendan[] = {
     overworld_frame(gObjectEventPic_RSBrendan, 2, 4, 0),
     overworld_frame(gObjectEventPic_RSBrendan, 2, 4, 1),

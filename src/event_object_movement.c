@@ -514,6 +514,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gUnknown_8394EA8, OBJ_EVENT_PAL_TAG_20},
     {gUnknown_8395AE8, OBJ_EVENT_PAL_TAG_11},
     {gUnknown_83952C8, OBJ_EVENT_PAL_TAG_21},
+    {gUnderwaterEventObjectPalette, OBJ_EVENT_PAL_TAG_27},
     {},
 };
 
