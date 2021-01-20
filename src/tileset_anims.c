@@ -130,6 +130,18 @@ static const u16 *const gUnknown_83AC950[] = {
     gUnknown_83AC850
 };
 
+static const u16 gTilesetAnims_Underwater_Seaweed_Frame0[] = INCBIN_U16("data/tilesets/secondary/underwater/anim/seaweed/0.4bpp");
+static const u16 gTilesetAnims_Underwater_Seaweed_Frame1[] = INCBIN_U16("data/tilesets/secondary/underwater/anim/seaweed/1.4bpp");
+static const u16 gTilesetAnims_Underwater_Seaweed_Frame2[] = INCBIN_U16("data/tilesets/secondary/underwater/anim/seaweed/2.4bpp");
+static const u16 gTilesetAnims_Underwater_Seaweed_Frame3[] = INCBIN_U16("data/tilesets/secondary/underwater/anim/seaweed/3.4bpp");
+
+static const u16 *const gTilesetAnims_Underwater_Seaweed[] = {
+    gTilesetAnims_Underwater_Seaweed_Frame0,
+    gTilesetAnims_Underwater_Seaweed_Frame1,
+    gTilesetAnims_Underwater_Seaweed_Frame2,
+    gTilesetAnims_Underwater_Seaweed_Frame3
+};
+
 static void ResetTilesetAnimBuffer(void)
 {
     sTilesetDMA3TransferBufferSize = 0;
@@ -325,4 +337,23 @@ void InitTilesetAnim_CeladonGym(void)
     sSecondaryTilesetAnimCounter = 0;
     sSecondaryTilesetAnimCounterMax = 256;
     sSecondaryTilesetAnimCallback = sub_8070368;
+}
+
+static void QueueAnimTiles_Underwater_Seaweed(u8 timer)
+{
+    u8 i = timer % 4;
+    AppendTilesetAnimToBuffer(gTilesetAnims_Underwater_Seaweed[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x2B5)), 0x80);
+}
+
+static void TilesetAnim_Underwater(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_Underwater_Seaweed(timer >> 4);
+}
+
+void InitTilesetAnim_Underwater(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 128;
+    sSecondaryTilesetAnimCallback = TilesetAnim_Underwater;
 }

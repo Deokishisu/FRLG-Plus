@@ -491,7 +491,7 @@ bool8 MetatileBehavior_IsDiveable(u8 metatileBehavior)
 
 bool8 MetatileBehavior_IsUnableToEmerge(u8 metatileBehavior)
 {
-    if(metatileBehavior == MB_UNDERWATER_BLOCKED_ABOVE)
+    if(metatileBehavior == MB_UNDERWATER_BLOCKED_ABOVE || metatileBehavior == MB_SEAWEED_NO_SURFACING)
         return TRUE;
     else
         return FALSE;
@@ -692,7 +692,7 @@ bool8 MetatileBehavior_IsHorizontalRail(u8 metatileBehavior) { return FALSE; }
 
 bool8 MetatileBehavior_IsSeaweed(u8 metatileBehavior)
 {
-    if(metatileBehavior == MB_SEAWEED)
+    if(metatileBehavior == MB_SEAWEED || metatileBehavior == MB_SEAWEED_NO_SURFACING)
         return TRUE;
     else
         return FALSE;

@@ -1469,3 +1469,23 @@ gTilesetPalettes_HallOfFame:: @ 829F4C8
 	.incbin "data/tilesets/secondary/hall_of_fame/palettes/13.gbapal"
 	.incbin "data/tilesets/secondary/hall_of_fame/palettes/14.gbapal"
 	.incbin "data/tilesets/secondary/hall_of_fame/palettes/15.gbapal"
+
+	.align 2
+gTilesetPalettes_Underwater::
+	.incbin "data/tilesets/secondary/underwater/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/underwater/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Underwater::
+	.incbin "data/tilesets/secondary/underwater/tiles.4bpp.lz"

@@ -747,3 +747,14 @@ gTileset_HallOfFame::
 	.4byte 0x0
 	.4byte gMetatileAttributes_HallOfFame
 
+
+	.align 2
+gTileset_Underwater::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Underwater
+	.4byte gTilesetPalettes_Underwater
+	.4byte gMetatiles_Underwater
+	.4byte InitTilesetAnim_Underwater
+	.4byte gMetatileAttributes_Underwater
