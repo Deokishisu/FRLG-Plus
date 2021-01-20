@@ -1042,7 +1042,7 @@
 #define HIDDEN_ITEM_ROCKET_HIDEOUT_B4F_NEST_BALL                       13
 #define HIDDEN_ITEM_POKEMON_TOWER_5F_BIG_MUSHROOM                      14
 #define HIDDEN_ITEM_ROUTE13_PP_UP                                      15
-#define HIDDEN_ITEM_UNUSED_0x10                                        16
+#define HIDDEN_ITEM_ROUTE20_UNDERWATER_BIG_PEARL                       16
 #define HIDDEN_ITEM_ROUTE17_RARE_CANDY                                 17
 #define HIDDEN_ITEM_ROUTE17_FULL_RESTORE                               18
 #define HIDDEN_ITEM_ROUTE17_PP_UP                                      19

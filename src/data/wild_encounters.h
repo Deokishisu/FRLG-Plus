@@ -7118,6 +7118,42 @@ const struct WildPokemon sSixIslandAlteringCave_9_LeafGreen_LandMons[] =
 
 const struct WildPokemonInfo sSixIslandAlteringCave_9_LeafGreen_LandMonsInfo = { 7, sSixIslandAlteringCave_9_LeafGreen_LandMons };
 
+const struct WildPokemon sRoute20_Underwater_FireRed_LandMons[] =
+{
+    { 33, 36, SPECIES_TENTACOOL },
+    { 25, 25, SPECIES_HORSEA },
+    { 12, 14, SPECIES_KRABBY },
+    { 15, 15, SPECIES_KRABBY },
+    { 22, 23, SPECIES_HORSEA },
+    { 36, 40, SPECIES_TENTACRUEL },
+    { 25, 25, SPECIES_GYARADOS },
+    { 38, 40, SPECIES_TENTACRUEL },
+    { 33, 35, SPECIES_SEADRA },
+    { 28, 30, SPECIES_SEADRA },
+    { 31, 33, SPECIES_SEADRA },
+    { 33, 35, SPECIES_PSYDUCK },
+};
+
+const struct WildPokemonInfo sRoute20_Underwater_FireRed_LandMonsInfo = { 7, sRoute20_Underwater_FireRed_LandMons };
+
+const struct WildPokemon sRoute20_Underwater_LeafGreen_LandMons[] =
+{
+    { 33, 36, SPECIES_TENTACOOL },
+    { 25, 25, SPECIES_KRABBY },
+    { 12, 14, SPECIES_HORSEA },
+    { 15, 15, SPECIES_HORSEA },
+    { 22, 23, SPECIES_KRABBY },
+    { 36, 40, SPECIES_TENTACRUEL },
+    { 25, 25, SPECIES_GYARADOS },
+    { 38, 40, SPECIES_TENTACRUEL },
+    { 33, 35, SPECIES_KINGLER },
+    { 28, 30, SPECIES_KINGLER },
+    { 31, 33, SPECIES_KINGLER },
+    { 33, 35, SPECIES_SLOWPOKE },
+};
+
+const struct WildPokemonInfo sRoute20_Underwater_LeafGreen_LandMonsInfo = { 7, sRoute20_Underwater_LeafGreen_LandMons };
+
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
@@ -8697,6 +8733,18 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .mapNum = MAP_NUM(SIX_ISLAND_ALTERING_CAVE),
         .landMonsInfo_FR = &sSixIslandAlteringCave_9_FireRed_LandMonsInfo,
         .landMonsInfo_LG = &sSixIslandAlteringCave_9_LeafGreen_LandMonsInfo,
+        .waterMonsInfo_FR = NULL,
+        .waterMonsInfo_LG = NULL,
+        .rockSmashMonsInfo_FR = NULL,
+        .rockSmashMonsInfo_LG = NULL,
+        .fishingMonsInfo_FR = NULL,
+        .fishingMonsInfo_LG = NULL,
+    },
+    {
+        .mapGroup = MAP_GROUP(ROUTE20_UNDERWATER),
+        .mapNum = MAP_NUM(ROUTE20_UNDERWATER),
+        .landMonsInfo_FR = &sRoute20_Underwater_FireRed_LandMonsInfo,
+        .landMonsInfo_LG = &sRoute20_Underwater_LeafGreen_LandMonsInfo,
         .waterMonsInfo_FR = NULL,
         .waterMonsInfo_LG = NULL,
         .rockSmashMonsInfo_FR = NULL,

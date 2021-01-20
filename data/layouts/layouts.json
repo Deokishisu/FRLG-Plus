@@ -4416,6 +4416,18 @@
       "secondary_tileset": "gTileset_HoennBuilding",
       "border_filepath": "data/layouts/OneIsland_KindleRoad_GlassWorkshop/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_GlassWorkshop/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE20_UNDERWATER",
+      "name": "Route20_Underwater_Layout",
+      "width": 120,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/Route20_Underwater/border.bin",
+      "blockdata_filepath": "data/layouts/Route20_Underwater/map.bin"
     }
   ]
 }

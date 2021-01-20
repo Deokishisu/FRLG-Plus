@@ -5,6 +5,8 @@
 #include "region_map.h"
 #include "save_menu_util.h"
 #include "constants/flags.h"
+#include "constants/map_types.h"
+#include "constants/region_map_sections.h"
 
 void SaveStatToString(u8 gameStatId, u8 *dest0, u8 color)
 {
@@ -41,6 +43,10 @@ void SaveStatToString(u8 gameStatId, u8 *dest0, u8 color)
         break;
     case SAVE_STAT_LOCATION:
         GetMapNameGeneric(dest, gMapHeader.regionMapSectionId);
+        if(gMapHeader.mapType == MAP_TYPE_UNDERWATER)
+        {
+            GetMapNameGeneric(dest, MAPSEC_UNDERWATER_124);
+        }
         break;
     case SAVE_STAT_BADGES:
         for (flagId = FLAG_BADGE01_GET, nBadges = 0; flagId < FLAG_BADGE01_GET + 8; flagId++)

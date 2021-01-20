@@ -1241,3 +1241,6 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 	.include "data/scripts/fuji_event.inc"
 
 	.include "data/maps/OneIsland_KindleRoad_GlassWorkshop/scripts.inc"
+
+	.include "data/maps/Route20_Underwater/scripts.inc"
+	.include "data/maps/Route20_Underwater/text.inc"

@@ -7,6 +7,8 @@
 #include "region_map.h"
 #include "strings.h"
 #include "constants/flags.h"
+#include "constants/map_types.h"
+#include "constants/region_map_sections.h"
 
 static void Task_MapNamePopup(u8 taskId);
 static u16 MapNamePopupCreateWindow(bool32 palIntoFadedBuffer);
@@ -193,6 +195,10 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
     u32 maxWidth = 112;
     u32 xpos;
     u8 *ptr = GetMapName(mapName, gMapHeader.regionMapSectionId, 0);
+    if(gMapHeader.mapType == MAP_TYPE_UNDERWATER)
+    {
+        ptr = GetMapName(mapName, MAPSEC_UNDERWATER_124, 0);
+    }
     if (gMapHeader.floorNum != 0)
     {
         ptr = MapNamePopupAppendFloorNum(ptr, gMapHeader.floorNum);
