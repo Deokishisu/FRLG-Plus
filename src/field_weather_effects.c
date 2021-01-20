@@ -2256,13 +2256,17 @@ static void DestroyBubbleSprites(void)
 {
     u32 i;
 
-    for (i = 0; i < MAX_SPRITES; i++)
+    if (gWeatherPtr->bubblesSpriteCount)
     {
-        if (gSprites[i].template == &sBubbleSpriteTemplate)
-            DestroySprite(&gSprites[i]);
-    }
+        for (i = 0; i < MAX_SPRITES; i++)
+        {
+            if (gSprites[i].template == &sBubbleSpriteTemplate)
+                DestroySprite(&gSprites[i]);
+        }
 
-    FreeSpriteTilesByTag(0x1205);
+        FreeSpriteTilesByTag(0x1205);
+        gWeatherPtr->bubblesSpriteCount = 0;
+    }
 }
 
 static void UpdateBubbleSprite(struct Sprite *sprite)

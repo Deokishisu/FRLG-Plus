@@ -191,6 +191,7 @@ void SetAndStartSpriteAnim(struct Sprite *, u8, u8);
 bool8 SpriteAnimEnded(struct Sprite *);
 u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent);
 u8 GetMoveDirectionAnimNum(u8 direction);
+void RemoveObjectEvent(struct ObjectEvent *objectEvent);
 
 // Exported data declarations
 

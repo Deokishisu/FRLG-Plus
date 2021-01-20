@@ -765,7 +765,13 @@ static void PlayerAvatarTransition_Surfing(struct ObjectEvent * playerObjEvent)
 
 static void PlayerAvatarTransition_Underwater(struct ObjectEvent * playerObjEvent)
 {
-    ObjectEventSetGraphicsId(playerObjEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_UNDERWATER));
+    u8 facingDirection = playerObjEvent->facingDirection;
+    s16 x = playerObjEvent->currentCoords.x;
+    s16 y = playerObjEvent->currentCoords.y;
+    
+    RemoveObjectEvent(playerObjEvent);
+    InitDivingPlayerAvatar(x, y, facingDirection, gSaveBlock2Ptr->playerGender);
+    //ObjectEventSetGraphicsId(playerObjEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_UNDERWATER));
     ObjectEventTurn(playerObjEvent, playerObjEvent->movementDirection);
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_UNDERWATER);
     playerObjEvent->fieldEffectSpriteId = CreateDiveBobbingSprite(playerObjEvent->spriteId);
@@ -1353,6 +1359,38 @@ void InitPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
     gPlayerAvatar.spriteId = objectEvent->spriteId;
     gPlayerAvatar.gender = gender;
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_FIELD_MOVE | PLAYER_AVATAR_FLAG_ON_FOOT);
+}
+
+void InitDivingPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
+{
+    struct ObjectEventTemplate playerObjEventTemplate;
+    u8 objectEventId;
+    struct ObjectEvent *objectEvent;
+
+    playerObjEventTemplate.localId = OBJ_EVENT_ID_PLAYER;
+    playerObjEventTemplate.graphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_UNDERWATER, gender);
+    playerObjEventTemplate.x = x - 7;
+    playerObjEventTemplate.y = y - 7;
+    playerObjEventTemplate.elevation = 0;
+    playerObjEventTemplate.movementType = MOVEMENT_TYPE_PLAYER;
+    playerObjEventTemplate.movementRangeX = 0;
+    playerObjEventTemplate.movementRangeY = 0;
+    playerObjEventTemplate.trainerType = 0;
+    playerObjEventTemplate.trainerRange_berryTreeId = 0;
+    playerObjEventTemplate.script = NULL;
+    playerObjEventTemplate.flagId = 0;
+    objectEventId = SpawnSpecialObjectEvent(&playerObjEventTemplate);
+    objectEvent = &gObjectEvents[objectEventId];
+    objectEvent->isPlayer = 1;
+    objectEvent->warpArrowSpriteId = CreateWarpArrowSprite();
+    ObjectEventTurn(objectEvent, direction);
+    ClearPlayerAvatarInfo();
+    gPlayerAvatar.runningState = NOT_MOVING;
+    gPlayerAvatar.tileTransitionState = T_NOT_MOVING;
+    gPlayerAvatar.objectEventId = objectEventId;
+    gPlayerAvatar.spriteId = objectEvent->spriteId;
+    gPlayerAvatar.gender = gender;
+    SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_FIELD_MOVE | PLAYER_AVATAR_FLAG_UNDERWATER);
 }
 
 void SetPlayerInvisibility(bool8 invisible)
