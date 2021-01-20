@@ -43,7 +43,8 @@
 #define FIELD_MOVE_MILK_DRINK   9
 #define FIELD_MOVE_SOFT_BOILED  10
 #define FIELD_MOVE_SWEET_SCENT  11
-#define FIELD_MOVE_END          12
+#define FIELD_MOVE_DIVE         12
+#define FIELD_MOVE_END          13
 
 #define PARTY_LAYOUT_SINGLE          0
 #define PARTY_LAYOUT_DOUBLE          1

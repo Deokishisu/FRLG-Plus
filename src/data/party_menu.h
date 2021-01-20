@@ -689,18 +689,19 @@ static const u8 *const sDescriptionStringTable[] =
 
 static const u8 *const sHMDescriptionTable[] =
 {
-    gText_LightUpDarkness,
-    gText_CutATreeOrGrass,
-    gText_FlyToAKnownTown,
-    gText_MoveHeavyBoulders,
-    gText_TravelOnWater,
-    gText_ShatterACrackedRock,
-    gText_ClimbAWaterfall,
-    gText_ReturnToAHealingSpot,
-    gText_EscapeFromHere,
-    gText_ShareHp,
-    gText_ShareHp,
-    gText_LureWildPokemon,
+    [FIELD_MOVE_FLASH]          = gText_LightUpDarkness,
+    [FIELD_MOVE_CUT]            = gText_CutATreeOrGrass,
+    [FIELD_MOVE_FLY]            = gText_FlyToAKnownTown,
+    [FIELD_MOVE_STRENGTH]       = gText_MoveHeavyBoulders,
+    [FIELD_MOVE_SURF]           = gText_TravelOnWater,
+    [FIELD_MOVE_ROCK_SMASH]     = gText_ShatterACrackedRock,
+    [FIELD_MOVE_WATERFALL]      = gText_ClimbAWaterfall,
+    [FIELD_MOVE_TELEPORT]       = gText_ReturnToAHealingSpot,
+    [FIELD_MOVE_DIG]            = gText_EscapeFromHere,
+    [FIELD_MOVE_MILK_DRINK]     = gText_ShareHp,
+    [FIELD_MOVE_SOFT_BOILED]    = gText_ShareHp,
+    [FIELD_MOVE_SWEET_SCENT]    = gText_LureWildPokemon,
+    [FIELD_MOVE_DIVE]           = gText_DiveUnderwater,
 };
 
 static const u32 sHeldItemGfx[] = INCBIN_U32("graphics/interface/hold_icons.4bpp");
@@ -1068,6 +1069,7 @@ static struct
     [MENU_FIELD_MOVES + FIELD_MOVE_MILK_DRINK] = {gMoveNames[MOVE_MILK_DRINK], CursorCB_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED] = {gMoveNames[MOVE_SOFT_BOILED], CursorCB_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCB_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_DIVE] = {gMoveNames[MOVE_DIVE], CursorCB_FieldMove},
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
@@ -1137,8 +1139,20 @@ static const u8 sPartyMenuActionCounts[] =
 
 static const u16 sFieldMoves[] =
 {
-    MOVE_FLASH, MOVE_CUT, MOVE_FLY, MOVE_STRENGTH, MOVE_SURF, MOVE_ROCK_SMASH, MOVE_WATERFALL, MOVE_TELEPORT,
-    MOVE_DIG, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_END // this may be misuse of enum. same in emerald
+    MOVE_FLASH,
+    MOVE_CUT, 
+    MOVE_FLY, 
+    MOVE_STRENGTH, 
+    MOVE_SURF, 
+    MOVE_ROCK_SMASH, 
+    MOVE_WATERFALL, 
+    MOVE_TELEPORT,
+    MOVE_DIG, 
+    MOVE_MILK_DRINK, 
+    MOVE_SOFT_BOILED, 
+    MOVE_SWEET_SCENT, 
+    MOVE_DIVE, 
+    FIELD_MOVE_END // this may be misuse of enum. same in emerald
 };
 
 static struct
@@ -1159,6 +1173,7 @@ static struct
     [FIELD_MOVE_MILK_DRINK]   = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
     [FIELD_MOVE_SOFT_BOILED]  = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
     [FIELD_MOVE_SWEET_SCENT]  = {SetUpFieldMove_SweetScent,  PARTY_MSG_CANT_USE_HERE},
+    [FIELD_MOVE_DIVE]         = {SetUpFieldMove_Dive,        PARTY_MSG_CANT_USE_HERE},
 };
 
 static const u8 *const sUnionRoomTradeMessages[] =

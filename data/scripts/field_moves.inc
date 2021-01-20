@@ -216,31 +216,33 @@ Text_UseWaterfall:: @ 81BE33F
 Text_MonUsedWaterfall:: @ 81BE378
 	.string "{STR_VAR_1} used WATERFALL.$"
 
-@ Unused leftover from R/S
-EventScript_DeepWater:: @ 81BE38B
+
+EventScript_UseDive::
 	lockall
 	checkpartymove MOVE_DIVE
 	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq EventScript_MayGoUnderwater
+	goto_if_eq EventScript_CantDive
 	getpartymonname 0, VAR_RESULT
 	setfieldeffectarg 0, VAR_RESULT
 	setfieldeffectarg 1, 1
-	msgbox Text_SeaIsDeepUseDive, MSGBOX_YESNO
+	msgbox Text_WantToDive MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_EndDive
 	msgbox Text_MonUsedDive
 	dofieldeffect FLDEFF_USE_DIVE
 	goto EventScript_EndDive
+	end
 
-EventScript_CantDive:: @ 81BE3C9
-	lockall
-EventScript_MayGoUnderwater:
-	msgbox Text_MonMayGoUnderwater
-EventScript_EndDive:
+EventScript_CantDive::
+	msgbox Text_CantDive
 	releaseall
 	end
 
-EventScript_TrySurface:: @ 81BE3D4
+EventScript_EndDive::
+	releaseall
+	end
+
+EventScript_UseDiveUnderwater:: @ 8290B5A
 	lockall
 	checkpartymove MOVE_DIVE
 	compare VAR_RESULT, PARTY_SIZE
@@ -248,47 +250,42 @@ EventScript_TrySurface:: @ 81BE3D4
 	getpartymonname 0, VAR_RESULT
 	setfieldeffectarg 0, VAR_RESULT
 	setfieldeffectarg 1, 1
-	msgbox Text_LightFilteringUseDive, MSGBOX_YESNO
+	msgbox Text_WantToSurface MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_EndSurface
 	msgbox Text_MonUsedDive
 	dofieldeffect FLDEFF_USE_DIVE
 	goto EventScript_EndSurface
+	end
 
-EventScript_CantSurface:: @ 81BE412
+EventScript_CantSurface:: @ 8290B99
 	lockall
-	msgbox Text_MonMaySurface
+	msgbox Text_CantSurface, MSGBOX_DEFAULT
 	goto EventScript_EndSurface
+	end
 
-EventScript_ObstacleCantSurface:: @ 81BE420
-	lockall
-	msgbox Text_DiveCantBeUsedHere
-EventScript_EndSurface:
+EventScript_EndSurface:: @ 8290BA8
 	releaseall
 	end
 
-Text_MonMayGoUnderwater:: @ 81BE42B
+Text_CantDive: @ 8290BAA
 	.string "The sea is deep here. A POKéMON\n"
 	.string "may be able to go underwater.$"
 
-Text_SeaIsDeepUseDive:: @ 81BE469
+Text_WantToDive: @ 8290BE8
 	.string "The sea is deep here.\n"
 	.string "Would you like to use DIVE?$"
 
-Text_MonUsedDive:: @ 81BE49B
+Text_MonUsedDive: @ 8290C1A
 	.string "{STR_VAR_1} used DIVE.$"
 
-Text_MonMaySurface:: @ 81BE4A9
+Text_CantSurface: @ 8290C28
 	.string "Light is filtering down from above.\n"
 	.string "A POKéMON may be able to surface.$"
 
-Text_LightFilteringUseDive:: @ 81BE4EF
+Text_WantToSurface: @ 8290C6E
 	.string "Light is filtering down from above.\n"
 	.string "Would you like to use DIVE?$"
-
-Text_DiveCantBeUsedHere:: @ 81BE52F
-	.string "There is an obstacle above.\n"
-	.string "DIVE can't be used here.$"
 
 EventScript_FailSweetScent:: @ 81BE564
 	msgbox Text_LooksLikeNothingHere, MSGBOX_SIGN

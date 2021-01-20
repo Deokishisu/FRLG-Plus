@@ -175,7 +175,7 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void);
 void OverworldWhiteOutGetMoneyLoss(void);
 u8 GetCurrentMapBattleScene(void);
 void Overworld_ResetStateAfterFly(void);
-bool8 sub_8055B38(u16 metatileBehavior);
+bool8 MetatileBehavior_IsSurfableWaterOrUnderwater(u16 metatileBehavior);
 void Overworld_ResetMapMusic(void);
 u16 QueueExitLinkRoomKey(void);
 u16 sub_8057F34(void);
