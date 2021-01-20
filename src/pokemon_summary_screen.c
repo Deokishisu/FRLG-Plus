@@ -5107,32 +5107,25 @@ static void sub_813B120(u8 taskId, s8 a1)
     sMonSummaryScreen->unk328C = 0;
 }
 
-static s8 sub_813B20C(s8 a0)
+static s8 sub_813B20C(s8 delta)
 {
-    struct Pokemon * partyMons = sMonSummaryScreen->monList.mons;
-    s8 v1 = 0;
+    struct Pokemon * mon = sMonSummaryScreen->monList.mons;
+    u8 index = sLastViewedMonIndex;
+    u8 numMons = sMonSummaryScreen->lastIndex + 1;
+    delta += numMons;
 
-    if (sMonSummaryScreen->curPageIndex == 0)
-    {
-        if (a0 == -1 && sLastViewedMonIndex == 0)
-            return -1;
-        else if (a0 == 1 && sLastViewedMonIndex >= sMonSummaryScreen->lastIndex)
-            return -1;
-        else
-            return sLastViewedMonIndex + a0;
-    }
+    index = (index + delta) % numMons;
 
-    while (TRUE)
-    {
-        v1 += a0;
-        if (0 > sLastViewedMonIndex + v1 || sLastViewedMonIndex + v1 > sMonSummaryScreen->lastIndex)
-            return -1;
+    // skip over any Eggs unless on the Info Page
+    if (sMonSummaryScreen->curPageIndex != PSS_PAGE_INFO)
+        while (GetMonData(&mon[index], MON_DATA_IS_EGG))
+            index = (index + delta) % numMons;
 
-        if (GetMonData(&partyMons[sLastViewedMonIndex + v1], MON_DATA_IS_EGG) == 0)
-            return sLastViewedMonIndex + v1;
-    }
-
-    return -1;
+    // to avoid "scrolling" to the same Pokemon
+    if (index == sLastViewedMonIndex)
+        return -1;
+    else
+        return index;
 }
 
 static u8 sub_813B2C8(struct Pokemon * partyMons)
