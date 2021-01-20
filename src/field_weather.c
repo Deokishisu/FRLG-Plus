@@ -127,6 +127,15 @@ static const u8 sBasePaletteGammaTypes[32] = {
     GAMMA_NORMAL,
 };
 
+const u16 sDroughtWeatherColors[][0x1000] = {
+    INCBIN_U16("graphics/weather/drought/colors_0.bin"),
+    INCBIN_U16("graphics/weather/drought/colors_1.bin"),
+    INCBIN_U16("graphics/weather/drought/colors_2.bin"),
+    INCBIN_U16("graphics/weather/drought/colors_3.bin"),
+    INCBIN_U16("graphics/weather/drought/colors_4.bin"),
+    INCBIN_U16("graphics/weather/drought/colors_5.bin"),
+};
+
 const u16 gUnknown_83C2CE0[] = INCBIN_U16("graphics/field_effects/unk_83C2CE0.gbapal");
 const u16 gCloudsWeatherPalette[] = INCBIN_U16("graphics/weather/cloud.gbapal");
 const u16 gSandstormWeatherPalette[] = INCBIN_U16("graphics/weather/sandstorm.gbapal");
@@ -490,34 +499,31 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
     }
     else if (gammaIndex < 0)
     {
-        // A negative gammIndex value means that the blending will come from the special Drought weather's palette tables.
-        // Dummied out in FRLG
+        //A negative gammIndex value means that the blending will come from the special Drought weather's palette tables.
+        //Dummied out in FRLG
 
-        // gammaIndex = -gammaIndex - 1;
-        // palOffset = startPalIndex * 16;
-        // numPalettes += startPalIndex;
-        // curPalIndex = startPalIndex;
-        //
-        // CpuFastCopy(gPlttBufferUnfaded + palOffset, gPlttBufferFaded + palOffset, 16 * sizeof(u16));
-        // while (curPalIndex < numPalettes)
-        // {
-        //     if (sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
-        //     {
-        //         // No palette change.
-        //         palOffset += 16;
-        //     }
-        //     else
-        //     {
-        //
-        //         for (i = 0; i < 16; i++)
-        //         {
-        //             gPlttBufferFaded[palOffset] = sDroughtWeatherColors[gammaIndex][DROUGHT_COLOR_INDEX(gPlttBufferUnfaded[palOffset])];
-        //             palOffset++;
-        //         }
-        //     }
-        //
-        //     curPalIndex++;
-        // }
+        gammaIndex = -gammaIndex - 1;
+        palOffset = startPalIndex * 16;
+        numPalettes += startPalIndex;
+        curPalIndex = startPalIndex;
+        
+        CpuFastCopy(gPlttBufferUnfaded + palOffset, gPlttBufferFaded + palOffset, 16 * sizeof(u16));
+        while (curPalIndex < numPalettes)
+        {
+            if (sPaletteGammaTypes[curPalIndex] == GAMMA_NONE)
+            {   // No palette change.
+                palOffset += 16;
+            }
+            else
+            {
+                for (i = 0; i < 16; i++)
+                {
+                    gPlttBufferFaded[palOffset] = sDroughtWeatherColors[gammaIndex][DROUGHT_COLOR_INDEX(gPlttBufferUnfaded[palOffset])];
+                    palOffset++;
+                }
+            }
+            curPalIndex++;
+        }
     }
     else
     {
@@ -919,8 +925,8 @@ void LoadCustomWeatherSpritePalette(const u16 *palette)
 static void LoadDroughtWeatherPalette(u8 *gammaIndexPtr, u8 *a1)
 {
     // Dummied out in FRLG
-    // *gammaIndexPtr = 0x20;
-    // *a1 = 0x20;
+    *gammaIndexPtr = 0x20;
+    *a1 = 0x20;
 }
 
 void ResetDroughtWeatherPaletteLoading(void)
