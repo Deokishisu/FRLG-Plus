@@ -50,6 +50,7 @@
 - If upon entering the Hall of Fame a legendary beast is not currently roaming, an uncaught one will begin to roam. This allows the player to capture all three legendary beasts in one playthrough.
 - Press the select button on the initial Pokédex screen to open the last viewed entry.
 - The bike now has two gears, one for the default speed, and one for Mach Bike speed. Press B while biking to switch between them.
+- Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
