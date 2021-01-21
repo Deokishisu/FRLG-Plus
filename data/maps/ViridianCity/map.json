@@ -62,7 +62,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "in_connection": false,
-      "x": 34,
+      "x": 33,
       "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -174,7 +174,7 @@
       "dest_warp_id": 1
     },
     {
-      "x": 36,
+      "x": 35,
       "y": 10,
       "elevation": 0,
       "dest_map": "MAP_VIRIDIAN_CITY_GYM",
@@ -207,7 +207,7 @@
     },
     {
       "type": "trigger",
-      "x": 36,
+      "x": 35,
       "y": 11,
       "elevation": 3,
       "var": "VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR",
@@ -244,7 +244,7 @@
     },
     {
       "type": "sign",
-      "x": 32,
+      "x": 31,
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -268,7 +268,7 @@
     },
     {
       "type": "sign",
-      "x": 36,
+      "x": 35,
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

@@ -141,7 +141,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "in_connection": false,
-      "x": 9,
+      "x": 10,
       "y": 30,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -281,7 +281,7 @@
       "dest_warp_id": 1
     },
     {
-      "x": 11,
+      "x": 12,
       "y": 30,
       "elevation": 0,
       "dest_map": "MAP_CELADON_CITY_GYM",
