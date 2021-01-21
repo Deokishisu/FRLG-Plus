@@ -4351,9 +4351,14 @@ static void sub_8124EFC(void)
         struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
         u8 moveIdx = GetMoveSlotToReplace();
         u16 move = GetMonData(mon, moveIdx + MON_DATA_MOVE1);
-        
+        u8 oldpp = GetMonData(mon, moveIdx + MON_DATA_PP1);
+
         RemoveMonPPBonus(mon, moveIdx);
         SetMonMoveSlot(mon, ItemIdToBattleMoveId(gSpecialVar_ItemId), moveIdx);
+        if(oldpp < gBattleMoves[ItemIdToBattleMoveId(gSpecialVar_ItemId)].pp)
+        {   //if TM used, don't restore PP
+            SetMonData(mon, MON_DATA_PP1 + moveIdx, &oldpp);
+        }
         AdjustFriendship(mon, 4);
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, move);
         SetMainCallback2(gPartyMenu.exitCallback);
