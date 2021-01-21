@@ -451,7 +451,7 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
 {
     u8 mapsec = GetCurrentRegionMapSectionId();
     const struct SpritePalette * spritePalette;
-    u8 idx = IndexOfSpritePaletteTag(spritePalette->tag);
+    u8 idx;
     if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gUnknown_83A5340) //overwrite sand footprints palette
     {
         if(mapsec == MAPSEC_ONE_ISLAND || mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD) //if one island
@@ -478,6 +478,7 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
     {
         spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
     }
+    idx = IndexOfSpritePaletteTag(spritePalette->tag);
     LoadSpritePalette(spritePalette);
     if (idx == 0xFF)
         sub_8083598(IndexOfSpritePaletteTag(spritePalette->tag));
