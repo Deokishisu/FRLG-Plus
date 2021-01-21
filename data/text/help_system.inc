@@ -1549,7 +1549,7 @@ Help_Text_DefineDifficulty:: @ 81B7E0F
 	.string "TRAINERS are easier than normal.\l"
 	.string "In CHALLENGE MODE, POKéMON battles\l"
 	.string "with TRAINERS are more difficult than\l"
-	.string "normal.\l"
+	.string "normal and BADGE boosts are disabled.\l"
 	.string "NORMAL MODE is the standard difficulty.$"
 
 Help_Text_DefineNuzlocke:: @ 81B7E0F

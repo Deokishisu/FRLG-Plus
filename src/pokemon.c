@@ -2834,25 +2834,25 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     // In FRLG, the Battle Tower and opponent checks are stubbed here.
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | /*BATTLE_TYPE_BATTLE_TOWER |*/ BATTLE_TYPE_EREADER_TRAINER)))
     {
-        if (FlagGet(FLAG_BADGE01_GET)
+        if (FlagGet(FLAG_BADGE01_GET) && gSaveBlock1Ptr->keyFlags.difficulty != DIFFICULTY_CHALLENGE
             && GetBattlerSide(battlerIdAtk) == B_SIDE_PLAYER)
             attack = (110 * attack) / 100;
     }
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | /*BATTLE_TYPE_BATTLE_TOWER |*/ BATTLE_TYPE_EREADER_TRAINER)))
     {
-        if (FlagGet(FLAG_BADGE05_GET)
+        if (FlagGet(FLAG_BADGE05_GET) && gSaveBlock1Ptr->keyFlags.difficulty != DIFFICULTY_CHALLENGE
             && GetBattlerSide(battlerIdDef) == B_SIDE_PLAYER)
             defense = (110 * defense) / 100;
     }
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | /*BATTLE_TYPE_BATTLE_TOWER |*/ BATTLE_TYPE_EREADER_TRAINER)))
     {
-        if (FlagGet(FLAG_BADGE07_GET)
+        if (FlagGet(FLAG_BADGE07_GET) && gSaveBlock1Ptr->keyFlags.difficulty != DIFFICULTY_CHALLENGE
             && GetBattlerSide(battlerIdAtk) == B_SIDE_PLAYER)
             spAttack = (110 * spAttack) / 100;
     }
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | /*BATTLE_TYPE_BATTLE_TOWER |*/ BATTLE_TYPE_EREADER_TRAINER)))
     {
-        if (FlagGet(FLAG_BADGE07_GET)
+        if (FlagGet(FLAG_BADGE07_GET) && gSaveBlock1Ptr->keyFlags.difficulty != DIFFICULTY_CHALLENGE
             && GetBattlerSide(battlerIdDef) == B_SIDE_PLAYER)
             spDefense = (110 * spDefense) / 100;
     }

@@ -3399,7 +3399,7 @@ u8 GetWhoStrikesFirst(u8 battler1, u8 battler2, bool8 ignoreChosenMoves)
         holdEffectParam = ItemId_GetHoldEffectParam(gBattleMons[battler1].item);
     }
     // badge boost
-    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK)
+    if (!(gBattleTypeFlags & BATTLE_TYPE_LINK) && gSaveBlock1Ptr->keyFlags.difficulty != DIFFICULTY_CHALLENGE
      && FlagGet(FLAG_BADGE03_GET)
      && GetBattlerSide(battler1) == B_SIDE_PLAYER)
         speedBattler1 = (speedBattler1 * 110) / 100;
