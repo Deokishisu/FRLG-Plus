@@ -1431,12 +1431,13 @@ Help_Text_DefineBattleScene:: @ 81B91C2
 	.string "animation ON or OFF.$"
 
 Help_Text_DefineBattleStyle:: @ 81B91F9
-	.string "You can choose whether or not a\n"
-	.string "TRAINER can switch a POKéMON after\l"
-	.string "it has made its foe faint.\l"
-	.string "Set to “SHIFT” if you would like the\l"
-	.string "chance to switch a POKéMON after it\l"
-	.string "has made its foe faint.$"
+	.string "You can choose whether or not you can\n"
+	.string "switch POKéMON after a foe faints.\l"
+	.string "Set to “SWITCH” if you would like the\l"
+	.string "chance to switch POKéMON after a foe\l"
+	.string "faints. Set to “PREDICT” to be told\l"
+	.string "what the foe's next POKéMON will be\l"
+	.string "beforehand. “SET” turns this off.$"
 
 Help_Text_DefineSound:: @ 81B92B8
 	.string "You can choose between MONO and\n"

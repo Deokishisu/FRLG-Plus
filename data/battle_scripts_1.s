@@ -2852,9 +2852,11 @@ BattleScript_FaintedMonTryChooseAnother::
 	jumpifbattletype BATTLE_TYPE_BATTLE_TOWER, BattleScript_FaintedMonChooseAnother
 	jumpifbattletype BATTLE_TYPE_DOUBLE, BattleScript_FaintedMonChooseAnother
 	jumpifword CMP_COMMON_BITS, gHitMarker, HITMARKER_PLAYER_FAINTED, BattleScript_FaintedMonChooseAnother
-	jumpifbyte CMP_EQUAL, sBATTLE_STYLE, 1, BattleScript_FaintedMonChooseAnother
+	jumpifbyte CMP_EQUAL, sBATTLE_STYLE, 2, BattleScript_FaintedMonChooseAnother
 	jumpifcantswitch BS_PLAYER1, BattleScript_FaintedMonChooseAnother
+	jumpifbyte CMP_EQUAL, sBATTLE_STYLE, 1, BattleScript_SwitchBattleStylePrintString
 	printstring STRINGID_ENEMYABOUTTOSWITCHPKMN
+BattleScript_HandleSwitchAfterFaintingEnemyInput::
 	setbyte gBattleCommunication, 0
 	yesnobox
 	jumpifbyte CMP_EQUAL, gBattleCommunication + 1, 1, BattleScript_FaintedMonChooseAnother
@@ -2895,6 +2897,10 @@ BattleScript_FaintedMonChooseAnother::
 	cancelallactions
 BattleScript_FaintedMonEnd::
 	end2
+
+BattleScript_SwitchBattleStylePrintString::
+	printstring STRINGID_ENEMYABOUTTOSWITCHPKMNNOPREDICT
+	jumpifbyte CMP_EQUAL, sBATTLE_STYLE, 1, BattleScript_HandleSwitchAfterFaintingEnemyInput
 
 BattleScript_LinkBattleHandleFaint::
 	openpartyscreen BS_UNKNOWN_5, .+4

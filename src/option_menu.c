@@ -131,7 +131,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {4, 2, 2, 2, 2, 3, 10};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT] = {4, 2, 3, 2, 2, 3, 10};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -160,6 +160,7 @@ static const u8 *const sBattleSceneOptions[] =
 
 static const u8 *const sBattleStyleOptions[] =
 {
+    gText_BattleStylePredict,
     gText_BattleStyleShift,
     gText_BattleStyleSet
 };

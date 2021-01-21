@@ -40,6 +40,7 @@
 - Health bar drains faster at higher HP levels.
 - Instant text option.
 - Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, and healthbars drop much faster.
+- New battle style option, switch, which is like shift but doesn't tell what the opponent is switching in. Shift has been renamed to predict.
 - Indicators for which stats are affected by natures on summary screen.
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.
 - The EV cap for an individual stat is 252, like in later generations.
@@ -68,3 +69,4 @@
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
 - Like in Emerald, baby Pichu can hatch knowing Volt Tackle if either of its parents held a Light Ball.
+

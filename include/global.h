@@ -269,7 +269,7 @@ struct SaveBlock2
     /*0x014*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST/INSTANT]
               u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
     /*0x15*/  u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
-              u16 optionsBattleStyle:1; // OPTIONS_BATTLE_STYLE_[SHIFT/SET]
+              u16 optionsBattleStyle:2; // OPTIONS_BATTLE_STYLE_[PREDICT/SHIFT/SET]
               u16 optionsBattleSceneOff:1; // whether battle animations are disabled
               u16 regionMapZoom:1; // whether the map is zoomed in
               u16 battleAnimSpeed:1; //whether intro slide is disabled and HP bar drops fast
