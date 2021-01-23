@@ -767,7 +767,7 @@ gTileset_BattleFrontierOutsideWest::
 	.4byte gTilesetTiles_BattleFrontierOutsideWest
 	.4byte gTilesetPalettes_BattleFrontierOutsideWest
 	.4byte gMetatiles_BattleFrontierOutsideWest
-	.4byte NULL
+	.4byte InitTilesetAnim_BattleFrontierOutsideWest
 	.4byte gMetatileAttributes_BattleFrontierOutsideWest
 
 	.align 2
@@ -778,5 +778,5 @@ gTileset_BattleFrontierOutsideEast::
 	.4byte gTilesetTiles_BattleFrontierOutsideEast
 	.4byte gTilesetPalettes_BattleFrontierOutsideEast
 	.4byte gMetatiles_BattleFrontierOutsideEast
-	.4byte NULL
+	.4byte InitTilesetAnim_BattleFrontierOutsideEast
 	.4byte gMetatileAttributes_BattleFrontierOutsideEast
