@@ -4428,6 +4428,30 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/Route20_Underwater/border.bin",
       "blockdata_filepath": "data/layouts/Route20_Underwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_OUTSIDE_WEST",
+      "name": "BattleFrontier_OutsideWest_Layout",
+      "width": 56,
+      "height": 72,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BattleFrontierOutsideWest",
+      "border_filepath": "data/layouts/BattleFrontier_OutsideWest/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_OutsideWest/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_OUTSIDE_EAST",
+      "name": "BattleFrontier_OutsideEast_Layout",
+      "width": 72,
+      "height": 72,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_BattleFrontierOutsideEast",
+      "border_filepath": "data/layouts/BattleFrontier_OutsideEast/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_OutsideEast/map.bin"
     }
   ]
 }

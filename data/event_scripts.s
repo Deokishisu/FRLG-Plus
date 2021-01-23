@@ -1244,3 +1244,9 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/Route20_Underwater/scripts.inc"
 	.include "data/maps/Route20_Underwater/text.inc"
+
+	.include "data/maps/BattleFrontier_OutsideWest/scripts.inc"
+	.include "data/maps/BattleFrontier_OutsideWest/text.inc"
+
+	.include "data/maps/BattleFrontier_OutsideEast/scripts.inc"
+	.include "data/maps/BattleFrontier_OutsideEast/text.inc"

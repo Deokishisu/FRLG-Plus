@@ -758,3 +758,25 @@ gTileset_Underwater::
 	.4byte gMetatiles_Underwater
 	.4byte InitTilesetAnim_Underwater
 	.4byte gMetatileAttributes_Underwater
+
+	.align 2
+gTileset_BattleFrontierOutsideWest::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BattleFrontierOutsideWest
+	.4byte gTilesetPalettes_BattleFrontierOutsideWest
+	.4byte gMetatiles_BattleFrontierOutsideWest
+	.4byte NULL
+	.4byte gMetatileAttributes_BattleFrontierOutsideWest
+
+	.align 2
+gTileset_BattleFrontierOutsideEast::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BattleFrontierOutsideEast
+	.4byte gTilesetPalettes_BattleFrontierOutsideEast
+	.4byte gMetatiles_BattleFrontierOutsideEast
+	.4byte NULL
+	.4byte gMetatileAttributes_BattleFrontierOutsideEast

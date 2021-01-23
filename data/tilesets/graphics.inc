@@ -1489,3 +1489,43 @@ gTilesetPalettes_Underwater::
 	.align 2
 gTilesetTiles_Underwater::
 	.incbin "data/tilesets/secondary/underwater/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BattleFrontierOutsideWest::
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BattleFrontierOutsideWest::
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BattleFrontierOutsideEast::
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BattleFrontierOutsideEast::
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/tiles.4bpp.lz"

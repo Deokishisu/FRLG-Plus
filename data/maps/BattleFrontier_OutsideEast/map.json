@@ -1,0 +1,36 @@
+{
+  "id": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
+  "name": "BattleFrontier_OutsideEast",
+  "layout": "LAYOUT_BATTLE_FRONTIER_OUTSIDE_EAST",
+  "music": "MUS_B_FRONTIER",
+  "region_map_section": "MAPSEC_BATTLE_FRONTIER",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "left",
+      "offset": 0,
+      "map": "MAP_BATTLE_FRONTIER_OUTSIDE_WEST"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
+}

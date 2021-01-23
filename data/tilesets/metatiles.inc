@@ -549,3 +549,17 @@ gMetatiles_Underwater::
 	.align 1
 gMetatileAttributes_Underwater::
 	.incbin "data/tilesets/secondary/underwater/metatile_attributes.bin"
+	.align 1
+gMetatiles_BattleFrontierOutsideWest::
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BattleFrontierOutsideWest::
+	.incbin "data/tilesets/secondary/battlefrontieroutsidewest/metatile_attributes.bin"
+	.align 1
+gMetatiles_BattleFrontierOutsideEast::
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BattleFrontierOutsideEast::
+	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/metatile_attributes.bin"

@@ -43,7 +43,8 @@
     "gMapGroup39",
     "gMapGroup40",
     "gMapGroup41",
-    "gMapGroup42"
+    "gMapGroup42",
+    "gMapGroup43"
   ],
   "gMapGroup0": [
     "BattleColosseum_2P",
@@ -559,5 +560,9 @@
   ],
   "gMapGroup42": [
     "SevenIsland_SevaultCanyon_House"
+  ],
+  "gMapGroup43": [
+    "BattleFrontier_OutsideWest",
+    "BattleFrontier_OutsideEast"
   ]
 }
