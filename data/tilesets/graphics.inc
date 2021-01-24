@@ -1529,3 +1529,23 @@ gTilesetPalettes_BattleFrontierOutsideEast::
 	.align 2
 gTilesetTiles_BattleFrontierOutsideEast::
 	.incbin "data/tilesets/secondary/battlefrontieroutsideeast/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BattleFrontier::
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontier/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BattleFrontier::
+	.incbin "data/tilesets/secondary/battlefrontier/tiles.4bpp.lz"

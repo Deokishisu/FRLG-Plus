@@ -537,7 +537,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_PewterCity",
+      "secondary_tileset": "gTileset_BattleFrontierOutsideEast",
       "border_filepath": "data/layouts/RS_BattleTower/border.bin",
       "blockdata_filepath": "data/layouts/RS_BattleTower/map.bin"
     },
@@ -4452,6 +4452,54 @@
       "secondary_tileset": "gTileset_BattleFrontierOutsideEast",
       "border_filepath": "data/layouts/BattleFrontier_OutsideEast/border.bin",
       "blockdata_filepath": "data/layouts/BattleFrontier_OutsideEast/map.bin"
+    },
+    {
+      "id": "LAYOUT_RS_BATTLE_TOWER_LOBBY",
+      "name": "RS_BattleTower_Lobby_Layout",
+      "width": 14,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/RS_BattleTower_Lobby/border.bin",
+      "blockdata_filepath": "data/layouts/RS_BattleTower_Lobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_RS_BATTLE_TOWER_ELEVATOR",
+      "name": "RS_BattleTower_Elevator_Layout",
+      "width": 4,
+      "height": 7,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/RS_BattleTower_Elevator/border.bin",
+      "blockdata_filepath": "data/layouts/RS_BattleTower_Elevator/map.bin"
+    },
+    {
+      "id": "LAYOUT_RS_BATTLE_TOWER_CORRIDOR",
+      "name": "RS_BattleTower_Corridor_Layout",
+      "width": 17,
+      "height": 5,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/RS_BattleTower_Corridor/border.bin",
+      "blockdata_filepath": "data/layouts/RS_BattleTower_Corridor/map.bin"
+    },
+    {
+      "id": "LAYOUT_RS_BATTLE_TOWER_BATTLE_ROOM",
+      "name": "RS_BattleTower_BattleRoom_Layout",
+      "width": 10,
+      "height": 10,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/RS_BattleTower_BattleRoom/border.bin",
+      "blockdata_filepath": "data/layouts/RS_BattleTower_BattleRoom/map.bin"
     }
   ]
 }

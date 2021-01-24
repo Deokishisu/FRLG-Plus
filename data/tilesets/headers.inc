@@ -780,3 +780,14 @@ gTileset_BattleFrontierOutsideEast::
 	.4byte gMetatiles_BattleFrontierOutsideEast
 	.4byte InitTilesetAnim_BattleFrontierOutsideEast
 	.4byte gMetatileAttributes_BattleFrontierOutsideEast
+
+	.align 2
+gTileset_BattleFrontier::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BattleFrontier
+	.4byte gTilesetPalettes_BattleFrontier
+	.4byte gMetatiles_BattleFrontier
+	.4byte NULL
+	.4byte gMetatileAttributes_BattleFrontier

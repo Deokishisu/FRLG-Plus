@@ -1250,3 +1250,18 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/BattleFrontier_OutsideEast/scripts.inc"
 	.include "data/maps/BattleFrontier_OutsideEast/text.inc"
+
+	.include "data/maps/RS_BattleTower/scripts.inc"
+	.include "data/maps/RS_BattleTower/text.inc"
+
+	.include "data/maps/RS_BattleTower_Lobby/scripts.inc"
+	.include "data/maps/RS_BattleTower_Lobby/text.inc"
+
+	.include "data/maps/RS_BattleTower_Elevator/scripts.inc"
+	.include "data/maps/RS_BattleTower_Elevator/text.inc"
+
+	.include "data/maps/RS_BattleTower_Corridor/scripts.inc"
+	.include "data/maps/RS_BattleTower_Corridor/text.inc"
+
+	.include "data/maps/RS_BattleTower_BattleRoom/scripts.inc"
+	.include "data/maps/RS_BattleTower_BattleRoom/text.inc"

@@ -1590,5 +1590,12 @@ extern const u8 gText_RedFlute_Ash[];
 extern const u8 gText_WhiteFlute_Ash[];
 extern const u8 gText_BlackFlute_Ash[];
 extern const u8 gText_AshQuantity[];
+extern const u8 gText_BattleTower[];
+extern const u8 gText_BattleFactory[];
+extern const u8 gText_BattleArena[];
+extern const u8 gText_BattleDome[];
+extern const u8 gText_BattlePike[];
+extern const u8 gText_BattlePalace[];
+extern const u8 gText_BattlePyramid[];
 
 #endif //GUARD_STRINGS_H

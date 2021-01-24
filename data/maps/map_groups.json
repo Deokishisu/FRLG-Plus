@@ -562,6 +562,11 @@
     "SevenIsland_SevaultCanyon_House"
   ],
   "gMapGroup43": [
+    "RS_BattleTower",
+    "RS_BattleTower_Lobby",
+    "RS_BattleTower_Elevator",
+    "RS_BattleTower_Corridor",
+    "RS_BattleTower_BattleRoom",
     "BattleFrontier_OutsideWest",
     "BattleFrontier_OutsideEast"
   ]

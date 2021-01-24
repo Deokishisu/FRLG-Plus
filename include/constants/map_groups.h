@@ -517,8 +517,13 @@
 #define MAP_SEVEN_ISLAND_SEVAULT_CANYON_HOUSE (0 | (42 << 8))
 
 // Map Group 43
-#define MAP_BATTLE_FRONTIER_OUTSIDE_WEST (0 | (43 << 8))
-#define MAP_BATTLE_FRONTIER_OUTSIDE_EAST (1 | (43 << 8))
+#define MAP_RS_BATTLE_TOWER              (0 | (43 << 8))
+#define MAP_RS_BATTLE_TOWER_LOBBY        (1 | (43 << 8))
+#define MAP_RS_BATTLE_TOWER_ELEVATOR     (2 | (43 << 8))
+#define MAP_RS_BATTLE_TOWER_CORRIDOR     (3 | (43 << 8))
+#define MAP_RS_BATTLE_TOWER_BATTLE_ROOM  (4 | (43 << 8))
+#define MAP_BATTLE_FRONTIER_OUTSIDE_WEST (5 | (43 << 8))
+#define MAP_BATTLE_FRONTIER_OUTSIDE_EAST (6 | (43 << 8))
 
 #define MAP_GROUPS_COUNT 44
 

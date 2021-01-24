@@ -1253,3 +1253,11 @@ const u8 gText_RedFlute_Ash[] = _("{SMALL}RED FLUTE{CLEAR_TO 0x40} 500");
 const u8 gText_WhiteFlute_Ash[] = _("{SMALL}WHITE FLUTE{CLEAR_TO 0x40}1000");
 const u8 gText_BlackFlute_Ash[] = _("{SMALL}BLACK FLUTE{CLEAR_TO 0x40}1000");
 const u8 gText_AshQuantity[] = _("ASH QUANTITY: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
+
+const u8 gText_BattleTower[] = _("BATTLE TOWER");
+const u8 gText_BattleFactory[] = _("BATTLE FACTORY");
+const u8 gText_BattleArena[] = _("BATTLE ARENA");
+const u8 gText_BattleDome[] = _("BATTLE DOME");
+const u8 gText_BattlePike[] = _("BATTLE PIKE");
+const u8 gText_BattlePalace[] = _("BATTLE PALACE");
+const u8 gText_BattlePyramid[] = _("BATTLE PYRAMID");

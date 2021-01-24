@@ -4,7 +4,10 @@
 #include "pokedex.h"
 #include "region_map.h"
 #include "save_menu_util.h"
+#include "strings.h"
 #include "constants/flags.h"
+#include "constants/maps.h"
+#include "constants/map_groups.h"
 #include "constants/map_types.h"
 #include "constants/region_map_sections.h"
 
@@ -46,6 +49,11 @@ void SaveStatToString(u8 gameStatId, u8 *dest0, u8 color)
         if(gMapHeader.mapType == MAP_TYPE_UNDERWATER)
         {
             GetMapNameGeneric(dest, MAPSEC_UNDERWATER_124);
+        }
+        else if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RS_BATTLE_TOWER) && (gSaveBlock1Ptr->location.mapNum >= MAP_NUM(RS_BATTLE_TOWER)
+        && gSaveBlock1Ptr->location.mapNum <= MAP_NUM(RS_BATTLE_TOWER_BATTLE_ROOM))) //overwrite Battle Frontier name
+        {
+            dest = StringCopy(dest, gText_BattleTower);
         }
         break;
     case SAVE_STAT_BADGES:

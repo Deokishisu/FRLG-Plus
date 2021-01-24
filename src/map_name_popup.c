@@ -7,6 +7,8 @@
 #include "region_map.h"
 #include "strings.h"
 #include "constants/flags.h"
+#include "constants/maps.h"
+#include "constants/map_groups.h"
 #include "constants/map_types.h"
 #include "constants/region_map_sections.h"
 
@@ -199,6 +201,42 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
     {
         ptr = GetMapName(mapName, MAPSEC_UNDERWATER_124, 0);
     }
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(RS_BATTLE_TOWER)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RS_BATTLE_TOWER)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattleTower);
+    }
+    /*
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_FACTORY_LOBBY)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_FACTORY_LOBBY)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattleFactory);
+    }
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_ARENA_LOBBY)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_ARENA_LOBBY)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattleArena);
+    }
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_PIKE_LOBBY)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_PIKE_LOBBY)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattlePike);
+    }
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_PALACE_LOBBY)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_PALACE_LOBBY)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattlePalace);
+    }
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_PYRAMID_LOBBY)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_PYRAMID_LOBBY)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattlePyramid);
+    }
+    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(BATTLE_TOWER_LOBBY)
+     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BATTLE_TOWER_LOBBY)) //overwrite Battle Frontier name
+    {
+        ptr = StringCopy(mapName, gText_BattleTower);
+    }*/
     if (gMapHeader.floorNum != 0)
     {
         ptr = MapNamePopupAppendFloorNum(ptr, gMapHeader.floorNum);
