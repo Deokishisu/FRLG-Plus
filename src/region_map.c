@@ -32,6 +32,7 @@ enum {
     REGIONMAP_SEVII123,
     REGIONMAP_SEVII45,
     REGIONMAP_SEVII67,
+    REGIONMAP_HOENN,
     REGIONMAP_COUNT
 };
 
@@ -422,6 +423,45 @@ static const u32 sDungeonIcon[] = INCBIN_U32("graphics/region_map/dungeon_icon.4
 static const u32 sFlyIcon[] = INCBIN_U32("graphics/region_map/fly_icon.4bpp.lz");
 static const u32 sBackground_Gfx[] = INCBIN_U32("graphics/region_map/background.4bpp.lz");
 static const u32 sBackground_Tilemap[] = INCBIN_U32("graphics/region_map/background.bin.lz");
+static const u32 sHoennRegionMap_Gfx[] = INCBIN_U32("graphics/region_map/region_map_hoenn.8bpp.lz");
+static const u16 sHoennRegionMap_Pal[] = INCBIN_U16("graphics/region_map/region_map_hoenn.gbapal");
+static const u32 sHoenn_Tilemap[] = INCBIN_U32("graphics/region_map/hoenn.bin.lz");
+
+static const struct BgTemplate sHoennRegionMapBgTemplates[] = {
+    {
+        .bg = 0,
+        .charBaseIndex = 2,
+        .mapBaseIndex = 28,
+        .screenSize = 2,
+        .paletteMode = 1,
+        .priority = 2,
+        .baseTile = 0x000
+    }, {
+        .bg = 1,
+        .charBaseIndex = 1,
+        .mapBaseIndex = 15,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 3,
+        .baseTile = 0x000
+    }, {
+        .bg = 2,
+        .charBaseIndex = 2,
+        .mapBaseIndex = 23,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 1,
+        .baseTile = 0x000
+    }, {
+        .bg = 3,
+        .charBaseIndex = 3,
+        .mapBaseIndex = 31,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 0,
+        .baseTile = 0x000
+    }
+};
 
 static const struct BgTemplate sRegionMapBgTemplates[] = {
     {
@@ -610,7 +650,14 @@ ALIGNED(4) static const bool8 sRegionMapPermissions[REGIONMAP_TYPE_COUNT][MAPPER
         [MAPPERM_HAS_MAP_PREVIEW]      = FALSE, 
         [MAPPERM_HAS_OPEN_ANIM]        = FALSE, 
         [MAPPERM_HAS_FLY_DESTINATIONS] = TRUE 
-    }
+    },
+    [REGIONMAP_TYPE_HOENN] = 
+    {
+        [MAPPERM_HAS_SWITCH_BUTTON]    = FALSE, 
+        [MAPPERM_HAS_MAP_PREVIEW]      = FALSE, 
+        [MAPPERM_HAS_OPEN_ANIM]        = FALSE, 
+        [MAPPERM_HAS_FLY_DESTINATIONS] = FALSE
+    },
 };
 
 static const struct GpuWindowParams sMapsecNameWindowDims[3] = {
@@ -1032,92 +1079,92 @@ static const u8 *const sMapNames[] = {
 };
 
 static const u16 sMapSectionTopLeftCorners[MAPSEC_COUNT][2] = {
-    [MAPSEC_LITTLEROOT_TOWN] = { 0, 0},
-    [MAPSEC_OLDALE_TOWN] = { 0, 0},
-    [MAPSEC_DEWFORD_TOWN] = { 0, 0},
-    [MAPSEC_LAVARIDGE_TOWN] = { 0, 0},
-    [MAPSEC_FALLARBOR_TOWN] = { 0, 0},
-    [MAPSEC_VERDANTURF_TOWN] = { 0, 0},
-    [MAPSEC_PACIFIDLOG_TOWN] = { 0, 0},
-    [MAPSEC_PETALBURG_CITY] = { 0, 0},
-    [MAPSEC_SLATEPORT_CITY] = { 0, 0},
-    [MAPSEC_MAUVILLE_CITY] = { 0, 0},
-    [MAPSEC_RUSTBORO_CITY] = { 0, 0},
-    [MAPSEC_FORTREE_CITY] = { 0, 0},
-    [MAPSEC_LILYCOVE_CITY] = { 0, 0},
-    [MAPSEC_MOSSDEEP_CITY] = { 0, 0},
-    [MAPSEC_SOOTOPOLIS_CITY] = { 0, 0},
-    [MAPSEC_EVER_GRANDE_CITY] = { 0, 0},
-    [MAPSEC_ROUTE_101] = { 0, 0},
-    [MAPSEC_ROUTE_102] = { 0, 0},
-    [MAPSEC_ROUTE_103] = { 0, 0},
-    [MAPSEC_ROUTE_104] = { 0, 0},
-    [MAPSEC_ROUTE_105] = { 0, 0},
-    [MAPSEC_ROUTE_106] = { 0, 0},
-    [MAPSEC_ROUTE_107] = { 0, 0},
-    [MAPSEC_ROUTE_108] = { 0, 0},
-    [MAPSEC_ROUTE_109] = { 0, 0},
-    [MAPSEC_ROUTE_110] = { 0, 0},
-    [MAPSEC_ROUTE_111] = { 0, 0},
-    [MAPSEC_ROUTE_112] = { 0, 0},
-    [MAPSEC_ROUTE_113] = { 0, 0},
-    [MAPSEC_ROUTE_114] = { 0, 0},
-    [MAPSEC_ROUTE_115] = { 0, 0},
-    [MAPSEC_ROUTE_116] = { 0, 0},
-    [MAPSEC_ROUTE_117] = { 0, 0},
-    [MAPSEC_ROUTE_118] = { 0, 0},
-    [MAPSEC_ROUTE_119] = { 0, 0},
-    [MAPSEC_ROUTE_120] = { 0, 0},
-    [MAPSEC_ROUTE_121] = { 0, 0},
-    [MAPSEC_ROUTE_122] = { 0, 0},
-    [MAPSEC_ROUTE_123] = { 0, 0},
-    [MAPSEC_ROUTE_124] = { 0, 0},
-    [MAPSEC_ROUTE_125] = { 0, 0},
-    [MAPSEC_ROUTE_126] = { 0, 0},
-    [MAPSEC_ROUTE_127] = { 0, 0},
-    [MAPSEC_ROUTE_128] = { 0, 0},
-    [MAPSEC_ROUTE_129] = { 0, 0},
-    [MAPSEC_ROUTE_130] = { 0, 0},
-    [MAPSEC_ROUTE_131] = { 0, 0},
-    [MAPSEC_ROUTE_132] = { 0, 0},
-    [MAPSEC_ROUTE_133] = { 0, 0},
-    [MAPSEC_ROUTE_134] = { 0, 0},
-    [MAPSEC_UNDERWATER_124] = { 0, 0},
-    [MAPSEC_UNDERWATER_125] = { 0, 0},
-    [MAPSEC_UNDERWATER_126] = { 0, 0},
-    [MAPSEC_UNDERWATER_127] = { 0, 0},
-    [MAPSEC_UNDERWATER_SOOTOPOLIS] = { 0, 0},
-    [MAPSEC_GRANITE_CAVE] = { 0, 0},
-    [MAPSEC_MT_CHIMNEY] = { 0, 0},
-    [MAPSEC_SAFARI_ZONE] = { 0, 0},
-    [MAPSEC_BATTLE_FRONTIER] = { 0, 0},
-    [MAPSEC_PETALBURG_WOODS] = { 0, 0},
-    [MAPSEC_RUSTURF_TUNNEL] = { 0, 0},
-    [MAPSEC_ABANDONED_SHIP] = { 0, 0},
-    [MAPSEC_NEW_MAUVILLE] = { 0, 0},
-    [MAPSEC_METEOR_FALLS] = { 0, 0},
-    [MAPSEC_METEOR_FALLS2] = { 0, 0},
-    [MAPSEC_MT_PYRE] = { 0, 0},
-    [MAPSEC_AQUA_HIDEOUT_OLD] = { 0, 0},
-    [MAPSEC_SHOAL_CAVE] = { 0, 0},
-    [MAPSEC_SEAFLOOR_CAVERN] = { 0, 0},
-    [MAPSEC_UNDERWATER_128] = { 0, 0},
-    [MAPSEC_VICTORY_ROAD] = { 0, 0},
-    [MAPSEC_MIRAGE_ISLAND] = { 0, 0},
-    [MAPSEC_CAVE_OF_ORIGIN] = { 0, 0},
-    [MAPSEC_SOUTHERN_ISLAND] = { 0, 0},
-    [MAPSEC_FIERY_PATH] = { 0, 0},
-    [MAPSEC_FIERY_PATH2] = { 0, 0},
-    [MAPSEC_JAGGED_PASS] = { 0, 0},
-    [MAPSEC_JAGGED_PASS2] = { 0, 0},
-    [MAPSEC_SEALED_CHAMBER] = { 0, 0},
-    [MAPSEC_UNDERWATER_SEALED_CHAMBER] = { 0, 0},
-    [MAPSEC_SCORCHED_SLAB] = { 0, 0},
-    [MAPSEC_ISLAND_CAVE] = { 0, 0},
-    [MAPSEC_DESERT_RUINS] = { 0, 0},
-    [MAPSEC_ANCIENT_TOMB] = { 0, 0},
+    [MAPSEC_LITTLEROOT_TOWN] = { 4, 11},
+    [MAPSEC_OLDALE_TOWN] = { 4, 9},
+    [MAPSEC_DEWFORD_TOWN] = { 2, 14},
+    [MAPSEC_LAVARIDGE_TOWN] = { 5, 3},
+    [MAPSEC_FALLARBOR_TOWN] = { 3, 0},
+    [MAPSEC_VERDANTURF_TOWN] = { 4, 6},
+    [MAPSEC_PACIFIDLOG_TOWN] = { 17, 10},
+    [MAPSEC_PETALBURG_CITY] = { 1, 9},
+    [MAPSEC_SLATEPORT_CITY] = { 8, 10},
+    [MAPSEC_MAUVILLE_CITY] = { 8, 6},
+    [MAPSEC_RUSTBORO_CITY] = { 0, 5},
+    [MAPSEC_FORTREE_CITY] = { 12, 0},
+    [MAPSEC_LILYCOVE_CITY] = { 18, 3},
+    [MAPSEC_MOSSDEEP_CITY] = { 24, 5},
+    [MAPSEC_SOOTOPOLIS_CITY] = { 21, 7},
+    [MAPSEC_EVER_GRANDE_CITY] = { 28, 8},
+    [MAPSEC_ROUTE_101] = { 4, 10},
+    [MAPSEC_ROUTE_102] = { 2, 9},
+    [MAPSEC_ROUTE_103] = { 4, 8},
+    [MAPSEC_ROUTE_104] = { 0, 7},
+    [MAPSEC_ROUTE_105] = { 0, 10},
+    [MAPSEC_ROUTE_106] = { 0, 13},
+    [MAPSEC_ROUTE_107] = { 3, 14},
+    [MAPSEC_ROUTE_108] = { 6, 14},
+    [MAPSEC_ROUTE_109] = { 8, 12},
+    [MAPSEC_ROUTE_110] = { 8, 7},
+    [MAPSEC_ROUTE_111] = { 8, 0},
+    [MAPSEC_ROUTE_112] = { 6, 3},
+    [MAPSEC_ROUTE_113] = { 4, 0},
+    [MAPSEC_ROUTE_114] = { 1, 0},
+    [MAPSEC_ROUTE_115] = { 0, 2},
+    [MAPSEC_ROUTE_116] = { 4, 5},
+    [MAPSEC_ROUTE_117] = { 5, 6},
+    [MAPSEC_ROUTE_118] = { 10, 6},
+    [MAPSEC_ROUTE_119] = { 11, 0},
+    [MAPSEC_ROUTE_120] = { 13, 0},
+    [MAPSEC_ROUTE_121] = { 14, 3},
+    [MAPSEC_ROUTE_122] = { 16, 4},
+    [MAPSEC_ROUTE_123] = { 12, 6},
+    [MAPSEC_ROUTE_124] = { 20, 3},
+    [MAPSEC_ROUTE_125] = { 24, 3},
+    [MAPSEC_ROUTE_126] = { 20, 6},
+    [MAPSEC_ROUTE_127] = { 23, 6},
+    [MAPSEC_ROUTE_128] = { 23, 9},
+    [MAPSEC_ROUTE_129] = { 24, 10},
+    [MAPSEC_ROUTE_130] = { 21, 10},
+    [MAPSEC_ROUTE_131] = { 18, 10},
+    [MAPSEC_ROUTE_132] = { 15, 10},
+    [MAPSEC_ROUTE_133] = { 12, 10},
+    [MAPSEC_ROUTE_134] = { 9, 10},
+    [MAPSEC_UNDERWATER_124] = { 20, 3},
+    [MAPSEC_UNDERWATER_125] = { 24, 3},
+    [MAPSEC_UNDERWATER_126] = { 20, 6},
+    [MAPSEC_UNDERWATER_127] = { 23, 9},
+    [MAPSEC_UNDERWATER_SOOTOPOLIS] = { 21, 7},
+    [MAPSEC_GRANITE_CAVE] = { 1, 13},
+    [MAPSEC_MT_CHIMNEY] = { 6, 2},
+    [MAPSEC_SAFARI_ZONE] = { 16, 2},
+    [MAPSEC_BATTLE_FRONTIER] = { 22, 12},
+    [MAPSEC_PETALBURG_WOODS] = { 0, 8},
+    [MAPSEC_RUSTURF_TUNNEL] = { 2, 5},
+    [MAPSEC_ABANDONED_SHIP] = { 6, 14},
+    [MAPSEC_NEW_MAUVILLE] = { 8, 7},
+    [MAPSEC_METEOR_FALLS] = { 0, 3},
+    [MAPSEC_METEOR_FALLS2] = { 1, 2},
+    [MAPSEC_MT_PYRE] = { 16, 4},
+    [MAPSEC_AQUA_HIDEOUT_OLD] = { 19, 3},
+    [MAPSEC_SHOAL_CAVE] = { 24, 4},
+    [MAPSEC_SEAFLOOR_CAVERN] = { 24, 9},
+    [MAPSEC_UNDERWATER_128] = { 23, 9},
+    [MAPSEC_VICTORY_ROAD] = { 27, 9},
+    [MAPSEC_MIRAGE_ISLAND] = { 17, 10},
+    [MAPSEC_CAVE_OF_ORIGIN] = { 21, 7},
+    [MAPSEC_SOUTHERN_ISLAND] = { 12, 14},
+    [MAPSEC_FIERY_PATH] = { 6, 3},
+    [MAPSEC_FIERY_PATH2] = { 7, 3},
+    [MAPSEC_JAGGED_PASS] = { 6, 3},
+    [MAPSEC_JAGGED_PASS2] = { 7, 2},
+    [MAPSEC_SEALED_CHAMBER] = { 11, 10},
+    [MAPSEC_UNDERWATER_SEALED_CHAMBER] = { 11, 10},
+    [MAPSEC_SCORCHED_SLAB] = { 13, 0},
+    [MAPSEC_ISLAND_CAVE] = { 0, 10},
+    [MAPSEC_DESERT_RUINS] = { 8, 3},
+    [MAPSEC_ANCIENT_TOMB] = { 13, 2},
     [MAPSEC_INSIDE_OF_TRUCK] = { 0, 0},
-    [MAPSEC_SKY_PILLAR] = { 0, 0},
+    [MAPSEC_SKY_PILLAR] = { 19, 10},
     [MAPSEC_SECRET_BASE] = { 0, 0},
     [MAPSEC_DYNAMIC] = { 0, 0},
     [MAPSEC_PALLET_TOWN         ] = { 4, 11},
@@ -1195,92 +1242,92 @@ static const u16 sMapSectionTopLeftCorners[MAPSEC_COUNT][2] = {
 };
 
 static const u16 sMapSectionDimensions[MAPSEC_COUNT][2] = {
-    [MAPSEC_LITTLEROOT_TOWN] = { 0, 0},
-    [MAPSEC_OLDALE_TOWN] = { 0, 0},
-    [MAPSEC_DEWFORD_TOWN] = { 0, 0},
-    [MAPSEC_LAVARIDGE_TOWN] = { 0, 0},
-    [MAPSEC_FALLARBOR_TOWN] = { 0, 0},
-    [MAPSEC_VERDANTURF_TOWN] = { 0, 0},
-    [MAPSEC_PACIFIDLOG_TOWN] = { 0, 0},
-    [MAPSEC_PETALBURG_CITY] = { 0, 0},
-    [MAPSEC_SLATEPORT_CITY] = { 0, 0},
-    [MAPSEC_MAUVILLE_CITY] = { 0, 0},
-    [MAPSEC_RUSTBORO_CITY] = { 0, 0},
-    [MAPSEC_FORTREE_CITY] = { 0, 0},
-    [MAPSEC_LILYCOVE_CITY] = { 0, 0},
-    [MAPSEC_MOSSDEEP_CITY] = { 0, 0},
-    [MAPSEC_SOOTOPOLIS_CITY] = { 0, 0},
-    [MAPSEC_EVER_GRANDE_CITY] = { 0, 0},
-    [MAPSEC_ROUTE_101] = { 0, 0},
-    [MAPSEC_ROUTE_102] = { 0, 0},
-    [MAPSEC_ROUTE_103] = { 0, 0},
-    [MAPSEC_ROUTE_104] = { 0, 0},
-    [MAPSEC_ROUTE_105] = { 0, 0},
-    [MAPSEC_ROUTE_106] = { 0, 0},
-    [MAPSEC_ROUTE_107] = { 0, 0},
-    [MAPSEC_ROUTE_108] = { 0, 0},
-    [MAPSEC_ROUTE_109] = { 0, 0},
-    [MAPSEC_ROUTE_110] = { 0, 0},
-    [MAPSEC_ROUTE_111] = { 0, 0},
-    [MAPSEC_ROUTE_112] = { 0, 0},
-    [MAPSEC_ROUTE_113] = { 0, 0},
-    [MAPSEC_ROUTE_114] = { 0, 0},
-    [MAPSEC_ROUTE_115] = { 0, 0},
-    [MAPSEC_ROUTE_116] = { 0, 0},
-    [MAPSEC_ROUTE_117] = { 0, 0},
-    [MAPSEC_ROUTE_118] = { 0, 0},
-    [MAPSEC_ROUTE_119] = { 0, 0},
-    [MAPSEC_ROUTE_120] = { 0, 0},
-    [MAPSEC_ROUTE_121] = { 0, 0},
-    [MAPSEC_ROUTE_122] = { 0, 0},
-    [MAPSEC_ROUTE_123] = { 0, 0},
-    [MAPSEC_ROUTE_124] = { 0, 0},
-    [MAPSEC_ROUTE_125] = { 0, 0},
-    [MAPSEC_ROUTE_126] = { 0, 0},
-    [MAPSEC_ROUTE_127] = { 0, 0},
-    [MAPSEC_ROUTE_128] = { 0, 0},
-    [MAPSEC_ROUTE_129] = { 0, 0},
-    [MAPSEC_ROUTE_130] = { 0, 0},
-    [MAPSEC_ROUTE_131] = { 0, 0},
-    [MAPSEC_ROUTE_132] = { 0, 0},
-    [MAPSEC_ROUTE_133] = { 0, 0},
-    [MAPSEC_ROUTE_134] = { 0, 0},
-    [MAPSEC_UNDERWATER_124] = { 0, 0},
-    [MAPSEC_UNDERWATER_125] = { 0, 0},
-    [MAPSEC_UNDERWATER_126] = { 0, 0},
-    [MAPSEC_UNDERWATER_127] = { 0, 0},
-    [MAPSEC_UNDERWATER_SOOTOPOLIS] = { 0, 0},
-    [MAPSEC_GRANITE_CAVE] = { 0, 0},
-    [MAPSEC_MT_CHIMNEY] = { 0, 0},
-    [MAPSEC_SAFARI_ZONE] = { 0, 0},
-    [MAPSEC_BATTLE_FRONTIER] = { 0, 0},
-    [MAPSEC_PETALBURG_WOODS] = { 0, 0},
-    [MAPSEC_RUSTURF_TUNNEL] = { 0, 0},
-    [MAPSEC_ABANDONED_SHIP] = { 0, 0},
-    [MAPSEC_NEW_MAUVILLE] = { 0, 0},
-    [MAPSEC_METEOR_FALLS] = { 0, 0},
-    [MAPSEC_METEOR_FALLS2] = { 0, 0},
-    [MAPSEC_MT_PYRE] = { 0, 0},
-    [MAPSEC_AQUA_HIDEOUT_OLD] = { 0, 0},
-    [MAPSEC_SHOAL_CAVE] = { 0, 0},
-    [MAPSEC_SEAFLOOR_CAVERN] = { 0, 0},
-    [MAPSEC_UNDERWATER_128] = { 0, 0},
-    [MAPSEC_VICTORY_ROAD] = { 0, 0},
-    [MAPSEC_MIRAGE_ISLAND] = { 0, 0},
-    [MAPSEC_CAVE_OF_ORIGIN] = { 0, 0},
-    [MAPSEC_SOUTHERN_ISLAND] = { 0, 0},
-    [MAPSEC_FIERY_PATH] = { 0, 0},
-    [MAPSEC_FIERY_PATH2] = { 0, 0},
-    [MAPSEC_JAGGED_PASS] = { 0, 0},
-    [MAPSEC_JAGGED_PASS2] = { 0, 0},
-    [MAPSEC_SEALED_CHAMBER] = { 0, 0},
-    [MAPSEC_UNDERWATER_SEALED_CHAMBER] = { 0, 0},
-    [MAPSEC_SCORCHED_SLAB] = { 0, 0},
-    [MAPSEC_ISLAND_CAVE] = { 0, 0},
-    [MAPSEC_DESERT_RUINS] = { 0, 0},
-    [MAPSEC_ANCIENT_TOMB] = { 0, 0},
-    [MAPSEC_INSIDE_OF_TRUCK] = { 0, 0},
-    [MAPSEC_SKY_PILLAR] = { 0, 0},
+    [MAPSEC_LITTLEROOT_TOWN] = { 1, 1},
+    [MAPSEC_OLDALE_TOWN] = { 1, 1},
+    [MAPSEC_DEWFORD_TOWN] = { 1, 1},
+    [MAPSEC_LAVARIDGE_TOWN] = { 1, 1},
+    [MAPSEC_FALLARBOR_TOWN] = { 1, 1},
+    [MAPSEC_VERDANTURF_TOWN] = { 1, 1},
+    [MAPSEC_PACIFIDLOG_TOWN] = { 1, 1},
+    [MAPSEC_PETALBURG_CITY] = { 1, 1},
+    [MAPSEC_SLATEPORT_CITY] = { 1, 2},
+    [MAPSEC_MAUVILLE_CITY] = { 2, 1},
+    [MAPSEC_RUSTBORO_CITY] = { 1, 2},
+    [MAPSEC_FORTREE_CITY] = { 1, 1},
+    [MAPSEC_LILYCOVE_CITY] = { 2, 1},
+    [MAPSEC_MOSSDEEP_CITY] = { 2, 1},
+    [MAPSEC_SOOTOPOLIS_CITY] = { 1, 1},
+    [MAPSEC_EVER_GRANDE_CITY] = { 1, 2},
+    [MAPSEC_ROUTE_101] = { 1, 1},
+    [MAPSEC_ROUTE_102] = { 2, 1},
+    [MAPSEC_ROUTE_103] = { 4, 1},
+    [MAPSEC_ROUTE_104] = { 1, 3},
+    [MAPSEC_ROUTE_105] = { 1, 3},
+    [MAPSEC_ROUTE_106] = { 2, 1},
+    [MAPSEC_ROUTE_107] = { 3, 1},
+    [MAPSEC_ROUTE_108] = { 2, 1},
+    [MAPSEC_ROUTE_109] = { 1, 3},
+    [MAPSEC_ROUTE_110] = { 1, 3},
+    [MAPSEC_ROUTE_111] = { 1, 6},
+    [MAPSEC_ROUTE_112] = { 2, 1},
+    [MAPSEC_ROUTE_113] = { 4, 1},
+    [MAPSEC_ROUTE_114] = { 2, 3},
+    [MAPSEC_ROUTE_115] = { 1, 3},
+    [MAPSEC_ROUTE_116] = { 4, 1},
+    [MAPSEC_ROUTE_117] = { 3, 1},
+    [MAPSEC_ROUTE_118] = { 2, 1},
+    [MAPSEC_ROUTE_119] = { 1, 6},
+    [MAPSEC_ROUTE_120] = { 1, 4},
+    [MAPSEC_ROUTE_121] = { 4, 1},
+    [MAPSEC_ROUTE_122] = { 1, 2},
+    [MAPSEC_ROUTE_123] = { 5, 1},
+    [MAPSEC_ROUTE_124] = { 4, 3},
+    [MAPSEC_ROUTE_125] = { 2, 2},
+    [MAPSEC_ROUTE_126] = { 3, 3},
+    [MAPSEC_ROUTE_127] = { 3, 3},
+    [MAPSEC_ROUTE_128] = { 4, 1},
+    [MAPSEC_ROUTE_129] = { 2, 1},
+    [MAPSEC_ROUTE_130] = { 3, 1},
+    [MAPSEC_ROUTE_131] = { 3, 1},
+    [MAPSEC_ROUTE_132] = { 2, 1},
+    [MAPSEC_ROUTE_133] = { 3, 1},
+    [MAPSEC_ROUTE_134] = { 3, 1},
+    [MAPSEC_UNDERWATER_124] = { 4, 3},
+    [MAPSEC_UNDERWATER_125] = { 2, 2},
+    [MAPSEC_UNDERWATER_126] = { 3, 3},
+    [MAPSEC_UNDERWATER_127] = { 3, 3},
+    [MAPSEC_UNDERWATER_SOOTOPOLIS] = { 1, 1},
+    [MAPSEC_GRANITE_CAVE] = { 1, 1},
+    [MAPSEC_MT_CHIMNEY] = { 1, 1},
+    [MAPSEC_SAFARI_ZONE] = { 1, 1},
+    [MAPSEC_BATTLE_FRONTIER] = { 1, 1},
+    [MAPSEC_PETALBURG_WOODS] = { 1, 1},
+    [MAPSEC_RUSTURF_TUNNEL] = { 1, 1},
+    [MAPSEC_ABANDONED_SHIP] = { 1, 1},
+    [MAPSEC_NEW_MAUVILLE] = { 1, 1},
+    [MAPSEC_METEOR_FALLS] = { 1, 1},
+    [MAPSEC_METEOR_FALLS2] = { 1, 1},
+    [MAPSEC_MT_PYRE] = { 1, 1},
+    [MAPSEC_AQUA_HIDEOUT_OLD] = { 1, 1},
+    [MAPSEC_SHOAL_CAVE] = { 1, 1},
+    [MAPSEC_SEAFLOOR_CAVERN] = { 1, 1},
+    [MAPSEC_UNDERWATER_128] = { 1, 1},
+    [MAPSEC_VICTORY_ROAD] = { 1, 1},
+    [MAPSEC_MIRAGE_ISLAND] = { 1, 1},
+    [MAPSEC_CAVE_OF_ORIGIN] = { 1, 1},
+    [MAPSEC_SOUTHERN_ISLAND] = { 1, 1},
+    [MAPSEC_FIERY_PATH] = { 1, 1},
+    [MAPSEC_FIERY_PATH2] = { 1, 1},
+    [MAPSEC_JAGGED_PASS] = { 1, 1},
+    [MAPSEC_JAGGED_PASS2] = { 1, 1},
+    [MAPSEC_SEALED_CHAMBER] = { 1, 1},
+    [MAPSEC_UNDERWATER_SEALED_CHAMBER] = { 1, 1},
+    [MAPSEC_SCORCHED_SLAB] = { 1, 1},
+    [MAPSEC_ISLAND_CAVE] = { 1, 1},
+    [MAPSEC_DESERT_RUINS] = { 1, 1},
+    [MAPSEC_ANCIENT_TOMB] = { 1, 1},
+    [MAPSEC_INSIDE_OF_TRUCK] = { 1, 1},
+    [MAPSEC_SKY_PILLAR] = { 1, 1},
     [MAPSEC_SECRET_BASE] = { 0, 0},
     [MAPSEC_DYNAMIC] = { 0, 0},
     [MAPSEC_PALLET_TOWN         ] = {1, 1},
@@ -1770,6 +1817,10 @@ static void InitRegionMapType(void)
             j++;
         }
     }
+    if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR)
+    {
+        region = REGIONMAP_HOENN;
+    }
     sRegionMap->selectedRegion = region;
     sRegionMap->playersRegion = region;
 }
@@ -1833,7 +1884,10 @@ static bool8 LoadRegionMapGfx(void)
         LoadPalette(sTopBar_Pal, 0xC0, sizeof(sTopBar_Pal));
         break;
     case 1:
-        LoadPalette(sRegionMap_Pal, 0, sizeof(sRegionMap_Pal));
+        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR)
+            LoadPalette(sHoennRegionMap_Pal, 0x70, 0x60);
+        else
+            LoadPalette(sRegionMap_Pal, 0, sizeof(sRegionMap_Pal));
         sub_80BFEA0();
         if (sRegionMap->type != REGIONMAP_TYPE_NORMAL)
         {
@@ -1848,7 +1902,10 @@ static bool8 LoadRegionMapGfx(void)
         ResetTempTileDataBuffers();
         break;
     case 3:
-        DecompressAndCopyTileDataToVram(0, sRegionMap_Gfx, 0, 0, 0);
+        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR)
+            DecompressAndCopyTileDataToVram(0, sHoennRegionMap_Gfx, 0, 0, 0);
+        else
+            DecompressAndCopyTileDataToVram(0, sRegionMap_Gfx, 0, 0, 0);
         if (sRegionMap->type != REGIONMAP_TYPE_NORMAL)
             DecompressAndCopyTileDataToVram(1, sBackground_Gfx, 0, 0, 0);
         break;
@@ -1857,7 +1914,10 @@ static bool8 LoadRegionMapGfx(void)
             return FALSE;
         break;
     case 5:
-        LZ77UnCompWram(sKanto_Tilemap, sRegionMap->layouts[REGIONMAP_KANTO]);
+        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR)
+            LZ77UnCompWram(sHoenn_Tilemap, sRegionMap->layouts[REGIONMAP_HOENN]);
+        else
+            LZ77UnCompWram(sKanto_Tilemap, sRegionMap->layouts[REGIONMAP_KANTO]);
         break;
     case 6:
         LZ77UnCompWram(sSevii123_Tilemap, sRegionMap->layouts[REGIONMAP_SEVII123]);
@@ -2097,7 +2157,10 @@ static void InitRegionMapBgs(void)
     DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     ResetBgsAndClearDma3BusyFlags(FALSE);
-    InitBgsFromTemplates(0, sRegionMapBgTemplates, NELEMS(sRegionMapBgTemplates));
+    if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR)
+        InitBgsFromTemplates(0, sHoennRegionMapBgTemplates, NELEMS(sHoennRegionMapBgTemplates));
+    else
+        InitBgsFromTemplates(0, sRegionMapBgTemplates, NELEMS(sRegionMapBgTemplates));
     ChangeBgX(0, 0, 0);
     ChangeBgY(0, 0, 0);
     ChangeBgX(1, 0, 0);

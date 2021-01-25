@@ -15,6 +15,7 @@
 
 #### Story Changes:
 - The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
+- The player will be invited to challenge the Hoenn Battle Tower upon delivering the Ruby to Celio.
 - A legendary beast will begin roaming when the player first enters the Hall of Fame, instead of upon delivering the Sapphire.
 - Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
@@ -39,7 +40,7 @@
 - Toggle auto running with the R button.
 - Health bar drains faster at higher HP levels.
 - Instant text option.
-- Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, and healthbars drop much faster.
+- Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, and health bars drop much faster.
 - New battle style option, switch, which is like shift but doesn't tell what the opponent is switching in. Shift has been renamed to predict.
 - Indicators for which stats are affected by natures on summary screen.
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.

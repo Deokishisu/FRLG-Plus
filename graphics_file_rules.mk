@@ -450,6 +450,9 @@ $(INTERFACEGFXDIR)/region_map.8bpp: %.8bpp: %.png
 $(INTERFACEGFXDIR)/region_map_affine.8bpp: %.8bpp: %.png
 	$(GFX) $< $@ -num_tiles 233
 
+graphics/region_map/region_map_hoenn.8bpp: %.8bpp: %.png
+	$(GFX) $< $@ -num_tiles 233
+
 $(MISCGFXDIR)/birch_help.4bpp: $(MISCGFXDIR)/birch_bag.4bpp $(MISCGFXDIR)/birch_grass.4bpp
 	@cat $^ >$@
 	
