@@ -172,6 +172,10 @@ static const u8 sDoorAnimTiles_TrainerTowerLobbyElevator[] = INCBIN_U8("graphics
 static const u16 sDoorNullPalette63[16] = {};
 static const u8 sDoorAnimTiles_TrainerTowerRoofElevator[] = INCBIN_U8("graphics/door_anims/trainer_tower_roof_elevator.4bpp");
 static const u16 sDoorNullPalette64[16] = {};
+static const u8 sDoorAnimTiles_BattleTower[] = INCBIN_U8("graphics/door_anims/battle_tower.4bpp");
+static const u16 sDoorNullPalette65[16] = {};
+static const u8 sDoorAnimTiles_BattleTowerElevator[] = INCBIN_U8("graphics/door_anims/battle_tower_elevator.4bpp");
+static const u16 sDoorNullPalette66[16] = {};
 
 static const struct DoorAnimFrame sDoorAnimFrames_OpenSmall[] = {
     {4, 0xFFFF},
@@ -272,6 +276,8 @@ static const struct DoorGraphics sDoorGraphics[] = {
     {METATILE_TrainerTower_LobbyElevatorDoor,              DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerTowerLobbyElevator, sDoorAnimPalettes_TrainerTowerLobbyElevator},
     {METATILE_TrainerTower_RoofElevatorDoor,               DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_TrainerTowerRoofElevator, sDoorAnimPalettes_TrainerTowerRoofElevator},
     {METATILE_BerryForest_Door,                            DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Sevii45, sDoorAnimPalettes_Sevii45},
+    {METATILE_BattleFrontierOutsideEast_BattleTower,       DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_BattleTower, sDoorAnimPalettes_SlidingSingle},
+    {METATILE_BattleFrontier_BattleTowerElevator,          DOOR_SOUND_SLIDING, 0, sDoorAnimTiles_BattleTowerElevator, sDoorAnimPalettes_SSAnne},
     {}
 };
 

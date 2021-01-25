@@ -987,7 +987,7 @@ Common_ShowEasyChatScreen:: @ 81A6AC0
 
 EventScript_OutOfCenterPartyHeal:: @ 81A6C26
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_HEAL
+	playfanfare MUS_RS_HEAL
 	waitfanfare
 	special HealPlayerParty
 	fadescreen FADE_FROM_BLACK

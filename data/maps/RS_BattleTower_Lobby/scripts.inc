@@ -42,6 +42,7 @@ BattleTower_Lobby_EventScript_160330:: @ 8160330
 	lock
 	faceplayer
 	textcolor 0x1
+	clearflag FLAG_SYS_IS_LINKING
 	msgbox BattleTower_Lobby_Text_19A3FD, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_TEMP_0, 5
@@ -51,6 +52,7 @@ BattleTower_Lobby_EventScript_160330:: @ 8160330
 BattleTower_Lobby_EventScript_160342:: @ 8160342
 	lock
 	faceplayer
+	clearflag FLAG_SYS_IS_LINKING
 	textcolor 0x1
 	message BattleTower_Lobby_Text_19A487
 	waitmessage
@@ -122,6 +124,7 @@ BattleTower_Lobby_EventScript_160419:: @ 8160419
 	lock
 	faceplayer
 	textcolor 0x1
+	clearflag FLAG_SYS_IS_LINKING
 	message BattleTower_Lobby_Text_19A571
 	waitmessage
 	message BattleTower_Lobby_Text_19A589
@@ -155,11 +158,13 @@ BattleTower_Lobby_EventScript_16044B:: @ 816044B
 	special SetBattleTowerProperty
 	setvar VAR_TEMP_0, 5
 	special SavePlayerParty
+	setflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	special SetBattleTowerParty
 	msgbox BattleTower_Lobby_Text_19A0A8, MSGBOX_DEFAULT
 	closemessage
 	call BattleTower_Lobby_EventScript_160664
-	warp MAP_RS_BATTLE_TOWER_ELEVATOR, 255, 1, 6
+	warp MAP_RS_BATTLE_TOWER_ELEVATOR, 255, 2, 6
 	setvar VAR_TEMP_0, 0
 	waitstate
 
@@ -232,11 +237,13 @@ BattleTower_Lobby_EventScript_160587:: @ 8160587
 	goto_if_eq BattleTower_Lobby_EventScript_160642
 	incrementgamestat GAME_STAT_ENTERED_BATTLE_TOWER
 	special SavePlayerParty
+	setflag FLAG_SYS_IS_LINKING
+	callnative RecalculatePartyStats
 	special SetBattleTowerParty
 	msgbox BattleTower_Lobby_Text_19A0A8, MSGBOX_DEFAULT
 	closemessage
 	call BattleTower_Lobby_EventScript_160664
-	warp MAP_RS_BATTLE_TOWER_ELEVATOR, 255, 1, 6
+	warp MAP_RS_BATTLE_TOWER_ELEVATOR, 255, 2, 6
 	setvar VAR_TEMP_0, 0
 	waitstate
 

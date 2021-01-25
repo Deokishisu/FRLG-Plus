@@ -8,7 +8,7 @@ SSAnne_CaptainsOffice_EventScript_Captain:: @ 8160B3A
 	textcolor 3
 	message SSAnne_CaptainsOffice_Text_RubbedCaptainsBack
 	waitmessage
-	playfanfare MUS_HEAL
+	playfanfare MUS_RS_HEAL
 	waitfanfare
 	call EventScript_RestorePrevTextColor
 	delay 50

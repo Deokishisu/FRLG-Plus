@@ -4468,12 +4468,12 @@
     {
       "id": "LAYOUT_RS_BATTLE_TOWER_ELEVATOR",
       "name": "RS_BattleTower_Elevator_Layout",
-      "width": 4,
-      "height": 7,
+      "width": 5,
+      "height": 8,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_BattleFrontier",
+      "secondary_tileset": "gTileset_SilphCo",
       "border_filepath": "data/layouts/RS_BattleTower_Elevator/border.bin",
       "blockdata_filepath": "data/layouts/RS_BattleTower_Elevator/map.bin"
     },

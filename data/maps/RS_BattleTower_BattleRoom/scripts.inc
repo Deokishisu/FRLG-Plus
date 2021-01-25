@@ -24,7 +24,7 @@ BattleTower_BattleRoom_EventScript_1608FA:: @ 81608FA
 	msgbox gStringVar4, MSGBOX_DEFAULT
 	waitmessage
 	closemessage
-	special HealPlayerParty
+	callnative HealPlayerPartyOak
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 0
 	special StartSpecialBattle
@@ -59,9 +59,9 @@ BattleTower_BattleRoom_EventScript_160961:: @ 8160961
 	special LoadPlayerParty
 	special SavePlayerParty
 	special SetBattleTowerParty
-	playfanfare MUS_HEAL
+	playfanfare MUS_RS_HEAL
 	waitfanfare
-	special HealPlayerParty
+	callnative HealPlayerPartyOak
 
 BattleTower_BattleRoom_EventScript_1609B2:: @ 81609B2
 	textcolor 0x1

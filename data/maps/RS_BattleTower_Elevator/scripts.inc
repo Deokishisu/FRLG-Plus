@@ -46,12 +46,14 @@ BattleTower_Elevator_Movement_160839:: @ 8160839
 
 BattleTower_Elevator_Movement_16083D:: @ 816083D
 	walk_down
+	walk_left
 	walk_down
 	set_invisible
 	step_end
 
 BattleTower_Elevator_Movement_160841:: @ 8160841
-	walk_right
+	delay_16
+	delay_16
 	walk_down
 	walk_down
 	step_end

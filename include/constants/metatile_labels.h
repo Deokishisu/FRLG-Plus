@@ -1,6 +1,12 @@
 #ifndef GUARD_METATILE_LABELS_H
 #define GUARD_METATILE_LABELS_H
 
+// gTileset_BattleFrontierOutsideEast
+#define METATILE_BattleFrontierOutsideEast_BattleTower  0x330
+
+// gTileset_BattleFrontier
+#define METATILE_BattleFrontier_BattleTowerElevator  0x28E
+
 // gTileset_BerryForest
 #define METATILE_BerryForest_Door               0x2BB
 #define METATILE_BerryForest_ThreeIsland_Grass  0x2BF

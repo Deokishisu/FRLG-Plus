@@ -69,7 +69,7 @@ PalletTown_GarysHouse_EventScript_GroomMon:: @ 8168DB9
 	msgbox PalletTown_GarysHouse_Text_LookingNiceInNoTime
 	closemessage
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_HEAL
+	playfanfare MUS_RS_HEAL
 	waitfanfare
 	special DaisyMassageServices
 	fadescreen FADE_FROM_BLACK
