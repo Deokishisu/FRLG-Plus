@@ -1498,7 +1498,7 @@ bool8 ScrCmd_erasebox(struct ScriptContext * ctx)
     u8 right = ScriptReadByte(ctx);
     u8 bottom = ScriptReadByte(ctx);
 
-    // MenuZeroFillWindowRect(left, top, right, bottom);
+    //MenuZeroFillWindowRect(left, top, right, bottom);
     return FALSE;
 }
 

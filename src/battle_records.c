@@ -12,6 +12,8 @@
 #include "overworld.h"
 #include "strings.h"
 #include "trainer_card.h"
+#include "text.h"
+#include "new_menu_helpers.h"
 #include "constants/battle.h"
 #include "constants/songs.h"
 #include "constants/maps.h"
@@ -33,6 +35,8 @@ static void ResetBGPos(void);
 static void PrintBattleRecords(void);
 static void CommitWindow(u8 windowId);
 static void LoadFrameGfxOnBg(u8 bgId);
+void ShowBattleTowerRecords(void);
+void RemoveRecordsWindow(void);
 
 static const u16 sTiles[] = INCBIN_U16("graphics/battle_records/bg_tiles.4bpp");
 static const u16 sPalette[] = INCBIN_U16("graphics/battle_records/palette.gbapal");
@@ -72,6 +76,17 @@ static const struct BgTemplate sBgTemplates[2] = {
         .priority = 3,
         .baseTile = 0x000
     }
+};
+
+static const struct WindowTemplate sFrontierResultsWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 1,
+    .width = 0x1c,
+    .height = 0x12,
+    .paletteNum = 15,
+    .baseBlock = 1
 };
 
 static u8 *const sStringVars[3] = {
@@ -565,4 +580,117 @@ static void LoadFrameGfxOnBg(u8 bg)
     LoadBgTiles(bg, sTiles, 0xC0, 0);
     CopyToBgTilemapBufferRect(bg, sTilemap, 0, 0, 32, 32);
     LoadPalette(sPalette, 0, 0x20);
+}
+
+// Battle Tower Stuff
+
+static void PrintHyphens(s32 y, u8 gRecordsWindowId)
+{
+    s32 i;
+    u8 text[37];
+
+    for (i = 0; i < 36; i++)
+        text[i] = CHAR_HYPHEN;
+    text[i] = EOS;
+
+    y = (y * 8) + 1;
+    AddTextPrinterParameterized(gRecordsWindowId, 1, text, 4, y, TEXT_SPEED_FF, NULL);
+}
+
+// Battle Tower records.
+static bool32 sub_8110494(u8 level)
+{
+    switch (gSaveBlock2Ptr->battleTower.var_4AE[level])
+    {
+    case 0:
+        return FALSE;
+    case 1:
+        return FALSE;
+    case 2:
+        return TRUE;
+    case 4:
+        return FALSE;
+    case 3:
+        return TRUE;
+    case 5:
+        return FALSE;
+    case 6:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static void TowerPrintStreak(const u8 *str, u16 num, u8 x1, u8 x2, u8 y, u8 gRecordsWindowId)
+{
+    AddTextPrinterParameterized(gRecordsWindowId, 1, str, x1, y, TEXT_SPEED_FF, NULL);
+    if (num > 9999)
+        num = 9999;
+    ConvertIntToDecimalStringN(gStringVar1, num, STR_CONV_MODE_RIGHT_ALIGN, 4);
+    StringExpandPlaceholders(gStringVar4, gOtherText_WinStreak);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar4, x2, y, TEXT_SPEED_FF, NULL);
+}
+
+static void TowerPrintRecordStreak(u8 battleMode, u8 lvlMode, u8 x1, u8 x2, u8 y, u8 gRecordsWindowId)
+{
+    u16 num = gSaveBlock2Ptr->battleTower.recordWinStreaks[lvlMode];
+    TowerPrintStreak(gOtherText_Record, num, x1, x2, y, gRecordsWindowId);
+}
+
+static u16 TowerGetWinStreak(u8 battleMode, u8 lvlMode)
+{
+    u16 winStreak = gSaveBlock2Ptr->battleTower.currentWinStreaks[lvlMode];
+    if (winStreak > 9999)
+        return 9999;
+    else
+        return winStreak;
+}
+
+static void TowerPrintPrevOrCurrentStreak(u8 battleMode, u8 lvlMode, u8 x1, u8 x2, u8 y, u8 gRecordsWindowId)
+{
+    bool8 isCurrent;
+    u16 winStreak = TowerGetWinStreak(battleMode, lvlMode);
+    if (lvlMode != 0)
+        isCurrent = sub_8110494(lvlMode);
+    else
+        isCurrent = sub_8110494(lvlMode);
+    if (isCurrent == TRUE)
+        TowerPrintStreak(gOtherText_Current, winStreak, x1, x2, y, gRecordsWindowId);
+    else
+        TowerPrintStreak(gOtherText_Prev, winStreak, x1, x2, y, gRecordsWindowId);
+}
+
+static void PrintAligned(const u8 *str, s32 y, u8 gRecordsWindowId)
+{
+    s32 x = GetStringCenterAlignXOffset(1, str, 224);
+    y = (y * 8) + 1;
+    AddTextPrinterParameterized(gRecordsWindowId, 1, str, x, y, TEXT_SPEED_FF, NULL);
+}
+
+void ShowBattleTowerRecords(void)
+{
+    u8 battleMode = 0;
+    u8 gRecordsWindowId;
+    gRecordsWindowId = AddWindow(&sFrontierResultsWindowTemplate);
+    DrawStdWindowFrame(gRecordsWindowId, FALSE);
+    FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
+    StringExpandPlaceholders(gStringVar4, gOtherText_BattleTowerResults);
+
+    PrintAligned(gStringVar4, 2, gRecordsWindowId);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_Lv50, 8, 49, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_Lv100, 8, 97, TEXT_SPEED_FF, NULL);
+    PrintHyphens(10, gRecordsWindowId);
+    TowerPrintPrevOrCurrentStreak(battleMode, 0, 72, 121, 49, gRecordsWindowId);
+    TowerPrintRecordStreak(battleMode, 0, 72, 121, 65, gRecordsWindowId);
+    TowerPrintPrevOrCurrentStreak(battleMode, 1, 72, 121, 97, gRecordsWindowId);
+    TowerPrintRecordStreak(battleMode, 1, 72, 121, 113, gRecordsWindowId);
+    PutWindowTilemap(gRecordsWindowId);
+    CopyWindowToVram(gRecordsWindowId, 3);
+    gSpecialVar_Result = gRecordsWindowId;
+}
+
+void RemoveRecordsWindow(void)
+{
+    ClearStdWindowAndFrame(gSpecialVar_Result, FALSE);
+    RemoveWindow(gSpecialVar_Result);
 }

@@ -1873,6 +1873,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
                 {
                     GetBattleTowerTrainerName(text);
+                    toCpy = text;
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
                 {

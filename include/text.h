@@ -310,5 +310,8 @@ void sub_80062B0(struct Sprite *sprite);
 u8 CreateTextCursorSpriteForOakSpeech(u8 sheetId, u16 x, u16 y, u8 priority, u8 subpriority);
 void sub_8006398(u8 spriteId);
 s32 GetGlyphWidthFont6(u16 font_type, bool32 isJapanese);
+int GetStringCenterAlignXOffset(int fontId, const u8 *str, int totalWidth);
+int GetStringCenterAlignXOffsetWithLetterSpacing(int fontId, const u8 *str, int totalWidth, int letterSpacing);
+int GetStringWidthDifference(int fontId, const u8 *str, int totalWidth, int letterSpacing);
 
 #endif // GUARD_TEXT_H

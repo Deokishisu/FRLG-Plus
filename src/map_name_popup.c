@@ -201,8 +201,8 @@ static void MapNamePopupPrintMapNameOnWindow(u16 windowId)
     {
         ptr = GetMapName(mapName, MAPSEC_UNDERWATER_124, 0);
     }
-    else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(RS_BATTLE_TOWER)
-     && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RS_BATTLE_TOWER)) //overwrite Battle Frontier name
+    else if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RS_BATTLE_TOWER) && (gSaveBlock1Ptr->location.mapNum >= MAP_NUM(RS_BATTLE_TOWER)
+        && gSaveBlock1Ptr->location.mapNum <= MAP_NUM(RS_BATTLE_TOWER_BATTLE_ROOM))) //overwrite Battle Frontier name
     {
         ptr = StringCopy(mapName, gText_BattleTower);
     }

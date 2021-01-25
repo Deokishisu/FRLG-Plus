@@ -1133,6 +1133,11 @@ static void Task_QuestLogScene_SavedGame(u8 taskId)
         if (sQuestLogCurrentScene.sceneEndMode != 1)
         {
             GetMapNameGeneric(gStringVar1, gMapHeader.regionMapSectionId);
+            if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(RS_BATTLE_TOWER) && (gSaveBlock1Ptr->location.mapNum >= MAP_NUM(RS_BATTLE_TOWER)
+        && gSaveBlock1Ptr->location.mapNum <= MAP_NUM(RS_BATTLE_TOWER_BATTLE_ROOM)))
+            {
+                StringCopy(gStringVar1, gText_BattleTower);
+            }
             StringExpandPlaceholders(gStringVar4, gText_QuestLog_SavedGameAtLocation);
             DrawQuestLogSceneDescription();
         }

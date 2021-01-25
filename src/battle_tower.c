@@ -19,6 +19,10 @@
 #include "save.h"
 #include "item.h"
 #include "script_pokemon_util.h"
+#include "trainer_tower.h"
+#include "load_save.h"
+#include "malloc.h"
+#include "constants/facility_trainer_classes.h"
 #include "constants/species.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -42,11 +46,105 @@ static void PopulateBravoTrainerBattleTowerLostData(void);
 static u16 GetCurrentBattleTowerWinStreak(u8 levelType);
 static void SetEReaderTrainerChecksum(struct BattleTowerEReaderTrainer * eReaderTrainer);
 static void PrintEReaderTrainerFarewellMessage(void);
+void SaveGameFrontier(void);
 
 const u8 unref_83FFAAC[] = {
     0x05, 0x04, 0x01, 0x10, 0x04, 0x02, 0x05, 0x06,
     0x03, 0x10, 0x06, 0x04, 0x00, 0x01, 0x02, 0x03,
     0x00, 0x02, 0x03
+};
+
+struct SinglesTrainerInfo
+{
+    u8 objGfx;
+    u8 facilityClass;
+    bool8 gender;
+};
+
+static const struct SinglesTrainerInfo sSingleBattleTrainerInfo[] = {
+    {OBJ_EVENT_GFX_AROMA_LADY,     FACILITY_CLASS_AROMA_LADY,       FEMALE},
+    {OBJ_EVENT_GFX_RUIN_MANIAC,    FACILITY_CLASS_RUIN_MANIAC,      MALE},
+    {OBJ_EVENT_GFX_TUBER_F,        FACILITY_CLASS_TUBER,            FEMALE},
+    {OBJ_EVENT_GFX_TUBER_M_LAND,   FACILITY_CLASS_TUBER_2,          MALE},
+    {OBJ_EVENT_GFX_COOLTRAINER_M,  FACILITY_CLASS_COOLTRAINER,      MALE},
+    {OBJ_EVENT_GFX_COOLTRAINER_F,  FACILITY_CLASS_COOLTRAINER_2,    FEMALE},
+    {OBJ_EVENT_GFX_CHANNELER,     FACILITY_CLASS_HEX_MANIAC,       FEMALE},
+    {OBJ_EVENT_GFX_WOMAN_2,        FACILITY_CLASS_LADY,             FEMALE},
+    {OBJ_EVENT_GFX_BEAUTY,         FACILITY_CLASS_BEAUTY,           FEMALE},
+    {OBJ_EVENT_GFX_BOY,            FACILITY_CLASS_RICH_BOY,         MALE},
+    {OBJ_EVENT_GFX_POKE_MANIAC,    FACILITY_CLASS_POKEMANIAC,       MALE},
+    {OBJ_EVENT_GFX_SWIMMER_M_LAND, FACILITY_CLASS_SWIMMER_MALE,     MALE},
+    {OBJ_EVENT_GFX_BLACKBELT,      FACILITY_CLASS_BLACK_BELT,       MALE},
+    {OBJ_EVENT_GFX_ENGINEER,       FACILITY_CLASS_GUITARIST,        MALE},
+    {OBJ_EVENT_GFX_ROCKER,         FACILITY_CLASS_KINDLER,          MALE},
+    {OBJ_EVENT_GFX_CAMPER,         FACILITY_CLASS_CAMPER,           MALE},
+    {OBJ_EVENT_GFX_SUPER_NERD,     FACILITY_CLASS_BUG_MANIAC,       MALE},
+    {OBJ_EVENT_GFX_PSYCHIC_M,      FACILITY_CLASS_PSYCHIC,          MALE},
+    {OBJ_EVENT_GFX_PSYCHIC_F,      FACILITY_CLASS_PSYCHIC_2,        FEMALE},
+    {OBJ_EVENT_GFX_GENTLEMAN,      FACILITY_CLASS_GENTLEMAN,        MALE},
+    {OBJ_EVENT_GFX_BOY,            FACILITY_CLASS_SCHOOL_KID,       MALE},
+    {OBJ_EVENT_GFX_WOMAN_1,        FACILITY_CLASS_SCHOOL_KID_2,     FEMALE},
+    {OBJ_EVENT_GFX_BALDING_MAN,    FACILITY_CLASS_POKEFAN,          MALE},
+    {OBJ_EVENT_GFX_WOMAN_3,        FACILITY_CLASS_POKEFAN_2,        FEMALE},
+    {OBJ_EVENT_GFX_OLD_MAN_1,      FACILITY_CLASS_EXPERT,           MALE},
+    {OBJ_EVENT_GFX_OLD_WOMAN,      FACILITY_CLASS_EXPERT_2,         FEMALE},
+    {OBJ_EVENT_GFX_YOUNGSTER,      FACILITY_CLASS_YOUNGSTER,        MALE},
+    {OBJ_EVENT_GFX_FISHER,         FACILITY_CLASS_FISHERMAN,        MALE},
+    {OBJ_EVENT_GFX_COOLTRAINER_M,  FACILITY_CLASS_DRAGON_TAMER,     MALE},
+    {OBJ_EVENT_GFX_BIRD_KEEPER,    FACILITY_CLASS_BIRD_KEEPER,      MALE},
+    {OBJ_EVENT_GFX_LITTLE_BOY,     FACILITY_CLASS_NINJA_BOY,        MALE},
+    {OBJ_EVENT_GFX_BATTLE_GIRL,    FACILITY_CLASS_BATTLE_GIRL,      FEMALE},
+    {OBJ_EVENT_GFX_BEAUTY,         FACILITY_CLASS_PARASOL_LADY,     FEMALE},
+    {OBJ_EVENT_GFX_SWIMMER_F_LAND, FACILITY_CLASS_SWIMMER_FEMALE,   FEMALE},
+    {OBJ_EVENT_GFX_PICNICKER,      FACILITY_CLASS_PICNICKER,        FEMALE},
+    {OBJ_EVENT_GFX_SAILOR,         FACILITY_CLASS_SAILOR,           MALE},
+    {OBJ_EVENT_GFX_FAT_MAN,        FACILITY_CLASS_COLLECTOR,        MALE},
+    {OBJ_EVENT_GFX_MAN,            FACILITY_CLASS_PKMN_BREEDER,     MALE},
+    {OBJ_EVENT_GFX_POKEMON_BREEDER, FACILITY_CLASS_PKMN_BREEDER_2,   FEMALE},
+    {OBJ_EVENT_GFX_POKEMON_RANGER_M, FACILITY_CLASS_PKMN_RANGER,      MALE},
+    {OBJ_EVENT_GFX_POKEMON_RANGER_F, FACILITY_CLASS_PKMN_RANGER_2,    FEMALE},
+    {OBJ_EVENT_GFX_LASS,           FACILITY_CLASS_LASS,             FEMALE},
+    {OBJ_EVENT_GFX_BUG_CATCHER,    FACILITY_CLASS_BUG_CATCHER,      MALE},
+    {OBJ_EVENT_GFX_HIKER,          FACILITY_CLASS_HIKER,            MALE},
+    {OBJ_EVENT_GFX_YOUNGSTER,      FACILITY_CLASS_YOUNGSTER_2,      MALE},
+    {OBJ_EVENT_GFX_BUG_CATCHER,    FACILITY_CLASS_BUG_CATCHER_2,    MALE},
+    {OBJ_EVENT_GFX_LASS,           FACILITY_CLASS_LASS_2,           FEMALE},
+    {OBJ_EVENT_GFX_SAILOR,         FACILITY_CLASS_SAILOR_2,         MALE},
+    {OBJ_EVENT_GFX_CAMPER,         FACILITY_CLASS_CAMPER_2,         MALE},
+    {OBJ_EVENT_GFX_PICNICKER,      FACILITY_CLASS_PICNICKER_2,      FEMALE},
+    {OBJ_EVENT_GFX_POKE_MANIAC,    FACILITY_CLASS_POKEMANIAC_2,     MALE},
+    {OBJ_EVENT_GFX_SUPER_NERD,     FACILITY_CLASS_SUPER_NERD,       MALE},
+    {OBJ_EVENT_GFX_HIKER,          FACILITY_CLASS_HIKER_2,          MALE},
+    {OBJ_EVENT_GFX_BIKER,          FACILITY_CLASS_BIKER,            MALE},
+    {OBJ_EVENT_GFX_BURGLAR,        FACILITY_CLASS_BURGLAR,          MALE},
+    {OBJ_EVENT_GFX_ENGINEER,       FACILITY_CLASS_ENGINEER,         MALE},
+    {OBJ_EVENT_GFX_FISHER,         FACILITY_CLASS_FISHERMAN_2,      MALE},
+    {OBJ_EVENT_GFX_SWIMMER_M_LAND, FACILITY_CLASS_SWIMMER_MALE_2,   MALE},
+    {OBJ_EVENT_GFX_CUE_BALL,       FACILITY_CLASS_CUE_BALL,         MALE},
+    {OBJ_EVENT_GFX_OLD_MAN_1,      FACILITY_CLASS_GAMER,            MALE},
+    {OBJ_EVENT_GFX_BEAUTY,         FACILITY_CLASS_BEAUTY_2,         FEMALE},
+    {OBJ_EVENT_GFX_SWIMMER_F_LAND, FACILITY_CLASS_SWIMMER_FEMALE_2, FEMALE},
+    {OBJ_EVENT_GFX_PSYCHIC_M,      FACILITY_CLASS_PSYCHIC_3,        MALE},
+    {OBJ_EVENT_GFX_ENGINEER,       FACILITY_CLASS_ROCKER,           MALE},
+    {OBJ_EVENT_GFX_JUGGLER,        FACILITY_CLASS_JUGGLER,          MALE},
+    {OBJ_EVENT_GFX_TAMER,          FACILITY_CLASS_TAMER,            MALE},
+    {OBJ_EVENT_GFX_BIRD_KEEPER,    FACILITY_CLASS_BIRD_KEEPER_2,    MALE},
+    {OBJ_EVENT_GFX_BLACKBELT,      FACILITY_CLASS_BLACK_BELT_2,     MALE},
+    {OBJ_EVENT_GFX_SCIENTIST,      FACILITY_CLASS_SCIENTIST,        MALE},
+    {OBJ_EVENT_GFX_COOLTRAINER_M,  FACILITY_CLASS_COOLTRAINER_3,    MALE},
+    {OBJ_EVENT_GFX_COOLTRAINER_F,  FACILITY_CLASS_COOLTRAINER_4,    FEMALE},
+    {OBJ_EVENT_GFX_GENTLEMAN,      FACILITY_CLASS_GENTLEMAN_2,      MALE},
+    {OBJ_EVENT_GFX_CHANNELER,      FACILITY_CLASS_CHANNELER,        FEMALE},
+    {OBJ_EVENT_GFX_PSYCHIC_F,      FACILITY_CLASS_PSYCHIC_4,        FEMALE},
+    {OBJ_EVENT_GFX_BATTLE_GIRL,    FACILITY_CLASS_CRUSH_GIRL,       FEMALE},
+    {OBJ_EVENT_GFX_TUBER_F,        FACILITY_CLASS_TUBER_3,          FEMALE},
+    {OBJ_EVENT_GFX_POKEMON_BREEDER, FACILITY_CLASS_PKMN_BREEDER_3,   FEMALE},
+    {OBJ_EVENT_GFX_POKEMON_RANGER_M, FACILITY_CLASS_PKMN_RANGER_3,    MALE},
+    {OBJ_EVENT_GFX_POKEMON_RANGER_F, FACILITY_CLASS_PKMN_RANGER_4,    FEMALE},
+    {OBJ_EVENT_GFX_AROMA_LADY,     FACILITY_CLASS_AROMA_LADY_2,     FEMALE},
+    {OBJ_EVENT_GFX_RUIN_MANIAC,   FACILITY_CLASS_RUIN_MANIAC_2,    MALE},
+    {OBJ_EVENT_GFX_WOMAN_2,        FACILITY_CLASS_LADY_2,           FEMALE},
+    {OBJ_EVENT_GFX_PAINTER,        FACILITY_CLASS_PAINTER,          FEMALE}
 };
 
 const u8 unref_83FFABF[] = _("100");
@@ -389,7 +487,28 @@ void ChooseNextBattleTowerTrainer(void)
 
 static void SetBattleTowerTrainerGfxId(u8 trainerClass)
 {
-    VarSet(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_YOUNGSTER);
+    u32 i;
+    u8 facilityClass, trainerGfx1;
+
+    facilityClass = gBattleTowerTrainers[trainerClass].trainerClass;
+    for (i = 0; i < NELEMS(sSingleBattleTrainerInfo); i++)
+    {
+        if (sSingleBattleTrainerInfo[i].facilityClass == facilityClass)
+            break;
+    }
+
+    if (i != NELEMS(sSingleBattleTrainerInfo))
+    {
+        trainerGfx1 = sSingleBattleTrainerInfo[i].objGfx;
+        gSpecialVar_LastTalked = sSingleBattleTrainerInfo[i].gender;
+    }
+    else
+    {
+        trainerGfx1 = OBJ_EVENT_GFX_YOUNGSTER;
+        gSpecialVar_LastTalked = MALE;
+    }
+
+    VarSet(VAR_OBJ_GFX_ID_0, trainerGfx1);
 }
 
 void SetEReaderTrainerGfxId(void)
@@ -524,7 +643,7 @@ void GetBattleTowerTrainerName(u8 *dest)
     }
     else if (gSaveBlock2Ptr->battleTower.battleTowerTrainerId < BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID)
     {
-        for (i = 0; i < 3; i++)
+        for (i = 0; i < 7; i++)
             dest[i] = gBattleTowerTrainers[gSaveBlock2Ptr->battleTower.battleTowerTrainerId].name[i];
     }
     else
@@ -1136,14 +1255,14 @@ void SaveBattleTowerProgress(void)
 {
     u8 battleTowerLevelType = gSaveBlock2Ptr->battleTower.battleTowerLevelType;
 
-    if (gSpecialVar_0x8004 == 3 || gSpecialVar_0x8004 == 0)
+    /*if (gSpecialVar_0x8004 == 3 || gSpecialVar_0x8004 == 0)
     {
         if (gSaveBlock2Ptr->battleTower.curStreakChallengesNum[battleTowerLevelType] > 1
             || gSaveBlock2Ptr->battleTower.curChallengeBattleNum[battleTowerLevelType] > 1)
             SetPlayerBattleTowerRecord();
-    }
+    }*/
 
-    PopulateBravoTrainerBattleTowerLostData();
+    //PopulateBravoTrainerBattleTowerLostData();
 
     gSaveBlock2Ptr->battleTower.battleOutcome = gBattleOutcome;
 
@@ -1152,8 +1271,30 @@ void SaveBattleTowerProgress(void)
 
     VarSet(VAR_TEMP_0, BTSPECIAL_TEST);
     gSaveBlock2Ptr->battleTower.unk_554 = 1;
-    TrySavingData(SAVE_EREADER);
+    SaveGameFrontier(); //this is clobbering items, money, and other data
 }
+
+void SaveGameFrontier(void) //from Emerald
+{
+    s32 i;
+    struct Pokemon *monsParty = calloc(PARTY_SIZE, sizeof(struct Pokemon));
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        monsParty[i] = gPlayerParty[i];
+
+    i = gPlayerPartyCount;
+    LoadPlayerParty();
+    SetContinueGameWarpStatusToDynamicWarp();
+    TrySavingData(SAVE_LINK);
+    ClearContinueGameWarpStatus2();
+    gPlayerPartyCount = i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+        gPlayerParty[i] = monsParty[i];
+
+    free(monsParty);
+}
+
 
 void BattleTower_SoftReset(void)
 {

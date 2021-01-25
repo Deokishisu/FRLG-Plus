@@ -1684,3 +1684,22 @@ void DecompressGlyphFont9(u16 glyphId)
     gGlyphInfo[0x80] = 8;
     gGlyphInfo[0x81] = 12;
 }
+
+int GetStringCenterAlignXOffset(int fontId, const u8 *str, int totalWidth)
+{
+    return GetStringCenterAlignXOffsetWithLetterSpacing(fontId, str, totalWidth, 0);
+}
+
+int GetStringCenterAlignXOffsetWithLetterSpacing(int fontId, const u8 *str, int totalWidth, int letterSpacing)
+{
+    return GetStringWidthDifference(fontId, str, totalWidth, letterSpacing) / 2;
+}
+
+int GetStringWidthDifference(int fontId, const u8 *str, int totalWidth, int letterSpacing)
+{
+    int stringWidth = GetStringWidth(fontId, str, letterSpacing);
+    if (totalWidth > stringWidth)
+        return totalWidth - stringWidth;
+    else
+        return 0;
+}

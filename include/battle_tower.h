@@ -10,7 +10,7 @@
 struct BattleTowerTrainer
 {
     u8 trainerClass;
-    u8 name[3];
+    u8 name[8];
     u8 teamFlags;
     u16 greeting[6];
 };

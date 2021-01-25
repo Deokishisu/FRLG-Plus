@@ -523,6 +523,12 @@ static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirthFaraway[] =
     { gOtherText_Exit }
 };
 
+static const struct MenuAction sScriptMultiChoiceMenu_BattleTowerLevels[] = {
+    { gText_Lv50 },
+    { gText_Lv100 },
+    { gOtherText_Exit }
+};
+
 static const struct MenuAction sScriptMultiChoiceMenu_Exit[] = {
     { gOtherText_Exit }
 };
@@ -596,7 +602,8 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SeviiFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiFaraway) },
     { sScriptMultiChoiceMenu_SeviiNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelFaraway) },
     { sScriptMultiChoiceMenu_SeviiBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiBirthFaraway) },
-    { sScriptMultiChoiceMenu_SeviiNavelBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirthFaraway) }
+    { sScriptMultiChoiceMenu_SeviiNavelBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirthFaraway) },
+    { sScriptMultiChoiceMenu_BattleTowerLevels, NELEMS(sScriptMultiChoiceMenu_BattleTowerLevels) }
 };
 
 // From Cool to Berries goes unused
