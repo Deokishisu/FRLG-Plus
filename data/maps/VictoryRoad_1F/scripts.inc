@@ -6,12 +6,17 @@ VictoryRoad_1F_MapScripts:: @ 8160F05
 VictoryRoad_1F_OnLoad:: @ 8160F10
 	compare VAR_MAP_SCENE_VICTORY_ROAD_1F, 100
 	call_if_ne VictoryRoad_1F_EventScript_SetRockBarrier
+	call_if_eq VictoryRoad_1F_EventScript_MoveSwitchBoulder
 	end
 
 VictoryRoad_1F_EventScript_SetRockBarrier:: @ 8160F1C
 	setmetatile 12, 14, METATILE_Cave_RockBarrier_Top, 1
 	setmetatile 12, 15, METATILE_Cave_RockBarrier_Bottom, 1
 	return
+
+VictoryRoad_1F_EventScript_MoveSwitchBoulder::
+	setobjectxyperm 5, 20, 16
+	end
 
 VictoryRoad_1F_OnTransition:: @ 8160F2F
 	setworldmapflag FLAG_WORLD_MAP_VICTORY_ROAD_1F

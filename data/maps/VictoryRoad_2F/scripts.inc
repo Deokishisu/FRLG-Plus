@@ -5,9 +5,19 @@ VictoryRoad_2F_MapScripts:: @ 8160F92
 VictoryRoad_2F_OnLoad:: @ 8160F98
 	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100
 	call_if_ne VictoryRoad_2F_EventScript_SetRockBarrier1
+	call_if_eq VictoryRoad_2F_EventScript_MoveSwitch1Boulder
 	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100
 	call_if_ne VictoryRoad_2F_EventScript_SetRockBarrier2
+	call_if_eq VictoryRoad_2F_EventScript_MoveSwitch2Boulder
 	end
+
+VictoryRoad_2F_EventScript_MoveSwitch1Boulder::
+	setobjectxyperm 11, 2, 19
+	return
+
+VictoryRoad_2F_EventScript_MoveSwitch2Boulder::
+	setobjectxyperm 12, 14, 19
+	return
 
 VictoryRoad_2F_EventScript_SetRockBarrier1:: @ 8160FAF
 	setmetatile 13, 10, METATILE_Cave_RockBarrier_Top, 1
