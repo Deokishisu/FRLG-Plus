@@ -240,6 +240,17 @@ OneIsland_PokemonCenter_1F_Text_PassLetYouGetToAllIslands:: @ 81A1BB7
     .string "{PLAYER}, please, I can't do\n"
     .string "it without your help.$"
 
+OneIsland_PokemonCenter_1F_Text_PassLetYouGetToAllIslandsScott:: @ 81A1BB7
+    .string "This is my own ferry PASS.\p"
+    .string "It will let you get to all the\n"
+    .string "SEVII ISLANDS.\p"
+    .string "{PLAYER}, please, I can't do\n"
+    .string "it without your help.\p"
+    .string "As the CHAMPION, your POKéMON\n"
+    .string "are amazingly strong.\p"
+    .string "You should be safe exploring\n"
+    .string "the rest of the islands.$"
+
 OneIsland_PokemonCenter_1F_Text_HandedSapphireToCelio:: @ 81A1C2D
     .string "{PLAYER} handed the SAPPHIRE\n"
     .string "to CELIO.$"

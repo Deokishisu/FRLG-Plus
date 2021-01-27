@@ -170,6 +170,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Tamer;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokemonBreeder;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RedUnderwater;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_GreenUnderwater;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Scott;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -344,4 +345,5 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_POKEMON_BREEDER]          = &gObjectEventGraphicsInfo_PokemonBreeder,
     [OBJ_EVENT_GFX_RED_UNDERWATER]           = &gObjectEventGraphicsInfo_RedUnderwater,
     [OBJ_EVENT_GFX_GREEN_UNDERWATER]         = &gObjectEventGraphicsInfo_GreenUnderwater,
+    [OBJ_EVENT_GFX_SCOTT]                    = &gObjectEventGraphicsInfo_Scott
 };

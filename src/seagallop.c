@@ -11,6 +11,7 @@
 #include "field_weather.h"
 #include "constants/songs.h"
 #include "constants/maps.h"
+#include "constants/region_map_sections.h"
 #include "constants/seagallop.h"
 
 #define TILESTAG_FERRY 3000
@@ -72,7 +73,8 @@ static const s8 sSeag[][4] = {
     [SEAGALLOP_CINNABAR_ISLAND] = {MAP(CINNABAR_ISLAND),     0x15, 0x07},
     [SEAGALLOP_NAVEL_ROCK]      = {MAP(NAVEL_ROCK_HARBOR),   0x08, 0x05},
     [SEAGALLOP_BIRTH_ISLAND]    = {MAP(BIRTH_ISLAND_HARBOR), 0x08, 0x05},
-    [SEAGALLOP_FARAWAY_ISLAND]  = {MAP(FARAWAY_ISLAND_EXTERIOR), 12, 38}
+    [SEAGALLOP_FARAWAY_ISLAND]  = {MAP(FARAWAY_ISLAND_EXTERIOR), 12, 38},
+    [SEAGALLOP_BATTLE_TOWER]    = {MAP(RS_BATTLE_TOWER),     19, 24}
 };
 
 // Bitpacked array.  In the commented section, right-most bit is the
@@ -465,6 +467,12 @@ u8 GetSeagallopNumber(void)
 
     if (originId == SEAGALLOP_CINNABAR_ISLAND || destId == SEAGALLOP_CINNABAR_ISLAND)
         return 1;
+
+    if (gMapHeader.regionMapSectionId == MAPSEC_FARAWAY_ISLAND)
+        return 14;
+
+    if (gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER)
+        return 13;
 
     if (originId == SEAGALLOP_VERMILION_CITY || destId == SEAGALLOP_VERMILION_CITY)
         return 7;

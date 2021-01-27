@@ -132,7 +132,7 @@
 #define FLAG_HIDE_TWO_ISLAND_BEAUTY                        0x07C
 #define FLAG_HIDE_TWO_ISLAND_SUPER_NERD                    0x07D
 #define FLAG_HIDE_THREE_ISLAND_ANTIBIKERS                  0x07E
-#define FLAG_0x07F                                         0x07F
+#define FLAG_HIDE_SCOTT                                    0x07F
 #define FLAG_HIDE_ROUTE_16_SNORLAX                         0x080
 #define FLAG_HIDE_MEWTWO                                   0x081
 #define FLAG_HIDE_ARTICUNO                                 0x082
@@ -671,7 +671,7 @@
 #define FLAG_SILPH_10F_DOOR                              0x28C
 #define FLAG_SILPH_11F_DOOR                              0x28D
 #define FLAG_0x28E                                       0x28E
-#define FLAG_0x28F                                       0x28F
+#define FLAG_SHOWN_OLD_SEA_MAP                           0x28F
 #define FLAG_MET_STICKER_MAN                             0x290
 #define FLAG_PALLET_LADY_NOT_BLOCKING_SIGN               0x291
 #define FLAG_GOT_VS_SEEKER                               0x292

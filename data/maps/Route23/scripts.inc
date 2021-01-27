@@ -1,15 +1,5 @@
 Route23_MapScripts:: @ 81684EB
-	map_script MAP_SCRIPT_ON_TRANSITION, Route23_OnTransition
 	.byte 0
-
-Route23_OnTransition:: @ 81684F1
-	//clearflag FLAG_HIDE_VICTORY_ROAD_3F_BOULDER
-	//setflag FLAG_HIDE_VICTORY_ROAD_2F_BOULDER //set on new game instead
-	//setvar VAR_MAP_SCENE_VICTORY_ROAD_1F, 0
-	//setvar VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 0
-	//setvar VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 0
-	//setvar VAR_MAP_SCENE_VICTORY_ROAD_3F, 0
-	end
 
 Route23_EventScript_CascadeBadgeGuard:: @ 816850C
 	lock

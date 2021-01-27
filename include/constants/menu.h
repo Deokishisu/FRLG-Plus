@@ -74,6 +74,8 @@
 #define MULTICHOICE_SEVII_BIRTH_FARAWAY                        67
 #define MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY                  68
 #define MULTICHOICE_BATTLE_TOWER_LEVELS                        69
+#define MULTICHOICE_SEVII_TOWER                                70
+#define MULTICHOICE_TRI_FARAWAY                                71
 
 
 #define LISTMENU_BADGES                    0

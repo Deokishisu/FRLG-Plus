@@ -84,8 +84,15 @@ VermilionCity_EventScript_CheckSeagallopPresent:: @ 8166996
 	release
 	end
 
+VermilionCity_EventScript_SetSailToBattleTower::
+	msgbox VermilionCity_Text_Seagallop13Departing
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	setvar VAR_0x8006, SEAGALLOP_BATTLE_TOWER
+	goto EventScript_SetSail
+	end
+
 VermilionCity_EventScript_SetSailToFarawayIsland::
-	msgbox VermilionCity_Text_Seagallop12Departing
+	msgbox VermilionCity_Text_Seagallop14Departing
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	setvar VAR_0x8006, SEAGALLOP_FARAWAY_ISLAND
 	goto EventScript_SetSail
@@ -106,7 +113,12 @@ VermilionCity_EventScript_ChooseSeagallopDestRainbowPass:: @ 81669BB
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	message VermilionCity_Text_BoardSeagallopRainbowPass
 	waitmessage
-	goto EventScript_SeviiDestinationsPage1
+	multichoice 13, 5, MULTICHOICE_SEVII_TOWER, FALSE
+	switch VAR_RESULT
+	case 0, EventScript_SeviiDestinationsPage1
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_CancelSail
+	case 127, EventScript_CancelSail 
 	end
 
 VermilionCity_EventScript_CheckHasOldSeaMap::
@@ -118,17 +130,17 @@ VermilionCity_EventScript_CheckHasOldSeaMap::
 	end
 
 VermilionCity_EventScript_HasOldSeaMap:: @ Has ONLY Old Sea Map
+	call_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 6, MULTICHOICE_SEVII_FARAWAY, FALSE
+	multichoice 13, 5, MULTICHOICE_SEVII_FARAWAY, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, VermilionCity_EventScript_SetSailToFarawayIsland
-	case 2, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, VermilionCity_EventScript_SetSailToFarawayIsland
+	case 3, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
-
-
 
 VermilionCity_EventScript_HasMysticTicket:: @ 81669FD
 	call VermilionCity_EventScript_CheckHasAuroraTicket
@@ -140,13 +152,19 @@ VermilionCity_EventScript_HasMysticTicket:: @ 81669FD
 	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 17, 6, MULTICHOICE_SEVII_NAVEL, FALSE
+	multichoice 17, 5, MULTICHOICE_SEVII_NAVEL, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, EventScript_SailToNavelRock
-	case 2, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_SailToNavelRock
+	case 3, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
+
+VermilionCity_EventScript_ShowOldSeaMap::
+	setflag FLAG_SHOWN_OLD_SEA_MAP
+	msgbox VermilionCity_Text_OldSeaMapTakeYouToFarawayIsland
+	return
 
 VermilionCity_EventScript_ShowMysticTicket:: @ 8166A53
 	setflag FLAG_SHOWN_MYSTIC_TICKET
@@ -160,24 +178,27 @@ VermilionCity_EventScript_HasAuroraTicket:: @ 8166A5F
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 6, MULTICHOICE_SEVII_BIRTH, FALSE
+	multichoice 13, 5, MULTICHOICE_SEVII_BIRTH, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, EventScript_SailToBirthIsland
-	case 2, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_SailToBirthIsland
+	case 3, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 
 VermilionCity_EventScript_HasAuroraTicketAndOldSeaMap::
+	call_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 5, MULTICHOICE_SEVII_BIRTH_FARAWAY, FALSE
+	multichoice 13, 4, MULTICHOICE_SEVII_BIRTH_FARAWAY, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, EventScript_SailToBirthIsland
-	case 2, VermilionCity_EventScript_SetSailToFarawayIsland
-	case 3, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_SailToBirthIsland
+	case 3, VermilionCity_EventScript_SetSailToFarawayIsland
+	case 4, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 
@@ -187,15 +208,17 @@ VermilionCity_EventScript_ShowAuroraTicket:: @ 8166AA5
 	return
 
 VermilionCity_EventScript_HasMysticTicketAndOldSeaMap::
+	call_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
 	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 5, MULTICHOICE_SEVII_NAVEL_FARAWAY, FALSE
+	multichoice 13, 4, MULTICHOICE_SEVII_NAVEL_FARAWAY, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, EventScript_SailToNavelRock
-	case 2, VermilionCity_EventScript_SetSailToFarawayIsland
-	case 3, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_SailToNavelRock
+	case 3, VermilionCity_EventScript_SetSailToFarawayIsland
+	case 4, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 
@@ -208,27 +231,30 @@ VermilionCity_EventScript_HasMysticAndAuroraTickets:: @ 8166AB1
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 5, MULTICHOICE_SEVII_NAVEL_BIRTH, FALSE
+	multichoice 13, 4, MULTICHOICE_SEVII_NAVEL_BIRTH, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, EventScript_SailToNavelRock
-	case 2, EventScript_SailToBirthIsland
-	case 3, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_SailToNavelRock
+	case 3, EventScript_SailToBirthIsland
+	case 4, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 
 VermilionCity_EventScript_HasAllThreeEventItems::
+	call_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
 	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 3, MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY, FALSE
+	multichoice 13, 2, MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
-	case 1, EventScript_SailToNavelRock
-	case 2, EventScript_SailToBirthIsland
-	case 3, VermilionCity_EventScript_SetSailToFarawayIsland
-	case 4, EventScript_CancelSail
+	case 1, VermilionCity_EventScript_SetSailToBattleTower
+	case 2, EventScript_SailToNavelRock
+	case 3, EventScript_SailToBirthIsland
+	case 4, VermilionCity_EventScript_SetSailToFarawayIsland
+	case 5, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 
@@ -247,15 +273,32 @@ EventScript_SailToBirthIsland:: @ 8166B23
 	end
 
 VermilionCity_EventScript_ChooseSeagallopDestTriPass:: @ 8166B3B
+	call VermilionCity_EventScript_CheckHasOldSeaMap
+	compare VAR_RESULT, TRUE
+	goto_if_eq VermilionCity_EventScript_HasOldSeaMapTriPass
 	message VermilionCity_Text_BoardSeagallopTriPass
 	waitmessage
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+VermilionCity_EventScript_TriPassOriginalMultichoice:
 	multichoice 19, 5, MULTICHOICE_SEAGALLOP_123, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SailToOneIsland2
 	case 1, EventScript_SailToTwoIsland2
 	case 2, EventScript_SailToThreeIsland2
 	case 3, EventScript_CancelSail
+	case 127, EventScript_CancelSail
+	end
+
+VermilionCity_EventScript_HasOldSeaMapTriPass::
+	call_if_unset FLAG_SHOWN_OLD_SEA_MAP, VermilionCity_EventScript_ShowOldSeaMap
+	message VermilionCity_Text_BoardSeagallopTriPass
+	waitmessage
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	multichoice 13, 6, MULTICHOICE_TRI_FARAWAY, FALSE
+	switch VAR_RESULT
+	case 0, VermilionCity_EventScript_TriPassOriginalMultichoice
+	case 1, VermilionCity_EventScript_SetSailToFarawayIsland
+	case 2, EventScript_CancelSail
 	case 127, EventScript_CancelSail
 	end
 

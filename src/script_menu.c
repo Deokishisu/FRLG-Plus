@@ -431,18 +431,21 @@ static const struct MenuAction sScriptMultiChoiceMenu_TradeColosseumBlank[] = {
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavel[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_NavelRock },
     { gOtherText_Exit }
 };
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiBirth[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_BirthIsland },
     { gOtherText_Exit }
 };
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirth[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_NavelRock },
     { gText_BirthIsland },
     { gOtherText_Exit }
@@ -497,12 +500,14 @@ static const struct MenuAction sScriptMultiChoiceMenu_TrainerTowerMode[] = {
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiFaraway[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelFaraway[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_NavelRock },
     { gText_FarawayIsland },
     { gOtherText_Exit }
@@ -510,6 +515,7 @@ static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelFaraway[] = {
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiBirthFaraway[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_BirthIsland },
     { gText_FarawayIsland },
     { gOtherText_Exit }
@@ -517,6 +523,7 @@ static const struct MenuAction sScriptMultiChoiceMenu_SeviiBirthFaraway[] = {
 
 static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirthFaraway[] = {
     { gText_SeviiIslands },
+    { gText_BattleTower },
     { gText_NavelRock },
     { gText_BirthIsland },
     { gText_FarawayIsland },
@@ -526,6 +533,18 @@ static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirthFaraway[] =
 static const struct MenuAction sScriptMultiChoiceMenu_BattleTowerLevels[] = {
     { gText_Lv50 },
     { gText_Lv100 },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiTower[] = {
+    { gText_SeviiIslands },
+    { gText_BattleTower },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_TriFaraway[] = {
+    { gText_SeviiIslands },
+    { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
@@ -603,7 +622,9 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SeviiNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelFaraway) },
     { sScriptMultiChoiceMenu_SeviiBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiBirthFaraway) },
     { sScriptMultiChoiceMenu_SeviiNavelBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirthFaraway) },
-    { sScriptMultiChoiceMenu_BattleTowerLevels, NELEMS(sScriptMultiChoiceMenu_BattleTowerLevels) }
+    { sScriptMultiChoiceMenu_BattleTowerLevels, NELEMS(sScriptMultiChoiceMenu_BattleTowerLevels) },
+    { sScriptMultiChoiceMenu_SeviiTower, NELEMS(sScriptMultiChoiceMenu_SeviiTower) },
+    { sScriptMultiChoiceMenu_TriFaraway, NELEMS(sScriptMultiChoiceMenu_TriFaraway) }
 };
 
 // From Cool to Berries goes unused

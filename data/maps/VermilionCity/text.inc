@@ -89,6 +89,18 @@ VermilionCity_Text_BoardSeagallopRainbowPass:: @ 817FBB8
     .string "Would you like to board\n"
     .string "a SEAGALLOP ferry?$"
 
+VermilionCity_Text_OldSeaMapTakeYouToFarawayIsland::
+    .string "What do you have there?\n"
+    .string "A tattered old map, eh?\p"
+    .string "Let's have a look.\n"
+    .string "… … … … … …\p"
+    .string "Where you're trying to go is an\n"
+    .string "island that's far, far away.\p"
+    .string "I can take you there, but it'll\n"
+    .string "be a long trip.\p"
+    .string "Let me know when you're ready\n"
+    .string "to leave.$"
+
 VermilionCity_Text_OhMysticTicketTakeYouToNavelRock:: @ 817FC00
     .string "Oh! That's a MYSTICTICKET!\n"
     .string "Now that is rare.\p"
@@ -115,6 +127,18 @@ VermilionCity_Text_Seagallop12Departing:: @ 817FD5F
     .string "Okay, everything's in order for you\n"
     .string "to board a special ferry.\p"
     .string "SEAGALLOP HI-SPEED 12 will be\n"
+    .string "departing immediately.$"
+
+VermilionCity_Text_Seagallop14Departing:: @ 817FD5F
+    .string "Okay, everything's in order for you\n"
+    .string "to board a special ferry.\p"
+    .string "SEAGALLOP HI-SPEED 14 will be\n"
+    .string "departing immediately.$"
+
+VermilionCity_Text_Seagallop13Departing:: @ 817FD5F
+    .string "Okay, everything's in order for you\n"
+    .string "to board a special ferry to HOENN.\p"
+    .string "SEAGALLOP HI-SPEED 13 will be\n"
     .string "departing immediately.$"
 
 VermilionCity_Text_Route2AideHasPackageForYou:: @ 817FDD2

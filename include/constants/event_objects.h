@@ -173,8 +173,9 @@
 #define OBJ_EVENT_GFX_POKEMON_BREEDER 169
 #define OBJ_EVENT_GFX_RED_UNDERWATER 170
 #define OBJ_EVENT_GFX_GREEN_UNDERWATER 171
+#define OBJ_EVENT_GFX_SCOTT 172
 
-#define NUM_OBJ_EVENT_GFX     172
+#define NUM_OBJ_EVENT_GFX     173
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

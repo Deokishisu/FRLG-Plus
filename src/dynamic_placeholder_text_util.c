@@ -92,6 +92,8 @@ static const u8 sTextColorTable[] =
     [OBJ_EVENT_GFX_YOUNG_COUPLE_M / 2]          = 0x10, // OBJ_EVENT_GFX_YOUNG_COUPLE_F
     [OBJ_EVENT_GFX_ENGINEER / 2]                = 0x00, // OBJ_EVENT_GFX_JUGGLER
     [OBJ_EVENT_GFX_TAMER / 2]                   = 0x10, // OBJ_EVENT_GFX_POKEMON_BREEDER
+    [OBJ_EVENT_GFX_RED_UNDERWATER / 2]          = 0x10, // OBJ_EVENT_GFX_GREEN_UNDERWATER
+    [OBJ_EVENT_GFX_SCOTT / 2]                   = 0x10  // OBJ_EVENT_GFX_ none yet
 };
 
 void DynamicPlaceholderTextUtil_Reset(void)

@@ -349,8 +349,149 @@ OneIsland_PokemonCenter_1F_EventScript_GiveRainbowPass:: @ 81710B2
 	waitmessage
 	waitfanfare
 	call EventScript_RestorePrevTextColor
-	goto OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPass
+	goto OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott
 	end
+
+OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott:: @ 817103A
+	msgbox OneIsland_PokemonCenter_1F_Text_PassLetYouGetToAllIslandsScott
+	closemessage
+	turnobject 7, DIR_NORTH
+	playse SE_PIN
+	applymovement 7, Movement_ExclamationMark
+	waitmovement 0
+	applymovement 7, Movement_Delay48
+	waitmovement 0
+	msgbox OneIsland_PokemonCenter_1F_Text_YoureTheChamp
+	closemessage
+	getplayerxy VAR_0x8005, VAR_0x8007
+	compare VAR_0x8005, 15
+	call_if_lt OneIsland_PokemonCenter_1F_EventScript_ScottToLeft
+	call_if_eq OneIsland_PokemonCenter_1F_EventScript_ScottToCenter
+	call_if_gt OneIsland_PokemonCenter_1F_EventScript_ScottToRight
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	msgbox OneIsland_PokemonCenter_1F_Text_ExcuseMe
+	closemessage
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_WEST
+	getplayerxy VAR_0x8005, VAR_0x8007
+	compare VAR_0x8005, 15
+	call_if_eq OneIsland_PokemonCenter_1F_EventScript_ScottLeftOne
+	call_if_gt OneIsland_PokemonCenter_1F_EventScript_ScottLeftTwo
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottExits
+	waitmovement 0
+	compare VAR_0x8005, 15
+	call_if_ne OneIsland_PokemonCenter_1F_EventScript_ScottExitsDownStep
+	removeobject 7
+	playse SE_EXIT
+	release
+	end
+
+OneIsland_PokemonCenter_1F_EventScript_ScottExitsDownStep::
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottExitsDownStep
+	waitmovement 0
+	return
+
+OneIsland_PokemonCenter_1F_Movement_ScottExitsDownStep::
+	walk_down
+	step_end
+
+OneIsland_PokemonCenter_1F_EventScript_ScottLeftOne::
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottLeftOne
+	waitmovement 0
+	return
+
+OneIsland_PokemonCenter_1F_EventScript_ScottLeftTwo::
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottLeftTwo
+	waitmovement 0
+	return
+
+OneIsland_PokemonCenter_1F_Movement_ScottLeftOne::
+	walk_left
+	step_end
+
+OneIsland_PokemonCenter_1F_Movement_ScottLeftTwo::
+	walk_left
+	walk_left
+	step_end
+
+OneIsland_PokemonCenter_1F_Movement_ScottExits::
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	step_end
+
+OneIsland_PokemonCenter_1F_Text_ExcuseMe::
+	.string "Excuse me!\n"
+	.string "I couldn't help but overhear.\p"
+	.string "Let me introduce myself.\n"
+	.string "My name's SCOTT.\p"
+	.string "I've been traveling everywhere in\n"
+	.string "search of outstanding TRAINERS.\p"
+	.string "More specifically, I'm looking for\n"
+	.string "POKéMON battle experts.\p"
+	.string "There's a place I'd like to\n"
+	.string "invite someone like you.\p"
+	.string "It's the…\n"
+	.string "BATTLE TOWER!\p"
+	.string "I'm about to head to VERMILION\n"
+	.string "to continue my search.\p"
+	.string "I'll tell the ferryman there to let\n"
+	.string "you sail to HOENN and check it out\l"
+	.string "for yourself!\p"
+	.string "Well, I'll be seeing you!$"
+
+OneIsland_PokemonCenter_1F_EventScript_ScottToLeft::
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottToLeft
+	waitmovement 0
+	return
+
+OneIsland_PokemonCenter_1F_EventScript_ScottToCenter::
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottToCenter
+	waitmovement 0
+	return
+
+OneIsland_PokemonCenter_1F_EventScript_ScottToRight::
+	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottToRight
+	waitmovement 0
+	return
+
+OneIsland_PokemonCenter_1F_Text_YoureTheChamp::
+	.string "You're the KANTO LEAGUE CHAMPION?$"
+
+OneIsland_PokemonCenter_1F_EventScript_Scott:: @ 8171151
+	msgbox OneIsland_PokemonCenter_1F_Text_ScottOnPhone
+	faceplayer
+	msgbox OneIsland_PokemonCenter_1F_Text_HeyOnCall
+	turnobject 7, DIR_EAST
+	release
+	end
+
+OneIsland_PokemonCenter_1F_Text_ScottOnPhone:
+	.string "…I'm not so sure about the\n"
+	.string "TRAINERS here.\p"
+	.string "I think I'm going to roam the\n"
+	.string "towns in KANTO instead.$"
+
+OneIsland_PokemonCenter_1F_Text_HeyOnCall:
+	.string "Hey! Can't you see I'm on a call?$"
+
+OneIsland_PokemonCenter_1F_Movement_ScottToLeft::
+	walk_up
+	walk_left
+	walk_up
+	step_end
+
+OneIsland_PokemonCenter_1F_Movement_ScottToCenter::
+	walk_up
+	step_end
+
+OneIsland_PokemonCenter_1F_Movement_ScottToRight::
+	walk_up
+	walk_right
+	walk_up
+	step_end
 
 OneIsland_PokemonCenter_1F_EventScript_CelioWaitingForRuby:: @ 81710F2
 	msgbox OneIsland_PokemonCenter_1F_Text_TryingToFindGem

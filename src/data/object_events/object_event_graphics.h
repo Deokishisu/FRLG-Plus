@@ -205,6 +205,7 @@ const u32 gObjectEventPic_Tamer[] = INCBIN_U32("graphics/object_events/pics/peop
 const u32 gObjectEventPic_PokemonBreeder[] = INCBIN_U32("graphics/object_events/pics/people/pokemon_breeder.4bpp");
 const u32 gObjectEventPic_RedUnderwater[] = INCBIN_U32("graphics/object_events/pics/people/red_underwater.4bpp");
 const u32 gObjectEventPic_GreenUnderwater[] = INCBIN_U32("graphics/object_events/pics/people/green_underwater.4bpp");
+const u32 gObjectEventPic_Scott[] = INCBIN_U32("graphics/object_events/pics/people/scott.4bpp");
 const u16 gUnknown_8398008[] = INCBIN_U16("graphics/object_events/palettes/11.gbapal");
 const u16 gUnknown_8398028[] = INCBIN_U16("graphics/object_events/palettes/12.gbapal");
 const u32 gUnknown_8398048[] = INCBIN_U32("graphics/object_events/pics/effects/shadow_small.4bpp");
