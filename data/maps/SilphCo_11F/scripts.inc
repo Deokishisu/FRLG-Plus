@@ -77,6 +77,7 @@ SilphCo_11F_EventScript_BattleGiovanni:: @ 8161EA0
 	removeobject 3
 	removeobject 4
 	removeobject 6
+	playbgm MUS_GSC_PEWTER 0
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_MAP_SCENE_SILPH_CO_11F, 1
 	setflag FLAG_HIDE_SAFFRON_ROCKETS
