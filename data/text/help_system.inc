@@ -1985,7 +1985,9 @@ Help_Text_DefineBattleAnimSpeed::
 	.string "choose to skip the slide-in animation\l"
 	.string "that occurs at the beginning of every\l"
 	.string "battle and increase the speed at which\l"
-	.string "healthbars drop from damage.$"
+	.string "healthbars drop from damage.\l"
+	.string "Additionally, pressing the A or B Button\l"
+	.string "will skip text delays.$"
 
 Help_Text_BattleAnimSpeed::
 	.string "BATTLE ANIM SPEED$"
