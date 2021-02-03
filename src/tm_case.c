@@ -169,12 +169,11 @@ static void (*const sSelectTMActionTasks[])(u8 taskId) = {
 
 static const struct MenuAction sMenuActions_UseGiveExit[] = {
     {gOtherText_Use,  TMHMContextMenuAction_Use },
-    {gOtherText_Give, TMHMContextMenuAction_Give},
     {gOtherText_Exit, TMHMContextMenuAction_Exit},
 };
 
 static const u8 sMenuActionIndices_Field[] = {0, 1, 2};
-static const u8 sMenuActionIndices_UnionRoom[] = {1, 2};
+static const u8 sMenuActionIndices_UnionRoom[] = {1, 1};
 static const struct YesNoFuncTable sYesNoFuncTable = {Task_PrintSaleConfirmedText, Task_SaleOfTMsCanceled};
 
 static const u8 sText_ClearTo18[] = _("{CLEAR_TO 18}");
@@ -205,8 +204,8 @@ static const struct WindowTemplate sWindowTemplates[] = {
 static const struct WindowTemplate sYesNoWindowTemplate = {0x01, 0x15, 0x09, 0x06, 0x04, 0x0f, 0x0335};
 
 static const struct WindowTemplate sTMContextWindowTemplates[] = {
-    {0x01, 0x16, 0x0d, 0x07, 0x06, 0x0f, 0x01cf},
-    {0x01, 0x16, 0x0f, 0x07, 0x04, 0x0f, 0x01cf}
+    {0x01, 0x16, 0x0f, 0x07, 0x04, 0x0f, 0x01cf},
+    {0x01, 0x16, 0x11, 0x07, 0x02, 0x0f, 0x01cf}
 };
 
 static const struct OamData sTMSpriteOamData = {
@@ -783,13 +782,13 @@ static void Task_SelectTMAction_FromFieldBag(u8 taskId)
     {
         AddTMContextMenu(&sTMCaseDynamicResources->contextMenuWindowId, 0);
         sTMCaseDynamicResources->menuActionIndices = sMenuActionIndices_Field;
-        sTMCaseDynamicResources->numMenuActions = NELEMS(sMenuActionIndices_Field);
+        sTMCaseDynamicResources->numMenuActions = 2;
     }
     else
     {
         AddTMContextMenu(&sTMCaseDynamicResources->contextMenuWindowId, 1);
         sTMCaseDynamicResources->menuActionIndices = sMenuActionIndices_UnionRoom;
-        sTMCaseDynamicResources->numMenuActions = NELEMS(sMenuActionIndices_UnionRoom);
+        sTMCaseDynamicResources->numMenuActions = 1;
     }
     AddItemMenuActionTextPrinters(sTMCaseDynamicResources->contextMenuWindowId, 2, GetMenuCursorDimensionByFont(2, 0), 2, 0, GetFontAttribute(2, 1) + 2, sTMCaseDynamicResources->numMenuActions, sMenuActions_UseGiveExit, sTMCaseDynamicResources->menuActionIndices);
     Menu_InitCursor(sTMCaseDynamicResources->contextMenuWindowId, 2, 0, 2, GetFontAttribute(2, 1) + 2, sTMCaseDynamicResources->numMenuActions, 0);
