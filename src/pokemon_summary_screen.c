@@ -2373,6 +2373,8 @@ static void sub_81367B0(void)
 
 static void sub_81367E8(u8 i)
 {
+    struct Pokemon *mon = &sMonSummaryScreen->currentMon;
+
     if (i < 4)
         sMonSummaryScreen->unk325A[i] = sub_8138BEC(&sMonSummaryScreen->currentMon, i);
 
@@ -2387,8 +2389,28 @@ static void sub_81367E8(u8 i)
         return;
     }
 
-    sMonSummaryScreen->unk3264++;
-    sMonSummaryScreen->unk3250[i] = gBattleMoves[sMonSummaryScreen->unk325A[i]].type;
+    if(sMonSummaryScreen->unk325A[i] == MOVE_HIDDEN_POWER)
+    {
+        u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
+                     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
+                     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
+                     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
+                     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
+                     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
+
+        u8 type = (15 * typeBits) / 63 + 1;
+        if (type >= TYPE_MYSTERY)
+            type++;
+        //type |= 0xC0;
+        sMonSummaryScreen->unk3264++;
+        sMonSummaryScreen->unk3250[i] = type;
+    }
+    else
+    {
+        sMonSummaryScreen->unk3264++;
+        sMonSummaryScreen->unk3250[i] = gBattleMoves[sMonSummaryScreen->unk325A[i]].type;
+    }
+
     StringCopy(sMonSummaryScreen->summary.unk3128[i], gMoveNames[sMonSummaryScreen->unk325A[i]]);
 
     if (i >= 4 && sMonSummaryScreen->mode == PSS_MODE_SELECT_MOVE)
@@ -2410,11 +2432,26 @@ static void sub_81367E8(u8 i)
     sUnknown_203B144->unk12[i] = MACRO_81367E8_0(2, sMonSummaryScreen->summary.unk30B8[i]);
     sUnknown_203B144->unk1C[i] = MACRO_81367E8_0(2, sMonSummaryScreen->summary.unk30F0[i]);
 
-    if (gBattleMoves[sMonSummaryScreen->unk325A[i]].power <= 1)
+    if (gBattleMoves[sMonSummaryScreen->unk325A[i]].power <= 1 && sMonSummaryScreen->unk325A[i] != MOVE_HIDDEN_POWER)
         StringCopy(sMonSummaryScreen->summary.unk316C[i], gText_ThreeHyphens);
     else
-        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk316C[i], gBattleMoves[sMonSummaryScreen->unk325A[i]].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
-
+    {
+        if(sMonSummaryScreen->unk325A[i] == MOVE_HIDDEN_POWER)
+        {
+            u8 powerBits = ((GetMonData(mon, MON_DATA_HP_IV) & 2) >> 1)
+             	 	 | ((GetMonData(mon, MON_DATA_ATK_IV) & 2) << 0)
+             	 	 | ((GetMonData(mon, MON_DATA_DEF_IV) & 2) << 1)
+              	 	 | ((GetMonData(mon, MON_DATA_SPEED_IV) & 2) << 2)
+              	 	 | ((GetMonData(mon, MON_DATA_SPATK_IV)& 2) << 3)
+             	 	 | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 2) << 4);
+			  
+			u8 powerForHiddenPower = (40 * powerBits) / 63 + 30;
+			  
+			ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk316C[i], powerForHiddenPower, STR_CONV_MODE_RIGHT_ALIGN, 3);
+        }
+        else
+            ConvertIntToDecimalStringN(sMonSummaryScreen->summary.unk316C[i], gBattleMoves[sMonSummaryScreen->unk325A[i]].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+    }
     if (gBattleMoves[sMonSummaryScreen->unk325A[i]].accuracy == 0)
         StringCopy(sMonSummaryScreen->summary.unk3188[i], gText_ThreeHyphens);
     else
@@ -3053,7 +3090,7 @@ static void sub_8137C18(void)
 
 }
 
-static void sub_8137C90(void)
+static void sub_8137C90(void) //where move icons are printed
 {
     u32 i;
 

@@ -54,6 +54,7 @@
 - The bike now has two gears, one for the default speed, and one for Mach Bike speed. Press B while biking to switch between them.
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 - The Victory Road boulder puzzles no longer reset.
+- Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
