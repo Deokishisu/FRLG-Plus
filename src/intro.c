@@ -15,7 +15,6 @@
 #include "util.h"
 #include "trig.h"
 #include "constants/songs.h"
-#include "constants/species.h"
 
 struct IntroSequenceData;
 

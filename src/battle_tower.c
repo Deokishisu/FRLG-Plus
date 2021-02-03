@@ -27,7 +27,6 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
-#include "constants/vars.h"
 #include "constants/event_objects.h"
 
 static EWRAM_DATA u16 sSpecialVar_0x8004_Copy = 0;

@@ -17,7 +17,6 @@
 #include "constants/items.h"
 #include "constants/metatile_labels.h"
 #include "constants/songs.h"
-#include "constants/vars.h"
 
 // TODO: Metatile IDs in this file
 

@@ -50,8 +50,6 @@
 #include "wild_encounter.h"
 #include "constants/abilities.h"
 #include "constants/maps.h"
-#include "constants/flags.h"
-#include "constants/species.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 

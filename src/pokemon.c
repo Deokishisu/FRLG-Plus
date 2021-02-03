@@ -25,7 +25,6 @@
 #include "field_specials.h"
 #include "constants/items.h"
 #include "constants/item_effects.h"
-#include "constants/species.h"
 #include "constants/hoenn_cries.h"
 #include "constants/pokemon.h"
 #include "constants/abilities.h"
@@ -5535,10 +5534,10 @@ static u16 HoennPokedexNumToSpecies(u16 var)
 
     species = 0;
 
-    while (species < POKEMON_SLOTS_NUMBER - 1 && sSpeciesToHoennPokedexNum[species] != var)
+    while (species < NUM_SPECIES - 1 && sSpeciesToHoennPokedexNum[species] != var)
         species++;
 
-    if (species == POKEMON_SLOTS_NUMBER - 1)
+    if (species == NUM_SPECIES - 1)
         return 0;
 
     return species + 1;
@@ -5553,10 +5552,10 @@ u16 NationalPokedexNumToSpecies(u16 nationalNum)
 
     species = 0;
 
-    while (species < POKEMON_SLOTS_NUMBER - 1 && sSpeciesToNationalPokedexNum[species] != nationalNum)
+    while (species < NUM_SPECIES - 1 && sSpeciesToNationalPokedexNum[species] != nationalNum)
         species++;
 
-    if (species == POKEMON_SLOTS_NUMBER - 1)
+    if (species == NUM_SPECIES - 1)
         return 0;
 
     return species + 1;
@@ -5571,10 +5570,10 @@ static u16 NationalToHoennOrder(u16 nationalNum)
 
     hoennNum = 0;
 
-    while (hoennNum < POKEMON_SLOTS_NUMBER - 1 && sHoennToNationalOrder[hoennNum] != nationalNum)
+    while (hoennNum < NUM_SPECIES - 1 && sHoennToNationalOrder[hoennNum] != nationalNum)
         hoennNum++;
 
-    if (hoennNum == POKEMON_SLOTS_NUMBER - 1)
+    if (hoennNum == NUM_SPECIES - 1)
         return 0;
 
     return hoennNum + 1;

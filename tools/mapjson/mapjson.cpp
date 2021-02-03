@@ -136,6 +136,10 @@ string generate_map_connections_text(Json map_data) {
 
     ostringstream text;
 
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/" 
+         << map_data["name"].string_value() 
+         << "/map.json\n@\n\n";
+
     text << map_data["name"].string_value() << "_MapConnectionsList::\n";
 
     for (auto &connection : map_data["connections"].array_items()) {
@@ -157,6 +161,10 @@ string generate_map_events_text(Json map_data) {
         return string("\n");
 
     ostringstream text;
+
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/" 
+         << map_data["name"].string_value() 
+         << "/map.json\n@\n\n";
 
     string objects_label, warps_label, coords_label, bgs_label;
 
@@ -267,6 +275,10 @@ string generate_map_events_text(Json map_data) {
 
 string generate_firered_map_events_text(Json map_data) {
     ostringstream text;
+
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/" 
+         << map_data["name"].string_value() 
+         << "/map.json\n@\n\n";
 
     string objects_label, warps_label, coords_label, bgs_label;
 
@@ -405,6 +417,8 @@ void process_map(string map_filepath, string layouts_filepath) {
 string generate_groups_text(Json groups_data) {
     ostringstream text;
 
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+
     for (auto &key : groups_data["group_order"].array_items()) {
         string group = key.string_value();
         text << group << "::\n";
@@ -447,6 +461,8 @@ string generate_connections_text(Json groups_data) {
 
     ostringstream text;
 
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+
     for (Json map_name : map_names)
         text << "\t.include \"data/maps/" << map_name.string_value() << "/connections.inc\"\n";
 
@@ -461,6 +477,8 @@ string generate_headers_text(Json groups_data) {
         map_names.push_back(map_name.string_value());
 
     ostringstream text;
+
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
 
     for (string map_name : map_names)
         text << "\t.include \"data/maps/" << map_name << "/header.inc\"\n";
@@ -477,6 +495,8 @@ string generate_events_text(Json groups_data) {
 
     ostringstream text;
 
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n@\n\n";
+
     for (string map_name : map_names)
         text << "\t.include \"data/maps/" << map_name << "/events.inc\"\n";
 
@@ -491,6 +511,8 @@ string generate_map_constants_text(string groups_filepath, Json groups_data) {
 
     text << "#ifndef GUARD_CONSTANTS_MAP_GROUPS_H\n"
          << "#define GUARD_CONSTANTS_MAP_GROUPS_H\n\n";
+
+    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json\n//\n\n";
 
     int group_num = 0;
 
@@ -550,6 +572,8 @@ void process_groups(string groups_filepath) {
 string generate_layout_headers_text(Json layouts_data) {
     ostringstream text;
 
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/layouts/layouts.json\n@\n\n";
+
     for (auto &layout : layouts_data["layouts"].array_items()) {
         if (layout == Json::object()) continue;
         string border_label = layout["name"].string_value() + "_Border";
@@ -582,6 +606,8 @@ string generate_layout_headers_text(Json layouts_data) {
 string generate_layouts_table_text(Json layouts_data) {
     ostringstream text;
 
+    text << "@\n@ DO NOT MODIFY THIS FILE! It is auto-generated from data/layouts/layouts.json\n@\n\n";
+
     text << "\t.align 2\n"
          << layouts_data["layouts_table_label"].string_value() << "::\n";
 
@@ -599,6 +625,8 @@ string generate_layouts_constants_text(Json layouts_data) {
 
     text << "#ifndef GUARD_CONSTANTS_LAYOUTS_H\n"
          << "#define GUARD_CONSTANTS_LAYOUTS_H\n\n";
+
+    text << "//\n// DO NOT MODIFY THIS FILE! It is auto-generated from data/layouts/layouts.json\n//\n\n";
 
     int i = 1;
     for (auto &layout : layouts_data["layouts"].array_items()) {
