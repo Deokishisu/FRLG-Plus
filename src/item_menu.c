@@ -1444,6 +1444,7 @@ static void OpenContextMenu(u8 taskId)
                 else if(IsUnregisterableKeyItem(gSpecialVar_ItemId))
                 {
                     sContextMenuNumItems = 2;
+                    sContextMenuItemsBuffer[0] = ITEMMENUACTION_USE;
                     sContextMenuItemsBuffer[1] = ITEMMENUACTION_CANCEL;
                 }
                 else if (gSpecialVar_ItemId == ITEM_BICYCLE && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_MACH_BIKE))
