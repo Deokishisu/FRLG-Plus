@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "berry.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "item.h"
 #include "party_menu.h"
 #include "item_use.h"
@@ -17,6 +18,7 @@ EWRAM_DATA struct ItemSlot gTmHmItemSlots[BAG_TMHM_COUNT] = {0};
 EWRAM_DATA struct ItemSlot gKeyItemSlots[BAG_KEYITEMS_COUNT] = {0};
 
 void SortAndCompactBagPocket(struct BagPocket * pocket);
+static void RemoveTMItemBall(u16 itemId);
 
 // Item descriptions and data
 #include "data/items.h"
@@ -310,7 +312,131 @@ bool8 AddBagItem(u16 itemId, u16 count)
 
     gBagPockets[pocket].itemSlots[idx].itemId = itemId;
     SetBagItemQuantity(&gBagPockets[pocket].itemSlots[idx].quantity, count);
+    RemoveTMItemBall(itemId);
     return TRUE;
+}
+
+static void RemoveTMItemBall(u16 itemId)
+{
+    if ((ItemId_GetPocket(itemId) - 1) != POCKET_TM_CASE - 1) //not TM
+    {
+        return;
+    }
+    switch(itemId)
+    {
+        case ITEM_TM01:
+            FlagSet(FLAG_HIDE_SILPH_CO_5F_TM01);
+            RemoveObjectEventByLocalIdAndMap(7, MAP_NUM(SILPH_CO_5F), MAP_GROUP(SILPH_CO_5F));
+            return;
+        case ITEM_TM02:
+            FlagSet(FLAG_HIDE_VICTORY_ROAD_1F_TM02);
+            RemoveObjectEventByLocalIdAndMap(4, MAP_NUM(VICTORY_ROAD_1F), MAP_GROUP(VICTORY_ROAD_1F));
+            return;
+        case ITEM_TM05:
+            FlagSet(FLAG_HIDE_ROUTE4_TM05);
+            RemoveObjectEventByLocalIdAndMap(3, MAP_NUM(ROUTE4), MAP_GROUP(ROUTE4));
+            return;
+        case ITEM_TM07:
+            FlagSet(FLAG_HIDE_VICTORY_ROAD_2F_TM07);
+            RemoveObjectEventByLocalIdAndMap(7, MAP_NUM(VICTORY_ROAD_2F), MAP_GROUP(VICTORY_ROAD_2F));
+            return;
+        case ITEM_TM08:
+            FlagSet(FLAG_HIDE_SILPH_CO_7F_TM08);
+            RemoveObjectEventByLocalIdAndMap(11, MAP_NUM(SILPH_CO_7F), MAP_GROUP(SILPH_CO_7F));
+            return;
+        case ITEM_TM09:
+            FlagSet(FLAG_HIDE_MT_MOON_1F_TM09);
+            RemoveObjectEventByLocalIdAndMap(9, MAP_NUM(MT_MOON_1F), MAP_GROUP(MT_MOON_1F));
+            return;
+        case ITEM_TM11:
+            FlagSet(FLAG_HIDE_SAFARI_ZONE_EAST_TM11);
+            RemoveObjectEventByLocalIdAndMap(3, MAP_NUM(SAFARI_ZONE_EAST), MAP_GROUP(SAFARI_ZONE_EAST));
+            return;
+        case ITEM_TM12:
+            FlagSet(FLAG_HIDE_ROCKET_HIDEOUT_B2F_TM12);
+            RemoveObjectEventByLocalIdAndMap(4, MAP_NUM(ROCKET_HIDEOUT_B2F), MAP_GROUP(ROCKET_HIDEOUT_B2F));
+            return;
+        case ITEM_TM14:
+            FlagSet(FLAG_HIDE_POKEMON_MANSION_B1F_TM14);
+            RemoveObjectEventByLocalIdAndMap(4, MAP_NUM(POKEMON_MANSION_B1F), MAP_GROUP(POKEMON_MANSION_B1F));
+            return;
+        case ITEM_TM17:
+            FlagSet(FLAG_HIDE_POWER_PLANT_TM17);
+            RemoveObjectEventByLocalIdAndMap(2, MAP_NUM(POWER_PLANT), MAP_GROUP(POWER_PLANT));
+            return;
+        case ITEM_TM18:
+            FlagSet(FLAG_HIDE_ROUTE15_TM18);
+            RemoveObjectEventByLocalIdAndMap(11, MAP_NUM(ROUTE15), MAP_GROUP(ROUTE15));
+            return;
+        case ITEM_TM21:
+            FlagSet(FLAG_HIDE_ROCKET_HIDEOUT_B3F_TM21);
+            RemoveObjectEventByLocalIdAndMap(4, MAP_NUM(ROCKET_HIDEOUT_B3F), MAP_GROUP(ROCKET_HIDEOUT_B3F));
+            return;
+        case ITEM_TM22:
+            FlagSet(FLAG_HIDE_POKEMON_MANSION_B1F_TM22);
+            RemoveObjectEventByLocalIdAndMap(1, MAP_NUM(POKEMON_MANSION_B1F), MAP_GROUP(POKEMON_MANSION_B1F));
+            return;
+        case ITEM_TM25:
+            FlagSet(FLAG_HIDE_POWER_PLANT_TM25);
+            RemoveObjectEventByLocalIdAndMap(3, MAP_NUM(POWER_PLANT), MAP_GROUP(POWER_PLANT));
+            return;
+        case ITEM_TM31:
+            FlagSet(FLAG_HIDE_SSANNE_1F_ROOM2_TM31);
+            RemoveObjectEventByLocalIdAndMap(4, MAP_NUM(SSANNE_1F_ROOM2), MAP_GROUP(SSANNE_1F_ROOM2));
+            return;
+        case ITEM_TM32:
+            FlagSet(FLAG_HIDE_SAFARI_ZONE_WEST_TM32);
+            RemoveObjectEventByLocalIdAndMap(2, MAP_NUM(SAFARI_ZONE_WEST), MAP_GROUP(SAFARI_ZONE_WEST));
+            return;
+        case ITEM_TM36:
+            FlagSet(FLAG_HIDE_FIVE_ISLAND_ROCKET_WAREHOUSE_TM36);
+            RemoveObjectEventByLocalIdAndMap(8, MAP_NUM(FIVE_ISLAND_ROCKET_WAREHOUSE), MAP_GROUP(FIVE_ISLAND_ROCKET_WAREHOUSE));
+            return;
+        case ITEM_TM37:
+            FlagSet(FLAG_HIDE_VICTORY_ROAD_2F_TM37);
+            RemoveObjectEventByLocalIdAndMap(9, MAP_NUM(VICTORY_ROAD_2F), MAP_GROUP(VICTORY_ROAD_2F));
+            return;
+        case ITEM_TM40:
+            FlagSet(FLAG_HIDE_ROUTE9_TM40);
+            RemoveObjectEventByLocalIdAndMap(11, MAP_NUM(ROUTE9), MAP_GROUP(ROUTE9));
+            return;
+        case ITEM_TM41:
+            FlagSet(FLAG_HIDE_SILPH_CO_4F_TM41);
+            RemoveObjectEventByLocalIdAndMap(8, MAP_NUM(SILPH_CO_4F), MAP_GROUP(SILPH_CO_4F));
+            return;
+        case ITEM_TM43:
+            FlagSet(FLAG_HIDE_ROUTE25_TM43);
+            RemoveObjectEventByLocalIdAndMap(10, MAP_NUM(ROUTE25), MAP_GROUP(ROUTE25));
+            return;
+        case ITEM_TM44:
+            FlagSet(FLAG_HIDE_SSANNE_B1F_ROOM2_TM44);
+            RemoveObjectEventByLocalIdAndMap(2, MAP_NUM(SSANNE_B1F_ROOM2), MAP_GROUP(SSANNE_B1F_ROOM2));
+            return;
+        case ITEM_TM45:
+            FlagSet(FLAG_HIDE_ROUTE24_TM45);
+            RemoveObjectEventByLocalIdAndMap(8, MAP_NUM(ROUTE24), MAP_GROUP(ROUTE24));
+            return;
+        case ITEM_TM46:
+            FlagSet(FLAG_HIDE_MT_MOON_B2F_TM46);
+            RemoveObjectEventByLocalIdAndMap(9, MAP_NUM(MT_MOON_B2F), MAP_GROUP(MT_MOON_B2F));
+            return;
+        case ITEM_TM47:
+            FlagSet(FLAG_HIDE_SAFARI_ZONE_NORTH_TM47);
+            RemoveObjectEventByLocalIdAndMap(2, MAP_NUM(SAFARI_ZONE_NORTH), MAP_GROUP(SAFARI_ZONE_NORTH));
+            return;
+        case ITEM_TM48:
+            FlagSet(FLAG_HIDE_ROUTE12_TM48);
+            RemoveObjectEventByLocalIdAndMap(10, MAP_NUM(ROUTE12), MAP_GROUP(ROUTE12));
+            return;
+        case ITEM_TM49:
+            FlagSet(FLAG_HIDE_ROCKET_HIDEOUT_B4F_TM49);
+            RemoveObjectEventByLocalIdAndMap(7, MAP_NUM(ROCKET_HIDEOUT_B4F), MAP_GROUP(ROCKET_HIDEOUT_B4F));
+            return;
+        case ITEM_TM50:
+            FlagSet(FLAG_HIDE_VICTORY_ROAD_3F_TM50);
+            RemoveObjectEventByLocalIdAndMap(6, MAP_NUM(VICTORY_ROAD_3F), MAP_GROUP(VICTORY_ROAD_3F));
+            return;
+    }
 }
 
 bool8 RemoveBagItem(u16 itemId, u16 count)

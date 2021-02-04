@@ -212,7 +212,7 @@ VermilionCity_Gym_EventScript_LtSurge:: @ 816B94A
 	goto_if_eq VermilionCity_Gym_EventScript_LtSurge_ChallengeMode
 	trainerbattle_single TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_DefeatedLtSurge, NO_MUSIC
 	settrainerflag TRAINER_LEADER_LT_SURGE_CHALLENGE
-	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM43
+	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
 	release
 	end
@@ -220,7 +220,7 @@ VermilionCity_Gym_EventScript_LtSurge:: @ 816B94A
 VermilionCity_Gym_EventScript_LtSurge_ChallengeMode::
 	trainerbattle_single TRAINER_LEADER_LT_SURGE_CHALLENGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_DefeatedLtSurge, NO_MUSIC
 	settrainerflag TRAINER_LEADER_LT_SURGE
-	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM43
+	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
 	release
 	end
@@ -232,25 +232,25 @@ VermilionCity_Gym_EventScript_DefeatedLtSurge:: @ 816B97C
 	setflag FLAG_DEFEATED_LT_SURGE
 	setflag FLAG_BADGE03_GET
 	set_gym_trainers 3
-	goto VermilionCity_Gym_EventScript_GiveTM43
+	goto VermilionCity_Gym_EventScript_GiveTM34
 	end
 
 VermilionCity_Gym_EventScript_ShowOaksAide:: @ 816B9AB
 	clearflag FLAG_HIDE_VERMILION_CITY_OAKS_AIDE
 	return
 
-VermilionCity_Gym_EventScript_GiveTM43:: @ 816B9AF
+VermilionCity_Gym_EventScript_GiveTM34:: @ 816B9AF
 	msgbox VermilionCity_Gym_Text_ExplainThunderBadgeTakeThis
 	checkitemspace ITEM_TM34, 1
 	compare VAR_RESULT, FALSE
-	goto_if_eq VermilionCity_Gym_EventScript_NoRoomForTM43
-	giveitem_msg VermilionCity_Gym_Text_ReceivedTM43FromLtSurge, ITEM_TM34
+	goto_if_eq VermilionCity_Gym_EventScript_NoRoomForTM34
+	giveitem_msg VermilionCity_Gym_Text_ReceivedTM34FromLtSurge, ITEM_TM34
 	setflag FLAG_GOT_TM34_FROM_SURGE
 	msgbox VermilionCity_Gym_Text_ExplainTM34
 	release
 	end
 
-VermilionCity_Gym_EventScript_NoRoomForTM43:: @ 816B9F0
+VermilionCity_Gym_EventScript_NoRoomForTM34:: @ 816B9F0
 	msgbox VermilionCity_Gym_Text_MakeRoomInYourBag
 	release
 	end
