@@ -1354,6 +1354,23 @@ static void CopyBagListBgTileRowToTilemapBuffer(u8 frame)
     ScheduleBgCopyTilemapToVram(1);
 }
 
+static bool8 IsUnregisterableKeyItem(u16 item)
+{
+    switch(item)
+    {
+        case ITEM_MACH_BIKE ... ITEM_SUPER_ROD:
+        case ITEM_WAILMER_PAIL:
+        case ITEM_SOOT_SACK:
+        case ITEM_ACRO_BIKE:
+        case ITEM_POKEBLOCK_CASE:
+        case ITEM_POKE_FLUTE:
+        case ITEM_BICYCLE ... ITEM_TEACHY_TV:
+        case ITEM_POWDER_JAR:
+            return FALSE;
+    }
+    return TRUE;
+}
+
 static void OpenContextMenu(u8 taskId)
 {
     u8 r6;
@@ -1424,6 +1441,11 @@ static void OpenContextMenu(u8 taskId)
                     sContextMenuItemsBuffer[1] = ITEMMENUACTION_REGISTER;
                 if (gSpecialVar_ItemId == ITEM_TM_CASE || gSpecialVar_ItemId == ITEM_BERRY_POUCH)
                     sContextMenuItemsBuffer[0] = ITEMMENUACTION_OPEN;
+                else if(IsUnregisterableKeyItem(gSpecialVar_ItemId))
+                {
+                    sContextMenuNumItems = 2;
+                    sContextMenuItemsBuffer[1] = ITEMMENUACTION_CANCEL;
+                }
                 else if (gSpecialVar_ItemId == ITEM_BICYCLE && TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE | PLAYER_AVATAR_FLAG_MACH_BIKE))
                     sContextMenuItemsBuffer[0] = ITEMMENUACTION_WALK;
                 else

@@ -1023,11 +1023,13 @@ Help_Text_HowToUseRun:: @ 81B7931
 	.string "   if your POKéMON in battle is fast.$"
 
 Help_Text_HowToRegisterKeyItem:: @ 81B79CB
-	.string "You may “REGISTER” a key item for\n"
-	.string "instant use by pressing SELECT!\n"
+	.string "You may “REGISTER” certain key items\n"
+	.string "for instant use by pressing SELECT!\n"
 	.string "{CIRCLE_1} Open the “KEY ITEMS” POCKET.\n"
 	.string "{CIRCLE_2} Select the key item, then select\n"
-	.string "   “REGISTER.”$"
+	.string "   “REGISTER.”\n"
+	.string "{CIRCLE_3} Only items that have a use in the\n"
+	.string "   field can be registered.$"
 
 Help_Text_HowToUseBall:: @ 81B7A60
 	.string "{CIRCLE_1} Select to throw the special POKé\n"
@@ -1387,10 +1389,10 @@ Help_Text_DefineItems:: @ 81B8DD4
 	.string "to hold, or tossed out as garbage.$"
 
 Help_Text_DefineKeyItems:: @ 81B8E67
-	.string "Important items that you find or \n"
+	.string "Important items that you find or\n"
 	.string "receive from people are placed in the\l"
-	.string "KEY ITEMS POCKET.\l"
-	.string "Key items may be used, or registered\l"
+	.string "KEY ITEMS POCKET. Key items may be\l"
+	.string "used, and some may be registered\l"
 	.string "for use instantly with SELECT. Once\l"
 	.string "registered, the item can be used\l"
 	.string "without opening the MENU and BAG.$"
