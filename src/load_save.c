@@ -9,6 +9,7 @@
 #include "berry_powder.h"
 #include "overworld.h"
 #include "quest_log.h"
+#include "constants/items.h"
 
 #define SAVEBLOCK_MOVE_RANGE    128
 
@@ -217,6 +218,10 @@ void SerializeKeyItemSlots(void)
         if(gKeyItemSlots[i].itemId > 348) //FRLGE Key Items
         {
             gSaveBlock1Ptr->bagPocket_KeyItems[i] = (u8)(gKeyItemSlots[i].itemId - 348 + 30);
+        }
+        if(gKeyItemSlots[i].itemId == ITEM_LINK_BRACELET)
+        {
+            gSaveBlock1Ptr->bagPocket_KeyItems[i] = 59;
         }
     }
 }

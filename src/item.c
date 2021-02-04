@@ -93,6 +93,8 @@ void DeserializeKeyItemSlots(void)
             AddBagItem(gSaveBlock1Ptr->bagPocket_KeyItems[i] + 258, 1);
         if (gSaveBlock1Ptr->bagPocket_KeyItems[i] != 0 && gSaveBlock1Ptr->bagPocket_KeyItems[i] > 30)
             AddBagItem(gSaveBlock1Ptr->bagPocket_KeyItems[i] + 348 - 30, 1);
+        if (gSaveBlock1Ptr->bagPocket_KeyItems[i] == 59)
+            AddBagItem(ITEM_LINK_BRACELET, 1);
     }
 }
 
