@@ -155,6 +155,19 @@ static const struct MenuAction sScriptMultiChoiceMenu_DomeAmber[] = {
     { gOtherText_Exit }
 };
 
+static const struct MenuAction sScriptMultiChoiceMenu_HelixDome[] = {
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_HelixDomeAmber[] = {
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gOtherText_Exit }
+};
+
 static const struct MenuAction sScriptMultiChoiceMenu_CeladonVendingMachine[] = {
     { gText_FreshWater_200 },
     { gText_SodaPop_300 },
@@ -623,7 +636,9 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SeviiNavelBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirthFaraway) },
     { sScriptMultiChoiceMenu_BattleTowerLevels, NELEMS(sScriptMultiChoiceMenu_BattleTowerLevels) },
     { sScriptMultiChoiceMenu_SeviiTower, NELEMS(sScriptMultiChoiceMenu_SeviiTower) },
-    { sScriptMultiChoiceMenu_TriFaraway, NELEMS(sScriptMultiChoiceMenu_TriFaraway) }
+    { sScriptMultiChoiceMenu_TriFaraway, NELEMS(sScriptMultiChoiceMenu_TriFaraway) },
+    { sScriptMultiChoiceMenu_HelixDome, NELEMS(sScriptMultiChoiceMenu_HelixDome) },
+    { sScriptMultiChoiceMenu_HelixDomeAmber, NELEMS(sScriptMultiChoiceMenu_HelixDomeAmber) }
 };
 
 // From Cool to Berries goes unused

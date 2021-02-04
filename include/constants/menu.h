@@ -76,6 +76,8 @@
 #define MULTICHOICE_BATTLE_TOWER_LEVELS                        69
 #define MULTICHOICE_SEVII_TOWER                                70
 #define MULTICHOICE_TRI_FARAWAY                                71
+#define MULTICHOICE_HELIX_DOME                                 72
+#define MULTICHOICE_HELIX_DOME_AMBER                           73
 
 
 #define LISTMENU_BADGES                    0
