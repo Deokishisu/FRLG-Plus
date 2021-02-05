@@ -17,7 +17,7 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons:: @ 816CB88
 	showcoinsbox 0, 0
 	msgbox CeladonCity_GameCorner_PrizeRoom_Text_WeExchangeCoinsForPrizes
 	callnative IsVersionFireRedToVarResult
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, TRUE
 	goto_if_ne CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeMon_LG
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_ChoosePrizeMon_FR
 	end
