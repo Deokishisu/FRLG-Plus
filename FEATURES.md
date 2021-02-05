@@ -55,6 +55,7 @@
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 - The Victory Road boulder puzzles no longer reset.
 - Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
+- The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
@@ -63,6 +64,7 @@
 - The misspelling of "Pokcet" in the Teachy TV program has been fixed.
 - Raikou and Entei will not disappear if they Roar the player out of their battles.
 	* The roaming IV glitch will __not__ be fixed, as it affects the legality of the legendary beasts.
+- Fixed Karate King Koichi and Charine localization oversights. These characters are now named Kiyo and Janine as they are in GSC/HGSS.
 
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.

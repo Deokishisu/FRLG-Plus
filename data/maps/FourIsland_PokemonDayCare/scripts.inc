@@ -5,6 +5,7 @@ FourIsland_PokemonDayCare_EventScript_DaycareWoman:: @ 8171940
 	goto_if_questlog EventScript_ReleaseEnd
 	lock
 	faceplayer
+	goto_if_unset FLAG_GOT_RIVAL_STARTER_EGG, FourIsland_PokemonDayCare_EventScript_StarterEggDaycareWoman
 	specialvar VAR_RESULT, GetDaycareState
 	compare VAR_RESULT, DAYCARE_EGG_WAITING
 	goto_if_eq FourIsland_PokemonDayCare_EggWaiting
@@ -179,6 +180,14 @@ FourIsland_PokemonDayCare_Movement_RetrieveMon:: @ 8171B71
 	set_visible
 	walk_slowest_down
 	step_end
+
+FourIsland_PokemonDayCare_EventScript_StarterEggDaycareWoman::
+	msgbox FourIsland_PokemonDayCare_Text_StarterEggDaycareWoman
+	release
+	end
+
+FourIsland_PokemonDayCare_Text_StarterEggDaycareWoman::
+	.string "My husband outside is looking for\na TRAINER.\pPlease go see him.$"
 
 @ Unused. Possibly a commented script, or a typo end added to the above Movement script
 FourIsland_PokemonDayCare_EventScript_UnusedEnd:: @ 8171B85

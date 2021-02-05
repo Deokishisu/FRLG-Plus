@@ -87,7 +87,7 @@
 #define VAR_0x402A                         0x402A
 #define VAR_0x402B                         0x402B
 #define VAR_RESET_RTC_ENABLE               0x402C
-#define VAR_0x402D                         0x402D
+#define VAR_DAYCARE_MAN_TRIGGERS           0x402D
 
 #define VAR_GLASS_WORKSHOP_STATE           0x402E
 #define VAR_ASH_GATHER_COUNT               0x402F

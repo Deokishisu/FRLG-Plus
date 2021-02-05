@@ -1,6 +1,7 @@
 #include "global.h"
 #include "item.h"
 #include "field_specials.h"
+#include "event_object_movement.h"
 #include "overworld.h"
 #include "script.h"
 #include "sound.h"
@@ -620,6 +621,7 @@ void IsVersionFireRedToVarResult(void)
     else
         gSpecialVar_Result = FALSE;
 }
+
 void IsChallengeModeToVarResult(void)
 {
     u8 difficulty = gSaveBlock1Ptr->keyFlags.difficulty;
@@ -631,6 +633,29 @@ void IsChallengeModeToVarResult(void)
     {
         gSpecialVar_Result = FALSE;
     }
+}
+
+void MoveDaycareMan(void)
+{
+    if(!FlagGet(FLAG_GOT_RIVAL_STARTER_EGG))
+    {
+        VarSet(VAR_DAYCARE_MAN_TRIGGERS, 1);
+        return;
+    }
+    if(FlagGet(FLAG_PENDING_DAYCARE_EGG))
+    {
+        Overworld_SetMapObjTemplateCoords(1, 16, 14);
+        TryMoveObjectEventToMapCoords(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, 16, 14);
+        VarSet(VAR_DAYCARE_MAN_TRIGGERS, 1);
+        return;
+    }
+    /*else
+    {
+        Overworld_SetMapObjTemplateCoords(1, 16, 13);
+        TryMoveObjectEventToMapCoords(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, 16, 13);
+        VarSet(VAR_DAYCARE_MAN_TRIGGERS, 1);
+        return;
+    }*/
 }
 
 void FillBagsTest(void)

@@ -750,12 +750,14 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 //    }
 
     daycare->offspringPersonality = ((Random()) % 0xFFFE) + 1;
+    VarSet(VAR_DAYCARE_MAN_TRIGGERS, 0);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
 
 static void _TriggerPendingDaycareMaleEgg(struct DayCare *daycare)
 {
     daycare->offspringPersonality = (Random()) | (EGG_GENDER_MALE);
+    VarSet(VAR_DAYCARE_MAN_TRIGGERS, 0);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
 
@@ -1084,6 +1086,119 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     CompactPartySlots();
     CalculatePlayerPartyCount();
     RemoveEggFromDayCare(daycare);
+}
+
+static void RivalStarterEggIVs(struct Pokemon *egg)
+{
+    u32 i;
+    u8 selectedIvs[INHERITED_IV_COUNT];
+    u8 availableIVs[NUM_STATS];
+    u8 whichParent[ARRAY_COUNT(selectedIvs)];
+    u8 iv;
+
+    // Initialize a list of IV indices.
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        availableIVs[i] = i;
+    }
+
+    // Select the 3 IVs that will be inherited.
+    for (i = 0; i < ARRAY_COUNT(selectedIvs); i++)
+    {
+        // Randomly pick an IV from the available list and stop from being chosen again.
+        selectedIvs[i] = availableIVs[Random() % (NUM_STATS - i)];
+        RemoveIVIndexFromList(availableIVs, selectedIvs[i]);
+    }
+
+    // Set each of inherited IVs on the egg mon.
+    for (i = 0; i < ARRAY_COUNT(selectedIvs); i++)
+    {
+        switch (selectedIvs[i])
+        {
+            case 0:
+                iv = 31;
+                SetMonData(egg, MON_DATA_HP_IV, &iv);
+                break;
+            case 1:
+                iv = 31;
+                SetMonData(egg, MON_DATA_ATK_IV, &iv);
+                break;
+            case 2:
+                iv = 31;
+                SetMonData(egg, MON_DATA_DEF_IV, &iv);
+                break;
+            case 3:
+                iv = 31;
+                SetMonData(egg, MON_DATA_SPEED_IV, &iv);
+                break;
+            case 4:
+                iv = 31;
+                SetMonData(egg, MON_DATA_SPATK_IV, &iv);
+                break;
+            case 5:
+                iv = 31;
+                SetMonData(egg, MON_DATA_SPDEF_IV, &iv);
+                break;
+        }
+    }
+}
+
+void GiveRivalStarterEgg(void)
+{
+    struct Pokemon egg;
+    u16 species;
+    u8 parentSlots[DAYCARE_MON_COUNT];
+    bool8 isEgg;
+    u16 ball;
+    u8 metLevel;
+    u8 language;
+    u16 *playerStarter = GetVarPointer(VAR_STARTER_MON);
+    switch(*playerStarter)
+    {
+        case 0:
+            species = SPECIES_CHARMANDER;
+            break;
+        case 1:
+            species = SPECIES_BULBASAUR;
+            break;
+        case 2:
+            species = SPECIES_SQUIRTLE;
+            break;
+    }
+
+    //SetInitialEggData
+    CreateMon(&egg, species, EGG_HATCH_LEVEL, 32, TRUE, ((((Random()) % 0xFFFE) + 1) | (Random() << 16)), OT_ID_PLAYER_ID, 0);
+    switch(species)
+    {
+        case SPECIES_CHARMANDER:
+            GiveMoveToMon(&egg, MOVE_EMBER);
+            GiveMoveToMon(&egg, MOVE_BELLY_DRUM);
+            break;
+        case SPECIES_BULBASAUR:
+            GiveMoveToMon(&egg, MOVE_LEECH_SEED);
+            GiveMoveToMon(&egg, MOVE_CURSE);
+            break;
+        case SPECIES_SQUIRTLE:
+            GiveMoveToMon(&egg, MOVE_BUBBLE);
+            GiveMoveToMon(&egg, MOVE_MIRROR_COAT);
+            break;
+    }
+    metLevel = 0;
+    ball = ITEM_POKE_BALL;
+    language = LANGUAGE_JAPANESE;
+    SetMonData(&egg, MON_DATA_POKEBALL, &ball);
+    SetMonData(&egg, MON_DATA_NICKNAME, sJapaneseEggNickname);
+    SetMonData(&egg, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
+    SetMonData(&egg, MON_DATA_MET_LEVEL, &metLevel);
+    SetMonData(&egg, MON_DATA_LANGUAGE, &language);
+
+    RivalStarterEggIVs(&egg); // 3 31s, rest random.
+
+    isEgg = TRUE;
+    SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);
+    gPlayerParty[PARTY_SIZE - 1] = egg;
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
 }
 
 void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
