@@ -137,6 +137,7 @@ void NewGameInitData(void)
     ClearRoamerData();
     gSaveBlock1Ptr->registeredItem = 0;
     ClearBag();
+    DeserializeTmHmItemSlots();
     NewGameInitPCItems();
     sub_809C794();
     InitEasyChatPhrases();

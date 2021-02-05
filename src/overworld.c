@@ -20,6 +20,7 @@
 #include "fldeff.h"
 #include "heal_location.h"
 #include "help_system.h"
+#include "item.h"
 #include "link.h"
 #include "link_rfu.h"
 #include "load_save.h"
@@ -52,6 +53,7 @@
 #include "constants/maps.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
+#include "constants/items.h"
 
 #define PLAYER_TRADING_STATE_IDLE 0x80
 #define PLAYER_TRADING_STATE_BUSY 0x81
@@ -1547,6 +1549,8 @@ void CB2_NewGame(void)
     StopMapMusic();
     ResetSafariZoneFlag_();
     NewGameInitData();
+    AddBagItem(ITEM_BERRY_POUCH, 1);
+    AddBagItem(ITEM_TM_CASE, 1);
     gSaveBlock1Ptr->keyFlags.version = versionBackup;
     ResetInitialPlayerAvatarState();
     PlayTimeCounter_Start();
