@@ -174,8 +174,11 @@
 #define OBJ_EVENT_GFX_RED_UNDERWATER 170
 #define OBJ_EVENT_GFX_GREEN_UNDERWATER 171
 #define OBJ_EVENT_GFX_SCOTT 172
+#define OBJ_EVENT_GFX_BULBASAUR 173
+#define OBJ_EVENT_GFX_CHARMANDER 174
+#define OBJ_EVENT_GFX_SQUIRTLE 175
 
-#define NUM_OBJ_EVENT_GFX     173
+#define NUM_OBJ_EVENT_GFX     176
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

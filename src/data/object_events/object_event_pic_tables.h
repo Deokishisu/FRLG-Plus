@@ -1867,6 +1867,42 @@ const struct SpriteFrameImage gObjectEventPicTable_Suicune[] = {
     overworld_frame(gObjectEventPic_Suicune, 2, 2, 0),
 };
 
+const struct SpriteFrameImage gObjectEventPicTable_Bulbasaur[] = {
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Bulbasaur, 2, 2, 2),
+};
+
+const struct SpriteFrameImage gObjectEventPicTable_Charmander[] = {
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Charmander, 2, 2, 2),
+};
+
+const struct SpriteFrameImage gObjectEventPicTable_Squirtle[] = {
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Squirtle, 2, 2, 2),
+};
+
 const struct SpriteFrameImage gObjectEventPicTable_Lugia[] = {
     overworld_frame(gObjectEventPic_Lugia, 4, 4, 0),
     overworld_frame(gObjectEventPic_Lugia, 4, 4, 0),

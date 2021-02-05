@@ -29,6 +29,9 @@ PewterCity_Gym_EventScript_DefeatedBrock:: @ 816A5C5
 	setflag FLAG_HIDE_PEWTER_CITY_GYM_GUIDE
 	clearflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
 	set_gym_trainers 1
+	setflag FLAG_HIDE_CHARMANDER_BALL
+	setflag FLAG_HIDE_SQUIRTLE_BALL
+	setflag FLAG_HIDE_BULBASAUR_BALL
 	goto PewterCity_Gym_EventScript_GiveTM39
 	end
 
