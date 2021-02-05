@@ -236,6 +236,9 @@ ViridianCity_EventScript_TutorialTriggerRight:: @ 8165B2E
 	end
 
 ViridianCity_EventScript_DoTutorialBattle:: @ 8165B4C
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	compare VAR_RESULT, 1
+	goto_if_ne ViridianCity_EventScript_SkipTutorialBattle
 	msgbox ViridianCity_Text_ShowYouHowToCatchMons
 	closemessage
 	goto_if_questlog EventScript_ReleaseEnd
@@ -249,3 +252,13 @@ ViridianCity_EventScript_DoTutorialBattle:: @ 8165B4C
 	giveitem ITEM_TEACHY_TV
 	msgbox ViridianCity_Text_WatchThatToLearnBasics
 	return
+
+ViridianCity_EventScript_SkipTutorialBattle::
+	msgbox ViridianCity_Text_SkipTutorial
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	setvar VAR_MAP_SCENE_VIRIDIAN_CITY_OLD_MAN, 2
+	giveitem ITEM_TEACHY_TV
+	msgbox ViridianCity_Text_WatchThatToLearnBasics
+	release
+	end

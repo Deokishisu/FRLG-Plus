@@ -4,7 +4,7 @@
 
 #### Mechanical Additions:
 - A Key System has been implemented, similar to Black 2 and White 2. Press the L Button while on the Key System Menu to access the Help System, which has detailed information on each key. Use the keys to change various settings about your game. Those settings are:
-	*  __Version__: Switch between FireRed and LeafGreen to catch version exclusive Pokémon.
+	*  __Version__: Switch between FireRed and LeafGreen to catch version-exclusive Pokémon.
 	* __Difficulty__: Like in Black 2 and White 2, there is a Challenge and an Easy Mode difficulty. These difficulties scale trainer levels up or down, and in Challenge Mode important trainers will have an extra Pokémon and badge boosts are disabled.
 	* __Nuzlocke Toggle__: Can toggle on a Nuzlocke mode. Press the L Button on the Key System menu to read the special ruleset for this mode.
 	* __IV Calculation__: Can make the game treat your Pokémon's IVs as all perfect (31), all zero, or use their actual IVs as is standard for the purposes of stat calculation. This does not affect your Pokémon's actual IVs or Hidden Power, just how their stats are calculated. If set to all perfect, enemy Pokémon will also be treated as if they have all perfect IVs.
@@ -56,6 +56,7 @@
 - The Victory Road boulder puzzles no longer reset.
 - Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
+- The Old Man tutorial battle is skipped if you have more than one Pokémon with you.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
@@ -69,9 +70,10 @@
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
-- All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. Most Hoenn Pokémon will still need to be traded for. []
+- All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. All Hoenn Pokémon (except bred Wynaut and Azurill) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
 - Like in Emerald, baby Pichu can hatch knowing Volt Tackle if either of its parents held a Light Ball.
+- Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
 
