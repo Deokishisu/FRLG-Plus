@@ -234,6 +234,7 @@ FourIsland_EventScript_StarterEggDaycareMan_Text_1:
 	.string "I guess I'll keep this EGG until a\nTRAINER comes along who wants it.$"
 
 FourIsland_EventScript_RepositionDaycareMan::
+	goto_if_unset FLAG_GOT_RIVAL_STARTER_EGG, FourIsland_EventScript_RepositionDaycareMan_4
 	goto_if_unset FLAG_PENDING_DAYCARE_EGG, FourIsland_EventScript_RepositionDaycareMan_2
 	getplayerxy VAR_TEMP_1, VAR_RESULT
 	compare VAR_TEMP_1, 9
