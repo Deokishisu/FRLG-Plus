@@ -871,16 +871,19 @@
 #define FLAG_NUZLOCKE_SAFARI_WEST      0x350
 #define FLAG_NUZLOCKE_SAFARI_NORTH_WEST 0x351
 #define FLAG_NUZLOCKE_SAFARI_NORTH_EAST 0x352
+#define FLAG_NUZLOCKE_ARTISAN_CAVE     0x353
 
 // Unused?
-#define FLAG_0x353               0x353
 #define FLAG_0x354               0x354
 #define FLAG_0x355               0x355
 #define FLAG_0x356               0x356
 #define FLAG_0x357               0x357
 #define FLAG_0x358               0x358
 #define FLAG_0x359               0x359
-#define FLAG_0x35A               0x35A
+
+#define FLAG_TOLD_SAFARI_EXPANSION     0x35A
+
+// Unused?
 #define FLAG_0x35B               0x35B
 #define FLAG_0x35C               0x35C
 #define FLAG_0x35D               0x35D

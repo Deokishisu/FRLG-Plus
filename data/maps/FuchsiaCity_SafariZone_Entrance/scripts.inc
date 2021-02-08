@@ -103,6 +103,7 @@ FuchsiaCity_SafariZone_Entrance_EventScript_AskEnterSafariZone:: @ 816D391
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_WelcomeToSafariZone
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
 	waitmovement 0
+	call_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_SafariZone_Entrance_EventScript_TellExpansion1
 	showmoneybox 0, 0, 0
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_PlaySafariGameFor500, MSGBOX_YESNO
 	compare VAR_RESULT, YES
@@ -110,6 +111,22 @@ FuchsiaCity_SafariZone_Entrance_EventScript_AskEnterSafariZone:: @ 816D391
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_OkayPleaseComeAgain
 	goto FuchsiaCity_SafariZone_Entrance_EventScript_ForcePlayerBack
 	end
+
+FuchsiaCity_SafariZone_Entrance_EventScript_TellExpansion1::
+	call_if_unset FLAG_TOLD_SAFARI_EXPANSION, FuchsiaCity_SafariZone_Entrance_EventScript_TellExpansion2
+	return
+
+FuchsiaCity_SafariZone_Entrance_EventScript_TellExpansion2::
+	msgbox FuchsiaCity_SafariZone_Entrance_Text_TellExpansion
+	setflag FLAG_TOLD_SAFARI_EXPANSION
+	return
+
+FuchsiaCity_SafariZone_Entrance_Text_TellExpansion::
+	.string "I have exciting news!\n"
+	.string "We've finished an expansion project!\p"
+	.string "Find the new AREA 4 and 5 to\n"
+	.string "encounter exotic POKéMON imported\l"
+	.string "from far away lands!$"
 
 FuchsiaCity_SafariZone_Entrance_EventScript_TryEnterSafariZone:: @ 816D3CA
 	call FuchsiaCity_SafariZone_Entrance_EventScript_CheckSpaceForMons
@@ -202,12 +219,24 @@ FuchsiaCity_SafariZone_Entrance_Movement_EnterSafariZoneLeft:: @ 816D4B3
 FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendant:: @ 816D4B7
 	lock
 	faceplayer
+	getstring 0, FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantFour
+	call_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendantBufferSix
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_FirstTimeAtSafariZone, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq FuchsiaCity_SafariZone_Entrance_EventScript_ExplainSafariZone
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_SorryYoureARegularHere
 	release
 	end
+
+FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendantBufferSix::
+	getstring 0, FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantSix
+	return
+
+FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantFour::
+	.string "four$"
+
+FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantSix::
+	.string "six$"
 
 FuchsiaCity_SafariZone_Entrance_EventScript_ExplainSafariZone:: @ 816D4D6
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_ExplainSafariZone

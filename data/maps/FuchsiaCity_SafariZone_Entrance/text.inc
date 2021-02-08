@@ -52,7 +52,7 @@ FuchsiaCity_SafariZone_Entrance_Text_FirstTimeAtSafariZone:: @ 8197EB0
 
 FuchsiaCity_SafariZone_Entrance_Text_ExplainSafariZone:: @ 8197EE3
     .string "The SAFARI ZONE actually has\n"
-    .string "four zones in it.\p"
+    .string "{STR_VAR_1} zones in it.\p"
     .string "Each zone has different kinds of\n"
     .string "POKéMON, even some rare ones.\p"
     .string "Use the supplied SAFARI BALLS to\n"

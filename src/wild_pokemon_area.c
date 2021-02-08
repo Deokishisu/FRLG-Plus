@@ -98,6 +98,7 @@ static const u16 sDexAreas_Sevii2[][2] = {
 
 static const u16 sDexAreas_Sevii3[][2] = {
 	{ MAPSEC_BOND_BRIDGE,     58 },
+    { MAPSEC_UNDERWATER_124,  58 },
 	{ MAPSEC_THREE_ISLE_PORT, 59 },
 	{ MAPSEC_THREE_ISLAND,    50 },
 	{ MAPSEC_BERRY_FOREST,    73 },
@@ -182,7 +183,11 @@ s32 BuildPokedexAreaSubspriteBuffer(u16 species, struct Subsprite * subsprites)
     if (alteringCaveNum > 8)
         alteringCaveNum = 0;
     for (i = 0, areaCount = 0; gWildMonHeaders[i].mapGroup != 0xFF; i++)
-    {
+    {   
+        if((i == 133 || i == 134) && !FlagGet(FLAG_SYS_GAME_CLEAR)) //Safari Zone NW and NE
+        {
+            continue; //skip Safari Zone expansion if not Champion
+        }
         mapSecId = GetMapSecIdFromWildMonHeader(&gWildMonHeaders[i]);
         if (mapSecId == MAPSEC_ALTERING_CAVE)
         {
