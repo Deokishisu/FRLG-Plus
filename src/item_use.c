@@ -681,9 +681,9 @@ void FieldUseFunc_TownMap(u8 taskId)
 
 static void sub_80A1CAC(void)
 {
-    if(gMapHeader.regionMapSectionId <= 0x55) //MAPSEC_SKY_PILLAR
-        InitRegionMapWithExitCB(REGIONMAP_TYPE_HOENN, CB2_BagMenuFromStartMenu);
-    else
+    //if(gMapHeader.regionMapSectionId <= 0x55) //MAPSEC_SKY_PILLAR
+        //InitRegionMapWithExitCB(REGIONMAP_TYPE_HOENN, CB2_BagMenuFromStartMenu);
+    //else
         InitRegionMapWithExitCB(REGIONMAP_TYPE_NORMAL, CB2_BagMenuFromStartMenu);
 }
 
@@ -693,9 +693,9 @@ static void sub_80A1CC0(u8 taskId)
     {
         CleanupOverworldWindowsAndTilemaps();
         sub_80A1184();
-        if(gMapHeader.regionMapSectionId <= 0x55) //MAPSEC_SKY_PILLAR
-            InitRegionMapWithExitCB(REGIONMAP_TYPE_HOENN, CB2_ReturnToField);
-        else
+        //if(gMapHeader.regionMapSectionId <= 0x55) //MAPSEC_SKY_PILLAR
+            //InitRegionMapWithExitCB(REGIONMAP_TYPE_HOENN, CB2_ReturnToField);
+        //else
             InitRegionMapWithExitCB(REGIONMAP_TYPE_NORMAL, CB2_ReturnToField);
         DestroyTask(taskId);
     }
