@@ -1280,3 +1280,9 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/ThreeIsland_BondBridge_Underwater/scripts.inc"
 	.include "data/maps/ThreeIsland_BondBridge_Underwater/text.inc"
+
+	.include "data/maps/ArtisanCave_B1F/scripts.inc"
+	.include "data/maps/ArtisanCave_B1F/text.inc"
+
+	.include "data/maps/ArtisanCave_1F/scripts.inc"
+	.include "data/maps/ArtisanCave_1F/text.inc"

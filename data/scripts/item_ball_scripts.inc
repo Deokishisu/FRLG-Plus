@@ -697,3 +697,11 @@ SafariZone_NorthEast_EventScript_ItemWhiteHerb::
 SafariZone_NorthEast_EventScript_ItemGlitterMail::
 	finditem ITEM_GLITTER_MAIL
 	end
+
+ArtisanCave_B1F_EventScript_ItemHPUp::
+	finditem ITEM_HP_UP
+	end
+
+ArtisanCave_1F_EventScript_ItemCarbos::
+	finditem ITEM_CARBOS
+	end

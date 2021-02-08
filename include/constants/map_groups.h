@@ -199,6 +199,8 @@
 #define MAP_NAVEL_ROCK_HARBOR                         (59 | (2 << 8))
 #define MAP_FARAWAY_ISLAND_EXTERIOR                   (60 | (2 << 8))
 #define MAP_FARAWAY_ISLAND_INTERIOR                   (61 | (2 << 8))
+#define MAP_ARTISAN_CAVE_B1F                          (62 | (2 << 8))
+#define MAP_ARTISAN_CAVE_1F                           (63 | (2 << 8))
 
 // Map Group 3
 #define MAP_PALLET_TOWN                          (0 | (3 << 8))

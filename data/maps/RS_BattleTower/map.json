@@ -93,6 +93,13 @@
       "elevation": 0,
       "dest_map": "MAP_RS_BATTLE_TOWER_LOBBY",
       "dest_warp_id": 0
+    },
+    {
+      "x": 11,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_ARTISAN_CAVE_B1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [

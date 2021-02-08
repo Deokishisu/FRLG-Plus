@@ -243,7 +243,9 @@
     "BirthIsland_Harbor",
     "NavelRock_Harbor",
     "FarawayIsland_Exterior",
-    "FarawayIsland_Interior"
+    "FarawayIsland_Interior",
+    "ArtisanCave_B1F",
+    "ArtisanCave_1F"
   ],
   "gMapGroup3": [
     "PalletTown",

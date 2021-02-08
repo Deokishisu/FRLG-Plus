@@ -7273,6 +7273,24 @@ const struct WildPokemon sThreeIslandBondBridge_Underwater_LandMons[] =
 
 const struct WildPokemonInfo sThreeIslandBondBridge_Underwater_LandMonsInfo = { 7, sThreeIslandBondBridge_Underwater_LandMons };
 
+const struct WildPokemon sArtisanCave_LandMons[] =
+{
+    { 40, 40, SPECIES_SMEARGLE },
+    { 41, 41, SPECIES_SMEARGLE },
+    { 42, 42, SPECIES_SMEARGLE },
+    { 43, 43, SPECIES_SMEARGLE },
+    { 44, 44, SPECIES_SMEARGLE },
+    { 45, 45, SPECIES_SMEARGLE },
+    { 46, 46, SPECIES_SMEARGLE },
+    { 47, 47, SPECIES_SMEARGLE },
+    { 48, 48, SPECIES_SMEARGLE },
+    { 49, 49, SPECIES_SMEARGLE },
+    { 50, 50, SPECIES_SMEARGLE },
+    { 50, 50, SPECIES_SMEARGLE },
+};
+
+const struct WildPokemonInfo sArtisanCave_LandMonsInfo = { 10, sArtisanCave_LandMons };
+
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
@@ -8900,6 +8918,30 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .mapNum = MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER),
         .landMonsInfo_FR = &sThreeIslandBondBridge_Underwater_LandMonsInfo,
         .landMonsInfo_LG = &sThreeIslandBondBridge_Underwater_LandMonsInfo,
+        .waterMonsInfo_FR = NULL,
+        .waterMonsInfo_LG = NULL,
+        .rockSmashMonsInfo_FR = NULL,
+        .rockSmashMonsInfo_LG = NULL,
+        .fishingMonsInfo_FR = NULL,
+        .fishingMonsInfo_LG = NULL,
+    },
+    {
+        .mapGroup = MAP_GROUP(ARTISAN_CAVE_B1F),
+        .mapNum = MAP_NUM(ARTISAN_CAVE_B1F),
+        .landMonsInfo_FR = &sArtisanCave_LandMonsInfo,
+        .landMonsInfo_LG = &sArtisanCave_LandMonsInfo,
+        .waterMonsInfo_FR = NULL,
+        .waterMonsInfo_LG = NULL,
+        .rockSmashMonsInfo_FR = NULL,
+        .rockSmashMonsInfo_LG = NULL,
+        .fishingMonsInfo_FR = NULL,
+        .fishingMonsInfo_LG = NULL,
+    },
+    {
+        .mapGroup = MAP_GROUP(ARTISAN_CAVE_1F),
+        .mapNum = MAP_NUM(ARTISAN_CAVE_1F),
+        .landMonsInfo_FR = &sArtisanCave_LandMonsInfo,
+        .landMonsInfo_LG = &sArtisanCave_LandMonsInfo,
         .waterMonsInfo_FR = NULL,
         .waterMonsInfo_LG = NULL,
         .rockSmashMonsInfo_FR = NULL,

@@ -526,10 +526,10 @@
 #define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_MAX_REVIVE              0x200 //New
 #define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_WHITE_HERB              0x201 //New
 #define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_GLITTER_MAIL            0x202 //New
+#define FLAG_HIDE_ARTISAN_CAVE_B1F_HP_UP                        0x203 //New
+#define FLAG_HIDE_ARTISAN_CAVE_B1F_CARBOS                       0x204 //New
 
 // Unused?
-#define FLAG_0x203               0x203
-#define FLAG_0x204               0x204
 #define FLAG_0x205               0x205
 #define FLAG_0x206               0x206
 #define FLAG_0x207               0x207
@@ -1222,12 +1222,10 @@
 #define HIDDEN_ITEM_SAFARI_ZONE_NORTHEAST_BRIGHTPOWDER                193 //New
 #define HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_UNDERWATER_DIVE_BALL     194 //New
 #define HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_UNDERWATER_HEART_SCALE   195 //New
-
-// Unused?
-#define FLAG_0x4AC               0x4AC
-#define FLAG_0x4AD               0x4AD
-#define FLAG_0x4AE               0x4AE
-#define FLAG_0x4AF               0x4AF
+#define HIDDEN_ITEM_ARTISAN_CAVE_ZINC                                 196
+#define HIDDEN_ITEM_ARTISAN_CAVE_CALCIUM                              197
+#define HIDDEN_ITEM_ARTISAN_CAVE_PROTEIN                              198
+#define HIDDEN_ITEM_ARTISAN_CAVE_IRON                                 199
 
 // Boss clear flags, 1200
 #define FLAG_DEFEATED_BROCK           0x4B0

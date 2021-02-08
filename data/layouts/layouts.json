@@ -4536,6 +4536,30 @@
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/ThreeIsland_BondBridge_Underwater/border.bin",
       "blockdata_filepath": "data/layouts/ThreeIsland_BondBridge_Underwater/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARTISAN_CAVE_B1F",
+      "name": "ArtisanCave_B1F_Layout",
+      "width": 46,
+      "height": 54,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ArtisanCave_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/ArtisanCave_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_ARTISAN_CAVE_1F",
+      "name": "ArtisanCave_1F_Layout",
+      "width": 21,
+      "height": 22,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/ArtisanCave_1F/border.bin",
+      "blockdata_filepath": "data/layouts/ArtisanCave_1F/map.bin"
     }
   ]
 }

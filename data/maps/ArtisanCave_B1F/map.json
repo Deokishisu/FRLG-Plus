@@ -1,0 +1,95 @@
+{
+  "id": "MAP_ARTISAN_CAVE_B1F",
+  "name": "ArtisanCave_B1F",
+  "layout": "LAYOUT_ARTISAN_CAVE_B1F",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_ARTISAN_CAVE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 32,
+      "y": 38,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ArtisanCave_B1F_EventScript_ItemHPUp",
+      "flag": "FLAG_HIDE_ARTISAN_CAVE_B1F_HP_UP"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 8,
+      "y": 48,
+      "elevation": 0,
+      "dest_map": "MAP_RS_BATTLE_TOWER",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 38,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ARTISAN_CAVE_1F",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 32,
+      "y": 29,
+      "elevation": 3,
+      "item": "ITEM_ZINC",
+      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_ZINC",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 27,
+      "y": 8,
+      "elevation": 4,
+      "item": "ITEM_CALCIUM",
+      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_CALCIUM",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 7,
+      "y": 5,
+      "elevation": 3,
+      "item": "ITEM_PROTEIN",
+      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_PROTEIN",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 19,
+      "y": 43,
+      "elevation": 3,
+      "item": "ITEM_IRON",
+      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_IRON",
+      "quantity": 1,
+      "underfoot": false
+    }
+  ],
+  "level_scaling": "0"
+}

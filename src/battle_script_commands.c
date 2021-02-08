@@ -9111,7 +9111,8 @@ static void atkEF_handleballthrow(void)
                     }
                     NuzlockeFlagSet(GetCurrentRegionMapSectionId());
                 }
-                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER))
+                if((gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER))
+                    || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ARTISAN_CAVE_B1F) && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(ARTISAN_CAVE_B1F) || gSaveBlock1Ptr->location.mapNum == MAP_NUM(ARTISAN_CAVE_1F))))
                 {
                     u8 version = VERSION_EMERALD;
                     SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_GAME, &version);
@@ -9163,7 +9164,8 @@ static void atkEF_handleballthrow(void)
                         }
                         NuzlockeFlagSet(GetCurrentRegionMapSectionId());
                     }
-                    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER))
+                    if((gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER))
+                    || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ARTISAN_CAVE_B1F) && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(ARTISAN_CAVE_B1F) || gSaveBlock1Ptr->location.mapNum == MAP_NUM(ARTISAN_CAVE_1F))))
                     {
                         u8 version = VERSION_EMERALD;
                         SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_GAME, &version);
