@@ -3962,8 +3962,13 @@ static void CursorCB_FieldMove(u8 taskId)
     }
     else
     {
+        if(fieldMove == FIELD_MOVE_DIVE && !FlagGet(FLAG_SYS_CAN_LINK_WITH_RS))
+        {
+            DisplayPartyMenuMessage(gText_CantUseUntilNewHM, TRUE);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+        }
         // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
+        else if ((fieldMove <= FIELD_MOVE_WATERFALL && fieldMove != FIELD_MOVE_DIVE) && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
         {
             DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;

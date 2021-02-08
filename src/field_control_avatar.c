@@ -1260,7 +1260,7 @@ static bool8 SwitchBikeGears(void)
 //dive
 static bool32 TrySetupDiveDownScript(void)
 {
-    if (FlagGet(FLAG_BADGE07_GET) && TrySetDiveWarp() == 2)
+    if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS) && TrySetDiveWarp() == 2)
     {
         ScriptContext1_SetupScript(EventScript_UseDive);
         return TRUE;
@@ -1282,7 +1282,7 @@ static bool32 TrySetupDiveEmergeScript(void)
         }
         return FALSE;
     }
-    if (FlagGet(FLAG_BADGE07_GET) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
+    if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
     {
         ScriptContext1_SetupScript(EventScript_UseDiveUnderwater);
         return TRUE;

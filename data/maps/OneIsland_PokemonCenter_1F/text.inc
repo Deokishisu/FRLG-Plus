@@ -282,7 +282,18 @@ OneIsland_PokemonCenter_1F_Text_ManagedToLinkWithHoennThankYou:: @ 81A1D7D
     .string "fully operational!\p"
     .string "{PLAYER}, I owe it all to you!\p"
     .string "Thanks to you, my dream came\n"
-    .string "true…$"
+    .string "true…\p"
+    .string "I want to give you something\n"
+    .string "to thank you for all your help.$"
+
+OneIsland_PokemonCenter_1F_Text_ExplainDive::
+    .string "Sometimes while SURFING, you'll\n"
+    .string "notice dark patches of water.\p"
+    .string "The water there's deep, so you can\n"
+    .string "use DIVE to drop to the seafloor.\p"
+    .string "When you want to surface, you can\n"
+    .string "use DIVE again as long there's\l"
+    .string "nothing blocking you.$"
 
 OneIsland_PokemonCenter_1F_Text_WishYouBestOfLuck:: @ 81A1E39
     .string "I…\n"

@@ -355,6 +355,7 @@ extern const u8 gUnknown_8416B3E[];
 extern const u8 gUnknown_8416B16[];
 extern const u8 gText_PauseUntilPress[];
 extern const u8 gText_CantUseUntilNewBadge[];
+extern const u8 gText_CantUseUntilNewHM[];
 extern const u8 gText_ReturnToHealingSpot[];
 extern const u8 gText_EscapeFromHereAndReturnTo[];
 extern const u8 gText_PkmnCuredOfPoison[];
