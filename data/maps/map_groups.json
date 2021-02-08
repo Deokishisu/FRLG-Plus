@@ -126,6 +126,9 @@
     "SafariZone_North_RestHouse",
     "SafariZone_West_RestHouse",
     "SafariZone_SecretHouse",
+    "SafariZone_NorthWest",
+    "SafariZone_NorthEast",
+    "SafariZone_NorthWest_RestHouse",
     "CeruleanCave_1F",
     "CeruleanCave_2F",
     "CeruleanCave_B1F",
@@ -309,7 +312,8 @@
     "SevenIsland_SevaultCanyon_Entrance",
     "SevenIsland_SevaultCanyon",
     "SevenIsland_TanobyRuins",
-    "Route20_Underwater"
+    "Route20_Underwater",
+    "ThreeIsland_BondBridge_Underwater"
   ],
   "gMapGroup4": [
     "PalletTown_PlayersHouse_1F",

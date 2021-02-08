@@ -669,3 +669,31 @@ SevenIsland_SevaultCanyon_House_EventScript_ItemLuckyPunch:: @ 81BEDFC
 SilphCo_4F_EventScript_ItemTM41:: @ 81BEE09
 	finditem ITEM_TM41
 	end
+
+SafariZone_NorthWest_EventScript_ItemKingsRock::
+	finditem ITEM_KINGS_ROCK
+	end
+
+SafariZone_NorthWest_EventScript_ItemSunStone::
+	finditem ITEM_SUN_STONE
+	end
+
+SafariZone_NorthWest_EventScript_ItemPPMax::
+	finditem ITEM_PP_MAX
+	end
+
+SafariZone_NorthWest_EventScript_ItemRareCandy::
+	finditem ITEM_RARE_CANDY
+	end
+
+SafariZone_NorthEast_EventScript_ItemMaxRevive::
+	finditem ITEM_MAX_REVIVE
+	end
+
+SafariZone_NorthEast_EventScript_ItemWhiteHerb::
+	finditem ITEM_WHITE_HERB
+	end
+
+SafariZone_NorthEast_EventScript_ItemGlitterMail::
+	finditem ITEM_GLITTER_MAIL
+	end

@@ -1268,3 +1268,15 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/RS_BattleTower_BattleRoom/scripts.inc"
 	.include "data/maps/RS_BattleTower_BattleRoom/text.inc"
+
+	.include "data/maps/SafariZone_NorthWest/scripts.inc"
+	.include "data/maps/SafariZone_NorthWest/text.inc"
+
+	.include "data/maps/SafariZone_NorthEast/scripts.inc"
+	.include "data/maps/SafariZone_NorthEast/text.inc"
+
+	.include "data/maps/SafariZone_NorthWest_RestHouse/scripts.inc"
+	.include "data/maps/SafariZone_NorthWest_RestHouse/text.inc"
+
+	.include "data/maps/ThreeIsland_BondBridge_Underwater/scripts.inc"
+	.include "data/maps/ThreeIsland_BondBridge_Underwater/text.inc"

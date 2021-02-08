@@ -7,6 +7,7 @@
 #include "script.h"
 #include "event_data.h"
 #include "field_screen_effect.h"
+#include "constants/map_types.h"
 
 EWRAM_DATA u8 gNumSafariBalls = 0;
 EWRAM_DATA u16 gSafariZoneStepCounter = 0;
@@ -44,6 +45,8 @@ void ExitSafariMode(void)
 bool8 SafariZoneTakeStep(void)
 {
     if (GetSafariZoneFlag() == FALSE)
+        return FALSE;
+    if (gMapHeader.mapType == MAP_TYPE_INDOOR)
         return FALSE;
     gSafariZoneStepCounter--;
     if (gSafariZoneStepCounter == 0)
@@ -85,4 +88,14 @@ void CB2_EndSafariBattle(void)
         ScriptContext1_Stop();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
     }
+}
+
+void SafariZoneRefillSteps(void)
+{
+    gSafariZoneStepCounter = 600;
+}
+
+void SafariZoneCheckSteps(void)
+{
+    gSpecialVar_Result = gSafariZoneStepCounter;
 }

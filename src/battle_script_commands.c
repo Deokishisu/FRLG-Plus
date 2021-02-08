@@ -33,6 +33,7 @@
 #include "constants/battle_script_commands.h"
 #include "constants/items.h"
 #include "constants/hold_effects.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/moves.h"
 #include "constants/abilities.h"
@@ -9110,6 +9111,18 @@ static void atkEF_handleballthrow(void)
                     }
                     NuzlockeFlagSet(GetCurrentRegionMapSectionId());
                 }
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER))
+                {
+                    u8 version = VERSION_EMERALD;
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_GAME, &version);
+                }
+                if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SAFARI_ZONE_NORTH_WEST) && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_WEST) || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_EAST)))
+                {
+                    u8 mapSec = MAPSEC_SAFARI_ZONE;
+                    u8 version = VERSION_EMERALD;
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_LOCATION, &mapSec);
+                    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_GAME, &version);
+                }    
                 if (CalculatePlayerPartyCount() == 6)
                     gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                 else
@@ -9150,6 +9163,18 @@ static void atkEF_handleballthrow(void)
                         }
                         NuzlockeFlagSet(GetCurrentRegionMapSectionId());
                     }
+                    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER))
+                    {
+                        u8 version = VERSION_EMERALD;
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_GAME, &version);
+                    }
+                    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SAFARI_ZONE_NORTH_WEST) && (gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_WEST) || gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_EAST)))
+                    {
+                        u8 mapSec = MAPSEC_SAFARI_ZONE;
+                        u8 version = VERSION_EMERALD;
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_LOCATION, &mapSec);
+                        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_MET_GAME, &version);
+                    }  
                     if (CalculatePlayerPartyCount() == 6)
                         gBattleCommunication[MULTISTRING_CHOOSER] = 0;
                     else

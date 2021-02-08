@@ -111,3 +111,12 @@ EventScript_Indigo_UltimateGoal:: @ 81A76F0
 EventScript_Indigo_HighestAuthority:: @ 81A76F9
 	msgbox Text_Indigo_HighestAuthority, MSGBOX_SIGN
 	end
+
+EventScript_SafariZone_ExtensionSign::
+	msgbox Text_SafariZone_ExtensionSign, MSGBOX_SIGN
+	end
+
+Text_SafariZone_ExtensionSign::
+	.string "The SAFARI ZONE's expansion project\n"
+	.string "is finally complete!\p"
+	.string "The new AREA 4 is straight ahead!$"

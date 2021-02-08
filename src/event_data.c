@@ -356,6 +356,16 @@ u8 NuzlockeFlagSet(u8 mapsec)
             FlagSet(FLAG_NUZLOCKE_SAFARI_WEST);
             return 0;
         }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_WEST))
+        {
+            FlagSet(FLAG_NUZLOCKE_SAFARI_NORTH_WEST);
+            return 0;
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_EAST))
+        {
+            FlagSet(FLAG_NUZLOCKE_SAFARI_NORTH_EAST);
+            return 0;
+        }
         else
         {
             FlagSet(NUZLOCKE_FLAGS_START + (id - 1)); //base Safari Zone flag
@@ -392,6 +402,14 @@ u8 NuzlockeFlagGet(u8 mapsec)
         else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_WEST))
         {
             return FlagGet(FLAG_NUZLOCKE_SAFARI_WEST);
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_WEST))
+        {
+            return FlagGet(FLAG_NUZLOCKE_SAFARI_NORTH_WEST);
+        }
+        else if(gSaveBlock1Ptr->location.mapNum == MAP_NUM(SAFARI_ZONE_NORTH_EAST))
+        {
+            return FlagGet(FLAG_NUZLOCKE_SAFARI_NORTH_EAST);
         }
         else
         {

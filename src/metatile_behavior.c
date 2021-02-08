@@ -706,7 +706,15 @@ bool8 MetatileBehavior_IsMB0A(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_UnusedReturnFalse_9(u8 metatileBehavior) { return FALSE; }
+bool8 MetatileBehavior_IsSafariExtensionSign(u8 metatileBehavior, u8 playerDirection)
+{
+    if(playerDirection != DIR_NORTH && playerDirection != DIR_EAST)
+        return FALSE;
+    else if(metatileBehavior == MB_SAFARI_ZONE_EXTENSION_SIGN)
+        return TRUE;
+    else
+        return FALSE;
+}
 
 bool8 MetatileBehavior_IsBookshelf(u8 metatileBehavior)
 {

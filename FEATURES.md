@@ -15,14 +15,15 @@
 
 #### Story Changes:
 - The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
-- The player will be invited to challenge the Hoenn Battle Tower upon delivering the Ruby to Celio.
 - A legendary beast will begin roaming when the player first enters the Hall of Fame, instead of upon delivering the Sapphire.
 - Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
 		* This Mew counts as an Emerald Faraway Island Mew for legality purposes.
-- Expanded postgame, focusing on giving the Sevii Islands more content. []
-	* The Sevii Islands are now exclusively a postgame area and cannot be accessed until becoming the Champion. []
-	* Expanded Sevii Islands story and new routes added. []
+- Expanded postgame, focusing on organically fleshing out the available content.
+	* HM08 Dive is now available and usable in the field. New underwater areas found on Route 20 and Bond Bridge.
+	* A Safari Zone expansion adds two more areas, making more Pokémon obtainable.
+	* Hoenn Battle Tower ported from RS. The player will be invited to challenge the Battle Tower upon delivering the Ruby to Celio.
+	* A new area in Berry Forest makes the pinch berries available.
 
 #### Quality of Life Changes:
 - No link restrictions
@@ -57,6 +58,7 @@
 - Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
 - The Old Man tutorial battle is skipped if you have more than one Pokémon with you.
+- Steps taken aren't counted while inside Safari Zone Rest Houses.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
@@ -70,7 +72,7 @@
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
-- All Kanto Pokémon, along with select Johto Pokémon (in the Sevii Islands), will be available in one playthrough. All Hoenn Pokémon (except bred Wynaut and Azurill) will still need to be traded for.
+- All Kanto Pokémon, along with select Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Deoxys and bred Wynaut and Azurill) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.

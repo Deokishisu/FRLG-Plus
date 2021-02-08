@@ -105,7 +105,7 @@ bool8 MetatileBehavior_IsVerticalRail(u8 metatileBehavior);
 bool8 MetatileBehavior_IsHorizontalRail(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSeaweed(u8 metatileBehavior);
 bool8 MetatileBehavior_IsMB0A(u8 metatileBehavior);
-bool8 MetatileBehavior_UnusedReturnFalse_9(u8 metatileBehavior);
+bool8 MetatileBehavior_IsSafariExtensionSign(u8 metatileBehavior, u8 playerDirection);
 bool8 MetatileBehavior_IsBookshelf(u8 metatileBehavior);
 bool8 MetatileBehavior_IsPokeMartShelf(u8 metatileBehavior);
 bool8 MetatileBehavior_IsPlayerFacingPokemonCenterSign(u8 tile, u8 playerDirection);

@@ -1577,7 +1577,7 @@
       "id": "LAYOUT_SAFARI_ZONE_NORTH",
       "name": "SafariZone_North_Layout",
       "width": 57,
-      "height": 40,
+      "height": 42,
       "border_width": 3,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
@@ -2657,7 +2657,7 @@
       "id": "LAYOUT_THREE_ISLAND_BOND_BRIDGE",
       "name": "ThreeIsland_BondBridge_Layout",
       "width": 96,
-      "height": 20,
+      "height": 40,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
@@ -3016,7 +3016,7 @@
     {
       "id": "LAYOUT_THREE_ISLAND_BERRY_FOREST",
       "name": "ThreeIsland_BerryForest_Layout",
-      "width": 57,
+      "width": 85,
       "height": 47,
       "border_width": 3,
       "border_height": 2,
@@ -4500,6 +4500,42 @@
       "secondary_tileset": "gTileset_BattleFrontier",
       "border_filepath": "data/layouts/RS_BattleTower_BattleRoom/border.bin",
       "blockdata_filepath": "data/layouts/RS_BattleTower_BattleRoom/map.bin"
+    },
+    {
+      "id": "LAYOUT_SAFARI_ZONE_NORTH_WEST",
+      "name": "SafariZone_NorthWest_Layout",
+      "width": 52,
+      "height": 36,
+      "border_width": 3,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/SafariZone_NorthWest/border.bin",
+      "blockdata_filepath": "data/layouts/SafariZone_NorthWest/map.bin"
+    },
+    {
+      "id": "LAYOUT_SAFARI_ZONE_NORTH_EAST",
+      "name": "SafariZone_NorthEast_Layout",
+      "width": 52,
+      "height": 36,
+      "border_width": 3,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_FuchsiaCity",
+      "border_filepath": "data/layouts/SafariZone_NorthEast/border.bin",
+      "blockdata_filepath": "data/layouts/SafariZone_NorthEast/map.bin"
+    },
+    {
+      "id": "LAYOUT_THREE_ISLAND_BOND_BRIDGE_UNDERWATER",
+      "name": "ThreeIsland_BondBridge_Underwater_Layout",
+      "width": 96,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/ThreeIsland_BondBridge_Underwater/border.bin",
+      "blockdata_filepath": "data/layouts/ThreeIsland_BondBridge_Underwater/map.bin"
     }
   ]
 }

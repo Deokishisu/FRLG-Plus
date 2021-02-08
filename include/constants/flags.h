@@ -433,7 +433,7 @@
 #define FLAG_HIDE_POKEMON_MANSION_3F_IRON                       0x1A3
 #define FLAG_HIDE_POKEMON_MANSION_B1F_TM14                      0x1A4
 #define FLAG_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE              0x1A5
-#define FLAG_0x1A6                                              0x1A6
+#define FLAG_HIDE_SAFARI_ZONE_NORTHWEST_SUN_STONE               0x1A6 //New
 #define FLAG_HIDE_POKEMON_MANSION_B1F_TM22                      0x1A7
 #define FLAG_HIDE_POKEMON_MANSION_B1F_SECRET_KEY                0x1A8
 #define FLAG_HIDE_VICTORY_ROAD_1F_RARE_CANDY                    0x1A9
@@ -455,8 +455,8 @@
 #define FLAG_HIDE_FUCHSIA_CITY_WARDENS_HOUSE_RARE_CANDY         0x1B9
 #define FLAG_HIDE_TWO_ISLAND_REVIVE                             0x1BA
 #define FLAG_HIDE_THREE_ISLAND_ZINC                             0x1BB
-#define FLAG_0x1BC                                              0x1BC
-#define FLAG_0x1BD                                              0x1BD
+#define FLAG_HIDE_SAFARI_ZONE_NORTHWEST_RARE_CANDY              0x1BC //New
+#define FLAG_HIDE_SAFARI_ZONE_NORTHWEST_KINGS_ROCK              0x1BD //New
 #define FLAG_HIDE_VIRIDIAN_FOREST_POTION_2                      0x1BE
 #define FLAG_HIDE_MT_MOON_B2F_REVIVE                            0x1BF
 #define FLAG_HIDE_MT_MOON_B2F_ANTIDOTE                          0x1C0
@@ -522,12 +522,12 @@
 #define FLAG_HIDE_FIVE_ISLAND_LOST_CAVE_ROOM14_RARE_CANDY       0x1FC
 #define FLAG_HIDE_SEVEN_ISLAND_SEVAULT_CANYON_HOUSE_LUCKY_PUNCH 0x1FD
 #define FLAG_HIDE_SILPH_CO_4F_TM41                              0x1FE
+#define FLAG_HIDE_SAFARI_ZONE_NORTHWEST_PP_MAX                  0x1FF //New
+#define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_MAX_REVIVE              0x200 //New
+#define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_WHITE_HERB              0x201 //New
+#define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_GLITTER_MAIL            0x202 //New
 
 // Unused?
-#define FLAG_0x1FF               0x1FF
-#define FLAG_0x200               0x200
-#define FLAG_0x201               0x201
-#define FLAG_0x202               0x202
 #define FLAG_0x203               0x203
 #define FLAG_0x204               0x204
 #define FLAG_0x205               0x205
@@ -869,10 +869,10 @@
 #define FLAG_NUZLOCKE_SAFARI_EAST      0x34E
 #define FLAG_NUZLOCKE_SAFARI_NORTH     0x34F
 #define FLAG_NUZLOCKE_SAFARI_WEST      0x350
+#define FLAG_NUZLOCKE_SAFARI_NORTH_WEST 0x351
+#define FLAG_NUZLOCKE_SAFARI_NORTH_EAST 0x352
 
 // Unused?
-#define FLAG_0x351               0x351
-#define FLAG_0x352               0x352
 #define FLAG_0x353               0x353
 #define FLAG_0x354               0x354
 #define FLAG_0x355               0x355
@@ -1033,7 +1033,7 @@
 #define HIDDEN_ITEM_ROUTE25_ELIXIR                                      4
 #define HIDDEN_ITEM_ROUTE25_ETHER                                       5
 #define HIDDEN_ITEM_ROUTE9_ETHER                                        6
-#define HIDDEN_ITEM_UNUSED_0x07                                         7
+#define HIDDEN_ITEM_SAFARI_ZONE_NORTHWEST_SHELL_BELL                    7 //New
 #define HIDDEN_ITEM_SSANNE_B1F_CORRIDOR_HYPER_POTION                    8
 #define HIDDEN_ITEM_ROUTE10_SUPER_POTION                                9
 #define HIDDEN_ITEM_ROUTE10_MAX_ETHER                                  10
@@ -1150,7 +1150,7 @@
 #define HIDDEN_ITEM_SSANNE_KITCHEN_CHERI_BERRY                        121
 #define HIDDEN_ITEM_SSANNE_KITCHEN_CHESTO_BERRY                       122
 #define HIDDEN_ITEM_ROUTE9_RARE_CANDY                                 123
-#define HIDDEN_ITEM_UNUSED_0x7C                                       124
+#define HIDDEN_ITEM_SAFARI_ZONE_NORTHWEST_LIECHI_BERRY                124 //New
 #define HIDDEN_ITEM_ROUTE10_PERSIM_BERRY                              125
 #define HIDDEN_ITEM_ROUTE10_CHERI_BERRY                               126
 #define HIDDEN_ITEM_ROUTE8_RAWST_BERRY                                127
@@ -1217,13 +1217,13 @@
 #define HIDDEN_ITEM_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE_RAWST_BERRY  188
 #define HIDDEN_ITEM_VIRIDIAN_CITY_GYM_MACHO_BRACE                     189
 #define HIDDEN_ITEM_SSANNE_EXTERIOR_LAVA_COOKIE                       190
+#define HIDDEN_ITEM_SAFARI_ZONE_NORTHWEST_SITRUS_BERRY                191 //New
+#define HIDDEN_ITEM_SAFARI_ZONE_NORTHEAST_SALAC_BERRY                 192 //New
+#define HIDDEN_ITEM_SAFARI_ZONE_NORTHEAST_BRIGHTPOWDER                193 //New
+#define HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_UNDERWATER_DIVE_BALL     194 //New
+#define HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_UNDERWATER_HEART_SCALE   195 //New
 
 // Unused?
-#define FLAG_0x4A7               0x4A7
-#define FLAG_0x4A8               0x4A8
-#define FLAG_0x4A9               0x4A9
-#define FLAG_0x4AA               0x4AA
-#define FLAG_0x4AB               0x4AB
 #define FLAG_0x4AC               0x4AC
 #define FLAG_0x4AD               0x4AD
 #define FLAG_0x4AE               0x4AE

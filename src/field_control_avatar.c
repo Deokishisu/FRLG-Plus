@@ -37,6 +37,7 @@
 #define SIGNPOST_POKEMART 1
 #define SIGNPOST_INDIGO_1 2
 #define SIGNPOST_INDIGO_2 3
+#define SIGNPOST_SAFARI 4
 #define SIGNPOST_SCRIPTED 240
 #define SIGNPOST_NA 255
 
@@ -586,6 +587,11 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return gUnknown_81A76CC;
     if (MetatileBehavior_IsMB9F(metatileBehavior) == TRUE)
         return gUnknown_81A76D5;
+    if (MetatileBehavior_IsSafariExtensionSign(metatileBehavior, direction) == TRUE)
+    {
+        MsgSetSignPost();
+        return EventScript_SafariZone_ExtensionSign;
+    }
     if (MetatileBehavior_IsPlayerFacingMB_8D(metatileBehavior, direction) == TRUE)
         return CableClub_EventScript_81BBFD8;
     if (MetatileBehavior_IsQuestionnaire(metatileBehavior) == TRUE)
@@ -790,6 +796,11 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 m
         SetUpWalkIntoSignScript(EventScript_Indigo_HighestAuthority, playerDirection);
         return TRUE;
     }
+    else if(r4 == SIGNPOST_SAFARI)
+    {
+        SetUpWalkIntoSignScript(EventScript_SafariZone_ExtensionSign, playerDirection);
+        return TRUE;
+    }
     else
     {
         script = GetSignpostScriptAtMapPosition(position);
@@ -815,6 +826,9 @@ static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
 
     if (MetatileBehavior_IsIndigoPlateauMark2(metatileBehavior) == TRUE)
         return SIGNPOST_INDIGO_2;
+
+    if (MetatileBehavior_IsSafariExtensionSign(metatileBehavior, playerDirection) == TRUE)
+        return SIGNPOST_SAFARI;
 
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
         return SIGNPOST_SCRIPTED;
@@ -1256,6 +1270,18 @@ static bool32 TrySetupDiveDownScript(void)
 
 static bool32 TrySetupDiveEmergeScript(void)
 {
+    if(GetCurrentRegionMapSectionId() == MAPSEC_UNDERWATER_124)
+    {
+        s16 x, y;
+        PlayerGetDestCoords(&x, &y);
+
+        if(MapGridGetMetatileIdAt(x, y) == 0x296) //if emergable tile
+        {
+            ScriptContext1_SetupScript(EventScript_UseDiveUnderwater);
+            return TRUE;
+        }
+        return FALSE;
+    }
     if (FlagGet(FLAG_BADGE07_GET) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
     {
         ScriptContext1_SetupScript(EventScript_UseDiveUnderwater);

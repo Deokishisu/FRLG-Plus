@@ -157,7 +157,7 @@ $(TILESETGFXDIR)/secondary/cerulean_city/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 158
 
 $(TILESETGFXDIR)/secondary/fuchsia_city/tiles.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 191
+	$(GFX) $< $@ -num_tiles 320
 
 $(TILESETGFXDIR)/secondary/mart/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 36

@@ -21,7 +21,7 @@
     },
     {
       "direction": "left",
-      "offset": 0,
+      "offset": -20,
       "map": "MAP_THREE_ISLAND_BOND_BRIDGE"
     }
   ],

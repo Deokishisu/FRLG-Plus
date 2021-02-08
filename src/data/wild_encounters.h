@@ -7125,9 +7125,9 @@ const struct WildPokemon sRoute20_Underwater_FireRed_LandMons[] =
     { 12, 14, SPECIES_KRABBY },
     { 15, 15, SPECIES_KRABBY },
     { 22, 23, SPECIES_HORSEA },
-    { 36, 40, SPECIES_TENTACRUEL },
+    { 36, 40, SPECIES_TENTACOOL },
     { 25, 25, SPECIES_GYARADOS },
-    { 38, 40, SPECIES_TENTACRUEL },
+    { 38, 40, SPECIES_TENTACOOL },
     { 33, 35, SPECIES_SEADRA },
     { 28, 30, SPECIES_SEADRA },
     { 31, 33, SPECIES_SEADRA },
@@ -7143,9 +7143,9 @@ const struct WildPokemon sRoute20_Underwater_LeafGreen_LandMons[] =
     { 12, 14, SPECIES_HORSEA },
     { 15, 15, SPECIES_HORSEA },
     { 22, 23, SPECIES_KRABBY },
-    { 36, 40, SPECIES_TENTACRUEL },
+    { 36, 40, SPECIES_TENTACOOL },
     { 25, 25, SPECIES_GYARADOS },
-    { 38, 40, SPECIES_TENTACRUEL },
+    { 38, 40, SPECIES_TENTACOOL },
     { 33, 35, SPECIES_KINGLER },
     { 28, 30, SPECIES_KINGLER },
     { 31, 33, SPECIES_KINGLER },
@@ -7153,6 +7153,125 @@ const struct WildPokemon sRoute20_Underwater_LeafGreen_LandMons[] =
 };
 
 const struct WildPokemonInfo sRoute20_Underwater_LeafGreen_LandMonsInfo = { 7, sRoute20_Underwater_LeafGreen_LandMons };
+
+const struct WildPokemon sSafariZone_NorthWest_LandMons[] =
+{
+    { 33, 33, SPECIES_SUNKERN },
+    { 34, 34, SPECIES_MAREEP },
+    { 35, 35, SPECIES_SUNKERN },
+    { 36, 36, SPECIES_MAREEP },
+    { 34, 34, SPECIES_AIPOM },
+    { 27, 27, SPECIES_GIRAFARIG },
+    { 35, 35, SPECIES_HOOTHOOT },
+    { 34, 34, SPECIES_SNUBBULL },
+    { 36, 36, SPECIES_STANTLER },
+    { 37, 37, SPECIES_MILTANK },
+    { 39, 39, SPECIES_STANTLER },
+    { 40, 40, SPECIES_MILTANK },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthWest_LandMonsInfo = { 25, sSafariZone_NorthWest_LandMons };
+
+const struct WildPokemon sSafariZone_NorthWest_FireRed_WaterMons[] = // Wooper/Marill are FR/LG exclusive
+{
+    { 25, 30, SPECIES_WOOPER },
+    { 25, 30, SPECIES_WOOPER },
+    { 25, 30, SPECIES_WOOPER },
+    { 25, 30, SPECIES_WOOPER },
+    { 35, 40, SPECIES_QUAGSIRE },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthWest_FireRed_WaterMonsInfo = { 9, sSafariZone_NorthWest_FireRed_WaterMons };
+
+const struct WildPokemon sSafariZone_NorthWest_LeafGreen_WaterMons[] = // Wooper/Marill are FR/LG exclusive
+{
+    { 25, 30, SPECIES_MARILL },
+    { 25, 30, SPECIES_MARILL },
+    { 25, 30, SPECIES_MARILL },
+    { 30, 35, SPECIES_MARILL },
+    { 33, 35, SPECIES_MARILL },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthWest_LeafGreen_WaterMonsInfo = { 9, sSafariZone_NorthWest_LeafGreen_WaterMons };
+
+const struct WildPokemon sSafariZone_NorthWest_FireRed_FishingMons[] = // Qwilfish/Remoraid are FR/LG exclusive, but Qwilfish isn't obtainable at Hoenn Safari Zone
+{
+    { 25, 30, SPECIES_MAGIKARP },
+    { 25, 30, SPECIES_GOLDEEN },
+    { 25, 30, SPECIES_MAGIKARP },
+    { 25, 30, SPECIES_GOLDEEN },
+    { 30, 35, SPECIES_GOLDEEN },
+    { 25, 30, SPECIES_GOLDEEN },
+    { 25, 30, SPECIES_SEAKING },
+    { 30, 35, SPECIES_SEAKING },
+    { 30, 35, SPECIES_SEAKING },
+    { 35, 40, SPECIES_SEAKING },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthWest_FireRed_FishingMonsInfo = { 35, sSafariZone_NorthWest_FireRed_FishingMons };
+
+const struct WildPokemon sSafariZone_NorthWest_LeafGreen_FishingMons[] = // Qwilfish/Remoraid are FR/LG exclusive, but Qwilfish isn't obtainable at Hoenn Safari Zone
+{
+    { 25, 30, SPECIES_MAGIKARP },
+    { 25, 30, SPECIES_GOLDEEN },
+    { 25, 30, SPECIES_MAGIKARP },
+    { 25, 30, SPECIES_GOLDEEN },
+    { 30, 35, SPECIES_REMORAID },
+    { 25, 30, SPECIES_GOLDEEN },
+    { 25, 30, SPECIES_REMORAID },
+    { 30, 35, SPECIES_REMORAID },
+    { 30, 35, SPECIES_REMORAID },
+    { 35, 40, SPECIES_OCTILLERY },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthWest_LeafGreen_FishingMonsInfo = { 35, sSafariZone_NorthWest_LeafGreen_FishingMons };
+
+const struct WildPokemon sSafariZone_NorthWest_RockSmashMons[] =
+{
+    { 25, 30, SPECIES_SHUCKLE },
+    { 20, 25, SPECIES_SHUCKLE },
+    { 30, 35, SPECIES_SHUCKLE },
+    { 30, 35, SPECIES_SHUCKLE },
+    { 35, 40, SPECIES_SHUCKLE },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthWest_RockSmashMonsInfo = { 25, sSafariZone_NorthWest_RockSmashMons };
+
+const struct WildPokemon sSafariZone_NorthEast_LandMons[] =
+{
+    { 33, 33, SPECIES_AIPOM },
+    { 34, 34, SPECIES_TEDDIURSA },
+    { 35, 35, SPECIES_AIPOM },
+    { 36, 36, SPECIES_TEDDIURSA },
+    { 34, 34, SPECIES_SUNKERN },
+    { 27, 27, SPECIES_GIRAFARIG },
+    { 35, 35, SPECIES_HOOTHOOT },
+    { 34, 34, SPECIES_PINECO },
+    { 36, 36, SPECIES_HOUNDOUR },
+    { 37, 37, SPECIES_GLIGAR },
+    { 39, 39, SPECIES_HOUNDOUR },
+    { 40, 40, SPECIES_GLIGAR },
+};
+
+const struct WildPokemonInfo sSafariZone_NorthEast_LandMonsInfo = { 25, sSafariZone_NorthEast_LandMons };
+
+const struct WildPokemon sThreeIslandBondBridge_Underwater_LandMons[] =
+{
+    { 20, 20, SPECIES_CHINCHOU },
+    { 20, 20, SPECIES_CHINCHOU },
+    { 21, 21, SPECIES_CHINCHOU },
+    { 22, 22, SPECIES_CHINCHOU },
+    { 23, 23, SPECIES_CHINCHOU },
+    { 24, 24, SPECIES_CHINCHOU },
+    { 25, 25, SPECIES_CHINCHOU },
+    { 26, 26, SPECIES_CHINCHOU },
+    { 27, 27, SPECIES_CHINCHOU },
+    { 28, 28, SPECIES_CHINCHOU },
+    { 29, 29, SPECIES_CHINCHOU },
+    { 30, 30, SPECIES_CHINCHOU },
+};
+
+const struct WildPokemonInfo sThreeIslandBondBridge_Underwater_LandMonsInfo = { 7, sThreeIslandBondBridge_Underwater_LandMons };
 
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
@@ -8745,6 +8864,42 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .mapNum = MAP_NUM(ROUTE20_UNDERWATER),
         .landMonsInfo_FR = &sRoute20_Underwater_FireRed_LandMonsInfo,
         .landMonsInfo_LG = &sRoute20_Underwater_LeafGreen_LandMonsInfo,
+        .waterMonsInfo_FR = NULL,
+        .waterMonsInfo_LG = NULL,
+        .rockSmashMonsInfo_FR = NULL,
+        .rockSmashMonsInfo_LG = NULL,
+        .fishingMonsInfo_FR = NULL,
+        .fishingMonsInfo_LG = NULL,
+    },
+    {
+        .mapGroup = MAP_GROUP(SAFARI_ZONE_NORTH_WEST),
+        .mapNum = MAP_NUM(SAFARI_ZONE_NORTH_WEST),
+        .landMonsInfo_FR = &sSafariZone_NorthWest_LandMonsInfo,
+        .landMonsInfo_LG = &sSafariZone_NorthWest_LandMonsInfo,
+        .waterMonsInfo_FR = &sSafariZone_NorthWest_FireRed_WaterMonsInfo,
+        .waterMonsInfo_LG = &sSafariZone_NorthWest_LeafGreen_WaterMonsInfo,
+        .rockSmashMonsInfo_FR = &sSafariZone_NorthWest_RockSmashMonsInfo,
+        .rockSmashMonsInfo_LG = &sSafariZone_NorthWest_RockSmashMonsInfo,
+        .fishingMonsInfo_FR = &sSafariZone_NorthWest_FireRed_FishingMonsInfo,
+        .fishingMonsInfo_LG = &sSafariZone_NorthWest_LeafGreen_FishingMonsInfo,
+    },
+    {
+        .mapGroup = MAP_GROUP(SAFARI_ZONE_NORTH_EAST),
+        .mapNum = MAP_NUM(SAFARI_ZONE_NORTH_EAST),
+        .landMonsInfo_FR = &sSafariZone_NorthEast_LandMonsInfo,
+        .landMonsInfo_LG = &sSafariZone_NorthEast_LandMonsInfo,
+        .waterMonsInfo_FR = NULL,
+        .waterMonsInfo_LG = NULL,
+        .rockSmashMonsInfo_FR = &sSafariZone_NorthWest_RockSmashMonsInfo,
+        .rockSmashMonsInfo_LG = &sSafariZone_NorthWest_RockSmashMonsInfo,
+        .fishingMonsInfo_FR = NULL,
+        .fishingMonsInfo_LG = NULL,
+    },
+    {
+        .mapGroup = MAP_GROUP(THREE_ISLAND_BOND_BRIDGE_UNDERWATER),
+        .mapNum = MAP_NUM(THREE_ISLAND_BOND_BRIDGE_UNDERWATER),
+        .landMonsInfo_FR = &sThreeIslandBondBridge_Underwater_LandMonsInfo,
+        .landMonsInfo_LG = &sThreeIslandBondBridge_Underwater_LandMonsInfo,
         .waterMonsInfo_FR = NULL,
         .waterMonsInfo_LG = NULL,
         .rockSmashMonsInfo_FR = NULL,
