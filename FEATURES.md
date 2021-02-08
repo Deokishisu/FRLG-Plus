@@ -23,6 +23,7 @@
 	* HM08 Dive is now available and usable in the field. New underwater areas found on Route 20 and Bond Bridge.
 	* A Safari Zone expansion adds two more areas, making more Pokémon obtainable.
 	* Hoenn Battle Tower ported from RS. The player will be invited to challenge the Battle Tower upon delivering the Ruby to Celio.
+		* Artisan Cave can be accessed from the Battle Tower's dock.
 	* A new area in Berry Forest makes the pinch berries available.
 
 #### Quality of Life Changes:
@@ -31,7 +32,7 @@
 		* Unmodified Emerald may need the National Dex before it allows trading.
 - No evolution restrictions; Pokémon will evolve regardless of whether or not their evolution is in the Kanto Dex.
 	* Eevee evolves into Espeon by happiness outdoors and Umbreon by happiness indoors.
-- Cut Trees stay cut permanently.
+- Cut trees stay cut permanently.
 - Infinite TM usage. TM prices have been modified to reflect this. TMs do not restore PP when learned, like in BW/B2W2.
 - Expanded item pockets. The player can hold one stack of every legally obtainable item at once.
 - Two new pockets, the Medicine and Held Items pockets, have been introduced to ease bag navigation.

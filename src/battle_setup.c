@@ -172,7 +172,7 @@ static const struct TrainerBattleParameter sContinueScriptDoubleBattleParams[] =
     {&sTrainerBattleEndScript,      TRAINER_PARAM_LOAD_SCRIPT_RET_ADDR},
 };
 
-const u8 NuzlockeLUT[MAPSEC_COUNT] = //77 used, 214 total
+const u8 NuzlockeLUT[MAPSEC_COUNT] = //78 used, 214 total
 {   //any mapsec not in this list = 0x0
     [MAPSEC_PALLET_TOWN] = 0x1,
     [MAPSEC_VIRIDIAN_CITY] = 0x2,
@@ -251,7 +251,9 @@ const u8 NuzlockeLUT[MAPSEC_COUNT] = //77 used, 214 total
     [MAPSEC_DILFORD_CHAMBER] = 0x4B,
     [MAPSEC_SCUFIB_CHAMBER] = 0x4C,
     [MAPSEC_RIXY_CHAMBER] = 0x4D,
-    [MAPSEC_VIAPOIS_CHAMBER] = 0x4E //77
+    [MAPSEC_VIAPOIS_CHAMBER] = 0x4E,
+    [MAPSEC_ARTISAN_CAVE] = 0x4F, //78
+    [MAPSEC_UNDERWATER_124] = 0x33 //reused Bond Bridge; same area but Underwater
 };
 
 
