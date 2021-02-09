@@ -560,6 +560,11 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void HandleUseExpiredRepel(void)
+{
+    VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VarGet(VAR_LAST_REPEL_USED)));
+}
+
 #define HAS_TICKETS 16
 #define NEEDS_SHOW_EON 17
 #define NEEDS_SHOW_AURORA 18

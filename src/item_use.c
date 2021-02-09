@@ -583,6 +583,7 @@ static void sub_80A19E8(u8 taskId)
     {
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, NULL, gSpecialVar_ItemId, 0xFFFF);
         VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
+        VarSet(VAR_LAST_REPEL_USED, gSpecialVar_ItemId);
         sub_80A1A44();
         DisplayItemMessageInBag(taskId, 2, gStringVar4, Task_ReturnToBagFromContextMenu);
     }

@@ -58,6 +58,7 @@
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
 - The Old Man tutorial battle is skipped if you have more than one Pokémon with you.
 - Steps taken aren't counted while inside Safari Zone Rest Houses.
+- When a repel expires, the player will be asked whether they want to use another immediately, like in Black 2 and White 2.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
