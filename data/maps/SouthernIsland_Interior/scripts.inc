@@ -2,7 +2,7 @@
 
 SouthernIsland_Interior_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, SouthernIsland_Interior_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, SouthernIsland_Interior_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, SouthernIsland_Interior_OnLoad
 	.byte 0
 
 SouthernIsland_Interior_OnResume:
@@ -16,7 +16,7 @@ SouthernIsland_Interior_EventScript_TryRemoveLati::
 	removeobject LOCALID_LATI
 	return
 
-SouthernIsland_Interior_OnTransition:
+SouthernIsland_Interior_OnLoad:
 	callnative IsVersionFireRedToVarResult
 	compare VAR_RESULT, TRUE
 	call_if_eq SouthernIsland_Interior_EventScript_SetUpLatios

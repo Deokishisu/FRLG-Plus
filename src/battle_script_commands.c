@@ -4404,6 +4404,8 @@ static void atk4E_switchinanim(void)
         if (GetBattlerSide(gActiveBattler) == B_SIDE_OPPONENT
          && !(gBattleTypeFlags & 
               (BATTLE_TYPE_LINK
+            | BATTLE_TYPE_TRAINER_TOWER
+            | BATTLE_TYPE_BATTLE_TOWER
             | BATTLE_TYPE_LEGENDARY
             | BATTLE_TYPE_OLD_MAN_TUTORIAL
             | BATTLE_TYPE_POKEDUDE

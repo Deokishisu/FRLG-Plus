@@ -2567,6 +2567,8 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
                 }
                 if (GetBattlerSide(gActiveBattler) == B_SIDE_OPPONENT
                  && !(gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
+                                       | BATTLE_TYPE_TRAINER_TOWER
+                                       | BATTLE_TYPE_BATTLE_TOWER
                                        | BATTLE_TYPE_POKEDUDE
                                        | BATTLE_TYPE_LINK
                                        | BATTLE_TYPE_GHOST
@@ -2584,6 +2586,8 @@ static void BattleIntroDrawTrainersOrMonsSprites(void)
                             HandleSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gActiveBattler].species), FLAG_SET_SEEN, gBattleMons[gActiveBattler].personality);
                     }
                     else if (!(gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
+                                                | BATTLE_TYPE_TRAINER_TOWER
+                                                | BATTLE_TYPE_BATTLE_TOWER
                                                 | BATTLE_TYPE_POKEDUDE
                                                 | BATTLE_TYPE_LINK
                                                 | BATTLE_TYPE_GHOST
@@ -2738,6 +2742,8 @@ static void BattleIntroRecordMonsToDex(void)
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; ++gActiveBattler)
             if (GetBattlerSide(gActiveBattler) == B_SIDE_OPPONENT
              && !(gBattleTypeFlags & (BATTLE_TYPE_EREADER_TRAINER
+                                   | BATTLE_TYPE_TRAINER_TOWER
+                                   | BATTLE_TYPE_BATTLE_TOWER
                                    | BATTLE_TYPE_POKEDUDE
                                    | BATTLE_TYPE_LINK
                                    | BATTLE_TYPE_GHOST
