@@ -192,7 +192,7 @@ VermilionCity_EventScript_HasAuroraTicketAndOldSeaMap::
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 4, MULTICHOICE_SEVII_BIRTH_FARAWAY, FALSE
+	multichoice 13, 3, MULTICHOICE_SEVII_BIRTH_FARAWAY, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
 	case 1, VermilionCity_EventScript_SetSailToBattleTower
@@ -212,7 +212,7 @@ VermilionCity_EventScript_HasMysticTicketAndOldSeaMap::
 	call_if_unset FLAG_SHOWN_MYSTIC_TICKET, VermilionCity_EventScript_ShowMysticTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 4, MULTICHOICE_SEVII_NAVEL_FARAWAY, FALSE
+	multichoice 13, 3, MULTICHOICE_SEVII_NAVEL_FARAWAY, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
 	case 1, VermilionCity_EventScript_SetSailToBattleTower
@@ -231,7 +231,7 @@ VermilionCity_EventScript_HasMysticAndAuroraTickets:: @ 8166AB1
 	call_if_unset FLAG_SHOWN_AURORA_TICKET, VermilionCity_EventScript_ShowAuroraTicket
 	message VermilionCity_Text_BoardSeagallopFerry
 	waitmessage
-	multichoice 13, 4, MULTICHOICE_SEVII_NAVEL_BIRTH, FALSE
+	multichoice 13, 3, MULTICHOICE_SEVII_NAVEL_BIRTH, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SeviiDestinationsPage1
 	case 1, VermilionCity_EventScript_SetSailToBattleTower
