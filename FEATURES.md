@@ -1,7 +1,5 @@
 ## Features
 
-###### [] indicates NYI
-
 #### Mechanical Additions:
 - A Key System has been implemented, similar to Black 2 and White 2. Press the L Button while on the Key System Menu to access the Help System, which has detailed information on each key. Use the keys to change various settings about your game. Those settings are:
 	*  __Version__: Switch between FireRed and LeafGreen to catch version-exclusive Pokémon.
@@ -16,7 +14,7 @@
 #### Story Changes:
 - The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
 - A legendary beast will begin roaming when the player first enters the Hall of Fame, instead of upon delivering the Sapphire.
-- Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
+- Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively.
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
 	* Southern Island has been ported from Emerald, allowing players to catch Latias and Latios. The Eon Ticket is given away similarly to the other event tickets.
 - Expanded postgame, focusing on organically fleshing out the available content.
