@@ -3,6 +3,7 @@
 #include "random.h"
 #include "text.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "string_util.h"
 #include "battle_message.h"
 #include "data.h"
@@ -1559,4 +1560,14 @@ void Dummy_TryEnableBravoTrainerBattleTower(void)
         if (gSaveBlock2Ptr->battleTower.var_4AE[i] == 1)
             TakeBravoTrainerBattleTowerOffTheAir();
     }
+}
+
+void GetBestBattleTowerStreakToVar0x8007(void)
+{
+    gSpecialVar_0x8007 = GetGameStat(GAME_STAT_BATTLE_TOWER_BEST_STREAK);
+}
+
+void TryInitBattleTowerAwardManObjectEvent(void)
+{
+    Unref_TryInitLocalObjectEvent(5);
 }

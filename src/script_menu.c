@@ -441,25 +441,19 @@ static const struct MenuAction sScriptMultiChoiceMenu_TradeColosseumBlank[] = {
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavel[] = {
-    { gText_SeviiIslands },
-    { gText_BattleTower },
+static const struct MenuAction sScriptMultiChoiceMenu_Faraway[] = {
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_Navel[] = {
     { gText_NavelRock },
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiBirth[] = {
-    { gText_SeviiIslands },
-    { gText_BattleTower },
-    { gText_BirthIsland },
-    { gOtherText_Exit }
-};
-
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirth[] = {
-    { gText_SeviiIslands },
-    { gText_BattleTower },
+static const struct MenuAction sScriptMultiChoiceMenu_NavelFaraway[] = {
     { gText_NavelRock },
-    { gText_BirthIsland },
+    { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
@@ -510,35 +504,39 @@ static const struct MenuAction sScriptMultiChoiceMenu_TrainerTowerMode[] = {
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiFaraway[] = {
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiOther[] = {
     { gText_SeviiIslands },
-    { gText_BattleTower },
-    { gText_FarawayIsland },
+    { gText_Other },
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelFaraway[] = {
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiBattleTower[] = {
     { gText_SeviiIslands },
     { gText_BattleTower },
-    { gText_NavelRock },
-    { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiBirthFaraway[] = {
+static const struct MenuAction sScriptMultiChoiceMenu_SeviiBattleTowerOther[] = {
     { gText_SeviiIslands },
     { gText_BattleTower },
+    { gText_Other },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_Birth[] = {
+    { gText_BirthIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_BirthFaraway[] = {
     { gText_BirthIsland },
     { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiNavelBirthFaraway[] = {
-    { gText_SeviiIslands },
-    { gText_BattleTower },
-    { gText_NavelRock },
+static const struct MenuAction sScriptMultiChoiceMenu_BirthNavel[] = {
     { gText_BirthIsland },
-    { gText_FarawayIsland },
+    { gText_NavelRock },
     { gOtherText_Exit }
 };
 
@@ -548,14 +546,61 @@ static const struct MenuAction sScriptMultiChoiceMenu_BattleTowerLevels[] = {
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_SeviiTower[] = {
-    { gText_SeviiIslands },
-    { gText_BattleTower },
+static const struct MenuAction sScriptMultiChoiceMenu_BirthNavelFaraway[] = {
+    { gText_BirthIsland },
+    { gText_NavelRock },
+    { gText_FarawayIsland },
     { gOtherText_Exit }
 };
 
-static const struct MenuAction sScriptMultiChoiceMenu_TriFaraway[] = {
-    { gText_SeviiIslands },
+static const struct MenuAction sScriptMultiChoiceMenu_Southern[] = {
+    { gText_SouthernIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernFaraway[] = {
+    { gText_SouthernIsland },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernNavel[] = {
+    { gText_SouthernIsland },
+    { gText_NavelRock },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernNavelFaraway[] = {
+    { gText_SouthernIsland },
+    { gText_NavelRock },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernBirth[] = {
+    { gText_SouthernIsland },
+    { gText_BirthIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernBirthFaraway[] = {
+    { gText_SouthernIsland },
+    { gText_BirthIsland },
+    { gText_FarawayIsland },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernBirthNavel[] = {
+    { gText_SouthernIsland },
+    { gText_BirthIsland },
+    { gText_NavelRock },
+    { gOtherText_Exit }
+};
+
+static const struct MenuAction sScriptMultiChoiceMenu_SouthernBirthNavelFaraway[] = {
+    { gText_SouthernIsland },
+    { gText_BirthIsland },
+    { gText_NavelRock },
     { gText_FarawayIsland },
     { gOtherText_Exit }
 };
@@ -619,9 +664,9 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_Mushrooms, NELEMS(sScriptMultiChoiceMenu_Mushrooms) },
     { sScriptMultiChoiceMenu_TradeColosseumBlankCrush, NELEMS(sScriptMultiChoiceMenu_TradeColosseumBlankCrush) },
     { sScriptMultiChoiceMenu_TradeColosseumBlank, NELEMS(sScriptMultiChoiceMenu_TradeColosseumBlank) },
-    { sScriptMultiChoiceMenu_SeviiNavel, NELEMS(sScriptMultiChoiceMenu_SeviiNavel) },
-    { sScriptMultiChoiceMenu_SeviiBirth, NELEMS(sScriptMultiChoiceMenu_SeviiBirth) },
-    { sScriptMultiChoiceMenu_SeviiNavelBirth, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirth) },
+    { sScriptMultiChoiceMenu_Faraway, NELEMS(sScriptMultiChoiceMenu_Faraway) },
+    { sScriptMultiChoiceMenu_Navel, NELEMS(sScriptMultiChoiceMenu_Navel) },
+    { sScriptMultiChoiceMenu_NavelFaraway, NELEMS(sScriptMultiChoiceMenu_NavelFaraway) },
     { sScriptMultiChoiceMenu_Seagallop123, NELEMS(sScriptMultiChoiceMenu_Seagallop123) },
     { sScriptMultiChoiceMenu_SeagallopV23, NELEMS(sScriptMultiChoiceMenu_SeagallopV23) },
     { sScriptMultiChoiceMenu_SeagallopV13, NELEMS(sScriptMultiChoiceMenu_SeagallopV13) },
@@ -630,15 +675,24 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_GameCornerPokemonPrizes_LG, NELEMS(sScriptMultiChoiceMenu_GameCornerPokemonPrizes_LG) },
     { sScriptMultiChoiceMenu_JoinOrLead, NELEMS(sScriptMultiChoiceMenu_JoinOrLead) },
     { sScriptMultiChoiceMenu_TrainerTowerMode, NELEMS(sScriptMultiChoiceMenu_TrainerTowerMode) },
-    { sScriptMultiChoiceMenu_SeviiFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiFaraway) },
-    { sScriptMultiChoiceMenu_SeviiNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelFaraway) },
-    { sScriptMultiChoiceMenu_SeviiBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiBirthFaraway) },
-    { sScriptMultiChoiceMenu_SeviiNavelBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SeviiNavelBirthFaraway) },
     { sScriptMultiChoiceMenu_BattleTowerLevels, NELEMS(sScriptMultiChoiceMenu_BattleTowerLevels) },
-    { sScriptMultiChoiceMenu_SeviiTower, NELEMS(sScriptMultiChoiceMenu_SeviiTower) },
-    { sScriptMultiChoiceMenu_TriFaraway, NELEMS(sScriptMultiChoiceMenu_TriFaraway) },
     { sScriptMultiChoiceMenu_HelixDome, NELEMS(sScriptMultiChoiceMenu_HelixDome) },
-    { sScriptMultiChoiceMenu_HelixDomeAmber, NELEMS(sScriptMultiChoiceMenu_HelixDomeAmber) }
+    { sScriptMultiChoiceMenu_HelixDomeAmber, NELEMS(sScriptMultiChoiceMenu_HelixDomeAmber) },
+    { sScriptMultiChoiceMenu_SeviiOther, NELEMS(sScriptMultiChoiceMenu_SeviiOther) },
+    { sScriptMultiChoiceMenu_SeviiBattleTower, NELEMS(sScriptMultiChoiceMenu_SeviiBattleTower) },
+    { sScriptMultiChoiceMenu_SeviiBattleTowerOther, NELEMS(sScriptMultiChoiceMenu_SeviiBattleTowerOther) },
+    { sScriptMultiChoiceMenu_Birth, NELEMS(sScriptMultiChoiceMenu_Birth) },
+    { sScriptMultiChoiceMenu_BirthFaraway, NELEMS(sScriptMultiChoiceMenu_BirthFaraway) },
+    { sScriptMultiChoiceMenu_BirthNavel, NELEMS(sScriptMultiChoiceMenu_BirthNavel) },
+    { sScriptMultiChoiceMenu_BirthNavelFaraway, NELEMS(sScriptMultiChoiceMenu_BirthNavelFaraway) },
+    { sScriptMultiChoiceMenu_Southern, NELEMS(sScriptMultiChoiceMenu_Southern) },
+    { sScriptMultiChoiceMenu_SouthernFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernFaraway) },
+    { sScriptMultiChoiceMenu_SouthernNavel, NELEMS(sScriptMultiChoiceMenu_SouthernNavel) },
+    { sScriptMultiChoiceMenu_SouthernNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernNavelFaraway) },
+    { sScriptMultiChoiceMenu_SouthernBirth, NELEMS(sScriptMultiChoiceMenu_SouthernBirth) },
+    { sScriptMultiChoiceMenu_SouthernBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernBirthFaraway) },
+    { sScriptMultiChoiceMenu_SouthernBirthNavel, NELEMS(sScriptMultiChoiceMenu_SouthernBirthNavel) },
+    { sScriptMultiChoiceMenu_SouthernBirthNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernBirthNavelFaraway) },
 };
 
 // From Cool to Berries goes unused

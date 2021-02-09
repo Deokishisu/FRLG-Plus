@@ -7,6 +7,7 @@
 #include "sound.h"
 #include "event_data.h"
 #include "quest_log.h"
+#include "constants/items.h"
 #include "constants/map_scripts.h"
 
 #define RAM_SCRIPT_MAGIC 51
@@ -558,6 +559,93 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
+
+#define HAS_TICKETS 16
+#define NEEDS_SHOW_EON 17
+#define NEEDS_SHOW_AURORA 18
+#define NEEDS_SHOW_MYSTIC 19
+#define NEEDS_SHOW_OLD_SEA_MAP 20
+#define HAS_NO_TICKETS 21
+
+void CheckEventTickets(void)
+{
+    bool8 haveEonTicket     = CheckBagHasItem(ITEM_EON_TICKET, 1);
+    bool8 haveAuroraTicket  = CheckBagHasItem(ITEM_AURORA_TICKET, 1);
+    bool8 haveMysticTicket  = CheckBagHasItem(ITEM_MYSTIC_TICKET, 1);
+    bool8 haveOldSeaMap     = CheckBagHasItem(ITEM_OLD_SEA_MAP, 1);
+
+    bool8 shownEonTicket    = FlagGet(FLAG_SHOWN_EON_TICKET);
+    bool8 shownAuroraTicket = FlagGet(FLAG_SHOWN_AURORA_TICKET);
+    bool8 shownMysticTicket = FlagGet(FLAG_SHOWN_MYSTIC_TICKET);
+    bool8 shownOldSeaMap    = FlagGet(FLAG_SHOWN_OLD_SEA_MAP);
+
+    u8 multichoiceCase = 0;
+
+    if(gSpecialVar_Result == 0) //checking for showing tickets for the first time
+    {
+        if(shownEonTicket && shownAuroraTicket && shownMysticTicket && shownOldSeaMap)
+        {
+            gSpecialVar_Result = HAS_TICKETS;
+            return;
+        }
+        if(haveEonTicket && !shownEonTicket)
+        {
+            gSpecialVar_Result = NEEDS_SHOW_EON;
+            return;
+        }
+        if(haveAuroraTicket && !shownAuroraTicket)
+        {
+            gSpecialVar_Result = NEEDS_SHOW_AURORA;
+            return;
+        }
+        if(haveMysticTicket && !shownMysticTicket)
+        {
+            gSpecialVar_Result = NEEDS_SHOW_MYSTIC;
+            return;
+        }
+        if(haveOldSeaMap && !shownOldSeaMap)
+        {
+            gSpecialVar_Result = NEEDS_SHOW_OLD_SEA_MAP;
+            return;
+        }
+        if(shownEonTicket || shownAuroraTicket || shownMysticTicket || shownOldSeaMap)
+        {
+            gSpecialVar_Result = HAS_TICKETS;
+            return;
+        }
+        gSpecialVar_Result = HAS_NO_TICKETS;
+        return;
+    }
+    if(gSpecialVar_Result == 1) //checking which multichoice combo to display
+    {
+        if(haveEonTicket && shownEonTicket)
+        {
+            multichoiceCase |= 1 << 3; //setting Eon bit
+        }
+        if(haveAuroraTicket && shownAuroraTicket)
+        {
+            multichoiceCase |= 1 << 2; //setting Aurora bit
+        }
+        if(haveMysticTicket && shownMysticTicket)
+        {
+            multichoiceCase |= 1 << 1; //setting Mystic bit
+        }
+        if(haveOldSeaMap && shownOldSeaMap)
+        {
+            multichoiceCase |= 1 << 0; //setting Old Sea Map bit
+        }
+        gSpecialVar_Result = multichoiceCase;
+        return;
+    }
+    return;
+}
+
+#undef HAS_TICKETS
+#undef NEEDS_SHOW_EON
+#undef NEEDS_SHOW_AURORA
+#undef NEEDS_SHOW_MYSTIC
+#undef NEEDS_SHOW_OLD_SEA_MAP
+#undef HAS_NO_TICKETS
 
 void RecalculatePartyStats(void)
 {

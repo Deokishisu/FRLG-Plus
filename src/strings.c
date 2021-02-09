@@ -490,6 +490,7 @@ const u8 gText_SeviiIslands[] = _("SEVII ISLANDS");
 const u8 gText_NavelRock[] = _("NAVEL ROCK");
 const u8 gText_FarawayIsland[] = _("FARAWAY ISLAND");
 const u8 gText_BirthIsland[] = _("BIRTH ISLAND");
+const u8 gText_SouthernIsland[] = _("SOUTHERN ISLAND");
 const u8 gText_MiracleSeed_1000Coins[] = _("MIRACLE SEED{CLEAR_TO 0x50}{SMALL}1,000 COINS");
 const u8 gText_Charcoal_1000Coins[] = _("CHARCOAL{CLEAR_TO 0x50}{SMALL}1,000 COINS");
 const u8 gText_MysticWater_1000Coins[] = _("MYSTIC WATER{CLEAR_TO 0x50}{SMALL}1,000 COINS");

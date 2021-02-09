@@ -58,9 +58,9 @@
 #define MULTICHOICE_MUSHROOMS                                  51
 #define MULTICHOICE_TRADE_COLOSSEUM_BLANK_CRUSH                52
 #define MULTICHOICE_TRADE_COLOSSEUM_BLANK                      53
-#define MULTICHOICE_SEVII_NAVEL                                54
-#define MULTICHOICE_SEVII_BIRTH                                55
-#define MULTICHOICE_SEVII_NAVEL_BIRTH                          56
+#define MULTICHOICE_FARAWAY                                    54
+#define MULTICHOICE_NAVEL                                      55
+#define MULTICHOICE_NAVEL_FARAWAY                              56
 #define MULTICHOICE_SEAGALLOP_123                              57
 #define MULTICHOICE_SEAGALLOP_V23                              58
 #define MULTICHOICE_SEAGALLOP_V13                              59
@@ -69,15 +69,24 @@
 #define MULTICHOICE_GAME_CORNER_POKEMON_PRIZES_LG              62
 #define MULTICHOICE_JOIN_OR_LEAD                               63
 #define MULTICHOICE_TRAINER_TOWER_MODE                         64
-#define MULTICHOICE_SEVII_FARAWAY                              65
-#define MULTICHOICE_SEVII_NAVEL_FARAWAY                        66
-#define MULTICHOICE_SEVII_BIRTH_FARAWAY                        67
-#define MULTICHOICE_SEVII_NAVEL_BIRTH_FARAWAY                  68
-#define MULTICHOICE_BATTLE_TOWER_LEVELS                        69
-#define MULTICHOICE_SEVII_TOWER                                70
-#define MULTICHOICE_TRI_FARAWAY                                71
-#define MULTICHOICE_HELIX_DOME                                 72
-#define MULTICHOICE_HELIX_DOME_AMBER                           73
+#define MULTICHOICE_BATTLE_TOWER_LEVELS                        65
+#define MULTICHOICE_HELIX_DOME                                 66
+#define MULTICHOICE_HELIX_DOME_AMBER                           67
+#define MULTICHOICE_SEVII_OTHER                                68
+#define MULTICHOICE_SEVII_BATTLE_TOWER                         69
+#define MULTICHOICE_SEVII_BATTLE_TOWER_OTHER                   70
+#define MULTICHOICE_BIRTH                                      71
+#define MULTICHOICE_BIRTH_FARAWAY                              72
+#define MULTICHOICE_BIRTH_NAVEL                                73
+#define MULTICHOICE_BIRTH_NAVEL_FARAWAY                        74
+#define MULTICHOICE_SOUTHERN                                   75
+#define MULTICHOICE_SOUTHERN_FARAWAY                           76
+#define MULTICHOICE_SOUTHERN_NAVEL                             77
+#define MULTICHOICE_SOUTHERN_NAVEL_FARAWAY                     78
+#define MULTICHOICE_SOUTHERN_BIRTH                             79
+#define MULTICHOICE_SOUTHERN_BIRTH_FARAWAY                     80
+#define MULTICHOICE_SOUTHERN_BIRTH_NAVEL                       81
+#define MULTICHOICE_SOUTHERN_BIRTH_NAVEL_FARAWAY               82
 
 
 #define LISTMENU_BADGES                    0

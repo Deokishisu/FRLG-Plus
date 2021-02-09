@@ -138,3 +138,47 @@ BattleTower_Lobby_Text_19A946:: @ 819A946
 	.string "beat seven TRAINERS in a row.\p"
 	.string "You'd best be certain that you're\n"
 	.string "up to the challenge.$"
+
+BattleTower_Lobby_Text_Scott28Wins::
+	.string "SCOTT: I heard about you!\n"
+	.string "How you ruled the BATTLE TOWER!\l"
+	.string "You beat 28 TRAINERS in a row?\p"
+	.string "That's fantastic!\n"
+	.string "I want you to have this!$"
+
+BattleTower_Lobby_Text_ScottExplainAuroraTicket::
+	.string "Bring that ticket to your\n"
+	.string "friend at the VERMILION HARBOR.\p"
+	.string "He'll be able to take you a small\n"
+	.string "island south of SIX ISLAND.\p"
+	.string "There's a strange stone and\n"
+	.string "nothing else there.\p"
+	.string "It's nice and private, though,\n"
+	.string "so it's a good vacation spot!$"
+
+BattleTower_Lobby_Text_Scott56Wins::
+	.string "SCOTT: Oh my! I heard about you!\n"
+	.string "How you crushed the BATTLE TOWER!\p"
+	.string "You beat 56 TRAINERS in a row?\p"
+	.string "That's ridiculously spectacular!\n"
+	.string "You've got to have this!$"
+
+BattleTower_Lobby_Text_ScottExplainEonTicket::
+	.string "Bring that ticket to your\n"
+	.string "friend at the VERMILION HARBOR.\p"
+	.string "He'll be able to take you to an\n"
+	.string "island that's not far from here.\p"
+	.string "There's a nice little grove there,\n"
+	.string "perfect for a relaxing picnic\l"
+	.string "when you're not training.$"
+
+BattleTower_Lobby_Text_ScottGaveAuroraTicket::
+	.string "I'll be expecting to hear even\n"
+	.string "greater things about you now!$"
+
+BattleTower_Lobby_Text_ScottGaveEonTicket::
+	.string "This BATTLE TOWER has been a\n"
+	.string "huge success but…\p"
+	.string "Perhaps it's time to push\n"
+	.string "this project to a new frontier…$"
+		

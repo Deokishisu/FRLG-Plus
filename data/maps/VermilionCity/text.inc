@@ -101,6 +101,14 @@ VermilionCity_Text_OldSeaMapTakeYouToFarawayIsland::
     .string "Let me know when you're ready\n"
     .string "to leave.$"
 
+VermilionCity_Text_OhEonTicketTakeYouToSouthernIsland::
+    .string "Oh! That's an EON TICKET!\n"
+    .string "Now that is rare.\p"
+    .string "It points to a tiny spit of an\n"
+    .string "island south of HOENN.\p"
+    .string "We'll be happy to take you to\n"
+    .string "SOUTHERN ISLAND anytime.$"
+
 VermilionCity_Text_OhMysticTicketTakeYouToNavelRock:: @ 817FC00
     .string "Oh! That's a MYSTICTICKET!\n"
     .string "Now that is rare.\p"
