@@ -23,6 +23,8 @@ EventScript_ResetLegendaries:: @ 81A6541
 	clearflag FLAG_MOLTRES_FLEW_AWAY
 	clearflag FLAG_ROUTE_12_SNORLAX_RETURNED_TO_MOUNTAINS
 	clearflag FLAG_ROUTE_16_SNORLAX_RETURNED_TO_MOUNTAINS
+	clearflag FLAG_DEFEATED_LATIOS
+	clearflag FLAG_DEFEATED_LATIAS
 	special InitRoamer
 	return
 

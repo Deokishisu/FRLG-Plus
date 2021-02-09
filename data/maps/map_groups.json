@@ -245,7 +245,9 @@
     "FarawayIsland_Exterior",
     "FarawayIsland_Interior",
     "ArtisanCave_B1F",
-    "ArtisanCave_1F"
+    "ArtisanCave_1F",
+    "SouthernIsland_Exterior",
+    "SouthernIsland_Interior"
   ],
   "gMapGroup3": [
     "PalletTown",

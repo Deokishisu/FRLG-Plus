@@ -18,7 +18,7 @@
 - A legendary beast will begin roaming when the player first enters the Hall of Fame, instead of upon delivering the Sapphire.
 - Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively. []
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
-		* This Mew counts as an Emerald Faraway Island Mew for legality purposes.
+	* Southern Island has been ported from Emerald, allowing players to catch Latias and Latios. The Eon Ticket is given away similarly to the other event tickets.
 - Expanded postgame, focusing on organically fleshing out the available content.
 	* HM08 Dive is now available and usable in the field. New underwater areas found on Route 20 and Bond Bridge.
 	* A Safari Zone expansion adds two more areas, making more Pokémon obtainable.
@@ -72,8 +72,9 @@
 
 #### Miscellaneous Changes
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
+- The Trainer Card star gained from doing Wireless minigames on Two Island can also be earned by achieving a 50-win streak at the Battle Tower.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
-- All Kanto Pokémon, along with select Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Deoxys and bred Wynaut and Azurill) will still need to be traded for.
+- All Kanto Pokémon, along with select Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Azurill, Wynaut, Latias, Latios, and Deoxys) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.

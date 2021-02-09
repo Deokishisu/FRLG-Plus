@@ -2305,7 +2305,7 @@ static void CreateObedientMon(struct Pokemon *mon, u16 species, u8 level, u8 fix
     u8 version = VERSION_EMERALD;
     CreateMon(mon, species, level, fixedIV, hasFixedPersonality, fixedPersonality, otIdType, fixedOtId);
     SetMonData(mon, MON_DATA_OBEDIENCE, &obedient);
-    if(species == SPECIES_MEW)
+    if(species == SPECIES_MEW || species == SPECIES_LATIAS || species == SPECIES_LATIOS)
         SetMonData(mon, MON_DATA_MET_GAME, &version);
 }
 

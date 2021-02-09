@@ -969,6 +969,7 @@ EventScript_ResetAllMapFlags:: @ 81A6481
 	setflag FLAG_HIDE_BATTLE_TOWER_OPPONENT
 	setflag FLAG_HIDE_VICTORY_ROAD_2F_BOULDER
 	setflag FLAG_HIDE_SCOTT
+	setflag FLAG_HIDE_LATI
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
 	end
 
@@ -1286,3 +1287,9 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/ArtisanCave_1F/scripts.inc"
 	.include "data/maps/ArtisanCave_1F/text.inc"
+
+	.include "data/maps/SouthernIsland_Exterior/scripts.inc"
+	.include "data/maps/SouthernIsland_Exterior/text.inc"
+
+	.include "data/maps/SouthernIsland_Interior/scripts.inc"
+	.include "data/maps/SouthernIsland_Interior/text.inc"

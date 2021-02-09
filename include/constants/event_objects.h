@@ -177,8 +177,10 @@
 #define OBJ_EVENT_GFX_BULBASAUR 173
 #define OBJ_EVENT_GFX_CHARMANDER 174
 #define OBJ_EVENT_GFX_SQUIRTLE 175
+#define OBJ_EVENT_GFX_LATIAS 176
+#define OBJ_EVENT_GFX_LATIOS 177
 
-#define NUM_OBJ_EVENT_GFX     176
+#define NUM_OBJ_EVENT_GFX     178
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

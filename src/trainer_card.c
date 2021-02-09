@@ -823,8 +823,8 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     trainerCard->rse.linkBattleLosses = GetCappedGameStat(GAME_STAT_LINK_BATTLE_LOSSES, 9999);
     trainerCard->rse.pokemonTrades = GetCappedGameStat(GAME_STAT_POKEMON_TRADES, 0xFFFF);
 
-    trainerCard->rse.battleTowerWins = 0;
-    trainerCard->rse.battleTowerStraightWins = 0;
+    trainerCard->rse.battleTowerWins = gSaveBlock2Ptr->battleTower.totalBattleTowerWins;
+    trainerCard->rse.battleTowerStraightWins = gSaveBlock2Ptr->battleTower.bestBattleTowerWinStreak;
     trainerCard->rse.contestsWithFriends = 0;
     trainerCard->rse.pokeblocksWithFriends = 0;
 
@@ -883,7 +883,7 @@ void TrainerCard_GenerateCardForLinkPlayer(struct TrainerCard *trainerCard)
     if (trainerCard->hasAllMons)
         trainerCard->rse.stars++;
 
-    if (trainerCard->berriesPicked >= 200 && trainerCard->jumpsInRow >= 200)
+    if ((trainerCard->berriesPicked >= 200 && trainerCard->jumpsInRow >= 200) || trainerCard->rse.battleTowerStraightWins > 49)
         trainerCard->rse.stars++;
 
     id = ((u16)trainerCard->rse.trainerId) % NUM_LINK_TRAINER_CARD_CLASSES;

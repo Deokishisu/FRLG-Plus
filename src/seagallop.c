@@ -74,7 +74,8 @@ static const s8 sSeag[][4] = {
     [SEAGALLOP_NAVEL_ROCK]      = {MAP(NAVEL_ROCK_HARBOR),   0x08, 0x05},
     [SEAGALLOP_BIRTH_ISLAND]    = {MAP(BIRTH_ISLAND_HARBOR), 0x08, 0x05},
     [SEAGALLOP_FARAWAY_ISLAND]  = {MAP(FARAWAY_ISLAND_EXTERIOR), 12, 38},
-    [SEAGALLOP_BATTLE_TOWER]    = {MAP(RS_BATTLE_TOWER),     19, 24}
+    [SEAGALLOP_BATTLE_TOWER]    = {MAP(RS_BATTLE_TOWER),     19, 24},
+    [SEAGALLOP_SOUTHERN_ISLAND] = {MAP(SOUTHERN_ISLAND_EXTERIOR), 12, 22}
 };
 
 // Bitpacked array.  In the commented section, right-most bit is the
@@ -471,7 +472,7 @@ u8 GetSeagallopNumber(void)
     if (gMapHeader.regionMapSectionId == MAPSEC_FARAWAY_ISLAND)
         return 14;
 
-    if (gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER)
+    if (gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER || gMapHeader.regionMapSectionId == MAPSEC_SOUTHERN_ISLAND)
         return 13;
 
     if (originId == SEAGALLOP_VERMILION_CITY || destId == SEAGALLOP_VERMILION_CITY)

@@ -700,7 +700,7 @@ gTileset_SeviiIslands67::
 	.4byte gTilesetTiles_SeviiIslands67
 	.4byte gTilesetPalettes_SeviiIslands67
 	.4byte gMetatiles_SeviiIslands67
-	.4byte 0x0
+	.4byte InitTilesetAnim_SeviiIslands67
 	.4byte gMetatileAttributes_SeviiIslands67
 
 	.align 2

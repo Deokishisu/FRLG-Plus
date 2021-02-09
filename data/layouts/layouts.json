@@ -4560,6 +4560,30 @@
       "secondary_tileset": "gTileset_Cave",
       "border_filepath": "data/layouts/ArtisanCave_1F/border.bin",
       "blockdata_filepath": "data/layouts/ArtisanCave_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTHERN_ISLAND_EXTERIOR",
+      "name": "SouthernIsland_Exterior_Layout",
+      "width": 33,
+      "height": 30,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands67",
+      "border_filepath": "data/layouts/SouthernIsland_Exterior/border.bin",
+      "blockdata_filepath": "data/layouts/SouthernIsland_Exterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_SOUTHERN_ISLAND_INTERIOR",
+      "name": "SouthernIsland_Interior_Layout",
+      "width": 27,
+      "height": 24,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands67",
+      "border_filepath": "data/layouts/SouthernIsland_Interior/border.bin",
+      "blockdata_filepath": "data/layouts/SouthernIsland_Interior/map.bin"
     }
   ]
 }

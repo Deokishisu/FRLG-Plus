@@ -567,12 +567,13 @@
 #define FLAG_0x227               0x227
 #define FLAG_0x228               0x228
 #define FLAG_0x229               0x229
-#define FLAG_0x22A               0x22A
-#define FLAG_0x22B               0x22B
-#define FLAG_0x22C               0x22C
-#define FLAG_0x22D               0x22D
-#define FLAG_0x22E               0x22E
-#define FLAG_0x22F               0x22F
+
+#define FLAG_HIDE_LATI                                   0x22A
+#define FLAG_SHOWN_EON_TICKET                            0x22B
+#define FLAG_DEFEATED_LATIAS                             0x22C
+#define FLAG_DEFEATED_LATIOS                             0x22D
+#define FLAG_CAUGHT_LATIAS                               0x22E
+#define FLAG_CAUGHT_LATIOS                               0x22F
 
 // Story flags
 #define STORY_FLAGS_START 0x230
@@ -872,9 +873,9 @@
 #define FLAG_NUZLOCKE_SAFARI_NORTH_WEST 0x351
 #define FLAG_NUZLOCKE_SAFARI_NORTH_EAST 0x352
 #define FLAG_NUZLOCKE_ARTISAN_CAVE     0x353
+#define FLAG_NUZLOCKE_SOUTHERN_ISLAND  0x354
 
 // Unused?
-#define FLAG_0x354               0x354
 #define FLAG_0x355               0x355
 #define FLAG_0x356               0x356
 #define FLAG_0x357               0x357

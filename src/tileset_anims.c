@@ -457,3 +457,22 @@ void InitTilesetAnim_BattleFrontierOutsideEast(void)
     sSecondaryTilesetAnimCounterMax = 256;
     sSecondaryTilesetAnimCallback = TilesetAnim_BattleFrontierOutsideEast;
 }
+
+static void QueueAnimTiles_SeviiIslands67_Flower(u16 timer)
+{
+    u16 i = timer % 4;
+    AppendTilesetAnimToBuffer(gTilesetAnims_BattleFrontierOutsideEast_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x377)), 0x80);
+}
+
+static void TilesetAnim_SeviiIslands67(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_SeviiIslands67_Flower(timer >> 4);
+}
+
+void InitTilesetAnim_SeviiIslands67(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_SeviiIslands67;
+}

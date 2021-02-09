@@ -1,6 +1,10 @@
 #ifndef GUARD_CONSTANTS_MAP_GROUPS_H
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
+//
+// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
+//
+
 // Map Group 0
 #define MAP_BATTLE_COLOSSEUM_2P (0 | (0 << 8))
 #define MAP_TRADE_CENTER        (1 | (0 << 8))
@@ -201,6 +205,8 @@
 #define MAP_FARAWAY_ISLAND_INTERIOR                   (61 | (2 << 8))
 #define MAP_ARTISAN_CAVE_B1F                          (62 | (2 << 8))
 #define MAP_ARTISAN_CAVE_1F                           (63 | (2 << 8))
+#define MAP_SOUTHERN_ISLAND_EXTERIOR                  (64 | (2 << 8))
+#define MAP_SOUTHERN_ISLAND_INTERIOR                  (65 | (2 << 8))
 
 // Map Group 3
 #define MAP_PALLET_TOWN                          (0 | (3 << 8))

@@ -94,7 +94,8 @@ static const u8 sTextColorTable[] =
     [OBJ_EVENT_GFX_TAMER / 2]                   = 0x10, // OBJ_EVENT_GFX_POKEMON_BREEDER
     [OBJ_EVENT_GFX_RED_UNDERWATER / 2]          = 0x10, // OBJ_EVENT_GFX_GREEN_UNDERWATER
     [OBJ_EVENT_GFX_SCOTT / 2]                   = 0x20, // OBJ_EVENT_GFX_BULBASAUR
-    [OBJ_EVENT_GFX_CHARMANDER / 2]              = 0x22  // OBJ_EVENT_GFX_SQUIRTLE
+    [OBJ_EVENT_GFX_CHARMANDER / 2]              = 0x22, // OBJ_EVENT_GFX_SQUIRTLE
+    [OBJ_EVENT_GFX_LATIAS / 2]                  = 0x22  // OBJ_EVENT_GFX_LATIOS
 };
 
 void DynamicPlaceholderTextUtil_Reset(void)
