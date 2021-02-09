@@ -1820,11 +1820,11 @@ static void InitRegionMapType(void)
     {
         region = REGIONMAP_SEVII123;
     }
-    if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE)
+    if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE && gMapHeader.regionMapSectionId != MAPSEC_SOUTHERN_ISLAND)
     {
         region = REGIONMAP_HOENN;
     }
-    if(gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER || gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE)
+    if(gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER || gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE || gMapHeader.regionMapSectionId == MAPSEC_SOUTHERN_ISLAND)
     {
         region = REGIONMAP_KANTO;
     }
@@ -1891,7 +1891,7 @@ static bool8 LoadRegionMapGfx(void)
         LoadPalette(sTopBar_Pal, 0xC0, sizeof(sTopBar_Pal));
         break;
     case 1:
-        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE)
+        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE && gMapHeader.regionMapSectionId != MAPSEC_SOUTHERN_ISLAND)
             LoadPalette(sHoennRegionMap_Pal, 0x70, 0x60);
         else
             LoadPalette(sRegionMap_Pal, 0, sizeof(sRegionMap_Pal));
@@ -1909,7 +1909,7 @@ static bool8 LoadRegionMapGfx(void)
         ResetTempTileDataBuffers();
         break;
     case 3:
-        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE)
+        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE && gMapHeader.regionMapSectionId != MAPSEC_SOUTHERN_ISLAND)
             DecompressAndCopyTileDataToVram(0, sHoennRegionMap_Gfx, 0, 0, 0);
         else
             DecompressAndCopyTileDataToVram(0, sRegionMap_Gfx, 0, 0, 0);
@@ -1921,7 +1921,7 @@ static bool8 LoadRegionMapGfx(void)
             return FALSE;
         break;
     case 5:
-        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE)
+        if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE && gMapHeader.regionMapSectionId != MAPSEC_SOUTHERN_ISLAND)
             LZ77UnCompWram(sHoenn_Tilemap, sRegionMap->layouts[REGIONMAP_HOENN]);
         else
             LZ77UnCompWram(sKanto_Tilemap, sRegionMap->layouts[REGIONMAP_KANTO]);
@@ -2164,7 +2164,7 @@ static void InitRegionMapBgs(void)
     DmaFill16Defvars(3, 0, (void *)PLTT, PLTT_SIZE);
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
     ResetBgsAndClearDma3BusyFlags(FALSE);
-    if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE)
+    if(gMapHeader.regionMapSectionId <= MAPSEC_SKY_PILLAR && gMapHeader.regionMapSectionId != MAPSEC_UNDERWATER_124 && gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gMapHeader.regionMapSectionId != MAPSEC_ARTISAN_CAVE && gMapHeader.regionMapSectionId != MAPSEC_SOUTHERN_ISLAND)
         InitBgsFromTemplates(0, sHoennRegionMapBgTemplates, NELEMS(sHoennRegionMapBgTemplates));
     else
         InitBgsFromTemplates(0, sRegionMapBgTemplates, NELEMS(sRegionMapBgTemplates));
@@ -4141,6 +4141,7 @@ static void GetPlayerPositionOnRegionMap_HandleOverrides(void)
     case MAPSEC_FARAWAY_ISLAND:
     case MAPSEC_ARTISAN_CAVE:
     case MAPSEC_BATTLE_FRONTIER:
+    case MAPSEC_SOUTHERN_ISLAND:
         sMapCursor->x = 0;
         sMapCursor->y = 17;
         break;
@@ -4179,7 +4180,7 @@ static void CreatePlayerIcon(u16 tileTag, u16 palTag)
     sPlayerIcon->palTag = palTag;
     sPlayerIcon->x = GetMapCursorX();
     sPlayerIcon->y = GetMapCursorY();
-    if(gMapHeader.regionMapSectionId == MAPSEC_FARAWAY_ISLAND || gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE || gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER)
+    if(gMapHeader.regionMapSectionId == MAPSEC_FARAWAY_ISLAND || gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE || gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER || gMapHeader.regionMapSectionId == MAPSEC_SOUTHERN_ISLAND)
     {
         sMapCursor->x = 0;
         sMapCursor->y = 0;

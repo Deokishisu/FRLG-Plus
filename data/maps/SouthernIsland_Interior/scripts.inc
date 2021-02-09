@@ -53,6 +53,8 @@ SouthernIsland_Interior_EventScript_Lati::
 	compare VAR_RESULT, FALSE
 	call_if_eq SouthernIsland_Interior_EventScript_CheckCaughtLatias
 	setflag FLAG_TEMP_2
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
 	special SpawnCameraObject
 	applymovement OBJ_EVENT_ID_CAMERA, SouthernIsland_Interior_Movement_CameraPanUp
 	waitmovement 0
@@ -141,7 +143,9 @@ SouthernIsland_Interior_EventScript_RanFromLati::
 	end
 
 SouthernIsland_Interior_EventScript_Sign::
-	msgbox SouthernIsland_Interior_Text_Sign, MSGBOX_DEFAULT
+	signmsg
+	msgbox SouthernIsland_Interior_Text_Sign, MSGBOX_SIGN
+	normalmsg
 	releaseall
 	end
 

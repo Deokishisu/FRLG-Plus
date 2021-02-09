@@ -1259,7 +1259,7 @@ bool8 IsMapTypeOutdoors(u8 mapType)
 
 bool8 Overworld_MapTypeAllowsTeleportAndFly(u8 mapType)
 {
-    if(GetCurrentRegionMapSectionId() == MAPSEC_FARAWAY_ISLAND)
+    if(GetCurrentRegionMapSectionId() == MAPSEC_FARAWAY_ISLAND || GetCurrentRegionMapSectionId() == MAPSEC_SOUTHERN_ISLAND)
         return FALSE;
     if(GetCurrentRegionMapSectionId() == MAPSEC_BATTLE_FRONTIER)
         return FALSE;
