@@ -3,6 +3,7 @@
 #include "field_specials.h"
 #include "event_object_movement.h"
 #include "overworld.h"
+#include "pokedex.h"
 #include "script.h"
 #include "sound.h"
 #include "event_data.h"
@@ -563,6 +564,29 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
 void HandleUseExpiredRepel(void)
 {
     VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VarGet(VAR_LAST_REPEL_USED)));
+}
+
+void CheckTrainerCardStars(void)
+{
+    u8 stars = 0;
+
+    if(FlagGet(FLAG_SYS_GAME_CLEAR))
+    {
+        stars++;
+    }
+    if(HasAllKantoMons())
+    {
+        stars++;
+    }
+    if(HasAllMons())
+    {
+        stars++;
+    }
+    if((gSaveBlock2Ptr->berryPick.berriesPicked >= 200 && gSaveBlock2Ptr->pokeJump.jumpsInRow >= 200) || gSaveBlock2Ptr->battleTower.bestBattleTowerWinStreak > 49)
+    {
+        stars++;
+    }
+    gSpecialVar_Result = stars;
 }
 
 #define HAS_TICKETS 16

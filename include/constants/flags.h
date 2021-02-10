@@ -650,7 +650,7 @@
 #define FLAG_DID_SEELOR_TRADE                            0x276
 #define FLAG_0x277                                       0x277
 #define FLAG_GOT_HITMON_FROM_DOJO                        0x278
-#define FLAG_0x279                                       0x279
+#define FLAG_SHOWN_COPPER_CARD_TO_NURSE                  0x279
 #define FLAG_SILPH_2F_DOOR_1                             0x27A
 #define FLAG_SILPH_2F_DOOR_2                             0x27B
 #define FLAG_SILPH_3F_DOOR_1                             0x27C
