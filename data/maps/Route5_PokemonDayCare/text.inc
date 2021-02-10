@@ -34,7 +34,7 @@ Route5_PokemonDayCare_Text_ThankYouHeresMon:: @ 819DEAF
 	.string "Here's your POKéMON.$"
 
 Route5_PokemonDayCare_Text_PlayerGotMonBack:: @ 819DECF
-	.string "{PLAYER} got {STR_VAR_1} back\n"
+	.string "{PLAYER} got {STR_VAR_2} back\n"
 	.string "from the DAY-CARE MAN.$"
 
 Route5_PokemonDayCare_Text_OnlyHaveOneMonWithYou:: @ 819DEF5

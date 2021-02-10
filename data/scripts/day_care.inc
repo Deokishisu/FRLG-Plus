@@ -80,6 +80,7 @@ Route5_PokemonDayCare_EventScript_TryRetrieveMon:: @ 81BF4BC
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq Route5_PokemonDayCare_EventScript_NoRoomInParty
+Route5_PokemonDayCare_EventScript_TryRetrieveMon_Continue::
 	specialvar VAR_RESULT, IsEnoughForCostInVar0x8005
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route5_PokemonDayCare_EventScript_RetrieveMon
@@ -90,27 +91,46 @@ Route5_PokemonDayCare_EventScript_TryRetrieveMon:: @ 81BF4BC
 Route5_PokemonDayCare_EventScript_RetrieveMon:: @ 81BF4EA
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, TakePokemonFromRoute5Daycare
+	compare VAR_RESULT, 9999 //boxes full
+	goto_if_eq Route5_PokemonDayCare_EventScript_StorageAndPartyFull
 	special SubtractMoneyFromVar0x8005
 	updatemoneybox 0, 0, 0
 	copyvar VAR_0x8008, VAR_RESULT
 	getpartysize
 	subvar VAR_RESULT, 1
-	getpartymonname 0, VAR_RESULT
+	//getpartymonname 0, VAR_RESULT //done by TakePokemonFromRoute5Daycare into STR_VAR_1
 	copyvar VAR_RESULT, VAR_0x8008
 	msgbox Route5_PokemonDayCare_Text_ThankYouHeresMon
 	textcolor 3
 	waitse
 	playmoncry VAR_RESULT, 0
 	msgbox Route5_PokemonDayCare_Text_PlayerGotMonBack
-	call EventScript_RestorePrevTextColor
 	waitmoncry
+	compare VAR_MON_BOX_ID, 9999 //not sent to box
+	call_if_ne Route5_PokemonDayCare_EventScript_SentToBoxNum
+	call EventScript_RestorePrevTextColor
 	goto Route5_PokemonDayCare_EventScript_CloseMoneyBox
 	end
 
 Route5_PokemonDayCare_EventScript_NoRoomInParty:: @ 81BF533
+	callnative CheckDaycareMonsHaveMail
+	compare VAR_RESULT, TRUE //this mon has mail
+	goto_if_ne Route5_PokemonDayCare_EventScript_TryRetrieveMon_Continue
+Route5_PokemonDayCare_EventScript_StorageAndPartyFull::
 	msgbox Route5_PokemonDayCare_Text_YouveGotNoRoomForIt
 	goto Route5_PokemonDayCare_EventScript_CloseMoneyBox
 	end
+
+Route5_PokemonDayCare_EventScript_SentToBoxNum::
+	copyvar VAR_TEMP_1, VAR_RESULT
+	call EventScript_TransferredToPC_Nickname
+	return
+
+EventScript_TransferredToPC_Nickname::
+	bufferboxname 0, VAR_PC_BOX_TO_SEND_MON
+	call_if_unset FLAG_SYS_NOT_SOMEONES_PC, EventScript_TransferredSomeonesPC
+	call_if_set FLAG_SYS_NOT_SOMEONES_PC, EventScript_TransferredBillsPC
+	return
 
 Route5_PokemonDayCare_EventScript_CloseMoneyBox:: @ 81BF541
 	hidemoneybox 0, 0

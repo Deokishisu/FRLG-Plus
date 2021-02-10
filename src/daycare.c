@@ -511,6 +511,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     u16 species;
     u32 experience;
     struct Pokemon pokemon;
+    u8 sentPC;
 
     DayCare_GetBoxMonNickname(&daycareMon->mon, gStringVar1);
     species = GetBoxMonData(&daycareMon->mon, MON_DATA_SPECIES);
@@ -524,12 +525,28 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         ApplyDaycareExperience(&pokemon);
     }
 
-    gPlayerParty[PARTY_SIZE - 1] = pokemon;
-    if (daycareMon->mail.message.itemId)
+    if(CalculatePlayerPartyCount() != 6)
+    {
+        gSpecialVar_MonBoxId = 9999;
+        gSpecialVar_MonBoxPos = 9999;
+        gPlayerParty[PARTY_SIZE - 1] = pokemon;
+    }
+    else //convert back to boxmon and send to box
+    {
+       sentPC = SendMonToPC(&pokemon);
+       if(sentPC == MON_CANT_GIVE)
+       {
+           return 9999; //error! Can't retrieve!
+       }
+    }
+    if (daycareMon->mail.message.itemId) //should never trigger for mons sent to box
     {
         GiveMailToMon2(&gPlayerParty[PARTY_SIZE - 1], &daycareMon->mail.message);
         ClearDaycareMonMail(&daycareMon->mail);
     }
+
+    GetMonData(&pokemon, MON_DATA_NICKNAME, gStringVar2);
+    StringGetEnd10(gStringVar2);
 
     ZeroBoxMonData(&daycareMon->mon);
     daycareMon->steps = 0;
@@ -2308,4 +2325,38 @@ static u8 GetEggCyclesToSubtract(void)
         }
     }
     return 1;
+}
+
+void CheckDaycareMonsHaveMail(void)
+{
+    if (gSaveBlock1Ptr->route5DayCareMon.mail.message.itemId)
+    {
+        if(gMapHeader.regionMapSectionId == MAPSEC_ROUTE_5)
+        {
+            gSpecialVar_Result = TRUE; //setting Route 5
+            return;
+        }
+    }
+    switch(gSpecialVar_0x8004)
+    {
+        case 0:
+            if (gSaveBlock1Ptr->daycare.mons[0].mail.message.itemId)
+            {
+                gSpecialVar_Result = TRUE; //setting Four Island mon 0
+                return;
+            }
+            break;
+        case 1:
+            if (gSaveBlock1Ptr->daycare.mons[1].mail.message.itemId)
+            {
+                gSpecialVar_Result = TRUE; //setting Four Island mon 1
+                return;
+            }
+            break;
+    }
+}
+
+void IsPartyAndBoxesFull(void)
+{
+    gSpecialVar_Result = IsPlayerPartyAndPokemonStorageFull();
 }

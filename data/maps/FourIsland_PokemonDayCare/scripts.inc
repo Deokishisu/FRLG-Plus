@@ -97,9 +97,9 @@ FourIsland_PokemonDayCare_OneMonInDaycare:: @ 8171A52
 	end
 
 FourIsland_PokemonDayCare_TryRetrieveMon:: @ 8171A90
-	specialvar VAR_RESULT, CalculatePlayerPartyCount
-	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq FourIsland_PokemonDayCare_NoRoomInParty
+	callnative IsPartyAndBoxesFull
+	compare VAR_RESULT, TRUE
+	goto_if_eq FourIsland_PokemonDayCare_EventScript_StorageAndPartyFull
 	specialvar VAR_RESULT, GetDaycareState
 	setvar VAR_0x8004, 0
 	compare VAR_RESULT, DAYCARE_ONE_MON
@@ -113,6 +113,10 @@ FourIsland_PokemonDayCare_TryRetrieveMon:: @ 8171A90
 	end
 
 FourIsland_PokemonDayCare_CostPrompt:: @ 8171ACF
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	compare VAR_RESULT, PARTY_SIZE
+	goto_if_eq FourIsland_PokemonDayCare_NoRoomInParty
+FourIsland_PokemonDayCare_CostPrompt_Continue::
 	special GetDaycareCost
 	msgbox DayCare_Text_ItWillCostX, MSGBOX_YESNO
 	compare VAR_RESULT, YES
@@ -129,9 +133,11 @@ FourIsland_PokemonDayCare_CheckEnoughMoney:: @ 8171AEB
 	end
 
 FourIsland_PokemonDayCare_RetrieveMon:: @ 8171B05
+	specialvar VAR_RESULT, TakePokemonFromDaycare
+	compare VAR_RESULT, 9999 //boxes full
+	goto_if_eq FourIsland_PokemonDayCare_EventScript_StorageAndPartyFull
 	applymovement 1, FourIsland_PokemonDayCare_Movement_RetrieveMon
 	waitmovement 0
-	specialvar VAR_RESULT, TakePokemonFromDaycare
 	special SubtractMoneyFromVar0x8005
 	playse SE_RS_SHOP
 	msgbox DayCare_Text_HeresYourMon
@@ -139,8 +145,10 @@ FourIsland_PokemonDayCare_RetrieveMon:: @ 8171B05
 	playmoncry VAR_RESULT, 0
 	textcolor 3
 	msgbox DayCare_Text_TookBackMon
-	call EventScript_RestorePrevTextColor
 	waitmoncry
+	compare VAR_MON_BOX_ID, 9999 //not sent to box
+	call_if_ne Route5_PokemonDayCare_EventScript_SentToBoxNum
+	call EventScript_RestorePrevTextColor
 	specialvar VAR_RESULT, GetDaycareState
 	compare VAR_RESULT, DAYCARE_ONE_MON
 	goto_if_eq FourIsland_PokemonDayCare_AskRetrieveOtherMon
@@ -155,6 +163,10 @@ FourIsland_PokemonDayCare_AskRetrieveOtherMon:: @ 8171B4E
 	end
 
 FourIsland_PokemonDayCare_NoRoomInParty:: @ 8171B67
+	callnative CheckDaycareMonsHaveMail
+	compare VAR_RESULT, TRUE //selected slot has mail
+	goto_if_ne FourIsland_PokemonDayCare_CostPrompt_Continue
+FourIsland_PokemonDayCare_EventScript_StorageAndPartyFull::
 	msgbox DayCare_Text_YourPartyIsFull
 	release
 	end

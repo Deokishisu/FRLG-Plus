@@ -56,6 +56,7 @@
 - The Victory Road boulder puzzles no longer reset.
 - Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
+- The Day Care will send a retrieved Pokémon to a box as long as it's not holding mail if the player's party is full.
 - The Old Man tutorial battle is skipped if you have more than one Pokémon with you.
 - Steps taken aren't counted while inside Safari Zone Rest Houses.
 - When a repel expires, the player will be asked whether they want to use another immediately, like in Black 2 and White 2.

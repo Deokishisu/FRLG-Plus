@@ -103,7 +103,7 @@ DayCare_Text_HeresYourMon:: @ 81BFA67
 	.string "Here's your POKéMON.$"
 
 DayCare_Text_TookBackMon:: @ 81BFA85
-	.string "{PLAYER} took back {STR_VAR_1} from\n"
+	.string "{PLAYER} took back {STR_VAR_2} from\n"
 	.string "the DAY-CARE LADY.$"
 
 DayCare_Text_YouHaveJustOneMon:: @ 81BFAAD

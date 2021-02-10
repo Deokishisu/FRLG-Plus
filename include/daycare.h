@@ -24,6 +24,8 @@ bool8 NameHasGenderSymbol(const u8 *name, u8 genderRatio);
 void ShowDaycareLevelMenu(void);
 void ChooseSendDaycareMon(void);
 void GiveRivalStarterEgg(void);
+void CheckDaycareMonsHaveMail(void);
+void IsPartyAndBoxesFull(void);
 
 void ScriptHatchMon(void);
 bool8 sub_8071614(void);
