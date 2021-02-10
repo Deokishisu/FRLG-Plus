@@ -137,3 +137,129 @@ SilphCo_11F_EventScript_Grunt2:: @ 8161F57
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_41, SilphCo_11F_Text_Grunt2Intro, SilphCo_11F_Text_Grunt2Defeat
 	msgbox SilphCo_11F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SilphCo_11F_EventScript_WorkerM::
+	msgbox SilphCo_11F_Text_WorkerM, MSGBOX_NPC
+	end
+
+SilphCo_11F_Text_WorkerM:
+	.string "Excuse me!\p"
+	.string "Do you have an appointment to see\n"
+	.string "the PRESIDENT?\p"
+	.string "Oh, {PLAYER}!\n"
+	.string "Sorry, go on ahead.$"
+
+SilphCo_11F_EventScript_DevonSpy::
+	call_if_unset FLAG_MET_DEVON_SPY, SilphCo_11F_EventScript_DevonSpyFirstTime
+	goto_if_questlog EventScript_ReleaseEnd
+	msgbox SilphCo_11F_Text_DevonSpy
+	release
+	faceplayer
+	playse SE_PIN
+	applymovement 8, Movement_ExclamationMark
+	waitmovement 0
+	applymovement 8, Movement_Delay48
+	waitmovement 0
+	lock
+	message SilphCo_11F_Text_DevonSpyYoureBack
+	waitmessage
+	pokemart SilphCo_11F_DevonSpy_Items
+	msgbox SilphCo_11F_Text_DevonSpyComeBackLater
+	release
+	turnobject 8, DIR_WEST
+	end
+
+SilphCo_11F_EventScript_DevonSpyFirstTime::
+	msgbox SilphCo_11F_Text_DevonSpyFirstTime
+	release
+	faceplayer
+	playse SE_PIN
+	applymovement 8, Movement_ExclamationMark
+	waitmovement 0
+	applymovement 8, Movement_Delay48
+	waitmovement 0
+	msgbox SilphCo_11F_Text_Explain, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SilphCo_11F_EventScript_DevonSpyFirstTimeNo
+SilphCo_11F_EventScript_DevonSpyFirstTimeYes::
+	setflag FLAG_MET_DEVON_SPY
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	message SilphCo_11F_Text_DevonSpyAccepted
+	waitmessage
+	pokemart SilphCo_11F_DevonSpy_Items
+	msgbox SilphCo_11F_Text_DevonSpyComeBackLater
+	release
+	turnobject 8, DIR_WEST
+	end
+
+	.align 2
+SilphCo_11F_DevonSpy_Items:: @ 816EFDC
+	.2byte ITEM_NET_BALL
+	.2byte ITEM_NEST_BALL
+	.2byte ITEM_REPEAT_BALL
+	.2byte ITEM_TIMER_BALL
+	.2byte ITEM_LUXURY_BALL
+	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_NONE
+	release
+	end
+
+SilphCo_11F_EventScript_DevonSpyFirstTimeNo::
+	msgbox SilphCo_11F_Text_DevonSpyComeOn, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SilphCo_11F_EventScript_DevonSpyFirstTimeNo
+	goto SilphCo_11F_EventScript_DevonSpyFirstTimeYes
+
+SilphCo_11F_Text_DevonSpy:
+	.string "POKé… TEAR?\n"
+	.string "Lets TRAINERS make dolls anywhere?\l"
+	.string "That can't be right…$"
+
+SilphCo_11F_Text_DevonSpyYoureBack:
+	.string "Gah!\p"
+	.string "I-I'm just checking how sturdy\n"
+	.string "the walls are!\p"
+	.string "Oh, it's you again, kid.\p"
+	.string "I've got the imported POKé BALLS\n"
+	.string "if you've got the cash.$"
+
+SilphCo_11F_Text_DevonSpyFirstTime:
+	.string "Getting the MASTER BALL research\n"
+	.string "and development was a huge score…\p"
+	.string "Bringing back the next big project's\n"
+	.string "intel will be a massive payday!$"
+
+SilphCo_11F_Text_Explain:
+	.string "Gah!\p"
+	.string "Where did you come from?\p"
+	.string "Wait! It's not what you think!\n"
+	.string "I'm not with TEAM ROCKET!\p"
+	.string "I work for SILPH, but I also\n"
+	.string "work for another company that's\l"
+	.string "based very far away.\p"
+	.string "They pay me to pass along info\n"
+	.string "about SILPH's product development.\p"
+	.string "Listen kid, I've got a good thing\n"
+	.string "going on for myself here, and I'm\l"
+	.string "willing to pay for your silence.\p"
+	.string "Well, more like sell to you at cost\n"
+	.string "for your silence, hehehe.\p"
+	.string "I have special POKé BALLS that I\n"
+	.string "imported from my company abroad.\p"
+	.string "I'll sell them to you for cheap\n"
+	.string "if you forget you ever saw me.$"
+
+SilphCo_11F_Text_DevonSpyComeOn:
+	.string "Oh come on, kid.\n"
+	.string "Help me help you help me.$"
+
+SilphCo_11F_Text_DevonSpyAccepted:
+	.string "Excellent!\n"
+	.string "You'll love these POKé BALLS, kid.\p"
+	.string "This is all of them,\n"
+	.string "which ones are you interested in?$"
+
+SilphCo_11F_Text_DevonSpyComeBackLater:
+	.string "I'll sell these to you anytime as\n"
+	.string "long as you promise to keep quiet.$"

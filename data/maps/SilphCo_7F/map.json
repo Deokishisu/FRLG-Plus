@@ -168,6 +168,34 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SilphCo_7F_EventScript_ItemTM08",
       "flag": "FLAG_HIDE_SILPH_CO_7F_TM08"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
+      "in_connection": false,
+      "x": 4,
+      "y": 12,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilphCo_7F_EventScript_WorkerBro",
+      "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
+      "in_connection": false,
+      "x": 27,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilphCo_7F_EventScript_WorkerFPhone",
+      "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     }
   ],
   "warp_events": [
@@ -348,6 +376,22 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SilphCo_7F_EventScript_FloorSign"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SilphCo_7F_EventScript_Painting"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SilphCo_7F_EventScript_Painting"
     }
   ],
   "level_scaling": "3"

@@ -24,8 +24,8 @@ SilphCo_10F_Text_WaaaImScared:: @ 8176DBA
     .string "I'm scared!$"
 
 SilphCo_10F_Text_KeepMeCryingASecret:: @ 8176DCE
-    .string "About me crying…\n"
-    .string "Please keep it a secret.$"
+    .string "I know you saw me crying before…\n"
+    .string "Please, don't tell anyone!$"
 
 SilphCo_10F_Text_FloorSign:: @ 8176DF8
     .string "SILPH CO. HEAD OFFICE\n"

@@ -70,6 +70,48 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SilphCo_3F_EventScript_ItemHyperPotion",
       "flag": "FLAG_HIDE_SILPH_CO_3F_HYPER_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
+      "in_connection": false,
+      "x": 13,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_DOWN_UP_LEFT",
+      "movement_range_x": 10,
+      "movement_range_y": 13,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilphCo_3F_EventScript_WorkerMWalking",
+      "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
+      "in_connection": false,
+      "x": 4,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilphCo_3F_EventScript_WorkerF",
+      "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
+      "in_connection": false,
+      "x": 13,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilphCo_3F_EventScript_Scientist",
+      "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     }
   ],
   "warp_events": [

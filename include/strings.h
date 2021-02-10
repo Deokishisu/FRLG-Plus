@@ -1606,5 +1606,6 @@ extern const u8 gText_BattleDome[];
 extern const u8 gText_BattlePike[];
 extern const u8 gText_BattlePalace[];
 extern const u8 gText_BattlePyramid[];
-
+extern const u8 gText_DevonSpyShop[];
+extern const u8 gText_CanIHelpWithAnythingElseF[];
 #endif //GUARD_STRINGS_H

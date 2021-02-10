@@ -39,3 +39,57 @@ SilphCo_4F_EventScript_Grunt2:: @ 81617A7
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_27, SilphCo_4F_Text_Grunt2Intro, SilphCo_4F_Text_Grunt2Defeat
 	msgbox SilphCo_4F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SilphCo_4F_EventScript_BaldingMan:: @ 8161770
+	msgbox SilphCo_4F_Text_BaldingMan, MSGBOX_NPC
+	end
+
+SilphCo_4F_Text_BaldingMan:
+	.string "My office mate brings the most\n"
+	.string "disgusting-smelling food.\p"
+	.string "I wish she would take her lunch\n"
+	.string "break somewhere else.$"
+
+SilphCo_4F_EventScript_WorkerF:: @ 8161770
+	msgbox SilphCo_4F_Text_WorkerF, MSGBOX_NPC
+	end
+
+SilphCo_4F_Text_WorkerF:
+	.string "Between you and me, I'm trying\n"
+	.string "to impress my office mate.\p"
+	.string "He's due for a promotion, and I\n"
+	.string "want to be the first one he thinks\l"
+	.string "to promote!$"
+
+SilphCo_4F_EventScript_WorkerM2:: @ 8161770
+	msgbox SilphCo_4F_Text_WorkerM2, MSGBOX_NPC
+	end
+
+SilphCo_4F_Text_WorkerM2:
+	.string "I'm on my break, kid.\n"
+	.string "I can't give you a tour now.$"
+
+SilphCo_4F_EventScript_Scientist:: @ 8161770
+	msgbox SilphCo_4F_Text_Scientist, MSGBOX_NPC
+	end
+
+SilphCo_4F_Text_Scientist:
+	.string "What? Why are you looking at\n"
+	.string "me like that?\p"
+	.string "There was a TEAM ROCKET SCIENTIST\n"
+	.string "in here during the takeover?\p"
+	.string "Well, I'm obviously not him.\n"
+	.string "We must look completely different.$"
+
+SilphCo_4F_EventScript_Painting::
+	goto_if_unset FLAG_HIDE_SAFFRON_CIVILIANS, SilphCo_4F_EventScript_NewPainting
+	msgbox gUnknown_81C101B, MSGBOX_SIGN
+	end
+
+SilphCo_4F_EventScript_NewPainting::
+	msgbox SilphCo_4F_Text_NewPainting, MSGBOX_SIGN
+	end
+
+SilphCo_4F_Text_NewPainting:
+	.string "It's a gorgeous painting of a POKéMON\n"
+	.string "swimming in an underwater paradise.$"

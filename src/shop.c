@@ -30,6 +30,7 @@
 #include "constants/items.h"
 #include "constants/game_stat.h"
 #include "constants/field_weather.h"
+#include "constants/region_map_sections.h"
 
 #define tItemCount data[1]
 #define tItemId data[5]
@@ -338,8 +339,12 @@ static void Task_ReturnToShopMenu(u8 taskId)
 {
     if (IsWeatherNotFadingIn() != TRUE)
         return;
-    
-    DisplayItemMessageOnField(taskId, GetMartUnk16_4(), gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
+    if(gMapHeader.regionMapSectionId == MAPSEC_SILPH_CO)
+        DisplayItemMessageOnField(taskId, GetMartUnk16_4(), gText_DevonSpyShop, ShowShopMenuAfterExitingBuyOrSellMenu);
+    else if(gMapHeader.regionMapSectionId == MAPSEC_TRAINER_TOWER_2)
+        DisplayItemMessageOnField(taskId, GetMartUnk16_4(), gText_CanIHelpWithAnythingElseF, ShowShopMenuAfterExitingBuyOrSellMenu);
+    else
+        DisplayItemMessageOnField(taskId, GetMartUnk16_4(), gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
 }
 
 static void ShowShopMenuAfterExitingBuyOrSellMenu(u8 taskId)

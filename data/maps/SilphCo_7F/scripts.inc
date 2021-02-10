@@ -303,3 +303,49 @@ SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_1:
 
 SilphCo_7F_EventScript_RivalGivesLinkBracelet_Text_2:
 	.string "All right, I'm really going this\ntime. Smell ya!$"
+
+SilphCo_7F_EventScript_WorkerBro:: @ 8161770
+	msgbox SilphCo_7F_Text_WorkerBro, MSGBOX_NPC
+	end
+
+SilphCo_7F_Text_WorkerBro:
+	.string "I am one of the four SILPH\n"
+    .string "BROTHERS!\p"
+	.string "I make sure the company servers\n"
+	.string "are working properly!$"
+
+SilphCo_7F_EventScript_WorkerFPhone:: @ 8161770
+	msgbox SilphCo_7F_Text_WorkerFPhone
+	release
+	msgbox SilphCo_7F_Text_WorkerFPhone2, MSGBOX_NPC
+	turnobject 13, DIR_NORTH
+	end
+
+SilphCo_7F_Text_WorkerFPhone:
+	.string "Have you tried doing what I\n"
+    .string "suggested earlier?\p"
+	.string "I'm telling you it'd work.\n"
+	.string "Okay, call me back.$"
+
+SilphCo_7F_Text_WorkerFPhone2:
+	.string "My coworker downstairs asks\n"
+	.string "me for help all the time.\p"
+	.string "I usually figure out the\n"
+	.string "solution pretty quickly…\p"
+	.string "But does he ever listen to\n"
+	.string "me the first time?\p"
+	.string "No!\n"
+	.string "Of course not!$"
+
+SilphCo_7F_EventScript_Painting::
+	goto_if_unset FLAG_HIDE_SAFFRON_CIVILIANS, SilphCo_7F_EventScript_NewPainting
+	msgbox gUnknown_81C101B, MSGBOX_SIGN
+	end
+
+SilphCo_7F_EventScript_NewPainting::
+	msgbox SilphCo_7F_Text_NewPainting, MSGBOX_SIGN
+	end
+
+SilphCo_7F_Text_NewPainting:
+	.string "It's a gorgeous painting of a bird\n"
+	.string "POKéMON darting between the trees.$"

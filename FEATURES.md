@@ -61,6 +61,7 @@
 - Steps taken aren't counted while inside Safari Zone Rest Houses.
 - When a repel expires, the player will be asked whether they want to use another immediately, like in Black 2 and White 2.
 - The Pokémon Center nurses abbreviate their dialogue after getting two Trainer Card stars, similar to Generation IV and up.
+- The Generation III Poké Ball varieties can be purchased in Silph Co. after it is liberated from Team Rocket.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
@@ -79,5 +80,6 @@
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
+- Silph Co. is populated by workers once it is liberated from Team Rocket.
 - Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
 

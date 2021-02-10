@@ -94,3 +94,13 @@ SilphCo_6F_EventScript_Grunt2:: @ 816196D
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_31, SilphCo_6F_Text_Grunt2Intro, SilphCo_6F_Text_Grunt2Defeat
 	msgbox SilphCo_6F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SilphCo_6F_EventScript_SuperNerd:: @ 8161770
+	msgbox SilphCo_6F_Text_SuperNerd, MSGBOX_NPC
+	end
+
+SilphCo_6F_Text_SuperNerd:
+	.string "I am one of the four SILPH\n"
+    .string "BROTHERS!\p"
+	.string "I make sure the company inventory\n"
+	.string "counts are correct!$"

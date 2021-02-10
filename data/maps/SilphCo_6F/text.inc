@@ -18,7 +18,7 @@ SilphCo_6F_Text_ThatManIsSuchACoward:: @ 8175FAA
     .string "He's such a coward!$"
 
 SilphCo_6F_Text_NeedsMeToLookAfterHim:: @ 8175FD3
-    .string "He's so helpless, he needed\n"
+    .string "He's so helpless, he needs\n"
     .string "someone like me to look after him.$"
 
 SilphCo_6F_Text_RocketsTryingToConquerWorld:: @ 8176012

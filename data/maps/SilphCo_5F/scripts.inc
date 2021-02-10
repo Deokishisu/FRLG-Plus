@@ -6,7 +6,12 @@ SilphCo_5F_OnLoad:: @ 81617C4
 	call_if_unset FLAG_SILPH_5F_DOOR_1, EventScript_Close5FDoor1
 	call_if_unset FLAG_SILPH_5F_DOOR_2, EventScript_Close5FDoor2
 	call_if_unset FLAG_SILPH_5F_DOOR_3, EventScript_Close5FDoor3
+	call_if_unset FLAG_HIDE_SAFFRON_CIVILIANS, SilphCo_5F_EventScript_ScientistMovementType
 	end
+
+SilphCo_5F_EventScript_ScientistMovementType::
+	setobjectmovementtype 9, MOVEMENT_TYPE_WANDER_AROUND
+	return
 
 SilphCo_5F_EventScript_WorkerM:: @ 81617E0
 	lock
@@ -57,3 +62,28 @@ SilphCo_5F_EventScript_Dalton:: @ 816186A
 	trainerbattle_single TRAINER_JUGGLER_DALTON, SilphCo_5F_Text_DaltonIntro, SilphCo_5F_Text_DaltonDefeat
 	msgbox SilphCo_5F_Text_DaltonPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+SilphCo_5F_EventScript_WorkerM2:: @ 8161770
+	msgbox SilphCo_5F_Text_WorkerM2, MSGBOX_NPC
+	end
+
+SilphCo_5F_Text_WorkerM2:
+	.string "Synergy!\n"
+	.string "Disruption!\l"
+	.string "Paradigm shift!$"
+
+SilphCo_5F_EventScript_WorkerF:: @ 8161770
+	msgbox SilphCo_5F_Text_WorkerF, MSGBOX_NPC
+	end
+
+SilphCo_5F_Text_WorkerF:
+	.string "Is it just me or is this guy\n"
+	.string "not actually saying anything?$"
+
+SilphCo_5F_EventScript_Scientist2:: @ 8161770
+	msgbox SilphCo_5F_Text_Scientist2, MSGBOX_NPC
+	end
+
+SilphCo_5F_Text_Scientist2:
+	.string "He-he's a visionary!\n"
+	.string "I've got to take notes!$"
