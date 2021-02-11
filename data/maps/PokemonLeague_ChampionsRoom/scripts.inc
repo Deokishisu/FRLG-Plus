@@ -95,6 +95,9 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom:: @ 8162B76
 	applymovement LOCALID_PROF_OAK, PokemonLeague_ChampionsRoom_Movement_OakExit
 	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_Movement_PlayerExit
 	waitmovement 0
+	playse SE_EXIT
+	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_Movement_PlayerExit2
+	waitmovement 0
 	setvar VAR_TEMP_1, 1
 	warp MAP_POKEMON_LEAGUE_HALL_OF_FAME, 255, 5, 12
 	waitstate
@@ -208,6 +211,9 @@ PokemonLeague_ChampionsRoom_Movement_PlayerExit:: @ 8162D12
 	walk_right
 	walk_up
 	walk_up
+	step_end
+
+PokemonLeague_ChampionsRoom_Movement_PlayerExit2::
 	walk_up
 	walk_up
 	delay_8
