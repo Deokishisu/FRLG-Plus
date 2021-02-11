@@ -626,7 +626,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, s32 item, u8 y)
         while (x-- != 0)
             *loc++ = 0;
         StringExpandPlaceholders(loc, gText_PokedollarVar1);
-        BuyMenuPrint(windowId, 0, gStringVar4, 0x68, y, 0, 0, TEXT_SPEED_FF, 1);
+        BuyMenuPrint(windowId, 0, gStringVar4, 0x67, y, 0, 0, TEXT_SPEED_FF, 1);
     }
 }
 
@@ -924,7 +924,19 @@ static void Task_BuyMenu(u8 taskId)
             else
             {
                 CopyItemName(itemId, gStringVar1);
-                BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
+                if(itemId >= ITEM_TM01 && itemId <= ITEM_HM08) //if TM, skip to confirm without choosing quantity
+                {
+                    gShopData.itemPrice = itemid_get_market_price(itemId);
+                    tItemCount = 1;
+                    PlaySE(SE_SELECT);
+                    PutWindowTilemap(4);
+                    CopyItemName(tItemId, gStringVar1);
+                    ConvertIntToDecimalStringN(gStringVar2, 1, STR_CONV_MODE_LEFT_ALIGN, 2);
+                    ConvertIntToDecimalStringN(gStringVar3, gShopData.itemPrice, STR_CONV_MODE_LEFT_ALIGN, 8);
+                    BuyMenuDisplayMessage(taskId, gText_Var1AndYouWantedVar2, CreateBuyMenuConfirmPurchaseWindow);
+                }
+                else
+                    BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
             }
             break;
         }
