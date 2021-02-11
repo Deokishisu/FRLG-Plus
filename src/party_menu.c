@@ -1197,7 +1197,10 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
             PlaySE(SE_SELECT);
             gSpecialVar_0x8004 = *slotPtr;
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_MOVE_RELEARNER)
-                gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[*slotPtr]);
+            {
+                u16 moves[20] = {MOVE_NONE};
+                gSpecialVar_0x8005 = GetMoveRelearnerMoves(&gPlayerParty[*slotPtr], moves);
+            }
             Task_ClosePartyMenu(taskId);
             break;
         case PARTY_ACTION_MINIGAME:

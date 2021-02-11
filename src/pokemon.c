@@ -38,6 +38,10 @@
 #include "constants/hold_effects.h"
 #include "constants/battle_move_effects.h"
 
+//#include "printf.h"
+//#include "mgba.h"
+//#include "string_util.h"
+
 // Extracts the upper 16 bits of a 32-bit number
 #define HIHALF(n) (((n) & 0xFFFF0000) >> 16)
 
@@ -84,6 +88,7 @@ static void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
 static u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, u16 move);
 static u8 GetLevelFromMonExp(struct Pokemon *mon);
 static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
+static u8 PopulateSpeciesEvoLineForRelearner(u16 species, bool8 isHatched, u16 evoLine[]);
 
 #include "data/battle_moves.h"
 
@@ -6071,9 +6076,25 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    int i, j, k;
+    bool8 isHatched = FALSE;
+    int ii, jj, i, j, k;
     u8 deoxysForme;
-
+    s8 numInLine;
+    u16 maxEvo;
+    u8 tempMoveNum;
+    u16 evoLine[EVOS_PER_LINE] = {SPECIES_NONE, SPECIES_NONE, SPECIES_NONE, SPECIES_NONE, SPECIES_NONE, SPECIES_NONE};
+    if(GetMonData(mon, MON_DATA_MET_LEVEL, 0) == 0)
+    {
+        isHatched = TRUE;
+    }
+    else if((species == SPECIES_WYNAUT || species == SPECIES_WOBBUFFET) && GetMonData(mon, MON_DATA_MET_LOCATION, 0) == MAPSEC_ROUTE_130)
+    {   //Wynaut/Wobbuffet caught on Mirage Island can relearn baby moves; only catchable baby in Gen 3
+        isHatched = TRUE;
+    }
+    else if((species == SPECIES_ELEKID || species == SPECIES_ELECTABUZZ) && GetMonData(mon, MON_DATA_MET_LEVEL, 0) == 20 && GetMonData(mon, MON_DATA_MET_GAME, 0) == VERSION_GAMECUBE)
+    {   //Hordel's Elekid can relearn baby moves; only other unbred baby in Gen 3
+        isHatched = TRUE;
+    }
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
@@ -6107,33 +6128,195 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     }
     else
     {
-        for (i = 0; i < 20; i++)
+        bool8 addMove = TRUE;
+        numInLine = PopulateSpeciesEvoLineForRelearner(species, isHatched, evoLine);
+        for(ii = 0; ii < numInLine; ii++)
         {
-            u16 moveLevel;
-
-            if (gLevelUpLearnsets[species][i] == LEVEL_UP_END)
-                break;
-
-            moveLevel = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_LV;
-
-            if (moveLevel <= (level << 9))
+            species = evoLine[ii];
+            //mgba_printf(MGBA_LOG_DEBUG, "Top of ii loop species: %d %s", species, ConvertToAscii(gSpeciesNames[species]));
+            for (i = 0; i < 20; i++)
             {
-                for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); j++)
-                    ;
+                u16 moveLevel;
 
-                if (j == MAX_MON_MOVES)
+                if (gLevelUpLearnsets[species][i] == LEVEL_UP_END)
+                    break;
+
+                moveLevel = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_LV;
+
+                if (moveLevel <= (level << 9))
                 {
-                    for (k = 0; k < numMoves && moves[k] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); k++)
-                        ;
+                    //mgba_printf(MGBA_LOG_DEBUG, "Considering adding: %d %s", species, ConvertToAscii(gMoveNames[gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID]));
+                    for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); j++)
+                        ; //skips adding already-known moves to list
 
-                    if (k == numMoves)
-                        moves[numMoves++] = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID;
+                    if (j == MAX_MON_MOVES) //if skipped all already-known moves
+                    {
+                        for (k = 0; k < numMoves && moves[k] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); k++)
+                            ; //skips moves that have already been added to the list?
+
+                        if (k == numMoves) //adds moves to back of list
+                        {
+                            if(addMove)
+                            {
+                                moves[numMoves++] = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID;
+                                addMove = TRUE;
+                            }
+                        }
+                    }
                 }
             }
         }
+        numInLine -= 1;
+        if(numInLine == 0)
+            return numMoves;
+        maxEvo = numInLine;
+        tempMoveNum = numMoves;
+        for(ii = 0; ii < tempMoveNum; ii++)
+        {
+            numInLine = maxEvo - 1;
+            //mgba_printf(MGBA_LOG_DEBUG, "Considering removing: %s", ConvertToAscii(gMoveNames[moves[ii]]));
+            for(i = 0; i < 20 && gLevelUpLearnsets[evoLine[maxEvo]][i] != LEVEL_UP_END; i++)
+            {
+                //mgba_printf(MGBA_LOG_DEBUG, "Max evo is %d: %s", evoLine[maxEvo], ConvertToAscii(gSpeciesNames[evoLine[maxEvo]]));
+                //mgba_printf(MGBA_LOG_DEBUG, "Checking move %s in maxEvo's learnset.", ConvertToAscii(gMoveNames[gLevelUpLearnsets[evoLine[maxEvo]][i] & LEVEL_UP_MOVE_ID]));
+                if(moves[ii] == (gLevelUpLearnsets[evoLine[maxEvo]][i] & LEVEL_UP_MOVE_ID))
+                {   //found move in max evo list
+                    //mgba_printf(MGBA_LOG_DEBUG, "Found move %s in maxEvo's learnset.", ConvertToAscii(gMoveNames[moves[ii]]));
+                    //mgba_printf(MGBA_LOG_DEBUG, "numInLine == %d", numInLine);
+                    while(numInLine > -1) //check all pre-evos for move
+                    {
+                        //mgba_printf(MGBA_LOG_DEBUG, "numInLine == %d", numInLine);
+                        for(j = 0; j < 20 && gLevelUpLearnsets[evoLine[numInLine]][j] != LEVEL_UP_END; j++)
+                        {
+                            if(moves[ii] == (gLevelUpLearnsets[evoLine[numInLine]][j] & LEVEL_UP_MOVE_ID))
+                            {   //found move in preevo list
+                                //mgba_printf(MGBA_LOG_DEBUG, "Found move %s in preEvo's learnset.", ConvertToAscii(gMoveNames[moves[ii]]));
+                                //mgba_printf(MGBA_LOG_DEBUG, "About to check maxEvo's learnset for %s 's level.", ConvertToAscii(gMoveNames[(gLevelUpLearnsets[evoLine[maxEvo]][i] & LEVEL_UP_MOVE_ID)]));
+                                if((gLevelUpLearnsets[evoLine[maxEvo]][i] & LEVEL_UP_MOVE_LV) > (level << 9))
+                                { //max evo too low to know this move, remove it
+                                    //mgba_printf(MGBA_LOG_DEBUG, "Move level found is %d.", gLevelUpLearnsets[evoLine[maxEvo]][i] & LEVEL_UP_MOVE_LV);
+                                    //mgba_printf(MGBA_LOG_DEBUG, "Actual mon level is %d.", level);
+                                    //mgba_printf(MGBA_LOG_DEBUG, "Removing move %s in moves array.", ConvertToAscii(gMoveNames[moves[ii]]));
+                                    moves[ii] = MOVE_NONE;
+                                    numMoves--;
+                                }
+                            }
+                        }
+                        numInLine--;
+                    }
+                }
+            }
+        }
+        for(i = 0; i < 20; i++) //compact moves to remove gaps
+        {   
+            if(moves[i] != MOVE_NONE)
+            {
+                continue;
+            }
+            for(j = i; j < 20; j++)
+            {
+                if(moves[j] == MOVE_NONE)
+                    continue;
+                moves[i] = evoLine[j];
+                moves[j] = MOVE_NONE;
+                break;
+            }
+        }
     }
-
     return numMoves;
+}
+
+static u8 PopulateSpeciesEvoLineForRelearner(u16 species, bool8 isHatched, u16 evoLine[])
+{
+    s32 i;
+    s32 j;
+    u8 numInLine = 0;
+    u16 speciesToRemove1 = SPECIES_NONE;
+    u16 speciesToRemove2 = SPECIES_NONE;
+    if((species >= SPECIES_VAPOREON && species <= SPECIES_FLAREON) || (species == SPECIES_ESPEON || species == SPECIES_UMBREON))
+    {   //Eevee special handling
+        evoLine[0] = SPECIES_EEVEE;
+        evoLine[1] = species;
+        numInLine = 2;
+        return numInLine;
+    }
+    for (i = EVOS_PER_LINE - 1; i > -1; i--) //starting at highest evo
+    {
+        if(gEvolutionLines[species][i] <= species) //start at move relearner's species and work down (babies not included)
+            evoLine[i] = gEvolutionLines[species][i];
+        if(isHatched && gEvolutionLines[species][i] > species && i == 0) //add baby if move relearner mon was hatched && has baby form
+            evoLine[i] = gEvolutionLines[species][i];
+    }
+    switch(species) //remove species if branched evo and not in current branch
+    {
+        case SPECIES_BELLOSSOM:
+            speciesToRemove1 = SPECIES_VILEPLUME;
+            break;
+        case SPECIES_POLITOED:
+            speciesToRemove1 = SPECIES_POLIWRATH;
+            break;
+        case SPECIES_SLOWKING:
+            speciesToRemove1 = SPECIES_SLOWBRO;
+            break;
+        case SPECIES_HITMONTOP:
+            speciesToRemove1 = SPECIES_HITMONCHAN;
+            speciesToRemove2 = SPECIES_HITMONLEE;
+            break;
+        case SPECIES_HITMONCHAN:
+            speciesToRemove1 = SPECIES_HITMONLEE;
+            break;
+        case SPECIES_CASCOON:
+        case SPECIES_DUSTOX:
+            speciesToRemove1 = SPECIES_SILCOON;
+            speciesToRemove2 = SPECIES_BEAUTIFLY;
+            break;
+        case SPECIES_SHEDINJA:
+            speciesToRemove1 = SPECIES_NINJASK;
+            break;
+        case SPECIES_GOREBYSS:
+            speciesToRemove1 = SPECIES_HUNTAIL;
+            break;
+    }
+    for(i = 0; i < EVOS_PER_LINE; i++) //actual removal
+    {
+        if(speciesToRemove1 != SPECIES_NONE)
+        {
+            if(evoLine[i] == speciesToRemove1)
+                evoLine[i] = SPECIES_NONE;
+        }
+        if(speciesToRemove2 != SPECIES_NONE)
+        {
+            if(evoLine[i] == speciesToRemove2)
+                evoLine[i] = SPECIES_NONE;
+        }
+    }
+    //mgba_printf(MGBA_LOG_DEBUG, "Before compaction:", numInLine);
+    //for(i = 0; i < EVOS_PER_LINE; i++)
+        //mgba_printf(MGBA_LOG_DEBUG, "%d %s", evoLine[i], ConvertToAscii(gSpeciesNames[evoLine[i]]));
+    for(i = 0; i < EVOS_PER_LINE; i++) //compact species to front
+    {   
+        if(evoLine[i] != SPECIES_NONE)
+        {
+            continue;
+        }
+        for(j = i; j < EVOS_PER_LINE; j++)
+        {
+            if(evoLine[j] == SPECIES_NONE)
+                continue;
+            evoLine[i] = evoLine[j];
+            evoLine[j] = SPECIES_NONE;
+            break;
+        }
+    }
+    for(i = 0; i < EVOS_PER_LINE; i++)
+    {
+        if(evoLine[i] != SPECIES_NONE)
+            numInLine++;
+    }
+    //mgba_printf(MGBA_LOG_DEBUG, "numInLine == %d; Result of compaction:", numInLine);
+    //for(i = 0; i < EVOS_PER_LINE; i++)
+        //mgba_printf(MGBA_LOG_DEBUG, "%d %s", evoLine[i], ConvertToAscii(gSpeciesNames[evoLine[i]]));
+    return numInLine;
 }
 
 u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
