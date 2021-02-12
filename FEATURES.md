@@ -55,6 +55,7 @@
 - The bike now has two gears, one for the default speed, and one for Mach Bike speed. Press B while biking to switch between them.
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 - The Victory Road boulder puzzles no longer reset.
+- The two boulders that block access to Mt. Ember's exterior will no longer block the way once the player moves past them.
 - Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
 - The Day Care will send a retrieved Pokémon to a box as long as it's not holding mail if the player's party is full.

@@ -367,6 +367,15 @@
       "var": "VAR_MAP_SCENE_MT_EMBER_EXTERIOR",
       "var_value": "1",
       "script": "MtEmber_Exterior_EventScript_RocketPasswordScene"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 46,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtEmber_Exterior_EventScript_BoulderShortcutTriggers"
     }
   ],
   "bg_events": [

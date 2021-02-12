@@ -22,10 +22,17 @@ MtEmber_Exterior_EventScript_RocketsFaceDown:: @ 8163960
 MtEmber_Exterior_OnLoad:: @ 8163969
 	compare VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 4
 	call_if_ge MtEmber_Exterior_EventScript_OpenCave
+	call_if_set FLAG_MT_EMBER_BOULDER_SHORTCUTS, MtEmber_Exterior_EventScript_MoveBoulders
 	end
 
 MtEmber_Exterior_EventScript_OpenCave:: @ 8163975
 	setmetatile 42, 39, METATILE_MtEmber_CaveEntrance, 0
+	return
+
+MtEmber_Exterior_EventScript_MoveBoulders::
+	setobjectxyperm 9, 17, 45
+	setobjectxyperm 10, 13, 46
+	setvar VAR_TEMP_0, 1
 	return
 
 MtEmber_Exterior_EventScript_Grunt1:: @ 816397F
@@ -129,4 +136,10 @@ MtEmber_Exterior_EventScript_Beth:: @ 8163ACB
 MtEmber_Exterior_EventScript_Jocelyn:: @ 8163AE2
 	trainerbattle_single TRAINER_CRUSH_GIRL_JOCELYN, MtEmber_Exterior_Text_JocelynIntro, MtEmber_Exterior_Text_JocelynDefeat
 	msgbox MtEmber_Exterior_Text_JocelynPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+MtEmber_Exterior_EventScript_BoulderShortcutTriggers::
+	setflag FLAG_MT_EMBER_BOULDER_SHORTCUTS
+	setvar VAR_TEMP_0, 1
+	release
 	end

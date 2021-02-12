@@ -648,7 +648,7 @@
 #define FLAG_DID_ESPHERE_TRADE                           0x274
 #define FLAG_DID_TANGENY_TRADE                           0x275
 #define FLAG_DID_SEELOR_TRADE                            0x276
-#define FLAG_0x277                                       0x277
+#define FLAG_MT_EMBER_BOULDER_SHORTCUTS                  0x277
 #define FLAG_GOT_HITMON_FROM_DOJO                        0x278
 #define FLAG_SHOWN_COPPER_CARD_TO_NURSE                  0x279
 #define FLAG_SILPH_2F_DOOR_1                             0x27A
