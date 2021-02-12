@@ -17,7 +17,7 @@ BattleTower_Lobby_Text_199FDA:: @ 8199FDA
 
 BattleTower_Lobby_Text_19A024:: @ 819A024
 	.string "There are two BATTLE ROOMS,\n"
-	.string "Level 50 and Level 100.\l"
+	.string "Level 50 and Open Level.\l"
 	.string "Which would you like to challenge?$"
 
 BattleTower_Lobby_Text_19A07B:: @ 819A07B
@@ -31,6 +31,20 @@ BattleTower_Lobby_Text_19A0D1:: @ 819A0D1
 	.string "The BATTLE TOWER is a facility made\n"
 	.string "especially for POKéMON battles.\p"
 	.string "Within the TOWER are many\nBATTLE ROOMS.\p"
+	.string "The BATTLE ROOMs come in two styles,\n"
+	.string "Level 50 and Open Level.\p"
+	.string "The level 50 BATTLE ROOMS are\n"
+	.string "open to POKéMON up to and\l"
+	.string "including Level 50.\p"
+	.string "No other TRAINERS in the room\n"
+	.string "will have POKéMON below Level 50.\p"
+	.string "The Open Level BATTLE ROOMS\n"
+	.string "are open to POKéMON of all levels.\p"
+	.string "The levels of your opponents will\n"
+	.string "be adjusted to match the levels\l"
+	.string "of your POKéMON.\p"
+	.string "However, no other TRAINERS in the\n"
+	.string "room will have POKéMON that are\lbelow Level 60.\p"
 	.string "In each BATTLE ROOM, seven\n"
 	.string "TRAINERS await your challenge.\p"
 	.string "Beat all seven, and you will be\n"

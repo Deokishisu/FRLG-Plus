@@ -743,7 +743,9 @@ static void FillBattleTowerTrainerParty(void)
     if (gSaveBlock2Ptr->battleTower.battleTowerLevelType != 0)
     {
         battleTowerMons = gBattleTowerLevel100Mons;
-        level = 100;
+        level = GetHighestLevelInPlayerParty();
+        if(level < 60)
+            level = 60;
     }
     else
     {
@@ -1570,4 +1572,23 @@ void GetBestBattleTowerStreakToVar0x8007(void)
 void TryInitBattleTowerAwardManObjectEvent(void)
 {
     Unref_TryInitLocalObjectEvent(5);
+}
+
+s32 GetHighestLevelInPlayerParty(void)
+{
+    s32 highestLevel = 0;
+    s32 i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL)
+            && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2, NULL) != SPECIES_EGG)
+        {
+            s32 level = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL, NULL);
+            if (level > highestLevel)
+                highestLevel = level;
+        }
+    }
+
+    return highestLevel;
 }

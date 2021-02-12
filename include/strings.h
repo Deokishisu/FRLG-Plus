@@ -731,6 +731,7 @@ extern const u8 gText_MultiBattle[];
 extern const u8 gText_MakeAChallenge[];
 extern const u8 gText_Lv50[];
 extern const u8 gText_Lv100[];
+extern const u8 gText_OpenLv[];
 extern const u8 gText_Info_2[];
 extern const u8 gOtherText_BattleTowerResults[];
 extern const u8 gOtherText_Current[];

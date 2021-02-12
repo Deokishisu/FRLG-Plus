@@ -678,7 +678,7 @@ void ShowBattleTowerRecords(void)
 
     PrintAligned(gStringVar4, 2, gRecordsWindowId);
     AddTextPrinterParameterized(gRecordsWindowId, 1, gText_Lv50, 8, 49, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_Lv100, 8, 97, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_OpenLv, 8, 97, TEXT_SPEED_FF, NULL);
     PrintHyphens(10, gRecordsWindowId);
     TowerPrintPrevOrCurrentStreak(battleMode, 0, 72, 121, 49, gRecordsWindowId);
     TowerPrintRecordStreak(battleMode, 0, 72, 121, 65, gRecordsWindowId);

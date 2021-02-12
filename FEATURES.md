@@ -21,6 +21,7 @@
 	* HM08 Dive is now available and usable in the field. New underwater areas found on Route 20 and Bond Bridge.
 	* A Safari Zone expansion adds two more areas, making more Pokémon obtainable.
 	* Hoenn Battle Tower ported from RS. The player will be invited to challenge the Battle Tower upon delivering the Ruby to Celio.
+		* The Level 100 mode has been replaced with the Open Level mode like in Emerald.
 		* Artisan Cave can be accessed from the Battle Tower's dock.
 	* A new area in Berry Forest makes the pinch berries available.
 
