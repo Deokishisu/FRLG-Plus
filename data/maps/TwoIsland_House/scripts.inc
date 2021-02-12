@@ -50,6 +50,7 @@ TwoIsland_House_EventScript_AskTutorMon:: @ 81716A5
 	end
 
 TwoIsland_House_EventScript_ChooseMonToTutor:: @ 81716BE
+	setvar VAR_TEMP_0, 1
 	msgbox TwoIsland_House_Text_TutorWhichMon
 	special SelectMoveTutorMon
 	waitstate
@@ -110,6 +111,7 @@ TwoIsland_House_EventScript_CantTutorEgg:: @ 8171790
 	end
 
 TwoIsland_House_EventScript_EndTutorMove:: @ 817179E
+	setvar VAR_TEMP_0, 0
 	msgbox TwoIsland_House_Text_NeedMushroomOrTwoToLearnMove
 	release
 	end

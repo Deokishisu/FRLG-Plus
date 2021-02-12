@@ -34,6 +34,8 @@
 #include "mon_markings.h"
 #include "pokemon_storage_system.h"
 #include "orre_met_location_strings.h"
+#include "constants/maps.h"
+#include "constants/region_map_sections.h"
 
 // needs conflicting header to match (curIndex is s8 in the function, but has to be defined as u8 here)
 extern s16 SeekToNextMonInBox(struct BoxPokemon * boxMons, u8 curIndex, u8 maxIndex, u8 flags);
@@ -3952,6 +3954,12 @@ static u8 sub_8139388(void)
     u16 move;
 
     move = sub_8138BEC(&sMonSummaryScreen->currentMon, sUnknown_203B16D);
+
+    if(IsMoveHm(move) && (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(TWO_ISLAND_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(TWO_ISLAND_HOUSE)))
+    {   //in Move Reminder's house
+        if(VarGet(VAR_TEMP_0)) //currently in Move Reminder's script
+            return TRUE; //able to overwrite HMs
+    }
 
     if (IsMoveHm(move) == TRUE && sMonSummaryScreen->mode != PSS_MODE_FORGET_MOVE)
         return FALSE;

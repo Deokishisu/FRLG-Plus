@@ -62,6 +62,7 @@
 - When a repel expires, the player will be asked whether they want to use another immediately, like in Black 2 and White 2.
 - The Pokémon Center nurses abbreviate their dialogue after getting two Trainer Card stars, similar to Generation IV and up.
 - The Generation III Poké Ball varieties can be purchased in Silph Co. after it is liberated from Team Rocket.
+- The Move Reminder can overwrite HM moves with relearned moves.
 - The Move Reminder can teach moves from a Pokémon's pre-evolutions, with some caveats.
 	* If the Pokémon has a baby form, it can only relearn moves exclusive to that form if it was hatched itself. Wobbuffet from Mirage Island are the sole exception, as they were caught as Wynaut and therefore can also relearn Wynaut's exclusive moves.
 	* If a Pokémon is not at a high enough level to learn a move from its own learnset, then it cannot relearn that move regardless of its presence in a pre-evolution's learnset.
