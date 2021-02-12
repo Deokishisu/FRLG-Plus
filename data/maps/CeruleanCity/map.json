@@ -259,8 +259,8 @@
       "x": 1,
       "y": 12,
       "elevation": 0,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
-      "dest_warp_id": 0
+      "dest_map": "MAP_NONE",
+      "dest_warp_id": 127
     },
     {
       "x": 10,
@@ -350,6 +350,15 @@
       "var": "VAR_MAP_SCENE_CERULEAN_CITY_ROCKET",
       "var_value": "0",
       "script": "CeruleanCity_EventScript_GruntTriggerBottom"
+    },
+    {
+      "type": "trigger",
+      "x": 1,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_TEMP_2",
+      "var_value": "0",
+      "script": "CeruleanCity_EventScript_SetCeruleanCaveWarp"
     }
   ],
   "bg_events": [

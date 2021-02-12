@@ -1,7 +1,7 @@
 {
-  "id": "MAP_CERULEAN_CAVE_2F",
-  "name": "CeruleanCave_2F",
-  "layout": "LAYOUT_CERULEAN_CAVE_2F",
+  "id": "MAP_CERULEAN_CAVE_2F_BLUE",
+  "name": "CeruleanCave_2F_Blue",
+  "layout": "LAYOUT_CERULEAN_CAVE_2F_BLUE",
   "music": "MUS_ROCKET_HIDEOUT",
   "region_map_section": "MAPSEC_CERULEAN_CAVE",
   "requires_flash": false,
@@ -18,8 +18,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 9,
-      "y": 18,
+      "x": 33,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -32,8 +32,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 29,
-      "y": 16,
+      "x": 8,
+      "y": 18,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -46,8 +46,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 33,
-      "y": 12,
+      "x": 17,
+      "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
@@ -60,8 +60,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 33,
-      "y": 10,
+      "x": 32,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -74,8 +74,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 33,
-      "y": 9,
+      "x": 32,
+      "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -88,8 +88,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 25,
-      "y": 11,
+      "x": 27,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -203,42 +203,42 @@
       "x": 33,
       "y": 4,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 1
     },
     {
       "x": 13,
       "y": 4,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 3
     },
     {
       "x": 7,
       "y": 14,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 4
     },
     {
       "x": 26,
       "y": 9,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 5
     },
     {
       "x": 23,
       "y": 10,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 6
     },
     {
       "x": 5,
       "y": 6,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 7
     }
   ],

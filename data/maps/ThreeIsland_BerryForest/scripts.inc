@@ -4,7 +4,14 @@ ThreeIsland_BerryForest_MapScripts:: @ 8163C71
 
 ThreeIsland_BerryForest_OnTransition:: @ 8163C77
 	setworldmapflag FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST
-	setescapewarp MAP_THREE_ISLAND_BOND_BRIDGE, 255, 12, 6
+	getplayerxy VAR_RESULT, VAR_TEMP_1
+	compare VAR_RESULT, 59
+	goto_if_ge ThreeIsland_BerryForest_SetNewAreaEscapeWarp
+	setescapewarp MAP_THREE_ISLAND_BOND_BRIDGE, 255, 12, 26
+	end
+
+ThreeIsland_BerryForest_SetNewAreaEscapeWarp::
+	setescapewarp MAP_THREE_ISLAND_BOND_BRIDGE, 255, 28, 5
 	end
 
 ThreeIsland_BerryForest_EventScript_Lostelle:: @ 8163C83

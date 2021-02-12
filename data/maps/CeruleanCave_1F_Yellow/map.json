@@ -1,7 +1,7 @@
 {
-  "id": "MAP_CERULEAN_CAVE_2F",
-  "name": "CeruleanCave_2F",
-  "layout": "LAYOUT_CERULEAN_CAVE_2F",
+  "id": "MAP_CERULEAN_CAVE_1F_YELLOW",
+  "name": "CeruleanCave_1F_Yellow",
+  "layout": "LAYOUT_CERULEAN_CAVE_1F_YELLOW",
   "music": "MUS_ROCKET_HIDEOUT",
   "region_map_section": "MAPSEC_CERULEAN_CAVE",
   "requires_flash": false,
@@ -18,21 +18,21 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 9,
-      "y": 18,
-      "elevation": 3,
+      "x": 25,
+      "y": 4,
+      "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CeruleanCave_2F_EventScript_ItemPPUp",
-      "flag": "FLAG_HIDE_CERULEAN_CAVE_2F_PP_UP"
+      "script": "CeruleanCave_1F_EventScript_ItemNugget",
+      "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_NUGGET"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 29,
+      "x": 35,
       "y": 16,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -40,28 +40,28 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CeruleanCave_2F_EventScript_ItemUltraBall",
-      "flag": "FLAG_HIDE_CERULEAN_CAVE_2F_ULTRA_BALL"
+      "script": "CeruleanCave_1F_EventScript_ItemFullRestore",
+      "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_FULL_RESTORE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
-      "x": 33,
-      "y": 12,
+      "x": 9,
+      "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CeruleanCave_2F_EventScript_ItemFullRestore",
-      "flag": "FLAG_HIDE_CERULEAN_CAVE_2F_FULL_RESTORE"
+      "script": "CeruleanCave_1F_EventScript_ItemMaxElixir",
+      "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_MAX_ELIXIR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 33,
-      "y": 10,
+      "x": 38,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -74,7 +74,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 33,
+      "x": 37,
       "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
@@ -88,8 +88,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 25,
-      "y": 11,
+      "x": 34,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -102,8 +102,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 28,
-      "y": 20,
+      "x": 38,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -116,8 +116,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 30,
-      "y": 20,
+      "x": 35,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -130,8 +130,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
-      "x": 9,
-      "y": 13,
+      "x": 37,
+      "y": 7,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -140,113 +140,80 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_RockSmash",
       "flag": "FLAG_TEMP_17"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
-      "in_connection": false,
-      "x": 23,
-      "y": 16,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_RockSmash",
-      "flag": "FLAG_TEMP_18"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
-      "in_connection": false,
-      "x": 13,
-      "y": 6,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_RockSmash",
-      "flag": "FLAG_TEMP_19"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
-      "in_connection": false,
-      "x": 4,
-      "y": 12,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_RockSmash",
-      "flag": "FLAG_TEMP_1A"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
-      "in_connection": false,
-      "x": 10,
-      "y": 20,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "EventScript_RockSmash",
-      "flag": "FLAG_TEMP_1B"
     }
   ],
   "warp_events": [
     {
       "x": 33,
-      "y": 4,
+      "y": 21,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CITY",
+      "dest_warp_id": 7
+    },
+    {
+      "x": 34,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_2F_YELLOW",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_B1F_YELLOW",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 10,
+      "y": 2,
+      "elevation": 3,
+      "dest_map": "MAP_CERULEAN_CAVE_2F_YELLOW",
       "dest_warp_id": 1
     },
     {
-      "x": 13,
-      "y": 4,
+      "x": 5,
+      "y": 15,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_2F_YELLOW",
+      "dest_warp_id": 2
+    },
+    {
+      "x": 30,
+      "y": 8,
+      "elevation": 4,
+      "dest_map": "MAP_CERULEAN_CAVE_2F_YELLOW",
       "dest_warp_id": 3
     },
     {
-      "x": 7,
-      "y": 14,
-      "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "x": 24,
+      "y": 11,
+      "elevation": 4,
+      "dest_map": "MAP_CERULEAN_CAVE_2F_YELLOW",
       "dest_warp_id": 4
     },
     {
-      "x": 26,
-      "y": 9,
+      "x": 2,
+      "y": 4,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_2F_YELLOW",
       "dest_warp_id": 5
-    },
-    {
-      "x": 23,
-      "y": 10,
-      "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
-      "dest_warp_id": 6
-    },
-    {
-      "x": 5,
-      "y": 6,
-      "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
-      "dest_warp_id": 7
     }
   ],
   "coord_events": [
 
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 25,
+      "y": 9,
+      "elevation": 3,
+      "item": "ITEM_ULTRA_BALL",
+      "flag": "HIDDEN_ITEM_CERULEAN_CAVE_1F_ULTRA_BALL",
+      "quantity": 1,
+      "underfoot": false
+    }
   ],
   "level_scaling": "0"
 }

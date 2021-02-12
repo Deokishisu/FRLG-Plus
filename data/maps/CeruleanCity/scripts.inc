@@ -379,3 +379,29 @@ CeruleanCity_EventScript_GymSign:: @ 8166853
 	msgbox CeruleanCity_Text_GymSign
 	releaseall
 	end
+
+CeruleanCity_EventScript_SetCeruleanCaveWarp::
+	callnative DetermineCeruleanCaveLayout
+	compare VAR_RESULT, 0
+	goto_if_eq CeruleanCity_EventScript_SetCeruleanCaveRG
+	compare VAR_RESULT, 1
+	goto_if_eq CeruleanCity_EventScript_SetCeruleanCaveRB
+	compare VAR_RESULT, 2
+	goto_if_eq CeruleanCity_EventScript_SetCeruleanCaveY
+	end
+
+CeruleanCity_EventScript_SetCeruleanCaveRG::
+	setdynamicwarp MAP_CERULEAN_CAVE_1F, 255, 33, 21
+	release
+	end
+
+CeruleanCity_EventScript_SetCeruleanCaveRB::
+	setdynamicwarp MAP_CERULEAN_CAVE_1F_BLUE, 255, 33, 21
+	release
+	end
+
+CeruleanCity_EventScript_SetCeruleanCaveY::
+	setdynamicwarp MAP_CERULEAN_CAVE_1F_YELLOW, 255, 33, 21
+	release
+	end
+

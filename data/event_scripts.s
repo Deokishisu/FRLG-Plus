@@ -1294,3 +1294,21 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/SouthernIsland_Interior/scripts.inc"
 	.include "data/maps/SouthernIsland_Interior/text.inc"
+
+	.include "data/maps/CeruleanCave_1F_Blue/scripts.inc"
+	.include "data/maps/CeruleanCave_1F_Blue/text.inc"
+
+	.include "data/maps/CeruleanCave_2F_Blue/scripts.inc"
+	.include "data/maps/CeruleanCave_2F_Blue/text.inc"
+
+	.include "data/maps/CeruleanCave_B1F_Blue/scripts.inc"
+	.include "data/maps/CeruleanCave_B1F_Blue/text.inc"
+
+	.include "data/maps/CeruleanCave_1F_Yellow/scripts.inc"
+	.include "data/maps/CeruleanCave_1F_Yellow/text.inc"
+
+	.include "data/maps/CeruleanCave_2F_Yellow/scripts.inc"
+	.include "data/maps/CeruleanCave_2F_Yellow/text.inc"
+
+	.include "data/maps/CeruleanCave_B1F_Yellow/scripts.inc"
+	.include "data/maps/CeruleanCave_B1F_Yellow/text.inc"

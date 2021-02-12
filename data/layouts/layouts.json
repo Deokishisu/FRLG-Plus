@@ -4584,6 +4584,78 @@
       "secondary_tileset": "gTileset_SeviiIslands67",
       "border_filepath": "data/layouts/SouthernIsland_Interior/border.bin",
       "blockdata_filepath": "data/layouts/SouthernIsland_Interior/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CAVE_1F_BLUE",
+      "name": "CeruleanCave_1F_Blue_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/CeruleanCave_1F_Blue/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCave_1F_Blue/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CAVE_2F_BLUE",
+      "name": "CeruleanCave_2F_Blue_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/CeruleanCave_2F_Blue/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCave_2F_Blue/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CAVE_B1F_BLUE",
+      "name": "CeruleanCave_B1F_Blue_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/CeruleanCave_B1F_Blue/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCave_B1F_Blue/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CAVE_1F_YELLOW",
+      "name": "CeruleanCave_1F_Yellow_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/CeruleanCave_1F_Yellow/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCave_1F_Yellow/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CAVE_2F_YELLOW",
+      "name": "CeruleanCave_2F_Yellow_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/CeruleanCave_2F_Yellow/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCave_2F_Yellow/map.bin"
+    },
+    {
+      "id": "LAYOUT_CERULEAN_CAVE_B1F_YELLOW",
+      "name": "CeruleanCave_B1F_Yellow_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/CeruleanCave_B1F_Yellow/border.bin",
+      "blockdata_filepath": "data/layouts/CeruleanCave_B1F_Yellow/map.bin"
     }
   ]
 }

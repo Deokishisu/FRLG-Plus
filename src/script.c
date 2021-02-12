@@ -566,6 +566,13 @@ void HandleUseExpiredRepel(void)
     VarSet(VAR_REPEL_STEP_COUNT, ItemId_GetHoldEffectParam(VarGet(VAR_LAST_REPEL_USED)));
 }
 
+void DetermineCeruleanCaveLayout(void)
+{
+    u32 trainerId = GetPlayerTrainerId();
+    u8 result = trainerId % 3;
+    gSpecialVar_Result = result;
+}
+
 void CheckTrainerCardStars(void)
 {
     u8 stars = 0;

@@ -207,6 +207,12 @@
 #define MAP_ARTISAN_CAVE_1F                           (63 | (2 << 8))
 #define MAP_SOUTHERN_ISLAND_EXTERIOR                  (64 | (2 << 8))
 #define MAP_SOUTHERN_ISLAND_INTERIOR                  (65 | (2 << 8))
+#define MAP_CERULEAN_CAVE_1F_BLUE                     (66 | (2 << 8))
+#define MAP_CERULEAN_CAVE_2F_BLUE                     (67 | (2 << 8))
+#define MAP_CERULEAN_CAVE_B1F_BLUE                    (68 | (2 << 8))
+#define MAP_CERULEAN_CAVE_1F_YELLOW                   (69 | (2 << 8))
+#define MAP_CERULEAN_CAVE_2F_YELLOW                   (70 | (2 << 8))
+#define MAP_CERULEAN_CAVE_B1F_YELLOW                  (71 | (2 << 8))
 
 // Map Group 3
 #define MAP_PALLET_TOWN                          (0 | (3 << 8))
