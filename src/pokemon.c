@@ -78,7 +78,7 @@ static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 perso
 static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId);
 static bool8 IsShinyOtIdPersonality(u32 otId, u32 personality);
 static u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex);
-static u8 GetNatureFromPersonality(u32 personality);
+u8 GetNatureFromPersonality(u32 personality);
 static bool8 sub_8042BE8(struct Pokemon *mon, u32 unused, u32 healMask, u8 battleId);
 static bool8 HealStatusConditions(struct Pokemon *mon, u32 unused, u32 healMask, u8 battleId);
 static bool8 IsPokemonStorageFull(void);
@@ -5396,7 +5396,7 @@ u8 GetNature(struct Pokemon *mon)
     return GetMonData(mon, MON_DATA_PERSONALITY, 0) % 25;
 }
 
-static u8 GetNatureFromPersonality(u32 personality)
+u8 GetNatureFromPersonality(u32 personality)
 {
     return personality % 25;
 }

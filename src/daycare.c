@@ -694,78 +694,78 @@ static u16 GetEggSpecies(u16 species)
 
     return species;
 }
-//
-//static s32 GetSlotToInheritNature(struct DayCare *daycare)
-//{
-//    u32 species[DAYCARE_MON_COUNT];
-//    s32 i;
-//    s32 dittoCount;
-//    s32 slot = -1;
-//
-//    // search for female gender
-//    for (i = 0; i < DAYCARE_MON_COUNT; i++)
-//    {
-//        if (GetBoxMonGender(&daycare->mons[i].mon) == MON_FEMALE)
-//            slot = i;
-//    }
-//
-//    // search for ditto
-//    for (dittoCount = 0, i = 0; i < DAYCARE_MON_COUNT; i++)
-//    {
-//        species[i] = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SPECIES);
-//        if (species[i] == SPECIES_DITTO)
-//            dittoCount++, slot = i;
-//    }
-//
-//    // coin flip on ...two Dittos
-//    if (dittoCount == 2)
-//    {
-//        if (Random() >= USHRT_MAX / 2)
-//            slot = 0;
-//        else
-//            slot = 1;
-//    }
-//
-//    // nature inheritance only if holds everstone
-//    if (GetBoxMonData(&daycare->mons[slot].mon, MON_DATA_HELD_ITEM) != ITEM_EVERSTONE
-//        || Random() >= USHRT_MAX / 2)
-//    {
-//        return -1;
-//    }
-//
-//    return slot;
-//}
+
+static s32 GetParentToInheritNature(struct DayCare *daycare)
+{
+    u32 species[DAYCARE_MON_COUNT];
+    s32 i;
+    s32 dittoCount;
+    s32 parent = -1;
+
+    // search for female gender
+    for (i = 0; i < DAYCARE_MON_COUNT; i++)
+    {
+        if (GetBoxMonGender(&daycare->mons[i].mon) == MON_FEMALE)
+            parent = i;
+    }
+
+    // search for ditto
+    for (dittoCount = 0, i = 0; i < DAYCARE_MON_COUNT; i++)
+    {
+        species[i] = GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SPECIES);
+        if (species[i] == SPECIES_DITTO)
+            dittoCount++, parent = i;
+    }
+
+    // coin flip on ...two Dittos
+    if (dittoCount == DAYCARE_MON_COUNT)
+    {
+        if (Random() >= USHRT_MAX / 2)
+            parent = 0;
+        else
+            parent = 1;
+    }
+
+    // Don't inherit nature if not holding Everstone
+    if (GetBoxMonData(&daycare->mons[parent].mon, MON_DATA_HELD_ITEM) != ITEM_EVERSTONE
+        || Random() >= USHRT_MAX / 2)
+    {
+        return -1;
+    }
+
+    return parent;
+}
 
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
-//    s32 natureSlot;
-//    s32 natureTries = 0;
-//
-//    SeedRng2(gMain.vblankCounter2);
-//    natureSlot = GetSlotToInheritNature(daycare);
-//
-//    if (natureSlot < 0)
-//    {
-//        daycare->offspringPersonality = (Random2() << 0x10) | ((Random() % 0xfffe) + 1);
-//    }
-//    else
-//    {
-//        u8 wantedNature = GetNatureFromPersonality(GetBoxMonData(&daycare->mons[natureSlot].mon, MON_DATA_PERSONALITY, NULL));
-//        u32 personality;
-//
-//        do
-//        {
-//            personality = (Random2() << 0x10) | (Random());
-//            if (wantedNature == GetNatureFromPersonality(personality) && personality != 0)
-//                break; // we found a personality with the same nature
-//
-//            natureTries++;
-//        } while (natureTries <= 2400);
-//
-//        daycare->offspringPersonality = personality;
-//    }
+    s32 parent;
+    s32 natureTries = 0;
 
-    daycare->offspringPersonality = ((Random()) % 0xFFFE) + 1;
+    SeedRng2(gMain.vblankCounter2);
+    parent = GetParentToInheritNature(daycare);
+
+    // don't inherit nature
+    if (parent < 0)
+    {
+        daycare->offspringPersonality = (Random2() << 16) | ((Random() % 0xfffe) + 1);
+    }
+    // inherit nature
+    else
+    {
+        u8 wantedNature = GetNatureFromPersonality(GetBoxMonData(&daycare->mons[parent].mon, MON_DATA_PERSONALITY, NULL));
+        u32 personality;
+
+        do
+        {
+            personality = (Random2() << 16) | (Random());
+            if (wantedNature == GetNatureFromPersonality(personality) && personality != 0)
+                break; // found a personality with the same nature
+
+            natureTries++;
+        } while (natureTries <= 2400);
+
+        daycare->offspringPersonality = personality;
+    }
     VarSet(VAR_DAYCARE_MAN_TRIGGERS, 0);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
@@ -1236,7 +1236,7 @@ static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *
     u8 metLevel;
     u8 language;
 
-    personality = daycare->offspringPersonality | (Random() << 16);
+    personality = daycare->offspringPersonality;// | (Random() << 16);
     CreateMon(mon, species, EGG_HATCH_LEVEL, 32, TRUE, personality, OT_ID_PLAYER_ID, 0);
     metLevel = 0;
     ball = ITEM_POKE_BALL;
