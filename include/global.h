@@ -749,9 +749,9 @@ struct SaveBlock1
     /*0x0038*/ struct Pokemon playerParty[PARTY_SIZE];
     /*0x0290*/ u32 money;
     /*0x0294*/ u16 coins;
-    /*0x0296*/ u16 registeredItem; // registered for use with SELECT button
+    /*0x0296*/ u16 registeredItem; // registered for use with SELECT button, could probably be stripped to less than a byte as an index into a table of only registerable items
     /*0x0298*/ struct ItemSlot pcItems[PC_ITEMS_COUNT];
-    /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT]; //now holds 139 items
+    /*0x0310*/ struct ItemSlot bagPocket_Items[BAG_ITEMS_COUNT]; //now holds 47 items
     /*0x053C*/ struct ItemSlot bagPocket_PokeBalls[BAG_POKEBALLS_COUNT];
                u8 bagPocket_TMHM[8]; // 8 bytes fills all TMs/HMs
                u8 bagPocket_KeyItems[BAG_KEYITEMS_COUNT]; // stripped to one byte indices, 36 slots now for all legal FRLG Key Items at once + 2 more for cheaters/alignment.
@@ -771,12 +771,12 @@ struct SaveBlock1
     /*0x1200*/ u32 gameStats[NUM_GAME_STATS];
     /*0x1300*/ struct QuestLog questLog[QUEST_LOG_SCENE_COUNT];
     /*0x2CA0*/ u16 easyChatProfile[6];
-    /*0x2CAC*/ u16 easyChatBattleStart[6];
-    /*0x2CB8*/ u16 easyChatBattleWon[6];
-    /*0x2CC4*/ u16 easyChatBattleLost[6];
+    /*0x2CAC*/ u16 easyChatBattleStart[6]; //referred to, but functionally unused
+    /*0x2CB8*/ u16 easyChatBattleWon[6]; //referred to, but functionally unused
+    /*0x2CC4*/ u16 easyChatBattleLost[6]; //referred to, but functionally unused
     /*0x2CD0*/ struct MailStruct mail[MAIL_COUNT];
     /*0x2F10*/ u8 additionalPhrases[EASY_CHAT_EXTRA_PHRASES_SIZE];
-    /*0x2F18*/ OldMan oldMan; // unused
+    /*0x2F18*/ u8 filler_oldMan[64]; // unused, was struct OldMan oldMan
     /*0x2F54*/ u8 filler_EasyChatPairs[36]; // unused, was struct EasyChatPair easyChatPairs[5], which was 40 bytes, but I had to add 2 bytes to the Daycare struct (which got padded to 4).
     /*0x2F80*/ struct DayCare daycare;
     /*0x309C*/ u8 giftRibbons[52]; //This should be 11 extra ribbons, & then 20 bytes for extra event work (PokeCoupons) & 20 more bytes for extra event flags (Jirachi). It then gets padded.
@@ -793,11 +793,11 @@ struct SaveBlock1
     /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];
     /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
-    /*0x3A94*/ u8 filler3A94[0x40]; //max fame checker people is actually 32, so this is the unused 16 entries
+    /*0x3A94*/ u8 filler3A94[64]; //max fame checker people is actually 32, so this is the unused 16 entries
     /*0x3AD4*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;
-    /*0x3D24*/ u8 filler3D24[0x10]; //some sort of win/loss/draw records that are never referred to. An RFU thing. Mystery Event?
+    /*0x3D24*/ u8 filler3D24[16]; //some sort of win/loss/draw records that are never referred to. An RFU thing. Mystery Event?
     /*0x3D34*/ u32 towerChallengeId;
     /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
 };
