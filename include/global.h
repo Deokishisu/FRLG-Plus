@@ -777,7 +777,7 @@ struct SaveBlock1
     /*0x2CD0*/ struct MailStruct mail[MAIL_COUNT];
     /*0x2F10*/ u8 additionalPhrases[EASY_CHAT_EXTRA_PHRASES_SIZE];
     /*0x2F18*/ OldMan oldMan; // unused
-    /*0x2F54*/ u8 filler_EasyChatPairs[42]; // unused, was struct EasyChatPair easyChatPairs[5], which was 44 bytes, but I had to add 2 bytes to the Daycare struct.
+    /*0x2F54*/ u8 filler_EasyChatPairs[36]; // unused, was struct EasyChatPair easyChatPairs[5], which was 40 bytes, but I had to add 2 bytes to the Daycare struct (which got padded to 4).
     /*0x2F80*/ struct DayCare daycare;
     /*0x309C*/ u8 giftRibbons[52]; //This should be 11 extra ribbons, & then 20 bytes for extra event work (PokeCoupons) & 20 more bytes for extra event flags (Jirachi). It then gets padded.
     /*0x30D0*/ struct Roamer roamer;
