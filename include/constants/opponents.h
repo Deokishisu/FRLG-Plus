@@ -759,11 +759,18 @@
 #define TRAINER_CHAMPION_FIRST_SQUIRTLE_CHALLENGE 755
 #define TRAINER_CHAMPION_FIRST_BULBASAUR_CHALLENGE 756
 #define TRAINER_CHAMPION_FIRST_CHARMANDER_CHALLENGE 757
+#define TRAINER_ELITE_FOUR_LORELEI_CHALLENGE_2   758
+#define TRAINER_ELITE_FOUR_BRUNO_CHALLENGE_2     759
+#define TRAINER_ELITE_FOUR_AGATHA_CHALLENGE_2    760
+#define TRAINER_ELITE_FOUR_LANCE_CHALLENGE_2     761
+#define TRAINER_CHAMPION_REMATCH_SQUIRTLE_CHALLENGE 762
+#define TRAINER_CHAMPION_REMATCH_BULBASAUR_CHALLENGE 763
+#define TRAINER_CHAMPION_REMATCH_CHARMANDER_CHALLENGE 764
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             757
+#define NUM_TRAINERS                             764
 #define MAX_TRAINERS_COUNT                       768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

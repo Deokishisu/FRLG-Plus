@@ -63,7 +63,7 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom:: @ 8162B76
 	setflag FLAG_TEMP_5
 	savebgm MUS_VICTORY_GYM_LEADER
 	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_GetDifficulty
-	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_Rematch
+	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_ChampionsRoom_EventScript_GetDifficulty2
 	setflag FLAG_TEMP_4
 	clearflag FLAG_TEMP_5
 	setflag FLAG_DEFEATED_CHAMP
@@ -118,6 +118,15 @@ PokemonLeague_ChampionsRoom_EventScript_GetDifficulty::
 	call_if_eq PokemonLeague_ChampionsRoom_EventScript_Battle
 	return
 
+PokemonLeague_ChampionsRoom_EventScript_GetDifficulty2::
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_Battle_ChallengeModeRematch
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT FALSE
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_Rematch
+	return
+
 PokemonLeague_ChampionsRoom_EventScript_Battle_ChallengeMode::
 	compare VAR_STARTER_MON, 2
 	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle_ChallengeMode
@@ -134,6 +143,15 @@ PokemonLeague_ChampionsRoom_EventScript_Battle:: @ 8162C6F
 	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleBulbasaur
 	compare VAR_STARTER_MON, 0
 	call_if_eq PokemonLeague_ChampionsRoom_EventScript_BattleCharmander
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_Battle_ChallengeModeRematch::
+	compare VAR_STARTER_MON, 2
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle_ChallengeMode
+	compare VAR_STARTER_MON, 1
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur_ChallengeMode
+	compare VAR_STARTER_MON, 0
+	call_if_eq PokemonLeague_ChampionsRoom_EventScript_RematchCharmander_ChallengeMode
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_Rematch:: @ 8162C91
@@ -175,6 +193,18 @@ PokemonLeague_ChampionsRoom_EventScript_BattleBulbasaur:: @ 8162CD0
 
 PokemonLeague_ChampionsRoom_EventScript_BattleCharmander:: @ 8162CDB
 	trainerbattle_no_intro TRAINER_CHAMPION_FIRST_CHARMANDER, PokemonLeague_ChampionsRoom_Text_Defeat
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle_ChallengeMode::
+	trainerbattle_no_intro TRAINER_CHAMPION_REMATCH_SQUIRTLE_CHALLENGE, PokemonLeague_ChampionsRoom_Text_Defeat
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur_ChallengeMode::
+	trainerbattle_no_intro TRAINER_CHAMPION_REMATCH_BULBASAUR_CHALLENGE, PokemonLeague_ChampionsRoom_Text_Defeat
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_RematchCharmander_ChallengeMode::
+	trainerbattle_no_intro TRAINER_CHAMPION_REMATCH_CHARMANDER_CHALLENGE, PokemonLeague_ChampionsRoom_Text_Defeat
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle:: @ 8162CE6

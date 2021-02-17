@@ -2186,6 +2186,55 @@ void CreateMonWithGenderNatureLetter(struct Pokemon *mon, u16 species, u8 level,
     CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_PLAYER_ID, 0);
 }
 
+void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 abilityNum)
+{
+    u32 personality;
+
+    do
+    {
+        personality = Random32();
+    }
+    while (nature != GetNatureFromPersonality(personality)
+        || gender != GetGenderFromSpeciesAndPersonality(species, personality)
+        || abilityNum != personality % 2);
+
+    if(fixedIV == 31)
+    {
+        CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
+    }
+    else if(fixedIV == 1) //hidden power Ghost IVs
+    {
+        u8 ivs[6] = {31, 31, 30, 31, 31, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == 2) //hidden power Ground IVs
+    {
+        u8 ivs[6] = {31, 31, 31, 31, 30, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == 3) //hidden power Flying IVs
+    {
+        u8 ivs[6] = {31, 31, 31, 30, 30, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == 4) //hidden power Fighting IVs
+    {
+        u8 ivs[6] = {31, 31, 30, 30, 30, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else
+    {
+        CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
+    }
+}
+
+void CreateEnemyMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 personality)
+{
+    CreateMon(mon, species, level, 0, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
+    SetMonData(mon, MON_DATA_IVS, &ivs);
+    CalculateMonStats(mon, TRUE);
+}
+
 // Used to create the Old Man's Weedle?
 void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level)
 {

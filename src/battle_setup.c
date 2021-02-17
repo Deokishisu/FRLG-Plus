@@ -726,6 +726,14 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
                 sum += (party[i].lvl + levelScaling);
         }
         break;
+    case F_TRAINER_PARTY_EVS:
+        {
+            const struct TrainerMonItemCustomMovesEVs *party;
+
+            party = gTrainers[opponentId].party.ItemCustomMovesEVs;
+            for (i = 0; i < count; ++i)
+                sum += (party[i].lvl + levelScaling);
+        }
     }
     return sum;
 }
@@ -753,13 +761,13 @@ static u8 GetTrainerBattleTransition(void)
         return B_TRANSITION_BLUE;
     if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2)
     {
-        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE)
+        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE_2)
             return B_TRANSITION_LORELEI;
-        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO_CHALLENGE)
+        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_BRUNO_CHALLENGE_2)
             return B_TRANSITION_BRUNO;
-        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA_CHALLENGE)
+        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_AGATHA_CHALLENGE_2)
             return B_TRANSITION_AGATHA;
-        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE_CHALLENGE)
+        if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LANCE_CHALLENGE_2)
             return B_TRANSITION_LANCE;
         return B_TRANSITION_BLUE;
     }

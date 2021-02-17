@@ -5164,6 +5164,7 @@ static void atk5D_getmoneyreward(void)
     u8 lastMonLevel = 0;
 
     const struct TrainerMonItemCustomMoves *party4; //This needs to be out here
+    const struct TrainerMonItemCustomMovesEVs *party5;
 
     if (gBattleOutcome == B_OUTCOME_WON)
     {
@@ -5201,6 +5202,13 @@ static void atk5D_getmoneyreward(void)
                     party4 = gTrainers[gTrainerBattleOpponent_A].party.ItemCustomMoves;
                     
                     lastMonLevel = party4[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                }
+                break;
+            case F_TRAINER_PARTY_EVS:
+                {
+                    party5 = gTrainers[gTrainerBattleOpponent_A].party.ItemCustomMovesEVs;
+                    
+                    lastMonLevel = party5[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
             }

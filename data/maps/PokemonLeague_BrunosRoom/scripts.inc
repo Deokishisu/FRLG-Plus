@@ -57,7 +57,7 @@ PokemonLeague_BrunosRoom_EventScript_Bruno:: @ 81626EC
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_BrunosRoom_EventScript_GetDifficulty
-	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_BrunosRoom_EventScript_Rematch
+	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_BrunosRoom_EventScript_GetDifficulty2
 	clearflag FLAG_TEMP_5
 	goto PokemonLeague_BrunosRoom_EventScript_DefeatedBruno
 	end
@@ -79,12 +79,25 @@ PokemonLeague_BrunosRoom_EventScript_GetDifficulty::
 	call_if_eq PokemonLeague_BrunosRoom_EventScript_Battle
 	return
 
+PokemonLeague_BrunosRoom_EventScript_GetDifficulty2::
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	call_if_eq PokemonLeague_BrunosRoom_EventScript_Battle_ChallengeModeRematch
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT FALSE
+	call_if_eq PokemonLeague_BrunosRoom_EventScript_Rematch
+	return
+
 PokemonLeague_BrunosRoom_EventScript_Battle_ChallengeMode::
 	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO_CHALLENGE, PokemonLeague_BrunosRoom_Text_Defeat
 	return
 
 PokemonLeague_BrunosRoom_EventScript_Battle:: @ 8162763
 	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO, PokemonLeague_BrunosRoom_Text_Defeat
+	return
+
+PokemonLeague_BrunosRoom_EventScript_Battle_ChallengeModeRematch::
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO_CHALLENGE_2, PokemonLeague_BrunosRoom_Text_Defeat
 	return
 
 PokemonLeague_BrunosRoom_EventScript_Rematch:: @ 816276E

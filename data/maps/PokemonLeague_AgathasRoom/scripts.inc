@@ -56,7 +56,7 @@ PokemonLeague_AgathasRoom_EventScript_Agatha:: @ 8162877
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	call_if_unset FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_AgathasRoom_EventScript_GetDifficulty
-	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_AgathasRoom_EventScript_Rematch
+	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, PokemonLeague_AgathasRoom_EventScript_GetDifficulty2
 	clearflag FLAG_TEMP_5
 	goto PokemonLeague_AgathasRoom_EventScript_DefeatedAgatha
 	end
@@ -78,12 +78,25 @@ PokemonLeague_AgathasRoom_EventScript_GetDifficulty::
 	call_if_eq PokemonLeague_AgathasRoom_EventScript_Battle
 	return
 
+PokemonLeague_AgathasRoom_EventScript_GetDifficulty2::
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT TRUE
+	call_if_eq PokemonLeague_AgathasRoom_EventScript_Battle_ChallengeModeRematch
+	callnative IsChallengeModeToVarResult
+	compare VAR_RESULT FALSE
+	call_if_eq PokemonLeague_AgathasRoom_EventScript_Rematch
+	return
+
 PokemonLeague_AgathasRoom_EventScript_Battle_ChallengeMode::
 	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_CHALLENGE, PokemonLeague_AgathasRoom_Text_Defeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Battle:: @ 81628FB
 	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA, PokemonLeague_AgathasRoom_Text_Defeat
+	return
+
+PokemonLeague_AgathasRoom_EventScript_Battle_ChallengeModeRematch::
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_CHALLENGE_2, PokemonLeague_AgathasRoom_Text_Defeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Rematch:: @ 8162906
