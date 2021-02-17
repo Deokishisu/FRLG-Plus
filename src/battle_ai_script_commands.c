@@ -951,7 +951,23 @@ static void Cmd_get_type(void)
         AI_THINKING_STRUCT->funcResult = gBattleMons[gBattlerTarget].type2;
         break;
     case AI_TYPE_MOVE:
-        AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->moveConsidered].type;
+        if(AI_THINKING_STRUCT->moveConsidered == MOVE_HIDDEN_POWER)
+        {
+            s32 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
+              | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
+              | ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2)
+              | ((gBattleMons[gBattlerAttacker].speedIV & 1) << 3)
+              | ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4)
+              | ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
+
+            u8 type = (15 * typeBits) / 63 + 1;
+            if (type >= TYPE_MYSTERY)
+                type++;
+            type |= 0xC0;
+            AI_THINKING_STRUCT->funcResult = type;
+        }
+        else
+            AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->moveConsidered].type;
         break;
     }
     sAIScriptPtr += 2;
@@ -959,7 +975,19 @@ static void Cmd_get_type(void)
 
 static void Cmd_get_considered_move_power(void)
 {
-    AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->moveConsidered].power;
+    if(AI_THINKING_STRUCT->funcResult == MOVE_HIDDEN_POWER)
+    {
+        s32 powerBits  = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
+              | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)
+              | ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1)
+              | ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2)
+              | ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3)
+              | ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
+
+        AI_THINKING_STRUCT->funcResult = (40 * powerBits) / 63 + 30;
+    }
+    else
+        AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->moveConsidered].power;
     sAIScriptPtr += 1;
 }
 
@@ -994,6 +1022,17 @@ static void Cmd_get_how_powerful_move_is(void)
             if (gBattleMons[gBattlerAttacker].moves[checkedMove] != MOVE_NONE
                 && sDiscouragedPowerfulMoveEffects[i] == 0xFFFF
                 && gBattleMoves[gBattleMons[gBattlerAttacker].moves[checkedMove]].power > 1)
+            {
+                gCurrentMove = gBattleMons[gBattlerAttacker].moves[checkedMove];
+                AI_CalcDmg(gBattlerAttacker, gBattlerTarget);
+                TypeCalc(gCurrentMove, gBattlerAttacker, gBattlerTarget);
+                moveDmgs[checkedMove] = gBattleMoveDamage * AI_THINKING_STRUCT->simulatedRNG[checkedMove] / 100;
+                if (moveDmgs[checkedMove] == 0)
+                    moveDmgs[checkedMove] = 1;
+            }
+            else if(gBattleMons[gBattlerAttacker].moves[checkedMove] != MOVE_NONE
+                && sDiscouragedPowerfulMoveEffects[i] == 0xFFFF
+                && gBattleMons[gBattlerAttacker].moves[checkedMove] == MOVE_HIDDEN_POWER)
             {
                 gCurrentMove = gBattleMons[gBattlerAttacker].moves[checkedMove];
                 AI_CalcDmg(gBattlerAttacker, gBattlerTarget);
@@ -1820,14 +1859,42 @@ static void Cmd_get_used_held_item(void)
 
 static void Cmd_get_move_type_from_result(void)
 {
-    AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->funcResult].type;
+    if(AI_THINKING_STRUCT->funcResult == MOVE_HIDDEN_POWER)
+    {
+        s32 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
+            | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
+            | ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2)
+            | ((gBattleMons[gBattlerAttacker].speedIV & 1) << 3)
+            | ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4)
+            | ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
+
+        u8 type = (15 * typeBits) / 63 + 1;
+        if (type >= TYPE_MYSTERY)
+            type++;
+        type |= 0xC0;
+        AI_THINKING_STRUCT->funcResult = type;
+    }
+    else
+        AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->funcResult].type;
 
     sAIScriptPtr += 1;
 }
 
 static void Cmd_get_move_power_from_result(void)
 {
-    AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->funcResult].power;
+    if(AI_THINKING_STRUCT->funcResult == MOVE_HIDDEN_POWER)
+    {
+        s32 powerBits  = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
+              | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)
+              | ((gBattleMons[gBattlerAttacker].defenseIV & 2) << 1)
+              | ((gBattleMons[gBattlerAttacker].speedIV & 2) << 2)
+              | ((gBattleMons[gBattlerAttacker].spAttackIV & 2) << 3)
+              | ((gBattleMons[gBattlerAttacker].spDefenseIV & 2) << 4);
+
+        AI_THINKING_STRUCT->funcResult = (40 * powerBits) / 63 + 30;
+    }
+    else
+        AI_THINKING_STRUCT->funcResult = gBattleMoves[AI_THINKING_STRUCT->funcResult].power;
 
     sAIScriptPtr += 1;
 }

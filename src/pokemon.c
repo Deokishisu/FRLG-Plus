@@ -2202,24 +2202,24 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
     {
         CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
     }
-    else if(fixedIV == 1) //hidden power Ghost IVs
+    else if(fixedIV == (1 * 31 / 255)) //hidden power Ghost IVs
     {
-        u8 ivs[6] = {31, 31, 30, 31, 31, 30};
+        u8 ivs[NUM_STATS] = {31, 31, 30, 31, 31, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == 2) //hidden power Ground IVs
+    else if(fixedIV == (2 * 31 / 255)) //hidden power Ground IVs
     {
-        u8 ivs[6] = {31, 31, 31, 31, 30, 30};
+        u8 ivs[NUM_STATS] = {31, 31, 31, 31, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == 3) //hidden power Flying IVs
+    else if(fixedIV == (3 * 31 / 255)) //hidden power Flying IVs
     {
-        u8 ivs[6] = {31, 31, 31, 30, 30, 30};
+        u8 ivs[NUM_STATS] = {31, 31, 31, 30, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == 4) //hidden power Fighting IVs
+    else if(fixedIV == (4 * 31 / 255)) //hidden power Fighting IVs
     {
-        u8 ivs[6] = {31, 31, 30, 30, 30, 30};
+        u8 ivs[NUM_STATS] = {31, 31, 30, 30, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
     else
@@ -2230,9 +2230,15 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
 
 void CreateEnemyMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 personality)
 {
+    u32 i;
     CreateMon(mon, species, level, 0, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
-    SetMonData(mon, MON_DATA_IVS, &ivs);
-    CalculateMonStats(mon, TRUE);
+    SetMonData(mon, MON_DATA_HP_IV, &ivs[0]);
+    SetMonData(mon, MON_DATA_ATK_IV, &ivs[1]);
+    SetMonData(mon, MON_DATA_DEF_IV, &ivs[2]);
+    SetMonData(mon, MON_DATA_SPEED_IV, &ivs[3]);
+    SetMonData(mon, MON_DATA_SPATK_IV, &ivs[4]);
+    SetMonData(mon, MON_DATA_SPDEF_IV, &ivs[5]);
+    CalculateMonStats(mon, FALSE);
 }
 
 // Used to create the Old Man's Weedle?
