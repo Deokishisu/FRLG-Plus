@@ -2801,7 +2801,7 @@ static void sub_8137578(void)
 
     if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LEVEL) == 0)
     {
-        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OBEDIENCE) == 1)
+        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1)
         {
             if (sub_813B7E0(nature))
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gUnknown_841996D);
@@ -2910,7 +2910,7 @@ static void sub_8137724(void) //if different OT
 
     if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LEVEL) == 0)
     {
-        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OBEDIENCE) == 1)
+        if (GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1)
         {
             if (sub_813B7E0(nature))
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, gUnknown_84199F4);
@@ -2980,7 +2980,7 @@ static void sub_8137970(void)
 
     if (sMonSummaryScreen->monList.mons != gEnemyParty)
     {
-        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OBEDIENCE) == 1)
+        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1)
             chosenStrIndex = 4;
         else
         {
@@ -2998,7 +2998,7 @@ static void sub_8137970(void)
     }
     else
     {
-        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OBEDIENCE) == 1)
+        if (metLocation == METLOC_FATEFUL_ENCOUNTER || GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_EVENT_LEGAL) == 1)
             chosenStrIndex = 4;
         else
         {

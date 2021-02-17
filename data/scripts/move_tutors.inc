@@ -1001,6 +1001,8 @@ EventScript_BodySlamNotEnoughMoney::
 	hidemoneybox 0, 0
 	release
 	end
+	
+.set LOCALID_CAPE_BRINK_TUTOR, 1
 
 TwoIsland_CapeBrink_House_EventScript_StarterTutor:: @ 81C4DEC
 	goto_if_questlog EventScript_ReleaseEnd
@@ -1096,22 +1098,22 @@ CapeBrinkTutor_EventScript_ChooseMon:: @ 81C4EDA
 	end
 
 CapeBrinkTutor_EventScript_JumpInPlaceDown:: @ 81C4EF0
-	applymovement 1, Movement_JumpInPlaceDown
+	applymovement LOCALID_CAPE_BRINK_TUTOR, Movement_JumpInPlaceDown
 	waitmovement 0
 	return
 
 CapeBrinkTutor_EventScript_JumpInPlaceUp:: @ 81C4EFB
-	applymovement 1, Movement_JumpInPlaceUp
+	applymovement LOCALID_CAPE_BRINK_TUTOR, Movement_JumpInPlaceUp
 	waitmovement 0
 	return
 
 CapeBrinkTutor_EventScript_JumpInPlaceLeft:: @ 81C4F06
-	applymovement 1, Movement_JumpInPlaceLeft
+	applymovement LOCALID_CAPE_BRINK_TUTOR, Movement_JumpInPlaceLeft
 	waitmovement 0
 	return
 
 CapeBrinkTutor_EventScript_JumpInPlaceRight:: @ 81C4F11
-	applymovement 1, Movement_JumpInPlaceRight
+	applymovement LOCALID_CAPE_BRINK_TUTOR, Movement_JumpInPlaceRight
 	waitmovement 0
 	return
 

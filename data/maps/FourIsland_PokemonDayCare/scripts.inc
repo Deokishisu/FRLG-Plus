@@ -1,3 +1,5 @@
+.set LOCALID_DAYCARE_WOMAN, 1
+
 FourIsland_PokemonDayCare_MapScripts:: @ 817193F
 	.byte 0
 
@@ -136,7 +138,7 @@ FourIsland_PokemonDayCare_RetrieveMon:: @ 8171B05
 	specialvar VAR_RESULT, TakePokemonFromDaycare
 	compare VAR_RESULT, 9999 //boxes full
 	goto_if_eq FourIsland_PokemonDayCare_EventScript_StorageAndPartyFull
-	applymovement 1, FourIsland_PokemonDayCare_Movement_RetrieveMon
+	applymovement LOCALID_DAYCARE_WOMAN, FourIsland_PokemonDayCare_Movement_RetrieveMon
 	waitmovement 0
 	special SubtractMoneyFromVar0x8005
 	playse SE_RS_SHOP

@@ -1,3 +1,5 @@
+.set LOCALID_LUGIA, 1
+
 NavelRock_Base_MapScripts:: @ 81650E7
 	map_script MAP_SCRIPT_ON_TRANSITION, NavelRock_Base_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, NavelRock_Base_OnResume
@@ -25,7 +27,7 @@ NavelRock_Base_EventScript_TryRemoveLugia:: @ 8165120
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_ne EventScript_Return
-	removeobject 1
+	removeobject LOCALID_LUGIA
 	return
 
 NavelRock_Base_EventScript_Lugia:: @ 8165134
@@ -57,7 +59,7 @@ NavelRock_Base_EventScript_Lugia:: @ 8165134
 	setvar VAR_0x8004, SPECIES_LUGIA
 	setvar VAR_0x8005, 70  @ Level
 	setvar VAR_0x8006, ITEM_NONE
-	special CreateObedientEnemyMon
+	special CreateEventLegalEnemyMon
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle
 	waitstate

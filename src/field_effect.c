@@ -1,6 +1,5 @@
 #include "global.h"
 #include "gflib.h"
-#include "data.h"
 #include "decompress.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -29,6 +28,10 @@
 #include "constants/metatile_behaviors.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
+
+extern struct CompressedSpritePalette gMonPaletteTable[]; // Intentionally declared (incorrectly) without const in order to match
+extern const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[];
+extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 #define FIELD_EFFECT_COUNT 32
@@ -3796,7 +3799,7 @@ u32 FldEff_Unk44(void)
     }
     else
     {
-        FieldEffectActiveListRemove(FLDEFF_UNK_44);
+        FieldEffectActiveListRemove(FLDEFF_DESTROY_DEOXYS_ROCK);
     }
     return FALSE;
 }
@@ -3878,7 +3881,7 @@ static void Unk44Effect_2(s16 *data, u8 taskId)
     {
         InstallCameraPanAheadCallback();
         RemoveObjectEventByLocalIdAndMap(data[6], data[7], data[8]);
-        FieldEffectActiveListRemove(FLDEFF_UNK_44);
+        FieldEffectActiveListRemove(FLDEFF_DESTROY_DEOXYS_ROCK);
         DestroyTask(taskId);
     }
 }
