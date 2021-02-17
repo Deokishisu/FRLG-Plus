@@ -170,7 +170,7 @@ u8* ResolveOrreMetLocationCollision(struct Pokemon *mon)
 	u16 species;
 	u8 locationMet;
 	const u8 *locationString;
-    u8 obedient = GetMonData(mon, MON_DATA_OBEDIENCE); //all XD Pokemon have this bit set
+    u8 obedient = GetMonData(mon, MON_DATA_EVENT_LEGAL); //all XD Pokemon have this bit set
 	locationMet = GetMonData(mon, MON_DATA_MET_LOCATION);
 	species = GetMonData(mon, MON_DATA_SPECIES);
 	switch (locationMet)

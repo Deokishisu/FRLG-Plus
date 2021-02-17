@@ -2825,7 +2825,10 @@ void sub_8105CB0(u8 a0, u16 species, u8 x, u8 y)
 
     if (sub_8104AB0(species, 1, 0))
     {
-        printerTemplate.currentChar = gPokedexEntries[species].description;
+        if(gSaveBlock1Ptr->keyFlags.version == 0) //FR
+            printerTemplate.currentChar = gPokedexEntries[species].description_FR;
+        else
+            printerTemplate.currentChar = gPokedexEntries[species].description_LG;
         printerTemplate.windowId = a0;
         printerTemplate.fontId = 2;
         printerTemplate.letterSpacing = 1;
@@ -2835,7 +2838,10 @@ void sub_8105CB0(u8 a0, u16 species, u8 x, u8 y)
         printerTemplate.bgColor = 0;
         printerTemplate.shadowColor = 2;
 
-        length = GetStringWidth(2, gPokedexEntries[species].description, 0);
+        if(gSaveBlock1Ptr->keyFlags.version == 0) //FR
+            length = GetStringWidth(2, gPokedexEntries[species].description_FR, 0);
+        else
+            length = GetStringWidth(2, gPokedexEntries[species].description_LG, 0);
         v1 = x + (240 - length) / 2;
 
         if (v1 > 0)
