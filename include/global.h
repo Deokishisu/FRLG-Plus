@@ -723,7 +723,7 @@ struct KeySystemFlags
     u16 nuzlocke:1;     //0 for normal, 1 for Nuzlocke mode
     u16 ivCalcMode:2;   //0 for normal, 1 for all 31, 2 for all zero
     u16 evCalcMode:1;   //0 for normal, 1 for all zero
-    u16 noPMC:1;        //0 for normal, 1 for no Pokemon Center healing. Unused.
+    u16 noPMC:1;        //0 for normal, 1 for no Pokemon Center healing.
     u16 padding:6;
     u16 changedCalcMode:1; //set if calc mode is changed to recalc party on save load
     u16 inKeySystemMenu:1; //Needed for Help Menu regardless of Button Mode
@@ -737,7 +737,7 @@ struct ExternalEventData
     u8 unknownExternalDataFields1[7]; // if actually used, may be broken up into different fields.
     u32 unknownExternalDataFields2:8;
     u32 currentPokeCoupons:24; // PokéCoupons stored by Pokémon Colosseum and XD from Mt. Battle runs. Earned PokéCoupons are also added to totalEarnedPokeCoupons. Colosseum/XD caps this at 9,999,999, but will read up to 16,777,215.
-    u32 gotGoldPokeCouponTitleReward:1; // Master Ball from Jp Colosseum Bonus Disc; for reaching 30,000 totalEarnedPokeCoupons
+    u32 gotGoldPokeCouponTitleReward:1; // Master Ball from JP Colosseum Bonus Disc; for reaching 30,000 totalEarnedPokeCoupons
     u32 gotSilverPokeCouponTitleReward:1; // Light Ball Pikachu from JP Colosseum Bonus Disc; for reaching 5000 totalEarnedPokeCoupons
     u32 gotBronzePokeCouponTitleReward:1; // PP Max from JP Colosseum Bonus Disc; for reaching 2500 totalEarnedPokeCoupons
     u32 receivedAgetoCelebi:1; // from JP Colosseum Bonus Disc
@@ -751,7 +751,7 @@ struct ExternalEventData
 struct ExternalEventFlags
 {
     u8 usedBoxRS:1; // Set by Pokémon Box: Ruby & Sapphire; denotes whether this save has connected to it and triggered the free False Swipe Swablu Egg giveaway.
-    u8 boxRSEggsUnlocked:2; // Set by Pokémon Box: Ruby & Sapphire; denotes the number of Eggs unlocked from deposits; 1 for ExtremeSpeed Zigzagoon (at 100 deposited), 2 for Pay Day Skitty (at 500 deposited), 3 for Surf Pichu (at 1500 deposited)
+    u8 boxRSEggsUnlocked:2; // Set by Pokémon Box: Ruby & Sapphire; denotes the number of Eggs unlocked from deposits; 1 for ExtremeSpeed Zigzagoon (at 100 deposited), 2 for Pay Day Skitty (at 500 deposited), 3 for Surf Pichu (at 1499 deposited)
     u8 padding:5;
     u8 unknownFlag1;
     u8 receivedGCNJirachi; // Both the US Colosseum Bonus Disc and PAL/AUS Pokémon Channel use this field. One cannot receive a WISHMKR Jirachi and CHANNEL Jirachi with the same savefile.
@@ -804,7 +804,7 @@ struct SaveBlock1
                struct ItemSlot bagPocket_Medicine[BAG_MEDICINE_COUNT];
                struct ItemSlot bagPocket_HoldItems[BAG_HELD_ITEMS_COUNT];
                u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
-    /*0x05F8*/ u8 seen1[DEX_FLAGS_NO];
+    /*0x05F8*/ u8 seen1[52]; //made unreferenced & can be gotten rid of, though PKHeX presumably will still set this
     /*0x062C*/ u16 berryBlenderRecords[3]; // unused
     /*0x0632*/ u16 lastViewedPokedexEntry; // For easier viewing of roamers
                struct KeySystemFlags keyFlags; //Key System flags
@@ -838,7 +838,7 @@ struct SaveBlock1
                struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT]; //taken from filler_348C field, which was originally 400 bytes
     /*0x361C*/ struct RamScript ramScript;
     /*0x3A08*/ u8 filler3A08[16]; //Record Mixing gift. Unused.
-    /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];
+    /*0x3A18*/ u8 seen2[52]; //made unreferenced & can be gotten rid of, though PKHeX presumably will still set this
     /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
     /*0x3A94*/ u8 filler3A94[64]; //max fame checker people is actually 32, so this is the unused 16 entries
