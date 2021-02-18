@@ -2222,6 +2222,36 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
         u8 ivs[NUM_STATS] = {31, 31, 30, 30, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
+    else if(fixedIV == (5 * 31 / 255)) //hidden power Bug IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 31, 31, 30, 31, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == (6 * 31 / 255)) //hidden power Rock IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 31, 30, 30, 31, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == (7 * 31 / 255)) //hidden power Grass IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 30, 31, 31, 30, 31};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == (8 * 31 / 255)) //hidden power Ice IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 31, 31, 30, 31, 31};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == (9 * 31 / 255)) //hidden power Fire IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 31, 30, 30, 30, 31};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if(fixedIV == (10 * 31 / 255)) //hidden power Electric IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 31, 31, 31, 30, 31};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
     else
     {
         CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);

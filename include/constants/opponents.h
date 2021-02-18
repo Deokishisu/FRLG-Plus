@@ -2,16 +2,16 @@
 #define GUARD_CONSTANTS_OPPONENTS_H
 
 #define TRAINER_NONE                               0
-#define TRAINER_AQUA_LEADER_1                      1
-#define TRAINER_TEAM_AQUA_1                        2
-#define TRAINER_TEAM_AQUA_2                        3
-#define TRAINER_AROMA_LADY_1                       4
-#define TRAINER_RUIN_MANIAC_1                      5
-#define TRAINER_INTERVIEWER_1                      6
-#define TRAINER_TUBER_1                            7
-#define TRAINER_TUBER_2                            8
-#define TRAINER_COOLTRAINER_1                      9
-#define TRAINER_COOLTRAINER_2                     10
+#define TRAINER_LT_SURGE_REMATCH                   1
+#define TRAINER_LT_SURGE_REMATCH_CHALLENGE         2
+#define TRAINER_ERIKA_REMATCH                      3
+#define TRAINER_ERIKA_REMATCH_CHALLENGE            4
+#define TRAINER_KOGA_REMATCH                       5
+#define TRAINER_KOGA_REMATCH_CHALLENGE             6
+#define TRAINER_SABRINA_REMATCH                    7
+#define TRAINER_SABRINA_REMATCH_CHALLENGE          8
+#define TRAINER_BLAINE_REMATCH                     9
+#define TRAINER_BLAINE_REMATCH_CHALLENGE          10
 #define TRAINER_HEX_MANIAC_1                      11
 #define TRAINER_LADY_1                            12
 #define TRAINER_BEAUTY_1                          13
@@ -766,11 +766,15 @@
 #define TRAINER_CHAMPION_REMATCH_SQUIRTLE_CHALLENGE 762
 #define TRAINER_CHAMPION_REMATCH_BULBASAUR_CHALLENGE 763
 #define TRAINER_CHAMPION_REMATCH_CHARMANDER_CHALLENGE 764
+#define TRAINER_BROCK_REMATCH                    765
+#define TRAINER_BROCK_REMATCH_CHALLENGE          766
+#define TRAINER_MISTY_REMATCH                    767
+#define TRAINER_MISTY_REMATCH_CHALLENGE          768
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             764
+#define NUM_TRAINERS                             768
 #define MAX_TRAINERS_COUNT                       768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
