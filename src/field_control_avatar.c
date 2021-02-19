@@ -230,6 +230,7 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         RunMassageCooldownStepCounter();
         IncrementResortGorgeousStepCounter();
         IncrementBirthIslandRockStepCount();
+        UpdateBattleHouseStepCounter();
         if (TryStartStepBasedScript(&position, metatileBehavior, playerDirection) == TRUE)
         {
             gInputToStoreInQuestLogMaybe.tookStep = TRUE;

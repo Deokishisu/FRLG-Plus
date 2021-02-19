@@ -25,6 +25,8 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/event_object_movement.h"
+#include "constants/maps.h"
+#include "constants/map_groups.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
@@ -756,6 +758,10 @@ bool8 FldEff_PokecenterHeal(void)
     task->data[3] = 0x24;
     task->data[4] = 0x80;
     task->data[5] = 0x18;
+    if(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(SEVEN_ISLAND_HOUSE_ROOM2) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(SEVEN_ISLAND_HOUSE_ROOM2))
+    {   //for the Battle House healing machine
+        task->data[3] = 0x44;
+    }
     return FALSE;
 }
 
@@ -767,7 +773,7 @@ static void Task_PokecenterHeal(u8 taskId)
 
 static void PokecenterHealEffect_0(struct Task * task)
 {
-    task->data[0]++;
+    task->data[0]++;                                            //x          //y
     task->data[6] = CreatePokeballGlowSprite(task->data[1], task->data[2], task->data[3], TRUE);
     task->data[7] = PokecenterHealEffectHelper(task->data[4], task->data[5]);
 }

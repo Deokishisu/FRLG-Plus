@@ -1,5 +1,22 @@
+.equ CHECK_VISITOR_STATE, 6
+.equ TYPE, VAR_0x8003
+.equ ARGUMENT, VAR_0x8004
+
 CeruleanCity_Gym_MapScripts:: @ 816AAA0
+	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_Gym_OnTransition
 	.byte 0
+
+CeruleanCity_Gym_OnTransition::
+	setvar TYPE, CHECK_VISITOR_STATE
+	setvar ARGUMENT, FAMECHECKER_MISTY
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 1
+	call_if_eq CeruleanCity_Gym_EventScript_HideMisty
+	end
+
+CeruleanCity_Gym_EventScript_HideMisty::
+	setflag FLAG_TEMP_1
+	return
 
 CeruleanCity_Gym_EventScript_Misty:: @ 816AAA1
 	famechecker FAMECHECKER_MISTY, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005

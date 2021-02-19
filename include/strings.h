@@ -1609,4 +1609,15 @@ extern const u8 gText_BattlePalace[];
 extern const u8 gText_BattlePyramid[];
 extern const u8 gText_DevonSpyShop[];
 extern const u8 gText_CanIHelpWithAnythingElseF[];
+extern const u8 gText_Brock[];
+extern const u8 gText_Misty[];
+extern const u8 gText_LtSurge[];
+extern const u8 gText_Erika[];
+extern const u8 gText_Koga[];
+extern const u8 gText_Sabrina[];
+extern const u8 gText_Blaine[];
+extern const u8 gText_CommaSpace[];
+extern const u8 gText_NewLine[];
+extern const u8 gText_AndSpace[];
+
 #endif //GUARD_STRINGS_H

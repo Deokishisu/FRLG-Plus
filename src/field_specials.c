@@ -1244,6 +1244,16 @@ void ListMenu(void)
             task->data[6] = 0;
             task->data[15] = taskId;
             break;
+        case LISTMENU_GYM_LEADERS: // Mulitchoice used instead
+            task->data[0] = 4;
+            task->data[1] = 8;
+            task->data[2] = 1;
+            task->data[3] = 1;
+            task->data[4] = 12;
+            task->data[5] = 7;
+            task->data[6] = 0;
+            task->data[15] = taskId;
+            break;
         case 99:
             break;
         default:
@@ -1324,6 +1334,17 @@ static const u8 *const sListMenuLabels[][12] = {
     {
         gText_Rooftop,
         gText_B1F,
+        gOtherText_Exit,
+    },
+    [LISTMENU_GYM_LEADERS] =
+    {
+        gText_Brock,
+        gText_Misty,
+        gText_LtSurge,
+        gText_Erika,
+        gText_Koga,
+        gText_Sabrina,
+        gText_Blaine,
         gOtherText_Exit,
     }
 };

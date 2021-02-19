@@ -1273,3 +1273,12 @@ const u8 gText_BattlePalace[] = _("BATTLE PALACE");
 const u8 gText_BattlePyramid[] = _("BATTLE PYRAMID");
 const u8 gText_DevonSpyShop[] = _("{COLOR BLUE}Hurry up, I'm missing the good stuff.");
 const u8 gText_CanIHelpWithAnythingElseF[] = _("{COLOR BLUE}Is there anything else I can do?");
+
+const u8 gText_Brock[] = _("BROCK");
+const u8 gText_Misty[] = _("MISTY");
+const u8 gText_Erika[] = _("ERIKA");
+const u8 gText_Sabrina[] = _("SABRINA");
+const u8 gText_Blaine[] = _("BLAINE");
+const u8 gText_CommaSpace[] = _(", ");
+const u8 gText_NewLine[] = _("\n");
+const u8 gText_AndSpace[] = _("and ");

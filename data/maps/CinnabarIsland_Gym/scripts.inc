@@ -5,9 +5,26 @@
 .set LOCALID_DUSTY, 6
 .set LOCALID_ZAC,   7
 
+.equ CHECK_VISITOR_STATE, 6
+.equ TYPE, VAR_0x8003
+.equ ARGUMENT, VAR_0x8004
+
 CinnabarIsland_Gym_MapScripts:: @ 816D94B
 	map_script MAP_SCRIPT_ON_LOAD, CinnabarIsland_Gym_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, CinnabarIsland_Gym_OnTransition
 	.byte 0
+
+CinnabarIsland_Gym_OnTransition::
+	setvar TYPE, CHECK_VISITOR_STATE
+	setvar ARGUMENT, FAMECHECKER_BLAINE
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 1
+	call_if_eq CinnabarIsland_Gym_EventScript_HideBlaine
+	end
+
+CinnabarIsland_Gym_EventScript_HideBlaine::
+	setflag FLAG_TEMP_1
+	return
 
 CinnabarIsland_Gym_OnLoad:: @ 816D951
 	goto_if_set FLAG_DEFEATED_BLAINE, CinnabarIsland_Gym_OnLoadOpenAllDoors

@@ -84,8 +84,8 @@
 #define VAR_QUEST_LOG_MON_COUNTS           0x4027
 #define VAR_MENEWS_JISAN_STEP_COUNTER      0x4028
 #define VAR_LAST_REPEL_USED                0x4029
-#define VAR_0x402A                         0x402A
-#define VAR_0x402B                         0x402B
+#define VAR_BATTLE_HOUSE                   0x402A //usage overflows into next var
+#define VAR_BATTLE_HOUSE2                  0x402B 
 #define VAR_RESET_RTC_ENABLE               0x402C
 #define VAR_DAYCARE_MAN_TRIGGERS           0x402D
 

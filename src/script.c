@@ -4,12 +4,16 @@
 #include "event_object_movement.h"
 #include "overworld.h"
 #include "pokedex.h"
+#include "random.h"
 #include "script.h"
 #include "sound.h"
+#include "strings.h"
+#include "string_util.h"
 #include "event_data.h"
 #include "quest_log.h"
 #include "constants/items.h"
 #include "constants/map_scripts.h"
+#include "constants/region_map_sections.h"
 
 #define RAM_SCRIPT_MAGIC 51
 #define SCRIPT_STACK_SIZE 20
@@ -560,6 +564,517 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
+
+#define SET_SPEAROW_STATE 0
+#define SET_TOLD_FAMECHECKER 1
+#define SET_VISITOR_STATE 2
+#define SET_LEVEL_GROWTH 3
+#define CHECK_SPEAROW_STATE 4
+#define CHECK_TOLD_FAMECHECKER 5
+#define CHECK_VISITOR_STATE 6
+#define CHECK_LEVEL_GROWTH 7
+#define SET_BOXES_MOVED 8
+#define CHECK_BOXES_MOVED 9
+#define CHECK_ANY_VISITORS 10
+#define CHECK_ALL_TOLD 11
+#define CREATE_VISITOR_STRING 12
+
+struct BattleHouse
+{
+    u16 spearowState:1;     //whether Spearow is gone. 0 for no, 1 for yes
+    u16 toldBrock:1;
+    u16 toldMisty:1;
+    u16 toldLtSurge:1;
+    u16 toldErika:1;
+    u16 toldKoga:1;
+    u16 toldSabrina:1;
+    u16 toldBlaine:1;       // ^^ filled out Fame Checker and told lady for person
+    // 1 byte
+    u16 boxesMoved:1;       // controls setting the layout. Happens when Spearow returns for the first time.
+    u16 visitorBrock:1;
+    u16 visitorMisty:1;
+    u16 visitorLtSurge:1;
+    u16 visitorErika:1;
+    u16 visitorKoga:1;
+    u16 visitorSabrina:1;
+    u16 visitorBlaine:1;    // ^^ visitors currently in house
+    // 1 byte, overflows into next scripting var
+    u16 levelGrowth:5;      // adds levels to rematch Pokemon up to level 80. Maxes at +12.
+    u16 filler:3;
+    // 1 byte
+    u16 steps:8;            // used to bring back Spearow and bring in visitors
+};
+
+void UpdateBattleHouseStepCounter(void)
+{
+    struct BattleHouse* BattleHouseVar;
+    u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
+    u8 chanceOfVisit = 46;
+    (void*) BattleHouseVar = varPtr;
+
+    if(VarGet(VAR_BATTLE_HOUSE) && gMapHeader.regionMapSectionId != MAPSEC_SEVEN_ISLAND)
+    {
+        if(BattleHouseVar->steps != 255)
+            BattleHouseVar->steps++;
+        else
+        {
+            BattleHouseVar->steps++;
+            if(BattleHouseVar->spearowState && !BattleHouseVar->boxesMoved)
+            {   //Spearow left for the first time, bring it back, open basement, force first leader visit
+                BattleHouseVar->spearowState = 0;
+                BattleHouseVar->boxesMoved = 1;
+                if(BattleHouseVar->toldBrock)
+                    BattleHouseVar->visitorBrock = 1;
+                if(BattleHouseVar->toldMisty)
+                    BattleHouseVar->visitorMisty = 1;
+                if(BattleHouseVar->toldLtSurge)
+                    BattleHouseVar->visitorLtSurge = 1;
+                if(BattleHouseVar->toldErika)
+                    BattleHouseVar->visitorErika = 1;
+                if(BattleHouseVar->toldKoga)
+                    BattleHouseVar->visitorKoga = 1;
+                if(BattleHouseVar->toldSabrina)
+                    BattleHouseVar->visitorSabrina = 1;
+                if(BattleHouseVar->toldBlaine)
+                    BattleHouseVar->visitorBlaine = 1;
+                return;
+            }
+            if(BattleHouseVar->spearowState)
+            {   //Spearow left, check if it returns
+                if(Random() % 2 == 0) //50% chance
+                {
+                    BattleHouseVar->spearowState = 0;
+                }
+                return; //no new visitors while Spearow is out
+            }
+            if(Random() % 256 < chanceOfVisit)
+            {   //Gym Leader visiting, ~18% chance
+                u8 counter = 0;
+                do{
+                    u8 leader = Random() % 7;
+                    switch(leader)
+                    {
+                        case 0:
+                            if(BattleHouseVar->toldBrock && !BattleHouseVar->visitorBrock)
+                            {
+                                BattleHouseVar->visitorBrock = 1;
+                                return;
+                            }
+                            break;
+                        case 1:
+                            if(BattleHouseVar->toldMisty && !BattleHouseVar->visitorMisty)
+                            {
+                                BattleHouseVar->visitorMisty = 1;
+                                return;
+                            }
+                            break;
+                        case 2:
+                            if(BattleHouseVar->toldLtSurge && !BattleHouseVar->visitorLtSurge)
+                            {
+                                BattleHouseVar->visitorLtSurge = 1;
+                                return;
+                            }
+                            break;
+                        case 3:
+                            if(BattleHouseVar->toldErika && !BattleHouseVar->visitorErika)
+                            {
+                                BattleHouseVar->visitorErika = 1;
+                                return;
+                            }
+                            break;
+                        case 4:
+                            if(BattleHouseVar->toldKoga && !BattleHouseVar->visitorKoga)
+                            {
+                                BattleHouseVar->visitorKoga = 1;
+                                return;
+                            }
+                            break;
+                        case 5:
+                            if(BattleHouseVar->toldSabrina && !BattleHouseVar->visitorSabrina)
+                            {
+                                BattleHouseVar->visitorSabrina = 1;
+                                return;
+                            }
+                            break;
+                        case 6:
+                            if(BattleHouseVar->toldBlaine && !BattleHouseVar->visitorBlaine)
+                            {
+                                BattleHouseVar->visitorBlaine = 1;
+                                return;
+                            }
+                            break;
+                    }
+                    counter++;
+                }while(counter < 3); //rerolls up to 3 times if doesn't hit
+            }
+        }
+    }
+}
+
+void UseBattleHouseVar(void)
+{
+    u8 type = gSpecialVar_0x8003;
+    u8 argument = gSpecialVar_0x8004;
+    struct BattleHouse* BattleHouseVar;
+    u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
+    u8 totalCount = 0;
+    u8 runningCount = 0;
+    (void*) BattleHouseVar = varPtr;
+
+    switch(type)
+    {
+        case SET_SPEAROW_STATE:
+            BattleHouseVar->spearowState ^= 1; //toggle state
+            break;
+        case SET_TOLD_FAMECHECKER:
+            switch(argument)
+            {
+                case FAMECHECKER_BROCK:
+                    BattleHouseVar->toldBrock = 1;
+                    break;
+                case FAMECHECKER_MISTY:
+                    BattleHouseVar->toldMisty = 1;
+                    break;
+                case FAMECHECKER_LTSURGE:
+                    BattleHouseVar->toldLtSurge = 1;
+                    break;
+                case FAMECHECKER_ERIKA:
+                    BattleHouseVar->toldErika = 1;
+                    break;
+                case FAMECHECKER_KOGA:
+                    BattleHouseVar->toldKoga = 1;
+                    break;
+                case FAMECHECKER_SABRINA:
+                    BattleHouseVar->toldSabrina = 1;
+                    break;
+                case FAMECHECKER_BLAINE:
+                    BattleHouseVar->toldBlaine = 1;
+                    break;
+            }
+            break;
+        case SET_VISITOR_STATE:
+            switch(argument)
+            {
+                case FAMECHECKER_BROCK:
+                    BattleHouseVar->visitorBrock ^= 1; //toggle state
+                    break;
+                case FAMECHECKER_MISTY:
+                    BattleHouseVar->visitorMisty ^= 1;
+                    break;
+                case FAMECHECKER_LTSURGE:
+                    BattleHouseVar->visitorLtSurge ^= 1;
+                    break;
+                case FAMECHECKER_ERIKA:
+                    BattleHouseVar->visitorErika ^= 1;
+                    break;
+                case FAMECHECKER_KOGA:
+                    BattleHouseVar->visitorKoga ^= 1;
+                    break;
+                case FAMECHECKER_SABRINA:
+                    BattleHouseVar->visitorSabrina ^= 1;
+                    break;
+                case FAMECHECKER_BLAINE:
+                    BattleHouseVar->visitorBlaine ^= 1;
+                    break;
+            }
+            break;
+        case SET_LEVEL_GROWTH:
+            if(BattleHouseVar->levelGrowth < 12)
+                BattleHouseVar->levelGrowth++;
+            break;
+        case CHECK_SPEAROW_STATE:
+            gSpecialVar_Result = BattleHouseVar->spearowState;
+            break;
+        case CHECK_TOLD_FAMECHECKER:
+            switch(argument)
+            {
+                case FAMECHECKER_BROCK:
+                    gSpecialVar_Result = BattleHouseVar->toldBrock;
+                    break;
+                case FAMECHECKER_MISTY:
+                    gSpecialVar_Result = BattleHouseVar->toldMisty;
+                    break;
+                case FAMECHECKER_LTSURGE:
+                    gSpecialVar_Result = BattleHouseVar->toldLtSurge;
+                    break;
+                case FAMECHECKER_ERIKA:
+                    gSpecialVar_Result = BattleHouseVar->toldErika;
+                    break;
+                case FAMECHECKER_KOGA:
+                    gSpecialVar_Result = BattleHouseVar->toldKoga;
+                    break;
+                case FAMECHECKER_SABRINA:
+                    gSpecialVar_Result = BattleHouseVar->toldSabrina;
+                    break;
+                case FAMECHECKER_BLAINE:
+                    gSpecialVar_Result = BattleHouseVar->toldBlaine;
+                    break;
+            }
+            break;
+        case CHECK_VISITOR_STATE:
+            switch(argument)
+            {
+                case FAMECHECKER_BROCK:
+                    gSpecialVar_Result = BattleHouseVar->visitorBrock;
+                    break;
+                case FAMECHECKER_MISTY:
+                    gSpecialVar_Result = BattleHouseVar->visitorMisty;
+                    break;
+                case FAMECHECKER_LTSURGE:
+                    gSpecialVar_Result = BattleHouseVar->visitorLtSurge;
+                    break;
+                case FAMECHECKER_ERIKA:
+                    gSpecialVar_Result = BattleHouseVar->visitorErika;
+                    break;
+                case FAMECHECKER_KOGA:
+                    gSpecialVar_Result = BattleHouseVar->visitorKoga;
+                    break;
+                case FAMECHECKER_SABRINA:
+                    gSpecialVar_Result = BattleHouseVar->visitorSabrina;
+                    break;
+                case FAMECHECKER_BLAINE:
+                    gSpecialVar_Result = BattleHouseVar->visitorBlaine;
+                    break;
+            }
+            break;
+        case CHECK_LEVEL_GROWTH:
+            if(BattleHouseVar->levelGrowth > 12)
+                gSpecialVar_Result = 12;
+            else 
+                gSpecialVar_Result = BattleHouseVar->levelGrowth;
+            break;
+        case SET_BOXES_MOVED:
+            BattleHouseVar->boxesMoved = 1;
+            break;
+        case CHECK_BOXES_MOVED:
+            gSpecialVar_Result = BattleHouseVar->boxesMoved;
+            break;
+        case CHECK_ANY_VISITORS:
+            gSpecialVar_Result = 0;
+            if(BattleHouseVar->visitorBrock)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Brock);
+            }
+            if(BattleHouseVar->visitorMisty)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Misty);
+            }
+            if(BattleHouseVar->visitorLtSurge)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_LtSurge);
+            }
+            if(BattleHouseVar->visitorErika)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Erika);
+            }
+            if(BattleHouseVar->visitorKoga)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Koga);
+            }
+            if(BattleHouseVar->visitorSabrina)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Sabrina);
+            }
+            if(BattleHouseVar->visitorBlaine)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Blaine);
+            }
+            break;
+        case CHECK_ALL_TOLD:
+            gSpecialVar_Result = 0;
+            if(BattleHouseVar->toldBrock)
+                gSpecialVar_Result++;
+            if(BattleHouseVar->toldMisty)
+                gSpecialVar_Result++;
+            if(BattleHouseVar->toldLtSurge)
+                gSpecialVar_Result++;
+            if(BattleHouseVar->toldErika)
+                gSpecialVar_Result++;
+            if(BattleHouseVar->toldKoga)
+                gSpecialVar_Result++;
+            if(BattleHouseVar->toldSabrina)
+                gSpecialVar_Result++;
+            if(BattleHouseVar->toldBlaine)
+                gSpecialVar_Result++;
+            break;
+        case CREATE_VISITOR_STRING:
+            if(BattleHouseVar->visitorBrock)
+                totalCount++;
+            if(BattleHouseVar->visitorMisty)
+                totalCount++;
+            if(BattleHouseVar->visitorLtSurge)
+                totalCount++;
+            if(BattleHouseVar->visitorErika)
+                totalCount++;
+            if(BattleHouseVar->visitorKoga)
+                totalCount++;
+            if(BattleHouseVar->visitorSabrina)
+                totalCount++;
+            if(BattleHouseVar->visitorBlaine)
+                totalCount++;
+            StringCopy(gStringVar1, gExpandedPlaceholder_Empty);
+            gSpecialVar_Result = 0;
+            if(BattleHouseVar->visitorBrock)
+            {
+                gSpecialVar_Result++;
+                runningCount++;
+                StringAppend(gStringVar1, gText_Brock);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorMisty)
+            {
+                gSpecialVar_Result++;
+                runningCount++;
+                StringAppend(gStringVar1, gText_Misty);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorLtSurge)
+            {
+                gSpecialVar_Result++;
+                runningCount++;
+                StringAppend(gStringVar1, gText_LtSurge);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorErika)
+            {
+                gSpecialVar_Result++;
+                runningCount++;
+                StringAppend(gStringVar1, gText_Erika);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorKoga)
+            {
+                runningCount++;
+                if(gSpecialVar_Result == 4 && totalCount != runningCount)
+                {
+                    StringAppend(gStringVar1, gText_NewLine);
+                    gSpecialVar_Result = 0;
+                }
+                gSpecialVar_Result++;
+                StringAppend(gStringVar1, gText_Koga);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorSabrina)
+            {
+                runningCount++;
+                if(gSpecialVar_Result == 4)
+                {
+                    StringAppend(gStringVar1, gText_NewLine);
+                    gSpecialVar_Result = 0;
+                }
+                gSpecialVar_Result++;
+                StringAppend(gStringVar1, gText_Sabrina);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorBlaine)
+            {
+                runningCount++;
+                if(gSpecialVar_Result == 4)
+                {
+                    StringAppend(gStringVar1, gText_NewLine);
+                    gSpecialVar_Result = 0;
+                }
+                gSpecialVar_Result++;
+                StringAppend(gStringVar1, gText_Blaine);
+            }
+            break;
+
+    }
+    //VarSet(VAR_BATTLE_HOUSE , &BattleHouseVar);
+}
+
+#undef SET_SPEAROW_STATE
+#undef SET_TOLD_FAMECHECKER
+#undef SET_VISITOR_STATE
+#undef SET_LEVEL_GROWTH
+#undef CHECK_SPEAROW_STATE
+#undef CHECK_TOLD_FAMECHECKER
+#undef CHECK_VISITOR_STATE
+#undef CHECK_LEVEL_GROWTH
+#undef SET_BOXES_MOVED
+#undef CHECK_BOXES_MOVED
+#undef CHECK_ANY_VISITORS
+#undef CHECK_ALL_TOLD
+#undef CREATE_VISITOR_STRING
 
 void HandleUseExpiredRepel(void)
 {

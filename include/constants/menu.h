@@ -96,6 +96,7 @@
 #define LISTMENU_WIRELESS_LECTURE_HEADERS  4
 #define LISTMENU_BERRY_POWDER              5
 #define LISTMENU_TRAINER_TOWER_FLOORS      6
+#define LISTMENU_GYM_LEADERS               7
 
 // Std String Ids
 #define STDSTRING_COOL              0

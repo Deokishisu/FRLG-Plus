@@ -2961,7 +2961,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding2",
+      "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/SevenIsland_House_Room2/border.bin",
       "blockdata_filepath": "data/layouts/SevenIsland_House_Room2/map.bin"
     },

@@ -3,6 +3,10 @@
 .equ SWITCH2_ID,         VAR_0x8005
 .equ TRASH_CAN_ID,       VAR_0x8008
 
+.equ CHECK_VISITOR_STATE, 6
+.equ TYPE, VAR_0x8003
+.equ ARGUMENT, VAR_0x8004
+
 VermilionCity_Gym_MapScripts:: @ 816B69E
 	map_script MAP_SCRIPT_ON_LOAD, VermilionCity_Gym_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, VermilionCity_Gym_OnTransition
@@ -41,7 +45,18 @@ VermilionCity_Gym_EventScript_SetBeamsOff:: @ 816B717
 
 VermilionCity_Gym_OnTransition:: @ 816B772
 	call VermilionCity_Gym_EventScript_InitTrashCans
+	setvar TYPE, CHECK_VISITOR_STATE
+	copyvar VAR_0x800A, ARGUMENT
+	setvar ARGUMENT, FAMECHECKER_LTSURGE
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 1
+	call_if_eq VermilionCity_Gym_EventScript_HideLtSurge
+	copyvar ARGUMENT, VAR_0x800A
 	end
+
+VermilionCity_Gym_EventScript_HideLtSurge::
+	setflag FLAG_TEMP_2
+	return
 
 VermilionCity_Gym_EventScript_InitTrashCans:: @ 816B778
 	goto_if_set FLAG_FOUND_BOTH_VERMILION_GYM_SWITCHES, EventScript_Return

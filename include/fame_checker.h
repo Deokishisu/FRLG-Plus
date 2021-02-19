@@ -19,5 +19,6 @@ void FullyUnlockFameChecker(void);
 void UseFameChecker(MainCallback savedCallback);
 void SetFlavorTextFlagFromSpecialVars(void);
 void UpdatePickStateFromSpecialVar8005(void);
+void CheckFilledFameCheckerFor0x8004(void);
 
 #endif //GUARD_FAME_CHECKER_H

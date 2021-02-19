@@ -1052,6 +1052,28 @@ static bool8 HasUnlockedAllFlavorTextsForCurrentPerson(void)
     return TRUE;
 }
 
+void CheckFilledFameCheckerFor0x8004(void)
+{
+    u32 i;
+    u8 who = gSpecialVar_0x8004;
+
+    if(who < NUM_FAMECHECKER_PERSONS)
+    {
+        for (i = 0; i < 6; i++)
+        {
+            if (!((gSaveBlock1Ptr->fameChecker[who].flavorTextFlags >> i) & 1))
+            {
+                gSpecialVar_Result = FALSE;
+                return;
+            }
+        }
+        gSpecialVar_Result = TRUE;
+        return;
+    }
+    gSpecialVar_Result = FALSE;
+    return;
+}
+
 static void FreeSelectionCursorSpriteResources(void)
 {
     FreeSpriteTilesByTag(SPRITETAG_SELECTOR_CURSOR);

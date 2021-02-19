@@ -1,5 +1,22 @@
-SaffronCity_Gym_MapScripts:: @ 816EDD7
+.equ CHECK_VISITOR_STATE, 6
+.equ TYPE, VAR_0x8003
+.equ ARGUMENT, VAR_0x8004
+
+SaffronCity_Gym_MapScripts:: @ 816A592
+	map_script MAP_SCRIPT_ON_TRANSITION, SaffronCity_Gym_OnTransition
 	.byte 0
+
+SaffronCity_Gym_OnTransition::
+	setvar TYPE, CHECK_VISITOR_STATE
+	setvar ARGUMENT, FAMECHECKER_SABRINA
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 1
+	call_if_eq SaffronCity_Gym_EventScript_HideSabrina
+	end
+
+SaffronCity_Gym_EventScript_HideSabrina::
+	setflag FLAG_TEMP_1
+	return
 
 SaffronCity_Gym_EventScript_Sabrina:: @ 816EDD8
 	famechecker FAMECHECKER_SABRINA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005

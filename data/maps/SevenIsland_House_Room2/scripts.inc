@@ -1,77 +1,157 @@
+.equ LOCALID_BROCK, 1
+.equ LOCALID_MISTY, 2
+.equ LOCALID_LT_SURGE, 3
+.equ LOCALID_ERIKA, 4
+.equ LOCALID_KOGA, 5
+.equ LOCALID_SABRINA, 6
+.equ LOCALID_BLAINE, 7
+
+.equ SET_SPEAROW_STATE, 0
+.equ SET_TOLD_FAMECHECKER, 1
+.equ SET_VISITOR_STATE, 2
+.equ SET_LEVEL_GROWTH, 3
+.equ CHECK_SPEAROW_STATE, 4
+.equ CHECK_TOLD_FAMECHECKER, 5
+.equ CHECK_VISITOR_STATE, 6
+.equ CHECK_LEVEL_GROWTH, 7
+.equ SET_BOXES_MOVED, 8
+.equ CHECK_BOXES_MOVED, 9
+
+.equ TYPE, VAR_0x8003
+.equ ARGUMENT, VAR_0x8004
+
 SevenIsland_House_Room2_MapScripts:: @ 8170A7E
 	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_House_Room2_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, SevenIsland_House_Room2_OnFrame
 	.byte 0
 
 SevenIsland_House_Room2_OnTransition:: @ 8170A89
-	special SetEReaderTrainerGfxId
+	setvar TYPE, CHECK_VISITOR_STATE
+	setvar ARGUMENT, FAMECHECKER_BROCK
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideBrock
+	setvar ARGUMENT, FAMECHECKER_MISTY
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideMisty
+	setvar ARGUMENT, FAMECHECKER_LTSURGE
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideLtSurge
+	setvar ARGUMENT, FAMECHECKER_ERIKA
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideErika
+	setvar ARGUMENT, FAMECHECKER_KOGA
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideKoga
+	setvar ARGUMENT, FAMECHECKER_SABRINA
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideSabrina
+	setvar ARGUMENT, FAMECHECKER_BLAINE
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideBlaine
 	end
 
-SevenIsland_House_Room2_OnFrame:: @ 8170A8D
-	map_script_2 VAR_TEMP_1, 0, SevenIsland_House_Room2_EventScript_BattleVisitingTrainer
-	.2byte 0
+SevenIsland_House_Room2_HideBrock::
+	setflag FLAG_TEMP_1
+	return
 
-SevenIsland_House_Room2_EventScript_BattleVisitingTrainer:: @ 8170A97
-	lockall
-	applymovement OBJ_EVENT_ID_PLAYER, SevenIsland_House_Room2_Movement_PlayerEnterRoom
+SevenIsland_House_Room2_HideMisty::
+	setflag FLAG_TEMP_2
+	return
+
+SevenIsland_House_Room2_HideLtSurge::
+	setflag FLAG_TEMP_3
+	return
+
+SevenIsland_House_Room2_HideErika::
+	setflag FLAG_TEMP_4
+	return
+
+SevenIsland_House_Room2_HideKoga::
+	setflag FLAG_TEMP_5
+	return
+
+SevenIsland_House_Room2_HideSabrina::
+	setflag FLAG_TEMP_6
+	return
+
+SevenIsland_House_Room2_HideBlaine::
+	setflag FLAG_TEMP_7
+	return	
+	
+SevenIsland_House_Room2_EventScript_LeftPainting::
+	msgbox SevenIsland_House_Room2_Text_LeftPainting, MSGBOX_SIGN
+	end
+
+SevenIsland_House_Room2_Text_LeftPainting::
+	.string "It's a photo of a young woman.\n"
+	.string "She's surrounded by happy,\l"
+	.string "strong-looking POKéMON.$"
+
+SevenIsland_House_Room2_EventScript_MiddlePainting::
+	msgbox SevenIsland_House_Room2_Text_MiddlePainting, MSGBOX_SIGN
+	end
+
+SevenIsland_House_Room2_Text_MiddlePainting::
+	.string "It's a photo of a young woman.\n"
+	.string "A SPEAROW perches on her arm.$"
+
+SevenIsland_House_Room2_EventScript_RightPainting::
+	compare VAR_STARTER_MON, 0
+	call_if_eq SevenIsland_House_Room2_EventScript_BufferBulbasaur
+	compare VAR_STARTER_MON, 1
+	call_if_eq SevenIsland_House_Room2_EventScript_BufferSquirtle
+	compare VAR_STARTER_MON, 2
+	call_if_ge SevenIsland_House_Room2_EventScript_BufferCharmander
+	msgbox SevenIsland_House_Room2_Text_RightPainting, MSGBOX_SIGN
+	end
+
+SevenIsland_House_Room2_Text_RightPainting::
+	.string "It's a photo of a TRAINER battle.\p"
+	.string "A young woman is ordering her\n"
+	.string "{STR_VAR_1} to attack an opposing\l"
+	.string "{STR_VAR_2}.\p"
+	.string "A SPEAROW hovers above the battle,\n"
+	.string "watching intently.$"
+
+SevenIsland_House_Room2_EventScript_BufferBulbasaur::
+	getspeciesname 0, SPECIES_VENUSAUR
+	getspeciesname 1, SPECIES_CHARIZARD
+	return
+
+SevenIsland_House_Room2_EventScript_BufferSquirtle::
+	getspeciesname 0, SPECIES_BLASTOISE
+	getspeciesname 1, SPECIES_VENUSAUR
+	return
+
+SevenIsland_House_Room2_EventScript_BufferCharmander::
+	getspeciesname 0, SPECIES_CHARIZARD
+	getspeciesname 1, SPECIES_BLASTOISE
+	return
+
+SevenIsland_House_Room2_EventScript_HealingMachine::
+	msgbox SevenIsland_House_Room2_Text_HealPokemon, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq SevenIsland_House_Room2_EventScript_HealPokemon
+	release
+	end
+
+SevenIsland_House_Room2_Text_HealPokemon::
+	.string "Use the machine to heal\n"
+	.string "your POKéMON?$"
+
+SevenIsland_House_Room2_EventScript_HealPokemon::
+	release
+	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestLeft
 	waitmovement 0
-	special BufferEReaderTrainerGreeting
-	msgbox gStringVar4
-	closemessage
-	setvar VAR_0x8004, 2
-	setvar VAR_0x8005, 0
-	special StartSpecialBattle
-	waitstate
-	compare VAR_RESULT, 3
-	call_if_eq SevenIsland_House_Room2_EventScript_BattleTie
-	compare VAR_RESULT, 1
-	call_if_eq SevenIsland_House_Room2_EventScript_BattleWon
-	compare VAR_RESULT, 2
-	call_if_eq SevenIsland_House_Room2_EventScript_BattleLost
-	closemessage
+	delay 24
+	dofieldeffect FLDEFF_POKECENTER_HEAL
+	waitfieldeffect FLDEFF_POKECENTER_HEAL
 	special HealPlayerParty
-	applymovement OBJ_EVENT_ID_PLAYER, SevenIsland_House_Room2_Movement_PlayerExitRoom
-	waitmovement 0
-	special LoadPlayerParty
-	setvar VAR_TEMP_1, 1
-	warp MAP_SEVEN_ISLAND_HOUSE_ROOM1, 255, 4, 1
-	waitstate
-	releaseall
+	release
 	end
-
-SevenIsland_House_Room2_EventScript_BattleTie:: @ 8170AFE
-	setvar VAR_MAP_SCENE_SEVEN_ISLAND_HOUSE_ROOM1, 3
-	msgbox SevenIsland_House_Room2_Text_MatchEndedUpDraw
-	return
-
-SevenIsland_House_Room2_EventScript_BattleWon:: @ 8170B0C
-	setvar VAR_MAP_SCENE_SEVEN_ISLAND_HOUSE_ROOM1, 1
-	special ShowFieldMessageStringVar4
-	waitmessage
-	waitbuttonpress
-	return
-
-SevenIsland_House_Room2_EventScript_BattleLost:: @ 8170B17
-	setvar VAR_MAP_SCENE_SEVEN_ISLAND_HOUSE_ROOM1, 2
-	special ShowFieldMessageStringVar4
-	waitmessage
-	waitbuttonpress
-	return
-
-SevenIsland_House_Room2_Movement_PlayerEnterRoom:: @ 8170B22
-	walk_down
-	walk_down
-	walk_down
-	walk_right
-	walk_right
-	step_end
-
-SevenIsland_House_Room2_Movement_PlayerExitRoom:: @ 8170B28
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	delay_8
-	step_end
