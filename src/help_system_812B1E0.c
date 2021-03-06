@@ -426,7 +426,8 @@ enum
     HELP_TERM_IV_CALC,
     HELP_TERM_EV_CALC,
     HELP_TERM_NO_PMC,
-    HELP_TERM_BATTLE_ANIM_SPEED
+    HELP_TERM_BATTLE_ANIM_SPEED,
+    HELP_TERM_EXP_MOD
 };
 
 static const u8 *const sHelpSystemTermTextPtrs[] = {
@@ -482,7 +483,8 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_IV_CALC]        = Help_Text_IvCalc,
     [HELP_TERM_EV_CALC]        = Help_Text_EvCalc,
     [HELP_TERM_NO_PMC]         = Help_Text_NoFreeHeals,
-    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_BattleAnimSpeed
+    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_BattleAnimSpeed,
+    [HELP_TERM_EXP_MOD]        = Help_Text_ExpMod
 };
 
 static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
@@ -538,7 +540,8 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_IV_CALC]        = Help_Text_DefineIvCalc,
     [HELP_TERM_EV_CALC]        = Help_Text_DefineEvCalc,
     [HELP_TERM_NO_PMC]         = Help_Text_DefineNoFreeHeals,
-    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_DefineBattleAnimSpeed
+    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_DefineBattleAnimSpeed,
+    [HELP_TERM_EXP_MOD]        = Help_Text_DefineExpMod
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -1632,7 +1635,7 @@ static const u8 sTerms_KeySystem[] = {
     HELP_TERM_IV_CALC,
     HELP_TERM_EV_CALC,
     HELP_TERM_NO_PMC,
-    HELP_TERM_CANCEL, 
+    HELP_TERM_EXP_MOD,
     HELP_END
 };
 

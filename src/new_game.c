@@ -150,6 +150,7 @@ void NewGameInitData(void)
     ScriptContext2_RunNewScript(EventScript_ResetAllMapFlags);
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
+    gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
 }
 
 static void ResetMiniGamesResults(void)

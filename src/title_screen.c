@@ -722,6 +722,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             u8 KeyEvCalcBackup = gSaveBlock1Ptr->keyFlags.evCalcMode;
             u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
             u8 noPMCBackup = gSaveBlock1Ptr->keyFlags.noPMC;
+            u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
             SeedRngAndSetTrainerId();
             SetSaveBlocksPointers();
             ResetMenuAndMonGlobals();
@@ -736,6 +737,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             gSaveBlock1Ptr->keyFlags.evCalcMode = KeyEvCalcBackup;
             gSaveBlock1Ptr->keyFlags.changedCalcMode = ChangedCalcBackup;
             gSaveBlock1Ptr->keyFlags.noPMC = noPMCBackup;
+            gSaveBlock1Ptr->keyFlags.expMod = expModBackup;
             SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
             InitHeap(gHeap, HEAP_SIZE);
             SetMainCallback2(CB2_InitMainMenu);

@@ -1251,6 +1251,11 @@ const u8 gText_EVCalc[] = _("EV CALCULATION");
 const u8 gText_EVCalcZero[] = _("ALL ZERO");
 const u8 gText_EVCalcStandard[] = _("STANDARD");
 const u8 gText_NoPMC[] = _("NO FREE HEALS");
+const u8 gText_ExpMod[] = _("EXP. MODIFIER");
+const u8 gText_ExpModZero[] = _("0×");
+const u8 gText_ExpModHalf[] = _("1/2×");
+const u8 gText_ExpModNormal[] = _("1×");
+const u8 gText_ExpModTwice[] = _("2×");
 
 const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
 const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}SAVE");

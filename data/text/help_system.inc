@@ -1993,3 +1993,15 @@ Help_Text_DefineBattleAnimSpeed::
 
 Help_Text_BattleAnimSpeed::
 	.string "BATTLE ANIM SPEED$"
+
+Help_Text_ExpMod::
+	.string "EXP. MODIFIER$"
+
+Help_Text_DefineExpMod::
+	.string "This option allows you to modify the\n"
+	.string "amount of Experience Points your\l"
+	.string "POKéMON earn from battle.\l"
+	.string "0× disables Experience Point gains.\l"
+	.string "1/2× halves given Experience Points.\l"
+	.string "1× is the standard modifier.\l"
+	.string "2× doubles given Experience Points.$"

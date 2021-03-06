@@ -24,7 +24,7 @@ enum
     MENUITEM_IV,
     MENUITEM_EV,
     MENUITEM_NO_PMC,
-    MENUITEM_CANCEL,
+    MENUITEM_EXP_MOD,
     MENUITEM_COUNT
 };
 
@@ -133,17 +133,17 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 };
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 2, 3, 2, 2, 0};
+static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 2, 3, 2, 2, 4};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
-    [MENUITEM_VERSION]   = gText_Version,
+    [MENUITEM_VERSION]    = gText_Version,
     [MENUITEM_DIFFICULTY] = gText_Difficulty,
-    [MENUITEM_NUZLOCKE] = gText_Nuzlocke,
-    [MENUITEM_IV]       = gText_IVCalc,
-    [MENUITEM_EV]  = gText_EVCalc,
-    [MENUITEM_NO_PMC] = gText_NoPMC,
-    [MENUITEM_CANCEL]      = gText_OptionMenuCancel,
+    [MENUITEM_NUZLOCKE]   = gText_Nuzlocke,
+    [MENUITEM_IV]         = gText_IVCalc,
+    [MENUITEM_EV]         = gText_EVCalc,
+    [MENUITEM_NO_PMC]     = gText_NoPMC,
+    [MENUITEM_EXP_MOD]    = gText_ExpMod,
 };
 
 static const u8 *const sVersionOptions[] =
@@ -176,6 +176,14 @@ static const u8 *const sEVCalcOptions[] =
 {
     gText_EVCalcStandard,
 	gText_EVCalcZero
+};
+
+static const u8 *const sExpModOptions[] = 
+{
+    gText_ExpModZero,
+    gText_ExpModHalf,
+    gText_ExpModNormal,
+    gText_ExpModTwice
 };
 
 static const u8 sKeySystemMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GREY};
@@ -213,6 +221,7 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->option[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     sKeySystemMenuPtr->option[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
     sKeySystemMenuPtr->option[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
+    sKeySystemMenuPtr->option[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
     gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
 
@@ -438,14 +447,14 @@ static u8 KeySystemMenu_ProcessInput(void)
     else if (JOY_REPT(DPAD_UP))
     {
         if (sKeySystemMenuPtr->cursorPos == MENUITEM_VERSION)
-            sKeySystemMenuPtr->cursorPos = MENUITEM_CANCEL;
+            sKeySystemMenuPtr->cursorPos = MENUITEM_EXP_MOD;
         else
             sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
         return 3;        
     }
     else if (JOY_REPT(DPAD_DOWN))
     {
-        if (sKeySystemMenuPtr->cursorPos == MENUITEM_CANCEL)
+        if (sKeySystemMenuPtr->cursorPos == MENUITEM_EXP_MOD)
             sKeySystemMenuPtr->cursorPos = MENUITEM_VERSION;
         else
             sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
@@ -493,6 +502,9 @@ static void BufferKeySystemMenuString(u8 selection)
     case MENUITEM_NO_PMC:
         AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNuzlockeOptions[sKeySystemMenuPtr->option[selection]]);
         break;
+    case MENUITEM_EXP_MOD:
+        AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpModOptions[sKeySystemMenuPtr->option[selection]]);
+        break;
     default:
         break;
     }
@@ -515,6 +527,7 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->option[MENUITEM_IV];
     gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->option[MENUITEM_EV];
     gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->option[MENUITEM_NO_PMC];
+    gSaveBlock1Ptr->keyFlags.expMod = sKeySystemMenuPtr->option[MENUITEM_EXP_MOD];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);
     DestroyTask(taskId);
