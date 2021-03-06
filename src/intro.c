@@ -756,9 +756,7 @@ static const struct SpritePalette sFightSceneSpritePalettes[] = {
 	{sSpritePals_Grass, 8},
 	{sSpritePals_GengarSwipe, 10},
 	{sSpritePals_NidorinoRecoilDust, 11},
-#ifdef BUGFIX
     {0}
-#endif
 };
 
 static void VBlankCB_Copyright(void)

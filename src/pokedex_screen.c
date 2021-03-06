@@ -2635,11 +2635,7 @@ void sub_8105800(u8 a0, u16 species, u8 a2, u8 a3)
     index = 0;
     if (sub_8104AB0(species, 1, 0))
     {
-#if REVISION == 0
-        while ((categoryName[index] != CHAR_SPACE) && (index < 11))
-#else
         while ((categoryName[index] != EOS) && (index < 11))
-#endif
         {
             categoryStr[index] = categoryName[index];
             index++;
