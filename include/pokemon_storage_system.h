@@ -3,9 +3,6 @@
 
 #include "global.h"
 
-#define TOTAL_BOXES_COUNT       14
-#define IN_BOX_COUNT            30
-
 enum
 {
     WALLPAPER_FOREST,

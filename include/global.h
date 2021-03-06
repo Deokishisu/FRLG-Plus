@@ -95,6 +95,9 @@ extern u8 gStringVar4[];
 #define DEX_FLAGS_NO (ROUND_BITS_TO_BYTES(NUM_SPECIES))
 #define NUM_FLAG_BYTES (ROUND_BITS_TO_BYTES(FLAGS_COUNT))
 
+#define TOTAL_BOXES_COUNT       14
+#define IN_BOX_COUNT            30
+
 struct Coords8
 {
     s8 x;

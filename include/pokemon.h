@@ -5,7 +5,6 @@
 #include "sprite.h"
 #include "constants/pokemon.h"
 #include "constants/species.h"
-#include "pokemon_storage_system.h"
 
 struct PokemonSubstruct0
 {
