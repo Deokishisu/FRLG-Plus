@@ -599,8 +599,8 @@ struct BattleHouse
     u16 visitorSabrina:1;
     u16 visitorBlaine:1;    // ^^ visitors currently in house
     // 1 byte, overflows into next scripting var
-    u16 levelGrowth:5;      // adds levels to rematch Pokemon up to level 80. Maxes at +12.
     u16 filler:3;
+    u16 levelGrowth:5;      // adds levels to rematch Pokemon up to level 80. Maxes at +12.
     // 1 byte
     u16 steps:8;            // used to bring back Spearow and bring in visitors
 };
@@ -904,7 +904,7 @@ void UseBattleHouseVar(void)
             if(BattleHouseVar->toldBlaine)
                 gSpecialVar_Result++;
             break;
-        case CREATE_VISITOR_STRING:
+        case CREATE_VISITOR_STRING: //used for mailbox outside
             if(BattleHouseVar->visitorBrock)
                 totalCount++;
             if(BattleHouseVar->visitorMisty)
@@ -1059,7 +1059,6 @@ void UseBattleHouseVar(void)
             break;
 
     }
-    //VarSet(VAR_BATTLE_HOUSE , &BattleHouseVar);
 }
 
 #undef SET_SPEAROW_STATE
