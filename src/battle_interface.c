@@ -1878,6 +1878,14 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                                             &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                                             B_HEALTHBAR_PIXELS / 8, 1 + (u16) (gBattleMons[battlerId].maxHP / 80));
         }
+        else if(gSaveBlock2Ptr->battleAnimSpeed == 2) // instant healthbar drop
+        {
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                            &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                                            B_HEALTHBAR_PIXELS / 8, 714); //max HP of Blissey, makes the healthbar drop in one tick
+        }
         else
         {   //health bar drains even faster if battleAnimSpeed is set to Fast
             currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
@@ -1889,18 +1897,29 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
     }
     else // exp bar
     {
-        u16 expFraction = GetScaledExpFraction(gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
-                                               gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
-                                               gBattleSpritesDataPtr->battleBars[battlerId].maxValue, 8);
-        if (expFraction == 0)
-            expFraction = 1;
-        expFraction = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / expFraction);
+        if(gSaveBlock2Ptr->battleAnimSpeed == 2) // instant expbar movement
+        {
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                            &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                                            B_EXPBAR_PIXELS / 8, 65535); //largest possible value to move in one tick
+        }
+        else
+        {
+            u16 expFraction = GetScaledExpFraction(gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                                                gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                                gBattleSpritesDataPtr->battleBars[battlerId].maxValue, 8);
+            if (expFraction == 0)
+                expFraction = 1;
+            expFraction = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / expFraction);
 
-        currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
-                                          gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
-                                          gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
-                                          &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                                          B_EXPBAR_PIXELS / 8, expFraction);
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                            &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                                            B_EXPBAR_PIXELS / 8, expFraction);
+        }
     }
 
     if (whichBar == EXP_BAR || (whichBar == HEALTH_BAR && !gBattleSpritesDataPtr->battlerData[battlerId].hpNumbersNoBars))

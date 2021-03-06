@@ -1947,7 +1947,7 @@ void SpriteCB_WildMon(struct Sprite *sprite)
 
 static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
 {
-    if(gSaveBlock2Ptr->battleAnimSpeed == 1)
+    if(gSaveBlock2Ptr->battleAnimSpeed)
         sprite->invisible = TRUE;
     if ((gIntroSlideFlags & 1) == 0)
     {

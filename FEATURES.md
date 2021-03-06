@@ -41,7 +41,7 @@
 - Toggle auto running with the R button.
 - Health bar drains faster at higher HP levels.
 - Instant text option.
-- Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, health bars drop much faster, and pressing the A or B button during text delays will skip them.
+- Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, health bars animate much faster, and pressing the A or B button during text delays will skip them. When set to instant, health and experience bars will animate instantly in addition to everything that the fast setting offers.
 - New battle style option, switch, which is like shift but doesn't tell what the opponent is switching in. Shift has been renamed to predict.
 - Indicators for which stats are affected by natures on summary screen.
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.

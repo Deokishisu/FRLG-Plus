@@ -2040,7 +2040,7 @@ static void atk12_waitmessage(void)
         {
             u16 toWait = T2_READ_16(gBattlescriptCurrInstr + 1);
 
-            if (++gPauseCounterBattle >= toWait || (gSaveBlock2Ptr->battleAnimSpeed == 1 && (JOY_NEW(A_BUTTON | B_BUTTON))))
+            if (++gPauseCounterBattle >= toWait || (gSaveBlock2Ptr->battleAnimSpeed && (JOY_NEW(A_BUTTON | B_BUTTON))))
             {
                 gPauseCounterBattle = 0;
                 gBattlescriptCurrInstr += 3;
@@ -3674,7 +3674,7 @@ static void atk39_pause(void)
     {
         u16 value = T2_READ_16(gBattlescriptCurrInstr + 1);
 
-        if (++gPauseCounterBattle >= value || (gSaveBlock2Ptr->battleAnimSpeed == 1 && (JOY_NEW(A_BUTTON | B_BUTTON))))
+        if (++gPauseCounterBattle >= value || (gSaveBlock2Ptr->battleAnimSpeed && (JOY_NEW(A_BUTTON | B_BUTTON))))
         {
             gPauseCounterBattle = 0;
             gBattlescriptCurrInstr += 3;

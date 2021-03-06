@@ -164,7 +164,7 @@ static void BattleIntroSlide1(u8 taskId)
         {
             ++gTasks[taskId].data[0];
             gTasks[taskId].data[2] = 240;
-            if(gSaveBlock2Ptr->battleAnimSpeed == 1)
+            if(gSaveBlock2Ptr->battleAnimSpeed)
                 gTasks[taskId].data[2] = 0;
             gTasks[taskId].data[3] = 32;
             gIntroSlideFlags &= ~1;
@@ -281,7 +281,7 @@ static void BattleIntroSlide2(u8 taskId)
         {
             ++gTasks[taskId].data[0];
             gTasks[taskId].data[2] = 240;
-            if(gSaveBlock2Ptr->battleAnimSpeed == 1)
+            if(gSaveBlock2Ptr->battleAnimSpeed)
                 gTasks[taskId].data[2] = 0;
             gTasks[taskId].data[3] = 32;
             gTasks[taskId].data[5] = 1;
@@ -384,7 +384,7 @@ static void BattleIntroSlide3(u8 taskId)
         {
             ++gTasks[taskId].data[0];
             gTasks[taskId].data[2] = 240;
-            if(gSaveBlock2Ptr->battleAnimSpeed == 1)
+            if(gSaveBlock2Ptr->battleAnimSpeed)
                 gTasks[taskId].data[2] = 0;
             gTasks[taskId].data[3] = 32;
             gTasks[taskId].data[5] = 1;

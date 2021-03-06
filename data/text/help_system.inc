@@ -1983,13 +1983,13 @@ Help_Text_TypeMatchupOwnPokemonBug:: @ 81BB156
 	.string "   {TRIANGLE}: GRASS, FIGHTING, GROUND$"
 
 Help_Text_DefineBattleAnimSpeed::
-	.string "By setting this option to FAST, you can\n"
-	.string "choose to skip the slide-in animation\l"
-	.string "that occurs at the beginning of every\l"
-	.string "battle and increase the speed at which\l"
-	.string "healthbars drop from damage.\l"
-	.string "Additionally, pressing the A or B Button\l"
-	.string "will skip text delays.$"
+	.string "Set this option to FAST to skip the\n"
+	.string "slide-in animation that occurs at the\l"
+	.string "start of every battle and make HP Bars\l"
+	.string "animate more quickly. Pressing the A or\l"
+	.string "B Button will also skip in-battle text\l"
+	.string "delays. INSTANT is like FAST but HP and\l"
+	.string "EXP. Bars animate instantly.$"
 
 Help_Text_BattleAnimSpeed::
 	.string "BATTLE ANIM SPEED$"
