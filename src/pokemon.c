@@ -6536,7 +6536,7 @@ static u16 GetBattleBGM(void)
                 return MUS_VS_TRAINER;
         }
     }
-    if (gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE)
+    if (gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE && !(gBattleTypeFlags & BATTLE_TYPE_POKEDUDE))
     {
         return MUS_RS_VS_WILD;
     }

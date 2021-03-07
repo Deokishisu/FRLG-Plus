@@ -1674,6 +1674,8 @@ static void PokedudeHandleLoadMonSprite(void)
                                                      y,
                                                      GetBattlerSpriteSubpriority(gActiveBattler));
     gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = -240;
+    if(gSaveBlock2Ptr->battleAnimSpeed)
+        gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = 0;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[2] = species;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;

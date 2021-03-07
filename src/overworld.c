@@ -3550,6 +3550,10 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
                 GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, objEvent->singleMovementActive),
                 SpriteCB_LinkPlayer, 0, 0, 0);
         }
+        else if (gameVersion == VERSION_EMERALD)
+        {   // same as RS for now
+            objEvent->spriteId = AddPseudoObjectEvent(GetRSAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+        }
         else
         {
             objEvent->spriteId = AddPseudoObjectEvent(GetRSAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
