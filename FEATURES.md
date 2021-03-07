@@ -90,4 +90,5 @@
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
 - Silph Co. is populated by workers once it is liberated from Team Rocket.
 - Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
+- Cycling Road forces the bike theme, like in RGBY.
 
