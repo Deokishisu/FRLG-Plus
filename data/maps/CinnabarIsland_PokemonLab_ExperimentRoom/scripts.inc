@@ -343,9 +343,13 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty:: @ 816E82
 	waitmessage
 	waitfanfare
 	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 0
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameFossilParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameFossilParty::
 	call EventScript_GetGiftMonPartySlot
 	call EventScript_ChangePokemonNickname
 	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_EndGiveMon
@@ -358,9 +362,13 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonPC:: @ 816E85B
 	waitmessage
 	waitfanfare
 	setvar VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE, 0
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameFossilPC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameFossilPC::
 	call EventScript_NameReceivedBoxMon
 	goto CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_MonSentToPC
 	end

@@ -1223,7 +1223,10 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter:: @ 8169C74
 	waitmessage
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	waitfanfare
-	callnative(SetLastViewedPokedexEntry)
+	callnative SetLastViewedPokedexEntry
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq EventScript_GiveNicknameToStarter
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_GiveNicknameToStarter

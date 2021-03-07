@@ -159,9 +159,13 @@ SilphCo_7F_EventScript_ReceiveLaprasParty:: @ 8161B12
 	waitmessage
 	waitfanfare
 	getspeciesname 0, SPECIES_LAPRAS
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq SilphCo_7F_EventScript_EndReceiveLapras
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasParty::
 	call EventScript_GetGiftMonPartySlot
 	call EventScript_ChangePokemonNickname
 	goto SilphCo_7F_EventScript_EndReceiveLapras
@@ -174,9 +178,13 @@ SilphCo_7F_EventScript_ReceiveLaprasPC:: @ 8161B45
 	waitmessage
 	waitfanfare
 	getspeciesname 0, SPECIES_LAPRAS
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasPC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq SilphCo_7F_EventScript_LaprasTransferredToPC
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasPC::
 	call EventScript_NameReceivedBoxMon
 	goto SilphCo_7F_EventScript_LaprasTransferredToPC
 	end

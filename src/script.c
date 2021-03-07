@@ -565,6 +565,11 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void CheckNuzlockeMode(void)
+{
+    gSpecialVar_Result = gSaveBlock1Ptr->keyFlags.nuzlocke;
+}
+
 #define SET_SPEAROW_STATE 0
 #define SET_TOLD_FAMECHECKER 1
 #define SET_VISITOR_STATE 2

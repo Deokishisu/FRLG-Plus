@@ -78,9 +78,13 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonParty:: @ 816ECB5
 	waitmessage
 	waitfanfare
 	setflag FLAG_GOT_HITMON_FROM_DOJO
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameHitmonParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq SaffronCity_Dojo_EventScript_EndGiveMon
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameHitmonParty::
 	call EventScript_GetGiftMonPartySlot
 	call EventScript_ChangePokemonNickname
 	goto SaffronCity_Dojo_EventScript_EndGiveMon
@@ -94,9 +98,13 @@ SaffronCity_Dojo_EventScript_ReceivedHitmonPC:: @ 816ECEC
 	waitmessage
 	waitfanfare
 	setflag FLAG_GOT_HITMON_FROM_DOJO
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameHitmonPC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq SaffronCity_Dojo_EventScript_TransferredHitmonToPC
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameHitmonPC::
 	call EventScript_NameReceivedBoxMon
 	goto SaffronCity_Dojo_EventScript_TransferredHitmonToPC
 	end

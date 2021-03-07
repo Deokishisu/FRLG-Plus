@@ -254,8 +254,12 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonParty:: @ 816CDB3
 	message Text_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknamePrizeParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
+	CeladonCity_Condominiums_RoofRoom_EventScript_NicknamePrizeParty::
 	goto_if_eq CeladonCity_GameCorner_PrizeRoom_EventScript_NicknamePartyMon
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_EndPrizeExchange
 	end
@@ -268,9 +272,13 @@ CeladonCity_GameCorner_PrizeRoom_EventScript_ReceivedMonPC:: @ 816CDE0
 	message Text_PlayerObtainedTheMon
 	waitmessage
 	waitfanfare
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknamePrizePC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
+	CeladonCity_Condominiums_RoofRoom_EventScript_NicknamePrizePC::
 	call EventScript_NameReceivedBoxMon
 	goto CeladonCity_GameCorner_PrizeRoom_EventScript_TransferredToPC
 	end

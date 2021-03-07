@@ -2068,9 +2068,21 @@ static void CB2_EggHatch_1(void)
         break;
     case 8:
         DayCare_GetMonNickname(&gPlayerParty[sEggHatchData->eggPartyID], gStringVar1);
-        StringExpandPlaceholders(gStringVar4, gText_NickHatchPrompt);
-        EggHatchPrintMessage(sEggHatchData->windowId, gStringVar4, 0, 2, 1);
-        sEggHatchData->CB2_state++;
+        if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+        {
+            DayCare_GetMonNickname(&gPlayerParty[sEggHatchData->eggPartyID], gStringVar3);
+            species = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_SPECIES);
+            gender = GetMonGender(&gPlayerParty[sEggHatchData->eggPartyID]);
+            personality = GetMonData(&gPlayerParty[sEggHatchData->eggPartyID], MON_DATA_PERSONALITY, 0);
+            DoNamingScreen(NAMING_SCREEN_NAME_RATER, gStringVar3, species, gender, personality, EggHatchSetMonNickname);
+            break;
+        }
+        else
+        {
+            StringExpandPlaceholders(gStringVar4, gText_NickHatchPrompt);
+            EggHatchPrintMessage(sEggHatchData->windowId, gStringVar4, 0, 2, 1);
+            sEggHatchData->CB2_state++;
+        }
         break;
     case 9:
         if (!IsTextPrinterActive(sEggHatchData->windowId))

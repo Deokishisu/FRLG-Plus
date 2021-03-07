@@ -61,9 +61,13 @@ Route4_PokemonCenter_1F_EventScript_TryBuyMagikarp:: @ 816F7A2
 
 Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty:: @ 816F7F6
 	call Route4_PokemonCenter_1F_EventScript_PayForMagikarp
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameMagikarpParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Route4_PokemonCenter_1F_EventScript_EndPurchaseMagikarp
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameMagikarpParty::
 	call EventScript_GetGiftMonPartySlot
 	fadescreen FADE_TO_BLACK
 	hidemoneybox 0, 0
@@ -74,9 +78,13 @@ Route4_PokemonCenter_1F_EventScript_BuyMagikarpParty:: @ 816F7F6
 
 Route4_PokemonCenter_1F_EventScript_BuyMagikarpPC:: @ 816F822
 	call Route4_PokemonCenter_1F_EventScript_PayForMagikarp
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameMagikarpPC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Route4_PokemonCenter_1F_EventScript_TransferMagikarpCloseMoneyBox
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameMagikarpPC::
 	fadescreen FADE_TO_BLACK
 	hidemoneybox 0, 0
 	special ChangeBoxPokemonNickname

@@ -295,6 +295,9 @@ PalletTown_GarysHouse_EventScript_GiveFinalStarter_4:
 	message PalletTown_GarysHouse_EventScript_GiveFinalStarter_Text_7
 	waitmessage
 	waitfanfare
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq PalletTown_GarysHouse_EventScript_GiveFinalStarter_16
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq PalletTown_GarysHouse_EventScript_GiveFinalStarter_16
