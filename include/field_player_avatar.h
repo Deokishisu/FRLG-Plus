@@ -64,5 +64,6 @@ void InitPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender);
 void InitDivingPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender);
 void nullsub_24(u8 direction);
 u8 GetRSAvatarGraphicsIdByGender(u8 gender);
+u8 GetEMAvatarGraphicsIdByGender(u8 gender);
 
 #endif //GUARD_FIELD_PLAYER_AVATAR_H

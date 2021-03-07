@@ -515,6 +515,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gUnknown_8395AE8, OBJ_EVENT_PAL_TAG_11},
     {gUnknown_83952C8, OBJ_EVENT_PAL_TAG_21},
     {gUnderwaterEventObjectPalette, OBJ_EVENT_PAL_TAG_27},
+    {gEmBrendanPalette, OBJ_EVENT_PAL_TAG_28},
+    {gEmMayPalette, OBJ_EVENT_PAL_TAG_29},
     {},
 };
 
@@ -1827,6 +1829,10 @@ static u8 TrySetupObjectEventSprite(struct ObjectEventTemplate *objectEventTempl
 
     objectEvent = &gObjectEvents[objectEventId];
     graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
+    if(graphicsInfo->paletteTag1 == OBJ_EVENT_PAL_TAG_28 || graphicsInfo->paletteTag1 == OBJ_EVENT_PAL_TAG_29) //em brendan/may
+    {
+        LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);
+    }
     if (graphicsInfo->paletteSlot == 0)
     {
         LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);

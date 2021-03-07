@@ -60,5 +60,7 @@ extern const struct SpriteFrameImage gTrainerBackPicTable_Pokedude[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_OldMan[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_RSBrendan[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_RSMay[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_EmBrendan[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_EmMay[];
 
 #endif // GUARD_DATA_H

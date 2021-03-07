@@ -1800,6 +1800,24 @@ const struct SpriteTemplate gUnknown_825DF50[] =
         .affineAnims = gSpriteAffineAnimTable_82348C8,
         .callback = sub_80120C4,
     },
+    {
+        .tileTag = SPRITE_INVALID_TAG,
+        .paletteTag = 0,
+        .oam = &gOamData_824F018,
+        .anims = NULL, 
+        .images = gTrainerBackPicTable_EmBrendan,
+        .affineAnims = gSpriteAffineAnimTable_82348C8,
+        .callback = sub_80120C4,
+    },
+    {
+        .tileTag = SPRITE_INVALID_TAG,
+        .paletteTag = 0,
+        .oam = &gOamData_824F018,
+        .anims = NULL, 
+        .images = gTrainerBackPicTable_EmMay,
+        .affineAnims = gSpriteAffineAnimTable_82348C8,
+        .callback = sub_80120C4,
+    },
 };
 
 static const u8 sSecretBaseFacilityClasses[][5] = 

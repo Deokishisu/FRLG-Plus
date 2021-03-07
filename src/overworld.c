@@ -3554,7 +3554,7 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
         }
         else if (gameVersion == VERSION_EMERALD)
         {   // same as RS for now
-            objEvent->spriteId = AddPseudoObjectEvent(GetRSAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+            objEvent->spriteId = AddPseudoObjectEvent(GetEMAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
         }
         else
         {

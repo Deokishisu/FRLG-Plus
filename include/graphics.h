@@ -2591,6 +2591,8 @@ extern const u32 gTrainerFrontPic_AromaLady[];
 extern const u32 gTrainerFrontPic_RuinManiac[];
 extern const u32 gTrainerFrontPic_Lady[];
 extern const u32 gTrainerFrontPic_Painter[];
+extern const u32 gTrainerFrontPic_EmBrendan[];
+extern const u32 gTrainerFrontPic_EmMay[];
 
 extern const u32 gTrainerPalette_AquaLeaderArchie[];
 extern const u32 gTrainerPalette_AquaGruntM[];
@@ -2744,6 +2746,8 @@ extern const u32 gTrainerPalette_AromaLady[];
 extern const u32 gTrainerPalette_RuinManiac[];
 extern const u32 gTrainerPalette_Lady[];
 extern const u32 gTrainerPalette_Painter[];
+extern const u32 gTrainerPalette_EmMay[];
+extern const u32 gTrainerPalette_EmBrendan[];
 
 extern const u8 gFireRedMenuElements_Gfx[];
 extern const u16 gFireRedMenuElements1_Pal[];
@@ -4381,6 +4385,8 @@ extern const u8 gTrainerBackPic_Pokedude[];
 extern const u8 gTrainerBackPic_OldMan[];
 extern const u8 gTrainerBackPic_RSBrendan[];
 extern const u8 gTrainerBackPic_RSMay[];
+extern const u8 gTrainerBackPic_EmBrendan[];
+extern const u8 gTrainerBackPic_EmMay[];
 
 // mail
 extern const u16 gFile_graphics_mail_orange_palette_pal[];

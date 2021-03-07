@@ -1184,6 +1184,11 @@ static const u8 sHoennLinkPartnerGfxIds[] = {
     OBJ_EVENT_GFX_RS_MAY
 };
 
+static const u8 sEmeraldLinkPartnerGfxIds[] = {
+    OBJ_EVENT_GFX_EM_BRENDAN,
+    OBJ_EVENT_GFX_EM_MAY
+};
+
 u8 GetRivalAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender)
 {
     return GetPlayerAvatarGraphicsIdByStateIdAndGender(state, gender);
@@ -1198,6 +1203,11 @@ u8 GetPlayerAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender)
 u8 GetRSAvatarGraphicsIdByGender(u8 gender)
 {
     return sHoennLinkPartnerGfxIds[gender];
+}
+
+u8 GetEMAvatarGraphicsIdByGender(u8 gender)
+{
+    return sEmeraldLinkPartnerGfxIds[gender];
 }
 
 u8 GetPlayerAvatarGraphicsIdByStateId(u8 state)

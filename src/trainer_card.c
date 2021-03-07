@@ -302,6 +302,11 @@ static const u8 sTrainerPicFacilityClasses[][2] =
         [MALE]   = FACILITY_CLASS_BRENDAN, 
         [FEMALE] = FACILITY_CLASS_MAY
     },
+    [CARD_TYPE_EMERALD] = 
+    {
+        [MALE]   = FACILITY_CLASS_EM_BRENDAN, 
+        [FEMALE] = FACILITY_CLASS_EM_MAY
+    }
 };
 
 static const u8 sLinkTrainerPicFacilityClasses[GENDER_COUNT][NUM_LINK_TRAINER_CARD_CLASSES] = 
@@ -650,13 +655,13 @@ static bool8 LoadCardGfx(void)
     switch (sTrainerCardDataPtr->gfxLoadState)
     {
     case 0:
-        if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
             LZ77UnCompWram(sHoennTrainerCardBg_Tilemap, sTrainerCardDataPtr->bgTilemap);
         else
             LZ77UnCompWram(sKantoTrainerCardBg_Tilemap, sTrainerCardDataPtr->bgTilemap);
         break;
     case 1:
-        if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
             LZ77UnCompWram(sHoennTrainerCardBack_Tilemap, sTrainerCardDataPtr->backTilemap);
         else
             LZ77UnCompWram(sKantoTrainerCardBack_Tilemap, sTrainerCardDataPtr->backTilemap);
@@ -664,25 +669,27 @@ static bool8 LoadCardGfx(void)
     case 2:
         if (!sTrainerCardDataPtr->isLink)
         {
-            if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+            if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
                 LZ77UnCompWram(sHoennTrainerCardFront_Tilemap, sTrainerCardDataPtr->frontTilemap);
             else
                 LZ77UnCompWram(sKantoTrainerCardFront_Tilemap, sTrainerCardDataPtr->frontTilemap);
         }
         else
         {
-            if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+            if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
                 LZ77UnCompWram(sHoennTrainerCardFrontLink_Tilemap, sTrainerCardDataPtr->frontTilemap);
             else
                 LZ77UnCompWram(sKantoTrainerCardFrontLink_Tilemap, sTrainerCardDataPtr->frontTilemap);
         }
         break;
     case 3:
-        // ? Doesnt check for RSE, sHoennTrainerCardBadges_Gfx goes unused
-        LZ77UnCompWram(sKantoTrainerCardBadges_Gfx, sTrainerCardDataPtr->badgeTiles);
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
+            LZ77UnCompWram(sHoennTrainerCardBadges_Gfx, sTrainerCardDataPtr->badgeTiles);
+        else
+            LZ77UnCompWram(sKantoTrainerCardBadges_Gfx, sTrainerCardDataPtr->badgeTiles);
         break;
     case 4:
-        if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
             LZ77UnCompWram(gHoennTrainerCard_Gfx, &sTrainerCardDataPtr->cardTiles);
         else
             LZ77UnCompWram(gKantoTrainerCard_Gfx, &sTrainerCardDataPtr->cardTiles);
@@ -841,7 +848,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     {
         trainerCard->rse.stars = GetTrainerStarCount(trainerCard);
     }
-    else if (cardType == CARD_TYPE_RSE)
+    else if (cardType >= CARD_TYPE_RSE)
     {
         trainerCard->rse.stars = 0;
         if (trainerCard->rse.hofDebutHours != 0 || (trainerCard->rse.hofDebutMinutes != 0 || trainerCard->rse.hofDebutSeconds != 0))
@@ -1255,7 +1262,7 @@ static void BufferNameForCardBack(void)
 {
     StringCopy(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], sTrainerCardDataPtr->trainerCard.rse.playerName);
     ConvertInternationalString(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], sTrainerCardDataPtr->language);
-    if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+    if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
     {
         StringAppend(sTrainerCardDataPtr->strings[TRAINER_CARD_STRING_NAME], gText_Var1sTrainerCard);
     }
@@ -1478,19 +1485,19 @@ static bool8 SetTrainerCardBgsAndPals(void)
         LoadBgTiles(0, sTrainerCardDataPtr->cardTiles, 0x1800, 0);
         break;
     case 2:
-        if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
             LoadPalette(sHoennTrainerCardStarPals[sTrainerCardDataPtr->trainerCard.rse.stars], 0, 96);
         else
             LoadPalette(sKantoTrainerCardStarPals[sTrainerCardDataPtr->trainerCard.rse.stars], 0, 96);
         break;
     case 3:
-        if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE)
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE)
             LoadPalette(sHoennTrainerCardBadges_Pal, 48, 32);
         else
             LoadPalette(sKantoTrainerCardBadges_Pal, 48, 32);
         break;
     case 4:
-        if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE && sTrainerCardDataPtr->trainerCard.rse.gender != MALE)
+        if (sTrainerCardDataPtr->cardType >= CARD_TYPE_RSE && sTrainerCardDataPtr->trainerCard.rse.gender != MALE)
             LoadPalette(sHoennTrainerCardFemaleBackground_Pal, 16, 32);
         else if (sTrainerCardDataPtr->trainerCard.rse.gender != MALE)
             LoadPalette(sKantoTrainerCardFemaleBackground_Pal, 16, 32);
@@ -1881,7 +1888,7 @@ static void InitTrainerCardData(void)
     sTrainerCardDataPtr->timeColonInvisible = FALSE;
     sTrainerCardDataPtr->onBack = FALSE;
     sTrainerCardDataPtr->flipBlendY = 0;
-    if (GetCardType() == CARD_TYPE_RSE)
+    if (GetCardType() >= CARD_TYPE_RSE)
         sTrainerCardDataPtr->cardType = CARD_TYPE_RSE;
     else
         sTrainerCardDataPtr->cardType = CARD_TYPE_FRLG;
@@ -1896,6 +1903,8 @@ static u8 GetCardType(void)
     {
         if (gGameVersion == VERSION_FIRE_RED || gGameVersion == VERSION_LEAF_GREEN)
             return CARD_TYPE_FRLG;
+        else if (gGameVersion == VERSION_EMERALD)
+            return CARD_TYPE_EMERALD;
         else
             return CARD_TYPE_RSE;
     }
@@ -1903,6 +1912,8 @@ static u8 GetCardType(void)
     {
         if (sTrainerCardDataPtr->trainerCard.version == VERSION_FIRE_RED || sTrainerCardDataPtr->trainerCard.version == VERSION_LEAF_GREEN)
             return CARD_TYPE_FRLG;
+        else if (sTrainerCardDataPtr->trainerCard.version == VERSION_EMERALD)
+            return CARD_TYPE_EMERALD;
         else
             return CARD_TYPE_RSE;
     }
@@ -1910,7 +1921,11 @@ static u8 GetCardType(void)
 
 static void CreateTrainerCardTrainerPic(void)
 {
-    u8 facilityClass = sTrainerPicFacilityClasses[sTrainerCardDataPtr->cardType][sTrainerCardDataPtr->trainerCard.rse.gender];
+    u8 facilityClass;
+    if (sTrainerCardDataPtr->trainerCard.version == VERSION_EMERALD)
+        facilityClass = sTrainerPicFacilityClasses[2][sTrainerCardDataPtr->trainerCard.rse.gender];
+    else
+        facilityClass = sTrainerPicFacilityClasses[sTrainerCardDataPtr->cardType][sTrainerCardDataPtr->trainerCard.rse.gender];
 
     if (InUnionRoom() == TRUE && gReceivedRemoteLinkPlayers == 1)
     {

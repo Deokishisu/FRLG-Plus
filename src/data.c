@@ -90,6 +90,22 @@ const struct SpriteFrameImage gTrainerBackPicTable_RSMay[] =
     gTrainerBackPic_RSMay + 0x1800, 0x0800,
 };
 
+const struct SpriteFrameImage gTrainerBackPicTable_EmBrendan[] =
+{
+    gTrainerBackPic_EmBrendan, 0x0800,
+    gTrainerBackPic_EmBrendan + 0x0800, 0x0800,
+    gTrainerBackPic_EmBrendan + 0x1000, 0x0800,
+    gTrainerBackPic_EmBrendan + 0x1800, 0x0800,
+};
+
+const struct SpriteFrameImage gTrainerBackPicTable_EmMay[] =
+{
+    gTrainerBackPic_EmMay, 0x0800,
+    gTrainerBackPic_EmMay + 0x0800, 0x0800,
+    gTrainerBackPic_EmMay + 0x1000, 0x0800,
+    gTrainerBackPic_EmMay + 0x1800, 0x0800,
+};
+
 static const union AnimCmd sAnim_GeneralFrame0[] =
 {
     ANIMCMD_FRAME(0, 0),
