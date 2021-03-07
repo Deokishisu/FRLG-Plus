@@ -16,7 +16,7 @@
   "connections": [
     {
       "direction": "up",
-      "offset": 24,
+      "offset": -3,
       "map": "MAP_TWO_ISLAND_CAPE_BRINK"
     }
   ],

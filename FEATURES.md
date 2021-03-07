@@ -25,6 +25,7 @@
 		* The Level 100 mode has been replaced with the Open Level mode like in Emerald.
 		* Artisan Cave can be accessed from the Battle Tower's dock.
 	* A new area in Berry Forest makes the pinch berries available.
+	* A new area west of Cape Brink has rematchable trainers for the purposes of EV training.
 
 #### Quality of Life Changes:
 - No link restrictions
@@ -91,4 +92,5 @@
 - Silph Co. is populated by workers once it is liberated from Team Rocket.
 - Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
 - Cycling Road forces the bike theme, like in RGBY.
+- Emerald's player character designs show in the link rooms if linking with Emerald.
 
