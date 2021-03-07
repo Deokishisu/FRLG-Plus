@@ -131,149 +131,149 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_LeaderBlaineRematchChallenge),
         .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderBlaineRematchChallenge}
     },
-    [TRAINER_HEX_MANIAC_1] = {
+    [TRAINER_PKMN_RANGER_HELENA] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_HEX_MANIAC,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_HEX_MANIAC,
-        .trainerName = _(""),
+        .trainerClass = CLASS_PKMN_RANGER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_POKEMON_RANGER_F,
+        .trainerName = _("HELENA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_HexManiac1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_HexManiac1}
+        .partySize = NELEMS(sTrainerMons_PkmnRangerHelena),
+        .party = {.NoItemDefaultMoves = sTrainerMons_PkmnRangerHelena}
     },
-    [TRAINER_LADY_1] = {
+    [TRAINER_PKMN_RANGER_HELENA_2] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_LADY,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
-        .trainerPic = TRAINER_PIC_RS_LADY,
-        .trainerName = _(""),
+        .trainerClass = CLASS_PKMN_RANGER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_POKEMON_RANGER_F,
+        .trainerName = _("HELENA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Lady1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Lady1}
+        .partySize = NELEMS(sTrainerMons_PkmnRangerHelena2),
+        .party = {.NoItemDefaultMoves = sTrainerMons_PkmnRangerHelena2}
     },
-    [TRAINER_BEAUTY_1] = {
+    [TRAINER_COOLTRAINER_ATTICUS] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_BEAUTY,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
-        .trainerPic = TRAINER_PIC_RS_BEAUTY,
-        .trainerName = _(""),
+        .trainerClass = CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
+        .trainerName = _("ATTICUS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Beauty1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Beauty1}
+        .partySize = NELEMS(sTrainerMons_CooltrainerAtticus),
+        .party = {.NoItemDefaultMoves = sTrainerMons_CooltrainerAtticus}
     },
-    [TRAINER_RICH_BOY_1] = {
+    [TRAINER_COOLTRAINER_ATTICUS_2] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_RICH_BOY,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_RICH,
-        .trainerPic = TRAINER_PIC_RICH_BOY,
-        .trainerName = _(""),
+        .trainerClass = CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_M,
+        .trainerName = _("ATTICUS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_RichBoy1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_RichBoy1}
+        .partySize = NELEMS(sTrainerMons_CooltrainerAtticus2),
+        .party = {.NoItemDefaultMoves = sTrainerMons_CooltrainerAtticus2}
     },
-    [TRAINER_POKEMANIAC_1] = {
+    [TRAINER_FISHERMAN_DEFOREST] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_POKEMANIAC,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_RS_POKEMANIAC,
-        .trainerName = _(""),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Pokemaniac1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Pokemaniac1}
-    },
-    [TRAINER_SWIMMER_MALE_1] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_SWIMMER_MALE,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
-        .trainerPic = TRAINER_PIC_RS_SWIMMER_M,
-        .trainerName = _(""),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_SwimmerMale1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_SwimmerMale1}
-    },
-    [TRAINER_BLACK_BELT_1] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_BLACK_BELT,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
-        .trainerPic = TRAINER_PIC_RS_BLACK_BELT,
-        .trainerName = _(""),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_BlackBelt1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_BlackBelt1}
-    },
-    [TRAINER_GUITARIST_1] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_GUITARIST,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
-        .trainerPic = TRAINER_PIC_GUITARIST,
-        .trainerName = _(""),
-        .items = {},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Guitarist1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Guitarist1}
-    },
-    [TRAINER_KINDLER_1] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_KINDLER,
+        .trainerClass = CLASS_FISHERMAN_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
-        .trainerPic = TRAINER_PIC_KINDLER,
-        .trainerName = _(""),
+        .trainerPic = TRAINER_PIC_FISHERMAN,
+        .trainerName = _("DEFOREST"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Kindler1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Kindler1}
+        .partySize = NELEMS(sTrainerMons_FishermanDeforest),
+        .party = {.NoItemDefaultMoves = sTrainerMons_FishermanDeforest}
     },
-    [TRAINER_CAMPER_1] = {
+    [TRAINER_FISHERMAN_DEFOREST_2] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_CAMPER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_RS_CAMPER,
-        .trainerName = _(""),
+        .trainerClass = CLASS_FISHERMAN_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
+        .trainerPic = TRAINER_PIC_FISHERMAN,
+        .trainerName = _("DEFOREST"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Camper1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Camper1}
+        .partySize = NELEMS(sTrainerMons_FishermanDeforest2),
+        .party = {.NoItemDefaultMoves = sTrainerMons_FishermanDeforest2}
     },
-    [TRAINER_BUG_MANIAC_1] = {
+    [TRAINER_BIRD_KEEPER_SPEDO] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_BUG_MANIAC,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
-        .trainerPic = TRAINER_PIC_BUG_MANIAC,
-        .trainerName = _(""),
+        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_BIRD_KEEPER,
+        .trainerName = _("SPEDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_BugManiac1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_BugManiac1}
+        .partySize = NELEMS(sTrainerMons_BirdKeeperSpedo),
+        .party = {.NoItemDefaultMoves = sTrainerMons_BirdKeeperSpedo}
     },
-    [TRAINER_PSYCHIC_1] = {
+    [TRAINER_BIRD_KEEPER_SPEDO_2] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_PSYCHIC,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
-        .trainerPic = TRAINER_PIC_RS_PSYCHIC_M,
-        .trainerName = _(""),
+        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
+        .trainerPic = TRAINER_PIC_BIRD_KEEPER,
+        .trainerName = _("SPEDO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Psychic1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Psychic1}
+        .partySize = NELEMS(sTrainerMons_BirdKeeperSpedo2),
+        .party = {.NoItemDefaultMoves = sTrainerMons_BirdKeeperSpedo2}
+    },
+    [TRAINER_COOLTRAINER_CASPARA] = {
+        .partyFlags = 0,
+        .trainerClass = CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_F,
+        .trainerName = _("CASPARA"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = NELEMS(sTrainerMons_CooltrainerCaspara),
+        .party = {.NoItemDefaultMoves = sTrainerMons_CooltrainerCaspara}
+    },
+    [TRAINER_COOLTRAINER_CASPARA_2] = {
+        .partyFlags = 0,
+        .trainerClass = CLASS_COOLTRAINER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_COOLTRAINER_F,
+        .trainerName = _("CASPARA"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = NELEMS(sTrainerMons_CooltrainerCaspara2),
+        .party = {.NoItemDefaultMoves = sTrainerMons_CooltrainerCaspara2}
+    },
+    [TRAINER_SWIMMER_FEMALE_SEDEF] = {
+        .partyFlags = 0,
+        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_SWIMMER_F,
+        .trainerName = _("SEDEF"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = NELEMS(sTrainerMons_SwimmerFemaleSedef),
+        .party = {.NoItemDefaultMoves = sTrainerMons_SwimmerFemaleSedef}
+    },
+    [TRAINER_SWIMMER_FEMALE_SEDEF_2] = {
+        .partyFlags = 0,
+        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_SWIMMER_F,
+        .trainerName = _("SEDEF"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = NELEMS(sTrainerMons_SwimmerFemaleSedef2),
+        .party = {.NoItemDefaultMoves = sTrainerMons_SwimmerFemaleSedef2}
     },
     [TRAINER_PSYCHIC_2] = {
         .partyFlags = 0,

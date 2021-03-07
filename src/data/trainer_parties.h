@@ -568,99 +568,324 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBlaineRematc
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_HexManiac1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_PkmnRangerHelena[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 35,
+        .species = SPECIES_NIDOQUEEN,
+    },
+    {
+        .iv = 0,
+        .lvl = 35,
+        .species = SPECIES_CLEFABLE,
+    },
+    {
+        .iv = 0,
+        .lvl = 36,
+        .species = SPECIES_WIGGLYTUFF,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Lady1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_PkmnRangerHelena2[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 47,
+        .species = SPECIES_NIDOQUEEN,
+    },
+    {
+        .iv = 0,
+        .lvl = 47,
+        .species = SPECIES_CLEFABLE,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_WIGGLYTUFF,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_AZUMARILL,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_CHANSEY,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_DUNSPARCE,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Beauty1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerAtticus[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 35,
+        .species = SPECIES_NIDOKING,
+    },
+    {
+        .iv = 0,
+        .lvl = 35,
+        .species = SPECIES_MACHAMP,
+    },
+    {
+        .iv = 0,
+        .lvl = 36,
+        .species = SPECIES_VICTREEBEL,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_RichBoy1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerAtticus2[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 47,
+        .species = SPECIES_NIDOKING,
+    },
+    {
+        .iv = 0,
+        .lvl = 47,
+        .species = SPECIES_MACHAMP,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_VICTREEBEL,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_KABUTOPS,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_STANTLER,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_DRAGONITE,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Pokemaniac1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_FishermanDeforest[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 34,
+        .species = SPECIES_POLIWRATH,
+    },
+    {
+        .iv = 0,
+        .lvl = 34,
+        .species = SPECIES_SLOWBRO,
+    },
+    {
+        .iv = 0,
+        .lvl = 35,
+        .species = SPECIES_CLOYSTER,
+    },
+    {
+        .iv = 0,
+        .lvl = 35,
+        .species = SPECIES_OMASTAR,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerMale1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_FishermanDeforest2[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 47,
+        .species = SPECIES_POLIWRATH,
+    },
+    {
+        .iv = 0,
+        .lvl = 47,
+        .species = SPECIES_SLOWBRO,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_POLIWRATH,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_CLOYSTER,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_OMASTAR,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_POLIWRATH,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BlackBelt1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BirdKeeperSpedo[] = {
     {
-        .iv = 100,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .iv = 0,
+        .lvl = 36,
+        .species = SPECIES_PIDGEOT,
+    },
+    {
+        .iv = 0,
+        .lvl = 34,
+        .species = SPECIES_FEAROW,
+    },
+    {
+        .iv = 0,
+        .lvl = 34,
+        .species = SPECIES_GOLBAT,
+    },
+    {
+        .iv = 0,
+        .lvl = 34,
+        .species = SPECIES_PIDGEOTTO,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Guitarist1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BirdKeeperSpedo2[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 47,
+        .species = SPECIES_PIDGEOT,
+    },
+    {
+        .iv = 0,
+        .lvl = 47,
+        .species = SPECIES_FEAROW,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_CROBAT,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_PIDGEOT,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_PIDGEOTTO,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_AERODACTYL,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Kindler1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerCaspara[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 35,
+        .species = SPECIES_VILEPLUME,
+    },
+    {
+        .iv = 0,
+        .lvl = 36,
+        .species = SPECIES_CHARIZARD,
+    },
+    {
+        .iv = 0,
+        .lvl = 35,
+        .species = SPECIES_GENGAR,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Camper1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerCaspara2[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 47,
+        .species = SPECIES_VILEPLUME,
+    },
+    {
+        .iv = 0,
+        .lvl = 47,
+        .species = SPECIES_CHARIZARD,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_GENGAR,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_AMPHAROS,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_SUNFLORA,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_PORYGON,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BugManiac1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 34,
+        .species = SPECIES_DEWGONG,
+    },
+    {
+        .iv = 0,
+        .lvl = 34,
+        .species = SPECIES_TENTACRUEL,
+    },
+    {
+        .iv = 0,
+        .lvl = 36,
+        .species = SPECIES_BLASTOISE,
+    },
+    {
+        .iv = 0,
+        .lvl = 35,
+        .species = SPECIES_DEWGONG,
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Psychic1[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef2[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 47,
+        .species = SPECIES_BLASTOISE,
+    },
+    {
+        .iv = 0,
+        .lvl = 47,
+        .species = SPECIES_POLITOED,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_SLOWKING,
+    },
+    {
+        .iv = 0,
+        .lvl = 48,
+        .species = SPECIES_DEWGONG,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_TENTACRUEL,
+    },
+    {
+        .iv = 0,
+        .lvl = 50,
+        .species = SPECIES_MANTINE,
     },
 };
 
