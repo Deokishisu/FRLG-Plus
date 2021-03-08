@@ -323,7 +323,8 @@
     "SevenIsland_SevaultCanyon",
     "SevenIsland_TanobyRuins",
     "Route20_Underwater",
-    "ThreeIsland_BondBridge_Underwater"
+    "ThreeIsland_BondBridge_Underwater",
+    "FourIsland_Base"
   ],
   "gMapGroup4": [
     "PalletTown_PlayersHouse_1F",
@@ -543,7 +544,9 @@
     "FourIsland_LoreleisHouse",
     "FourIsland_Harbor",
     "FourIsland_House2",
-    "FourIsland_Mart"
+    "FourIsland_Mart",
+    "FourIsland_Base_CableCarStation",
+    "FourIsland_CableCarStation"
   ],
   "gMapGroup36": [
     "FiveIsland_PokemonCenter_1F",

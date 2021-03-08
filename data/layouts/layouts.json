@@ -4656,6 +4656,42 @@
       "secondary_tileset": "gTileset_CeruleanCave",
       "border_filepath": "data/layouts/CeruleanCave_B1F_Yellow/border.bin",
       "blockdata_filepath": "data/layouts/CeruleanCave_B1F_Yellow/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOUR_ISLAND_BASE",
+      "name": "FourIsland_Base_Layout",
+      "width": 33,
+      "height": 39,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands45",
+      "border_filepath": "data/layouts/FourIsland_Base/border.bin",
+      "blockdata_filepath": "data/layouts/FourIsland_Base/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOUR_ISLAND_BASE_CABLE_CAR_STATION",
+      "name": "FourIsland_Base_CableCarStation_Layout",
+      "width": 13,
+      "height": 13,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_IslandHarbor",
+      "border_filepath": "data/layouts/FourIsland_Base_CableCarStation/border.bin",
+      "blockdata_filepath": "data/layouts/FourIsland_Base_CableCarStation/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOUR_ISLAND_CABLE_CAR_STATION",
+      "name": "FourIsland_CableCarStation_Layout",
+      "width": 13,
+      "height": 13,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_IslandHarbor",
+      "border_filepath": "data/layouts/FourIsland_CableCarStation/border.bin",
+      "blockdata_filepath": "data/layouts/FourIsland_CableCarStation/map.bin"
     }
   ]
 }

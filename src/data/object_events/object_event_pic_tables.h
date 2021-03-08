@@ -2106,3 +2106,7 @@ const struct SpriteFrameImage gObjectEventPicTable_EmMay[] = {
     overworld_frame(gObjectEventPic_EmMay, 2, 4, 7),
     overworld_frame(gObjectEventPic_EmMay, 2, 4, 8),
 };
+
+const struct SpriteFrameImage gObjectEventPicTable_CableCar[] = {
+    overworld_frame(gObjectEventPic_CableCar, 4, 16, 0),
+};

@@ -97,7 +97,7 @@
 #define VAR_0x4032                         0x4032
 #define VAR_ENIGMA_BERRY_AVAILABLE         0x4033
 
-#define VAR_0x4034                         0x4034
+#define VAR_CABLE_CAR_STATION_STATE        0x4034
 #define VAR_RESORT_GOREGEOUS_STEP_COUNTER  0x4035
 #define VAR_RESORT_GORGEOUS_REQUESTED_MON  0x4036
 #define VAR_PC_BOX_TO_SEND_MON             0x4037

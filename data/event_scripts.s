@@ -1312,3 +1312,12 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/CeruleanCave_B1F_Yellow/scripts.inc"
 	.include "data/maps/CeruleanCave_B1F_Yellow/text.inc"
+
+	.include "data/maps/FourIsland_Base/scripts.inc"
+	.include "data/maps/FourIsland_Base/text.inc"
+
+	.include "data/maps/FourIsland_Base_CableCarStation/scripts.inc"
+	.include "data/maps/FourIsland_Base_CableCarStation/text.inc"
+
+	.include "data/maps/FourIsland_CableCarStation/scripts.inc"
+	.include "data/maps/FourIsland_CableCarStation/text.inc"

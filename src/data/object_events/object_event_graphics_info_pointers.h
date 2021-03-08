@@ -178,6 +178,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latias;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latios;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmBrendan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmMay;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -359,5 +360,6 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LATIAS]                   = &gObjectEventGraphicsInfo_Latias,
     [OBJ_EVENT_GFX_LATIOS]                   = &gObjectEventGraphicsInfo_Latios,
     [OBJ_EVENT_GFX_EM_BRENDAN]               = &gObjectEventGraphicsInfo_EmBrendan,
-    [OBJ_EVENT_GFX_EM_MAY]                   = &gObjectEventGraphicsInfo_EmMay
+    [OBJ_EVENT_GFX_EM_MAY]                   = &gObjectEventGraphicsInfo_EmMay,
+    [OBJ_EVENT_GFX_CABLE_CAR]                = &gObjectEventGraphicsInfo_CableCar,
 };

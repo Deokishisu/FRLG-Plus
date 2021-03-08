@@ -1,7 +1,7 @@
 {
-  "id": "MAP_FOUR_ISLAND_HOUSE1",
-  "name": "FourIsland_House1",
-  "layout": "LAYOUT_HOUSE3",
+  "id": "MAP_FOUR_ISLAND_CABLE_CAR_STATION",
+  "name": "FourIsland_CableCarStation",
+  "layout": "LAYOUT_FOUR_ISLAND_CABLE_CAR_STATION",
   "music": "MUS_FALLARBOR",
   "region_map_section": "MAPSEC_FOUR_ISLAND",
   "requires_flash": false,
@@ -9,48 +9,48 @@
   "map_type": "MAP_TYPE_INDOOR",
   "allow_cycling": false,
   "allow_escaping": false,
-  "allow_running": false,
+  "allow_running": true,
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "in_connection": false,
-      "x": 8,
-      "y": 3,
+      "x": 6,
+      "y": 7,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FourIsland_House1_EventScript_BodySlamTutor",
+      "script": "FourIsland_CableCarStation_EventScript_Attendant",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_CABLE_CAR",
       "in_connection": false,
-      "x": 9,
-      "y": 3,
+      "x": 6,
+      "y": 11,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "FourIsland_House1_EventScript_FatMan",
+      "script": "NULL",
       "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 4,
-      "y": 7,
-      "elevation": 3,
+      "x": 6,
+      "y": 1,
+      "elevation": 0,
       "dest_map": "MAP_FOUR_ISLAND",
-      "dest_warp_id": 2
+      "dest_warp_id": 6
     }
   ],
   "coord_events": [
@@ -59,5 +59,5 @@
   "bg_events": [
 
   ],
-  "level_scaling": "0"
+  "level_scaling": "5"
 }

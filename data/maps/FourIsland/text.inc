@@ -1,6 +1,6 @@
 FourIsland_Text_IslandSign:: @ 8182A03
     .string "FOUR ISLAND\n"
-    .string "The Warm, Blue, Floe Island$"
+    .string "The Cold, Blue, Floe Island$"
 
 FourIsland_Text_LoreleiHasReturned:: @ 8182A2B
     .string "LORELEI has returned.\p"

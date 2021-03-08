@@ -480,7 +480,7 @@ const u8 gInitialMovementTypeFacingDirections[NUM_FIELD_MAP_OBJECT_TEMPLATES] = 
 #define OBJ_EVENT_PAL_TAG_27 0x111C
 #define OBJ_EVENT_PAL_TAG_28 0x111D
 #define OBJ_EVENT_PAL_TAG_29 0x111E
-#define OBJ_EVENT_PAL_TAG_30 0x111F
+#define OBJ_EVENT_PAL_TAG_CABLE_CAR 0x111F
 #define OBJ_EVENT_PAL_TAG_31 0x1120
 #define OBJ_EVENT_PAL_TAG_32 0x1121
 #define OBJ_EVENT_PAL_TAG_33 0x1122
@@ -517,6 +517,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gUnderwaterEventObjectPalette, OBJ_EVENT_PAL_TAG_27},
     {gEmBrendanPalette, OBJ_EVENT_PAL_TAG_28},
     {gEmMayPalette, OBJ_EVENT_PAL_TAG_29},
+    {gObjectEventPal_CableCar, OBJ_EVENT_PAL_TAG_CABLE_CAR},
     {},
 };
 
@@ -601,6 +602,13 @@ const u16 gUnknownPaletteTags_83A5260[] = {
     OBJ_EVENT_PAL_TAG_24,
 };
 
+static const u16 sReflectionPaletteTags_CableCar[] = {
+    OBJ_EVENT_PAL_TAG_CABLE_CAR,
+    OBJ_EVENT_PAL_TAG_CABLE_CAR,
+    OBJ_EVENT_PAL_TAG_CABLE_CAR,
+    OBJ_EVENT_PAL_TAG_CABLE_CAR,
+};
+
 const u16 gUnknownPaletteTags_83A5268[] = {
     0x111a,
     0x111a,
@@ -628,6 +636,7 @@ const struct PairedPalettes gSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_25,   gUnknownPaletteTags_83A5268},
     {OBJ_EVENT_PAL_TAG_2,    gUnknownPaletteTags_83A5270},
     {OBJ_EVENT_PAL_TAG_26,   gUnknownPaletteTags_83A5258},
+    {OBJ_EVENT_PAL_TAG_CABLE_CAR, sReflectionPaletteTags_CableCar},
     {OBJ_EVENT_PAL_TAG_NONE, NULL},
 };
 

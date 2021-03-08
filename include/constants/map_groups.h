@@ -283,6 +283,7 @@
 #define MAP_SEVEN_ISLAND_TANOBY_RUINS            (65 | (3 << 8))
 #define MAP_ROUTE20_UNDERWATER                   (66 | (3 << 8))
 #define MAP_THREE_ISLAND_BOND_BRIDGE_UNDERWATER  (67 | (3 << 8))
+#define MAP_FOUR_ISLAND_BASE                     (68 | (3 << 8))
 
 // Map Group 4
 #define MAP_PALLET_TOWN_PLAYERS_HOUSE_1F   (0 | (4 << 8))
@@ -495,14 +496,16 @@
 #define MAP_THREE_ISLAND_HOUSE5            (7 | (34 << 8))
 
 // Map Group 35
-#define MAP_FOUR_ISLAND_POKEMON_DAY_CARE  (0 | (35 << 8))
-#define MAP_FOUR_ISLAND_POKEMON_CENTER_1F (1 | (35 << 8))
-#define MAP_FOUR_ISLAND_POKEMON_CENTER_2F (2 | (35 << 8))
-#define MAP_FOUR_ISLAND_HOUSE1            (3 | (35 << 8))
-#define MAP_FOUR_ISLAND_LORELEIS_HOUSE    (4 | (35 << 8))
-#define MAP_FOUR_ISLAND_HARBOR            (5 | (35 << 8))
-#define MAP_FOUR_ISLAND_HOUSE2            (6 | (35 << 8))
-#define MAP_FOUR_ISLAND_MART              (7 | (35 << 8))
+#define MAP_FOUR_ISLAND_POKEMON_DAY_CARE       (0 | (35 << 8))
+#define MAP_FOUR_ISLAND_POKEMON_CENTER_1F      (1 | (35 << 8))
+#define MAP_FOUR_ISLAND_POKEMON_CENTER_2F      (2 | (35 << 8))
+#define MAP_FOUR_ISLAND_HOUSE1                 (3 | (35 << 8))
+#define MAP_FOUR_ISLAND_LORELEIS_HOUSE         (4 | (35 << 8))
+#define MAP_FOUR_ISLAND_HARBOR                 (5 | (35 << 8))
+#define MAP_FOUR_ISLAND_HOUSE2                 (6 | (35 << 8))
+#define MAP_FOUR_ISLAND_MART                   (7 | (35 << 8))
+#define MAP_FOUR_ISLAND_BASE_CABLE_CAR_STATION (8 | (35 << 8))
+#define MAP_FOUR_ISLAND_CABLE_CAR_STATION      (9 | (35 << 8))
 
 // Map Group 36
 #define MAP_FIVE_ISLAND_POKEMON_CENTER_1F (0 | (36 << 8))

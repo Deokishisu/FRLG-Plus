@@ -1,0 +1,118 @@
+{
+  "id": "MAP_FOUR_ISLAND_BASE",
+  "name": "FourIsland_Base",
+  "layout": "LAYOUT_FOUR_ISLAND_BASE",
+  "music": "MUS_FALLARBOR",
+  "region_map_section": "MAPSEC_FOUR_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
+      "in_connection": false,
+      "x": 5,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_12"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "in_connection": false,
+      "x": 5,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "FourIsland_EventScript_ItemStarPiece",
+      "flag": "FLAG_HIDE_FOUR_ISLAND_STAR_PIECE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLUE",
+      "in_connection": false,
+      "x": 10,
+      "y": 24,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "0x0",
+      "flag": "FLAG_HIDE_FOUR_ISLAND_RIVAL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 12,
+      "y": 27,
+      "elevation": 3,
+      "dest_map": "MAP_FOUR_ISLAND_HARBOR",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 12,
+      "y": 20,
+      "elevation": 3,
+      "dest_map": "MAP_FOUR_ISLAND_BASE_CABLE_CAR_STATION",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 13,
+      "y": 20,
+      "elevation": 3,
+      "dest_map": "MAP_FOUR_ISLAND_BASE_CABLE_CAR_STATION",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 24,
+      "y": 33,
+      "elevation": 3,
+      "item": "ITEM_PEARL",
+      "flag": "HIDDEN_ITEM_FOUR_ISLAND_PEARL",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "hidden_item",
+      "x": 6,
+      "y": 20,
+      "elevation": 3,
+      "item": "ITEM_ULTRA_BALL",
+      "flag": "HIDDEN_ITEM_FOUR_ISLAND_ULTRA_BALL",
+      "quantity": 1,
+      "underfoot": false
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 23,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "FourIsland_Base_EventScript_CableCarStationSign"
+    }
+  ],
+  "level_scaling": "5"
+}
