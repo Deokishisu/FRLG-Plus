@@ -312,6 +312,7 @@ SECTIONS {
         src/berry_powder.o(.text);
         src/minigame_countdown.o(.text);
         src/berry_fix_program.o(.text);
+        src/cable_car.o(.text);
     } =0
 
     script_data :
@@ -613,6 +614,7 @@ SECTIONS {
         src/berry_fix_program.o(.rodata);
         src/keyboard_text.o(.rodata);
         data/data_8479668.o(.rodata);
+        src/cable_car.o(.rodata);
 
         /* These should not be moved to C files */
         src/mystery_event_msg.o(.rodata);

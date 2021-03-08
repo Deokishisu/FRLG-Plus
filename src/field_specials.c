@@ -2562,3 +2562,15 @@ static void Task_WingFlapSound(u8 taskId)
     if (data[0] == gSpecialVar_0x8004 - 1)
         DestroyTask(taskId);
 }
+
+void CableCarWarp(void)
+{
+    if (gSpecialVar_0x8004 != 0)
+    {
+        SetWarpDestination(MAP_GROUP(FOUR_ISLAND), MAP_NUM(FOUR_ISLAND), -1, 13, 20);
+    }
+    else
+    {
+        SetWarpDestination(MAP_GROUP(FOUR_ISLAND), MAP_NUM(FOUR_ISLAND), -1, 13, 20);
+    }
+}

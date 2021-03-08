@@ -132,6 +132,7 @@ void PreservePaletteInWeather(u8 palIdx);
 
 void SetNextWeather(u8 weather);
 void SetCurrentAndNextWeather(u8 weather);
+void SetCurrentAndNextWeatherNoDelay(u8 weather);
 void Weather_SetBlendCoeffs(u8 eva, u8 evb);
 void Weather_SetTargetBlendCoeffs(u8 eva, u8 evb, int delay);
 bool8 Weather_UpdateBlend(void);

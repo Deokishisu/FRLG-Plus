@@ -205,7 +205,7 @@ void SetCurrentAndNextWeather(u8 weather)
     gWeatherPtr->nextWeather = weather;
 }
 
-static void SetCurrentAndNextWeatherNoDelay(u8 weather)
+void SetCurrentAndNextWeatherNoDelay(u8 weather)
 {
     PlayRainStoppingSoundEffect();
     gWeatherPtr->currWeather = weather;

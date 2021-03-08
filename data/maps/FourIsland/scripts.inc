@@ -292,3 +292,11 @@ FourIsland_EventScript_RepositionDaycareMan_15:
 FourIsland_Movement_DaycareManWalkDown:
 	walk_down
 	step_end
+
+FourIsland_CableCarTest::
+	setvar VAR_0x8004, 1
+	callnative CableCarWarp
+	callnative CableCar
+	waitstate
+	release
+	end

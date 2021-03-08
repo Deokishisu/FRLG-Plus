@@ -85,6 +85,14 @@
 #define JOY_HELD(button) TEST_BUTTON(gMain.heldKeys, button)
 #define JOY_REPT(button) TEST_BUTTON(gMain.newAndRepeatedKeys, button)
 
+#define S16TOPOSFLOAT(val)   \
+({                           \
+    s16 v = (val);           \
+    float f = (float)v;      \
+    if(v < 0) f += 65536.0f; \
+    f;                       \
+})
+
 extern u8 gStringVar1[];
 extern u8 gStringVar2[];
 extern u8 gStringVar3[];

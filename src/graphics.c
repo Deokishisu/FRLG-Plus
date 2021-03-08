@@ -1416,3 +1416,10 @@ const u16 gUnknown_8EAFEA0[] = INCBIN_U16("graphics/berry_crush/berry_crush.gbap
 const u16 gUnknown_8EAFF60[] = INCBIN_U16("graphics/unknown/unknown_EAFF60.gbapal");
 const u32 gUnknown_8EAFFC0[] = INCBIN_U32("graphics/berry_crush/berry_crush.4bpp.lz");
 const u32 gUnknown_8EB0ADC[] = INCBIN_U32("graphics/berry_crush/data_EB0ADC.bin.lz");
+
+const u16 gCableCarBg_Pal[]    = INCBIN_U16("graphics/cable_car/bg.gbapal");
+const u16 gCableCar_Pal[]      = INCBIN_U16("graphics/cable_car/cable_car.gbapal");
+const u32 gCableCarBg_Gfx[]    = INCBIN_U32("graphics/cable_car/bg.4bpp.lz");
+const u32 gCableCar_Gfx[]      = INCBIN_U32("graphics/cable_car/cable_car.4bpp.lz");
+const u32 gCableCarDoor_Gfx[]  = INCBIN_U32("graphics/cable_car/door.4bpp.lz");
+const u32 gCableCarCable_Gfx[] = INCBIN_U32("graphics/cable_car/cable.4bpp.lz");
