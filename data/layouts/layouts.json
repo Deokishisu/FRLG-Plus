@@ -2589,7 +2589,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands45",
+      "secondary_tileset": "gTileset_SeviiIslands5",
       "border_filepath": "data/layouts/FiveIsland/border.bin",
       "blockdata_filepath": "data/layouts/FiveIsland/map.bin"
     },
@@ -2733,7 +2733,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands45",
+      "secondary_tileset": "gTileset_SeviiIslands5",
       "border_filepath": "data/layouts/FiveIsland_ResortGorgeous/border.bin",
       "blockdata_filepath": "data/layouts/FiveIsland_ResortGorgeous/map.bin"
     },
@@ -2745,7 +2745,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands45",
+      "secondary_tileset": "gTileset_SeviiIslands5",
       "border_filepath": "data/layouts/FiveIsland_WaterLabyrinth/border.bin",
       "blockdata_filepath": "data/layouts/FiveIsland_WaterLabyrinth/map.bin"
     },
@@ -2757,7 +2757,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands45",
+      "secondary_tileset": "gTileset_SeviiIslands5",
       "border_filepath": "data/layouts/FiveIsland_Meadow/border.bin",
       "blockdata_filepath": "data/layouts/FiveIsland_Meadow/map.bin"
     },
@@ -2769,7 +2769,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands45",
+      "secondary_tileset": "gTileset_SeviiIslands5",
       "border_filepath": "data/layouts/FiveIsland_MemorialPillar/border.bin",
       "blockdata_filepath": "data/layouts/FiveIsland_MemorialPillar/map.bin"
     },

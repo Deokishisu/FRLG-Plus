@@ -570,3 +570,10 @@ gMetatiles_BattleFrontier::
 	.align 1
 gMetatileAttributes_BattleFrontier::
 	.incbin "data/tilesets/secondary/battlefrontier/metatile_attributes.bin"
+	.align 1
+gMetatiles_SeviiIslands5::
+	.incbin "data/tilesets/secondary/seviiislands5/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SeviiIslands5::
+	.incbin "data/tilesets/secondary/seviiislands5/metatile_attributes.bin"

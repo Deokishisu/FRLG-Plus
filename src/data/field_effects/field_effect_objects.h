@@ -2,6 +2,7 @@ const struct SpritePalette gUnknown_83A5340 = { .data = gUnknown_8398FA8, .tag =
 const struct SpritePalette gUnknown_83A5348 = { .data = gUnknown_8398FC8, .tag = 0x1005 }; //tall grass pal
 const struct SpritePalette gBlackSandFootprintsPal = { .data = gBlackSandFootPrints_Pal, .tag = 0x1004 }; 
 const struct SpritePalette gThreeIslandGrassPal = { .data = gThreeIslandGrass_Pal, .tag = 0x1005 };
+const struct SpritePalette gSnowFootprintsPal = { .data = gSnowFootPrints_Pal, .tag = 0x1004 };
 
 const union AnimCmd gUnknown_83A5350[] =
 {

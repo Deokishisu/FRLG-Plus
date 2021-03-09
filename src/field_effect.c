@@ -25,6 +25,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/event_object_movement.h"
+#include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/map_groups.h"
 #include "constants/metatile_behaviors.h"
@@ -408,6 +409,7 @@ extern const struct SpritePalette gUnknown_83A5340; //sand footprints pal
 extern const struct SpritePalette gBlackSandFootprintsPal;
 extern const struct SpritePalette gThreeIslandGrassPal;
 extern const struct SpritePalette gUnknown_83A5348; //tall grass pal
+extern const struct SpritePalette gSnowFootprintsPal;
 
 static bool8 FieldEffectCmd_loadfadedpal_callnative(const u8 **script, u32 *result)
 {
@@ -462,6 +464,10 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
         if(mapsec == MAPSEC_ONE_ISLAND || mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD) //if one island
         {
             spritePalette = &gBlackSandFootprintsPal;
+        }
+        else if(gSaveBlock1Ptr->mapLayoutId == LAYOUT_FOUR_ISLAND) //Four Island town's snow footprints
+        {
+            spritePalette = &gSnowFootprintsPal;
         }
         else
         {

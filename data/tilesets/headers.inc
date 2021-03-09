@@ -791,3 +791,14 @@ gTileset_BattleFrontier::
 	.4byte gMetatiles_BattleFrontier
 	.4byte NULL
 	.4byte gMetatileAttributes_BattleFrontier
+
+	.align 2
+gTileset_SeviiIslands5::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SeviiIslands5
+	.4byte gTilesetPalettes_SeviiIslands5
+	.4byte gMetatiles_SeviiIslands5
+	.4byte NULL
+	.4byte gMetatileAttributes_SeviiIslands5

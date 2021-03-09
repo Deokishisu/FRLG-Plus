@@ -232,6 +232,7 @@ const u32 gUnknown_8398928[] = INCBIN_U32("graphics/object_events/pics/unknown/8
 const u32 gUnknown_8398BA8[] = INCBIN_U32("graphics/object_events/pics/unknown/8398BA8.4bpp");
 const u16 gUnknown_8398FA8[] = INCBIN_U16("graphics/object_events/palettes/8398FA8.gbapal"); //sand footprints palette
 const u16 gBlackSandFootPrints_Pal[] = INCBIN_U16("graphics/object_events/palettes/black_sand_footprints.gbapal");
+const u16 gSnowFootPrints_Pal[] = INCBIN_U16("graphics/object_events/palettes/snow_footprints.gbapal");
 const u16 gThreeIslandGrass_Pal[] = INCBIN_U16("graphics/object_events/palettes/three_island_grass.gbapal");
 const u16 gUnknown_8398FC8[] = INCBIN_U16("graphics/object_events/palettes/8398FC8.gbapal");
 const u32 gUnknown_8399008[] = INCBIN_U32("graphics/object_events/pics/unknown/8399008.4bpp");
