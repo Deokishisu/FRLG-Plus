@@ -529,7 +529,7 @@ static bool32 SavedMapViewIsEmpty(void)
     u32 marker = 0;
 
     // BUG: This loop extends past the bounds of the mapView array. Its size is only 0x100.
-    for (i = 0; i < 0x200; i++)
+    for (i = 0; i < 0x100; i++)
         marker |= gSaveBlock2Ptr->mapView[i];
 
     if (marker == 0)

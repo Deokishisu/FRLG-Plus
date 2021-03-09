@@ -217,6 +217,14 @@
 #define METATILE_SeviiIslands45_RocketWarehouseDoor_Locked    0x30B
 #define METATILE_SeviiIslands45_RocketWarehouseDoor_Unlocked  0x2AF
 
+// gTileset_SeviiIslands5
+#define METATILE_SeviiIslands5_MicroWideTreeTopLeft_Grass   0x2B2
+#define METATILE_SeviiIslands5_MicroWideTreeTopLeft_Mowed   0x286
+#define METATILE_SeviiIslands5_MicroWideTreeTopRight_Grass  0x2B3
+#define METATILE_SeviiIslands5_MicroWideTreeTopRight_Mowed  0x287
+#define METATILE_SeviiIslands5_Micro_Grass                  0x28C
+#define METATILE_SeviiIslands5_Micro_Mowed                  0x28B
+
 // gTileset_SeviiIslands67
 #define METATILE_SeviiIslands67_Door                   0x30C
 #define METATILE_SeviiIslands67_DottedHoleDoor_Closed  0x357

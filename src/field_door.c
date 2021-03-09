@@ -265,7 +265,7 @@ static const struct DoorGraphics sDoorGraphics[] = {
     {METATILE_SeviiIslands123_PokeCenterDoor,              DOOR_SOUND_SLIDING,  0, sDoorAnimTiles_OneIslandPokeCenter, sDoorAnimPalettes_OneIslandPokeCenter},
     {METATILE_SeviiIslands45_Door,                         DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Sevii45, sDoorAnimPalettes_Sevii45},
     {METATILE_SeviiIslands45_DayCareDoor,                  DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_FourIslandDayCare, sDoorAnimPalettes_FourIslandDayCare},
-    {METATILE_SeviiIslands45_RocketWarehouseDoor_Unlocked, DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_RocketWarehouse, sDoorAnimPalettes_RocketWarehouse},
+    {METATILE_SeviiIslands45_RocketWarehouseDoor_Unlocked, DOOR_SOUND_SLIDING,  0, sDoorAnimTiles_RocketWarehouse, sDoorAnimPalettes_RocketWarehouse},
     {METATILE_SeviiIslands67_Door,                         DOOR_SOUND_NORMAL,  0, sDoorAnimTiles_Sevii67, sDoorAnimPalettes_Sevii67},
     {METATILE_DepartmentStore_ElevatorDoor,                DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_DeptStoreElevator, sDoorAnimPalettes_DeptStoreElevator},
     {METATILE_PokemonCenter_CableClubDoor,                 DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_CableClub, sDoorAnimPalettes_CableClub},

@@ -587,7 +587,13 @@ bool8 MetatileBehavior_IsSouthBlocked(u8 metatileBehavior)
         return FALSE;
 }
 
-bool8 MetatileBehavior_IsShortGrass(u8 metatileBehavior) { return FALSE; }
+bool8 MetatileBehavior_IsShortGrass(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_SHORT_GRASS)
+        return TRUE;
+    else
+        return FALSE;
+}
 
 bool8 MetatileBehavior_IsHotSprings(u8 metatileBehavior)
 {

@@ -71,21 +71,21 @@
   ],
   "warp_events": [
     {
-      "x": 12,
+      "x": 13,
       "y": 14,
       "elevation": 3,
       "dest_map": "MAP_FIVE_ISLAND_HARBOR",
       "dest_warp_id": 0
     },
     {
-      "x": 18,
+      "x": 13,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_FIVE_ISLAND_POKEMON_CENTER_1F",
       "dest_warp_id": 0
     },
     {
-      "x": 12,
+      "x": 17,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_FIVE_ISLAND_HOUSE1",

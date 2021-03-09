@@ -800,5 +800,5 @@ gTileset_SeviiIslands5::
 	.4byte gTilesetTiles_SeviiIslands5
 	.4byte gTilesetPalettes_SeviiIslands5
 	.4byte gMetatiles_SeviiIslands5
-	.4byte NULL
+	.4byte InitTilesetAnim_SeviiIslands5
 	.4byte gMetatileAttributes_SeviiIslands5
