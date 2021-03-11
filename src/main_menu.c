@@ -926,6 +926,8 @@ static void PrintDexCount(void)
     {
         if (IsNationalPokedexEnabled())
             dexcount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+        else if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+            dexcount = GetExtendedPokedexCount(FLAG_GET_CAUGHT);
         else
             dexcount = GetKantoPokedexCount(FLAG_GET_CAUGHT);
         AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 112, 18, sTextColor2, -1, gText_Pokedex);

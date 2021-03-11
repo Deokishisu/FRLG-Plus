@@ -2,6 +2,7 @@
 #define GUARD_POKEDEX_H
 
 #define KANTO_DEX_COUNT 151
+#define EXTENDED_DEX_COUNT 246
 #define HOENN_DEX_COUNT 202
 #define NATIONAL_DEX_COUNT 386
 
@@ -47,6 +48,8 @@ u16 GetKantoPokedexCount(u8);
 bool16 HasAllHoennMons(void);
 bool16 HasAllKantoMons(void);
 bool16 HasAllMons(void);
+bool16 HasAllExtendedMons(void);
+u16 GetExtendedPokedexCount(u8 caseID);
 
 u8 sub_8106B60(u16 species);
 

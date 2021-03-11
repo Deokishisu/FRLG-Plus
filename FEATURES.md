@@ -13,7 +13,9 @@
 - Nuzlocke Info: This is a special implementation of the Nuzlocke ruleset. While the Nuzlocke toggle is on, fainted Pokémon cannot be healed by any means (including depositing them in a PC Box). Like under a standard Nuzlocke ruleset, only the first Pokémon caught or received from NPCs in an area is usable, but under this implementation Pokémon other than the first may be caught, they will just be automatically fainted after capture. Pokémon captured in this way will not count for the dupe clause (A Rattata will count as a first encounter on Route 2 if you caught a fainted Rattata on Route 1). Pokémon that are already owned, or evolutionary relatives of already owned Pokémon, will not count if they are the first encounter in an area and not caught. There is a UI element drawn to the enemy's healthbar to indicate if it counts as the first encounter in an area. If a white out occurs, the player will be prompted to grab a usable Pokémon from their PC Box. If there are no usable Pokémon left, they will be given a choice of soft-resetting or turning off the Nuzlocke toggle and healing their party normally. These rules do not come into effect until after the first Rival battle. Encounters are not tracked while the Nuzlocke toggle is off and are not retroactive (starting a Nuzlocke midway through a regular playthrough will allow new "first" encounters). Additionally, encounters are not tracked before the player obtains the Pokédex, to prevent losing the opportunity to catch Route 1 Pokémon before catching Pokémon is possible. Each outdoor Safari Zone map counts as a separate area for the purposes of catching Pokémon. The player is not asked whether or not they want to give a nickname to obtained Pokémon while Nuzlocke Mode is on.
 
 #### Story Changes:
-- The National Pokédex is available as soon as the player becomes the Champion without first registering 60 Pokémon in the Pokédex or first visiting the Sevii Islands.
+- The player may progress to the Sevii Islands postgame content immediately after becoming the Champion; the National Dex is no longer required to do so.
+	- After the player becomes the Champion, Oak will upgrade their Pokédex with a new Extended Mode which lists all Pokémon available without trading.
+	- The National Pokédex is now obtained by trading in a Pokémon that is not in the Extended Dex.
 - A legendary beast will begin roaming when the player first enters the Hall of Fame, instead of upon delivering the Sapphire.
 - Event tickets are given away through gameplay milestones, allowing the player access to Birth Island and Navel Rock to catch Deoxys and Ho-oh/Lugia, respectively.
 	* Faraway Island has been ported from Emerald, allowing players to catch Mew. The Old Sea Map is given away similarly to the other event tickets.
@@ -85,7 +87,7 @@
 - The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
 - The Trainer Card star gained from doing Wireless minigames on Two Island can also be earned by achieving a 50-win streak at the Battle Tower.
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
-- All Kanto Pokémon, along with select Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Azurill, Wynaut, Latias, Latios, and Deoxys) will still need to be traded for.
+- All Kanto Pokémon, along with 90% of Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Azurill, Wynaut, Latias, Latios, and Deoxys) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
@@ -93,4 +95,5 @@
 - Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
 - Cycling Road forces the bike theme, like in RGBY.
 - Emerald's player character designs show in the link rooms if linking with Emerald.
+- Softlock prevention mechanisms are present. The player can no longer trap themselves on Cinnabar Island, and free Poké Balls are available in potential softlock situations.
 

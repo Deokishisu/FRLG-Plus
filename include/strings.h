@@ -1624,5 +1624,9 @@ extern const u8 gText_Blaine[];
 extern const u8 gText_CommaSpace[];
 extern const u8 gText_NewLine[];
 extern const u8 gText_AndSpace[];
+extern const u8 gText_SwapToKanto[];
+extern const u8 gText_SwapToExtended[];
+extern const u8 gText_Extended[];
+extern const u8 gText_NumericalModeExtended[];
 
 #endif //GUARD_STRINGS_H

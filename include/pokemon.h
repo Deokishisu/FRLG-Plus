@@ -467,5 +467,9 @@ void *OakSpeechNidoranFGetBuffer(u8 bufferId);
 u8 GetNatureFromPersonality(u32 personality);
 void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 gender, u8 nature, u8 abilityNum);
 void CreateEnemyMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 personality);
+u16 ExtendedToNationalOrder(u16 expandedNum);
+u16 ExtendedPokedexNumToSpecies(u16 nationalNum);
+u16 NationalToExtendedOrder(u16 nationalNum);
+u16 SpeciesToExtendedPokedexNum(u16 species);
 
 #endif // GUARD_POKEMON_H

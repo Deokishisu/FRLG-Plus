@@ -1247,7 +1247,7 @@
 #define FLAG_DEFEATED_CHAMP           0x4BC
 
 // Unused?
-#define HIDDEN_ITEM_CAPE_BRINK_BIG_PEARL                              0x4BD //gets truncated?
+#define HIDDEN_ITEM_CAPE_BRINK_BIG_PEARL                              213 //continued from above numbering because of how these are set by GetHiddenItemAttr
 #define FLAG_0x4BE               0x4BE
 #define FLAG_0x4BF               0x4BF
 #define FLAG_0x4C0               0x4C0
@@ -1379,8 +1379,8 @@
 #define FLAG_0x82E (SYS_FLAGS + 0x2E)
 #define FLAG_SYS_B_DASH (SYS_FLAGS + 0x2F)
 #define FLAG_SYS_ON_CYCLING_ROAD (SYS_FLAGS + 0x30)
-#define FLAG_0x831 (SYS_FLAGS + 0x31)
-#define FLAG_0x832 (SYS_FLAGS + 0x32)
+#define FLAG_SYS_RECEIVED_EXTENDED_DEX (SYS_FLAGS + 0x31)
+#define FLAG_SYS_EXTENDED_DEX_TOGGLE (SYS_FLAGS + 0x32)
 #define FLAG_0x833 (SYS_FLAGS + 0x33)
 #define FLAG_SYS_NOT_SOMEONES_PC (SYS_FLAGS + 0x34)
 #define FLAG_0x835 (SYS_FLAGS + 0x35)

@@ -127,6 +127,7 @@ static void sub_8102F48(u8 windowId, s32 itemId, u8 y);
 static void sub_8103A40(u8 windowId, s32 itemId, u8 y);
 static void sub_8106BD8(u8 taskId);
 static void sub_8106BE8(u8 taskId);
+int sub_8106810(u16 species);
 
 #include "data/pokemon_graphics/footprint_table.h"
 
@@ -379,6 +380,94 @@ static const struct ListMenuTemplate sUnknown_84520BC = {
     .moveCursorFunc = sub_8102EC0,
     .itemPrintFunc = sub_8102F48,
     .totalItems = NELEMS(sUnknown_845201C),
+    .maxShowed = 9,
+    .windowId = 0, 
+    .header_X = 0, 
+    .item_X = 12, 
+    .cursor_X = 4,
+    .upText_Y = 2,
+    .cursorPal = 1,
+    .fillValue = 0,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = 0,
+    .fontId = 2,
+    .cursorKind = 0,
+};
+
+static const struct ListMenuItem sListMenuItems_KantoExtended[] = {
+    {gText_PokemonList, -3},
+    {gText_NumericalModeKanto, 9},
+    {gText_NumericalModeExtended, 14},
+    {gText_PokemonHabitats, -3},
+    {gText_DexCategory_GrasslandPkmn, 0},
+    {gText_DexCategory_ForestPkmn, 1},
+    {gText_DexCategory_WatersEdgePkmn, 2},
+    {gText_DexCategory_SeaPkmn, 3},
+    {gText_DexCategory_CavePkmn, 4},
+    {gText_DexCategory_MountainPkmn, 5},
+    {gText_DexCategory_RoughTerrainPkmn, 6},
+    {gText_DexCategory_UrbanPkmn, 7},
+    {gText_DexCategory_RarePkmn, 8},
+    {gText_Search, -3},
+    {gText_AToZMode, 10},
+    {gText_TypeMode, 11},
+    {gText_LightestMode, 12},
+    {gText_SmallestMode, 13},
+    {gText_PokedexOther, -3},
+    {gText_ClosePokedex, -2},
+};
+
+static const struct ListMenuTemplate sListMenuTemplate_KantoExtended = {
+    .items = sListMenuItems_KantoExtended,
+    .moveCursorFunc = sub_8102EC0,
+    .itemPrintFunc = sub_8102F48,
+    .totalItems = NELEMS(sListMenuItems_KantoExtended),
+    .maxShowed = 9,
+    .windowId = 0, 
+    .header_X = 0, 
+    .item_X = 12, 
+    .cursor_X = 4,
+    .upText_Y = 2,
+    .cursorPal = 1,
+    .fillValue = 0,
+    .cursorShadowPal = 3,
+    .lettersSpacing = 1,
+    .itemVerticalPadding = 0,
+    .scrollMultiple = 0,
+    .fontId = 2,
+    .cursorKind = 0,
+};
+
+static const struct ListMenuItem sListMenuItems_ExtendedNational[] = {
+    {gText_PokemonList, -3},
+    {gText_NumericalModeExtended, 9},
+    {gText_NumericalModeNational, 14},
+    {gText_PokemonHabitats, -3},
+    {gText_DexCategory_GrasslandPkmn, 0},
+    {gText_DexCategory_ForestPkmn, 1},
+    {gText_DexCategory_WatersEdgePkmn, 2},
+    {gText_DexCategory_SeaPkmn, 3},
+    {gText_DexCategory_CavePkmn, 4},
+    {gText_DexCategory_MountainPkmn, 5},
+    {gText_DexCategory_RoughTerrainPkmn, 6},
+    {gText_DexCategory_UrbanPkmn, 7},
+    {gText_DexCategory_RarePkmn, 8},
+    {gText_Search, -3},
+    {gText_AToZMode, 10},
+    {gText_TypeMode, 11},
+    {gText_LightestMode, 12},
+    {gText_SmallestMode, 13},
+    {gText_PokedexOther, -3},
+    {gText_ClosePokedex, -2},
+};
+
+static const struct ListMenuTemplate sListMenuTemplate_ExtendedNational = {
+    .items = sListMenuItems_ExtendedNational,
+    .moveCursorFunc = sub_8102EC0,
+    .itemPrintFunc = sub_8102F48,
+    .totalItems = NELEMS(sListMenuItems_ExtendedNational),
     .maxShowed = 9,
     .windowId = 0, 
     .header_X = 0, 
@@ -989,6 +1078,8 @@ static void sub_810287C(u8 taskId)
         ListMenuGetScrollAndRow(gUnknown_203ACF0->field_17, &gUnknown_203ACF0->field_62, NULL);
         if (IsNationalPokedexEnabled())
             gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&sUnknown_84520E4, &gUnknown_203ACF0->field_62);
+        else if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !(IsNationalPokedexEnabled()))
+            gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&sUnknown_84520E4, &gUnknown_203ACF0->field_62);
         else
             gUnknown_203ACF0->field_60 = AddScrollIndicatorArrowPair(&sUnknown_84520D4, &gUnknown_203ACF0->field_62);
         gUnknown_203ACF0->field_01 = 6;
@@ -1057,8 +1148,35 @@ static void sub_810287C(u8 taskId)
             sub_8104664(0); //fixing cursor position at endpoints? Kanto?
             gUnknown_203ACF0->field_34 -= 1; //is items above cursor position, automatically adjusted by above call; Kanto?
             */
+            gUnknown_203ACF0->field_36 = 0; //cursor pos reset Kanto/Extended
+            gUnknown_203ACF0->field_34 = 0; //items above reset Kanto/Extended
+            gUnknown_203ACF0->field_3E = 0; //cursor pos reset Extended/National
+            gUnknown_203ACF0->field_3C = 0; //items above reset Extended/National
             gUnknown_203ACF0->field_01 = 10;
         }
+        /* //debugging to test new dex mode and combos
+        if ((JOY_NEW(START_BUTTON)))
+        {
+            PlaySE(SE_SELECT);
+            if(FlagGet(FLAG_SYS_NATIONAL_DEX))
+                FlagClear(FLAG_SYS_NATIONAL_DEX);
+            else
+                FlagSet(FLAG_SYS_NATIONAL_DEX);
+        }
+        if ((JOY_NEW(R_BUTTON)))
+        {
+            PlaySE(SE_SELECT);
+            if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX))
+            {
+                FlagClear(FLAG_SYS_RECEIVED_EXTENDED_DEX);
+                FlagClear(FLAG_SYS_EXTENDED_DEX_TOGGLE);
+            }
+            else
+            {
+                FlagSet(FLAG_SYS_RECEIVED_EXTENDED_DEX);
+                FlagSet(FLAG_SYS_EXTENDED_DEX_TOGGLE);
+            }
+        }*/
         break;
     case 7:
         DestroyListMenuTask(gUnknown_203ACF0->field_17, &gUnknown_203ACF0->field_12, &gUnknown_203ACF0->field_10);
@@ -1115,19 +1233,62 @@ static void sub_8102C28(void)
     gUnknown_203ACF0->field_16 = AddWindow(&sUnknown_8451F64);
     if (IsNationalPokedexEnabled())
     {
-        listMenuTemplate = sUnknown_84520BC;
+        if(FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+            listMenuTemplate = sListMenuTemplate_ExtendedNational;
+        else
+            listMenuTemplate = sUnknown_84520BC;
         listMenuTemplate.windowId = gUnknown_203ACF0->field_14;
         gUnknown_203ACF0->field_17 = ListMenuInit(&listMenuTemplate, gUnknown_203ACF0->field_12, gUnknown_203ACF0->field_10);
         FillWindowPixelBuffer(gUnknown_203ACF0->field_16, PIXEL_FILL(0));
         sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Seen, 0, 2, 0);
+        if(!FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+        {
+            gUnknown_203ACF0->field_66 = sub_8104BBC(0, 0);
+            gUnknown_203ACF0->field_68 = sub_8104BBC(1, 0);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Kanto, 8, 13, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_66, 52, 13, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 24, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6A, 52, 24, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Owned, 0, 37, 0);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Kanto, 8, 48, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_68, 52, 48, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 59, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6C, 52, 59, 2);
+        }
+        else
+        {
+            gUnknown_203ACF0->field_66 = sub_8104BBC(0, 2);
+            gUnknown_203ACF0->field_68 = sub_8104BBC(1, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Extended, 8, 13, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_66, 52, 13, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 24, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6A, 52, 24, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Owned, 0, 37, 0);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Extended, 8, 48, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_68, 52, 48, 2);
+            sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 59, 0);
+            sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6C, 52, 59, 2);
+        }
+    }
+    else if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX))
+    {
+        listMenuTemplate = sListMenuTemplate_KantoExtended;
+        listMenuTemplate.windowId = gUnknown_203ACF0->field_14;
+        gUnknown_203ACF0->field_17 = ListMenuInit(&listMenuTemplate, gUnknown_203ACF0->field_12, gUnknown_203ACF0->field_10);
+        FillWindowPixelBuffer(gUnknown_203ACF0->field_16, PIXEL_FILL(0));
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Seen, 0, 2, 0);
+        gUnknown_203ACF0->field_66 = sub_8104BBC(0, 0);
+        gUnknown_203ACF0->field_68 = sub_8104BBC(1, 0);
+        gUnknown_203ACF0->field_6A = sub_8104BBC(0, 2);
+        gUnknown_203ACF0->field_6C = sub_8104BBC(1, 2);
         sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Kanto, 8, 13, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_66, 52, 13, 2);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 24, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Extended, 8, 24, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6A, 52, 24, 2);
         sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Owned, 0, 37, 0);
         sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Kanto, 8, 48, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_68, 52, 48, 2);
-        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_National, 8, 59, 0);
+        sub_81047C8(gUnknown_203ACF0->field_16, 0, gText_Extended, 8, 59, 0);
         sub_810491C(gUnknown_203ACF0->field_16, 0, gUnknown_203ACF0->field_6C, 52, 59, 2);
     }
     else
@@ -1182,6 +1343,10 @@ static void sub_8102F48(u8 windowId, s32 itemId, u8 y)
 
 static void sub_8102F80(u8 taskId)
 {
+    if(gUnknown_203ACF0->field_42 == 5 && !IsNationalPokedexEnabled())
+    {
+        //FlagSet(FLAG_SYS_EXTENDED_DEX_TOGGLE);
+    }
     switch (gUnknown_203ACF0->field_01)
     {
     case 0:
@@ -1198,7 +1363,7 @@ static void sub_8102F80(u8 taskId)
         gUnknown_203ACF0->field_01 = 0;
         break;
     case 2:
-        sub_810317C();
+        sub_810317C();  //prints type and ball icons to bg 1
         gUnknown_203ACF0->field_01 = 3;
         break;
     case 3:
@@ -1233,7 +1398,34 @@ static void sub_8102F80(u8 taskId)
         {
             RemoveScrollIndicatorArrowPair(gUnknown_203ACF0->field_60);
             BeginNormalPaletteFade(0xFFFF7FFF, 0, 0, 16, RGB_WHITEALPHA);
+            if(!IsNationalPokedexEnabled() && FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+                FlagClear(FLAG_SYS_EXTENDED_DEX_TOGGLE);
             gUnknown_203ACF0->field_01 = 1;
+        }
+        else if (JOY_NEW(START_BUTTON) && FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && gUnknown_203ACF0->field_42 == 0 && IsNationalPokedexEnabled())
+        {
+            PlaySE(SE_SELECT);
+            RemoveScrollIndicatorArrowPair(gUnknown_203ACF0->field_60);
+            if(FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+                FlagClear(FLAG_SYS_EXTENDED_DEX_TOGGLE);
+            else
+                FlagSet(FLAG_SYS_EXTENDED_DEX_TOGGLE);
+            gUnknown_203ACF0->field_42 = 0;
+            sub_8103988(gUnknown_203ACF0->field_42);
+            //BeginNormalPaletteFade(0xFFFF7FFF, 0, 0, 16, RGB_WHITEALPHA);
+            // can't get a smooth white transition like the other Pokedex transitions
+            // The BeginNormalPaletteFade function seems to just not work correctly here.
+            FillBgTilemapBufferRect_Palette0(1, 0x000, 0, 0, 32, 20);
+            CopyBgTilemapBufferToVram(1);
+            sub_81047B0(&gUnknown_203ACF0->field_40);
+            gUnknown_203ACF0->field_36 = 0; //cursor pos reset
+            gUnknown_203ACF0->field_34 = 0; //items above reset
+            sub_81047B0(&gUnknown_203ACF0->field_14);
+            sub_81047B0(&gUnknown_203ACF0->field_15);
+            sub_81047B0(&gUnknown_203ACF0->field_16);
+            gTasks[taskId].func = sub_8102F80;
+            gUnknown_203ACF0->field_01 = 0;
+            break;
         }
         break;
     case 7:
@@ -1261,6 +1453,13 @@ static void sub_810317C(void)
     FillWindowPixelBuffer(0, PIXEL_FILL(15));
     sub_8106E78(gText_PokemonListNoColor, 1);
     FillWindowPixelBuffer(1, PIXEL_FILL(15));
+    if(gUnknown_203ACF0->field_42 == 0 && IsNationalPokedexEnabled()) //viewing Kanto Dex
+    {
+        if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+            sub_81047C8(1, 0, gText_SwapToKanto, 8, 2, 4);  //print switch to Kanto
+        if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+            sub_81047C8(1, 0, gText_SwapToExtended, 8, 2, 4);  //print switch to Extended
+    }
     sub_8104C2C(gText_PickOKExit);
     CopyWindowToVram(0, COPYWIN_GFX);
     CopyWindowToVram(1, COPYWIN_GFX);
@@ -1333,7 +1532,7 @@ static void sub_8103238(u8 taskId)
     }
 }
 
-static void sub_810345C(void)
+static void sub_810345C(void) //search mode printer
 {
     struct ListMenuTemplate template;
     FillBgTilemapBufferRect(3, 0x00E, 0, 0, 30, 20, 0x00);
@@ -1354,39 +1553,78 @@ static void sub_810345C(void)
 
 static u16 sub_8103518(u8 a0)
 {
-    s32 max_n = IsNationalPokedexEnabled() ? NATIONAL_DEX_COUNT : KANTO_DEX_COUNT;
+    s32 max_n;
     u16 ndex_num;
+    u16 highest_dex_num;
     u16 ret = NATIONAL_DEX_NONE;
     s32 i;
     bool8 caught;
     bool8 seen;
 
+    if(IsNationalPokedexEnabled())
+        max_n = NATIONAL_DEX_COUNT;
+    else if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+        max_n = EXTENDED_DEX_COUNT;
+    else    //Kanto only
+        max_n = KANTO_DEX_COUNT;
+
     switch (a0)
     {
     default:
-    case 0:
-        for (i = 0; i < KANTO_DEX_COUNT; i++)
+    case 0: //regular kanto dex list populator
+        if(!IsNationalPokedexEnabled() || !FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
         {
-            ndex_num = i + 1;
-            seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
-            caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
-            if (seen)
+            for (i = 0; i < KANTO_DEX_COUNT; i++)
             {
-                gUnknown_203ACF0->field_44[i].label = gSpeciesNames[NationalPokedexNumToSpecies(ndex_num)];
-                ret = ndex_num;
+                ndex_num = i + 1;
+                seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
+                caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
+                if (seen)
+                {
+                    gUnknown_203ACF0->field_44[i].label = gSpeciesNames[NationalPokedexNumToSpecies(ndex_num)];
+                    ret = ndex_num;
+                }
+                else
+                {
+                    gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
+                }
+                gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
             }
-            else
-            {
-                gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
-            }
-            gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
+            break;
         }
-        break;
+        if(FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE) && IsNationalPokedexEnabled())
+        {
+            for (i = 0; i < EXTENDED_DEX_COUNT; i++)
+            {
+                ndex_num = i + 1;
+                seen = sub_8104AB0(ExtendedToNationalOrder(ndex_num), FLAG_GET_SEEN, 0);
+                caught = sub_8104AB0(ExtendedToNationalOrder(ndex_num), FLAG_GET_CAUGHT, 0);
+                if (seen)
+                {
+                    gUnknown_203ACF0->field_44[i].label = gSpeciesNames[ExtendedPokedexNumToSpecies(ndex_num)];
+                    ret = ndex_num;
+                }
+                else
+                {
+                    gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
+                }
+                gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + ExtendedPokedexNumToSpecies(ndex_num);
+            }
+            break;
+        }
     case 1:
         for (i = 0; i < SPECIES_CHIMECHO; i++)
         {
+            highest_dex_num = gPokedexOrder_Alphabetical[i];
+            if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+            {
+                ndex_num = NationalToExtendedOrder(gPokedexOrder_Alphabetical[i]);
+                highest_dex_num = ndex_num;
+                if(sub_8106810(ndex_num) == FALSE) //not in highest dex mode
+                    continue;
+            }
             ndex_num = gPokedexOrder_Alphabetical[i];
-            if (ndex_num <= max_n)
+            if (highest_dex_num <= max_n)
             {
                 seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
                 caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
@@ -1402,15 +1640,28 @@ static u16 sub_8103518(u8 a0)
     case 2:
         for (i = 0; i < NUM_SPECIES - 1; i++)
         {
-            ndex_num = SpeciesToNationalPokedexNum(gPokedexOrder_Type[i]);
+            if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+                ndex_num = SpeciesToExtendedPokedexNum(gPokedexOrder_TypeExtended[i]);
+            else    
+                ndex_num = SpeciesToNationalPokedexNum(gPokedexOrder_Type[i]);
+            if(sub_8106810(ndex_num) == FALSE) //not in highest dex mode
+                continue;
             if (ndex_num <= max_n)
             {
                 seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
                 caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
                 if (caught)
                 {
-                    gUnknown_203ACF0->field_44[ret].label = gSpeciesNames[NationalPokedexNumToSpecies(ndex_num)];
-                    gUnknown_203ACF0->field_44[ret].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
+                    if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+                    {
+                        gUnknown_203ACF0->field_44[ret].label = gSpeciesNames[ExtendedPokedexNumToSpecies(ndex_num)];
+                        gUnknown_203ACF0->field_44[ret].index = (caught << 17) + (seen << 16) + ExtendedPokedexNumToSpecies(ndex_num);
+                    }
+                    else
+                    {
+                        gUnknown_203ACF0->field_44[ret].label = gSpeciesNames[NationalPokedexNumToSpecies(ndex_num)];
+                        gUnknown_203ACF0->field_44[ret].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
+                    }
                     ret++;
                 }
             }
@@ -1419,8 +1670,16 @@ static u16 sub_8103518(u8 a0)
     case 3:
         for (i = 0; i < NATIONAL_DEX_COUNT; i++)
         {
+            highest_dex_num = gPokedexOrder_Weight[i];
+            if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+            {
+                ndex_num = NationalToExtendedOrder(gPokedexOrder_Weight[i]);
+                highest_dex_num = ndex_num;
+                if(sub_8106810(ndex_num) == FALSE) //not in highest dex mode
+                    continue;
+            }
             ndex_num = gPokedexOrder_Weight[i];
-            if (ndex_num <= max_n)
+            if (highest_dex_num <= max_n)
             {
                 seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
                 caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
@@ -1436,8 +1695,16 @@ static u16 sub_8103518(u8 a0)
     case 4:
         for (i = 0; i < NATIONAL_DEX_COUNT; i++)
         {
+            highest_dex_num = gPokedexOrder_Height[i];
+            if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+            {
+                ndex_num = NationalToExtendedOrder(gPokedexOrder_Height[i]);
+                highest_dex_num = ndex_num;
+                if(sub_8106810(ndex_num) == FALSE) //not in highest dex mode
+                    continue;
+            }
             ndex_num = gPokedexOrder_Height[i];
-            if (ndex_num <= max_n)
+            if (highest_dex_num <= max_n)
             {
                 seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
                 caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
@@ -1450,24 +1717,47 @@ static u16 sub_8103518(u8 a0)
             }
         }
         break;
-    case 5:
-        for (i = 0; i < NATIONAL_DEX_COUNT; i++)
+    case 5: //national dex list populator
+        if(IsNationalPokedexEnabled())
         {
-            ndex_num = i + 1;
-            seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
-            caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
-            if (seen)
+            for (i = 0; i < NATIONAL_DEX_COUNT; i++)
             {
-                gUnknown_203ACF0->field_44[i].label = gSpeciesNames[NationalPokedexNumToSpecies(ndex_num)];
-                ret = ndex_num;
+                ndex_num = i + 1;
+                seen = sub_8104AB0(ndex_num, FLAG_GET_SEEN, 0);
+                caught = sub_8104AB0(ndex_num, FLAG_GET_CAUGHT, 0);
+                if (seen)
+                {
+                    gUnknown_203ACF0->field_44[i].label = gSpeciesNames[NationalPokedexNumToSpecies(ndex_num)];
+                    ret = ndex_num;
+                }
+                else
+                {
+                    gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
+                }
+                gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
             }
-            else
-            {
-                gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
-            }
-            gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + NationalPokedexNumToSpecies(ndex_num);
+            break;
         }
-        break;
+        else
+        {
+            for (i = 0; i < EXTENDED_DEX_COUNT; i++)
+            {
+                ndex_num = i + 1;
+                seen = sub_8104AB0(ExtendedToNationalOrder(ndex_num), FLAG_GET_SEEN, 0);
+                caught = sub_8104AB0(ExtendedToNationalOrder(ndex_num), FLAG_GET_CAUGHT, 0);
+                if (seen)
+                {
+                    gUnknown_203ACF0->field_44[i].label = gSpeciesNames[ExtendedPokedexNumToSpecies(ndex_num)];
+                    ret = ndex_num;
+                }
+                else
+                {
+                    gUnknown_203ACF0->field_44[i].label = gText_5Dashes;
+                }
+                gUnknown_203ACF0->field_44[i].index = (caught << 17) + (seen << 16) + ExtendedPokedexNumToSpecies(ndex_num);
+            }
+            break;
+        }
     }
     return ret;
 }
@@ -1536,7 +1826,7 @@ static void sub_8103A40(u8 windowId, s32 itemId, u8 y)
     bool8 seen = (itemId_ >> 16) & 1;  // not used but required to match
     bool8 caught = (itemId_ >> 17) & 1;
     u8 type1;
-    sub_8104A34(gUnknown_203ACF0->field_40, 0, species, 12, y);
+    sub_8104A34(gUnknown_203ACF0->field_40, 0, species, 12, y); //controls Pokedex num on scrolling lists
     if (caught)
     {
         BlitMoveInfoIcon(gUnknown_203ACF0->field_40, 0, 0x28, y);
@@ -1547,7 +1837,7 @@ static void sub_8103A40(u8 windowId, s32 itemId, u8 y)
     }
 }
 
-static void sub_8103AC8(u8 taskId)
+static void sub_8103AC8(u8 taskId) // habitat pages
 {
     int r4;
     u8 *ptr;
@@ -1607,6 +1897,8 @@ static void sub_8103AC8(u8 taskId)
         {
             RemoveScrollIndicatorArrowPair(gUnknown_203ACF0->field_60);
             ListMenuRemoveCursorObject(gUnknown_203ACF0->field_61, 0);
+            if(gUnknown_203ACF0->field_42 == 0)
+                gUnknown_203ACF0->field_42 = 5; //making always use correct numbering?
             gUnknown_203ACF0->field_01 = 12;
             break;
         }
@@ -2198,9 +2490,130 @@ void sub_81049FC(u8 windowId, u16 species, u16 paletteOffset)
 
 void sub_8104A34(u8 windowId, u8 fontId, u16 species, u8 x, u8 y)
 {
-    u16 dexNum = SpeciesToNationalPokedexNum(species);
-    sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
-    sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+    u8 state;
+    u8 numToPrint;
+    if(IsNationalPokedexEnabled())
+        state = 3;
+    else if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+        state = 2;
+    else    //Kanto only
+        state = 1;
+
+    switch(state) //setting up which numbers to print
+    {
+        case 1: //only Kanto, always national ordering
+            numToPrint = 0;
+            break;
+        case 2: //extended but not national, conditional
+            if(gUnknown_203ACF0->field_42 == 0)
+                numToPrint = 0;
+            else if(gUnknown_203ACF0->field_42 == 5)
+                numToPrint = 1;
+            else
+                numToPrint = 1;
+            break;
+        case 3: //national
+            if(gUnknown_203ACF0->field_42 == 0)
+            {
+                if(FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE))
+                    numToPrint = 1;
+                else
+                    numToPrint = 0;
+            }
+            else
+                numToPrint = 0;
+            break;
+    }
+
+    if(!numToPrint)
+    {   // use national numbering
+        u16 dexNum = SpeciesToNationalPokedexNum(species);
+        sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+        sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+        return;
+    }
+    else
+    {   // use extended numbering
+        u16 dexNum = SpeciesToExtendedPokedexNum(species);
+        sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+        sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+        return;
+    }
+    /*
+    if(gUnknown_203ACF0->field_42 == 0)
+    {
+        if(FlagGet(FLAG_SYS_EXTENDED_DEX_TOGGLE) && IsNationalPokedexEnabled())
+        {   // use extended numbering
+            u16 dexNum = SpeciesToExtendedPokedexNum(species);
+            sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+            sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+            return;
+        }
+        else
+        {   // use national numbering
+            u16 dexNum = SpeciesToNationalPokedexNum(species);
+            sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+            sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+            return;
+        }
+    }
+    if(gUnknown_203ACF0->field_42 == 5)
+    {   
+        if(!IsNationalPokedexEnabled())
+        {   // use extended numbering, on natdex page but no natdex
+            u16 dexNum = SpeciesToExtendedPokedexNum(species);
+            sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+            sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+            return;
+        }
+        else
+        {   //with natdex, always use national numbering on natdex page
+            u16 dexNum = SpeciesToNationalPokedexNum(species);
+            sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+            sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+            return;
+        }
+    }
+    if(gUnknown_203ACF0->field_42 != 0 && gUnknown_203ACF0->field_42 != 5)
+    {   //for ABC, Weight, Height, etc. modes
+        if(IsNationalPokedexEnabled() || (!IsNationalPokedexEnabled() && !FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX)))
+        {   //just Kanto Dex, or have National dex
+            u16 dexNum = SpeciesToNationalPokedexNum(species);
+            sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+            sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+            return;
+        }
+        if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+        {   //just Extended but not national
+            u16 dexNum = SpeciesToExtendedPokedexNum(species);
+            sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+            sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+            return;
+        }
+    }*/
+}
+
+static void HabitatNameTagNumPrinter(u8 windowId, u8 fontId, u16 species, u8 x, u8 y)
+{
+    bool8 numToPrint = 0;
+
+    if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+        numToPrint = 1;
+
+    if(!numToPrint)
+    {   // use national numbering
+        u16 dexNum = SpeciesToNationalPokedexNum(species);
+        sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+        sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+        return;
+    }
+    else
+    {   // use extended numbering
+        u16 dexNum = SpeciesToExtendedPokedexNum(species);
+        sub_81047C8(windowId, fontId, gText_PokedexNo, x, y, 0);
+        sub_8104880(windowId, fontId, dexNum, x + 9, y, 0);
+        return;
+    }
 }
 
 s8 sub_8104AB0(u16 nationalDexNo, u8 caseId, bool8 indexIsSpecies)
@@ -2243,7 +2656,7 @@ s8 sub_8104AB0(u16 nationalDexNo, u8 caseId, bool8 indexIsSpecies)
     return retVal;
 }
 
-static u16 sub_8104BBC(u8 caseId, bool8 whichDex)
+static u16 sub_8104BBC(u8 caseId, u8 whichDex)
 {
     u16 count = 0;
     u32 i;
@@ -2261,6 +2674,14 @@ static u16 sub_8104BBC(u8 caseId, bool8 whichDex)
         for (i = 0; i < NATIONAL_DEX_COUNT; i++)
         {
             if (sub_8104AB0(i + 1, caseId, FALSE))
+                count++;
+
+        }
+        break;
+    case 2: // Extended
+        for (i = 0; i < EXTENDED_DEX_COUNT; i++)
+        {
+            if (sub_8104AB0(ExtendedToNationalOrder(i + 1), caseId, FALSE))
                 count++;
 
         }
@@ -2305,7 +2726,7 @@ bool8 sub_8104C64(u16 a0, u8 a1, u8 a2)
             template.baseBlock = a1 * 40 + 0x108;
             gUnknown_203ACF0->field_24[a1] = AddWindow(&template);
             CopyToWindowPixelBuffer(gUnknown_203ACF0->field_24[a1], gUnknown_8440124, 0, 0);
-            sub_8104A34(gUnknown_203ACF0->field_24[a1], 0, a0, 12, 0);
+            HabitatNameTagNumPrinter(gUnknown_203ACF0->field_24[a1], 0, a0, 12, 0); //prints Pokedex num on habitat tags
             sub_81047C8(gUnknown_203ACF0->field_24[a1], 2, gSpeciesNames[a0], 2, 13, 0);
             if (sub_8104AB0(a0, FLAG_GET_CAUGHT, TRUE))
                 BlitBitmapRectToWindow(gUnknown_203ACF0->field_24[a1], gUnknown_8443600, 0, 0, 8, 8, 2, 3, 8, 8);
@@ -2895,7 +3316,7 @@ u8 sub_8105E1C(bool8 a0)
     PutWindowTilemap(gUnknown_203ACF0->field_4A[0]);
     CopyWindowToVram(gUnknown_203ACF0->field_4A[0], 2);
     FillWindowPixelBuffer(gUnknown_203ACF0->field_4A[1], 0);
-    sub_8104A34(gUnknown_203ACF0->field_4A[1], 0, gUnknown_203ACF0->field_5A, 0, 8);
+    sub_8104A34(gUnknown_203ACF0->field_4A[1], 0, gUnknown_203ACF0->field_5A, 0, 8); //controls pokedex num on first data page
     sub_81047C8(gUnknown_203ACF0->field_4A[1], 2, gSpeciesNames[gUnknown_203ACF0->field_5A], 28, 8, 0);
     sub_8105800(gUnknown_203ACF0->field_4A[1], gUnknown_203ACF0->field_5A, 0, 24);
     sub_81058C4(gUnknown_203ACF0->field_4A[1], gUnknown_203ACF0->field_5A, 0, 36);
@@ -3022,7 +3443,7 @@ u8 sub_810603C(void)
     PutWindowTilemap(gUnknown_203ACF0->field_4A[10]);
     CopyWindowToVram(gUnknown_203ACF0->field_4A[10], 2);
     FillWindowPixelBuffer(gUnknown_203ACF0->field_4A[8], 0);
-    sub_8104A34(gUnknown_203ACF0->field_4A[8], 0, species, 0, 0);
+    sub_8104A34(gUnknown_203ACF0->field_4A[8], 0, species, 0, 0); //controls pokedex num on second data page
     sub_81047C8(gUnknown_203ACF0->field_4A[8], 2, gSpeciesNames[species], 3, 12, 0);
     PutWindowTilemap(gUnknown_203ACF0->field_4A[8]);
     CopyWindowToVram(gUnknown_203ACF0->field_4A[8], 2);
@@ -3101,6 +3522,8 @@ u8 sub_81067C0(void)
 int sub_8106810(u16 species)
 {
     if (IsNationalPokedexEnabled() == TRUE)
+        return TRUE;
+    if (FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && SpeciesToExtendedPokedexNum(species) <= EXTENDED_DEX_COUNT)
         return TRUE;
     if (SpeciesToNationalPokedexNum(species) <= KANTO_DEX_COUNT)
         return TRUE;

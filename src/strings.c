@@ -1287,3 +1287,7 @@ const u8 gText_Blaine[] = _("BLAINE");
 const u8 gText_CommaSpace[] = _(", ");
 const u8 gText_NewLine[] = _("\n");
 const u8 gText_AndSpace[] = _("and ");
+const u8 gText_SwapToKanto[] = _("{START_BUTTON}KANTO MODE");
+const u8 gText_SwapToExtended[] = _("{START_BUTTON}EXTENDED MODE");
+const u8 gText_Extended[] = _("EXTENDED");
+const u8 gText_NumericalModeExtended[] = _("NUMERICAL MODE: EXTENDED");
