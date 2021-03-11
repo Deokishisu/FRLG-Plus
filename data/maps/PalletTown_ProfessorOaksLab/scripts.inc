@@ -129,7 +129,10 @@ PalletTown_ProfessorOaksLab_EventScript_NationalDexScene:: @ 8169035
 	waitmessage
 	waitfanfare
 	call EventScript_RestorePrevTextColor
-	special EnableNationalPokedex
+	setflag FLAG_SYS_RECEIVED_EXTENDED_DEX
+	callnative HasNationalMonToVarResult
+	compare VAR_RESULT, TRUE
+	call_if_eq PalletTown_ProfessorOaksLab_EventScript_GiveNationalDex
 	msgbox PalletTown_ProfessorOaksLab_Text_OakMustReallyWorkToFillPokedex
 	msgbox PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex
 	closemessage
@@ -147,6 +150,10 @@ PalletTown_ProfessorOaksLab_EventScript_NationalDexScene:: @ 8169035
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8
 	releaseall
 	end
+
+PalletTown_ProfessorOaksLab_EventScript_GiveNationalDex::
+	special EnableNationalPokedex
+	return
 
 PalletTown_ProfessorOaksLab_EventScript_NationalDexSceneRivalEnterNorth:: @ 8169174
 	setobjectxyperm LOCALID_RIVAL, 5, 10

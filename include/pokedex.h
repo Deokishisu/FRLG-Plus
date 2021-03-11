@@ -50,7 +50,9 @@ bool16 HasAllKantoMons(void);
 bool16 HasAllMons(void);
 bool16 HasAllExtendedMons(void);
 u16 GetExtendedPokedexCount(u8 caseID);
-
+bool16 HasNationalMon(void);
 u8 sub_8106B60(u16 species);
+bool16 HasAllKantoMonsNew(void)
+bool16 HasAllMonsNew(void)
 
 #endif // GUARD_POKEDEX_H

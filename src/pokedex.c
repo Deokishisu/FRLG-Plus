@@ -148,3 +148,48 @@ bool16 HasAllMons(void)
     }
     return TRUE;
 }
+
+bool16 HasNationalMon(void)
+{   // checks if the player has a mon not in the Extended Dex
+    u32 i;
+
+    for (i = EXTENDED_DEX_COUNT + 1; i < NATIONAL_DEX_COUNT; i++)
+    {
+        if (GetSetPokedexFlag(ExtendedToNationalOrder(i + 1), FLAG_GET_CAUGHT))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+bool16 HasAllKantoMonsNew(void)
+{   // separate from the old one because of link Trainer cards
+    // this one includes Mew.
+    u32 i;
+
+    for (i = 0; i < KANTO_DEX_COUNT; i++)
+    {
+        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+    return TRUE;
+}
+
+bool16 HasAllMonsNew(void)
+{   // separate from the old one because of link Trainer cards
+    // this one includes obtainable mythicals.
+    u32 i;
+
+    for (i = 0; i < NATIONAL_DEX_HO_OH; i++)
+    {
+        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+    for (i = NATIONAL_DEX_CELEBI; i < NATIONAL_DEX_RAYQUAZA; i++)
+    {
+        if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+            return FALSE;
+    }
+    if (!GetSetPokedexFlag(NATIONAL_DEX_DEOXYS, FLAG_GET_CAUGHT))
+            return FALSE;
+    return TRUE;
+}

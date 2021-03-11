@@ -569,6 +569,11 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void HasNationalMonToVarResult(void)
+{
+    gSpecialVar_Result = HasNationalMon();
+}
+
 void TeachTrappedTentacoolSurf(void)
 {
     u32 i;
@@ -1219,11 +1224,11 @@ void CheckTrainerCardStars(void)
     {
         stars++;
     }
-    if(HasAllKantoMons())
+    if(HasAllKantoMonsNew())
     {
         stars++;
     }
-    if(HasAllMons())
+    if(HasAllMonsNew())
     {
         stars++;
     }
