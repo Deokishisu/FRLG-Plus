@@ -15,6 +15,7 @@
 #include "field_specials.h"
 #include "item_menu.h"
 #include "link.h"
+#include "map_name_popup.h"
 #include "menews_jisan.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
@@ -1227,6 +1228,7 @@ static bool8 EnableAutoRun(void)
         else
         {
             FlagSet(FLAG_AUTO_RUN_EXPLAINED);
+            DismissMapNamePopup();
             ScriptContext1_SetupScript(EventScript_EnableAutoRun);
         }
         return FALSE;

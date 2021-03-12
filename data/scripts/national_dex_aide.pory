@@ -1,7 +1,7 @@
 const LOCALID_AIDE = 2
 
 script PokemonCenter_1F_OnLoad {
-	if(flag(FLAG_SYS_NATIONAL_DEX))
+	if(flag(FLAG_SYS_NATIONAL_DEX) || !flag(FLAG_SYS_RECEIVED_EXTENDED_DEX))
     {
     	setvar(VAR_TEMP_0, 1)
     	release
@@ -38,7 +38,7 @@ script NationalDexAideEvent {
     	release
     	end
     }
-    if(flag(FLAG_SYS_NATIONAL_DEX))
+    if(flag(FLAG_SYS_NATIONAL_DEX) || !flag(FLAG_SYS_RECEIVED_EXTENDED_DEX))
     {
     	setvar(VAR_TEMP_0, 1)
     	release

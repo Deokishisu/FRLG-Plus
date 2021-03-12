@@ -1169,6 +1169,8 @@ static void Task_WaitAtEndOfQuestLog(u8 taskId)
 
 #undef tTimer
 
+extern const u8 NationalDexAideEvent[];
+
 #define tState data[0]
 #define tTimer data[1]
 
@@ -1218,6 +1220,11 @@ static void Task_EndQuestLog(u8 taskId)
         DisableWildEncounters(FALSE);
         gHelpSystemEnabled = TRUE;
         DestroyTask(taskId);
+        if(CheckNationalDexEligibilityOnSaveLoad() && DoCoordsMatchPMCExitMat() && FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX))
+        {
+            DismissMapNamePopup();
+            ScriptContext1_SetupScript(NationalDexAideEvent);
+        }
         break;
     }
 }

@@ -1,11 +1,12 @@
 PokemonCenter_1F_OnLoad::
 	goto_if_set FLAG_SYS_NATIONAL_DEX, PokemonCenter_1F_OnLoad_2
+	goto_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, PokemonCenter_1F_OnLoad_2
 	callnative HasNationalMonToVarResult
 	compare VAR_RESULT, 0
-	goto_if_eq PokemonCenter_1F_OnLoad_5
+	goto_if_eq PokemonCenter_1F_OnLoad_7
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	compare VAR_RESULT, DIR_NORTH
-	goto_if_ne PokemonCenter_1F_OnLoad_8
+	goto_if_ne PokemonCenter_1F_OnLoad_10
 	release
 	end
 
@@ -14,27 +15,27 @@ PokemonCenter_1F_OnLoad_2:
 	release
 	end
 
-PokemonCenter_1F_OnLoad_5:
+PokemonCenter_1F_OnLoad_7:
 	setvar VAR_TEMP_0, 1
 	release
 	end
 
-PokemonCenter_1F_OnLoad_8:
+PokemonCenter_1F_OnLoad_10:
 	callnative CoordsOfPMCExitWarpTo80068007
 	getplayerxy VAR_0x8008, VAR_0x8009
 	compare VAR_0x8008, VAR_0x8006
-	goto_if_eq PokemonCenter_1F_OnLoad_12
-PokemonCenter_1F_OnLoad_10:
+	goto_if_eq PokemonCenter_1F_OnLoad_14
+PokemonCenter_1F_OnLoad_12:
 	release
 	end
 
-PokemonCenter_1F_OnLoad_11:
-	goto PokemonCenter_1F_OnLoad_10
+PokemonCenter_1F_OnLoad_13:
+	goto PokemonCenter_1F_OnLoad_12
 
-PokemonCenter_1F_OnLoad_12:
+PokemonCenter_1F_OnLoad_14:
 	compare VAR_0x8009, VAR_0x8007
-	goto_if_eq PokemonCenter_1F_OnLoad_11
-	goto PokemonCenter_1F_OnLoad_10
+	goto_if_eq PokemonCenter_1F_OnLoad_13
+	goto PokemonCenter_1F_OnLoad_12
 
 
 NationalDexAideEvent::
@@ -42,6 +43,7 @@ NationalDexAideEvent::
 	compare VAR_RESULT, 0
 	goto_if_eq NationalDexAideEvent_2
 	goto_if_set FLAG_SYS_NATIONAL_DEX, NationalDexAideEvent_5
+	goto_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, NationalDexAideEvent_5
 	callnative HideWarpArrowSprite
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestDown
