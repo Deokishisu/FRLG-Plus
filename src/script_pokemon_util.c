@@ -13,6 +13,7 @@
 #include "constants/maps.h"
 #include "constants/species.h"
 #include "constants/pokemon.h"
+#include "constants/region_map_sections.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleTowerParty(void);
@@ -205,6 +206,7 @@ bool8 DoesPartyHaveEnigmaBerry(void)
 void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 {
     u8 heldItem[2];
+    u8 version = VERSION_EMERALD;
 
     ZeroEnemyPartyMons();
     CreateMon(&gEnemyParty[0], species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
@@ -213,6 +215,10 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
         heldItem[0] = item;
         heldItem[1] = item >> 8;
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
+    }
+    if(species == SPECIES_SUDOWOODO && level == 40 && gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER)
+    {
+        SetMonData(&gEnemyParty[0], MON_DATA_MET_GAME, &version);
     }
 }
 

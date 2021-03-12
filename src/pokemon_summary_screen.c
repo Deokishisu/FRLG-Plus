@@ -2788,7 +2788,13 @@ static void sub_8137578(void)
     metLocation = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_MET_LOCATION);
 
     if (sub_813B838(metLocation) == TRUE)
+    {
         GetMapNameGeneric_(mapNameStr, metLocation);
+        if(metLocation == MAPSEC_BATTLE_FRONTIER)   //remove if Battle Frontier ever happens
+        {
+            StringCopy(mapNameStr, gText_BattleTower);
+        }
+    }
     else
     {
         if (sMonSummaryScreen->isEnemyParty == TRUE || sub_8138B4C() == TRUE)

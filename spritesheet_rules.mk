@@ -472,6 +472,9 @@ $(OBJEVENTGFXDIR)/pokemon/spearow.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/squirtle.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
+$(OBJEVENTGFXDIR)/pokemon/sudowoodo.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
 $(OBJEVENTGFXDIR)/pokemon/voltorb.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 

@@ -238,9 +238,9 @@
 
 // Unused?
 #define FLAG_HIDE_NATIONAL_DEX_AIDE           0x0E4
-#define FLAG_0x0E5               0x0E5
-#define FLAG_0x0E6               0x0E6
-#define FLAG_0x0E7               0x0E7
+#define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO   0x0E5
+#define FLAG_DEFEATED_SUDOWOODO               0x0E6
+#define FLAG_CAUGHT_SUDOWOODO                 0x0E7
 #define FLAG_0x0E8               0x0E8
 #define FLAG_0x0E9               0x0E9
 #define FLAG_0x0EA               0x0EA

@@ -9624,7 +9624,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_HikerDaryl[] = {
     {
         .iv = 0,
         .lvl = 50,
-        .species = SPECIES_PUPITAR, //TODO: Change back to Sudowoodo if Battle Frontier ported
+        .species = SPECIES_SUDOWOODO,
     },
 };
 

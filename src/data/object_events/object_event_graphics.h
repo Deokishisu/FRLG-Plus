@@ -178,6 +178,7 @@ const u32 gObjectEventPic_WoodenSign[] = INCBIN_U32("graphics/object_events/pics
 const u32 gObjectEventPic_Clipboard[] = INCBIN_U32("graphics/object_events/pics/misc/clipboard.4bpp");
 const u32 gObjectEventPic_CableCar[] = INCBIN_U32("graphics/object_events/pics/misc/cable_car.4bpp");
 const u16 gObjectEventPal_CableCar[] = INCBIN_U16("graphics/object_events/palettes/cable_car.gbapal");
+const u32 gObjectEventPic_Sudowoodo[] = INCBIN_U32("graphics/object_events/pics/pokemon/sudowoodo.4bpp");
 const u16 gUnknown_8394EA8[] = INCBIN_U16("graphics/object_events/palettes/19.gbapal");
 const u32 gObjectEventPic_BirthIslandStone[] = INCBIN_U32("graphics/object_events/pics/misc/birth_island_stone.4bpp");
 const u32 gObjectEventPic_LaprasDoll[] = INCBIN_U32("graphics/object_events/pics/misc/lapras_doll.4bpp");

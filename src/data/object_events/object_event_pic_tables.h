@@ -2110,3 +2110,15 @@ const struct SpriteFrameImage gObjectEventPicTable_EmMay[] = {
 const struct SpriteFrameImage gObjectEventPicTable_CableCar[] = {
     overworld_frame(gObjectEventPic_CableCar, 4, 16, 0),
 };
+
+const struct SpriteFrameImage gObjectEventPicTable_Sudowoodo[] = {
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 2),
+};
