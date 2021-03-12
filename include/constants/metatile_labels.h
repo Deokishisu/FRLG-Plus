@@ -47,6 +47,18 @@
 
 // gTileset_FuchsiaCity
 #define METATILE_FuchsiaCity_Door                           0x2BF
+#define METATILE_FuchsiaCity_LongGrassBottom_LeftTree       0x35F
+#define METATILE_FuchsiaCity_LongGrassBottom_MiddleTree     0x367
+#define METATILE_FuchsiaCity_LongGrassBottom_MountainLeft   0x345
+#define METATILE_FuchsiaCity_LongGrassBottom_MountainRight  0x346
+#define METATILE_FuchsiaCity_LongGrassBottom_RightTree      0x36F
+#define METATILE_FuchsiaCity_LongGrassTop_LeftTree          0x360
+#define METATILE_FuchsiaCity_LongGrassTop_MiddleTree        0x361
+#define METATILE_FuchsiaCity_LongGrassTop_MountainLeft      0x363
+#define METATILE_FuchsiaCity_LongGrassTop_MountainRight     0x366
+#define METATILE_FuchsiaCity_LongGrassTop_RightTree         0x362
+#define METATILE_FuchsiaCity_SafariMountainTopLeft_Mowed    0x378
+#define METATILE_FuchsiaCity_SafariMountainTopRight_Mowed   0x379
 #define METATILE_FuchsiaCity_SafariZoneDoor                 0x2D2
 #define METATILE_FuchsiaCity_SafariZoneTreeTopLeft_Grass    0x300
 #define METATILE_FuchsiaCity_SafariZoneTreeTopLeft_Mowed    0x310
@@ -72,6 +84,8 @@
 #define METATILE_General_EmeraldMowed            0x229
 #define METATILE_General_LongGrass_Bottom        0x23B
 #define METATILE_General_LongGrass_Top           0x233
+#define METATILE_General_MountainCornerTopLeft   0x068
+#define METATILE_General_MountainCornerTopRight  0x06A
 #define METATILE_General_Plain_Grass             0x00D
 #define METATILE_General_Plain_Mowed             0x001
 #define METATILE_General_SlidingDoubleDoor       0x15B

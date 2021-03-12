@@ -89,7 +89,37 @@ static const u16 sCutGrassMetatileMapping[][2] = {
     }, {
         METATILE_ID(SeviiIslands5, MicroWideTreeTopRight_Grass),
         METATILE_ID(SeviiIslands5, MicroWideTreeTopRight_Mowed)
-    },{
+    }, {    // Safari Zone Long Grass
+        METATILE_ID(FuchsiaCity, LongGrassTop_LeftTree),
+        METATILE_ID(FuchsiaCity, SafariZoneTreeTopLeft_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassTop_MiddleTree),
+        METATILE_ID(FuchsiaCity, SafariZoneTreeTopMiddle_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassTop_RightTree),
+        METATILE_ID(FuchsiaCity, SafariZoneTreeTopRight_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassBottom_LeftTree),
+        METATILE_ID(FuchsiaCity, SafariZoneTreeTopLeft_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassBottom_MiddleTree),
+        METATILE_ID(FuchsiaCity, SafariZoneTreeTopMiddle_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassBottom_RightTree),
+        METATILE_ID(FuchsiaCity, SafariZoneTreeTopRight_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassTop_MountainLeft),
+        METATILE_ID(FuchsiaCity, SafariMountainTopLeft_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassTop_MountainRight),
+        METATILE_ID(FuchsiaCity, SafariMountainTopRight_Mowed)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassBottom_MountainLeft),
+        METATILE_ID(General, MountainCornerTopLeft | METATILE_COLLISION_MASK)
+    }, {
+        METATILE_ID(FuchsiaCity, LongGrassBottom_MountainRight),
+        METATILE_ID(General, MountainCornerTopRight | METATILE_COLLISION_MASK)
+    }, {
         0xffff,
         0xffff
     }
@@ -317,6 +347,84 @@ static void SetCutGrassMetatileAt(s16 x, s16 y)
     }
 }
 
+static bool8 MetatileIsLongGrass(u32 metatileId, bool8 isTop)
+{
+    if(isTop)
+    {
+        switch(metatileId)
+        {
+            case METATILE_FuchsiaCity_LongGrassTop_LeftTree:
+            case METATILE_FuchsiaCity_LongGrassTop_MiddleTree:
+            case METATILE_FuchsiaCity_LongGrassTop_RightTree:
+            case METATILE_FuchsiaCity_LongGrassTop_MountainLeft:
+            case METATILE_FuchsiaCity_LongGrassTop_MountainRight:
+            case METATILE_SeviiIslands67_LongGrass_Top:
+                return TRUE;
+            default:
+                return FALSE;
+        }
+    }
+    else
+    {
+        switch(metatileId)
+        {
+            case METATILE_FuchsiaCity_LongGrassBottom_LeftTree:
+            case METATILE_FuchsiaCity_LongGrassBottom_MiddleTree:
+            case METATILE_FuchsiaCity_LongGrassBottom_RightTree:
+            case METATILE_FuchsiaCity_LongGrassBottom_MountainLeft:
+            case METATILE_FuchsiaCity_LongGrassBottom_MountainRight:
+            case METATILE_SeviiIslands67_LongGrass_Bottom:
+                return TRUE;
+            default:
+                return FALSE;
+        }
+    }
+}
+
+static bool8 MetatileIsMowedLongGrass(u32 metatileId)
+{
+    switch(metatileId)
+    {
+        case METATILE_SeviiIslands67_EmeraldMowed:
+        case METATILE_FuchsiaCity_SafariZoneTreeTopLeft_Mowed:
+        case METATILE_FuchsiaCity_SafariZoneTreeTopMiddle_Mowed:
+        case METATILE_FuchsiaCity_SafariZoneTreeTopRight_Mowed:
+        case METATILE_General_MountainCornerTopLeft:
+        case METATILE_General_MountainCornerTopRight:
+        case METATILE_FuchsiaCity_SafariMountainTopLeft_Mowed:
+        case METATILE_FuchsiaCity_SafariMountainTopRight_Mowed:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
+static u32 GetMowedMetatileBasedOnInput(u32 metatileId, bool8 isTop)
+{   
+    u32 i;
+    if(isTop)
+    {
+        for(i = 0; sCutGrassMetatileMapping[i][0] != 0xFFFF; i++)
+        {
+            if(sCutGrassMetatileMapping[i][0] != metatileId)
+                continue;
+            else
+                return sCutGrassMetatileMapping[i][1]; //return bottom
+        }
+    }
+    else
+    {
+        for(i = 0; sCutGrassMetatileMapping[i][0] != 0xFFFF; i++)
+        {
+            if(sCutGrassMetatileMapping[i][1] != metatileId)
+                continue;
+            else
+                return sCutGrassMetatileMapping[i][0]; //return top
+        }
+    }
+    return 0x0;
+}
+
 static void CleanupLongGrass(s16 x, s16 y)
 {
     u16 i = 0;
@@ -338,16 +446,19 @@ static void CleanupLongGrass(s16 x, s16 y)
     for (i = 0; i < cutRange; i++)
     {
         s16 currentX = x + i;
-        if (MapGridGetMetatileIdAt(currentX, y) == METATILE_SeviiIslands67_LongGrass_Top)
+        if (MetatileIsLongGrass(MapGridGetMetatileIdAt(currentX, y), TRUE))
         {
-            u16 metatileId = MapGridGetMetatileIdAt(currentX, y + 1);
-            if(metatileId == METATILE_SeviiIslands67_EmeraldMowed)
+            u16 topGrassMetatile = MapGridGetMetatileIdAt(currentX, y);
+            u16 underneathTop = MapGridGetMetatileIdAt(currentX, y + 1);
+            if(MetatileIsMowedLongGrass(underneathTop)) //if underneath a long grass top, set that tile to long grass bottom
                 MapGridSetMetatileIdAt(currentX, y + 1, METATILE_SeviiIslands67_LongGrass_Bottom);
+            //MapGridSetMetatileIdAt(currentX, y + 1, GetMowedMetatileBasedOnInput(topGrassMetatile, TRUE)); //should grab corresponding bottom to topGrassMetatile
         }
-        if (MapGridGetMetatileIdAt(currentX, lowerY) == METATILE_SeviiIslands67_EmeraldMowed)
+        if (MetatileIsMowedLongGrass(MapGridGetMetatileIdAt(currentX, lowerY))) //if the lowest range got cut
         {
-            if (MapGridGetMetatileIdAt(currentX, lowerY + 1) == METATILE_SeviiIslands67_LongGrass_Bottom)
-                MapGridSetMetatileIdAt(currentX, lowerY + 1, METATILE_SeviiIslands67_EmeraldMowed);
+            if (MetatileIsLongGrass(MapGridGetMetatileIdAt(currentX, lowerY + 1), FALSE)) //and the tile under that range is an orphaned bottom
+                MapGridSetMetatileIdAt(currentX, lowerY + 1, GetMowedMetatileBasedOnInput(MapGridGetMetatileIdAt(currentX, lowerY + 1), TRUE));
+            //MapGridSetMetatileIdAt(currentX, lowerY + 1, METATILE_SeviiIslands67_EmeraldMowed); //mow it.
         }
     }
 }
