@@ -128,3 +128,34 @@ Text_TakeYourPkmnForFewSecondsTrainerCard:: @ 81A54E1
 Text_WelcomeTrainerCard::
 	.string "Great to see you, {PLAYER}!\n"
 	.string "You want the usual, right?$"
+
+EventScript_SoftlockClerk::
+	goto_if_set FLAG_TEMP_7, EventScript_SoftlockClerk_GaveAlready
+	msgbox Text_SoftlockClerk_Initial, MSGBOX_NPC
+	textcolor 3
+	checkitemspace ITEM_POKE_BALL, 5
+	compare VAR_RESULT, FALSE
+	goto_if_eq EventScript_SoftlockClerk_NoRoom
+	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
+	setflag FLAG_TEMP_7
+	release
+	end
+
+EventScript_SoftlockClerk_GaveAlready::
+	msgbox Text_SoftlockClerk_GaveAlready, MSGBOX_NPC
+	end
+
+EventScript_SoftlockClerk_NoRoom::
+	msgbox CeladonCity_Restaurant_Text_MakeRoomForThis, MSGBOX_NPC
+	end
+
+Text_SoftlockClerk_Initial::
+	.string "Hello, TRAINER!\p"
+	.string "We've partnered with the POKéMON\n"
+	.string "CENTER to do a special giveaway!\p"
+	.string "Congratulations, you're the lucky\n"
+	.string "winner! Enjoy your prize!$"
+
+Text_SoftlockClerk_GaveAlready::
+	.string "Hello, TRAINER!\n"
+	.string "Put those POKé BALLS to good use!$"

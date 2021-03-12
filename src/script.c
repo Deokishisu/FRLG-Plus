@@ -3,6 +3,7 @@
 #include "field_effect_helpers.h"
 #include "field_specials.h"
 #include "event_object_movement.h"
+#include "item.h"
 #include "overworld.h"
 #include "pokedex.h"
 #include "random.h"
@@ -568,6 +569,11 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     if (scriptSize > sizeof(gSaveBlock1Ptr->ramScript.data.script))
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
+}
+
+void ShouldSpawnSoftlockClerk(void)
+{
+    gSpecialVar_Result = CheckAssetsForSoftlock();
 }
 
 void HideWarpArrowSprite(void)

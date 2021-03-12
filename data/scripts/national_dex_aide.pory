@@ -1,6 +1,11 @@
 const LOCALID_AIDE = 2
 
 script PokemonCenter_1F_OnLoad {
+	callnative(ShouldSpawnSoftlockClerk)
+    if(!flag(FLAG_SYS_POKEDEX_GET) || !var(VAR_RESULT))
+    {
+    	setflag(FLAG_TEMP_8)
+    }
 	if(flag(FLAG_SYS_NATIONAL_DEX) || !flag(FLAG_SYS_RECEIVED_EXTENDED_DEX))
     {
     	setvar(VAR_TEMP_0, 1)

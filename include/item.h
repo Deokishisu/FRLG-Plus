@@ -84,5 +84,7 @@ void ApplyNewEncryptionKeyToBagItems_(u32 newKey);
 bool8 CheckHasAtLeastOneBerry(void);
 void DeserializeTmHmItemSlots(void);
 void DeserializeKeyItemSlots(void);
+u16 GetBagItemQuantity(u16 * ptr);
+bool8 CheckAssetsForSoftlock(void);
 
 #endif // GUARD_ITEM_H

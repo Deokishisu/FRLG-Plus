@@ -1,42 +1,50 @@
 PokemonCenter_1F_OnLoad::
-	goto_if_set FLAG_SYS_NATIONAL_DEX, PokemonCenter_1F_OnLoad_2
-	goto_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, PokemonCenter_1F_OnLoad_2
+	callnative ShouldSpawnSoftlockClerk
+	goto_if_unset FLAG_SYS_POKEDEX_GET, PokemonCenter_1F_OnLoad_2
+	compare VAR_RESULT, 0
+	goto_if_eq PokemonCenter_1F_OnLoad_2
+PokemonCenter_1F_OnLoad_1:
+	goto_if_set FLAG_SYS_NATIONAL_DEX, PokemonCenter_1F_OnLoad_7
+	goto_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, PokemonCenter_1F_OnLoad_7
 	callnative HasNationalMonToVarResult
 	compare VAR_RESULT, 0
-	goto_if_eq PokemonCenter_1F_OnLoad_7
+	goto_if_eq PokemonCenter_1F_OnLoad_12
 	specialvar VAR_RESULT, GetPlayerFacingDirection
 	compare VAR_RESULT, DIR_NORTH
-	goto_if_ne PokemonCenter_1F_OnLoad_10
+	goto_if_ne PokemonCenter_1F_OnLoad_15
 	release
 	end
 
 PokemonCenter_1F_OnLoad_2:
-	setvar VAR_TEMP_0, 1
-	release
-	end
+	setflag FLAG_TEMP_8
+	goto PokemonCenter_1F_OnLoad_1
 
 PokemonCenter_1F_OnLoad_7:
 	setvar VAR_TEMP_0, 1
 	release
 	end
 
-PokemonCenter_1F_OnLoad_10:
-	callnative CoordsOfPMCExitWarpTo80068007
-	getplayerxy VAR_0x8008, VAR_0x8009
-	compare VAR_0x8008, VAR_0x8006
-	goto_if_eq PokemonCenter_1F_OnLoad_14
 PokemonCenter_1F_OnLoad_12:
+	setvar VAR_TEMP_0, 1
 	release
 	end
 
-PokemonCenter_1F_OnLoad_13:
-	goto PokemonCenter_1F_OnLoad_12
+PokemonCenter_1F_OnLoad_15:
+	callnative CoordsOfPMCExitWarpTo80068007
+	getplayerxy VAR_0x8008, VAR_0x8009
+	compare VAR_0x8008, VAR_0x8006
+	goto_if_eq PokemonCenter_1F_OnLoad_19
+PokemonCenter_1F_OnLoad_17:
+	release
+	end
 
-PokemonCenter_1F_OnLoad_14:
+PokemonCenter_1F_OnLoad_18:
+	goto PokemonCenter_1F_OnLoad_17
+
+PokemonCenter_1F_OnLoad_19:
 	compare VAR_0x8009, VAR_0x8007
-	goto_if_eq PokemonCenter_1F_OnLoad_13
-	goto PokemonCenter_1F_OnLoad_12
-
+	goto_if_eq PokemonCenter_1F_OnLoad_18
+	goto PokemonCenter_1F_OnLoad_17
 
 NationalDexAideEvent::
 	callnative HasNationalMonToVarResult
@@ -108,7 +116,6 @@ NationalDexAideEvent_5:
 	setvar VAR_TEMP_0, 1
 	release
 	end
-
 
 NationalDexAideEvent_Movement_BackStep:
 	lock_facing_direction

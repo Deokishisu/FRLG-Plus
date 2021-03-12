@@ -7,6 +7,7 @@
 #include "party_menu.h"
 #include "item_use.h"
 #include "load_save.h"
+#include "money.h"
 #include "quest_log.h"
 #include "strings.h"
 #include "constants/hold_effects.h"
@@ -511,7 +512,7 @@ void ClearBag(void)
 {
     u32 i;
 
-    for (i = 0; i < 5; i++)
+    for (i = 0; i < 7; i++)
     {
         ClearItemSlots(gBagPockets[i].itemSlots, gBagPockets[i].capacity);
     }
@@ -864,4 +865,34 @@ ItemUseFunc ItemId_GetBattleFunc(u16 itemId)
 u8 ItemId_GetSecondaryId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].secondaryId;
+}
+
+bool8 CheckAssetsForSoftlock(void)
+{
+    u32 money = GetMoney(&gSaveBlock1Ptr->money);
+    u32 i;
+    u32 pocket;
+    u32 itemWorth;
+    u32 maxU32 = 4294967295U;
+    if(money >= 200)
+        return FALSE;
+
+    for(pocket = POCKET_ITEMS - 1; pocket < POCKET_BERRY_POUCH; pocket++)
+    {
+        if(pocket == (POCKET_KEY_ITEMS - 1) || pocket == (POCKET_TM_CASE - 1)) //skip KEY_ITEMS and TM_CASE
+            continue;
+        for(i = 0; i < gBagPockets[pocket].capacity && gBagPockets[pocket].itemSlots[i].itemId != ITEM_NONE; i++)
+        {
+            itemWorth = ((itemid_get_market_price(gBagPockets[pocket].itemSlots[i].itemId) / 2) * GetBagItemQuantity(&gBagPockets[pocket].itemSlots[i].quantity));
+            if(money > 0)
+            {
+                if(itemWorth > (maxU32 - money)) //checking for overflow
+                    return FALSE;   //overflowed, so have enough money    
+            }
+            money = money + itemWorth;
+            if(money >= 200)
+                return FALSE;
+        }
+    }
+    return TRUE;
 }

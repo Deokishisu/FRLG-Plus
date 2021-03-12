@@ -73,3 +73,52 @@ IndigoPlateau_PokemonCenter_1F_EventScript_Nurse:: @ 816EB06
 	call EventScript_PkmnCenterNurse
 	release
 	end
+
+IndigoPlateau_PokemonCenter_1F_EventScript_Abra::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_ABRA, 0
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_Abra
+	waitmoncry
+	release
+	end
+
+IndigoPlateau_PokemonCenter_1F_Text_Abra::
+	.string "ABRA: Aabra…$"
+
+
+IndigoPlateau_PokemonCenter_1F_EventScript_TeleportGuy::
+	lock
+	faceplayer
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_TeleportGuyAsks, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq IndigoPlateau_PokemonCenter_1F_EventScript_TeleportGuyDeclined
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_TeleportGuyYes, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_SOUTH
+	warpteleport MAP_PALLET_TOWN, 255, 6, 8
+	waitstate
+	end
+
+IndigoPlateau_PokemonCenter_1F_EventScript_TeleportGuyDeclined::
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_TeleportGuyDeclined, MSGBOX_NPC
+	end
+
+IndigoPlateau_PokemonCenter_1F_Text_TeleportGuyAsks::
+	.string "Ah! You're challenging the\n"
+	.string "ELITE FOUR?\p"
+	.string "Are you sure you're ready?\n"
+	.string "If you need to train some more,\l"
+	.string "my ABRA can help you.\p"
+	.string "It can TELEPORT you home.\n"
+	.string "Would you like to go home now?$"
+
+IndigoPlateau_PokemonCenter_1F_Text_TeleportGuyYes::
+	.string "Okay, okay.\n"
+	.string "Picture your house in your mind…$"
+
+IndigoPlateau_PokemonCenter_1F_Text_TeleportGuyDeclined::
+	.string "Okay, okay.\n"
+	.string "The best of luck to you!$"

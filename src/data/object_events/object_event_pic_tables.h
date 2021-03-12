@@ -2122,3 +2122,15 @@ const struct SpriteFrameImage gObjectEventPicTable_Sudowoodo[] = {
     overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 1),
     overworld_frame(gObjectEventPic_Sudowoodo, 2, 4, 2),
 };
+
+const struct SpriteFrameImage gObjectEventPicTable_Abra[] = {
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Abra, 2, 2, 2),
+};
