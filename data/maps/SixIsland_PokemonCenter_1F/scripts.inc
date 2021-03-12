@@ -1,7 +1,8 @@
-.equ LOCALID_RIVAL, 2
+.equ LOCALID_RIVAL, 3
 
 SixIsland_PokemonCenter_1F_MapScripts:: @ 8171D6A
 	map_script MAP_SCRIPT_ON_TRANSITION, SixIsland_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
 	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SixIsland_PokemonCenter_1F_OnFrame
 	.byte 0

@@ -1,0 +1,105 @@
+const LOCALID_AIDE = 2
+
+script PokemonCenter_1F_OnLoad {
+	if(flag(FLAG_SYS_NATIONAL_DEX))
+    {
+    	setvar(VAR_TEMP_0, 1)
+    	release
+    	end
+    }
+	callnative(HasNationalMonToVarResult)
+    if(!var(VAR_RESULT))
+    {
+    	setvar(VAR_TEMP_0, 1)
+    	release
+    	end
+    }
+    specialvar(VAR_RESULT, GetPlayerFacingDirection)
+    if(var(VAR_RESULT) != DIR_NORTH)
+    {
+    	callnative(CoordsOfPMCExitWarpTo80068007)
+    	getplayerxy(VAR_0x8008, VAR_0x8009)
+        if((var(VAR_0x8008) == VAR_0x8006) && (var(VAR_0x8009) == VAR_0x8007))
+        {
+        	//goto(NationalDexAideEvent)
+        }
+        release
+        end
+    }
+    release
+    end
+}
+
+script NationalDexAideEvent {
+	callnative(HasNationalMonToVarResult)
+    if(!var(VAR_RESULT))
+    {
+    	setvar(VAR_TEMP_0, 1)
+    	release
+    	end
+    }
+    if(flag(FLAG_SYS_NATIONAL_DEX))
+    {
+    	setvar(VAR_TEMP_0, 1)
+    	release
+    	end
+    }
+    callnative(HideWarpArrowSprite)
+    lockall
+    applymovement(OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(OBJ_EVENT_ID_PLAYER, Movement_ExclamationMark)
+    waitmovement(0)
+    delay(60)
+    applymovement(OBJ_EVENT_ID_PLAYER, NationalDexAideEvent_Movement_BackStep)
+    waitmovement(0)
+    playse(SE_EXIT)
+    getplayerxy(VAR_0x8008, VAR_0x8009)
+    addvar(VAR_0x8009, 1)
+    setobjectxyperm(LOCALID_AIDE, VAR_0x8008, VAR_0x8009)
+    addobject(LOCALID_AIDE)
+    applymovement(LOCALID_AIDE, Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    textcolor(0)
+    msgbox("{PLAYER}! Hi!\nI've been looking for you!\pRemember me?\nI'm one of PROF. OAK'S AIDES.\pPROF. OAK has improved the\nPOKéDEX again and I'm supposed\lto upgrade yours.\pCan I see your POKéDEX?")
+    closemessage
+    textcolor(3)
+    applymovement(OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+    msgbox("The AIDE took your POKéDEX\nunit.")
+    closemessage
+    applymovement(LOCALID_AIDE, Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+    textcolor(0)
+    msgbox("… … …  … … …\p… … …  … … …")
+    applymovement(LOCALID_AIDE, Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    msgbox("…And that's done!\pNow this unit can record data on\na lot more POKéMON.\pHere you go!")
+    closemessage
+    applymovement(LOCALID_AIDE, Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    playfanfare(MUS_OBTAIN_KEY_ITEM)
+    textcolor(3)
+	message(PalletTown_ProfessorOaksLab_Text_PlayersPokedexWasUpgraded)
+	waitmessage
+	waitfanfare
+    closemessage
+	textcolor(0)
+    special(EnableNationalPokedex)
+    msgbox("Keep catching POKéMON to fill up\nyour improved POKéDEX!\pI better get back to the LAB.\nSee you, {PLAYER}!")
+    closemessage
+    delay(20)
+    playse(SE_EXIT)
+    applymovement(LOCALID_AIDE, Movement_WalkInPlaceFastestDown)
+    waitmovement(0)
+	delay(5)
+    removeobject(LOCALID_AIDE)
+    setvar(VAR_TEMP_0, 1)
+    releaseall
+    end
+}movement NationalDexAideEvent_Movement_BackStep {
+	lock_facing_direction
+    walk_up
+    unlock_facing_direction
+}

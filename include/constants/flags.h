@@ -237,7 +237,7 @@
 #define FLAG_BIKE_GEAR                        0x0E3 // Swaps between FRLG bike speed and Mach Bike speed
 
 // Unused?
-#define FLAG_0x0E4               0x0E4
+#define FLAG_HIDE_NATIONAL_DEX_AIDE           0x0E4
 #define FLAG_0x0E5               0x0E5
 #define FLAG_0x0E6               0x0E6
 #define FLAG_0x0E7               0x0E7

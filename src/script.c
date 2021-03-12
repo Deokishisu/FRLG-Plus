@@ -1,5 +1,6 @@
 #include "global.h"
 #include "item.h"
+#include "field_effect_helpers.h"
 #include "field_specials.h"
 #include "event_object_movement.h"
 #include "overworld.h"
@@ -567,6 +568,31 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     if (scriptSize > sizeof(gSaveBlock1Ptr->ramScript.data.script))
         scriptSize = sizeof(gSaveBlock1Ptr->ramScript.data.script);
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
+}
+
+void HideWarpArrowSprite(void)
+{
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    SetSpriteInvisible(playerObjEvent->warpArrowSpriteId);
+}
+
+void CoordsOfPMCExitWarpTo80068007(void)
+{
+    switch(gMapHeader.regionMapSectionId)
+    {
+        case MAPSEC_INDIGO_PLATEAU:
+            gSpecialVar_0x8006 = 11;
+            gSpecialVar_0x8007 = 16;
+            return;
+        case MAPSEC_ONE_ISLAND:
+            gSpecialVar_0x8006 = 9;
+            gSpecialVar_0x8007 = 9;
+            return;
+        default:
+            gSpecialVar_0x8006 = 7;
+            gSpecialVar_0x8007 = 8;
+            return;
+    }
 }
 
 void HasNationalMonToVarResult(void)

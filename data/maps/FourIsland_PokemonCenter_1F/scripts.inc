@@ -1,5 +1,6 @@
 FourIsland_PokemonCenter_1F_MapScripts:: @ 8171BEA
 	map_script MAP_SCRIPT_ON_TRANSITION, FourIsland_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
 	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 

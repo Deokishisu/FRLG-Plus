@@ -971,6 +971,7 @@ EventScript_ResetAllMapFlags:: @ 81A6481
 	setflag FLAG_HIDE_SCOTT
 	setflag FLAG_HIDE_LATI
 	setflag FLAG_HIDE_AWARD_SCOTT_BATTLE_TOWER
+	setflag FLAG_HIDE_NATIONAL_DEX_AIDE
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
 	end
 
@@ -1244,6 +1245,7 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 	.include "data/maps/FarawayIsland_Interior/text.inc"
 
 	.include "data/scripts/fuji_event.inc"
+	.include "data/scripts/national_dex_aide.inc"
 
 	.include "data/maps/OneIsland_KindleRoad_GlassWorkshop/scripts.inc"
 

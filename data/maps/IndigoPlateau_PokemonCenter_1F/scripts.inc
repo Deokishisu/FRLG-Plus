@@ -2,6 +2,7 @@
 
 IndigoPlateau_PokemonCenter_1F_MapScripts:: @ 816EA5A
 	map_script MAP_SCRIPT_ON_TRANSITION, IndigoPlateau_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
 	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 

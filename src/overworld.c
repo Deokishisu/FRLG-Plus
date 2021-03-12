@@ -33,6 +33,7 @@
 #include "new_menu_helpers.h"
 #include "overworld.h"
 #include "play_time.h"
+#include "pokedex.h"
 #include "pokemon_storage_system.h"
 #include "quest_log.h"
 #include "quest_log_objects.h"
@@ -2351,6 +2352,35 @@ static bool32 LoadMap_QLPlayback(u8 *state)
     return FALSE;
 }
 
+void CheckNationalDexEligibilityOnSaveLoad(void)
+{
+    u16 mapGroup = gSaveBlock1Ptr->location.mapGroup;
+    s8 mapNum = gSaveBlock1Ptr->location.mapNum;
+    if((mapGroup == MAP_GROUP(VIRIDIAN_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(VIRIDIAN_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(PEWTER_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(PEWTER_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(CERULEAN_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(CERULEAN_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(LAVENDER_TOWN_POKEMON_CENTER_1F) && mapNum == MAP_NUM(LAVENDER_TOWN_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(VERMILION_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(VERMILION_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(CELADON_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(CELADON_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(FUCHSIA_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(FUCHSIA_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(CINNABAR_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(CINNABAR_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(INDIGO_PLATEAU_POKEMON_CENTER_1F) && mapNum == MAP_NUM(INDIGO_PLATEAU_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(SAFFRON_CITY_POKEMON_CENTER_1F) && mapNum == MAP_NUM(SAFFRON_CITY_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(ROUTE4_POKEMON_CENTER_1F) && mapNum == MAP_NUM(ROUTE4_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(ROUTE10_POKEMON_CENTER_1F) && mapNum == MAP_NUM(ROUTE10_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(ONE_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(ONE_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(TWO_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(TWO_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(THREE_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(THREE_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(FOUR_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(FOUR_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(FIVE_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(FIVE_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(SEVEN_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(SEVEN_ISLAND_POKEMON_CENTER_1F)) ||
+       (mapGroup == MAP_GROUP(SIX_ISLAND_POKEMON_CENTER_1F) && mapNum == MAP_NUM(SIX_ISLAND_POKEMON_CENTER_1F)))
+    {
+        if(!IsNationalPokedexEnabled() && HasNationalMon())
+            VarSet(VAR_TEMP_0, 0);
+    }
+}
+
 void CB2_EnterFieldFromQuestLog(void)
 {
     FieldClearVBlankHBlankCallbacks();
@@ -2363,6 +2393,7 @@ void CB2_EnterFieldFromQuestLog(void)
     Overworld_ResetStateOnContinue();
     InitMapFromSavedGame();
     PlayTimeCounter_Start();
+    CheckNationalDexEligibilityOnSaveLoad();
     ScriptContext1_Init();
     gUnknown_2031DE0 = TRUE;
     if (UseContinueGameWarp() == TRUE)

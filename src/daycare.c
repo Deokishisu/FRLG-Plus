@@ -1797,6 +1797,8 @@ static void AddHatchedMonToParty(u8 id)
 
     MonRestorePP(mon);
     CalculateMonStats(mon, FALSE);
+
+    CheckNationalDexEligibilityOnSaveLoad();
 }
 
 void ScriptHatchMon(void)

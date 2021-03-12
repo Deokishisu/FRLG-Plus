@@ -1,5 +1,6 @@
-.equ LOCALID_BILL,  2
-.equ LOCALID_CELIO, 3
+.equ LOCALID_BILL,  3
+.equ LOCALID_CELIO, 4
+.equ LOCALID_SCOTT, 8
 
 OneIsland_PokemonCenter_1F_MapScripts:: @ 8170BF8
 	map_script MAP_SCRIPT_ON_TRANSITION, OneIsland_PokemonCenter_1F_OnTransition
@@ -12,6 +13,7 @@ OneIsland_PokemonCenter_1F_OnLoad:: @ 8170C0D
 	compare VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5
 	call_if_ge OneIsland_PokemonCenter_1F_EventScript_SetRubyMetatile
 	call_if_set FLAG_SYS_CAN_LINK_WITH_RS, OneIsland_PokemonCenter_1F_EventScript_SetNetworkMachineOn
+	goto PokemonCenter_1F_OnLoad
 	end
 
 OneIsland_PokemonCenter_1F_EventScript_SetRubyMetatile:: @ 8170C22
@@ -357,11 +359,11 @@ OneIsland_PokemonCenter_1F_EventScript_GiveRainbowPass:: @ 81710B2
 OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott:: @ 817103A
 	msgbox OneIsland_PokemonCenter_1F_Text_PassLetYouGetToAllIslandsScott
 	closemessage
-	turnobject 7, DIR_NORTH
+	turnobject LOCALID_SCOTT, DIR_NORTH
 	playse SE_PIN
-	applymovement 7, Movement_ExclamationMark
+	applymovement LOCALID_SCOTT, Movement_ExclamationMark
 	waitmovement 0
-	applymovement 7, Movement_Delay48
+	applymovement LOCALID_SCOTT, Movement_Delay48
 	waitmovement 0
 	msgbox OneIsland_PokemonCenter_1F_Text_YoureTheChamp
 	closemessage
@@ -378,7 +380,7 @@ OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott:: @ 817103A
 	compare VAR_0x8005, 15
 	call_if_eq OneIsland_PokemonCenter_1F_EventScript_ScottLeftOne
 	call_if_gt OneIsland_PokemonCenter_1F_EventScript_ScottLeftTwo
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottExits
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottExits
 	waitmovement 0
 	compare VAR_0x8005, 15
 	call_if_ne OneIsland_PokemonCenter_1F_EventScript_ScottExitsDownStep
@@ -388,7 +390,7 @@ OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott:: @ 817103A
 	end
 
 OneIsland_PokemonCenter_1F_EventScript_ScottExitsDownStep::
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottExitsDownStep
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottExitsDownStep
 	waitmovement 0
 	return
 
@@ -397,12 +399,12 @@ OneIsland_PokemonCenter_1F_Movement_ScottExitsDownStep::
 	step_end
 
 OneIsland_PokemonCenter_1F_EventScript_ScottLeftOne::
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottLeftOne
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottLeftOne
 	waitmovement 0
 	return
 
 OneIsland_PokemonCenter_1F_EventScript_ScottLeftTwo::
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottLeftTwo
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottLeftTwo
 	waitmovement 0
 	return
 
@@ -445,17 +447,17 @@ OneIsland_PokemonCenter_1F_Text_ExcuseMe::
 	.string "Well, I'll be seeing you!$"
 
 OneIsland_PokemonCenter_1F_EventScript_ScottToLeft::
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottToLeft
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottToLeft
 	waitmovement 0
 	return
 
 OneIsland_PokemonCenter_1F_EventScript_ScottToCenter::
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottToCenter
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottToCenter
 	waitmovement 0
 	return
 
 OneIsland_PokemonCenter_1F_EventScript_ScottToRight::
-	applymovement 7, OneIsland_PokemonCenter_1F_Movement_ScottToRight
+	applymovement LOCALID_SCOTT, OneIsland_PokemonCenter_1F_Movement_ScottToRight
 	waitmovement 0
 	return
 
@@ -466,7 +468,7 @@ OneIsland_PokemonCenter_1F_EventScript_Scott:: @ 8171151
 	msgbox OneIsland_PokemonCenter_1F_Text_ScottOnPhone
 	faceplayer
 	msgbox OneIsland_PokemonCenter_1F_Text_HeyOnCall
-	turnobject 7, DIR_EAST
+	turnobject LOCALID_SCOTT, DIR_EAST
 	release
 	end
 

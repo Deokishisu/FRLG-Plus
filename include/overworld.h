@@ -192,6 +192,7 @@ bool8 SetDiveWarpEmerge(u16 x, u16 y);
 bool8 SetDiveWarpDive(u16 x, u16 y);
 void do_load_map_stuff_loop(u8 *state);
 void SetInitialPlayerAvatarStateWithDirection(u8 dirn);
+void CheckNationalDexEligibilityOnSaveLoad(void);
 
 extern u16 *gBGTilemapBuffers1;
 extern u16 *gBGTilemapBuffers2;
