@@ -3300,7 +3300,7 @@ void sub_8105D64(u8 a0, u16 species, u8 a2, u8 a3)
     BlitBitmapRectToWindow(a0, buffer, 0, 0, 16, 16, a2, a3, 16, 16);
 }
 
-u8 sub_8105E1C(bool8 a0)
+u8 sub_8105E1C(bool8 a0) //a0 is true when freshly caught and showing first page of entry
 {
     sub_8105594(3, 6);
     FillBgTilemapBufferRect_Palette0(2, 0, 0, 0, 30, 20);
@@ -3665,7 +3665,11 @@ u8 sub_8106B60(u16 species)
     sub_8104AB0(species, 2, 1);
     sub_8104AB0(species, 3, 1);
 
-    if (!IsNationalPokedexEnabled() && SpeciesToNationalPokedexNum(species) > KANTO_DEX_COUNT)
+    if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+        if(SpeciesToExtendedPokedexNum(species) > EXTENDED_DEX_COUNT)
+            return CreateTask(sub_8106BD8, 0);
+
+    if (!FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled() && SpeciesToNationalPokedexNum(species) > KANTO_DEX_COUNT)
         return CreateTask(sub_8106BD8, 0);
 
     sub_810250C();
@@ -3747,7 +3751,9 @@ static void sub_8106BE8(u8 taskId)
         gUnknown_203ACF0->field_01 = 8;
         break;
     case 8:
-        sub_8105E1C(1);
+        if(FlagGet(FLAG_SYS_RECEIVED_EXTENDED_DEX) && !IsNationalPokedexEnabled())
+            gUnknown_203ACF0->field_42 = 5;
+        sub_8105E1C(1); //goes to first data page from freshly caught
         gUnknown_203ACF0->field_01 = 9;
         break;
     case 9:
