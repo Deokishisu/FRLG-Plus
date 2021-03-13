@@ -1202,6 +1202,52 @@ void GiveRivalStarterEgg(void)
     CalculatePlayerPartyCount();
 }
 
+void GiveSelphyCorsolaEgg(void)
+{
+    struct Pokemon egg;
+    u16 species = SPECIES_CORSOLA;
+    u8 parentSlots[DAYCARE_MON_COUNT];
+    bool8 isEgg;
+    u16 ball;
+    u8 metLevel;
+    u8 otGender = FEMALE;
+    u8 language;
+
+    //SetInitialEggData
+    CreateMon(&egg, species, EGG_HATCH_LEVEL, 32, TRUE, ((((Random()) % 0xFFFE) + 1) | (Random() << 16)), OT_ID_PLAYER_ID, 0);
+
+    GiveMoveToMon(&egg, MOVE_BARRIER);
+    GiveMoveToMon(&egg, MOVE_INGRAIN);
+
+    metLevel = 0;
+    ball = ITEM_POKE_BALL;
+    language = LANGUAGE_JAPANESE;
+    SetMonData(&egg, MON_DATA_POKEBALL, &ball);
+    SetMonData(&egg, MON_DATA_NICKNAME, sJapaneseEggNickname);
+    SetMonData(&egg, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
+    SetMonData(&egg, MON_DATA_MET_LEVEL, &metLevel);
+    SetMonData(&egg, MON_DATA_LANGUAGE, &language);
+
+    RivalStarterEggIVs(&egg); // 3 31s, rest random.
+
+    isEgg = TRUE;
+    SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);
+
+    StringCopy(gStringVar1, gTrainers[TRAINER_LADY_SELPHY].trainerName);
+    StringCopy(gStringVar2, gSaveBlock2Ptr->playerName);
+    if(StringCompare(gStringVar1, gStringVar2) == 0)
+    {   //If the player's name is SELPHY, make the Egg OT SEBASTIAN instead to keep it an outsider Egg.
+        StringCopy(gStringVar1, gTrainers[TRAINER_BIRD_KEEPER_SEBASTIAN].trainerName);
+        otGender = MALE;
+    }
+    SetMonData(&egg, MON_DATA_OT_NAME, &gStringVar1);
+    SetMonData(&egg, MON_DATA_OT_GENDER, &otGender);
+
+    gPlayerParty[PARTY_SIZE - 1] = egg;
+    CompactPartySlots();
+    CalculatePlayerPartyCount();
+}
+
 void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
 {
     u8 metLevel;

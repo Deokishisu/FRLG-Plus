@@ -2,6 +2,7 @@
 .equ LOCALID_BUTLER, 2
 
 .equ SHOWN_REQUESTED_MON, FLAG_TEMP_2
+.equ MAPSEC_FOUR_ISLAND, 0x92
 
 FiveIsland_ResortGorgeous_House_MapScripts:: @ 8171EBD
 	.byte 0
@@ -64,6 +65,7 @@ FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon:: @ 8171F34
 	call_if_eq FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerWest
 	moveobjectoffscreen LOCALID_BUTLER
 	msgbox FiveIsland_ResortGorgeous_House_Text_ButlerPleaseAcceptThisAsHerThanks
+	goto_if_unset FLAG_GIVEN_CORSOLA_EGG, FiveIsland_ResortGorgeous_House_EventScript_FirstReward
 	giveitem VAR_RESORT_GORGEOUS_REWARD
 	compare VAR_RESULT, FALSE
 	goto_if_eq FiveIsland_ResortGorgeous_House_EventScript_NoRoomForReward
@@ -71,6 +73,44 @@ FiveIsland_ResortGorgeous_House_EventScript_ShowRequestedMon:: @ 8171F34
 	setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE
 	release
 	end
+
+FiveIsland_ResortGorgeous_House_EventScript_FirstReward::
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	compare VAR_RESULT, 6
+	goto_if_eq FiveIsland_ResortGorgeous_House_EventScript_NoRoomForEgg
+	playfanfare MUS_LEVEL_UP
+	textcolor 3
+	msgbox FiveIsland_ResortGorgeous_House_Text_ObtainedTheEgg
+	waitmessage
+	waitfanfare
+	closemessage
+	callnative GiveSelphyCorsolaEgg
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	subvar VAR_RESULT, 1
+	setmonmetlocation VAR_RESULT, MAPSEC_FOUR_ISLAND
+	setflag SHOWN_REQUESTED_MON
+	setflag FLAG_GIVEN_CORSOLA_EGG
+	setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE
+	release
+	end
+
+FiveIsland_ResortGorgeous_House_Text_ObtainedTheEgg::
+	.string "{PLAYER} received the EGG from\n"
+	.string "SEBASTIAN.$"
+
+FiveIsland_ResortGorgeous_House_EventScript_NoRoomForEgg::
+	textcolor 0
+	msgbox FiveIsland_ResortGorgeous_House_Text_ButlerPartyAppearsToBeFull
+	textcolor 1
+	msgbox FiveIsland_ResortGorgeous_House_Text_OhHowDisappointing
+	setflag SHOWN_REQUESTED_MON
+	setvar VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE
+	release
+	end
+
+FiveIsland_ResortGorgeous_House_Text_ButlerPartyAppearsToBeFull::
+    .string "Butler: Your party appears to be\n"
+    .string "unfortunately full.$"
 
 FiveIsland_ResortGorgeous_House_EventScript_ButlerApproachPlayerNorth:: @ 8171FCD
 	applymovement LOCALID_SELPHY, Movement_WalkInPlaceFastestDown
@@ -152,3 +192,22 @@ FiveIsland_ResortGorgeous_House_Movement_ButlerEnter:: @ 8172060
 FiveIsland_ResortGorgeous_House_EventScript_Butler:: @ 8172062
 	msgbox FiveIsland_ResortGorgeous_House_Text_LadySelphySmileHasBrillianceOfSun, MSGBOX_NPC
 	end
+
+FiveIsland_ResortGorgeous_House_EventScript_Painting::
+	goto_if_unset FLAG_HIDE_RESORT_GORGEOUS_INSIDE_SELPHY, FiveIsland_ResortGorgeous_House_EventScript_PaintingSelphy
+	msgbox FiveIsland_ResortGorgeous_House_Text_WomanWithCorsola, MSGBOX_SIGN
+	end
+
+FiveIsland_ResortGorgeous_House_EventScript_PaintingSelphy::
+	msgbox FiveIsland_ResortGorgeous_House_Text_SelphyWithCorsola, MSGBOX_SIGN
+	end
+
+FiveIsland_ResortGorgeous_House_Text_WomanWithCorsola::
+	.string "It's a photo of a woman relaxing\n"
+	.string "at a resort surrounded by many\l"
+	.string "pink, coral POKéMON.$"
+
+FiveIsland_ResortGorgeous_House_Text_SelphyWithCorsola::
+	.string "It's a photo of SELPHY relaxing\n"
+	.string "at a resort surrounded by many\l"
+	.string "pink, coral POKéMON.$"

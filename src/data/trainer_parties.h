@@ -9998,6 +9998,14 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LadySelphy[] = {
     {
         .iv = 0,
         .lvl = 49,
+        .species = SPECIES_CORSOLA,
+        .heldItem = ITEM_NUGGET,
+        .abilityNum = 0,
+        .moves = {MOVE_RECOVER, MOVE_SURF, MOVE_BARRIER, MOVE_INGRAIN},
+    },
+    {
+        .iv = 0,
+        .lvl = 49,
         .species = SPECIES_PERSIAN,
         .heldItem = ITEM_NUGGET,
         .abilityNum = 0,
