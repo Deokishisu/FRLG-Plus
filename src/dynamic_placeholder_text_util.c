@@ -98,7 +98,7 @@ static const u8 sTextColorTable[] =
     [OBJ_EVENT_GFX_LATIAS / 2]                  = 0x22, // OBJ_EVENT_GFX_LATIOS
     [OBJ_EVENT_GFX_EM_BRENDAN /2]               = 0x10, // OBJ_EVEN_GFX_EM_MAY
     [OBJ_EVENT_GFX_CABLE_CAR /2]                = 0x22, // OBJ_EVEN_GFX_SUDOWOODO
-    [OBJ_EVENT_GFX_ABRA /2]                     = 0x22  // OBJ_EVEN_GFX_
+    [OBJ_EVENT_GFX_ABRA /2]                     = 0x12  // OBJ_EVENT_GFX_SWIMMER_F_WATER_2
 };
 
 void DynamicPlaceholderTextUtil_Reset(void)

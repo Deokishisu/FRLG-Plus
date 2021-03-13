@@ -181,6 +181,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmMay;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Abra;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerFWater2;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -366,4 +367,5 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_CABLE_CAR]                = &gObjectEventGraphicsInfo_CableCar,
     [OBJ_EVENT_GFX_SUDOWOODO]                = &gObjectEventGraphicsInfo_Sudowoodo,
     [OBJ_EVENT_GFX_ABRA]                     = &gObjectEventGraphicsInfo_Abra,
+    [OBJ_EVENT_GFX_SWIMMER_F_WATER_2]        = &gObjectEventGraphicsInfo_SwimmerFWater2,
 };
