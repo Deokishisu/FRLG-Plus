@@ -247,6 +247,15 @@
 #define METATILE_SeviiIslands67_LongGrass_Bottom       0x23B
 #define METATILE_SeviiIslands67_LongGrass_Top          0x233
 
+// gTileset_SeviiIslands6
+#define METATILE_SeviiIslands6_DO_NOT_DELETE                 0x287
+#define METATILE_SeviiIslands6_ForestTreeCorner_Left         0x2B3
+#define METATILE_SeviiIslands6_ForestTreeCorner_Left_Mowed   0x2A0
+#define METATILE_SeviiIslands6_ForestTreeCorner_Right        0x2B4
+#define METATILE_SeviiIslands6_ForestTreeCorner_Right_Mowed  0x2A2
+#define METATILE_SeviiIslands6_ForestTreeTop                 0x2B5
+#define METATILE_SeviiIslands6_ForestTreeTop_Mowed           0x28F
+
 // gTileset_SilphCo
 #define METATILE_SilphCo_Arrow_Down                     0x2A8
 #define METATILE_SilphCo_Arrow_Left                     0x2A1

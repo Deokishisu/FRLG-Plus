@@ -577,3 +577,10 @@ gMetatiles_SeviiIslands5::
 	.align 1
 gMetatileAttributes_SeviiIslands5::
 	.incbin "data/tilesets/secondary/seviiislands5/metatile_attributes.bin"
+	.align 1
+gMetatiles_SeviiIslands6::
+	.incbin "data/tilesets/secondary/seviiislands6/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_SeviiIslands6::
+	.incbin "data/tilesets/secondary/seviiislands6/metatile_attributes.bin"

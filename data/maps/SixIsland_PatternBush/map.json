@@ -197,35 +197,35 @@
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_GREEN_PATH",
-      "dest_warp_id": 0
+      "dest_warp_id": 1
     },
     {
       "x": 56,
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_GREEN_PATH",
-      "dest_warp_id": 1
+      "dest_warp_id": 2
     },
     {
       "x": 3,
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_GREEN_PATH",
-      "dest_warp_id": 2
+      "dest_warp_id": 3
     },
     {
       "x": 4,
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_GREEN_PATH",
-      "dest_warp_id": 2
+      "dest_warp_id": 4
     },
     {
       "x": 5,
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_GREEN_PATH",
-      "dest_warp_id": 3
+      "dest_warp_id": 5
     }
   ],
   "coord_events": [

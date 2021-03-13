@@ -2608,12 +2608,12 @@
     {
       "id": "LAYOUT_SIX_ISLAND",
       "name": "SixIsland_Layout",
-      "width": 24,
-      "height": 30,
+      "width": 25,
+      "height": 31,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands67",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/SixIsland/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland/map.bin"
     },
@@ -2781,19 +2781,19 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands67",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/SixIsland_OutcastIsland/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland_OutcastIsland/map.bin"
     },
     {
       "id": "LAYOUT_SIX_ISLAND_GREEN_PATH",
       "name": "SixIsland_GreenPath_Layout",
-      "width": 72,
-      "height": 20,
+      "width": 78,
+      "height": 21,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands67",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/SixIsland_GreenPath/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland_GreenPath/map.bin"
     },
@@ -2805,7 +2805,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands67",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/SixIsland_WaterPath/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland_WaterPath/map.bin"
     },
@@ -2817,7 +2817,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands67",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/SixIsland_RuinValley/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland_RuinValley/map.bin"
     },
@@ -3585,7 +3585,7 @@
       "border_width": 3,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_ViridianForest",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/SixIsland_PatternBush/border.bin",
       "blockdata_filepath": "data/layouts/SixIsland_PatternBush/map.bin"
     },
@@ -3885,7 +3885,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands67",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/BirthIsland_Exterior/border.bin",
       "blockdata_filepath": "data/layouts/BirthIsland_Exterior/map.bin"
     },
@@ -3897,7 +3897,7 @@
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_SeviiIslands123",
+      "secondary_tileset": "gTileset_SeviiIslands6",
       "border_filepath": "data/layouts/NavelRock_Exterior/border.bin",
       "blockdata_filepath": "data/layouts/NavelRock_Exterior/map.bin"
     },

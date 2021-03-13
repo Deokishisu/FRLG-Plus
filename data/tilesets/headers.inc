@@ -802,3 +802,14 @@ gTileset_SeviiIslands5::
 	.4byte gMetatiles_SeviiIslands5
 	.4byte InitTilesetAnim_SeviiIslands5
 	.4byte gMetatileAttributes_SeviiIslands5
+
+	.align 2
+gTileset_SeviiIslands6::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_SeviiIslands6
+	.4byte gTilesetPalettes_SeviiIslands6
+	.4byte gMetatiles_SeviiIslands6
+	.4byte NULL
+	.4byte gMetatileAttributes_SeviiIslands6

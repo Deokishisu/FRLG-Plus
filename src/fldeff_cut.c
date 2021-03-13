@@ -120,6 +120,15 @@ static const u16 sCutGrassMetatileMapping[][2] = {
         METATILE_ID(FuchsiaCity, LongGrassBottom_MountainRight),
         METATILE_ID(General, MountainCornerTopRight | METATILE_COLLISION_MASK)
     }, {
+        METATILE_ID(SeviiIslands6, ForestTreeCorner_Left),
+        METATILE_ID(SeviiIslands6, ForestTreeCorner_Left_Mowed | METATILE_COLLISION_MASK) // for some reason this calls the wrong tile
+    }, {
+        METATILE_ID(SeviiIslands6, ForestTreeCorner_Right),
+        METATILE_ID(SeviiIslands6, ForestTreeCorner_Right_Mowed | METATILE_COLLISION_MASK)
+    }, {
+        METATILE_ID(SeviiIslands6, ForestTreeTop),
+        METATILE_ID(SeviiIslands6, ForestTreeTop_Mowed)
+    }, {
         0xffff,
         0xffff
     }
@@ -359,6 +368,7 @@ static bool8 MetatileIsLongGrass(u32 metatileId, bool8 isTop)
             case METATILE_FuchsiaCity_LongGrassTop_MountainLeft:
             case METATILE_FuchsiaCity_LongGrassTop_MountainRight:
             case METATILE_SeviiIslands67_LongGrass_Top:
+            case METATILE_SeviiIslands6_ForestTreeTop:
                 return TRUE;
             default:
                 return FALSE;
@@ -374,6 +384,8 @@ static bool8 MetatileIsLongGrass(u32 metatileId, bool8 isTop)
             case METATILE_FuchsiaCity_LongGrassBottom_MountainLeft:
             case METATILE_FuchsiaCity_LongGrassBottom_MountainRight:
             case METATILE_SeviiIslands67_LongGrass_Bottom:
+            case METATILE_SeviiIslands6_ForestTreeCorner_Left:
+            case METATILE_SeviiIslands6_ForestTreeCorner_Right:
                 return TRUE;
             default:
                 return FALSE;
@@ -393,6 +405,9 @@ static bool8 MetatileIsMowedLongGrass(u32 metatileId)
         case METATILE_General_MountainCornerTopRight:
         case METATILE_FuchsiaCity_SafariMountainTopLeft_Mowed:
         case METATILE_FuchsiaCity_SafariMountainTopRight_Mowed:
+        case METATILE_SeviiIslands6_ForestTreeCorner_Left_Mowed:
+        case METATILE_SeviiIslands6_ForestTreeCorner_Right_Mowed:
+        case METATILE_SeviiIslands6_ForestTreeTop_Mowed:
             return TRUE;
         default:
             return FALSE;
