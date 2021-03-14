@@ -73,6 +73,15 @@ const struct SpriteFrameImage gUnknown_83A53DC[] =
     overworld_frame(gUnknown_839A008, 2, 2, 4),
 };
 
+const struct SpriteFrameImage gSevenIsland_Grass_SpriteFrameImage[] =
+{
+    overworld_frame(gSevenIsland_Grass, 2, 2, 0),
+    overworld_frame(gSevenIsland_Grass, 2, 2, 1),
+    overworld_frame(gSevenIsland_Grass, 2, 2, 2),
+    overworld_frame(gSevenIsland_Grass, 2, 2, 3),
+    overworld_frame(gSevenIsland_Grass, 2, 2, 4),
+};
+
 const struct SpriteFrameImage gUnknown_83A53DC_OneIsland[] = //also Three Island
 {
     overworld_frame(gUnknown_839A008, 2, 2, 5),
@@ -115,6 +124,17 @@ const struct SpriteTemplate gUnknown_83A5420_OneIsland =
     .oam = &gObjectEventBaseOam_16x16,
     .anims = gUnknown_83A541C,
     .images = gUnknown_83A53DC_OneIsland,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = UpdateTallGrassFieldEffect,
+};
+
+const struct SpriteTemplate gUnknown_83A5420_SevenIsland =
+{
+    .tileTag = SPRITE_INVALID_TAG,
+    .paletteTag = 0x1005,
+    .oam = &gObjectEventBaseOam_16x16,
+    .anims = gUnknown_83A541C,
+    .images = gSevenIsland_Grass_SpriteFrameImage,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = UpdateTallGrassFieldEffect,
 };

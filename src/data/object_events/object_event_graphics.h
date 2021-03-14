@@ -298,3 +298,4 @@ const u32 gUnknown_839D2A8[] = INCBIN_U32("graphics/object_events/pics/unknown/8
 const u32 gUnknown_839D328[] = INCBIN_U32("graphics/object_events/pics/unknown/839D328.4bpp");
 const u16 gUnknown_839D3A8[] = INCBIN_U16("graphics/object_events/palettes/839D3A8.gbapal");
 const u32 gUnknown_839D3C8[] = INCBIN_U32("graphics/object_events/pics/unknown/839D3C8.4bpp");
+const u32 gSevenIsland_Grass[] = INCBIN_U32("graphics/object_events/pics/unknown/SevenIsland_Grass.4bpp");

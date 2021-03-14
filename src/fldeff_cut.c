@@ -129,6 +129,51 @@ static const u16 sCutGrassMetatileMapping[][2] = {
         METATILE_ID(SeviiIslands6, ForestTreeTop),
         METATILE_ID(SeviiIslands6, ForestTreeTop_Mowed)
     }, {
+        METATILE_ID(SeviiIslands67, Grass_BottomLeftCorner),
+        METATILE_ID(SeviiIslands67, BottomLeftCorner)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_BottomRightCorner),
+        METATILE_ID(SeviiIslands67, BottomRightCorner)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_Down),
+        METATILE_ID(SeviiIslands67, Down)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_InnerCornerBottomLeft),
+        METATILE_ID(SeviiIslands67, InnerCornerBottomLeft)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_InnerCornerBottomRight),
+        METATILE_ID(SeviiIslands67, InnerCornerBottomRight)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_InnerCornerTopLeft),
+        METATILE_ID(SeviiIslands67, InnerCornerTopLeft)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_InnerCornerTopRight),
+        METATILE_ID(SeviiIslands67, InnerCornerTopRight)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_InnerCornersTopRightBottomLeft),
+        METATILE_ID(SeviiIslands67, InnerCornersTopRightBottomLeft)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_Left),
+        METATILE_ID(SeviiIslands67, Left)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_Plain),
+        METATILE_ID(SeviiIslands67, Plain)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_Right),
+        METATILE_ID(SeviiIslands67, Right)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_RightInnerCornerTopLeft),
+        METATILE_ID(SeviiIslands67, RightInnerCornerTopLeft)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_TopLeftCorner),
+        METATILE_ID(SeviiIslands67, TopLeftCorner)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_TopRightCorner),
+        METATILE_ID(SeviiIslands67, TopRightCorner)
+    }, {
+        METATILE_ID(SeviiIslands67, Grass_Up),
+        METATILE_ID(SeviiIslands67, Up)
+    }, {
         0xffff,
         0xffff
     }
