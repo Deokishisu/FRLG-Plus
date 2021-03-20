@@ -240,15 +240,13 @@
 #define METATILE_SeviiIslands5_Micro_Mowed                  0x28B
 
 // gTileset_SeviiIslands67
-#define METATILE_SeviiIslands67_EmeraldMowed                          0x229
-#define METATILE_SeviiIslands67_LongGrass_Bottom                      0x23B
-#define METATILE_SeviiIslands67_LongGrass_Top                         0x233
-#define METATILE_SeviiIslands67_DottedHoleDoor_Closed                 0x357
-#define METATILE_SeviiIslands67_DottedHoleDoor_Open                   0x358
 #define METATILE_SeviiIslands67_BottomLeftCorner                      0x30E
 #define METATILE_SeviiIslands67_BottomRightCorner                     0x30F
 #define METATILE_SeviiIslands67_Door                                  0x30C
+#define METATILE_SeviiIslands67_DottedHoleDoor_Closed                 0x357
+#define METATILE_SeviiIslands67_DottedHoleDoor_Open                   0x358
 #define METATILE_SeviiIslands67_Down                                  0x308
+#define METATILE_SeviiIslands67_EmeraldMowed                          0x229
 #define METATILE_SeviiIslands67_Grass_BottomLeftCorner                0x2F6
 #define METATILE_SeviiIslands67_Grass_BottomRightCorner               0x2F7
 #define METATILE_SeviiIslands67_Grass_Down                            0x2D7
@@ -270,6 +268,8 @@
 #define METATILE_SeviiIslands67_InnerCornerTopRight                   0x313
 #define METATILE_SeviiIslands67_InnerCornersTopRightBottomLeft        0x359
 #define METATILE_SeviiIslands67_Left                                  0x306
+#define METATILE_SeviiIslands67_LongGrass_Bottom                      0x23B
+#define METATILE_SeviiIslands67_LongGrass_Top                         0x233
 #define METATILE_SeviiIslands67_Plain                                 0x33A
 #define METATILE_SeviiIslands67_Right                                 0x307
 #define METATILE_SeviiIslands67_RightInnerCornerTopLeft               0x390
