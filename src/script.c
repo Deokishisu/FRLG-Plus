@@ -1370,7 +1370,7 @@ void RecalculatePartyStats(void)
 void ResetTintFilter(void)
 {
     u8 val = 0;
-    gUnknown_2036E28 = 0;
+    gGlobalFieldTintMode = 0;
     SetInitialPlayerAvatarStateWithDirection(DIR_NORTH);
     StopMapMusic();
     do_load_map_stuff_loop(&val);

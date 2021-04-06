@@ -52,7 +52,7 @@ u32 GetMewMoveDirection(void)
 
     sPlayerToMewDeltaX = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.x - mew->currentCoords.x;
     sPlayerToMewDeltaY = gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.y - mew->currentCoords.y;
-    for (i = 0; i < ARRAY_COUNT(sMewDirectionCandidates); i++)
+    for (i = 0; i < NELEMS(sMewDirectionCandidates); i++)
         sMewDirectionCandidates[i] = DIR_NONE;
 
     // Player hasn't moved (just facing new direction), don't move
@@ -73,7 +73,7 @@ u32 GetMewMoveDirection(void)
         return DIR_NONE;
 
     // Below loop is for Mew to try to avoid getting trapped between the player and a rock
-    for (i = 0; i < ARRAY_COUNT(sFarawayIslandRockCoords); i++)
+    for (i = 0; i < NELEMS(sFarawayIslandRockCoords); i++)
     {
         if (gObjectEvents[gPlayerAvatar.objectEventId].previousCoords.x == sFarawayIslandRockCoords[i][0])
         {
@@ -286,7 +286,7 @@ static u8 GetValidMewMoveDirection(u8 ignoredDir)
     u8 count = 0;
     struct ObjectEvent *mew = &gObjectEvents[GetMewObjectEventId()];
 
-    for (i = 0; i < ARRAY_COUNT(sMewDirectionCandidates); i++)
+    for (i = 0; i < NELEMS(sMewDirectionCandidates); i++)
         sMewDirectionCandidates[i] = DIR_NONE;
 
     if (CanMewMoveToCoords(mew->currentCoords.x, mew->currentCoords.y - 1) == TRUE && ignoredDir != DIR_NORTH)

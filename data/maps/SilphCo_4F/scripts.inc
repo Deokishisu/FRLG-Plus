@@ -83,7 +83,7 @@ SilphCo_4F_Text_Scientist:
 
 SilphCo_4F_EventScript_Painting::
 	goto_if_unset FLAG_HIDE_SAFFRON_CIVILIANS, SilphCo_4F_EventScript_NewPainting
-	msgbox gUnknown_81C101B, MSGBOX_SIGN
+	msgbox Text_Painting, MSGBOX_SIGN
 	end
 
 SilphCo_4F_EventScript_NewPainting::

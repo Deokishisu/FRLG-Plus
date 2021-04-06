@@ -1095,7 +1095,7 @@ static void RivalStarterEggIVs(struct Pokemon *egg)
     u32 i;
     u8 selectedIvs[INHERITED_IV_COUNT];
     u8 availableIVs[NUM_STATS];
-    u8 whichParent[ARRAY_COUNT(selectedIvs)];
+    u8 whichParent[NELEMS(selectedIvs)];
     u8 iv;
 
     // Initialize a list of IV indices.
@@ -1105,7 +1105,7 @@ static void RivalStarterEggIVs(struct Pokemon *egg)
     }
 
     // Select the 3 IVs that will be inherited.
-    for (i = 0; i < ARRAY_COUNT(selectedIvs); i++)
+    for (i = 0; i < NELEMS(selectedIvs); i++)
     {
         // Randomly pick an IV from the available list and stop from being chosen again.
         selectedIvs[i] = availableIVs[Random() % (NUM_STATS - i)];
@@ -1113,7 +1113,7 @@ static void RivalStarterEggIVs(struct Pokemon *egg)
     }
 
     // Set each of inherited IVs on the egg mon.
-    for (i = 0; i < ARRAY_COUNT(selectedIvs); i++)
+    for (i = 0; i < NELEMS(selectedIvs); i++)
     {
         switch (selectedIvs[i])
         {

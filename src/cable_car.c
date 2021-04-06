@@ -282,7 +282,7 @@ static void CB2_LoadCableCar(void)
         InitMapMusic();
         ResetMapMusic();
         ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
+        InitBgsFromTemplates(0, sBgTemplates, NELEMS(sBgTemplates));
         SetBgTilemapBuffer(0, sCableCar->bgTilemapBuffers[0]);
         SetBgTilemapBuffer(1, sCableCar->bgTilemapBuffers[1]);
         SetBgTilemapBuffer(2, sCableCar->bgTilemapBuffers[2]);
@@ -291,7 +291,7 @@ static void CB2_LoadCableCar(void)
         gMain.state++;
         break;
     case 2:
-        for (i = 0; i < ARRAY_COUNT(sSpriteSheets) - 1; i++)
+        for (i = 0; i < NELEMS(sSpriteSheets) - 1; i++)
             LoadCompressedSpriteSheet(&sSpriteSheets[i]);
 
         LoadSpritePalettes(sSpritePalettes);
@@ -890,8 +890,8 @@ static void CreateCableCarSprites(void)
     // 1/64 chance for an NPC to appear hiking on the ground below the Cable Car
     if ((rval % 64) == 0)
     {
-        // Unclear if this was intentional, but the - 1 in the below ARRAY_COUNT means the Zigzagoon is never used
-        spriteId = AddPseudoObjectEvent(hikerGraphicsIds[rval % (ARRAY_COUNT(hikerGraphicsIds) - 1)], hikerCallbacks[GOING_DOWN], hikerCoords[GOING_DOWN][0], hikerCoords[GOING_DOWN][1], 106);
+        // Unclear if this was intentional, but the - 1 in the below NELEMS means the Zigzagoon is never used
+        spriteId = AddPseudoObjectEvent(hikerGraphicsIds[rval % (NELEMS(hikerGraphicsIds) - 1)], hikerCallbacks[GOING_DOWN], hikerCoords[GOING_DOWN][0], hikerCoords[GOING_DOWN][1], 106);
         if (spriteId != MAX_SPRITES)
         {
             gSprites[spriteId].oam.priority = 2;
@@ -931,7 +931,7 @@ static void CreateCableCarSprites(void)
                     gSprites[spriteId].sSameDir = FALSE;
                 }
             }
-            gSprites[spriteId].sDelay = hikerMovementDelayTable[rval % ARRAY_COUNT(hikerMovementDelayTable)];
+            gSprites[spriteId].sDelay = hikerMovementDelayTable[rval % NELEMS(hikerMovementDelayTable)];
         }
     }
 }
@@ -943,7 +943,7 @@ static void BufferNextGroundSegment(void)
 
     for (i = 0, k = 0, offset = 0x24 * (sCableCar->groundTilemapOffset + 2); i < 3; i++)
     {
-        for (j = 0; j < ARRAY_COUNT(sCableCar->groundTileBuffer[0]); j++)
+        for (j = 0; j < NELEMS(sCableCar->groundTileBuffer[0]); j++)
         {
             sCableCar->groundTileBuffer[i][j] = sCableCar->groundTilemap[offset++];
             sCableCar->groundTileBuffer[i + 3][j] = sCableCar->groundTilemap[k];
@@ -993,7 +993,7 @@ static void DrawNextGroundSegmentGoingUp(void)
     sGroundSegmentY_Up = (sCableCar->groundSegmentYStart + 23) % 32;
 
     // Draw next segment
-    for (i = 0; i < ARRAY_COUNT(sCableCar->groundTileBuffer); i++)
+    for (i = 0; i < NELEMS(sCableCar->groundTileBuffer); i++)
     {
         sGroundX_Up = sCableCar->groundSegmentXStart;
         sGroundY_Up = (sGroundSegmentY_Up + i) % 32;
@@ -1027,7 +1027,7 @@ static void DrawNextGroundSegmentGoingDown(void)
     sGroundSegmentY_Down = sCableCar->groundSegmentYStart;
     
     // Draw next segment
-    for (i = 0; i < ARRAY_COUNT(sCableCar->groundTileBuffer); i++)
+    for (i = 0; i < NELEMS(sCableCar->groundTileBuffer); i++)
     {
         sGroundX_Down = sCableCar->groundSegmentXStart;
         sGroundY_Down = (sGroundSegmentY_Down + i) % 32;

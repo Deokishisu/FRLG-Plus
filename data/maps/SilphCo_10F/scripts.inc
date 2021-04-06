@@ -66,7 +66,7 @@ SilphCo_10F_Text_WorkerM:
 
 SilphCo_10F_EventScript_Painting::
 	goto_if_unset FLAG_HIDE_SAFFRON_CIVILIANS, SilphCo_10F_EventScript_NewPainting
-	msgbox gUnknown_81C101B, MSGBOX_SIGN
+	msgbox Text_Painting, MSGBOX_SIGN
 	end
 
 SilphCo_10F_EventScript_NewPainting::

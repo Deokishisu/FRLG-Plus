@@ -1645,7 +1645,7 @@ void CB2_WhiteOut(void)
         {
             if(GetFirstAliveBoxMon() == 420) //no usable Pokemon
             {
-                gUnknown_2036E28 = 1; //should grayscale palettes?
+                gGlobalFieldTintMode = 1; //should grayscale palettes?
             }
         }
         do_load_map_stuff_loop(&val);
