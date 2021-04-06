@@ -150,6 +150,16 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
 };
 
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
@@ -304,6 +314,16 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(PAINTER, gTrainerFrontPic_Painter, 0x800),
     TRAINER_SPRITE(EM_BRENDAN, gTrainerFrontPic_EmBrendan, 0x800),
     TRAINER_SPRITE(EM_MAY, gTrainerFrontPic_EmMay, 0x800),
+    TRAINER_SPRITE(MASTER_BEAUTY, gTrainerFrontPic_MasterBeauty, 0x800),
+    TRAINER_SPRITE(MASTER_BIRD_KEEPER, gTrainerFrontPic_MasterBirdKeeper, 0x800),
+    TRAINER_SPRITE(MASTER_COOLTRAINER_M, gTrainerFrontPic_MasterCooltrainerM, 0x800),
+    TRAINER_SPRITE(MASTER_BLACK_BELT, gTrainerFrontPic_MasterBlackBelt, 0x800),
+    TRAINER_SPRITE(MASTER_BUG_CATCHER, gTrainerFrontPic_MasterBugCatcher, 0x800),
+    TRAINER_SPRITE(MASTER_HIKER, gTrainerFrontPic_MasterHiker, 0x800),
+    TRAINER_SPRITE(MASTER_LASS, gTrainerFrontPic_MasterLass, 0x800),
+    TRAINER_SPRITE(MASTER_PSYCHIC_M, gTrainerFrontPic_MasterPsychicM, 0x800),
+    TRAINER_SPRITE(MASTER_SCIENTIST, gTrainerFrontPic_MasterScientist, 0x800),
+    TRAINER_SPRITE(MASTER_YOUNGSTER, gTrainerFrontPic_MasterYoungster, 0x800),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -458,4 +478,14 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(PAINTER, gTrainerPalette_Painter),
     TRAINER_PAL(EM_BRENDAN, gTrainerPalette_EmBrendan),
     TRAINER_PAL(EM_MAY, gTrainerPalette_EmMay),
+    TRAINER_PAL(MASTER_BEAUTY, gTrainerPalette_MasterBeauty),
+    TRAINER_PAL(MASTER_BIRD_KEEPER, gTrainerPalette_MasterBirdKeeper),
+    TRAINER_PAL(MASTER_COOLTRAINER_M, gTrainerPalette_MasterCooltrainerM),
+    TRAINER_PAL(MASTER_BLACK_BELT, gTrainerPalette_MasterBlackBelt),
+    TRAINER_PAL(MASTER_BUG_CATCHER, gTrainerPalette_MasterBugCatcher),
+    TRAINER_PAL(MASTER_HIKER, gTrainerPalette_MasterHiker),
+    TRAINER_PAL(MASTER_LASS, gTrainerPalette_MasterLass),
+    TRAINER_PAL(MASTER_PSYCHIC_M, gTrainerPalette_MasterPsychicM),
+    TRAINER_PAL(MASTER_SCIENTIST, gTrainerPalette_MasterScientist),
+    TRAINER_PAL(MASTER_YOUNGSTER, gTrainerPalette_MasterYoungster),
 };

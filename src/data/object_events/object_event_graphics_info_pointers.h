@@ -182,6 +182,16 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Abra;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerFWater2;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterBeauty;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterBirdKeeper;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterBlackbelt;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterBugCatcher;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterCooltrainerM;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterHiker;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterLass;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterPsychicM;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterScientist;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterYoungster;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -368,4 +378,14 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_SUDOWOODO]                = &gObjectEventGraphicsInfo_Sudowoodo,
     [OBJ_EVENT_GFX_ABRA]                     = &gObjectEventGraphicsInfo_Abra,
     [OBJ_EVENT_GFX_SWIMMER_F_WATER_2]        = &gObjectEventGraphicsInfo_SwimmerFWater2,
+    [OBJ_EVENT_GFX_MASTER_BEAUTY]            = &gObjectEventGraphicsInfo_MasterBeauty,
+    [OBJ_EVENT_GFX_MASTER_BIRD_KEEPER]       = &gObjectEventGraphicsInfo_MasterBirdKeeper,
+    [OBJ_EVENT_GFX_MASTER_BLACK_BELT]        = &gObjectEventGraphicsInfo_MasterBlackbelt,
+    [OBJ_EVENT_GFX_MASTER_BUG_CATCHER]       = &gObjectEventGraphicsInfo_MasterBugCatcher,
+    [OBJ_EVENT_GFX_MASTER_COOLTRAINER_M]     = &gObjectEventGraphicsInfo_MasterCooltrainerM,
+    [OBJ_EVENT_GFX_MASTER_HIKER]             = &gObjectEventGraphicsInfo_MasterHiker,
+    [OBJ_EVENT_GFX_MASTER_LASS]              = &gObjectEventGraphicsInfo_MasterLass,
+    [OBJ_EVENT_GFX_MASTER_PSYCHIC_M]         = &gObjectEventGraphicsInfo_MasterPsychicM,
+    [OBJ_EVENT_GFX_MASTER_SCIENTIST]         = &gObjectEventGraphicsInfo_MasterScientist,
+    [OBJ_EVENT_GFX_MASTER_YOUNGSTER]         = &gObjectEventGraphicsInfo_MasterYoungster,
 };
