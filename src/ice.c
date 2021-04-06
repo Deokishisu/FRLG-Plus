@@ -533,7 +533,7 @@ static void sub_80AF108(struct Sprite *sprite)
     sprite->data[2] = gBattleAnimArgs[2] + targetX;
     sprite->data[3] = gBattleAnimArgs[1] + attackerY;
     sprite->data[4] = gBattleAnimArgs[3] + targetY;
-    sub_8074C80(sprite);
+    SetupLinearTranslationWithFixedDuration(sprite);
     // won't match with while loop
     for (; (targetX >= -32 && targetX <= 272) && (targetY >= -32 && targetY <= 192); targetX += sprite->data[1], targetY += sprite->data[2])
         ;
@@ -548,7 +548,7 @@ static void sub_80AF108(struct Sprite *sprite)
     sprite->data[2] = targetX;
     sprite->data[3] = attackerY;
     sprite->data[4] = targetY;
-    sub_8074C80(sprite);
+    SetupLinearTranslationWithFixedDuration(sprite);
     sprite->data[3] = gBattleAnimArgs[5];
     sprite->data[4] = gBattleAnimArgs[6];
     sprite->callback = sub_80AF28C;
@@ -686,7 +686,7 @@ static void AnimSwirlingSnowball_Step1(struct Sprite *sprite)
     sprite->pos2.x = sprite->pos2.y = 0;
     for (i = 0; i < 8; ++i)
         sprite->data[i] = tempDataHolder[i];
-    sprite->callback = sub_8075830;
+    sprite->callback = InitAndStartAnimFastLinearTranslationWithSpeed;
     StoreSpriteCallbackInData6(sprite, AnimSwirlingSnowball_Step2);
 }
 
@@ -941,10 +941,10 @@ void AnimTask_Haze1(u8 taskId)
     gBattle_BG1_Y = 0;
     SetGpuReg(REG_OFFSET_BG1HOFS, gBattle_BG1_X);
     SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
-    sub_80752A0(&animBg);
+    GetBattleAnimBg1Data(&animBg);
     LoadBgTiles(animBg.bgId, gWeatherFogHorizontalTiles, 0x800, animBg.tilesOffset);
     AnimLoadCompressedBgTilemap(animBg.bgId, gBattleAnimFogTilemap);
-    LoadPalette(&gUnknown_83C2CE0, animBg.paletteId * 16, 32);
+    LoadPalette(&gDefaultWeatherSpritePalette, animBg.paletteId * 16, 32);
     if (IsContest())
         sub_80730C0(animBg.paletteId, animBg.bgTilemap, 0, 0);
     gTasks[taskId].func = AnimTask_Haze2;
@@ -992,9 +992,9 @@ static void AnimTask_Haze2(u8 taskId)
         }
         break;
     case 3:
-        sub_80752A0(&animBg);
-        sub_8075358(1);
-        sub_8075358(2);
+        GetBattleAnimBg1Data(&animBg);
+        InitBattleAnimBg(1);
+        InitBattleAnimBg(2);
         ++gTasks[taskId].data[12];
         // fall through
     case 4:
@@ -1039,10 +1039,10 @@ void AnimTask_LoadMistTiles(u8 taskId)
     gBattle_BG1_Y = 0;
     SetGpuReg(REG_OFFSET_BG1HOFS, gBattle_BG1_X);
     SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
-    sub_80752A0(&animBg);
+    GetBattleAnimBg1Data(&animBg);
     LoadBgTiles(animBg.bgId, gWeatherFogHorizontalTiles, 0x800, animBg.tilesOffset);
     AnimLoadCompressedBgTilemap(animBg.bgId, gBattleAnimFogTilemap);
-    LoadPalette(&gUnknown_83C2CE0, animBg.paletteId * 16, 32);
+    LoadPalette(&gDefaultWeatherSpritePalette, animBg.paletteId * 16, 32);
     if (IsContest())
         sub_80730C0(animBg.paletteId, animBg.bgTilemap, 0, 0);
     gTasks[taskId].data[15] = -1;
@@ -1087,9 +1087,9 @@ static void AnimTask_OverlayFogTiles(u8 taskId)
         }
         break;
     case 3:
-        sub_80752A0(&animBg);
-        sub_8075358(1);
-        sub_8075358(2);
+        GetBattleAnimBg1Data(&animBg);
+        InitBattleAnimBg(1);
+        InitBattleAnimBg(2);
         ++gTasks[taskId].data[12];
         // fall through
     case 4:
@@ -1230,7 +1230,7 @@ static void MovePoisonGasCloud(struct Sprite *sprite)
                 sprite->data[2] = -0x10;
             ++sprite->data[7];
             sprite->pos2.x = sprite->pos2.y = 0;
-            sub_8075678(sprite);
+            BattleAnim_InitLinearTranslationWithDuration(sprite);
         }
         break;
     case 2:

@@ -2216,7 +2216,7 @@ void AnimTask_TransformMon(u8 taskId)
         break;
     case 2:
         HandleSpeciesGfxDataChange(gBattleAnimAttacker, gBattleAnimTarget, gTasks[taskId].data[10]);
-        sub_8075300(&animBg, gBattleAnimAttacker);
+        GetBattleAnimBgDataByPriorityRank(&animBg, gBattleAnimAttacker);
         if (IsContest())
             position = 0;
         else
@@ -2287,7 +2287,7 @@ void AnimTask_MorningSunLightBeam(u8 taskId)
         if (!IsContest())
             SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 1);
 
-        sub_80752A0(&animBg);
+        GetBattleAnimBg1Data(&animBg);
         AnimLoadCompressedBgTilemap(animBg.bgId, gBattleAnim_MorningSunTilemap);
         AnimLoadCompressedBgGfx(animBg.bgId, gBattleAnim_MorningSunGfx, animBg.tilesOffset);
         LoadCompressedPalette(gBattleAnim_MorningSunPal, animBg.paletteId * 16, 32);
@@ -2348,8 +2348,8 @@ void AnimTask_MorningSunLightBeam(u8 taskId)
         }
         break;
     case 4:
-        sub_80752A0(&animBg);
-        sub_8075358(animBg.bgId);
+        GetBattleAnimBg1Data(&animBg);
+        InitBattleAnimBg(animBg.bgId);
         if (!IsContest())
             SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 0);
 
@@ -2467,7 +2467,7 @@ void AnimTask_DoomDesireLightBeam(u8 taskId)
         if (!IsContest())
             SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 1);
         
-        sub_80752A0(&animBg);
+        GetBattleAnimBg1Data(&animBg);
         AnimLoadCompressedBgTilemap(animBg.bgId, gBattleAnim_MorningSunTilemap);
         AnimLoadCompressedBgGfx(animBg.bgId, gBattleAnim_MorningSunGfx, animBg.tilesOffset);
         LoadCompressedPalette(gBattleAnim_MorningSunPal, animBg.paletteId * 16, 32);
@@ -2540,8 +2540,8 @@ void AnimTask_DoomDesireLightBeam(u8 taskId)
             gTasks[taskId].data[0] = 1;
         break;
     case 5:
-        sub_80752A0(&animBg);
-        sub_8075358(animBg.bgId);
+        GetBattleAnimBg1Data(&animBg);
+        InitBattleAnimBg(animBg.bgId);
         if (!IsContest())
             SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 0);
 
@@ -3159,7 +3159,7 @@ void AnimTask_RolePlaySilhouette(u8 taskId)
 
     coord1 = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X);
     coord2 = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y);
-    spriteId = sub_80768D0(species, isBackPic, 0, coord1 + xOffset, coord2, 5, personality, otId, gBattleAnimTarget, 1);
+    spriteId = CreateAdditionalMonSpriteForMoveAnim(species, isBackPic, 0, coord1 + xOffset, coord2, 5, personality, otId, gBattleAnimTarget, 1);
     gSprites[spriteId].oam.priority = priority;
     gSprites[spriteId].oam.objMode = ST_OAM_OBJ_BLEND;
     FillPalette(RGB_WHITE, (gSprites[spriteId].oam.paletteNum << 4) + 0x100, 32);
@@ -3196,7 +3196,7 @@ static void AnimTask_RolePlaySilhouetteStep2(u8 taskId)
     TrySetSpriteRotScale(&gSprites[spriteId], TRUE, gTasks[taskId].data[10], gTasks[taskId].data[11], 0);
     if (++gTasks[taskId].data[12] == 9)
     {
-        sub_8075AD8(&gSprites[spriteId]);
+        TryResetSpriteAffineState(&gSprites[spriteId]);
         DestroySpriteAndFreeResources_(&gSprites[spriteId]);
         gTasks[taskId].func = DestroyAnimVisualTaskAndDisableBlend;
     }
@@ -3488,7 +3488,7 @@ void AnimSmokeBallEscapeCloud(struct Sprite *sprite)
 
     sprite->pos1.x = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X_2) + gBattleAnimArgs[1];
     sprite->pos1.y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y_PIC_OFFSET) + gBattleAnimArgs[2];
-    sprite->callback = sub_80B1D3C;
+    sprite->callback = DestroyAnimSpriteAfterTimer;
 }
 
 static void sub_80E1990(u8 taskId)
@@ -4942,7 +4942,7 @@ void AnimTask_SnatchOpposingMonMove(u8 taskId)
                 x = -32;
             }
 
-            spriteId2 = sub_80768D0(species, isBackPic, 0, x, GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y), subpriority, personality, otId, gBattleAnimAttacker, 0);
+            spriteId2 = CreateAdditionalMonSpriteForMoveAnim(species, isBackPic, 0, x, GetBattlerSpriteCoord(gBattleAnimTarget, BATTLER_COORD_Y), subpriority, personality, otId, gBattleAnimAttacker, 0);
             
             if (gBattleSpritesDataPtr->battlerData[gBattleAnimAttacker].transformSpecies != SPECIES_NONE)
                 BlendPalette((gSprites[spriteId2].oam.paletteNum * 16) | 0x100, 16, 6, RGB_WHITE);

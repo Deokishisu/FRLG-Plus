@@ -144,8 +144,9 @@ TOOLBASE = $(TOOLDIRS:tools/%=%)
 TOOLS = $(foreach tool,$(TOOLBASE),tools/$(tool)/$(tool)$(EXE))
 
 ALL_BUILDS := firered firered_rev1 leafgreen leafgreen_rev1
+ALL_BUILDS += $(ALL_BUILDS:%=%_modern)
 
-.PHONY: all rom tools clean-tools mostlyclean clean compare tidy berry_fix $(TOOLDIRS) $(ALL_BUILDS) $(ALL_BUILDS:%=compare_%) $(ALL_BUILDS:%=%_modern) modern
+.PHONY: all rom tools clean-tools mostlyclean clean compare tidy berry_fix $(TOOLDIRS) $(ALL_BUILDS) $(ALL_BUILDS:%=compare_%) modern
 
 MAKEFLAGS += --no-print-directory
 
@@ -268,7 +269,7 @@ $(DATA_ASM_BUILDDIR)/%.o: data_dep = $(shell $(SCANINC) -I . $(DATA_ASM_SUBDIR)/
 endif
 
 berry_fix:
-	@$(MAKE) -C berry_fix COMPARE=$(COMPARE)
+	@$(MAKE) -C berry_fix COMPARE=$(COMPARE) TOOLCHAIN=$(TOOLCHAIN)
 
 berry_fix/berry_fix.gba: berry_fix
 

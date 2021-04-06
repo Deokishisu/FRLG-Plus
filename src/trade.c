@@ -801,7 +801,7 @@ static void CB2_ReturnFromLinkTrade2(void)
             if (gWirelessCommType)
             {
                 ToggleLMANlinkRecovery(TRUE);
-                PrepareSendLinkCmd2FFE_or_RfuCmd6600();
+                SetLinkStandbyCallback();
             }
         }
         break;
@@ -1988,7 +1988,7 @@ static void TradeMenuCB_11(void)
     {
         if (gWirelessCommType)
         {
-            PrepareSendLinkCmd2FFE_or_RfuCmd6600();
+            SetLinkStandbyCallback();
         }
         else
         {
@@ -2028,7 +2028,7 @@ static void TradeMenuCB_16(void)
 {
     if (!ToggleLMANlinkRecovery(FALSE))
     {
-        PrepareSendLinkCmd2FFE_or_RfuCmd6600();
+        SetLinkStandbyCallback();
         sTradeMenuResourcesPtr->tradeMenuCBnum = 13;
     }
 }

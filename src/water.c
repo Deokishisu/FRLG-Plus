@@ -812,7 +812,7 @@ void AnimTask_CreateSurfWave(u8 taskId)
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
     SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);
     SetAnimBgAttribute(1, BG_ANIM_SCREEN_SIZE, 1);
-    sub_80752A0(&animBg);
+    GetBattleAnimBg1Data(&animBg);
     if (!IsContest())
     {
         SetAnimBgAttribute(1, BG_ANIM_CHAR_BASE_BLOCK, 1);
@@ -889,7 +889,7 @@ static void AnimTask_CreateSurfWave_Step1(u8 taskId)
 
     *BGptrX += gTasks[taskId].data[0];
     *BGptrY += gTasks[taskId].data[1];
-    sub_80752A0(&animBg);
+    GetBattleAnimBg1Data(&animBg);
     gTasks[taskId].data[2] += gTasks[taskId].data[1];
     if (++gTasks[taskId].data[5] == 4)
     {
@@ -928,8 +928,8 @@ static void AnimTask_CreateSurfWave_Step2(u8 taskId)
     u16 *BGptrY = &gBattle_BG1_Y;
     if (gTasks[taskId].data[0] == 0)
     {
-        sub_8075358(1);
-        sub_8075358(2);
+        InitBattleAnimBg(1);
+        InitBattleAnimBg(2);
         gTasks[taskId].data[0]++;
     }
     else
@@ -1058,7 +1058,7 @@ static void AnimTask_WaterSpoutLaunch_Step(u8 taskId)
     switch (task->data[0])
     {
     case 0:
-        sub_80765D4(task, task->data[15], 0x100, 0x100, 224, 0x200, 32);
+        BattleAnimHelper_SetSpriteSquashParams(task, task->data[15], 0x100, 0x100, 224, 0x200, 32);
         task->data[0]++;
     case 1:
         if (++task->data[3] > 1)
@@ -1074,7 +1074,7 @@ static void AnimTask_WaterSpoutLaunch_Step(u8 taskId)
                 gSprites[task->data[15]].pos2.x = -3;
             }
         }
-        if (sub_8076640(task) == 0)
+        if (BattleAnimHelper_RunSpriteSquash(task) == 0)
         {
             SetBattlerSpriteYOffsetFromYScale(task->data[15]);
             gSprites[task->data[15]].pos2.x = 0;
@@ -1086,13 +1086,13 @@ static void AnimTask_WaterSpoutLaunch_Step(u8 taskId)
     case 2:
         if (++task->data[3] > 4)
         {
-            sub_80765D4(task, task->data[15], 224, 0x200, 384, 224, 8);
+            BattleAnimHelper_SetSpriteSquashParams(task, task->data[15], 224, 0x200, 384, 224, 8);
             task->data[3] = 0;
             task->data[0]++;
         }
         break;
     case 3:
-        if (sub_8076640(task) == 0)
+        if (BattleAnimHelper_RunSpriteSquash(task) == 0)
         {
             task->data[3] = 0;
             task->data[4] = 0;
@@ -1112,7 +1112,7 @@ static void AnimTask_WaterSpoutLaunch_Step(u8 taskId)
                 gSprites[task->data[15]].pos2.y -= 2;
             if (task->data[4] == 10)
             {
-                sub_80765D4(task, task->data[15], 384, 224, 0x100, 0x100, 8);
+                BattleAnimHelper_SetSpriteSquashParams(task, task->data[15], 384, 224, 0x100, 0x100, 8);
                 task->data[3] = 0;
                 task->data[4] = 0;
                 task->data[0]++;
@@ -1121,7 +1121,7 @@ static void AnimTask_WaterSpoutLaunch_Step(u8 taskId)
         break;
     case 6:
         gSprites[task->data[15]].pos1.y--;
-        if (sub_8076640(task) == 0)
+        if (BattleAnimHelper_RunSpriteSquash(task) == 0)
         {
             ResetSpriteRotScale(task->data[15]);
             gSprites[task->data[15]].pos1.y = task->data[5];

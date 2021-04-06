@@ -2517,7 +2517,7 @@ static void sub_8136BC4(void)
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
 
     ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(0, sUnknown_8463EFC, ARRAY_COUNT(sUnknown_8463EFC));
+    InitBgsFromTemplates(0, sUnknown_8463EFC, NELEMS(sUnknown_8463EFC));
 
     ChangeBgX(0, 0, 0);
     ChangeBgY(0, 0, 0);
@@ -4124,20 +4124,20 @@ static void sub_8139768(struct Sprite * sprite)
         {
         case 0:
             sprite->pos1.y += sUnknown_8463FBE[sUnknown_203B170->unk00++];
-            v0 = ARRAY_COUNT(sUnknown_8463FBE);
+            v0 = NELEMS(sUnknown_8463FBE);
             break;
         case 1:
             sprite->pos1.y += sUnknown_8463FC1[sUnknown_203B170->unk00++];
-            v0 = ARRAY_COUNT(sUnknown_8463FC1);
+            v0 = NELEMS(sUnknown_8463FC1);
             break;
         case 2:
             sprite->pos1.y += sUnknown_8463FC6[sUnknown_203B170->unk00++];
-            v0 = ARRAY_COUNT(sUnknown_8463FC6);
+            v0 = NELEMS(sUnknown_8463FC6);
             break;
         case 3:
         default:
             sprite->pos1.y += sUnknown_8463FCD[sUnknown_203B170->unk00++];
-            v0 = ARRAY_COUNT(sUnknown_8463FCD);
+            v0 = NELEMS(sUnknown_8463FCD);
             break;
         }
 
@@ -4163,7 +4163,7 @@ static void sub_8139868(struct Sprite * sprite)
         if (sUnknown_203B170->unk04++ >= 120)
         {
             sprite->pos1.x += sUnknown_8463FD4[sUnknown_203B170->unk00];
-            if (++sUnknown_203B170->unk00 >= ARRAY_COUNT(sUnknown_8463FD4))
+            if (++sUnknown_203B170->unk00 >= NELEMS(sUnknown_8463FD4))
             {
                 sUnknown_203B170->unk00 = 0;
                 sUnknown_203B170->unk04 = 0;
@@ -4175,7 +4175,7 @@ static void sub_8139868(struct Sprite * sprite)
         if (sUnknown_203B170->unk04++ >= 90)
         {
             sprite->pos1.x += sUnknown_8463FDF[sUnknown_203B170->unk00];
-            if (++sUnknown_203B170->unk00 >= ARRAY_COUNT(sUnknown_8463FDF))
+            if (++sUnknown_203B170->unk00 >= NELEMS(sUnknown_8463FDF))
             {
                 sUnknown_203B170->unk00 = 0;
                 sUnknown_203B170->unk04 = 0;
@@ -4187,7 +4187,7 @@ static void sub_8139868(struct Sprite * sprite)
         if (sUnknown_203B170->unk04++ >= 60)
         {
             sprite->pos1.x += sUnknown_8463FEA[sUnknown_203B170->unk00];
-            if (++sUnknown_203B170->unk00 >= ARRAY_COUNT(sUnknown_8463FEA))
+            if (++sUnknown_203B170->unk00 >= NELEMS(sUnknown_8463FEA))
             {
                 sUnknown_203B170->unk00 = 0;
                 sUnknown_203B170->unk04 = 0;
@@ -4222,16 +4222,16 @@ static void sub_813995C(void)
     if (sMonSummaryScreen->savedCallback == CB2_ReturnToTradeMenuFromSummary)
     {
         if (sMonSummaryScreen->isEnemyParty == TRUE)
-            spriteId = CreateMonPicSprite(species, trainerId, personality, 1, 60, 65, 12, 0xffff, 1);
+            spriteId = CreateMonPicSprite(species, trainerId, personality, TRUE, 60, 65, 12, 0xffff, TRUE);
         else
-            spriteId = CreateMonPicSprite_HandleDeoxys(species, trainerId, personality, 1, 60, 65, 12, 0xffff);
+            spriteId = CreateMonPicSprite_HandleDeoxys(species, trainerId, personality, TRUE, 60, 65, 12, 0xffff);
     }
     else
     {
-        if (sub_804455C(3, sLastViewedMonIndex))
-            spriteId = CreateMonPicSprite(species, trainerId, personality, 1, 60, 65, 12, 0xffff, 1);
+        if (ShouldIgnoreDeoxysForm(DEOXYS_CHECK_TRADE_MAIN, sLastViewedMonIndex))
+            spriteId = CreateMonPicSprite(species, trainerId, personality, TRUE, 60, 65, 12, 0xffff, TRUE);
         else
-            spriteId = CreateMonPicSprite_HandleDeoxys(species, trainerId, personality, 1, 60, 65, 12, 0xffff);
+            spriteId = CreateMonPicSprite_HandleDeoxys(species, trainerId, personality, TRUE, 60, 65, 12, 0xffff);
     }
 
     FreeSpriteOamMatrix(&gSprites[spriteId]);
@@ -4356,7 +4356,7 @@ static void sub_8139DBC(void)
     }
     else
     {
-        if (sub_804455C(3, sLastViewedMonIndex))
+        if (ShouldIgnoreDeoxysForm(DEOXYS_CHECK_TRADE_MAIN, sLastViewedMonIndex))
             sMonSummaryScreen->unk3014 = CreateMonIcon(species, SpriteCallbackDummy, 24, 32, 0, personality, 0);
         else
             sMonSummaryScreen->unk3014 = CreateMonIcon(species, SpriteCallbackDummy, 24, 32, 0, personality, 1);

@@ -148,10 +148,10 @@ extern const u8 gTeachyTvText_TMsScript2[];
 extern const u8 gTeachyTvText_RegisterScript2[];
 
 // help_system_812B1E0
-extern const u8 gUnknown_841DFA5[];
-extern const u8 gUnknown_841DFAC[];
-extern const u8 gUnknown_841DFBE[];
-extern const u8 gUnknown_841DFC9[];
+extern const u8 gText_HelpSystemControls_A_Next[];
+extern const u8 gText_HelpSystemControls_PickOkEnd[];
+extern const u8 gText_HelpSystemControls_AorBtoCancel[];
+extern const u8 gText_HelpSystemControls_PickOkCancel[];
 
 // help_system
 extern const u8 gString_Bill[];
@@ -339,12 +339,12 @@ extern const u8 gText_SwitchedPkmnItem[];
 extern const u8 gText_BagFullCouldNotRemoveItem[];
 extern const u8 gText_PkmnCantParticipate[];
 extern const u8 gText_CancelParticipation[];
-extern const u8 gUnknown_8417494[];
+extern const u8 gText_OakThisIsListOfPokemon[];
 extern const u8 gMenuText_Confirm[];
 extern const u8 gText_MaleSymbol[];
 extern const u8 gText_FemaleSymbol[];
 extern const u8 gText_Slash[];
-extern const u8 gUnknown_8417457[];
+extern const u8 gText_OakImportantToGetToKnowPokemonThroughly[];
 extern const u8 gText_PkmnNotHolding[];
 extern const u8 gText_PCMailboxFull[];
 extern const u8 gText_MailSentToPC[];

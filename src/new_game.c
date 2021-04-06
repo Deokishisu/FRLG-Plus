@@ -139,7 +139,7 @@ void NewGameInitData(void)
     ClearBag();
     DeserializeTmHmItemSlots();
     NewGameInitPCItems();
-    sub_809C794();
+    ClearEnigmaBerries();
     InitEasyChatPhrases();
     ResetTrainerFanClub();
     UnionRoomChat_InitializeRegisteredTexts();

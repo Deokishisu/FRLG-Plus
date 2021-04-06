@@ -11,6 +11,7 @@
 #include "trainer_pokemon_sprites.h"
 #include "menu.h"
 #include "field_weather.h"
+#include "quest_log.h"
 #include "constants/maps.h"
 #include "constants/field_weather.h"
 
@@ -779,7 +780,7 @@ static bool32 DoOverworldMapScrollScene(UNUSED u8 unused)
         sCreditsMgr->subseqno++;
         // fallthrough
     case 1:
-        if (!Overworld_DoScrollSceneForCredits(&sCreditsMgr->ovwldseqno, sOverworldMapScenes[sCreditsMgr->whichMon], 0))
+        if (!Overworld_DoScrollSceneForCredits(&sCreditsMgr->ovwldseqno, sOverworldMapScenes[sCreditsMgr->whichMon], QL_TINT_NONE))
             return FALSE;
         CreateCreditsWindow();
         SetGpuReg(REG_OFFSET_WIN0H, 0xF0);
@@ -831,7 +832,7 @@ static s32 RollCredits(void)
         }
         return 0;
     case CREDITSSCENE_LOAD_PLAYER_SPRITE_AT_INDIGO:
-        if (sCreditsMgr->timer != 0)
+        if (sCreditsMgr->timer)
         {
             sCreditsMgr->timer--;
             return 0;
@@ -841,7 +842,7 @@ static s32 RollCredits(void)
         sCreditsMgr->mainseqno = CREDITSSCENE_PRINT_TITLE_STAFF;
         return 0;
     case CREDITSSCENE_PRINT_TITLE_STAFF:
-        if (sCreditsMgr->timer != 0)
+        if (sCreditsMgr->timer)
         {
             sCreditsMgr->timer--;
             return 0;
@@ -854,7 +855,7 @@ static s32 RollCredits(void)
         sCreditsMgr->mainseqno = CREDITSSCENE_WAIT_TITLE_STAFF;
         return 0;
     case CREDITSSCENE_WAIT_TITLE_STAFF:
-        if (sCreditsMgr->timer != 0)
+        if (sCreditsMgr->timer)
         {
             sCreditsMgr->timer--;
             return 0;
@@ -872,33 +873,33 @@ static s32 RollCredits(void)
         }
         switch (sCreditsScript[sCreditsMgr->scrcmdidx].cmd)
         {
-            case CREDITSSCRCMD_PRINT:
-                BeginNormalPaletteFade(0x00008000, 0, 0, 16, RGB_BLACK);
-                sCreditsMgr->mainseqno = CREDITSSCENE_PRINT_ADDPRINTER1;
-                FillWindowPixelBuffer(sCreditsMgr->windowId, PIXEL_FILL(0));
-                return sCreditsMgr->canSpeedThrough;
-            case CREDITSSCRCMD_MAPNEXT:
-                sCreditsMgr->mainseqno = CREDITSSCENE_MAPNEXT_DESTROYWINDOW;
-                sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
-                FadeSelectedPals(1, 0, 0x3FFFFFFF);
-                break;
-            case CREDITSSCRCMD_MAP:
-                sCreditsMgr->mainseqno = CREDITSSCENE_MAP_LOADMAP_CREATESPRITES;
-                sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
-                break;
-            case CREDITSSCRCMD_MON:
-                sCreditsMgr->mainseqno = CREDITSSCENE_MON_DESTROY_ASSETS;
-                sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
-                FadeScreen(FADE_TO_BLACK, 0);
-                break;
-            case CREDITSSCRCMD_THEENDGFX:
-                sCreditsMgr->mainseqno = CREDITSSCENE_THEEND_DESTROY_ASSETS;
-                sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
-                BeginNormalPaletteFade(0xFFFFFFFF, 4, 0, 16, RGB_BLACK);
-                break;
-            case CREDITSSCRCMD_WAITBUTTON:
-                sCreditsMgr->mainseqno = CREDITSSCENE_WAITBUTTON;
-                break;
+        case CREDITSSCRCMD_PRINT:
+            BeginNormalPaletteFade(0x00008000, 0, 0, 16, RGB_BLACK);
+            sCreditsMgr->mainseqno = CREDITSSCENE_PRINT_ADDPRINTER1;
+            FillWindowPixelBuffer(sCreditsMgr->windowId, PIXEL_FILL(0));
+            return sCreditsMgr->canSpeedThrough;
+        case CREDITSSCRCMD_MAPNEXT:
+            sCreditsMgr->mainseqno = CREDITSSCENE_MAPNEXT_DESTROYWINDOW;
+            sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
+            FadeSelectedPals(1, 0, 0x3FFFFFFF);
+            break;
+        case CREDITSSCRCMD_MAP:
+            sCreditsMgr->mainseqno = CREDITSSCENE_MAP_LOADMAP_CREATESPRITES;
+            sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
+            break;
+        case CREDITSSCRCMD_MON:
+            sCreditsMgr->mainseqno = CREDITSSCENE_MON_DESTROY_ASSETS;
+            sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
+            FadeScreen(FADE_TO_BLACK, 0);
+            break;
+        case CREDITSSCRCMD_THEENDGFX:
+            sCreditsMgr->mainseqno = CREDITSSCENE_THEEND_DESTROY_ASSETS;
+            sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
+            BeginNormalPaletteFade(0xFFFFFFFF, 4, 0, 16, RGB_BLACK);
+            break;
+        case CREDITSSCRCMD_WAITBUTTON:
+            sCreditsMgr->mainseqno = CREDITSSCENE_WAITBUTTON;
+            break;
         }
         sCreditsMgr->timer = sCreditsScript[sCreditsMgr->scrcmdidx].duration;
         sCreditsMgr->scrcmdidx++;
@@ -1000,8 +1001,9 @@ static s32 RollCredits(void)
         {
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_WHITE);
             sCreditsMgr->mainseqno = CREDITSSCENE_TERMINATE;
+            return 0;
         }
-        if (sCreditsMgr->timer != 0)
+        if (sCreditsMgr->timer)
         {
             sCreditsMgr->timer--;
         }

@@ -1738,7 +1738,7 @@ void AnimCoinThrow(struct Sprite *sprite)
     sprite->data[0] = gBattleAnimArgs[4];
     sprite->data[2] = r6;
     sprite->data[4] = r7;
-    sprite->callback = sub_80756A4;
+    sprite->callback = BattleAnim_InitAndRunLinearTranslationWithDuration;
     StoreSpriteCallbackInData6(sprite, DestroyAnimSprite);
 }
 
@@ -2992,12 +2992,12 @@ void AnimTask_LoadMusicNotesPals(u8 taskId)
     for (i = 1; i < 3; i++)
         paletteNums[i] = AllocSpritePalette(ANIM_SPRITES_START - i);
 
-    gMonSpritesGfxPtr->field_17C = AllocZeroed(0x2000);
-    LZDecompressWram(gBattleAnimSpritePal_MusicNotes2, gMonSpritesGfxPtr->field_17C);
+    gMonSpritesGfxPtr->multiUseBuffer = AllocZeroed(0x2000);
+    LZDecompressWram(gBattleAnimSpritePal_MusicNotes2, gMonSpritesGfxPtr->multiUseBuffer);
     for (i = 0; i < 3; i++)
-        LoadPalette(&gMonSpritesGfxPtr->field_17C[i * 32], (u16)((paletteNums[i] << 4) + 0x100), 32);
+        LoadPalette(&gMonSpritesGfxPtr->multiUseBuffer[i * 32], (u16)((paletteNums[i] << 4) + 0x100), 32);
 
-    FREE_AND_SET_NULL(gMonSpritesGfxPtr->field_17C);
+    FREE_AND_SET_NULL(gMonSpritesGfxPtr->multiUseBuffer);
     DestroyAnimVisualTask(taskId);
 }
 
@@ -3013,10 +3013,7 @@ void AnimTask_FreeMusicNotesPals(u8 taskId)
 
 static void SetMusicNotePalette(struct Sprite *sprite, u8 a, u8 b)
 {
-    u8 tile;
-    
-    tile = (b & 1);
-    tile = ((-tile | tile) >> 31) & 32;
+    u8 tile = (b & 1) ? 32 : 0;
     sprite->oam.tileNum += tile + (a << 2);
     sprite->oam.paletteNum = IndexOfSpritePaletteTag(gMusicNotePaletteTagsTable[b >> 1]);
 }
@@ -3232,7 +3229,7 @@ void AnimTask_HeartsBackground(u8 taskId)
     gBattle_BG1_Y = 0;
     SetGpuReg(REG_OFFSET_BG1HOFS, gBattle_BG1_X);
     SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
-    sub_80752A0(&animBg);
+    GetBattleAnimBg1Data(&animBg);
     AnimLoadCompressedBgTilemap(animBg.bgId, gBattleAnimBg_AttractTilemap);
     AnimLoadCompressedBgGfx(animBg.bgId, gBattleAnimBg_AttractGfx, animBg.tilesOffset);
     LoadCompressedPalette(gBattleAnimBg_AttractPal, animBg.paletteId * 16, 32);
@@ -3282,8 +3279,8 @@ static void HeartsBackground_Step(u8 taskId)
         }
         break;
     case 3:
-        sub_80752A0(&animBg);
-        sub_8075358(animBg.bgId);
+        GetBattleAnimBg1Data(&animBg);
+        InitBattleAnimBg(animBg.bgId);
         gTasks[taskId].data[12]++;
         break;
     case 4:
@@ -3313,7 +3310,7 @@ void AnimTask_ScaryFace(u8 taskId)
     gBattle_BG1_Y = 0;
     SetGpuReg(REG_OFFSET_BG1HOFS, gBattle_BG1_X);
     SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
-    sub_80752A0(&animBg);
+    GetBattleAnimBg1Data(&animBg);
     
     if (IsContest())
         LZDecompressVram(gBattleAnimBgTilemap_ScaryFaceContest, animBg.bgTilemap);
@@ -3370,9 +3367,9 @@ static void ScaryFace_Step(u8 taskId)
         }
         break;
     case 3:
-        sub_80752A0(&animBg);
-        sub_8075358(1);
-        sub_8075358(2);
+        GetBattleAnimBg1Data(&animBg);
+        InitBattleAnimBg(1);
+        InitBattleAnimBg(2);
         gTasks[taskId].data[12]++;
         // fall through
     case 4:
@@ -3715,7 +3712,7 @@ void AnimPerishSongMusicNote(struct Sprite *sprite)
     if (!sprite->data[0])
     {
         sprite->pos1.x = 120;
-        sprite->pos1.y = (gBattleAnimArgs[0] + (((u16)gBattleAnimArgs[0]) >> 31)) / 2 - 15;
+        sprite->pos1.y = gBattleAnimArgs[0] / 2 - 15;
 
         StartSpriteAnim(sprite, gBattleAnimArgs[1]);
 
@@ -3725,7 +3722,7 @@ void AnimPerishSongMusicNote(struct Sprite *sprite)
 
     sprite->data[0]++;
 
-    sprite->data[1] = (sprite->data[0] + ((u16)sprite->data[0] >> 31)) / 2;
+    sprite->data[1] = sprite->data[0] / 2;
     index = ((sprite->data[0] * 3) + (u16)sprite->data[3]);
     var2 = 0xFF;
     sprite->data[6] = (sprite->data[6] + 10) & 0xFF;
@@ -3773,8 +3770,7 @@ static void AnimPerishSongMusicNote_Step2(struct Sprite *sprite)
 
     if (sprite->data[4] > 3)
     {
-        int var1 = sprite->data[2];
-        sprite->invisible = var1 - (((s32)(var1 + ((u32)var1 >> 31)) >> 1) << 1);
+        sprite->invisible = sprite->data[2] % 2;
         DestroyAnimSprite(sprite);
     }
 

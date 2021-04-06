@@ -21,6 +21,7 @@
 #include "constants/metatile_labels.h"
 
 #define CUT_GRASS_SPRITE_COUNT 8
+#define CUT_SIDE 3
 
 static EWRAM_DATA u8 *sCutGrassSpriteArrayPtr = NULL;
 static EWRAM_DATA bool8 sScheduleOpenDottedHole = FALSE;
@@ -246,25 +247,18 @@ bool8 SetUpFieldMove_Cut(void)
         gPostMenuFieldCallback = FieldCallback_CutTree;
         return TRUE;
     }
+    
     else
     {
-        // FIXME: this fakematch
-        #ifndef NONMATCHING
-            register s32 neg1 asm("r8");
-        #else
-            s32 neg1;
-        #endif
-        struct MapPosition *pos;
         PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
-
-        for (i = 0, pos = &gPlayerFacingPosition, neg1 = 0xFFFF; i < 3; i++)
+    
+        for (i = 0; i < CUT_SIDE; i++)
         {
-
-            y = i + neg1 + pos->y;
-            for (j = 0; j < 3; j++)
+            y = gPlayerFacingPosition.y - 1 + i;
+            for (j = 0; j < CUT_SIDE; j++)
             {
-                x = j + neg1 + pos->x;
-                if (MapGridGetZCoordAt(x, y) == pos->height)
+                x = gPlayerFacingPosition.x - 1 + j;
+                if (MapGridGetZCoordAt(x, y) == gPlayerFacingPosition.height)
                 {
                     if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
                     {
@@ -324,12 +318,7 @@ bool8 FldEff_CutGrass(void)
     u8 userAbility;
     u8 TileCountFromPlayer_X;
     u8 TileCountFromPlayer_Y;
-    // FIXME: this fakematch
-    #ifndef NONMATCHING
-        register s32 neg1 asm("r9");
-    #else
-        s32 neg1;
-    #endif
+    s32 neg1;
     struct MapPosition *pos;
 
     i = 0;

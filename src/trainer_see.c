@@ -219,15 +219,15 @@ static u8 CheckPathBetweenTrainerAndPlayer(struct ObjectEvent *trainerObj, u8 ap
     }
 
     // preserve mapobj_unk_19 before clearing.
-    unk19_temp = trainerObj->range.as_nybbles.x;
-    unk19b_temp = trainerObj->range.as_nybbles.y;
-    trainerObj->range.as_nybbles.x = 0;
-    trainerObj->range.as_nybbles.y = 0;
+    unk19_temp = trainerObj->rangeX;
+    unk19b_temp = trainerObj->rangeY;
+    trainerObj->rangeX = 0;
+    trainerObj->rangeY = 0;
 
     collision = GetCollisionAtCoords(trainerObj, x, y, direction);
 
-    trainerObj->range.as_nybbles.x = unk19_temp;
-    trainerObj->range.as_nybbles.y = unk19b_temp;
+    trainerObj->rangeX = unk19_temp;
+    trainerObj->rangeY = unk19b_temp;
     if (collision == 4)
         return approachDistance;
 
@@ -356,7 +356,7 @@ static bool8 TrainerSeeFunc_PrepareToEngage(u8 taskId, struct Task * task, struc
     if (ObjectEventIsMovementOverridden(playerObj) && !ObjectEventClearHeldMovementIfFinished(playerObj))
         return FALSE;
 
-    sub_805C774();
+    CancelPlayerForcedMovement();
     // Uncomment to have player turn to face their opponent
     // ObjectEventSetHeldMovement(&gObjectEvents[gPlayerAvatar.objectEventId], GetFaceDirectionMovementAction(GetOppositeDirection(trainerObj->facingDirection)));
     task->tFuncId++;
