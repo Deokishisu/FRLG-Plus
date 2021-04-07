@@ -1650,6 +1650,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 {
                     const struct TrainerMonItemCustomMovesEVs *partyData = sTrainers[trainerNum].party.ItemCustomMovesEVs;
                     u8 gender;
+                    u8 friendship = 255;
 
                     for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; ++j)
                         nameHash += gSpeciesNames[partyData[i].species][j];
@@ -1675,6 +1676,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                     {
                         SetMonData(&party[i], MON_DATA_HP_EV + j, &partyData[i].evs[j]);
                     }
+                    SetMonData(&party[i], MON_DATA_FRIENDSHIP, &friendship);
                     CalculateMonStats(&party[i], FALSE);
                     break;
                 }
