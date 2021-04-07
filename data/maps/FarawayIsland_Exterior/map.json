@@ -18,7 +18,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "in_connection": false,
-      "x": 12,
+      "x": 13,
       "y": 39,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -32,7 +32,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SEAGALLOP",
       "in_connection": false,
-      "x": 12,
+      "x": 13,
       "y": 41,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
