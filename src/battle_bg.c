@@ -4,6 +4,7 @@
 #include "battle_bg.h"
 #include "battle_message.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "graphics.h"
 #include "link.h"
 #include "new_menu_helpers.h"
@@ -945,6 +946,13 @@ void InitLinkBattleVsScreen(u8 taskId)
 
 void DrawBattleEntryBackground(void)
 {
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
     {
         LZDecompressVram(gFile_graphics_battle_transitions_vs_frame_sheet, (void*)(BG_CHAR_ADDR(1)));
@@ -985,7 +993,7 @@ void DrawBattleEntryBackground(void)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            u8 trainerClass = sTrainers[gTrainerBattleOpponent_A].trainerClass;
             if (trainerClass == CLASS_LEADER_2)
             {
                 LoadBattleTerrainEntryGfx(BATTLE_TERRAIN_BUILDING);
@@ -1012,6 +1020,13 @@ void DrawBattleEntryBackground(void)
 static u8 GetBattleTerrainOverride(void)
 {
     u8 battleScene;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER_TOWER | BATTLE_TYPE_LINK | BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER))
     {
         return BATTLE_TERRAIN_LINK;
@@ -1023,11 +1038,11 @@ static u8 GetBattleTerrainOverride(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER_2)
+        if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER_2)
         {
             return BATTLE_TERRAIN_LEADER;
         }
-        else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
+        else if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
         {
             return BATTLE_TERRAIN_CHAMPION;
         }

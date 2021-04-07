@@ -137,6 +137,7 @@ struct Trainer
 };
 
 extern const struct Trainer gTrainers[];
+extern const struct Trainer gMasterTrainers[];
 
 struct ResourceFlags
 {

@@ -27,6 +27,8 @@ extern const u8 BattleScript_PayDayMoneyAndPickUpItems[];
 extern const u8 BattleScript_LocalBattleLost[];
 extern const u8 BattleScript_LocalBattleLostPrintWhiteOut[];
 extern const u8 BattleScript_LocalBattleLostEnd[];
+extern const u8 BattleScript_EReaderOrSecretBaseTrainerEnd[];
+extern const u8 BattleScript_MasterTrainerBattleWon[];
 extern const u8 BattleScript_CheckDomeDrew[];
 extern const u8 BattleScript_LinkBattleWonOrLost[];
 extern const u8 BattleScript_BattleTowerTrainerBattleWon[];

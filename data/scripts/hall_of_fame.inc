@@ -1,4 +1,5 @@
 EventScript_SetDefeatedEliteFourFlagsVars:: @ 81A651A
+	clearflag FLAG_HIDE_MASTER_TRAINERS
 	clearflag FLAG_HIDE_POSTGAME_GOSSIPERS
 	call EventScript_ResetEliteFour
 	special Script_UpdateTrainerFanClubGameClear

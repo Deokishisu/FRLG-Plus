@@ -335,9 +335,16 @@ static bool8 ShouldRegisterEvent_HandlePartyActions(u16 eventId, const u16 *even
 
 static bool8 ShouldRegisterEvent_HandleBeatStoryTrainer(u16 eventId, const u16 *eventData)
 {
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     if (eventId == QL_EVENT_DEFEATED_TRAINER)
     {
-        u8 trainerClass = gTrainers[*eventData].trainerClass;
+        u8 trainerClass = sTrainers[*eventData].trainerClass;
         if (   trainerClass == CLASS_RIVAL
                || trainerClass == CLASS_RIVAL_2
                || trainerClass == CLASS_CHAMPION_2
@@ -1501,12 +1508,19 @@ static u16 *BufferQuestLogData_DefeatedGymLeader(u16 *a0, const u16 *eventData)
 static const u16 *BufferQuestLogText_DefeatedGymLeader(const u16 *eventData)
 {
     const u8 *r6;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     eventData = sub_8113E88(QL_EVENT_DEFEATED_GYM_LEADER, eventData);
     r6 = (const u8 *)eventData + 6;
     DynamicPlaceholderTextUtil_Reset();
     GetMapNameGeneric(gStringVar1, r6[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gTrainers[eventData[2]].trainerName);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sTrainers[eventData[2]].trainerName);
     QuestLog_GetSpeciesName(eventData[0], 0, 2);
     QuestLog_GetSpeciesName(eventData[1], 0, 3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, sDefeatedOpponentFlavorTexts[r6[1]]);
@@ -1614,10 +1628,17 @@ static u16 *BufferQuestLogData_DefeatedEliteFourMember(u16 *a0, const u16 *event
 static const u16 *BufferQuestLogText_DefeatedEliteFourMember(const u16 *eventData)
 {
     const u8 *r5;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     eventData = sub_8113E88(QL_EVENT_DEFEATED_E4_MEMBER, eventData);
     r5 = (const u8 *)eventData + 6;
     DynamicPlaceholderTextUtil_Reset();
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gTrainers[eventData[2]].trainerName);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sTrainers[eventData[2]].trainerName);
     QuestLog_GetSpeciesName(eventData[0], NULL, 1);
     QuestLog_GetSpeciesName(eventData[1], NULL, 2);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, sDefeatedOpponentFlavorTexts[r5[1]]);
@@ -1679,16 +1700,23 @@ static const u16 *BufferQuestLogText_DefeatedTrainer(const u16 *eventData)
 {
     const u16 *r5 = sub_8113E88(QL_EVENT_DEFEATED_TRAINER, eventData);
     const u8 *r6 = (const u8 *)r5 + 6;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     DynamicPlaceholderTextUtil_Reset();
     GetMapNameGeneric(gStringVar1, r6[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
 
-    if (gTrainers[r5[2]].trainerClass == CLASS_RIVAL
-        || gTrainers[r5[2]].trainerClass == CLASS_RIVAL_2
-        || gTrainers[r5[2]].trainerClass == CLASS_CHAMPION_2)
+    if (sTrainers[r5[2]].trainerClass == CLASS_RIVAL
+        || sTrainers[r5[2]].trainerClass == CLASS_RIVAL_2
+        || sTrainers[r5[2]].trainerClass == CLASS_CHAMPION_2)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL));
     else
-        DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gTrainers[r5[2]].trainerName);
+        DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sTrainers[r5[2]].trainerName);
 
     QuestLog_GetSpeciesName(r5[0], NULL, 2);
     QuestLog_GetSpeciesName(r5[1], NULL, 3);

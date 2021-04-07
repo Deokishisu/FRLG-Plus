@@ -6719,7 +6719,14 @@ s32 GetBattlerMultiplayerId(u16 a1)
 
 u8 GetTrainerEncounterMusicId(u16 trainer)
 {
-    return gTrainers[trainer].encounterMusic_gender & 0x7F;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
+    return sTrainers[trainer].encounterMusic_gender & 0x7F;
 }
 
 static u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex)
@@ -6749,6 +6756,12 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, NULL);
     u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, NULL);
     u8 holdEffect;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     if (heldItem == ITEM_ENIGMA_BERRY)
     {
@@ -6787,9 +6800,9 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
             // Only if it's a trainer battle with league progression significance
             if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
                 return;
-            if (!(gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER_2
-                || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2
-                || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2))
+            if (!(sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER_2
+                || sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2
+                || sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2))
                 return;
         }
 
@@ -7406,6 +7419,13 @@ void ClearBattleMonForms(void)
 
 static u16 GetBattleBGM(void)
 {
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
         return MUS_VS_KYOGRE_GROUDON;
     if (gBattleTypeFlags & BATTLE_TYPE_REGI)
@@ -7418,7 +7438,7 @@ static u16 GetBattleBGM(void)
         return MUS_RS_VS_TRAINER;
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        switch (gTrainers[gTrainerBattleOpponent_A].trainerClass)
+        switch (sTrainers[gTrainerBattleOpponent_A].trainerClass)
         {
             case CLASS_CHAMPION_2:
                 return MUS_VS_CHAMPION;

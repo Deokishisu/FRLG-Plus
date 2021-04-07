@@ -15,6 +15,7 @@
 #include "battle_gfx_sfx_util.h"
 #include "battle_ai_script_commands.h"
 #include "battle_ai_switch_items.h"
+#include "event_data.h"
 #include "trainer_tower.h"
 #include "constants/battle_anim.h"
 #include "constants/moves.h"
@@ -1122,6 +1123,12 @@ static void DoSwitchOutAnimation(void)
 static void OpponentHandleDrawTrainerPic(void)
 {
     u32 trainerPicId;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     if (gTrainerBattleOpponent_A == 0x400)
         trainerPicId = GetSecretBaseTrainerPicIndex();
@@ -1132,7 +1139,7 @@ static void OpponentHandleDrawTrainerPic(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
     else
-        trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        trainerPicId = sTrainers[gTrainerBattleOpponent_A].trainerPic;
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
@@ -1154,6 +1161,12 @@ static void OpponentHandleDrawTrainerPic(void)
 static void OpponentHandleTrainerSlide(void)
 {
     u32 trainerPicId;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     if (gTrainerBattleOpponent_A == 0x400)
         trainerPicId = GetSecretBaseTrainerPicIndex();
@@ -1164,7 +1177,7 @@ static void OpponentHandleTrainerSlide(void)
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
     else
-        trainerPicId = gTrainers[gTrainerBattleOpponent_A].trainerPic;
+        trainerPicId = sTrainers[gTrainerBattleOpponent_A].trainerPic;
     DecompressTrainerFrontPic(trainerPicId, gActiveBattler);
     SetMultiuseSpriteTemplateToTrainerBack(trainerPicId, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,

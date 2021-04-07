@@ -3156,7 +3156,7 @@ static void atk23_getexp(void)
                 gBattleScripting.atk23_state = 5;
                 gBattleMoveDamage = 0; // used for exp
             }
-            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL || gSaveBlock1Ptr->keyFlags.expMod == 0)
+            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL || gSaveBlock1Ptr->keyFlags.expMod == 0 || FlagGet(FLAG_MASTER_TRAINER_BATTLE))
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.atk23_state = 5;
@@ -5179,6 +5179,12 @@ static void atk5D_getmoneyreward(void)
 
     const struct TrainerMonItemCustomMoves *party4; //This needs to be out here
     const struct TrainerMonItemCustomMovesEVs *party5;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     if (gBattleOutcome == B_OUTCOME_WON)
     {
@@ -5188,50 +5194,50 @@ static void atk5D_getmoneyreward(void)
         }
         else
         {
-            switch (gTrainers[gTrainerBattleOpponent_A].partyFlags)
+            switch (sTrainers[gTrainerBattleOpponent_A].partyFlags)
             {
             case 0:
                 {
-                    const struct TrainerMonNoItemDefaultMoves *party1 = gTrainers[gTrainerBattleOpponent_A].party.NoItemDefaultMoves;
+                    const struct TrainerMonNoItemDefaultMoves *party1 = sTrainers[gTrainerBattleOpponent_A].party.NoItemDefaultMoves;
                     
-                    lastMonLevel = party1[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                    lastMonLevel = party1[sTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
                 {
-                    const struct TrainerMonNoItemCustomMoves *party2 = gTrainers[gTrainerBattleOpponent_A].party.NoItemCustomMoves;
+                    const struct TrainerMonNoItemCustomMoves *party2 = sTrainers[gTrainerBattleOpponent_A].party.NoItemCustomMoves;
                     
-                    lastMonLevel = party2[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                    lastMonLevel = party2[sTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
             case F_TRAINER_PARTY_HELD_ITEM:
                 {
-                    const struct TrainerMonItemDefaultMoves *party3 = gTrainers[gTrainerBattleOpponent_A].party.ItemDefaultMoves;
+                    const struct TrainerMonItemDefaultMoves *party3 = sTrainers[gTrainerBattleOpponent_A].party.ItemDefaultMoves;
                     
-                    lastMonLevel = party3[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                    lastMonLevel = party3[sTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
             case (F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM):
                 {
-                    party4 = gTrainers[gTrainerBattleOpponent_A].party.ItemCustomMoves;
+                    party4 = sTrainers[gTrainerBattleOpponent_A].party.ItemCustomMoves;
                     
-                    lastMonLevel = party4[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                    lastMonLevel = party4[sTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
             case F_TRAINER_PARTY_EVS:
                 {
-                    party5 = gTrainers[gTrainerBattleOpponent_A].party.ItemCustomMovesEVs;
+                    party5 = sTrainers[gTrainerBattleOpponent_A].party.ItemCustomMovesEVs;
                     
-                    lastMonLevel = party5[gTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                    lastMonLevel = party5[sTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
                 }
                 break;
             }
             for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
             {
-                if (gTrainerMoneyTable[i].classId == gTrainers[gTrainerBattleOpponent_A].trainerClass)
+                if (gTrainerMoneyTable[i].classId == sTrainers[gTrainerBattleOpponent_A].trainerClass)
                     break;
             }
-            party4 = gTrainers[gTrainerBattleOpponent_A].party.ItemCustomMoves; // Needed to Match. Has no effect.
+            party4 = sTrainers[gTrainerBattleOpponent_A].party.ItemCustomMoves; // Needed to Match. Has no effect.
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * (gBattleTypeFlags & BATTLE_TYPE_DOUBLE ? 2 : 1) * gTrainerMoneyTable[i].value;
         }
         AddMoney(&gSaveBlock1Ptr->money, moneyReward);

@@ -972,6 +972,7 @@ EventScript_ResetAllMapFlags:: @ 81A6481
 	setflag FLAG_HIDE_LATI
 	setflag FLAG_HIDE_AWARD_SCOTT_BATTLE_TOWER
 	setflag FLAG_HIDE_NATIONAL_DEX_AIDE
+	setflag FLAG_HIDE_MASTER_TRAINERS
 	setvar VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 500
 	end
 
@@ -1213,6 +1214,7 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/text/braille.inc"
 	.include "data/scripts/trainers.inc"
+	.include "data/scripts/master_trainers.inc"
 	.include "data/scripts/fame_checker.inc"
 	.include "data/text/fame_checker.inc"
 	.include "data/text/sign_lady.inc"

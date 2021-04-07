@@ -421,3 +421,30 @@ u8 NuzlockeFlagGet(u8 mapsec)
         return FlagGet(NUZLOCKE_FLAGS_START + (id - 1));
     return FALSE;
 }
+
+bool8 CheckMasterTrainerFlag(u16 flag)
+{
+    u8 index = flag / 8; //get byte in array
+    u8 bit = flag % 8;   //get bit in byte
+    u8 mask = 1 << bit;
+
+    return (gSaveBlock1Ptr->masterTrainerFlags[flag] & mask) != 0;
+}
+
+bool8 SetMasterTrainerFlag(u16 flag)
+{
+    u8 index = flag / 8; //get byte in array
+    u8 bit = flag % 8;   //get bit in byte
+    u8 mask = 1 << bit;
+
+    gSaveBlock1Ptr->masterTrainerFlags[flag] |= mask;
+}
+
+bool8 ClearMasterTrainerFlag(u16 flag)
+{
+    u8 index = flag / 8; //get byte in array
+    u8 bit = flag % 8;   //get bit in byte
+    u8 mask = 1 << bit;
+
+    gSaveBlock1Ptr->masterTrainerFlags[flag] &= ~mask;
+}

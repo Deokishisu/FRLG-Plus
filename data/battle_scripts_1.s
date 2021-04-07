@@ -3014,6 +3014,15 @@ BattleScript_BattleTowerEtcTrainerBattleWonSkipText::
 	pickup
 	end2
 
+BattleScript_MasterTrainerBattleWon::
+	printstring STRINGID_PLAYERDEFEATEDTRAINER1
+	trainerslidein BS_ATTACKER
+	waitstate
+	printstring STRINGID_TRAINER1LOSETEXT
+	waitmessage 0x40
+	pickup
+	end2
+
 BattleScript_SmokeBallEscape::
 	playanimation BS_ATTACKER, B_ANIM_SMOKEBALL_ESCAPE, NULL
 	printstring STRINGID_PKMNFLEDUSINGITS

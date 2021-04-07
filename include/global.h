@@ -851,7 +851,8 @@ struct SaveBlock1
     /*0x3A18*/ u8 seen2[52]; //made unreferenced & can be gotten rid of, though PKHeX presumably will still set this
     /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
-    /*0x3A94*/ u8 filler3A94[64]; //max fame checker people is actually 32, so this is the unused 16 entries
+    /*0x3A94*/ u8 filler3A94[44]; //max fame checker people is actually 32, so this is the unused 16 entries
+               u8 masterTrainerFlags[20]; //taken from above filler3A94 field, which was originally 64 bytes long. 1 byte longer than necessary for alignment.
     /*0x3AD4*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;

@@ -1644,6 +1644,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
     u8 text[30];
     u8 multiplayerId;
     s32 i;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     multiplayerId = GetMultiplayerId();
 
@@ -1856,7 +1862,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
                     toCpy = gTrainerClassNames[GetEreaderTrainerClassId()];
                 else
-                    toCpy = gTrainerClassNames[gTrainers[gTrainerBattleOpponent_A].trainerClass];
+                    toCpy = gTrainerClassNames[sTrainers[gTrainerBattleOpponent_A].trainerClass];
                 break;
             case B_TXT_TRAINER1_NAME: // trainer1 name
                 if (gTrainerBattleOpponent_A == SECRET_BASE_OPPONENT)
@@ -1887,12 +1893,12 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else
                 {
-                    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_RIVAL
-                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_RIVAL_2
-                     || gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
+                    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_RIVAL
+                     || sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_RIVAL_2
+                     || sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
                         toCpy = GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL);
                     else
-                        toCpy = gTrainers[gTrainerBattleOpponent_A].trainerName;
+                        toCpy = sTrainers[gTrainerBattleOpponent_A].trainerName;
                 }
                 break;
             case B_TXT_LINK_PLAYER_NAME: // link player name

@@ -1458,6 +1458,11 @@
 	.byte \mode
 	.endm
 
+	.macro setobjectmovementtypeinstant localId:req, movementType:req
+	.byte 0xd7
+	.2byte \localId
+	.byte \movementType
+	.endm
 
 @ Supplementary
 

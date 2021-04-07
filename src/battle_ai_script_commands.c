@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "util.h"
+#include "event_data.h"
 #include "item.h"
 #include "random.h"
 #include "battle_ai_script_commands.h"
@@ -263,6 +264,12 @@ void BattleAI_HandleItemUseBeforeAISetup(void)
 {
     s32 i;
     u8 *data = (u8 *)BATTLE_HISTORY;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     for (i = 0; i < sizeof(struct BattleHistory); i++)
         data[i] = 0;
@@ -275,9 +282,9 @@ void BattleAI_HandleItemUseBeforeAISetup(void)
     {
         for (i = 0; i < MAX_TRAINER_ITEMS; i++)
         {
-            if (gTrainers[gTrainerBattleOpponent_A].items[i] != 0)
+            if (sTrainers[gTrainerBattleOpponent_A].items[i] != 0)
             {
-                BATTLE_HISTORY->trainerItems[BATTLE_HISTORY->itemsNo] = gTrainers[gTrainerBattleOpponent_A].items[i];
+                BATTLE_HISTORY->trainerItems[BATTLE_HISTORY->itemsNo] = sTrainers[gTrainerBattleOpponent_A].items[i];
                 BATTLE_HISTORY->itemsNo++;
             }
         }
@@ -291,6 +298,12 @@ void BattleAI_SetupAIData(void)
     s32 i;
     u8 *data = (u8 *)AI_THINKING_STRUCT;
     u8 moveLimitations;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     // Clear AI data.
     for (i = 0; i < sizeof(struct AI_ThinkingStruct); i++)
@@ -357,7 +370,7 @@ void BattleAI_SetupAIData(void)
         AI_THINKING_STRUCT->aiFlags = (AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY);
         return;
     }
-    AI_THINKING_STRUCT->aiFlags = gTrainers[gTrainerBattleOpponent_A].aiFlags;
+    AI_THINKING_STRUCT->aiFlags = sTrainers[gTrainerBattleOpponent_A].aiFlags;
 }
 
 u8 BattleAI_ChooseMoveOrAction(void)

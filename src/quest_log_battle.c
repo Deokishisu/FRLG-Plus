@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
+#include "event_data.h"
 #include "link.h"
 #include "overworld.h"
 #include "quest_log.h"
@@ -27,6 +28,13 @@ static void sub_812C334(s32 *, s32 *);
 
 void TrySetQuestLogBattleEvent(void)
 {
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
+
     if (!(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_OLD_MAN_TUTORIAL | BATTLE_TYPE_POKEDUDE)) && (gBattleOutcome == B_OUTCOME_WON || gBattleOutcome == B_OUTCOME_CAUGHT))
     {
         struct QuestLogStruct_TrainerBattleRecord * questLogTrainerBattleRecord = Alloc(sizeof(struct QuestLogStruct_TrainerBattleRecord));
@@ -37,7 +45,7 @@ void TrySetQuestLogBattleEvent(void)
 
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            switch (gTrainers[gTrainerBattleOpponent_A].trainerClass)
+            switch (sTrainers[gTrainerBattleOpponent_A].trainerClass)
             {
             case CLASS_LEADER_2:
                 eventId = QL_EVENT_DEFEATED_GYM_LEADER;

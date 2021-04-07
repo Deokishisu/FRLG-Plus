@@ -571,6 +571,26 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void ShouldChangeMasterTrainerMovementType(void)
+{
+    gSpecialVar_Result = CheckMasterTrainerFlag(gSpecialVar_0x8009);
+}
+
+void ClearAllButFirstPokemon(void)
+{
+    u32 i;
+    for (i = 1; i < PARTY_SIZE; i++)
+        ZeroMonData(&gPlayerParty[i]);
+}
+
+void CheckMasterPokemonInSlot1(void)
+{
+    if(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2, NULL) == gSpecialVar_0x8009)
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result =  FALSE;
+}
+
 void ShouldSpawnSoftlockClerk(void)
 {
     gSpecialVar_Result = CheckAssetsForSoftlock();

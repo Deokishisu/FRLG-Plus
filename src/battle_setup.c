@@ -683,7 +683,6 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
     u8 sum;
     u32 count = numMons;
     s8 levelScaling = GetScaledLevel();
-    
 
     if (gTrainers[opponentId].partySize < count)
         count = gTrainers[opponentId].partySize;
@@ -735,6 +734,10 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
                 sum += (party[i].lvl + levelScaling);
         }
     }
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+    {
+        return GetMonData(gPlayerParty[0], MON_DATA_LEVEL, NULL);
+    }
     return sum;
 }
 
@@ -756,10 +759,16 @@ static u8 GetTrainerBattleTransition(void)
     u8 transitionType;
     u8 enemyLevel;
     u8 playerLevel;
+    struct Trainer* sTrainers;
+
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        sTrainers = (struct Trainer*)gMasterTrainers;
+    else
+        sTrainers = (struct Trainer*)gTrainers;
 
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         return B_TRANSITION_BLUE;
-    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2)
+    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2)
     {
         if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE_2)
             return B_TRANSITION_LORELEI;
@@ -771,9 +780,9 @@ static u8 GetTrainerBattleTransition(void)
             return B_TRANSITION_LANCE;
         return B_TRANSITION_BLUE;
     }
-    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
+    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
         return B_TRANSITION_BLUE;
-    if (gTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)
+    if (sTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)
         minPartyCount = 2; // double battles always at least have 2 pokemon.
     else
         minPartyCount = 1;
@@ -993,11 +1002,19 @@ u16 GetRivalBattleFlags(void)
 
 u16 Script_HasTrainerBeenFought(void)
 {
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+    {
+        return CheckMasterTrainerFlag(gSpecialVar_0x8009);
+    }
     return FlagGet(GetTrainerAFlag());
 }
 
 void SetBattledTrainerFlag(void)
 {
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+    {
+        SetMasterTrainerFlag(gSpecialVar_0x8009);
+    }
     FlagSet(GetTrainerAFlag());
 }
 
@@ -1063,6 +1080,21 @@ static void CB2_EndTrainerBattle(void)
     }
     else
     {
+        if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+        {
+            if(IsPlayerDefeated(gBattleOutcome) == TRUE)
+            {
+                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+                QuestLogEvents_HandleEndTrainerBattle();
+            }
+            else
+            {
+                SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+                SetBattledTrainerFlag();
+                QuestLogEvents_HandleEndTrainerBattle();
+            }
+            return;
+        }
         if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         {
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);

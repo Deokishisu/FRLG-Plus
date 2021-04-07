@@ -9501,3 +9501,14 @@ static void DoRippleFieldEffect(struct ObjectEvent *objectEvent, struct Sprite *
     gFieldEffectArguments[3] = 3;
     FieldEffectStart(FLDEFF_RIPPLE);
 }
+
+void SetObjectMovementType(u16 localId, u8 movementType)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[GetObjectEventIdByLocalId(localId)];
+    
+    objectEvent->movementType = movementType;
+    objectEvent->directionSequenceIndex = 0;
+    objectEvent->playerCopyableMovement = 0;
+    gSprites[objectEvent->spriteId].callback = sMovementTypeCallbacks[movementType];
+    gSprites[objectEvent->spriteId].data[1] = 0;
+}

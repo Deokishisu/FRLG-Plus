@@ -3,6 +3,7 @@
 #include "script.h"
 #include "mystery_event_script.h"
 #include "event_data.h"
+#include "event_object_movement.h"
 #include "random.h"
 #include "item.h"
 #include "overworld.h"
@@ -2288,4 +2289,13 @@ bool8 ScrCmd_fadescreenswapbuffers(struct ScriptContext *ctx)
 
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
+}
+
+bool8 ScrCmd_setobjectmovementtypeinstant(struct ScriptContext *ctx)
+{
+    u16 localId = VarGet(ScriptReadHalfword(ctx));
+    u8 movementType = ScriptReadByte(ctx);
+
+    SetObjectMovementType(localId, movementType);
+    return FALSE;
 }
