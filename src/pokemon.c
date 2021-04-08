@@ -3103,6 +3103,11 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
         u8 ivs[NUM_STATS] = {31, 31, 31, 31, 30, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
+    else if(fixedIV == (11 * 31 / 255)) //hidden power Water IVs
+    {
+        u8 ivs[NUM_STATS] = {31, 31, 31, 30, 30, 31};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
     else
     {
         CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
