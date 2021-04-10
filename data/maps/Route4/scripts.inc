@@ -1,19 +1,19 @@
-.equ BULBASAUR_MASTER, 8
-.equ TRAINER, VAR_0x8009
+.set LOCALID_BULBASAUR_MASTER, 8
+.set TRAINER, VAR_0x8009
 
 Route4_MapScripts:: @ 8167F8A
-	map_script MAP_SCRIPT_ON_LOAD, Route4_MapScript_SetMasterTrainerMovementTypes
+	map_script MAP_SCRIPT_ON_TRANSITION, Route4_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route4_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_BULBASAUR
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, TRUE
-	call Route4_MapScript_BulbasaurMasterMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route4_MapScript_BulbasaurMasterMovementType
 	end
 
 Route4_MapScript_BulbasaurMasterMovementType::
-	setobjectmovementtype BULBASAUR_MASTER, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtype LOCALID_BULBASAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
 Route4_EventScript_Unused:: @ 8167F8B

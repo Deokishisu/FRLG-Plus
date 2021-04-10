@@ -1,13 +1,27 @@
 .set LOCALID_CLERK, 1
+.set LOCALID_MEOWTH_MASTER, 4
+.set TRAINER, VAR_0x8009
 
 ViridianCity_Mart_MapScripts:: @ 816A1D3
 	map_script MAP_SCRIPT_ON_LOAD, ViridianCity_Mart_OnLoad
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, ViridianCity_Mart_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_Mart_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 ViridianCity_Mart_OnLoad:: @ 816A1DE
 	goto_if_unset FLAG_SYS_POKEDEX_GET, ViridianCity_Mart_EventScript_HideQuestionnaire
 	end
+
+ViridianCity_Mart_MapScript_SetMasterTrainerMovementTypes:
+	setvar TRAINER, MASTER_MEOWTH
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianCity_Mart_MapScript_MeowthMasterMovementType
+	end
+
+ViridianCity_Mart_MapScript_MeowthMasterMovementType::
+	setobjectmovementtype LOCALID_MEOWTH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 ViridianCity_Mart_EventScript_HideQuestionnaire:: @ 816A1E8
 	setmetatile 1, 3, METATILE_Mart_CounterMid_Top, 1

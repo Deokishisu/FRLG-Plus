@@ -130,7 +130,7 @@
       "x": 58,
       "y": 3,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_VS_SEEKER_4D",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",

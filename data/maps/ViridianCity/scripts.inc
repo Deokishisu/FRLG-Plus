@@ -1,10 +1,32 @@
 .set LOCALID_OLD_MAN,      3
 .set LOCALID_TUTORIAL_MAN, 4
 .set LOCALID_WOMAN,        5
+.set LOCALID_ABRA_MASTER, 10
+.set LOCALID_ODDISH_MASTER, 11
+.set TRAINER, VAR_0x8009
 
 ViridianCity_MapScripts:: @ 81658D3
 	map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_OnTransition
 	.byte 0
+
+ViridianCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_ABRA
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianCity_MapScript_AbraMasterMovementType
+	setvar TRAINER, MASTER_ODDISH
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianCity_MapScript_OddishMasterMovementType
+	end
+
+ViridianCity_MapScript_AbraMasterMovementType::
+	setobjectmovementtype LOCALID_ABRA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+ViridianCity_MapScript_OddishMasterMovementType::
+	setobjectmovementtype LOCALID_ODDISH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 ViridianCity_OnTransition:: @ 81658D9
 	setworldmapflag FLAG_WORLD_MAP_VIRIDIAN_CITY
@@ -16,6 +38,7 @@ ViridianCity_OnTransition:: @ 81658D9
 	call_if_ge ViridianCity_EventScript_SetOldManNormal
 	compare VAR_MAP_SCENE_VIRIDIAN_CITY_GYM_DOOR, 0
 	call_if_eq ViridianCity_EventScript_TryUnlockGym
+	goto ViridianCity_MapScript_SetMasterTrainerMovementTypes
 	end
 
 ViridianCity_EventScript_SetOldManNormal:: @ 8165909

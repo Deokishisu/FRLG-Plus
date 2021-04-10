@@ -1464,6 +1464,11 @@
 	.byte \movementType
 	.endm
 
+	.macro resetobjectmovementtype localId:req
+	.byte 0xd8
+	.2byte \localId
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

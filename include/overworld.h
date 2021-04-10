@@ -68,6 +68,7 @@ void IncrementGameStat(u8 index);
 
 void Overworld_SetMapObjTemplateCoords(u8, s16, s16);
 void Overworld_SetObjEventTemplateMovementType(u8, u8);
+void Overworld_ResetObjEventTemplateMovementType(u8 localId);
 
 void SetWarpDestination(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
 

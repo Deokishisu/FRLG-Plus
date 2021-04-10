@@ -1,11 +1,26 @@
+.set LOCALID_DROWZEE_MASTER, 7
+.set TRAINER, VAR_0x8009
+
 ViridianCity_PokemonCenter_1F_MapScripts:: @ 816A2C0
 	map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
 	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
+ViridianCity_PokemonCenter_1F_MapScript_DrowzeeMasterMovementType:
+	setobjectmovementtype LOCALID_DROWZEE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
 ViridianCity_PokemonCenter_1F_OnTransition:: @ 816A2CB
 	setrespawn SPAWN_VIRIDIAN_CITY
+	goto ViridianCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes
+	end
+
+ViridianCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DROWZEE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianCity_PokemonCenter_1F_MapScript_DrowzeeMasterMovementType
 	end
 
 ViridianCity_PokemonCenter_1F_EventScript_Nurse:: @ 816A2CF

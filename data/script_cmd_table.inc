@@ -217,6 +217,7 @@ gScriptCmdTable:: @ 815F9B4
 	.4byte ScrCmd_copyobjectxytoperm
 	.4byte ScrCmd_fadescreenswapbuffers
 	.4byte ScrCmd_setobjectmovementtypeinstant
+	.4byte ScrCmd_resetobjectmovementtype
 
 gScriptCmdTableEnd:: @ 815FD08
 	.4byte ScrCmd_nop

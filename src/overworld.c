@@ -535,6 +535,23 @@ void Overworld_SetObjEventTemplateMovementType(u8 localId, u8 movementType)
     }
 }
 
+void Overworld_ResetObjEventTemplateMovementType(u8 localId)
+{
+    s32 i;
+    struct ObjectEventTemplate *savObjTemplates = gSaveBlock1Ptr->objectEventTemplates;
+    for (i = 0; i < OBJECT_EVENT_TEMPLATES_COUNT; i++)
+    {
+        struct ObjectEventTemplate *objectEventTemplate = &savObjTemplates[i];
+        struct ObjectEventTemplate *headerObjectEventTemplate = &gMapHeader.events->objectEvents[i];
+        if (objectEventTemplate->localId == localId)
+        {
+            objectEventTemplate->movementType = headerObjectEventTemplate->movementType;
+            SetObjectMovementType(localId, headerObjectEventTemplate->movementType);
+            return;
+        }
+    }
+}
+
 // Routines related to the map layout
 
 static void mapdata_load_assets_to_gpu_and_full_redraw(void)

@@ -2299,3 +2299,11 @@ bool8 ScrCmd_setobjectmovementtypeinstant(struct ScriptContext *ctx)
     SetObjectMovementType(localId, movementType);
     return FALSE;
 }
+
+bool8 ScrCmd_resetobjectmovementtype(struct ScriptContext * ctx)
+{
+    u16 localId = VarGet(ScriptReadHalfword(ctx));
+
+    Overworld_ResetObjEventTemplateMovementType(localId);
+    return FALSE;
+}

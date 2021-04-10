@@ -1,8 +1,22 @@
 .set LOCALID_WOMAN, 1
 .set LOCALID_LASS,  2
+.set LOCALID_BELLSPROUT_MASTER, 3
+.set TRAINER, VAR_0x8009
 
 ViridianCity_House2_MapScripts:: @ 816A07C
+	map_script MAP_SCRIPT_ON_TRANSITION, ViridianCity_House2_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+ViridianCity_House2_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_BELLSPROUT
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianCity_House2_MapScript_BellsproutMasterMovementType
+	end
+
+ViridianCity_House2_MapScript_BellsproutMasterMovementType::
+	setobjectmovementtype LOCALID_BELLSPROUT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 ViridianCity_House2_EventScript_Lass:: @ 816A07D
 	lock
