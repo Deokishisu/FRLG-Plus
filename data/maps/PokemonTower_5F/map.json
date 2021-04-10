@@ -112,6 +112,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PokemonTower_5F_EventScript_ItemCleanseTag",
       "flag": "FLAG_HIDE_POKEMON_TOWER_5F_CLEANSE_TAG"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_PSYCHIC_M",
+      "in_connection": false,
+      "x": 4,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Hypno",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

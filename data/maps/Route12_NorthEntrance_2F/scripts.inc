@@ -1,5 +1,20 @@
+.set LOCALID_PIDGEOT_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 Route12_NorthEntrance_2F_MapScripts:: @ 816FE77
+	map_script MAP_SCRIPT_ON_TRANSITION, Route12_NorthEntrance_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route12_NorthEntrance_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PIDGEOT
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route12_NorthEntrance_MapScript_PidgeotMasterMovementType
+	end
+
+Route12_NorthEntrance_MapScript_PidgeotMasterMovementType::
+	setobjectmovementtype LOCALID_PIDGEOT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route12_NorthEntrance_2F_EventScript_LeftBinoculars:: @ 816FE78
 	msgbox Route12_NorthEntrance_2F_Text_TheresManFishing, MSGBOX_SIGN

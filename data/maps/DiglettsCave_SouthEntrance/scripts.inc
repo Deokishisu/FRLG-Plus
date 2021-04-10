@@ -1,6 +1,21 @@
+.set LOCALID_DIGLETT_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 DiglettsCave_SouthEntrance_MapScripts:: @ 8160EFB
+	map_script MAP_SCRIPT_ON_TRANSITION, DiglettsCave_SouthEntrance_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 DiglettsCave_SouthEntrance_EventScript_OldMan:: @ 8160EFC
 	msgbox DiglettsCave_SouthEntrance_Text_DiglettDugThisTunnel, MSGBOX_NPC
 	end
+
+DiglettsCave_SouthEntrance_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DIGLETT
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq DiglettsCave_SouthEntrance_MapScript_DiglettMasterMovementType
+	end
+
+DiglettsCave_SouthEntrance_MapScript_DiglettMasterMovementType::
+	setobjectmovementtype LOCALID_DIGLETT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return

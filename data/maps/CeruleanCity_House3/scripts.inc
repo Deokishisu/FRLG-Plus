@@ -1,5 +1,20 @@
+.set LOCALID_POLIWHIRL_MASTER, 3
+.set TRAINER, VAR_0x8009
+
 CeruleanCity_House3_MapScripts:: @ 816A9A7
+	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_House3_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeruleanCity_House3_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_POLIWHIRL
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeruleanCity_House3_MapScript_PoliwhirlMasterMovementType
+	end
+
+CeruleanCity_House3_MapScript_PoliwhirlMasterMovementType::
+	setobjectmovementtype LOCALID_POLIWHIRL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeruleanCity_House3_EventScript_OldWoman:: @ 816A9A8
 	msgbox CeruleanCity_House3_Text_PleaseTradeWithMyHusband, MSGBOX_NPC

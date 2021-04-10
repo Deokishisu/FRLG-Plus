@@ -43,9 +43,6 @@ Route4_MapScript_GolduckMasterMovementType::
 	setobjectmovementtype LOCALID_GOLDUCK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route4_EventScript_Unused:: @ 8167F8B
-	end
-
 Route4_EventScript_Woman:: @ 8167F8C
 	msgbox Route4_Text_TrippedOverGeodude, MSGBOX_NPC
 	end

@@ -1,10 +1,24 @@
 .set LOCALID_GIOVANNI, 3
 .set LOCALID_GRUNT1,   4
 .set LOCALID_GRUNT2,   6
+.set LOCALID_WIGGLYTUFF_MASTER, 9
+.set TRAINER, VAR_0x8009
 
 SilphCo_11F_MapScripts:: @ 8161DEE
 	map_script MAP_SCRIPT_ON_LOAD, SilphCo_11F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, SilphCo_11F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+SilphCo_11F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_WIGGLYTUFF
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SilphCo_11F_MapScript_WigglytuffMasterMovementType
+	end
+
+SilphCo_11F_MapScript_WigglytuffMasterMovementType::
+	setobjectmovementtype LOCALID_WIGGLYTUFF_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SilphCo_11F_OnLoad:: @ 8161DF4
 	call_if_unset FLAG_SILPH_11F_DOOR, EventScript_Close11FDoor

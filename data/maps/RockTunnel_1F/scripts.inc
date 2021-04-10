@@ -1,10 +1,25 @@
+.set LOCALID_GEODUDE_MASTER, 11
+.set TRAINER, VAR_0x8009
+
 RockTunnel_1F_MapScripts:: @ 8162DD6
 	map_script MAP_SCRIPT_ON_TRANSITION, RockTunnel_1F_OnTransition
 	.byte 0
 
 RockTunnel_1F_OnTransition:: @ 8162DDC
 	setworldmapflag FLAG_WORLD_MAP_ROCK_TUNNEL_1F
+	goto RockTunnel_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+RockTunnel_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_GEODUDE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq RockTunnel_1F_MapScript_GeodudeMasterMovementType
+	end
+
+RockTunnel_1F_MapScript_GeodudeMasterMovementType::
+	setobjectmovementtype LOCALID_GEODUDE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 RockTunnel_1F_EventScript_RouteSign:: @ 8162DE0
 	msgbox RockTunnel_1F_Text_RouteSign, MSGBOX_SIGN

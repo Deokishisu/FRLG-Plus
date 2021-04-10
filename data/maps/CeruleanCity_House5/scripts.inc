@@ -1,5 +1,20 @@
+.set LOCALID_DRAGONITE_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 CeruleanCity_House5_MapScripts:: @ 816AE4F
+	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_House5_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeruleanCity_House5_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DRAGONITE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeruleanCity_House5_MapScript_DragoniteMasterMovementType
+	end
+
+CeruleanCity_House5_MapScript_DragoniteMasterMovementType::
+	setobjectmovementtype LOCALID_DRAGONITE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeruleanCity_House5_EventScript_BerryPowderMan:: @ 816AE50
 	lock

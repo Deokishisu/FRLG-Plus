@@ -21,7 +21,7 @@
     },
     {
       "direction": "right",
-      "offset": -60,
+      "offset": -59,
       "map": "MAP_ROUTE12"
     }
   ],
@@ -207,6 +207,34 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route11_EventScript_ItemAwakening",
       "flag": "FLAG_HIDE_ROUTE11_AWAKENING"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_BUG_CATCHER",
+      "in_connection": false,
+      "x": 59,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Metapod",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
+      "in_connection": false,
+      "x": 12,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Sandshrew",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

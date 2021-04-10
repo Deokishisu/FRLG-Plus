@@ -1,5 +1,20 @@
+.set LOCALID_MAROWAK_MASTER, 7
+.set TRAINER, VAR_0x8009
+
 LavenderTown_VolunteerPokemonHouse_MapScripts:: @ 816B149
+	map_script MAP_SCRIPT_ON_TRANSITION, LavenderTown_VolunteerPokemonHouse_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+LavenderTown_VolunteerPokemonHouse_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MAROWAK
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq LavenderTown_VolunteerPokemonHouse_MapScript_MarowakMasterMovementType
+	end
+
+LavenderTown_VolunteerPokemonHouse_MapScript_MarowakMasterMovementType::
+	setobjectmovementtype LOCALID_MAROWAK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji:: @ 816B14A
 	lock

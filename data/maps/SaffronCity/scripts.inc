@@ -1,4 +1,8 @@
 .set LOCALID_DOOR_GUARD_GRUNT, 6
+.set LOCALID_PONYTA_MASTER,    16
+.set LOCALID_RAPIDASH_MASTER,  17
+.set LOCALID_CLEFAIRY_MASTER,  18
+.set TRAINER, VAR_0x8009
 
 SaffronCity_MapScripts:: @ 816735F
 	map_script MAP_SCRIPT_ON_TRANSITION, SaffronCity_OnTransition
@@ -7,7 +11,35 @@ SaffronCity_MapScripts:: @ 816735F
 SaffronCity_OnTransition:: @ 8167365
 	setworldmapflag FLAG_WORLD_MAP_SAFFRON_CITY
 	call_if_unset FLAG_RESCUED_MR_FUJI, SaffronCity_EventScript_MoveDoorGuardGrunt
+	goto SaffronCity_MapScript_SetMasterTrainerMovementTypes
 	end
+
+SaffronCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PONYTA
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SaffronCity_MapScript_PonytaMasterMovementType
+	setvar TRAINER, MASTER_RAPIDASH
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SaffronCity_MapScript_RapidashMasterMovementType
+	setvar TRAINER, MASTER_CLEFAIRY
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SaffronCity_MapScript_ClefairyMasterMovementType
+	end
+
+SaffronCity_MapScript_PonytaMasterMovementType::
+	setobjectmovementtype LOCALID_PONYTA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+SaffronCity_MapScript_RapidashMasterMovementType::
+	setobjectmovementtype LOCALID_RAPIDASH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+SaffronCity_MapScript_ClefairyMasterMovementType::
+	setobjectmovementtype LOCALID_CLEFAIRY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SaffronCity_EventScript_MoveDoorGuardGrunt:: @ 8167372
 	setobjectxyperm LOCALID_DOOR_GUARD_GRUNT, 33, 31

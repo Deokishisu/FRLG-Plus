@@ -1,5 +1,20 @@
+.set LOCALID_DODUO_MASTER, 4
+.set TRAINER, VAR_0x8009
+
 CeruleanCity_BikeShop_MapScripts:: @ 816ABBC
+	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_BikeShop_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeruleanCity_BikeShop_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DODUO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeruleanCity_BikeShop_MapScript_DoduoMasterMovementType
+	end
+
+CeruleanCity_BikeShop_MapScript_DoduoMasterMovementType::
+	setobjectmovementtype LOCALID_DODUO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeruleanCity_BikeShop_EventScript_Clerk:: @ 816ABBD
 	lock

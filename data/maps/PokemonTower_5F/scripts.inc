@@ -1,5 +1,20 @@
+.set LOCALID_HYPNO_MASTER, 8
+.set TRAINER, VAR_0x8009
+
 PokemonTower_5F_MapScripts:: @ 8163432
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonTower_5F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonTower_5F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_HYPNO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonTower_5F_MapScript_HypnoMasterMovementType
+	end
+
+PokemonTower_5F_MapScript_HypnoMasterMovementType::
+	setobjectmovementtype LOCALID_HYPNO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonTower_5F_EventScript_Channeler:: @ 8163433
 	msgbox PokemonTower_5F_Text_RestHereInPurifiedSpace, MSGBOX_NPC

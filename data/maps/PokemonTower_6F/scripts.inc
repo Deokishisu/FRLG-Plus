@@ -1,5 +1,20 @@
+.set LOCALID_RAICHU_MASTER, 6
+.set TRAINER, VAR_0x8009
+
 PokemonTower_6F_MapScripts:: @ 81634B7
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonTower_6F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonTower_6F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_RAICHU
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonTower_6F_MapScript_RaichuMasterMovementType
+	end
+
+PokemonTower_6F_MapScript_RaichuMasterMovementType::
+	setobjectmovementtype LOCALID_RAICHU_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonTower_6F_EventScript_MarowakGhost:: @ 81634B8
 	lockall

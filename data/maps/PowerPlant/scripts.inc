@@ -1,3 +1,7 @@
+.set LOCALID_VOLTORB_MASTER, 9
+.set LOCALID_ZAPDOS_MASTER, 10
+.set TRAINER, VAR_0x8009
+
 PowerPlant_MapScripts:: @ 8163764
 	map_script MAP_SCRIPT_ON_RESUME, PowerPlant_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, PowerPlant_OnTransition
@@ -20,7 +24,27 @@ PowerPlant_OnTransition:: @ 816378D
 	call_if_unset FLAG_FOUGHT_ZAPDOS, PowerPlant_EventScript_TryShowZapdos
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_1, PowerPlant_EventScript_ShowElectrode1
 	call_if_unset FLAG_FOUGHT_POWER_PLANT_ELECTRODE_2, PowerPlant_EventScript_ShowElectrode2
+	goto PowerPlant_MapScript_SetMasterTrainerMovementTypes
 	end
+
+PowerPlant_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_VOLTORB
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PowerPlant_MapScript_VoltorbMasterMovementType
+	setvar TRAINER, MASTER_ZAPDOS
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PowerPlant_MapScript_ZapdosMasterMovementType
+	end
+
+PowerPlant_MapScript_VoltorbMasterMovementType::
+	setobjectmovementtype LOCALID_VOLTORB_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+PowerPlant_MapScript_ZapdosMasterMovementType::
+	setobjectmovementtype LOCALID_ZAPDOS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PowerPlant_EventScript_TryShowZapdos:: @ 81637AC
 	goto_if_set FLAG_ZAPDOS_FLEW_AWAY, EventScript_Return

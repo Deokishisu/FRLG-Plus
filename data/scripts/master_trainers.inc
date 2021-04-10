@@ -442,7 +442,7 @@ MasterTrainer_EventScript_Jigglypuff::
     getspeciesname 0, SPECIES_JIGGLYPUFF
     goto MasterTrainer_EventScript_DetermineContinueScript
 
-MasterTrainer_EventScript_Wigglypuff::
+MasterTrainer_EventScript_Wigglytuff::
     getspeciesname 0, SPECIES_WIGGLYTUFF
     setvar TRAINER, SPECIES_WIGGLYTUFF
     setvar CLASS, LASS

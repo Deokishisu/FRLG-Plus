@@ -13,10 +13,11 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "in_connection": false,
       "x": 9,
       "y": 3,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "in_connection": false,
       "x": 9,
       "y": 7,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "in_connection": false,
       "x": 5,
       "y": 5,
       "elevation": 3,
@@ -53,6 +56,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "CeruleanCity_BikeShop_EventScript_Woman",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_BIRD_KEEPER",
+      "in_connection": false,
+      "x": 0,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Doduo",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [
@@ -78,7 +95,9 @@
       "dest_warp_id": 5
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -145,5 +164,5 @@
       "script": "CeruleanCity_BikeShop_EventScript_Bicycle"
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }

@@ -1,7 +1,30 @@
 .equ LOCALID_ROCKET, 1
+.set LOCALID_VENONAT_MASTER, 9
+.set LOCALID_EXEGGCUTE_MASTER, 10
+.set TRAINER, VAR_0x8009
 
 Route24_MapScripts:: @ 816861F
+	map_script MAP_SCRIPT_ON_TRANSITION, Route24_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route24_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_VENONAT
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route24_MapScript_VenonatMasterMovementType
+	setvar TRAINER, MASTER_EXEGGCUTE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route24_MapScript_ExeggcuteMasterMovementType
+	end
+
+Route24_MapScript_VenonatMasterMovementType::
+	setobjectmovementtype LOCALID_VENONAT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+Route24_MapScript_ExeggcuteMasterMovementType::
+	setobjectmovementtype LOCALID_EXEGGCUTE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route24_EventScript_Rocket:: @ 8168620
 	lock

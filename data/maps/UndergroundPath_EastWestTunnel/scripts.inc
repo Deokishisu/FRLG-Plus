@@ -1,7 +1,40 @@
+.set LOCALID_NIDORINO_MASTER, 1
+.set LOCALID_NIDORINA_MASTER, 2
+.set LOCALID_ONIX_MASTER, 3
+.set TRAINER, VAR_0x8009
+
 UndergroundPath_EastWestTunnel_MapScripts:: @ 8160ED3
 	map_script MAP_SCRIPT_ON_TRANSITION, UndergroundPath_EastWestTunnel_OnTransition
 	.byte 0
 
 UndergroundPath_EastWestTunnel_OnTransition:: @ 8160ED9
 	setworldmapflag FLAG_WORLD_MAP_UNDERGROUND_PATH_EAST_WEST_TUNNEL
+	goto UndergroundPath_EastWestTunnel_MapScript_SetMasterTrainerMovementTypes
 	end
+
+UndergroundPath_EastWestTunnel_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_NIDORINO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq UndergroundPath_EastWestTunnel_MapScript_NidorinoMasterMovementType
+	setvar TRAINER, MASTER_NIDORINA
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq UndergroundPath_EastWestTunnel_MapScript_NidorinaMasterMovementType
+	setvar TRAINER, MASTER_ONIX
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq UndergroundPath_EastWestTunnel_MapScript_OnixMasterMovementType
+	end
+
+UndergroundPath_EastWestTunnel_MapScript_NidorinoMasterMovementType::
+	setobjectmovementtype LOCALID_NIDORINO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+UndergroundPath_EastWestTunnel_MapScript_NidorinaMasterMovementType::
+	setobjectmovementtype LOCALID_NIDORINA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+UndergroundPath_EastWestTunnel_MapScript_OnixMasterMovementType::
+	setobjectmovementtype LOCALID_ONIX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return

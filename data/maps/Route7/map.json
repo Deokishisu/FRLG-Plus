@@ -39,6 +39,20 @@
       "trainer_sight_or_berry_tree_id": "3",
       "script": "0x0",
       "flag": "FLAG_CELADON_CITY_NORTH_CUT_TREE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 18,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Growlithe",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

@@ -1,4 +1,7 @@
 .equ LOCALID_FERRY_SAILOR, 6
+.set LOCALID_MACHAMP_MASTER, 9
+.set LOCALID_FARFETCHD_MASTER, 10
+.set TRAINER, VAR_0x8009
 
 .equ HAS_TICKETS, 16
 .equ NEEDS_SHOW_EON, 17
@@ -47,7 +50,27 @@ VermilionCity_Movement_ExitSSAnne:: @ 8166903
 VermilionCity_OnTransition:: @ 8166906
 	setworldmapflag FLAG_WORLD_MAP_VERMILION_CITY
 	call_if_set FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION, VermilionCity_EventScript_HideOaksAide
+	goto VermilionCity_MapScript_SetMasterTrainerMovementTypes
 	end
+
+VermilionCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MACHAMP
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq VermilionCity_MapScript_MachampMasterMovementType
+	setvar TRAINER, MASTER_FARFETCHD
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq VermilionCity_MapScript_FarfetchdMasterMovementType
+	end
+
+VermilionCity_MapScript_MachampMasterMovementType::
+	setobjectmovementtype LOCALID_MACHAMP_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+VermilionCity_MapScript_FarfetchdMasterMovementType::
+	setobjectmovementtype LOCALID_FARFETCHD_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 VermilionCity_EventScript_HideOaksAide:: @ 8166913
 	setflag FLAG_HIDE_VERMILION_CITY_OAKS_AIDE

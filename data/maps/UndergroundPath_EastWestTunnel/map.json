@@ -13,8 +13,51 @@
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
-  "object_events": [],
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 51,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Nidorino",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 53,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Nidorina",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
+      "in_connection": false,
+      "x": 17,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Onix",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    }
+  ],
   "warp_events": [
     {
       "x": 76,
@@ -31,7 +74,9 @@
       "dest_warp_id": 3
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",
@@ -104,5 +149,5 @@
       "underfoot": false
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }

@@ -182,6 +182,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SilphCo_4F_EventScript_WorkerM2",
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_BLACK_BELT",
+      "in_connection": false,
+      "x": 7,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Machop",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

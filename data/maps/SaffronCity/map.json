@@ -245,6 +245,48 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SaffronCity_EventScript_BattleGirl",
       "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 39,
+      "y": 23,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Ponyta",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 15,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Rapidash",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_LASS",
+      "in_connection": false,
+      "x": 25,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Clefairy",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

@@ -13,10 +13,11 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2",
+      "in_connection": false,
       "x": 7,
       "y": 4,
       "elevation": 3,
@@ -27,6 +28,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "CeruleanCity_House5_EventScript_BerryPowderMan",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 10,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Dragonite",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [
@@ -38,7 +53,9 @@
       "dest_warp_id": 13
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -49,5 +66,5 @@
       "script": "CeruleanCity_House5_EventScript_BerryCrushRankings"
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }

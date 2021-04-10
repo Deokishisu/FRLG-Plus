@@ -13,10 +13,11 @@
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "in_connection": false,
       "x": 4,
       "y": 4,
       "elevation": 3,
@@ -27,6 +28,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "DiglettsCave_SouthEntrance_EventScript_OldMan",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
+      "in_connection": false,
+      "x": 7,
+      "y": 2,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Diglett",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [
@@ -45,7 +60,11 @@
       "dest_warp_id": 1
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-	"level_scaling": "0"
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
 }

@@ -1,6 +1,21 @@
+.set LOCALID_MACHOP_MASTER, 13
+.set TRAINER, VAR_0x8009
+
 SilphCo_4F_MapScripts:: @ 8161736
 	map_script MAP_SCRIPT_ON_LOAD, SilphCo_4F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, SilphCo_4F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+SilphCo_4F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MACHOP
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SilphCo_4F_MapScript_MachopMasterMovementType
+	end
+
+SilphCo_4F_MapScript_MachopMasterMovementType::
+	setobjectmovementtype LOCALID_MACHOP_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SilphCo_4F_OnLoad:: @ 816173C
 	call_if_unset FLAG_SILPH_4F_DOOR_1, EventScript_Close4FDoor1

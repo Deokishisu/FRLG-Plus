@@ -1,5 +1,20 @@
+.set LOCALID_SANDSLASH_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 Route7_EastEntrance_MapScripts:: @ 816FA8D
+	map_script MAP_SCRIPT_ON_TRANSITION, Route7_EastEntrance_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route7_EastEntrance_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_SANDSLASH
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route7_EastEntrance_MapScript_SandslashMasterMovementType
+	end
+
+Route7_EastEntrance_MapScript_SandslashMasterMovementType::
+	setobjectmovementtype LOCALID_SANDSLASH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route7_EastEntrance_EventScript_Guard:: @ 816FA8E
 	msgbox Route7_EastEntrance_Text_HiHowsItGoing, MSGBOX_NPC

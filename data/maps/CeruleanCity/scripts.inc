@@ -4,6 +4,9 @@
 .set LOCALID_LASS,      6
 .set LOCALID_RIVAL,     8
 .set LOCALID_WOMAN,     11
+.set LOCALID_POLIWRATH_MASTER, 13
+.set LOCALID_JYNX_MASTER,      14
+.set TRAINER, VAR_0x8009
 
 CeruleanCity_MapScripts:: @ 8166471
 	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_OnTransition
@@ -12,7 +15,27 @@ CeruleanCity_MapScripts:: @ 8166471
 CeruleanCity_OnTransition:: @ 8166477
 	setworldmapflag FLAG_WORLD_MAP_CERULEAN_CITY
 	call_if_unset FLAG_GOT_SS_TICKET, CeruleanCity_EventScript_BlockExits
+	goto CeruleanCity_MapScript_SetMasterTrainerMovementTypes
 	end
+
+CeruleanCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_POLIWRATH
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeruleanCity_MapScript_PoliwrathMasterMovementType
+	setvar TRAINER, MASTER_JYNX
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeruleanCity_MapScript_JynxMasterMovementType
+	end
+
+CeruleanCity_MapScript_PoliwrathMasterMovementType::
+	setobjectmovementtype LOCALID_POLIWRATH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+CeruleanCity_MapScript_JynxMasterMovementType::
+	setobjectmovementtype LOCALID_JYNX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeruleanCity_EventScript_BlockExits:: @ 8166484
 	setobjectxyperm LOCALID_POLICEMAN, 30, 12

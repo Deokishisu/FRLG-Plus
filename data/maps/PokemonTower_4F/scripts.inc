@@ -1,5 +1,20 @@
+.set LOCALID_LAPRAS_MASTER, 7
+.set TRAINER, VAR_0x8009
+
 PokemonTower_4F_MapScripts:: @ 81633EC
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonTower_4F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonTower_4F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_LAPRAS
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonTower_4F_MapScript_LaprasMasterMovementType
+	end
+
+PokemonTower_4F_MapScript_LaprasMasterMovementType::
+	setobjectmovementtype LOCALID_LAPRAS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonTower_4F_EventScript_Paula:: @ 81633ED
 	trainerbattle_single TRAINER_CHANNELER_PAULA, PokemonTower_4F_Text_PaulaIntro, PokemonTower_4F_Text_PaulaDefeat

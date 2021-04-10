@@ -1,5 +1,20 @@
+.set LOCALID_KADABRA_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 SaffronCity_MrPsychicsHouse_MapScripts:: @ 816F05E
+	map_script MAP_SCRIPT_ON_TRANSITION, SaffronCity_MrPsychicsHouse_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+SaffronCity_MrPsychicsHouse_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_KADABRA
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SaffronCity_MrPsychicsHouse_MapScript_KadabraMasterMovementType
+	end
+
+SaffronCity_MrPsychicsHouse_MapScript_KadabraMasterMovementType::
+	setobjectmovementtype LOCALID_KADABRA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SaffronCity_MrPsychicsHouse_EventScript_MrPsychic:: @ 816F05F
 	lock

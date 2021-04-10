@@ -1,5 +1,20 @@
+.set LOCALID_CUBONE_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 Route8_WestEntrance_MapScripts:: @ 816FB53
+	map_script MAP_SCRIPT_ON_TRANSITION, Route8_WestEntrance_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route8_WestEntrance_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_CUBONE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route8_WestEntrance_MapScript_CuboneMasterMovementType
+	end
+
+Route8_WestEntrance_MapScript_CuboneMasterMovementType::
+	setobjectmovementtype LOCALID_CUBONE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route8_WestEntrance_EventScript_Guard:: @ 816FB54
 	msgbox Route8_WestEntrance_Text_HiHowsItGoing, MSGBOX_NPC

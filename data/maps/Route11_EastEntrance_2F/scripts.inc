@@ -1,7 +1,21 @@
 .equ REQUIRED_CAUGHT_MONS, 30
+.set LOCALID_PRIMEAPE_MASTER, 3
+.set TRAINER, VAR_0x8009
 
 Route11_EastEntrance_2F_MapScripts:: @ 816FD34
+	map_script MAP_SCRIPT_ON_TRANSITION, Route11_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route11_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PRIMEAPE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route11_EastEntrance_2F_MapScript_PrimeapeMasterMovementType
+	end
+
+Route11_EastEntrance_2F_MapScript_PrimeapeMasterMovementType::
+	setobjectmovementtype LOCALID_PRIMEAPE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route11_EastEntrance_2F_EventScript_LeftBinoculars:: @ 816FD35
 	lockall

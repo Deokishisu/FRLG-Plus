@@ -1,5 +1,20 @@
+.set LOCALID_ZUBAT_MASTER, 27
+.set TRAINER, VAR_0x8009
+
 RockTunnel_B1F_MapScripts:: @ 8162E8A
+	map_script MAP_SCRIPT_ON_TRANSITION, RockTunnel_B1F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+RockTunnel_B1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_ZUBAT
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq RockTunnel_B1F_MapScript_ZubatMasterMovementType
+	end
+
+RockTunnel_B1F_MapScript_ZubatMasterMovementType::
+	setobjectmovementtype LOCALID_ZUBAT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 RockTunnel_B1F_EventScript_Sofia:: @ 8162E8B
 	trainerbattle_single TRAINER_PICNICKER_SOFIA, RockTunnel_B1F_Text_SofiaIntro, RockTunnel_B1F_Text_SofiaDefeat

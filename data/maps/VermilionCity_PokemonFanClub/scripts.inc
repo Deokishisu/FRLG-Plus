@@ -1,11 +1,24 @@
 .set LOCALID_WOMAN,   5
 .set LOCALID_FAT_MAN, 6
-
 .set SPOKE_TO_WOMAN_LAST,   FLAG_TEMP_2
 .set SPOKE_TO_FAT_MAN_LAST, FLAG_TEMP_3
+.set LOCALID_KRABBY_MASTER, 7
+.set TRAINER, VAR_0x8009
 
 VermilionCity_PokemonFanClub_MapScripts:: @ 816B47E
+	map_script MAP_SCRIPT_ON_TRANSITION, VermilionCity_PokemonFanClub_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+VermilionCity_PokemonFanClub_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_KRABBY
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq VermilionCity_PokemonFanClub_MapScript_KrabbyMasterMovementType
+	end
+
+VermilionCity_PokemonFanClub_MapScript_KrabbyMasterMovementType::
+	setobjectmovementtype LOCALID_KRABBY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 VermilionCity_PokemonFanClub_EventScript_Chairman:: @ 816B47F
 	lock

@@ -1,3 +1,9 @@
+.set LOCALID_SQUIRTLE_MASTER, 15
+.set LOCALID_SEADRA_MASTER, 16
+.set LOCALID_GOLDEEN_MASTER, 17
+.set LOCALID_POLIWAG_MASTER, 18
+.set TRAINER, VAR_0x8009
+
 Route12_MapScripts:: @ 8168000
 	map_script MAP_SCRIPT_ON_TRANSITION, Route12_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route12_OnResume
@@ -6,7 +12,43 @@ Route12_MapScripts:: @ 8168000
 Route12_OnTransition::
 	call_if_set FLAG_WOKE_UP_ROUTE_12_SNORLAX, Route12_EventScript_HideSnorlax
 	call_if_unset FLAG_WOKE_UP_ROUTE_12_SNORLAX, Route12_EventScript_TryShowSnorlax
+	goto Route12_MapScript_SetMasterTrainerMovementTypes
 	end
+
+Route12_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_SQUIRTLE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route12_MapScript_SquirtleMasterMovementType
+	setvar TRAINER, MASTER_SEADRA
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route12_MapScript_SeadraMasterMovementType
+	setvar TRAINER, MASTER_GOLDEEN
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route12_MapScript_GoldeenMasterMovementType
+	setvar TRAINER, MASTER_POLIWAG
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route12_MapScript_PoliwagMasterMovementType
+	end
+
+Route12_MapScript_SquirtleMasterMovementType::
+	setobjectmovementtype LOCALID_SQUIRTLE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route12_MapScript_SeadraMasterMovementType::
+	setobjectmovementtype LOCALID_SEADRA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route12_MapScript_GoldeenMasterMovementType::
+	setobjectmovementtype LOCALID_GOLDEEN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route12_MapScript_PoliwagMasterMovementType::
+	setobjectmovementtype LOCALID_POLIWAG_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route12_EventScript_HideSnorlax::
 	setflag FLAG_HIDE_ROUTE_12_SNORLAX
