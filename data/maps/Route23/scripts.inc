@@ -6,8 +6,59 @@
 .set LOCALID_VOLCANO_BADGE_GUARD, 6
 .set LOCALID_EARTH_BADGE_GUARD,   7
 
+.set LOCALID_DRATINI_MASTER, 8
+.set LOCALID_NIDOQUEEN_MASTER, 9
+.set LOCALID_NIDOKING_MASTER, 10
+.set LOCALID_CHARIZARD_MASTER, 11
+.set LOCALID_VENUSAUR_MASTER, 12
+.set TRAINER, VAR_0x8009
+
 Route23_MapScripts:: @ 81684EB
+	map_script MAP_SCRIPT_ON_TRANSITION, Route23_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route23_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DRATINI
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route23_MapScript_DratiniMasterMovementType
+	setvar TRAINER, MASTER_NIDOQUEEN
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route23_MapScript_NidoqueenMMasterMovementType
+	setvar TRAINER, MASTER_NIDOKING
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route23_MapScript_NidokingMasterMovementType
+	setvar TRAINER, MASTER_CHARIZARD
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route23_MapScript_CharizardMasterMovementType
+	setvar TRAINER, MASTER_VENUSAUR
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route23_MapScript_VenusaurMasterMovementType
+	end
+
+Route23_MapScript_DratiniMasterMovementType::
+	setobjectmovementtype LOCALID_DRATINI_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route23_MapScript_NidoqueenMMasterMovementType::
+	setobjectmovementtype LOCALID_NIDOQUEEN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route23_MapScript_NidokingMasterMovementType::
+	setobjectmovementtype LOCALID_NIDOKING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route23_MapScript_CharizardMasterMovementType::
+	setobjectmovementtype LOCALID_CHARIZARD_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route23_MapScript_VenusaurMasterMovementType::
+	setobjectmovementtype LOCALID_VENUSAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route23_EventScript_CascadeBadgeGuard:: @ 816850C
 	lock

@@ -1,6 +1,9 @@
 .equ LOCALID_DOME_FOSSIL,  1
 .equ LOCALID_HELIX_FOSSIL, 2
 .equ LOCALID_MIGUEL,       3
+.set LOCALID_OMANYTE_MASTER, 12
+.set LOCALID_KABUTO_MASTER, 13
+.set TRAINER, VAR_0x8009
 
 MtMoon_B2F_MapScripts:: @ 8160699
 	map_script MAP_SCRIPT_ON_TRANSITION, MtMoon_B2F_OnTransition
@@ -8,7 +11,27 @@ MtMoon_B2F_MapScripts:: @ 8160699
 
 MtMoon_B2F_OnTransition:: @ 816069F
 	call_if_unset FLAG_GOT_FOSSIL_FROM_MT_MOON, MtMoon_B2F_EventScript_ShowFossils
+	goto MtMoon_B2F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+MtMoon_B2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_OMANYTE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq MtMoon_B2F_MapScript_OmanyteMasterMovementType
+	setvar TRAINER, MASTER_KABUTO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq MtMoon_B2F_MapScript_KabutoMasterMovementType
+	end
+
+MtMoon_B2F_MapScript_OmanyteMasterMovementType::
+	setobjectmovementtype LOCALID_OMANYTE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+MtMoon_B2F_MapScript_KabutoMasterMovementType::
+	setobjectmovementtype LOCALID_KABUTO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 MtMoon_B2F_EventScript_ShowFossils:: @ 81606A9
 	clearflag FLAG_HIDE_DOME_FOSSIL

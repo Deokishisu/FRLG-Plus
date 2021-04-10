@@ -137,6 +137,48 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MasterTrainer_EventScript_Bulbasaur",
       "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
+      "in_connection": false,
+      "x": 20,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_NidoranM",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_SCIENTIST",
+      "in_connection": false,
+      "x": 85,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Ekans",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER",
+      "in_connection": false,
+      "x": 98,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Golduck",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

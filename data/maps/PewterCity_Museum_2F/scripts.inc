@@ -1,5 +1,20 @@
+.set LOCALID_GOLEM_MASTER, 6
+.set TRAINER, VAR_0x8009
+
 PewterCity_Museum_2F_MapScripts:: @ 816A552
+	map_script MAP_SCRIPT_ON_TRANSITION, PewterCity_Museum_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PewterCity_Museum_2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_GOLEM
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PewterCity_Museum_2F_MapScript_GolemMasterMovementType
+	end
+
+PewterCity_Museum_2F_MapScript_GolemMasterMovementType::
+	setobjectmovementtype LOCALID_GOLEM_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PewterCity_Museum_2F_EventScript_Man:: @ 816A553
 	msgbox PewterCity_Museum_1F_Text_WhatsSpecialAboutMoonStone, MSGBOX_NPC

@@ -1,10 +1,34 @@
+.set LOCALID_PIKACHU_MASTER, 12
+.set LOCALID_WEEDLE_MASTER, 13
+.set TRAINER, VAR_0x8009
+
 ViridianForest_MapScripts:: @ 816051F
 	map_script MAP_SCRIPT_ON_TRANSITION, ViridianForest_OnTransition
 	.byte 0
 
 ViridianForest_OnTransition:: @ 8160525
 	setworldmapflag FLAG_WORLD_MAP_VIRIDIAN_FOREST
+	goto ViridianForest_MapScript_SetMasterTrainerMovementTypes
 	end
+
+ViridianForest_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PIKACHU
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianForest_MapScript_PikachuMasterMovementType
+	setvar TRAINER, MASTER_WEEDLE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq ViridianForest_MapScript_WeedleMasterMovementType
+	end
+
+ViridianForest_MapScript_PikachuMasterMovementType::
+	setobjectmovementtype LOCALID_PIKACHU_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+ViridianForest_MapScript_WeedleMasterMovementType::
+	setobjectmovementtype LOCALID_WEEDLE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 ViridianForest_EventScript_Youngster:: @ 8160529
 	msgbox ViridianForest_Text_FriendsItchingToBattle, MSGBOX_NPC

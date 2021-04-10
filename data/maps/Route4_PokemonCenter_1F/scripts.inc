@@ -1,4 +1,6 @@
 .equ MAGIKARP_PRICE, 500
+.set LOCALID_MAGIKARP_MASTER, 9
+.set TRAINER, VAR_0x8009
 
 Route4_PokemonCenter_1F_MapScripts:: @ 816F739
 	map_script MAP_SCRIPT_ON_TRANSITION, Route4_PokemonCenter_1F_OnTransition
@@ -9,7 +11,19 @@ Route4_PokemonCenter_1F_MapScripts:: @ 816F739
 Route4_PokemonCenter_1F_OnTransition:: @ 816F744
 	setworldmapflag FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F
 	setrespawn SPAWN_ROUTE4
+	goto Route4_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+Route4_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MAGIKARP
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route4_PokemonCenter_1F_MapScript_MagikarpMasterMovementType
+	end
+
+Route4_PokemonCenter_1F_MapScript_MagikarpMasterMovementType::
+	setobjectmovementtype LOCALID_MAGIKARP_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route4_PokemonCenter_1F_EventScript_Boy:: @ 816F74B
 	msgbox Route4_PokemonCenter_1F_Text_CanHaveSixMonsWithYou, MSGBOX_NPC

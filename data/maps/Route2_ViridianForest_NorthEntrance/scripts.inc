@@ -1,5 +1,20 @@
+.set LOCALID_BUTTERFREE_MASTER, 4
+.set TRAINER, VAR_0x8009
+
 Route2_ViridianForest_NorthEntrance_MapScripts:: @ 816F71D
+	map_script MAP_SCRIPT_ON_TRANSITION, Route2_ViridianForest_NorthEntrance_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route2_ViridianForest_NorthEntrance_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_BUTTERFREE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route2_ViridianForest_NorthEntrance_MapScript_ButterfreeMasterMovementType
+	end
+
+Route2_ViridianForest_NorthEntrance_MapScript_ButterfreeMasterMovementType::
+	setobjectmovementtype LOCALID_BUTTERFREE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route2_ViridianForest_NorthEntrance_EventScript_Youngster:: @ 816F71E
 	msgbox Route2_ViridianForest_NorthEntrance_Text_ManyMonsOnlyInForests, MSGBOX_NPC

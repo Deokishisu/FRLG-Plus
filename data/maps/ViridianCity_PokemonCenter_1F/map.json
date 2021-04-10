@@ -100,7 +100,7 @@
       "flag": "FLAG_TEMP_8"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_PSYCHIC_M",
       "in_connection": false,
       "x": 14,
       "y": 2,

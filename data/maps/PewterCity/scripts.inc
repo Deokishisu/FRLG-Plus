@@ -1,15 +1,44 @@
 .equ LOCALID_MUSEUM_GUIDE, 2
 .equ LOCALID_GYM_GUIDE,    5
 .equ LOCALID_AIDE,         7
+.set LOCALID_SPEAROW_MASTER, 8
+.set LOCALID_GLOOM_MASTER, 9
+.set TRAINER, VAR_0x8009
 
 PewterCity_MapScripts:: @ 8165B8E
+	map_script MAP_SCRIPT_ON_LOAD, PewterCity_MapScript_FixLedgeForMasterTrainer
 	map_script MAP_SCRIPT_ON_TRANSITION, PewterCity_OnTransition
 	.byte 0
+
+PewterCity_MapScript_FixLedgeForMasterTrainer::
+	goto_if_set FLAG_HIDE_MASTER_TRAINERS, EventScript_ReleaseEnd
+	setmetatile 28, 30, 0x28A, 1
+	end
 
 PewterCity_OnTransition:: @ 8165B94
 	setworldmapflag FLAG_WORLD_MAP_PEWTER_CITY
 	setvar VAR_MAP_SCENE_PEWTER_CITY_MUSEUM_1F, 0
+	goto PewterCity_MapScript_SetMasterTrainerMovementTypes
 	end
+
+PewterCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_SPEAROW
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PewterCity_MapScript_SpearowMasterMovementType
+	setvar TRAINER, MASTER_GLOOM
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PewterCity_MapScript_GloomMasterMovementType
+	end
+
+PewterCity_MapScript_SpearowMasterMovementType::
+	setobjectmovementtype LOCALID_SPEAROW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+PewterCity_MapScript_GloomMasterMovementType::
+	setobjectmovementtype LOCALID_GLOOM_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 @ Impossible to speak to this NPC from a facing dir != DIR_EAST normally, so they arent checked
 @ Additionally, no movement script exists for facing DIR_SOUTH, which would necessitate walking out of bounds

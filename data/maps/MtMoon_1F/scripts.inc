@@ -1,10 +1,25 @@
+.set LOCALID_PARAS_MASTER, 15
+.set TRAINER, VAR_0x8009
+
 MtMoon_1F_MapScripts:: @ 81605E4
 	map_script MAP_SCRIPT_ON_TRANSITION, MtMoon_1F_OnTransition
 	.byte 0
 
 MtMoon_1F_OnTransition:: @ 81605EA
 	setworldmapflag FLAG_WORLD_MAP_MT_MOON_1F
+	goto MtMoon_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+MtMoon_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PARAS
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq MtMoon_1F_MapScript_ParasMasterMovementType
+	end
+
+MtMoon_1F_MapScript_ParasMasterMovementType::
+	setobjectmovementtype LOCALID_PARAS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 MtMoon_1F_EventScript_ZubatSign:: @ 81605EE
 	msgbox MtMoon_1F_Text_ZubatIsABloodsucker, MSGBOX_SIGN

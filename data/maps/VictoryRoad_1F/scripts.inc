@@ -1,3 +1,6 @@
+.set LOCALID_GRAVELER_MASTER, 8
+.set TRAINER, VAR_0x8009
+
 VictoryRoad_1F_MapScripts:: @ 8160F05
 	map_script MAP_SCRIPT_ON_LOAD, VictoryRoad_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_1F_OnTransition
@@ -20,7 +23,19 @@ VictoryRoad_1F_EventScript_MoveSwitchBoulder::
 
 VictoryRoad_1F_OnTransition:: @ 8160F2F
 	setworldmapflag FLAG_WORLD_MAP_VICTORY_ROAD_1F
+	goto VictoryRoad_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+VictoryRoad_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_GRAVELER
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq VictoryRoad_1F_MapScript_GravelerMasterMovementType
+	end
+
+VictoryRoad_1F_MapScript_GravelerMasterMovementType::
+	setobjectmovementtype LOCALID_GRAVELER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 VictoryRoad_1F_EventScript_FloorSwitch:: @ 8160F33
 	lockall

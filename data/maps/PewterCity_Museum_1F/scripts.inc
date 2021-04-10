@@ -1,8 +1,22 @@
 .set LOCALID_SCIENTIST1, 1
 .set LOCALID_OLD_AMBER,  4
+.set LOCALID_AERODACTYL_MASTER, 7
+.set TRAINER, VAR_0x8009
 
 PewterCity_Museum_1F_MapScripts:: @ 816A31A
+	map_script MAP_SCRIPT_ON_TRANSITION, PewterCity_Museum_1F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PewterCity_Museum_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_AERODACTYL
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PewterCity_Museum_1F_MapScript_AerodactylMasterMovementType
+	end
+
+PewterCity_Museum_1F_MapScript_AerodactylMasterMovementType::
+	setobjectmovementtype LOCALID_AERODACTYL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PewterCity_Museum_1F_EventScript_Scientist1:: @ 816A31B
 	lock

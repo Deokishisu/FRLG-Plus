@@ -1,6 +1,21 @@
+.set LOCALID_GOLBAT_MASTER, 13
+.set TRAINER, VAR_0x8009
+
 VictoryRoad_3F_MapScripts:: @ 81610AA
 	map_script MAP_SCRIPT_ON_LOAD, VictoryRoad_3F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_3F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+VictoryRoad_3F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_GOLBAT
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq VictoryRoad_3F_MapScript_GolbatMasterMovementType
+	end
+
+VictoryRoad_3F_MapScript_GolbatMasterMovementType::
+	setobjectmovementtype LOCALID_GOLBAT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 VictoryRoad_3F_OnLoad:: @ 81610B0
 	compare VAR_MAP_SCENE_VICTORY_ROAD_3F, 100

@@ -1,3 +1,6 @@
+.set LOCALID_JIGGLYPUFF_MASTER, 10
+.set TRAINER, VAR_0x8009
+
 PewterCity_PokemonCenter_1F_MapScripts:: @ 816A760
 	map_script MAP_SCRIPT_ON_TRANSITION, PewterCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
@@ -6,7 +9,19 @@ PewterCity_PokemonCenter_1F_MapScripts:: @ 816A760
 
 PewterCity_PokemonCenter_1F_OnTransition:: @ 816A76B
 	setrespawn SPAWN_PEWTER_CITY
+	goto PewterCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+PewterCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_JIGGLYPUFF
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PewterCity_PokemonCenter_1F_MapScript_JigglypuffMasterMovementType
+	end
+
+PewterCity_PokemonCenter_1F_MapScript_JigglypuffMasterMovementType::
+	setobjectmovementtype LOCALID_JIGGLYPUFF_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PewterCity_PokemonCenter_1F_EventScript_Nurse:: @ 816A76F
 	lock

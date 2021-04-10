@@ -1,6 +1,21 @@
+.set LOCALID_MOLTRES_MASTER, 14
+.set TRAINER, VAR_0x8009
+
 VictoryRoad_2F_MapScripts:: @ 8160F92
 	map_script MAP_SCRIPT_ON_LOAD, VictoryRoad_2F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+VictoryRoad_2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MOLTRES
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq VictoryRoad_2F_MapScript_MoltresMasterMovementType
+	end
+
+VictoryRoad_2F_MapScript_MoltresMasterMovementType::
+	setobjectmovementtype LOCALID_MOLTRES_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 VictoryRoad_2F_OnLoad:: @ 8160F98
 	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100
