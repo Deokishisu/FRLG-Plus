@@ -589,6 +589,22 @@ void CheckMasterPokemonInSlot1(void)
         gSpecialVar_Result = TRUE;
     else
         gSpecialVar_Result =  FALSE;
+
+    //loading a or an into STR_VAR_3 for certain Pokemon...
+    switch(gSpecialVar_0x8009)
+    {
+        case SPECIES_IVYSAUR:
+        case SPECIES_ODDISH:
+        case SPECIES_ARCANINE:
+        case SPECIES_EXEGGCUTE:
+        case SPECIES_EXEGGUTOR:
+        case SPECIES_EEVEE:
+            StringCopy(gStringVar3, gText_An);
+            break;
+        default:
+            StringCopy(gStringVar3, gText_A);
+            break;
+    }
 }
 
 void ShouldSpawnSoftlockClerk(void)

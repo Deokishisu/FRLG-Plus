@@ -1291,3 +1291,6 @@ const u8 gText_SwapToKanto[] = _("{START_BUTTON}KANTO MODE");
 const u8 gText_SwapToExtended[] = _("{START_BUTTON}EXTENDED MODE");
 const u8 gText_Extended[] = _("EXTENDED");
 const u8 gText_NumericalModeExtended[] = _("NUMERICAL MODE: EXTENDED");
+
+const u8 gText_An[] = _("an");
+const u8 gText_A[] = _("a");

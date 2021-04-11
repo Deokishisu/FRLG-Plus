@@ -1628,5 +1628,7 @@ extern const u8 gText_SwapToKanto[];
 extern const u8 gText_SwapToExtended[];
 extern const u8 gText_Extended[];
 extern const u8 gText_NumericalModeExtended[];
+extern const u8 gText_An[];
+extern const u8 gText_A[];
 
 #endif //GUARD_STRINGS_H

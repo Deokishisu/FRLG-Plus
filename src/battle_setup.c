@@ -1026,6 +1026,10 @@ static void SetBattledTrainerFlag2(void)
 
 bool8 HasTrainerBeenFought(u16 trainerId)
 {
+    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+    {
+        return CheckMasterTrainerFlag(gSpecialVar_0x8009);
+    }
     return FlagGet(TRAINER_FLAGS_START + trainerId);
 }
 
