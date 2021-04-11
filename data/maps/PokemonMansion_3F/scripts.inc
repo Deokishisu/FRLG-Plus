@@ -1,6 +1,21 @@
+.set LOCALID_DITTO_MASTER, 5
+.set TRAINER, VAR_0x8009
+
 PokemonMansion_3F_MapScripts:: @ 81622A1
 	map_script MAP_SCRIPT_ON_LOAD, PokemonMansion_3F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonMansion_3F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonMansion_3F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DITTO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonMansion_3F_MapScript_DittoMasterMovementType
+	end
+
+PokemonMansion_3F_MapScript_DittoMasterMovementType::
+	setobjectmovementtype LOCALID_DITTO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonMansion_3F_OnLoad:: @ 81622A7
 	call_if_set FLAG_POKEMON_MANSION_SWITCH_STATE, PokemonMansion_EventScript_PressSwitch_3F

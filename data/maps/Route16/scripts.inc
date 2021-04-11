@@ -1,3 +1,8 @@
+.set LOCALID_PIDGEOTTO_MASTER, 11
+.set LOCALID_SNORLAX_MASTER, 12
+.set LOCALID_EEVEE_MASTER, 13
+.set TRAINER, VAR_0x8009
+
 Route16_MapScripts:: @ 81680E5
 	map_script MAP_SCRIPT_ON_RESUME, Route16_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route16_OnTransition
@@ -20,10 +25,38 @@ Route16_OnTransition:: @ 8168103
 	call_if_unset FLAG_WOKE_UP_ROUTE_16_SNORLAX, Route16_EventScript_TryShowSnorlax
 	compare VAR_MAP_SCENE_ROUTE16, 1
 	call_if_eq Route16_OnTransitionCyclingRoad
+	goto Route16_MapScript_SetMasterTrainerMovementTypes
 	end
 
 Route16_OnTransitionCyclingRoad:: @ 816810F
 	setflag FLAG_SYS_ON_CYCLING_ROAD
+	return
+
+Route16_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PIDGEOTTO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route16_MapScript_PidgeottoMasterMovementType
+	setvar TRAINER, MASTER_SNORLAX
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route16_MapScript_SnorlaxMasterMovementType
+	setvar TRAINER, MASTER_EEVEE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route16_MapScript_EeveeMasterMovementType
+	end
+
+Route16_MapScript_PidgeottoMasterMovementType::
+	setobjectmovementtype LOCALID_PIDGEOTTO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+Route16_MapScript_SnorlaxMasterMovementType::
+	setobjectmovementtype LOCALID_SNORLAX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route16_MapScript_EeveeMasterMovementType::
+	setobjectmovementtype LOCALID_EEVEE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
 Route16_EventScript_HideSnorlax::

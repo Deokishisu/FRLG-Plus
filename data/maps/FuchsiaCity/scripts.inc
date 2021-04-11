@@ -1,3 +1,7 @@
+.set LOCALID_KANGASKHAN_MASTER, 17
+.set LOCALID_TAUROS_MASTER, 18
+.set TRAINER, VAR_0x8009
+
 FuchsiaCity_MapScripts:: @ 8166D75
 	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_OnTransition
 	.byte 0
@@ -6,7 +10,27 @@ FuchsiaCity_OnTransition:: @ 8166D7B
 	setworldmapflag FLAG_WORLD_MAP_FUCHSIA_CITY
 	call_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetOmanyteGfx
 	call_if_unset FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetKabutoGfx
+	goto FuchsiaCity_MapScript_SetMasterTrainerMovementTypes
 	end
+
+FuchsiaCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_KANGASKHAN
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq FuchsiaCity_MapScript_KangaskhanMasterMovementType
+	setvar TRAINER, MASTER_TAUROS
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq FuchsiaCity_MapScript_TaurosMasterMovementType
+	end
+
+FuchsiaCity_MapScript_KangaskhanMasterMovementType::
+	setobjectmovementtype LOCALID_KANGASKHAN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+FuchsiaCity_MapScript_TaurosMasterMovementType::
+	setobjectmovementtype LOCALID_TAUROS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 FuchsiaCity_EventScript_SetOmanyteGfx:: @ 8166D91
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OMANYTE

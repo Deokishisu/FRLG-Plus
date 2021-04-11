@@ -1,3 +1,10 @@
+.set LOCALID_BLASTOISE_MASTER, 12
+.set LOCALID_TENTACOOL_MASTER, 13
+.set LOCALID_CLOYSTER_MASTER, 14
+.set LOCALID_WARTORTLE_MASTER, 15
+.set LOCALID_TENTACRUEL_MASTER, 16
+.set TRAINER, VAR_0x8009
+
 Route20_MapScripts:: @ 816823B
 	map_script MAP_SCRIPT_ON_TRANSITION, Route20_OnTransition
 	.byte 0
@@ -5,7 +12,52 @@ Route20_MapScripts:: @ 816823B
 Route20_OnTransition:: @ 8168241
 	call_if_unset FLAG_STOPPED_SEAFOAM_B3F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB3F
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB4F
+	goto Route20_MapScript_SetMasterTrainerMovementTypes
 	end
+
+Route20_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_BLASTOISE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route20_MapScript_BlastoiseMasterMovementType
+	setvar TRAINER, MASTER_TENTACOOL
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route20_MapScript_TentacoolMasterMovementType
+	setvar TRAINER, MASTER_CLOYSTER
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route20_MapScript_CloysterMasterMovementType
+	setvar TRAINER, MASTER_WARTORTLE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route20_MapScript_WartortleMasterMovementType
+	setvar TRAINER, MASTER_TENTACRUEL
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route20_MapScript_TentacruelMasterMovementType
+	end
+
+Route20_MapScript_BlastoiseMasterMovementType::
+	setobjectmovementtype LOCALID_BLASTOISE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route20_MapScript_TentacoolMasterMovementType::
+	setobjectmovementtype LOCALID_TENTACOOL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route20_MapScript_CloysterMasterMovementType::
+	setobjectmovementtype LOCALID_CLOYSTER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route20_MapScript_WartortleMasterMovementType::
+	setobjectmovementtype LOCALID_WARTORTLE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+
+Route20_MapScript_TentacruelMasterMovementType::
+	setobjectmovementtype LOCALID_TENTACRUEL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route20_EventScript_ResetSeafoamBouldersForB3F:: @ 8168254
 	clearflag FLAG_HIDE_SEAFOAM_1F_BOULDER_1

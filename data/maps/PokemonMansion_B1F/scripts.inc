@@ -1,6 +1,30 @@
+.set LOCALID_MEWTWO_MASTER, 7
+.set LOCALID_MEW_MASTER, 8
+.set TRAINER, VAR_0x8009
+
 PokemonMansion_B1F_MapScripts:: @ 81622FC
 	map_script MAP_SCRIPT_ON_LOAD, PokemonMansion_B1F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonMansion_B1F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonMansion_B1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MEWTWO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonMansion_B1F_MapScript_MewtwoMasterMovementType
+	setvar TRAINER, MASTER_MEW
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonMansion_B1F_MapScript_MewMasterMovementType
+	end
+
+PokemonMansion_B1F_MapScript_MewtwoMasterMovementType::
+	setobjectmovementtype LOCALID_MEWTWO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+PokemonMansion_B1F_MapScript_MewMasterMovementType::
+	setobjectmovementtype LOCALID_MEW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonMansion_B1F_OnLoad:: @ 8162302
 	call_if_set FLAG_POKEMON_MANSION_SWITCH_STATE, PokemonMansion_EventScript_PressSwitch_B1F

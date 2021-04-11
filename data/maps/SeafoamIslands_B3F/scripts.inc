@@ -1,4 +1,6 @@
 .equ NUM_BOULDERS_PRESENT, VAR_TEMP_2
+.set LOCALID_DRAGONAIR_MASTER, 7
+.set TRAINER, VAR_0x8009
 
 SeafoamIslands_B3F_MapScripts:: @ 8162F4F
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B3F_OnTransition
@@ -8,7 +10,19 @@ SeafoamIslands_B3F_MapScripts:: @ 8162F4F
 SeafoamIslands_B3F_OnTransition:: @ 8162F5A
 	call_if_unset FLAG_STOPPED_SEAFOAM_B3F_CURRENT, SeafoamIslands_B3F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B3F_CURRENT, SeafoamIslands_B3F_EventScript_SetNoCurrentLayout
+	goto SeafoamIslands_B3F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+SeafoamIslands_B3F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_DRAGONAIR
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SeafoamIslands_B3F_MapScript_DragonairMasterMovementType
+	end
+
+SeafoamIslands_B3F_MapScript_DragonairMasterMovementType::
+	setobjectmovementtype LOCALID_DRAGONAIR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SeafoamIslands_B3F_EventScript_CheckStoppedCurrent:: @ 8162F6D
 	setvar NUM_BOULDERS_PRESENT, 0

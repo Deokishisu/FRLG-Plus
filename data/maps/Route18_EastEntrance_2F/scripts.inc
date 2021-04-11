@@ -1,5 +1,20 @@
+.set LOCALID_PINSIR_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 Route18_EastEntrance_2F_MapScripts:: @ 817046B
+	map_script MAP_SCRIPT_ON_TRANSITION, Route18_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+Route18_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PINSIR
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route18_EastEntrance_2F_MapScript_PinsirMasterMovementType
+	end
+
+Route18_EastEntrance_2F_MapScript_PinsirMasterMovementType::
+	setobjectmovementtype LOCALID_PINSIR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route18_EastEntrance_2F_EventScript_LeftBinoculars:: @ 817046C
 	msgbox Route18_EastEntrance_2F_Text_PalletTownInWest, MSGBOX_SIGN

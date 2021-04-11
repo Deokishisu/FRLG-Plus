@@ -992,6 +992,28 @@ MasterTrainer_EventScript_Muk::
     getspeciesname 0, SPECIES_MUK
     goto MasterTrainer_EventScript_DetermineContinueScript
 
+MasterTrainer_EventScript_Shellder::
+    getspeciesname 0, SPECIES_SHELLDER
+    setvar TRAINER, SPECIES_SHELLDER
+    setvar CLASS, SWIMMER
+    setflag FLAG_MASTER_TRAINER_BATTLE
+    call_if_defeated MASTER_SHELLDER, MasterTrainer_EventScript_HaveTitle
+    call MasterTrainer_EventScript_DetermineScript
+    trainerbattle_no_intro MASTER_SHELLDER, Text_BeautyLass_BattleLoss
+    getspeciesname 0, SPECIES_SHELLDER
+    goto MasterTrainer_EventScript_DetermineContinueScript
+
+MasterTrainer_EventScript_Cloyster::
+    getspeciesname 0, SPECIES_CLOYSTER
+    setvar TRAINER, SPECIES_CLOYSTER
+    setvar CLASS, SWIMMER
+    setflag FLAG_MASTER_TRAINER_BATTLE
+    call_if_defeated MASTER_CLOYSTER, MasterTrainer_EventScript_HaveTitle
+    call MasterTrainer_EventScript_DetermineScript
+    trainerbattle_no_intro MASTER_CLOYSTER, Text_BeautyLass_BattleLoss
+    getspeciesname 0, SPECIES_CLOYSTER
+    goto MasterTrainer_EventScript_DetermineContinueScript
+
 MasterTrainer_EventScript_Gastly::
     getspeciesname 0, SPECIES_GASTLY
     setvar TRAINER, SPECIES_GASTLY

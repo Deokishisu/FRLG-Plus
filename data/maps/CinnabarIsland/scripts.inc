@@ -1,5 +1,7 @@
 .equ LOCALID_BILL, 3
 .equ LOCALID_SEAGALLOP, 4
+.set LOCALID_EXEGGUTOR_MASTER, 5
+.set TRAINER, VAR_0x8009
 
 CinnabarIsland_MapScripts:: @ 8166ED6
 	map_script MAP_SCRIPT_ON_TRANSITION, CinnabarIsland_OnTransition
@@ -15,7 +17,19 @@ CinnabarIsland_OnTransition:: @ 8166EE1
 	call_if_eq CinnabarIsland_EventScript_ReadyObjectsReturnFromSeviiIslands
 	compare VAR_MAP_SCENE_CINNABAR_ISLAND_2, 1
 	call_if_eq CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter
+	goto CinnabarIsland_MapScript_SetMasterTrainerMovementTypes
 	end
+
+CinnabarIsland_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_EXEGGUTOR
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CinnabarIsland_MapScript_ExeggutorMasterMovementType
+	end
+
+CinnabarIsland_MapScript_ExeggutorMasterMovementType::
+	setobjectmovementtype LOCALID_EXEGGUTOR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter:: @ 8166F0B
 	savebgm MUS_FOLLOW_ME

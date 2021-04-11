@@ -1,9 +1,23 @@
 .equ HELIX_FOSSIL, 1
 .equ DOME_FOSSIL,  2
 .equ OLD_AMBER,    3
+.set LOCALID_OMASTAR_MASTER, 3
+.set TRAINER, VAR_0x8009
 
 CinnabarIsland_PokemonLab_ExperimentRoom_MapScripts:: @ 816E400
+	map_script MAP_SCRIPT_ON_TRANSITION, CinnabarIsland_PokemonLab_ExperimentRoom_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CinnabarIsland_PokemonLab_ExperimentRoom_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_OMASTAR
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CinnabarIsland_PokemonLab_ExperimentRoom_MapScript_OmastarMasterMovementType
+	end
+
+CinnabarIsland_PokemonLab_ExperimentRoom_MapScript_OmastarMasterMovementType::
+	setobjectmovementtype LOCALID_OMASTAR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett:: @ 816E401
 	lock

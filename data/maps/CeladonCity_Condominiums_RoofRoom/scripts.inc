@@ -1,7 +1,21 @@
 .set LOCALID_EEVEE_POKEBALL, 2
+.set LOCALID_CHARMANDER_MASTER, 3
+.set TRAINER, VAR_0x8009
 
 CeladonCity_Condominiums_RoofRoom_MapScripts:: @ 816C463
+	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_Condominiums_RoofRoom_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeladonCity_Condominiums_RoofRoom_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_CHARMANDER
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeladonCity_Condominiums_RoofRoom_MapScript_CharmanderMasterMovementType
+	end
+
+CeladonCity_Condominiums_RoofRoom_MapScript_CharmanderMasterMovementType::
+	setobjectmovementtype LOCALID_CHARMANDER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeladonCity_Condominiums_RoofRoom_EventScript_BlackBelt:: @ 816C464
 	msgbox CeladonCity_Condominiums_RoofRoom_Text_TheresNothingIDontKnow, MSGBOX_NPC

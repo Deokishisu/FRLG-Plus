@@ -84,6 +84,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RocketHideout_B2F_EventScript_ItemSuperPotion",
       "flag": "FLAG_HIDE_ROCKET_HIDEOUT_B2F_SUPER_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
+      "in_connection": false,
+      "x": 0,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Rhydon",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

@@ -1,5 +1,8 @@
 .set LOCALID_FAT_MAN,   2
 .set LOCALID_POLIWRATH, 3
+.set LOCALID_GRIMER_MASTER, 16
+.set LOCALID_VICTREEBEL_MASTER, 17
+.set TRAINER, VAR_0x8009
 
 CeladonCity_MapScripts:: @ 8166C8F
 	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_OnTransition
@@ -7,7 +10,27 @@ CeladonCity_MapScripts:: @ 8166C8F
 
 CeladonCity_OnTransition:: @ 8166C95
 	setworldmapflag FLAG_WORLD_MAP_CELADON_CITY
+	goto CeladonCity_MapScript_SetMasterTrainerMovementTypes
 	end
+
+CeladonCity_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_GRIMER
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeladonCity_MapScript_GrimerMasterMovementType
+	setvar TRAINER, MASTER_VICTREEBEL
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeladonCity_MapScript_VictreebelMasterMovementType
+	end
+
+CeladonCity_MapScript_GrimerMasterMovementType::
+	setobjectmovementtype LOCALID_GRIMER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+CeladonCity_MapScript_VictreebelMasterMovementType::
+	setobjectmovementtype LOCALID_VICTREEBEL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeladonCity_EventScript_LittleGirl:: @ 8166C99
 	msgbox CeladonCity_Text_GotMyKoffingInCinnabar, MSGBOX_NPC

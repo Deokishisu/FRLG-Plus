@@ -1,12 +1,26 @@
 .equ LOCALID_GIOVANNI,    1
 .equ LOCALID_SILPH_SCOPE, 2
 .equ LOCALID_LIFT_KEY,    4
+.set LOCALID_PERSIAN_MASTER, 10
+.set TRAINER, VAR_0x8009
 
 .equ NUM_DOOR_GRUNTS_DEFEATED, VAR_TEMP_1
 
 RocketHideout_B4F_MapScripts:: @ 81612E8
 	map_script MAP_SCRIPT_ON_LOAD, RocketHideout_B4F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, RocketHideout_B4F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+RocketHideout_B4F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PERSIAN
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq RocketHideout_B4F_MapScript_PersianMasterMovementType
+	end
+
+RocketHideout_B4F_MapScript_PersianMasterMovementType::
+	setobjectmovementtype LOCALID_PERSIAN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 RocketHideout_B4F_OnLoad:: @ 81612EE
 	setvar NUM_DOOR_GRUNTS_DEFEATED, 0

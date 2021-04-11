@@ -1,3 +1,6 @@
+.set LOCALID_ARBOK_MASTER, 8
+.set TRAINER, VAR_0x8009
+
 RocketHideout_B1F_MapScripts:: @ 8161195
 	map_script MAP_SCRIPT_ON_LOAD, RocketHideout_B1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, RocketHideout_B1F_OnTransition
@@ -9,7 +12,19 @@ RocketHideout_B1F_OnLoad:: @ 81611A0
 
 RocketHideout_B1F_OnTransition:: @ 81611AA
 	setworldmapflag FLAG_WORLD_MAP_ROCKET_HIDEOUT_B1F
+	goto RocketHideout_B1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+RocketHideout_B1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_ARBOK
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq RocketHideout_B1F_MapScript_ArbokMasterMovementType
+	end
+
+RocketHideout_B1F_MapScript_ArbokMasterMovementType::
+	setobjectmovementtype LOCALID_ARBOK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 RocketHideout_B1F_EventScript_Grunt1:: @ 81611AE
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_8, RocketHideout_B1F_Text_Grunt1Intro, RocketHideout_B1F_Text_Grunt1Defeat

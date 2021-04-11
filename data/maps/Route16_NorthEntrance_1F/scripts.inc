@@ -1,3 +1,6 @@
+.set LOCALID_ELECTRODE_MASTER, 3
+.set TRAINER, VAR_0x8009
+
 Route16_NorthEntrance_1F_MapScripts:: @ 81701C2
 	map_script MAP_SCRIPT_ON_TRANSITION, Route16_NorthEntrance_1F_OnTransition
 	.byte 0
@@ -5,7 +8,19 @@ Route16_NorthEntrance_1F_MapScripts:: @ 81701C2
 Route16_NorthEntrance_1F_OnTransition:: @ 81701C8
 	clearflag FLAG_SYS_ON_CYCLING_ROAD
 	call_if_set FLAG_GOT_BICYCLE, Route16_NorthEntrance_1F_EventScript_DisableNeedBikeTrigger
+	goto Route16_NorthEntrance_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+Route16_NorthEntrance_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_ELECTRODE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route16_NorthEntrance_1F_MapScript_ElectrodeMasterMovementType
+	end
+
+Route16_NorthEntrance_1F_MapScript_ElectrodeMasterMovementType::
+	setobjectmovementtype LOCALID_ELECTRODE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route16_NorthEntrance_1F_EventScript_DisableNeedBikeTrigger:: @ 81701D5
 	setvar VAR_TEMP_1, 1

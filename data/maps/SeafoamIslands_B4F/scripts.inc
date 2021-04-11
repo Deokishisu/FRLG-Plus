@@ -1,4 +1,6 @@
 .equ NUM_BOULDERS_PRESENT, VAR_TEMP_2
+.set LOCALID_ARTICUNO_MASTER, 5
+.set TRAINER, VAR_0x8009
 
 SeafoamIslands_B4F_MapScripts:: @ 816302E
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B4F_OnTransition
@@ -24,7 +26,19 @@ SeafoamIslands_B4F_OnTransition:: @ 8163066
 	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_TryShowArticuno
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
+	goto SeafoamIslands_B4F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+SeafoamIslands_B4F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_ARTICUNO
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SeafoamIslands_B4F_MapScript_ArticunoMasterMovementType
+	end
+
+SeafoamIslands_B4F_MapScript_ArticunoMasterMovementType::
+	setobjectmovementtype LOCALID_ARTICUNO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SeafoamIslands_B4F_EventScript_CheckStoppedCurrent:: @ 8163082
 	setvar NUM_BOULDERS_PRESENT, 0

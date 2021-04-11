@@ -70,6 +70,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SeafoamIslands_B1F_EventScript_ItemRevive",
       "flag": "FLAG_HIDE_SEAFOAM_ISLANDS_B1F_REVIVE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MASTER_BEAUTY",
+      "in_connection": false,
+      "x": 20,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "MasterTrainer_EventScript_Dewgong",
+      "flag": "FLAG_HIDE_MASTER_TRAINERS"
     }
   ],
   "warp_events": [

@@ -1,3 +1,6 @@
+.set LOCALID_KOFFING_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 Route18_EastEntrance_1F_MapScripts:: @ 8170378
 	map_script MAP_SCRIPT_ON_TRANSITION, Route18_EastEntrance_1F_OnTransition
 	.byte 0
@@ -5,7 +8,19 @@ Route18_EastEntrance_1F_MapScripts:: @ 8170378
 Route18_EastEntrance_1F_OnTransition:: @ 817037E
 	clearflag FLAG_SYS_ON_CYCLING_ROAD
 	call_if_set FLAG_GOT_BICYCLE, Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger
+	goto Route18_EastEntrance_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+Route18_EastEntrance_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_KOFFING
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route18_EastEntrance_1F_MapScript_KoffingMasterMovementType
+	end
+
+Route18_EastEntrance_1F_MapScript_KoffingMasterMovementType::
+	setobjectmovementtype LOCALID_KOFFING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger:: @ 817038B
 	setvar VAR_TEMP_1, 1

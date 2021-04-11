@@ -1,6 +1,21 @@
+.set LOCALID_MUK_MASTER, 5
+.set TRAINER, VAR_0x8009
+
 PokemonMansion_2F_MapScripts:: @ 8162254
 	map_script MAP_SCRIPT_ON_LOAD, PokemonMansion_2F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonMansion_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonMansion_2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MUK
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonMansion_2F_MapScript_MukMasterMovementType
+	end
+
+PokemonMansion_2F_MapScript_MukMasterMovementType::
+	setobjectmovementtype LOCALID_MUK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonMansion_2F_OnLoad:: @ 816225A
 	call_if_set FLAG_POKEMON_MANSION_SWITCH_STATE, PokemonMansion_EventScript_PressSwitch_2F

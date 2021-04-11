@@ -1,5 +1,20 @@
+.set LOCALID_JOLTEON_MASTER, 6
+.set TRAINER, VAR_0x8009
+
 CeladonCity_DepartmentStore_3F_MapScripts:: @ 816BB84
+	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_DepartmentStore_3F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeladonCity_DepartmentStore_3F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_JOLTEON
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeladonCity_DepartmentStore_3F_MapScript_JolteonMasterMovementType
+	end
+
+CeladonCity_DepartmentStore_3F_MapScript_JolteonMasterMovementType::
+	setobjectmovementtype LOCALID_JOLTEON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeladonCity_DepartmentStore_3F_EventScript_CounterTutor:: @ 816BB85
 	goto EventScript_CounterTutor

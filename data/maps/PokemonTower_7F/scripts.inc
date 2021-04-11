@@ -1,9 +1,23 @@
 .set LOCALID_GRUNT1, 2
 .set LOCALID_GRUNT2, 3
 .set LOCALID_GRUNT3, 4
+.set LOCALID_WEEPINBELL_MASTER, 5
+.set TRAINER, VAR_0x8009
 
 PokemonTower_7F_MapScripts:: @ 8163559
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonTower_7F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+PokemonTower_7F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_WEEPINBELL
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonTower_7F_MapScript_WeepinbellMasterMovementType
+	end
+
+PokemonTower_7F_MapScript_WeepinbellMasterMovementType::
+	setobjectmovementtype LOCALID_WEEPINBELL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonTower_7F_EventScript_MrFuji:: @ 816355A
 	lock

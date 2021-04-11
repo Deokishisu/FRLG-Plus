@@ -1,5 +1,20 @@
+.set LOCALID_VAPOREON_MASTER, 5
+.set TRAINER, VAR_0x8009
+
 CeladonCity_DepartmentStore_2F_MapScripts:: @ 816BAF4
+	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_DepartmentStore_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeladonCity_DepartmentStore_2F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_VAPOREON
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeladonCity_DepartmentStore_2F_MapScript_VaporeonMasterMovementType
+	end
+
+CeladonCity_DepartmentStore_2F_MapScript_VaporeonMasterMovementType::
+	setobjectmovementtype LOCALID_VAPOREON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeladonCity_DepartmentStore_2F_EventScript_UnusedNPC:: @ 816BAF5
 	msgbox CeladonCity_DepartmentStore_2F_Text_SuperRepelMorePowerfulRepel, MSGBOX_NPC

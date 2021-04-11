@@ -1,8 +1,22 @@
 .set LOCALID_GRUNT, 11
+.set LOCALID_PORYGON_MASTER, 12
+.set TRAINER, VAR_0x8009
 
 CeladonCity_GameCorner_MapScripts:: @ 816C646
 	map_script MAP_SCRIPT_ON_LOAD, CeladonCity_GameCorner_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_GameCorner_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+CeladonCity_GameCorner_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_PORYGON
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq CeladonCity_GameCorner_MapScript_PorygonMasterMovementType
+	end
+
+CeladonCity_GameCorner_MapScript_PorygonMasterMovementType::
+	setobjectmovementtype LOCALID_PORYGON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 CeladonCity_GameCorner_OnLoad:: @ 816C64C
 	call_if_unset FLAG_OPENED_ROCKET_HIDEOUT, CeladonCity_GameCorner_EventScript_HideRocketHideout

@@ -1,3 +1,6 @@
+.set LOCALID_MAGMAR_MASTER, 6
+.set TRAINER, VAR_0x8009
+
 PokemonMansion_1F_MapScripts:: @ 81621F9
 	map_script MAP_SCRIPT_ON_LOAD, PokemonMansion_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PokemonMansion_1F_OnTransition
@@ -9,7 +12,19 @@ PokemonMansion_1F_OnLoad:: @ 8162204
 
 PokemonMansion_1F_OnTransition:: @ 816220E
 	setworldmapflag FLAG_WORLD_MAP_POKEMON_MANSION_1F
+	goto PokemonMansion_1F_MapScript_SetMasterTrainerMovementTypes
 	end
+
+PokemonMansion_1F_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MAGMAR
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq PokemonMansion_1F_MapScript_MagmarMasterMovementType
+	end
+
+PokemonMansion_1F_MapScript_MagmarMasterMovementType::
+	setobjectmovementtype LOCALID_MAGMAR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 PokemonMansion_1F_EventScript_Statue:: @ 8162212
 	lockall

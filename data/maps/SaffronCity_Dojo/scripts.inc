@@ -1,7 +1,30 @@
 .equ LOCALID_KARATE_MASTER, 5
+.set LOCALID_HITMONLEE_MASTER, 8
+.set LOCALID_HITMONCHAN_MASTER, 9
+.set TRAINER, VAR_0x8009
 
 SaffronCity_Dojo_MapScripts:: @ 816EBDB
+	map_script MAP_SCRIPT_ON_TRANSITION, SaffronCity_Dojo_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+SaffronCity_Dojo_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_HITMONLEE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SaffronCity_Dojo_MapScript_HitmonleeMasterMovementType
+	setvar TRAINER, MASTER_HITMONCHAN
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq SaffronCity_Dojo_MapScript_HitmonchanMasterMovementType
+	end
+
+SaffronCity_Dojo_MapScript_HitmonleeMasterMovementType::
+	setobjectmovementtype LOCALID_HITMONLEE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+SaffronCity_Dojo_MapScript_HitmonchanMasterMovementType::
+	setobjectmovementtype LOCALID_HITMONCHAN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft:: @ 816EBDC
 	lockall

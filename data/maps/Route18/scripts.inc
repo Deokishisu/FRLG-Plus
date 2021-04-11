@@ -1,3 +1,8 @@
+.set LOCALID_CATERPIE_MASTER, 4
+.set LOCALID_FEAROW_MASTER, 5
+.set LOCALID_RHYHORN_MASTER, 6
+.set TRAINER, VAR_0x8009
+
 Route18_MapScripts:: @ 81681F6
 	map_script MAP_SCRIPT_ON_TRANSITION, Route18_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route18_OnWarp
@@ -6,7 +11,35 @@ Route18_MapScripts:: @ 81681F6
 Route18_OnTransition:: @ 8168201
 	compare VAR_MAP_SCENE_ROUTE16, 1
 	call_if_eq Route18_OnTransitionCyclingRoad
+	goto Route18_MapScript_SetMasterTrainerMovementTypes
 	end
+
+Route18_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_CATERPIE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route18_MapScript_CaterpieMasterMovementType
+	setvar TRAINER, MASTER_FEAROW
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route18_MapScript_FearowMasterMovementType
+	setvar TRAINER, MASTER_RHYHORN
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq Route18_MapScript_RhyhornMasterMovementType
+	end
+
+Route18_MapScript_CaterpieMasterMovementType::
+	setobjectmovementtype LOCALID_CATERPIE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+	
+Route18_MapScript_FearowMasterMovementType::
+	setobjectmovementtype LOCALID_FEAROW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
+
+Route18_MapScript_RhyhornMasterMovementType::
+	setobjectmovementtype LOCALID_RHYHORN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 Route18_OnTransitionCyclingRoad:: @ 816820D
 	setflag FLAG_SYS_ON_CYCLING_ROAD

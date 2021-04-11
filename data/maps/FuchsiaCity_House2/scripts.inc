@@ -1,5 +1,20 @@
+.set LOCALID_MACHOKE_MASTER, 2
+.set TRAINER, VAR_0x8009
+
 FuchsiaCity_House2_MapScripts:: @ 816D816
+	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_House2_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
+
+FuchsiaCity_House2_MapScript_SetMasterTrainerMovementTypes::
+	setvar TRAINER, MASTER_MACHOKE
+	callnative ShouldChangeMasterTrainerMovementType
+	compare VAR_RESULT, FALSE
+	call_if_eq FuchsiaCity_House2_MapScript_MachokeMasterMovementType
+	end
+
+FuchsiaCity_House2_MapScript_MachokeMasterMovementType::
+	setobjectmovementtype LOCALID_MACHOKE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	return
 
 FuchsiaCity_House2_EventScript_FishingGurusBrother:: @ 816D817
 	lock
