@@ -1837,6 +1837,7 @@ MasterTrainer_EventScript_HaveTitle:
 
 MasterTrainer_EventScript_HaveTitleNoBattle:
     msgbox Text_Scientist_HaveTitleNoBattle MSGBOX_NPC
+    clearflag FLAG_MASTER_TRAINER_BATTLE
     end
 
 Text_Scientist_HaveTitleNoBattle:
@@ -2242,10 +2243,10 @@ MasterTrainer_EventScript_NoBattleContinue:
     msgbox Text_Scientist_SeePowerfulMon, MSGBOX_DEFAULT
     callnative CheckMasterPokemonInSlot1
     compare VAR_RESULT, FALSE
-    goto_if_eq EventScript_ReleaseEnd
+    goto_if_eq MasterTrainer_EventScript_ReleaseEndClearFlag
     callnative CheckSlot1EVTotal
     compare VAR_RESULT, FALSE
-    goto_if_eq EventScript_ReleaseEnd
+    goto_if_eq MasterTrainer_EventScript_ReleaseEndClearFlag
     msgbox Text_Scientist_ShowPowerfulMon, MSGBOX_DEFAULT
     message Text_MasterTrainer_EarnTitle
     waitmessage
@@ -2254,6 +2255,12 @@ MasterTrainer_EventScript_NoBattleContinue:
     waitbuttonpress
     resetobjectmovementtype VAR_LAST_TALKED
     return
+
+MasterTrainer_EventScript_ReleaseEndClearFlag:
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
+
 
 Text_Scientist_SeePowerfulMon:
     .string "It would be wonderful to see a truly\n"

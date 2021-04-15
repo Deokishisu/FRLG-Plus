@@ -80,6 +80,7 @@ bool8 CanWalkAwayToCancelMsgBox(void);
 void SetWalkingIntoSignVars(void);
 bool8 IsMsgBoxWalkawayDisabled(void);
 void UpdateBattleHouseStepCounter(void);
+u8 ReturnBattleHouseLevel(void);
 
 extern const u8 *gRAMScriptPtr;
 extern u8 gWalkAwayFromSignInhibitTimer;

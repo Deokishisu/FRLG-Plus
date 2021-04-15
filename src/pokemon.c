@@ -3041,69 +3041,83 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
 {
     u32 personality;
 
-    do
+    if(gBaseStats[species].genderRatio == MON_GENDERLESS
+    || gBaseStats[species].genderRatio == MON_FEMALE
+    || gBaseStats[species].genderRatio == MON_MALE) //don't get stuck on forcing gender if set gender
     {
-        personality = Random32();
+        do
+        {
+            personality = Random32();
+        }
+        while (nature != GetNatureFromPersonality(personality)
+            || abilityNum != personality % 2);
     }
-    while (nature != GetNatureFromPersonality(personality)
-        || gender != GetGenderFromSpeciesAndPersonality(species, personality)
-        || abilityNum != personality % 2);
-
-    if(fixedIV == 31)
+    else
     {
+        do
+        {
+            personality = Random32();
+        }
+        while (nature != GetNatureFromPersonality(personality)
+            || gender != GetGenderFromSpeciesAndPersonality(species, personality)
+            || abilityNum != personality % 2);
+    }
+    if(fixedIV == 31 || fixedIV == 255)
+    {
+        fixedIV = 31;
         CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);
     }
-    else if(fixedIV == (1 * 31 / 255)) //hidden power Ghost IVs
+    else if(fixedIV == 1) //hidden power Ghost IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 30, 31, 31, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (2 * 31 / 255)) //hidden power Ground IVs
+    else if(fixedIV == 2) //hidden power Ground IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 31, 31, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (3 * 31 / 255)) //hidden power Flying IVs
+    else if(fixedIV == 3) //hidden power Flying IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 31, 30, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (4 * 31 / 255)) //hidden power Fighting IVs
+    else if(fixedIV == 4) //hidden power Fighting IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 30, 30, 30, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (5 * 31 / 255)) //hidden power Bug IVs
+    else if(fixedIV == 5) //hidden power Bug IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 31, 30, 31, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (6 * 31 / 255)) //hidden power Rock IVs
+    else if(fixedIV == 6) //hidden power Rock IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 30, 30, 31, 30};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (7 * 31 / 255)) //hidden power Grass IVs
+    else if(fixedIV == 7) //hidden power Grass IVs
     {
         u8 ivs[NUM_STATS] = {31, 30, 31, 31, 30, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (8 * 31 / 255)) //hidden power Ice IVs
+    else if(fixedIV == 8) //hidden power Ice IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 31, 30, 31, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (9 * 31 / 255)) //hidden power Fire IVs
+    else if(fixedIV == 9) //hidden power Fire IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 30, 30, 30, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (10 * 31 / 255)) //hidden power Electric IVs
+    else if(fixedIV == 10) //hidden power Electric IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 31, 31, 30, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
-    else if(fixedIV == (11 * 31 / 255)) //hidden power Water IVs
+    else if(fixedIV == 11) //hidden power Water IVs
     {
         u8 ivs[NUM_STATS] = {31, 31, 31, 30, 30, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);

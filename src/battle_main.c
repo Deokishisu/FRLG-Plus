@@ -30,6 +30,7 @@
 #include "roamer.h"
 #include "safari_zone.h"
 #include "scanline_effect.h"
+#include "script.h"
 #include "task.h"
 #include "trig.h"
 #include "vs_seeker.h"
@@ -39,6 +40,7 @@
 #include "constants/battle_setup.h"
 #include "constants/hold_effects.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/songs.h"
@@ -1525,11 +1527,16 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
     s8 levelScaling = GetScaledLevel();
     u8 ivCalcMode = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     struct Trainer* sTrainers;
+    bool8 inBattleHouse = FALSE;
+    u8 level;
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
+
+    if(gMapHeader.mapLayoutId == LAYOUT_SEVEN_ISLAND_HOUSE_ROOM2)
+        inBattleHouse = TRUE;
 
     if(trainerNum >= TRAINER_RIVAL_ROUTE22_LATE_SQUIRTLE && trainerNum <= TRAINER_RIVAL_ROUTE22_LATE_CHARMANDER)
     {   //adjust level scaling for penultimate Rival battle
@@ -1637,7 +1644,15 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                         fixedIV = partyData[i].iv * 31 / 255;
                     else if(ivCalcMode != IV_CALC_PERFECT)
                         fixedIV = partyData[i].iv * 31 / 255;
-                    CreateMon(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                    if(inBattleHouse)
+                    {
+                        level = partyData[i].lvl + ReturnBattleHouseLevel();
+                        if(level > 75)
+                            level = 75;
+                        CreateMon(&party[i], partyData[i].species, level + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                    }
+                    else
+                        CreateMon(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                     SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                     for (j = 0; j < MAX_MON_MOVES; ++j)
                     {
@@ -1661,9 +1676,18 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                     if(ivCalcMode == IV_CALC_PERFECT)
                         fixedIV = 31;
                     else
-                        fixedIV = partyData[i].iv * 31 / 255;
+                        fixedIV = partyData[i].iv;
+                    if(FlagGet(FLAG_MASTER_TRAINER_BATTLE) || inBattleHouse)
+                        fixedIV = partyData[i].iv;
                     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
                         CreateMonWithGenderNatureAbility(&party[i], partyData[i].species, GetMonData(&gPlayerParty[0], MON_DATA_LEVEL, NULL), fixedIV, gender, partyData[i].nature, partyData[i].abilityNum);
+                    else if(inBattleHouse)
+                    {
+                        level = partyData[i].lvl + ReturnBattleHouseLevel();
+                        if(level > 75)
+                            level = 75;
+                        CreateMonWithGenderNatureAbility(&party[i], partyData[i].species, level + levelScaling, fixedIV, gender, partyData[i].nature, partyData[i].abilityNum);
+                    }
                     else
                         CreateMonWithGenderNatureAbility(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, gender, partyData[i].nature, partyData[i].abilityNum);
                     SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);

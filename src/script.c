@@ -820,6 +820,18 @@ struct BattleHouse
     u16 steps:8;            // used to bring back Spearow and bring in visitors
 };
 
+u8 ReturnBattleHouseLevel(void)
+{
+    struct BattleHouse* BattleHouseVar;
+    u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
+    u8 levelGrowth;
+    (void*) BattleHouseVar = varPtr;
+
+    levelGrowth = BattleHouseVar->levelGrowth;
+
+    return levelGrowth;
+}
+
 void UpdateBattleHouseStepCounter(void)
 {
     struct BattleHouse* BattleHouseVar;
