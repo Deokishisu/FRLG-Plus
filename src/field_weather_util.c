@@ -1,7 +1,11 @@
 #include "global.h"
+#include "event_data.h"
 #include "field_weather.h"
 #include "overworld.h"
+#include "random.h"
 #include "constants/weather.h"
+#include "constants/layouts.h"
+#include "constants/region_map_sections.h"
 
 static u8 TranslateWeatherNum(u8 weather);
 static void UpdateRainCounter(u8 newWeather, u8 oldWeather);
@@ -21,7 +25,33 @@ u8 GetSav1Weather(void)
 void SetSav1WeatherFromCurrMapHeader(void)
 {
     u8 oldWeather = gSaveBlock1Ptr->weather;
-    gSaveBlock1Ptr->weather = TranslateWeatherNum(gMapHeader.weather);
+
+    if(gMapHeader.mapLayoutId != LAYOUT_FOUR_ISLAND || gMapHeader.mapLayoutId != LAYOUT_FOUR_ISLAND_BASE_CABLE_CAR_STATION)
+    {
+        gSaveBlock1Ptr->weather = TranslateWeatherNum(gMapHeader.weather);
+        if(gMapHeader.regionMapSectionId != MAPSEC_FOUR_ISLAND && gMapHeader.regionMapSectionId != MAPSEC_ICEFALL_CAVE)
+        {
+            FlagClear(FLAG_FOUR_ISLAND_SNOW);
+        }
+    }
+    if (gMapHeader.mapLayoutId == LAYOUT_FOUR_ISLAND || gMapHeader.mapLayoutId == LAYOUT_FOUR_ISLAND_BASE_CABLE_CAR_STATION)
+    {
+        if(!FlagGet(FLAG_FOUR_ISLAND_SNOW))
+        {
+            u8 rand = Random() % 255;
+            if(rand < 73)
+            {
+                FlagSet(FLAG_FOUR_ISLAND_SNOW);
+                if(gMapHeader.mapLayoutId == LAYOUT_FOUR_ISLAND)
+                    gSaveBlock1Ptr->weather = TranslateWeatherNum(WEATHER_SNOW);
+            }
+        }
+        else
+        {
+            if(gMapHeader.mapLayoutId == LAYOUT_FOUR_ISLAND)
+                gSaveBlock1Ptr->weather = TranslateWeatherNum(WEATHER_SNOW);
+        }
+    }
     UpdateRainCounter(gSaveBlock1Ptr->weather, oldWeather);
 }
 
