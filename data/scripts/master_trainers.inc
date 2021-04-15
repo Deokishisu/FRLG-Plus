@@ -1585,6 +1585,19 @@ MasterTrainer_EventScript_Lapras::
     getspeciesname 0, SPECIES_LAPRAS
     goto MasterTrainer_EventScript_DetermineContinueScript
 
+MasterTrainer_EventScript_Ditto::
+    getspeciesname 0, SPECIES_DITTO
+    setvar TRAINER, SPECIES_DITTO
+    setvar CLASS, SCIENTIST
+    setflag FLAG_MASTER_TRAINER_BATTLE
+	setvar HAVE_TITLE, FALSE
+    call_if_defeated MASTER_DITTO, MasterTrainer_EventScript_HaveTitleNoBattle
+    call MasterTrainer_EventScript_NoBattleContinue
+    settrainerflag MASTER_DITTO
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
+
 MasterTrainer_EventScript_Eevee::
     getspeciesname 0, SPECIES_EEVEE
     setvar TRAINER, SPECIES_EEVEE
@@ -1717,6 +1730,45 @@ MasterTrainer_EventScript_Snorlax::
     getspeciesname 0, SPECIES_SNORLAX
     goto MasterTrainer_EventScript_DetermineContinueScript
 
+MasterTrainer_EventScript_Articuno::
+    getspeciesname 0, SPECIES_ARTICUNO
+    setvar TRAINER, SPECIES_ARTICUNO
+    setvar CLASS, SCIENTIST
+    setflag FLAG_MASTER_TRAINER_BATTLE
+	setvar HAVE_TITLE, FALSE
+    call_if_defeated MASTER_ARTICUNO, MasterTrainer_EventScript_HaveTitleNoBattle
+    call MasterTrainer_EventScript_NoBattleContinue
+    settrainerflag MASTER_ARTICUNO
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
+
+MasterTrainer_EventScript_Zapdos::
+    getspeciesname 0, SPECIES_ZAPDOS
+    setvar TRAINER, SPECIES_ZAPDOS
+    setvar CLASS, SCIENTIST
+    setflag FLAG_MASTER_TRAINER_BATTLE
+	setvar HAVE_TITLE, FALSE
+    call_if_defeated MASTER_ZAPDOS, MasterTrainer_EventScript_HaveTitleNoBattle
+    call MasterTrainer_EventScript_NoBattleContinue
+    settrainerflag MASTER_ZAPDOS
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
+
+MasterTrainer_EventScript_Moltres::
+    getspeciesname 0, SPECIES_MOLTRES
+    setvar TRAINER, SPECIES_MOLTRES
+    setvar CLASS, SCIENTIST
+    setflag FLAG_MASTER_TRAINER_BATTLE
+	setvar HAVE_TITLE, FALSE
+    call_if_defeated MASTER_MOLTRES, MasterTrainer_EventScript_HaveTitleNoBattle
+    call MasterTrainer_EventScript_NoBattleContinue
+    settrainerflag MASTER_MOLTRES
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
+
 MasterTrainer_EventScript_Dratini::
     getspeciesname 0, SPECIES_DRATINI
     setvar TRAINER, SPECIES_DRATINI
@@ -1753,11 +1805,43 @@ MasterTrainer_EventScript_Dragonite::
     getspeciesname 0, SPECIES_DRAGONITE
     goto MasterTrainer_EventScript_DetermineContinueScript
 
+MasterTrainer_EventScript_Mewtwo::
+    getspeciesname 0, SPECIES_MEWTWO
+    setvar TRAINER, SPECIES_MEWTWO
+    setvar CLASS, SCIENTIST
+    setflag FLAG_MASTER_TRAINER_BATTLE
+	setvar HAVE_TITLE, FALSE
+    call_if_defeated MASTER_MEWTWO, MasterTrainer_EventScript_HaveTitleNoBattle
+    call MasterTrainer_EventScript_NoBattleContinue
+    settrainerflag MASTER_MEWTWO
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
 
+MasterTrainer_EventScript_Mew::
+    getspeciesname 0, SPECIES_MEW
+    setvar TRAINER, SPECIES_MEW
+    setvar CLASS, SCIENTIST
+    setflag FLAG_MASTER_TRAINER_BATTLE
+	setvar HAVE_TITLE, FALSE
+    call_if_defeated MASTER_MEW, MasterTrainer_EventScript_HaveTitleNoBattle
+    call MasterTrainer_EventScript_NoBattleContinue
+    settrainerflag MASTER_MEW
+    clearflag FLAG_MASTER_TRAINER_BATTLE
+    release
+    end
 
 MasterTrainer_EventScript_HaveTitle:
     setvar HAVE_TITLE, TRUE
     return
+
+MasterTrainer_EventScript_HaveTitleNoBattle:
+    msgbox Text_Scientist_HaveTitleNoBattle MSGBOX_NPC
+    end
+
+Text_Scientist_HaveTitleNoBattle:
+    .string "Oh, good to see you again.\n"
+    .string "How's your {STR_VAR_1} doing?$"
 
 MasterTrainer_EventScript_DetermineScript:
     switch CLASS
@@ -2152,28 +2236,63 @@ MasterTrainer_EventScript_BlackBeltHiker_ConferTitle:
     release
     end
 
+MasterTrainer_EventScript_NoBattleContinue:
+    faceplayer
+    msgbox Text_PsychicScientist_Intro, MSGBOX_DEFAULT
+    msgbox Text_Scientist_SeePowerfulMon, MSGBOX_DEFAULT
+    callnative CheckMasterPokemonInSlot1
+    compare VAR_RESULT, FALSE
+    goto_if_eq EventScript_ReleaseEnd
+    callnative CheckSlot1EVTotal
+    compare VAR_RESULT, FALSE
+    goto_if_eq EventScript_ReleaseEnd
+    msgbox Text_Scientist_ShowPowerfulMon, MSGBOX_DEFAULT
+    message Text_MasterTrainer_EarnTitle
+    waitmessage
+    playfanfare MUS_LEVEL_UP
+    waitfanfare
+    waitbuttonpress
+    resetobjectmovementtype VAR_LAST_TALKED
+    return
+
+Text_Scientist_SeePowerfulMon:
+    .string "It would be wonderful to see a truly\n"
+    .string "powerful {STR_VAR_1}, even just once.$"
+
+Text_Scientist_ShowPowerfulMon:
+    .string "What do we have here?\p"
+    .string "That {STR_VAR_1}!\n"
+    .string "It's got a special vibe to it!\p"
+    .string "The way it holds itself, it just\n"
+    .string "radiates strength…\l"
+    .string "Wonderful!\p"
+    .string "I thank you… You showed me a\n"
+    .string "a truly amazing POKéMON.\p"
+    .string "I think you deserve the title of\n"
+    .string "{STR_VAR_1} MASTER!$"
+
 Text_BeautyLass_Intro:
     .string "I'm the {STR_VAR_1} MASTER!\p"
-    .string "My goal is to find the ulimate\n"
+    .string "My goal is to find the ultimate\n"
     .string "{STR_VAR_1}!$"
 
 Text_BirdKeeperCooltrainer_Intro:
     .string "I'm the {STR_VAR_1} MASTER!\p"
-    .string "I aim to find the ulimate\n"
+    .string "I aim to find the ultimate\n"
     .string "{STR_VAR_1}!$"
 
 Text_BugCatcherYoungster_Intro:
     .string "I'm the {STR_VAR_1} MASTER!\n"
-    .string "I seek the ulimate {STR_VAR_1}!$"
+    .string "I seek the ultimate {STR_VAR_1}!$"
 
 Text_PsychicScientist_Intro:
     .string "I am the {STR_VAR_1} MASTER!\n"
-    .string "I seek the ulimate {STR_VAR_1}.$"
+    .string "I seek the ultimate {STR_VAR_1}.$"
 
 Text_BlackBeltHiker_Intro:
     .string "I am the {STR_VAR_1} MASTER!\p"
     .string "My only desire is to find the\n"
-    .string "ulimate {STR_VAR_1}!$"
+    .string "ultimate {STR_VAR_1}!$"
 
 Text_BeautyLass_NoMon:
     .string "Don't forget to put your {STR_VAR_1}\n"

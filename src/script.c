@@ -583,12 +583,30 @@ void ClearAllButFirstPokemon(void)
         ZeroMonData(&gPlayerParty[i]);
 }
 
+void CheckSlot1EVTotal(void)
+{
+    u8 evs[NUM_STATS];
+    u16 totalEVs = 0;
+    u32 i;
+
+    for (i = 0; i < NUM_STATS; i++)
+    {
+        evs[i] = GetMonData(&gPlayerParty[0], MON_DATA_HP_EV + i, NULL);
+        totalEVs += evs[i];
+    }
+
+    if(totalEVs >= 100)
+        gSpecialVar_Result = TRUE;
+    else
+        gSpecialVar_Result = FALSE;
+}
+
 void CheckMasterPokemonInSlot1(void)
 {
     if(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES2, NULL) == gSpecialVar_0x8009)
         gSpecialVar_Result = TRUE;
     else
-        gSpecialVar_Result =  FALSE;
+        gSpecialVar_Result = FALSE;
 
     //loading a or an into STR_VAR_3 for certain Pokemon...
     switch(gSpecialVar_0x8009)

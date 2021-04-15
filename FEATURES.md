@@ -1,5 +1,7 @@
 ## Features
 
+###### [] indicates NYI
+
 #### Mechanical Additions:
 - A Key System has been implemented, similar to Black 2 and White 2. Press the L Button while on the Key System Menu to access the Help System, which has detailed information on each key. Use the keys to change various settings about your game. Those settings are:
 	*  __Version__: Switch between FireRed and LeafGreen to catch version-exclusive Pokémon.
@@ -28,6 +30,15 @@
 		* Artisan Cave can be accessed from the Battle Tower's dock.
 	* A new area in Berry Forest makes the pinch berries available.
 	* A new area west of Cape Brink has rematchable trainers for the purposes of EV training.
+	* Master Trainers appear around Kanto after becoming the Champion, filling a similar role to their appearance in the Let's Go games with some differences.
+		* Master Trainers can be rematched immediately.
+		* Master Trainer Pokémon will scale to the level of the Pokémon used to challenge them, making them more accessible.
+		* Master Trainer Pokémon hold items and have better movesets than in the Let's Go games, making them significantly more challenging.
+		* The Master Trainers for Ditto, Articuno, Zapdos, Moltres, Mewtwo, and Mew want to see Pokémon with 100 total Effort Values in any stat.
+		* Master Trainers that would have been on Cycling Road have been moved to Routes 16 and 18.
+			* Additionally, some Master Trainers have been repositioned on their maps to account for FRLG area design.
+		* Clearing a Master Trainer confers a title that can be used in link battles with other FRLG++ players. []
+		* Clearing all 151 Master Trainers unlocks a secret superboss Trainer. []
 
 #### Quality of Life Changes:
 - No link restrictions
