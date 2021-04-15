@@ -1558,7 +1558,7 @@ Help_Text_DefineNuzlocke:: @ 81B7E0F
 	.string "Turning on the NUZLOCKE key imposes\n"
 	.string "additional rules on your journey to\l"
 	.string "increase the difficulty. POKéMON that\l"
-	.string "have fainted cannot be healed, and only\l"
+	.string "have fainted can't be healed, and only\l"
 	.string "the first wild POKéMON seen in an area\l"
 	.string "is usable in battle. If you run out of\l"
 	.string "POKéMON, this key can be turned off.$"
