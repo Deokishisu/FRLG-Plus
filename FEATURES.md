@@ -34,7 +34,7 @@
 		* Master Trainers can be rematched immediately.
 		* Master Trainer Pokémon will scale to the level of the Pokémon used to challenge them, making them more accessible.
 		* Master Trainer Pokémon hold items and have better movesets than in the Let's Go games, making them significantly more challenging.
-		* The Master Trainers for Ditto, Articuno, Zapdos, Moltres, Mewtwo, and Mew want to see Pokémon with 100 total Effort Values in any stat.
+		* The Master Trainers for Ditto, Articuno, Zapdos, Moltres, Mewtwo, and Mew want to see Pokémon with 100 total Effort Values.
 		* Master Trainers that would have been on Cycling Road have been moved to Routes 16 and 18.
 			* Additionally, some Master Trainers have been repositioned on their maps to account for FRLG area design.
 		* Clearing a Master Trainer confers a title that can be used in link battles with other FRLG++ players. []

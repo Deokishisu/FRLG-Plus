@@ -1294,3 +1294,8 @@ const u8 gText_NumericalModeExtended[] = _("NUMERICAL MODE: EXTENDED");
 
 const u8 gText_An[] = _("an");
 const u8 gText_A[] = _("a");
+
+const u8 gText_WhoAreThey[] = _("Who are they?");
+const u8 gText_HowDoIBattleThem[] = _("How do I battle them?");
+const u8 gText_AboutTitles[] = _("About titles");
+const u8 gText_Nothing[] = _("Exit");

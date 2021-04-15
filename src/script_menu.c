@@ -605,6 +605,13 @@ static const struct MenuAction sScriptMultiChoiceMenu_SouthernBirthNavelFaraway[
     { gOtherText_Exit }
 };
 
+static const struct MenuAction sScriptMultiChoiceMenu_MasterYoungster[] = {
+    { gText_WhoAreThey },
+    { gText_HowDoIBattleThem },
+    { gText_AboutTitles },
+    { gText_Nothing }
+};
+
 static const struct MenuAction sScriptMultiChoiceMenu_Exit[] = {
     { gOtherText_Exit }
 };
@@ -693,6 +700,7 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SouthernBirthFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernBirthFaraway) },
     { sScriptMultiChoiceMenu_SouthernBirthNavel, NELEMS(sScriptMultiChoiceMenu_SouthernBirthNavel) },
     { sScriptMultiChoiceMenu_SouthernBirthNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernBirthNavelFaraway) },
+    { sScriptMultiChoiceMenu_MasterYoungster, NELEMS(sScriptMultiChoiceMenu_MasterYoungster) },
 };
 
 // From Cool to Berries goes unused
