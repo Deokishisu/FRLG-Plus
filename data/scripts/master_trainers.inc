@@ -1845,6 +1845,7 @@ Text_Scientist_HaveTitleNoBattle:
     .string "How's your {STR_VAR_1} doing?$"
 
 MasterTrainer_EventScript_DetermineScript:
+    lock
     switch CLASS
     case BEAUTY, MasterTrainer_EventScript_BeautyLass
 	case BIRD_KEEPER, MasterTrainer_EventScript_BirdKeeperCooltrainer
