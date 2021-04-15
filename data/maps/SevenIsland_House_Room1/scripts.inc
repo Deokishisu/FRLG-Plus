@@ -17,12 +17,14 @@
 
 .equ TYPE, VAR_0x8003
 .equ ARGUMENT, VAR_0x8004
+.equ LEADER_READY, VAR_0x8006
 
 SevenIsland_House_Room1_MapScripts:: @ 817088A
 	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_House_Room1_OnTransition
 	.byte 0
 
 SevenIsland_House_Room1_OnTransition:: @ 8170895
+	setvar LEADER_READY, 0
 	setvar TYPE, CHECK_BOXES_MOVED
 	callnative UseBattleHouseVar
 	compare VAR_RESULT, 1

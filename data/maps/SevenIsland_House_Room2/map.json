@@ -26,7 +26,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_Brock",
       "flag": "FLAG_TEMP_1"
     },
     {
@@ -40,7 +40,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_Misty",
       "flag": "FLAG_TEMP_2"
     },
     {
@@ -54,7 +54,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_LtSurge",
       "flag": "FLAG_TEMP_3"
     },
     {
@@ -68,7 +68,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_Erika",
       "flag": "FLAG_TEMP_4"
     },
     {
@@ -82,7 +82,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_Koga",
       "flag": "FLAG_TEMP_5"
     },
     {
@@ -96,7 +96,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_Sabrina",
       "flag": "FLAG_TEMP_6"
     },
     {
@@ -110,7 +110,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SevenIsland_House_Room2_Eventscript_GymLeaderDummy",
+      "script": "SevenIsland_House_Room2_Eventscript_Blaine",
       "flag": "FLAG_TEMP_7"
     }
   ],
@@ -124,7 +124,15 @@
     }
   ],
   "coord_events": [
-
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "SevenIsland_House_Room2_Eventscript_Trigger"
+    }
   ],
   "bg_events": [
     {
