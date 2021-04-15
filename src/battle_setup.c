@@ -255,7 +255,8 @@ const u8 NuzlockeLUT[MAPSEC_COUNT] = //84 used, 214 total
     //Other Safari Zone areas here, taking up 0x4F to 0x53
     [MAPSEC_ARTISAN_CAVE] = 0x54,
     [MAPSEC_SOUTHERN_ISLAND] = 0x55, //84
-    [MAPSEC_UNDERWATER_124] = 0x33 //reused Bond Bridge; same area but Underwater
+    [MAPSEC_UNDERWATER_124] = 0x33, //reused Bond Bridge; same area but Underwater
+    [MAPSEC_BATTLE_FRONTIER] = 0x56
 };
 
 

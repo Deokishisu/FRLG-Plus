@@ -874,9 +874,9 @@
 #define FLAG_NUZLOCKE_SAFARI_NORTH_EAST 0x352
 #define FLAG_NUZLOCKE_ARTISAN_CAVE     0x353
 #define FLAG_NUZLOCKE_SOUTHERN_ISLAND  0x354
+#define FLAG_NUZLOCKE_BATTLE_FRONTIER  0x355
 
 // Unused?
-#define FLAG_0x355               0x355
 #define FLAG_0x356               0x356
 #define FLAG_0x357               0x357
 #define FLAG_0x358               0x358
