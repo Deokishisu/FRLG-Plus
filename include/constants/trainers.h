@@ -179,6 +179,7 @@
 #define TRAINER_PIC_MASTER_PSYCHIC_M      157
 #define TRAINER_PIC_MASTER_SCIENTIST      158
 #define TRAINER_PIC_MASTER_YOUNGSTER      159
+#define TRAINER_PIC_MASTER_SWIMMER        160
 
 // Leftover from R/S
 #define TRAINER_SECRET_BASE                 1024

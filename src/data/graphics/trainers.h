@@ -478,6 +478,9 @@ const u32 gTrainerPalette_MasterScientist[] = INCBIN_U32("graphics/trainers/pale
 const u32 gTrainerFrontPic_MasterYoungster[] = INCBIN_U32("graphics/trainers/front_pics/master_youngster_front_pic.4bpp.lz");
 const u32 gTrainerPalette_MasterYoungster[] = INCBIN_U32("graphics/trainers/palettes/master_youngster.gbapal.lz");
 
+const u32 gTrainerFrontPic_MasterSwimmer[] = INCBIN_U32("graphics/trainers/front_pics/master_swimmer_front_pic.4bpp.lz");
+const u32 gTrainerPalette_MasterSwimmer[] = INCBIN_U32("graphics/trainers/palettes/master_swimmer.gbapal.lz");
+
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red_back_pic.4bpp");
 const u8 gTrainerBackPic_Leaf[] = INCBIN_U8("graphics/trainers/back_pics/leaf_back_pic.4bpp");
 const u8 gTrainerBackPic_Pokedude[] = INCBIN_U8("graphics/trainers/back_pics/pokedude_back_pic.4bpp");
