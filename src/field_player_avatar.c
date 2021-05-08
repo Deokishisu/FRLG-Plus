@@ -1173,7 +1173,7 @@ static const u8 sPlayerAvatarGfxIds[][GENDER_COUNT] = {
     [PLAYER_AVATAR_GFX_NORMAL]          = {OBJ_EVENT_GFX_RED_NORMAL,     OBJ_EVENT_GFX_GREEN_NORMAL},
     [PLAYER_AVATAR_GFX_BIKE]            = {OBJ_EVENT_GFX_RED_BIKE,       OBJ_EVENT_GFX_GREEN_BIKE},
     [PLAYER_AVATAR_GFX_RIDE]            = {OBJ_EVENT_GFX_RED_SURF,       OBJ_EVENT_GFX_GREEN_SURF},
-    [PLAYER_AVATAR_STATE_UNDERWATER]    = {OBJ_EVENT_GFX_RED_UNDERWATER, OBJ_EVENT_GFX_GREEN_UNDERWATER},  //change to dive sprite(s)
+    [PLAYER_AVATAR_GFX_UNDERWATER]      = {OBJ_EVENT_GFX_RED_UNDERWATER, OBJ_EVENT_GFX_GREEN_UNDERWATER},  //change to dive sprite(s)
     [PLAYER_AVATAR_GFX_FIELD_MOVE]      = {OBJ_EVENT_GFX_RED_FIELD_MOVE, OBJ_EVENT_GFX_GREEN_FIELD_MOVE},
     [PLAYER_AVATAR_GFX_FISH]            = {OBJ_EVENT_GFX_RED_FISH,       OBJ_EVENT_GFX_GREEN_FISH},
     [PLAYER_AVATAR_GFX_VSSEEKER]        = {OBJ_EVENT_GFX_RED_VS_SEEKER,  OBJ_EVENT_GFX_GREEN_VS_SEEKER}, //not a real state. same as PLAYER_AVATAR_STATE_WATERING (aka PLAYER_AVATAR_STATE_DASH).
@@ -1374,7 +1374,7 @@ void InitDivingPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
     struct ObjectEvent *objectEvent;
 
     playerObjEventTemplate.localId = OBJ_EVENT_ID_PLAYER;
-    playerObjEventTemplate.graphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_UNDERWATER, gender);
+    playerObjEventTemplate.graphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_GFX_UNDERWATER, gender);
     playerObjEventTemplate.x = x - 7;
     playerObjEventTemplate.y = y - 7;
     playerObjEventTemplate.elevation = 0;
