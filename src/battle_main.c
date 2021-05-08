@@ -1689,7 +1689,18 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                         CreateMonWithGenderNatureAbility(&party[i], partyData[i].species, level + levelScaling, fixedIV, gender, partyData[i].nature, partyData[i].abilityNum);
                     }
                     else
+                    {
+                        if(gMapHeader.mapLayoutId == LAYOUT_PALLET_TOWN_PROFESSOR_OAKS_LAB)
+                        {   //special casing superboss battle with Oak
+                            if(gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE)
+                                levelScaling = 5;
+                            else if(gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_EASY)
+                                levelScaling = -5;
+                            else
+                                levelScaling = 0;
+                        }
                         CreateMonWithGenderNatureAbility(&party[i], partyData[i].species, partyData[i].lvl + levelScaling, fixedIV, gender, partyData[i].nature, partyData[i].abilityNum);
+                    }
                     SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
                     for (j = 0; j < MAX_MON_MOVES; ++j)
                     {
@@ -3771,6 +3782,7 @@ static void HandleEndTurn_BattleWon(void)
         {
         case CLASS_LEADER_2:
         case CLASS_CHAMPION_2:
+        case CLASS_PKMN_PROF:
             PlayBGM(MUS_VICTORY_GYM_LEADER);
             break;
         case CLASS_BOSS:

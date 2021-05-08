@@ -12,6 +12,8 @@
 .equ RIVAL_STARTER_ID,        VAR_TEMP_4
 
 .equ SHOWED_OAK_COMPLETE_DEX, FLAG_TEMP_2
+.equ DECLINED_BATTLE, 		  FLAG_TEMP_3
+.equ WON_BATTLE, 			  FLAG_TEMP_4
 
 PalletTown_ProfessorOaksLab_MapScripts:: @ 8168F7E
 	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_ProfessorOaksLab_OnTransition
@@ -621,6 +623,8 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak:: @ 8169595
 	lock
 	faceplayer
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
+	goto_if_set WON_BATTLE, PalletTown_ProfessorOaksLab_EventScript_BattleJustWon
+	call_if_not_defeated TRAINER_MASTER_OAK, PalletTown_ProfessorOaksLab_EventScript_CheckMasterTrainerFlags
 	compare VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9
 	goto_if_eq PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	compare VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8
@@ -639,6 +643,102 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak:: @ 8169595
 	msgbox PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose
 	release
 	end
+
+PalletTown_ProfessorOaksLab_EventScript_CheckMasterTrainerFlags::
+	callnative CheckAllMasterTrainerFlags
+	compare VAR_RESULT, TRUE
+	goto_if_eq PalletTown_ProfessorOaksLab_EventScript_AskBattle
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_AskBattle::
+	msgbox PalletTown_ProfessorOaksLab_Text_AskBattle, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PalletTown_ProfessorOaksLab_EventScript_MasterBattle
+	msgbox PalletTown_ProfessorOaksLab_Text_AtLeastLetMe
+	call PokedexRating_EventScript_Rate
+	goto_if_set FLAG_OAK_SAW_DEX_COMPLETION, PalletTown_ProfessorOaksLab_EventScript_DexCompleted
+	release
+	end
+
+PalletTown_ProfessorOaksLab_Text_AskBattle::
+	.string "OAK: Ah, {PLAYER}!\n"
+	.string "It's been a long while.\l"
+	.string "You certainly look more impressive.\p"
+	.string "I heard about your conquest of the\n"
+	.string "MASTER TRAINERS around KANTO,\l"
+	.string "it's just fantastic!\p"
+	.string "Your dedication, trust, and love for\n"
+	.string "your POKéMON is truly outstanding!\p"
+	.string "It's been quite a while since I've\n"
+	.string "had a battle myself…\p"
+	.string "Would you care to have a match\n"
+	.string "with me and my old friends?$"
+
+PalletTown_ProfessorOaksLab_Text_AtLeastLetMe::
+	.string "Then let me see how your POKéDEX\n"
+	.string "is coming along while you're here.\p"
+	.string "Here, let me take a look.$"
+
+PalletTown_ProfessorOaksLab_EventScript_MasterBattle::
+	msgbox PalletTown_ProfessorOaksLab_Text_StartBattle
+	waitmessage
+	closemessage
+	trainerbattle_no_intro TRAINER_MASTER_OAK, PalletTown_ProfessorOaksLab_Text_OakDefeat
+	setflag WON_BATTLE
+	msgbox PalletTown_ProfessorOaksLab_Text_WonBattle
+	message PalletTown_ProfessorOaksLab_Text_GrandMaster_EarnTitle
+    waitmessage
+    playfanfare MUS_LEVEL_UP
+    waitfanfare
+	waitbuttonpress
+	release
+	end
+
+PalletTown_ProfessorOaksLab_Text_StartBattle::
+	.string "Let's see how you fare against\n"
+	.string "POKéMON with this much experience\l"
+	.string "in battle!$"
+
+PalletTown_ProfessorOaksLab_Text_OakDefeat::
+	.string "OAK: Amazing, {PLAYER}.\n"
+	.string "You and your POKéMON are excellent.\l"
+	.string "I was right in my assessment of you.$"
+
+PalletTown_ProfessorOaksLab_Text_WonBattle::
+	.string "OAK: {PLAYER}…\p"
+	.string "First, you registered every POKéMON\n"
+	.string "here in KANTO in your POKéDEX…\p"
+	.string "And then you raised them all, proved\n"
+	.string "mastery over each in battle…\p"
+	.string "I thought that perhaps I could best\n"
+	.string "you with my years of experience\l"
+	.string "and wizened, old POKéMON…\p"
+	.string "…But, at this point, you may know\n"
+	.string "more about bringing POKéMON to\l"
+	.string "their full potential than I do!\p"
+	.string "You could become a POKéMON\n"
+	.string "professor right now!\p"
+	.string "However, I suspect you want to keep\n"
+	.string "training and becoming stronger.\p"
+	.string "For your outstanding achievements,\n"
+	.string "you have more than earned the\l"
+	.string "title of GRAND MASTER!\p"
+	.string "Congratulations, {PLAYER}!$"
+
+PalletTown_ProfessorOaksLab_Text_GrandMaster_EarnTitle:
+    .string "{COLOR RED}You have earned the title of\n"
+    .string "GRAND MASTER!$"
+
+PalletTown_ProfessorOaksLab_EventScript_BattleJustWon::
+	msgbox PalletTown_ProfessorOaksLab_Text_BattleJustWon
+	release
+	end
+
+PalletTown_ProfessorOaksLab_Text_BattleJustWon::
+	.string "OAK: I don't think I'll be battling\n"
+	.string "again for a long time.\p"
+	.string "There's a reason my POKéMON and I\n"
+	.string "retired from battling ages ago.$"
 
 PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex:: @ 8169600
 	msgbox PokedexRating_Text_ThankYouMadeDreamReality

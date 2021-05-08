@@ -571,6 +571,23 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void CheckAllMasterTrainerFlags(void)
+{
+    u32 i;
+    bool8 flag = TRUE;
+
+    for(i = 1; i < 152; i++) //flags start at 1, which is SPECIES_BULBASAUR
+    {
+        flag = CheckMasterTrainerFlag(i);
+        if(!flag)
+        {
+            gSpecialVar_Result = FALSE;
+            return;
+        }
+    }
+    gSpecialVar_Result = TRUE;
+}
+
 void ShouldChangeMasterTrainerMovementType(void)
 {
     gSpecialVar_Result = CheckMasterTrainerFlag(gSpecialVar_0x8009);

@@ -3750,7 +3750,21 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     u8 attackerHoldEffectParam;
 
     if (!powerOverride)
-        gBattleMovePower = gBattleMoves[move].power;
+    {
+        if(gBattleMoves[move].effect != EFFECT_HIDDEN_POWER)
+            gBattleMovePower = gBattleMoves[move].power;
+        else
+        {
+            s32 powerBits = ((attacker->hpIV & 2) >> 1)
+                         | ((attacker->attackIV & 2) << 0)
+                         | ((attacker->defenseIV & 2) << 1)
+                         | ((attacker->speedIV & 2) << 2)
+                         | ((attacker->spAttackIV & 2) << 3)
+                         | ((attacker->spDefenseIV & 2) << 4);
+			  
+			gBattleMovePower = (40 * powerBits) / 63 + 30;
+        }
+    }
     else
         gBattleMovePower = powerOverride;
 
@@ -7459,6 +7473,7 @@ static u16 GetBattleBGM(void)
     {
         switch (sTrainers[gTrainerBattleOpponent_A].trainerClass)
         {
+            case CLASS_PKMN_PROF:
             case CLASS_CHAMPION_2:
                 return MUS_VS_CHAMPION;
             case CLASS_LEADER_2:

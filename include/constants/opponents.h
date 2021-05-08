@@ -24,7 +24,7 @@
 #define TRAINER_COOLTRAINER_CASPARA_2             20
 #define TRAINER_SWIMMER_FEMALE_SEDEF              21
 #define TRAINER_SWIMMER_FEMALE_SEDEF_2            22
-#define TRAINER_PSYCHIC_2                         23
+#define TRAINER_MASTER_OAK                        23
 #define TRAINER_GENTLEMAN_1                       24
 #define TRAINER_ELITE_FOUR_SIDNEY                 25
 #define TRAINER_ELITE_FOUR_PHOEBE                 26

@@ -275,17 +275,17 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_SwimmerFemaleSedef2),
         .party = {.NoItemDefaultMoves = sTrainerMons_SwimmerFemaleSedef2}
     },
-    [TRAINER_PSYCHIC_2] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_PSYCHIC,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
-        .trainerPic = TRAINER_PIC_RS_PSYCHIC_F,
-        .trainerName = _(""),
+    [TRAINER_MASTER_OAK] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_PKMN_PROF,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_PROFESSOR_OAK,
+        .trainerName = _("OAK"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Psychic2),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Psychic2}
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_HP_AWARE,
+        .partySize = NELEMS(sTrainerMons_MasterOak),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOak}
     },
     [TRAINER_GENTLEMAN_1] = {
         .partyFlags = 0,

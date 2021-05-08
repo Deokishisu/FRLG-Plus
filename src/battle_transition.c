@@ -127,6 +127,7 @@ static void BT_Phase2StartAgathaMugshot(u8 taskId);
 static void BT_Phase2StartLanceMugshot(u8 taskId);
 static void BT_Phase2StartBlueMugshot(u8 taskId);
 static void BT_Phase2AntiClockwiseSpiral(u8 taskId);
+static void BT_Phase2StartOakMugshot(u8 taskId);
 static void BT_Phase1Task(u8 taskId);
 static void BT_Phase2Mugshot(u8 taskId);
 static void BT_Phase1SubTask(u8 taskId);
@@ -231,6 +232,7 @@ static const TaskFunc sBT_Phase2Tasks[] =
     [B_TRANSITION_LANCE]                 = BT_Phase2StartLanceMugshot,
     [B_TRANSITION_BLUE]                  = BT_Phase2StartBlueMugshot,
     [B_TRANSITION_ANTI_CLOCKWISE_SPIRAL] = BT_Phase2AntiClockwiseSpiral,
+    [B_TRANSITION_OAK]                   = BT_Phase2StartOakMugshot,
 };
 
 static const TransitionStateFunc sBT_MainPhases[] =
@@ -341,11 +343,12 @@ static const TransitionStateFunc sBT_Phase2MugshotFuncs[] =
 static const u8 sMugshotsTrainerPicIDsTable[MUGSHOTS_COUNT] =
 {
     // TODO: document these with macro
-    0x70, 0x71, 0x72, 0x73, 0x7D
+    0x70, 0x71, 0x72, 0x73, 0x7D, 0x84
 };
 
 static const s16 sMugshotsOpponentRotationScales[MUGSHOTS_COUNT][2] =
 {
+    {0x200, 0x200},
     {0x200, 0x200},
     {0x200, 0x200},
     {0x200, 0x200},
@@ -360,6 +363,7 @@ static const s16 sMugshotsOpponentCoords[MUGSHOTS_COUNT][2] =
     { 0, 0 },
     { -32, 0 },
     { 0, 0 },
+    { -6, 0 },
 };
 
 static const TransitionSpriteCallback sBT_Phase2MugshotSpriteFuncs[] =
@@ -561,6 +565,7 @@ static const u16 *const sVsBarOpponentPalettes[MUGSHOTS_COUNT] =
     sVsBarBrunoPalette,
     sVsBarAgathaPalette,
     sVsBarLancePalette,
+    sVsBarBluePalette,
     sVsBarBluePalette,
 };
 
@@ -1792,6 +1797,12 @@ static void BT_Phase2StartLanceMugshot(u8 taskId)
 static void BT_Phase2StartBlueMugshot(u8 taskId)
 {
     gTasks[taskId].tWhichMugshot = MUGSHOT_BLUE;
+    BT_Phase2Mugshot(taskId);
+}
+
+static void BT_Phase2StartOakMugshot(u8 taskId)
+{
+    gTasks[taskId].tWhichMugshot = MUGSHOT_OAK;
     BT_Phase2Mugshot(taskId);
 }
 

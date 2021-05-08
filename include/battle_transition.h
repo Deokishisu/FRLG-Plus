@@ -10,6 +10,7 @@ enum
     MUGSHOT_AGATHA,
     MUGSHOT_LANCE,
     MUGSHOT_BLUE,
+    MUGSHOT_OAK,
     MUGSHOTS_COUNT
 };
 
@@ -31,6 +32,7 @@ enum
 #define B_TRANSITION_LANCE 15
 #define B_TRANSITION_BLUE 16
 #define B_TRANSITION_ANTI_CLOCKWISE_SPIRAL 17
+#define B_TRANSITION_OAK 18
 
 extern const struct SpritePalette sSpritePalette_SlidingPokeball;
 

@@ -1474,7 +1474,22 @@ u8 TypeCalc(u16 move, u8 attacker, u8 defender)
 
     if (move == MOVE_STRUGGLE)
         return 0;
-    moveType = gBattleMoves[move].type;
+    if(gBattleMoves[move].effect != EFFECT_HIDDEN_POWER)
+        moveType = gBattleMoves[move].type;
+    else
+    {
+        s32 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
+              | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
+              | ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2)
+              | ((gBattleMons[gBattlerAttacker].speedIV & 1) << 3)
+              | ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4)
+              | ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
+
+            u8 moveType = (15 * typeBits) / 63 + 1;
+            if (moveType >= TYPE_MYSTERY)
+                moveType++;
+            moveType |= 0xC0;
+    }
     // check stab
     if (IS_BATTLER_OF_TYPE(attacker, moveType))
     {
@@ -1529,7 +1544,22 @@ u8 AI_TypeCalc(u16 move, u16 targetSpecies, u8 targetAbility)
 
     if (move == MOVE_STRUGGLE)
         return 0;
-    moveType = gBattleMoves[move].type;
+    if(gBattleMoves[move].effect != EFFECT_HIDDEN_POWER)
+        moveType = gBattleMoves[move].type;
+    else
+    {
+        s32 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
+              | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
+              | ((gBattleMons[gBattlerAttacker].defenseIV & 1) << 2)
+              | ((gBattleMons[gBattlerAttacker].speedIV & 1) << 3)
+              | ((gBattleMons[gBattlerAttacker].spAttackIV & 1) << 4)
+              | ((gBattleMons[gBattlerAttacker].spDefenseIV & 1) << 5);
+
+            u8 moveType = (15 * typeBits) / 63 + 1;
+            if (moveType >= TYPE_MYSTERY)
+                moveType++;
+            moveType |= 0xC0;
+    }
     if (targetAbility == ABILITY_LEVITATE && moveType == TYPE_GROUND)
     {
         flags = MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE;

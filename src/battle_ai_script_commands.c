@@ -964,7 +964,7 @@ static void Cmd_get_type(void)
         AI_THINKING_STRUCT->funcResult = gBattleMons[gBattlerTarget].type2;
         break;
     case AI_TYPE_MOVE:
-        if(AI_THINKING_STRUCT->moveConsidered == MOVE_HIDDEN_POWER)
+        if(gBattleMoves[AI_THINKING_STRUCT->moveConsidered].effect == EFFECT_HIDDEN_POWER)
         {
             s32 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
               | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
@@ -988,7 +988,7 @@ static void Cmd_get_type(void)
 
 static void Cmd_get_considered_move_power(void)
 {
-    if(AI_THINKING_STRUCT->funcResult == MOVE_HIDDEN_POWER)
+    if(gBattleMoves[AI_THINKING_STRUCT->moveConsidered].effect == EFFECT_HIDDEN_POWER)
     {
         s32 powerBits  = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
               | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)
@@ -1872,7 +1872,7 @@ static void Cmd_get_used_held_item(void)
 
 static void Cmd_get_move_type_from_result(void)
 {
-    if(AI_THINKING_STRUCT->funcResult == MOVE_HIDDEN_POWER)
+    if(gBattleMoves[AI_THINKING_STRUCT->funcResult].effect == EFFECT_HIDDEN_POWER)
     {
         s32 typeBits  = ((gBattleMons[gBattlerAttacker].hpIV & 1) << 0)
             | ((gBattleMons[gBattlerAttacker].attackIV & 1) << 1)
@@ -1895,7 +1895,7 @@ static void Cmd_get_move_type_from_result(void)
 
 static void Cmd_get_move_power_from_result(void)
 {
-    if(AI_THINKING_STRUCT->funcResult == MOVE_HIDDEN_POWER)
+    if(gBattleMoves[AI_THINKING_STRUCT->funcResult].effect == EFFECT_HIDDEN_POWER)
     {
         s32 powerBits  = ((gBattleMons[gBattlerAttacker].hpIV & 2) >> 1)
               | ((gBattleMons[gBattlerAttacker].attackIV & 2) << 0)

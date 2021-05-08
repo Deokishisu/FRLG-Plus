@@ -889,11 +889,67 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Psychic2[] = {
+static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     {
-        .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .iv = 1, //ghost
+        .lvl = 80,
+        .evs = { 4, 252, 0, 252, 0, 0},
+        .nature = NATURE_ADAMANT,
+        .species = SPECIES_TAUROS,
+        .heldItem = ITEM_CHOICE_BAND,
+        .abilityNum = 0,
+        //.moves = {MOVE_HIDDEN_POWER, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+        .moves = {MOVE_RETURN, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_HYPER_BEAM},
+    },
+    {
+        .iv = 255, //dark
+        .lvl = 81,
+        .evs = { 124, 0, 0, 96, 188, 96},
+        .nature = NATURE_MODEST,
+        .species = SPECIES_EXEGGUTOR,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SUBSTITUTE, MOVE_LEECH_SEED, MOVE_HIDDEN_POWER, MOVE_PSYCHIC},
+    },
+    {
+        .iv = 4, //fighting
+        .lvl = 81,
+        .evs = { 252, 252, 0, 4, 0, 0},
+        .nature = NATURE_BRAVE,
+        .species = SPECIES_ARCANINE,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_HOWL, MOVE_EXTREME_SPEED, MOVE_HIDDEN_POWER, MOVE_OVERHEAT},
+    },
+    {
+        .iv = 6, //rock
+        .lvl = 80,
+        .evs = { 68, 252, 0, 188, 0, 0},
+        .nature = NATURE_ADAMANT,
+        .species = SPECIES_GYARADOS,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_DOUBLE_EDGE},
+    },
+    {
+        .iv = 8, //ice
+        .lvl = 80,
+        .evs = { 4, 0, 0, 252, 252, 0},
+        .nature = NATURE_MODEST,
+        .species = SPECIES_RAICHU,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SUBSTITUTE, MOVE_THUNDERBOLT, MOVE_HIDDEN_POWER, MOVE_SURF},
+    },
+    {
+        .iv = 255,
+        .lvl = 82,
+        .evs = { 144, 96, 132, 0, 0, 136},
+        .nature = NATURE_CAREFUL,
+        .species = SPECIES_SNORLAX,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_CURSE, MOVE_SHADOW_BALL, MOVE_REST, MOVE_RETURN},
     },
 };
 
