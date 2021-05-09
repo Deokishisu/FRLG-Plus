@@ -896,9 +896,8 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
         .evs = { 4, 252, 0, 252, 0, 0},
         .nature = NATURE_ADAMANT,
         .species = SPECIES_TAUROS,
-        .heldItem = ITEM_CHOICE_BAND,
+        .heldItem = ITEM_SILK_SCARF,
         .abilityNum = 0,
-        //.moves = {MOVE_HIDDEN_POWER, MOVE_NONE, MOVE_NONE, MOVE_NONE},
         .moves = {MOVE_RETURN, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_HYPER_BEAM},
     },
     {
