@@ -489,6 +489,8 @@ static void BattleIntroSlideLink(u8 taskId)
         {
             ++gTasks[taskId].data[0];
             gTasks[taskId].data[2] = 240;
+            if(gSaveBlock2Ptr->battleAnimSpeed)
+                gTasks[taskId].data[2] = 0;
             gTasks[taskId].data[3] = 32;
             gIntroSlideFlags &= ~1;
         }
@@ -503,6 +505,12 @@ static void BattleIntroSlideLink(u8 taskId)
             gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i] = gTasks[taskId].data[2];
         while (i < 160)
             gScanlineEffectRegBuffers[gScanlineEffect.srcBuffer][i++] = -gTasks[taskId].data[2];
+        if(gSaveBlock2Ptr->battleAnimSpeed != 0)
+        {
+            CpuFill32(0, (void *)BG_SCREEN_ADDR(28), BG_SCREEN_SIZE);
+            CpuFill32(0, (void *)BG_SCREEN_ADDR(30), BG_SCREEN_SIZE);
+            gTasks[taskId].data[4] = 1;
+        }
         if (!gTasks[taskId].data[2])
         {
             gScanlineEffect.state = 3;
