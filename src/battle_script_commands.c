@@ -9149,7 +9149,10 @@ static void atkEF_handleballthrow(void)
             {
                 BtlController_EmitBallThrowAnim(0, BALL_3_SHAKES_SUCCESS);
                 MarkBattlerForControllerExec(gActiveBattler);
-                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+                if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrowForceNick;
+                else 
+                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                 SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
                 if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
                 {
@@ -9202,7 +9205,10 @@ static void atkEF_handleballthrow(void)
                 MarkBattlerForControllerExec(gActiveBattler);
                 if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above
                 {
-                    gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
+                    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+                        gBattlescriptCurrInstr = BattleScript_SuccessBallThrowForceNick;
+                    else 
+                        gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;
                     SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);
                     if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
                     {
