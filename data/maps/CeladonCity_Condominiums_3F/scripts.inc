@@ -49,7 +49,7 @@ CeladonCity_Condominiums_3F_EventScript_CheckMysticTicket::
 	end
 
 CeladonCity_Condominiums_3F_EventScript_GiveMysticTicket::
-	goto_if_unset FLAG_SYS_NATIONAL_DEX, CeladonCity_Condominiums_3F_EventScript_CantGiveMysticTicket
+	goto_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, CeladonCity_Condominiums_3F_EventScript_CantGiveMysticTicket
 	textcolor 0
 	msgbox CeladonCity_Condominiums_3F_Text_GiveMysticTicket
 	textcolor 3

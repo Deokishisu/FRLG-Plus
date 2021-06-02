@@ -768,8 +768,8 @@ Help_Text_HowToUseOption:: @ 81B6203
 	.string "   Pad to select an optional item, then\n"
 	.string "   press left or right to alter the\n"
 	.string "   settings.\n"
-	.string "{CIRCLE_3} Select “CANCEL” or press the\n"
-	.string "   B Button after making changes.$"
+	.string "{CIRCLE_3} Press the A or B Button after\n"
+	.string "   making changes to save them.$"
 
 Help_Text_HowToUsePotion:: @ 81B62E4
 	.string "{CIRCLE_1} Open the MENU.\n"
@@ -1063,8 +1063,8 @@ Help_Text_HowToUseKeySystemSettings::
 	.string "{CIRCLE_2} Press up or down on the {PLUS} Control\n"
 	.string "   Pad to select a key, then press left\n"
 	.string "   or right to alter the settings.\n"
-	.string "{CIRCLE_3} Select “CANCEL” or press the\n"
-	.string "   B Button after making changes.$"
+	.string "{CIRCLE_3} Press the A or B Button after\n"
+	.string "   making changes to save them.$"
 
 Help_Text_HP:: @ 81B7CC1
 	.string "HP$"
