@@ -55,6 +55,7 @@ PalletTown_OnFrame:: @ 81654CE
 
 @ Master Trainer Youngster explains after exiting lab with upgraded dex
 PalletTown_EventScript_MasterTrainerYoungster::
+	goto_if_questlog EventScript_ReleaseEnd
 	lockall
 	textcolor 0
 	applymovement LOCALID_MASTER_YOUNGSTER, SevenIsland_House_Room2_Movement_StepFastestRight

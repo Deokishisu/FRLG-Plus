@@ -30,6 +30,7 @@
 		* Artisan Cave can be accessed from the Battle Tower's dock.
 	* A new area in Berry Forest makes the pinch berries available.
 	* A new area west of Cape Brink has rematchable trainers for the purposes of EV training.
+	* Gym Leader rematches can be unlocked on Seven Island.
 	* Master Trainers appear around Kanto after becoming the Champion, filling a similar role to their appearance in the Let's Go games with some differences.
 		* Master Trainers can be rematched immediately.
 		* Master Trainer Pokémon will scale to the level of the Pokémon used to challenge them, making them more accessible.
