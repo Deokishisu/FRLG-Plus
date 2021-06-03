@@ -418,6 +418,21 @@ static const u8 sText_FoePkmnPrefix4[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
 static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}!");
 
+//link title strings
+static const u8 sText_LinkTrainerSentOutPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\n sent out {B_OPPONENT_MON1_NAME}!");
+static const u8 sText_LinkTrainerSentOutTwoPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME}!");
+static const u8 sText_LinkPartnerSentOutPkmnGoPkmnTitle[] = _("{B_LINK_PARTNER_NAME}\nsent out {B_LINK_PLAYER_MON2_NAME}!\lGo! {B_LINK_PLAYER_MON1_NAME}!");
+static const u8 sText_TwoLinkTrainersSentOutPkmnYY[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_LINK_OPPONENT_MON1_NAME}!\p{B_LINK_OPPONENT2_NAME}\nsent out {B_LINK_OPPONENT_MON2_NAME}!");
+static const u8 sText_TwoLinkTrainersSentOutPkmnYN[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_LINK_OPPONENT_MON1_NAME}!\l{B_LINK_OPPONENT2_NAME} sent out {B_LINK_OPPONENT_MON2_NAME}!");
+static const u8 sText_TwoLinkTrainersSentOutPkmnNY[] = _("{B_LINK_OPPONENT1_NAME} sent out {B_LINK_OPPONENT_MON1_NAME}!\p{B_LINK_OPPONENT2_NAME}\nsent out {B_LINK_OPPONENT_MON2_NAME}!");
+static const u8 sText_LinkTrainer1WithdrewPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nwithdrew {B_BUFF1}!");
+static const u8 sText_LinkTrainer2WithdrewPkmnTitle[] = _("{B_LINK_SCR_TRAINER_NAME}\nwithdrew {B_BUFF1}!");
+static const u8 sText_LinkTrainerSentOutPkmn2Title[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_BUFF1}!");
+static const u8 sText_LinkTrainerMultiSentOutPkmnTitle[] = _("{B_LINK_SCR_TRAINER_NAME}\nsent out {B_BUFF1}!");
+static const u8 sText_TwoLinkTrainersWantToBattleYY[] = _("{B_LINK_OPPONENT1_NAME} and\n{B_LINK_OPPONENT2_NAME}\lwant to battle!");
+static const u8 sText_TwoLinkTrainersWantToBattleYN[] = _("{B_LINK_OPPONENT1_NAME} and\n{B_LINK_OPPONENT2_NAME} want to battle!");
+
+
 static const u8 sText_HP2[] = _("HP");
 static const u8 sText_Attack2[] = _("ATTACK");
 static const u8 sText_Defense2[] = _("DEFENSE");
@@ -504,6 +519,9 @@ const u8 gText_KeepAnEyeOnHP[] = _("OAK: Keep your eyes on your\nPOKéMON's HP.\
 const u8 gText_OakNoRunningFromATrainer[] = _("OAK: No! There's no running away\nfrom a TRAINER POKéMON battle!\p");
 const u8 gText_WinEarnsPrizeMoney[] = _("OAK: Hm! Excellent!\pIf you win, you earn prize money,\nand your POKéMON will grow!\pBattle other TRAINERS and make\nyour POKéMON strong!\p");
 const u8 gText_HowDissapointing[] = _("OAK: Hm…\nHow disappointing…\pIf you win, you earn prize money,\nand your POKéMON grow.\pBut if you lose, {B_PLAYER_NAME}, you end\nup paying prize money…\pHowever, since you had no warning\nthis time, I'll pay for you.\pBut things won't be this way once\nyou step outside these doors.\pThat's why you must strengthen your\nPOKéMON by battling wild POKéMON.\p");
+
+const u8 gText_GrandMaster[] = _("GRAND MASTER ");
+const u8 gText_Master[] = _(" MASTER ");
 
 const u8 *const gBattleStringsTable[] = {
     [STRINGID_TRAINER1LOSETEXT - 12]              = sText_Trainer1LoseText,
@@ -1332,6 +1350,7 @@ void BufferStringBattle(u16 stringId)
 {
     s32 i;
     const u8 *stringPtr = NULL;
+    u8 multiplayerId = GetMultiplayerId();
 
     sBattleMsgDataPtr = (struct BattleMsgData*)(&gBattleBufferA[gActiveBattler][4]);
     gLastUsedItem = sBattleMsgDataPtr->lastItem;
@@ -1362,7 +1381,16 @@ void BufferStringBattle(u16 stringId)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
                 {
-                    stringPtr = sText_TwoLinkTrainersWantToBattle;
+                    u8 title1 = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead;
+                    u8 title2 = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id)))].neverRead;
+                    if(title1 && title2)
+                        stringPtr = sText_TwoLinkTrainersWantToBattleYY;
+                    else if(title1 && !title2)
+                        stringPtr = sText_TwoLinkTrainersWantToBattleYN;
+                    else if(!title1 && title2)
+                        stringPtr = sText_TwoLinkTrainersWantToBattleYY;
+                    else
+                        stringPtr = sText_TwoLinkTrainersWantToBattle;
                 }
                 else
                 {
@@ -1402,7 +1430,12 @@ void BufferStringBattle(u16 stringId)
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-                    stringPtr = sText_LinkPartnerSentOutPkmnGoPkmn;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(gLinkPlayers[multiplayerId].id))].neverRead != 0)
+                        stringPtr = sText_LinkPartnerSentOutPkmnGoPkmnTitle;
+                    else
+                        stringPtr = sText_LinkPartnerSentOutPkmnGoPkmn;
+                }
                 else
                     stringPtr = sText_GoTwoPkmn;
             }
@@ -1416,9 +1449,25 @@ void BufferStringBattle(u16 stringId)
             if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-                    stringPtr = sText_TwoLinkTrainersSentOutPkmn;
+                {
+                    u8 title1 = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead;
+                    u8 title2 = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id)))].neverRead;
+                    if(title1 && title2)
+                        stringPtr = sText_TwoLinkTrainersSentOutPkmnYY;
+                    else if(title1 && !title2)
+                        stringPtr = sText_TwoLinkTrainersSentOutPkmnYN;
+                    else if(!title1 && title2)
+                        stringPtr = sText_TwoLinkTrainersSentOutPkmnNY;
+                    else
+                        stringPtr = sText_TwoLinkTrainersSentOutPkmn;
+                }
                 else if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-                    stringPtr = sText_LinkTrainerSentOutTwoPkmn;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead != 0)
+                        stringPtr = sText_LinkTrainerSentOutTwoPkmnTitle;
+                    else
+                        stringPtr = sText_LinkTrainerSentOutTwoPkmn;
+                }
                 else
                     stringPtr = sText_Trainer1SentOutTwoPkmn;
             }
@@ -1429,7 +1478,12 @@ void BufferStringBattle(u16 stringId)
                 else if (gTrainerBattleOpponent_A == TRAINER_OPPONENT_C00)
                     stringPtr = sText_Trainer1SentOutPkmn;
                 else
-                    stringPtr = sText_LinkTrainerSentOutPkmn;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead != 0)
+                        stringPtr = sText_LinkTrainerSentOutPkmnTitle;
+                    else
+                        stringPtr = sText_LinkTrainerSentOutPkmn;
+                }
             }
         }
         break;
@@ -1450,9 +1504,19 @@ void BufferStringBattle(u16 stringId)
             if (gTrainerBattleOpponent_A == TRAINER_LINK_OPPONENT)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-                    stringPtr = sText_LinkTrainer2WithdrewPkmn;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(gBattleScripting.battler)].neverRead != 0)
+                        stringPtr = sText_LinkTrainer2WithdrewPkmnTitle;
+                    else
+                        stringPtr = sText_LinkTrainer2WithdrewPkmn;
+                }
                 else
-                    stringPtr = sText_LinkTrainer1WithdrewPkmn;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead != 0)
+                        stringPtr = sText_LinkTrainer1WithdrewPkmnTitle;
+                    else
+                        stringPtr = sText_LinkTrainer1WithdrewPkmn;
+                }
             }
             else
             {
@@ -1477,11 +1541,21 @@ void BufferStringBattle(u16 stringId)
             if (gBattleTypeFlags & BATTLE_TYPE_LINK)
             {
                 if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
-                    stringPtr = sText_LinkTrainerMultiSentOutPkmn;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(gBattleScripting.battler)].neverRead != 0)
+                        stringPtr = sText_LinkTrainerMultiSentOutPkmnTitle;
+                    else
+                        stringPtr = sText_LinkTrainerMultiSentOutPkmn;
+                }
                 else if (gTrainerBattleOpponent_A == TRAINER_OPPONENT_C00)
                     stringPtr = sText_Trainer1SentOutPkmn2;
                 else
-                    stringPtr = sText_LinkTrainerSentOutPkmn2;
+                {
+                    if(gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead != 0)
+                        stringPtr = sText_LinkTrainerSentOutPkmn2Title;
+                    else
+                        stringPtr = sText_LinkTrainerSentOutPkmn2;
+                }
             }
             else
             {
@@ -1645,6 +1719,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
     u8 multiplayerId;
     s32 i;
     struct Trainer* sTrainers;
+    u8 title = 0;
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
@@ -1902,20 +1977,109 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 break;
             case B_TXT_LINK_PLAYER_NAME: // link player name
-                toCpy = gLinkPlayers[multiplayerId].name;
+                title = gLinkPlayers[multiplayerId].neverRead;
+                if(title != 0)
+                {
+                    if(title == 152)
+                    {   //GRAND MASTER
+                        StringCopy(gStringVar1, gText_GrandMaster);
+                    }
+                    else
+                    {   //MON MASTER
+                        StringCopy(gStringVar1, gSpeciesNames[title]);
+                        StringAppend(gStringVar1, gText_Master);
+                    }
+                    StringAppend(gStringVar1, gLinkPlayers[multiplayerId].name);
+                    toCpy = gStringVar1;
+                }
+                else
+                {
+                    toCpy = gLinkPlayers[multiplayerId].name;
+                }
                 break;
             case B_TXT_LINK_PARTNER_NAME: // link partner name
-                toCpy = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(gLinkPlayers[multiplayerId].id))].name;
+                title = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(gLinkPlayers[multiplayerId].id))].neverRead;
+                if(title != 0)
+                {
+                    if(title == 152)
+                    {   //GRAND MASTER
+                        StringCopy(gStringVar1, gText_GrandMaster);
+                    }
+                    else
+                    {   //MON MASTER
+                        StringCopy(gStringVar1, gSpeciesNames[title]);
+                        StringAppend(gStringVar1, gText_Master);
+                    }
+                    StringAppend(gStringVar1, gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(gLinkPlayers[multiplayerId].id))].name);
+                    toCpy = gStringVar1;
+                }
+                else
+                {
+                    toCpy = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(gLinkPlayers[multiplayerId].id))].name;
+                }
                 break;
             case B_TXT_LINK_OPPONENT1_NAME: // link opponent 1 name
-                toCpy = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].name;
+                title = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].neverRead;
+                if(title != 0)
+                {
+                    if(title == 152)
+                    {   //GRAND MASTER
+                        StringCopy(gStringVar1, gText_GrandMaster);
+                    }
+                    else
+                    {   //MON MASTER
+                        StringCopy(gStringVar1, gSpeciesNames[title]);
+                        StringAppend(gStringVar1, gText_Master);
+                    }
+                    StringAppend(gStringVar1, gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].name);
+                    toCpy = gStringVar1;
+                }
+                else
+                {
+                    toCpy = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id))].name;
+                }
                 break;
             case B_TXT_LINK_OPPONENT2_NAME: // link opponent 2 name
-                toCpy = gLinkPlayers[GetBattlerMultiplayerId(
-                    BATTLE_PARTNER(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id)))].name;
+                title = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id)))].neverRead;
+                if(title != 0)
+                {
+                    if(title == 152)
+                    {   //GRAND MASTER
+                        StringCopy(gStringVar1, gText_GrandMaster);
+                    }
+                    else
+                    {   //MON MASTER
+                        StringCopy(gStringVar1, gSpeciesNames[title]);
+                        StringAppend(gStringVar1, gText_Master);
+                    }
+                    StringAppend(gStringVar1, gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id)))].name);
+                    toCpy = gStringVar1;
+                }
+                else
+                {
+                    toCpy = gLinkPlayers[GetBattlerMultiplayerId(BATTLE_PARTNER(BATTLE_OPPOSITE(gLinkPlayers[multiplayerId].id)))].name;
+                }
                 break;
             case B_TXT_LINK_SCR_TRAINER_NAME: // link scripting active name
-                toCpy = gLinkPlayers[GetBattlerMultiplayerId(gBattleScripting.battler)].name;
+                title = gLinkPlayers[GetBattlerMultiplayerId(gBattleScripting.battler)].neverRead;
+                if(title != 0)
+                {
+                    if(title == 152)
+                    {   //GRAND MASTER
+                        StringCopy(gStringVar1, gText_GrandMaster);
+                    }
+                    else
+                    {   //MON MASTER
+                        StringCopy(gStringVar1, gSpeciesNames[title]);
+                        StringAppend(gStringVar1, gText_Master);
+                    }
+                    StringAppend(gStringVar1, gLinkPlayers[GetBattlerMultiplayerId(gBattleScripting.battler)].name);
+                    toCpy = gStringVar1;
+                }
+                else
+                {
+                    toCpy = gLinkPlayers[GetBattlerMultiplayerId(gBattleScripting.battler)].name;
+                }
                 break;
             case B_TXT_PLAYER_NAME: // player name
                 toCpy = gSaveBlock2Ptr->playerName;

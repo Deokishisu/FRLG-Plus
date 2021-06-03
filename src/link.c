@@ -323,6 +323,7 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.lp_field_2 = 0x8000;
     gLocalLinkPlayer.progressFlags = TRUE; //IsNationalPokedexEnabled();
     gLocalLinkPlayer.progressFlags |= 0x10;
+    gLocalLinkPlayer.neverRead = gSaveBlock1Ptr->masterTrainerTitle; // should only ever be read by FRLG++
 }
 
 static void sub_800978C(void)
