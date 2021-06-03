@@ -571,6 +571,39 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void CheckCurrentMasterTitle(void)
+{
+    gSpecialVar_Result = gSaveBlock1Ptr->masterTrainerTitle;
+}
+
+void SetCurrentMasterTitle(void)
+{
+    gSaveBlock1Ptr->masterTrainerTitle = gSpecialVar_Result;
+}
+
+void CheckHasAnyMasterTitle(void)
+{
+    u32 i;
+    bool8 flag = TRUE;
+
+    if(gSaveBlock1Ptr->masterTrainerTitle != 0)
+    {
+        gSpecialVar_Result = TRUE;
+        return;
+    }
+
+    for(i = 1; i < 152; i++) //flags start at 1, which is SPECIES_BULBASAUR
+    {
+        flag = CheckMasterTrainerFlag(i);
+        if(flag)
+        {
+            gSpecialVar_Result = TRUE;
+            return;
+        }
+    }
+    gSpecialVar_Result = FALSE;
+}
+
 void CheckAllMasterTrainerFlags(void)
 {
     u32 i;

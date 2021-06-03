@@ -102,3 +102,101 @@ CeladonCity_Condominiums_3F_EventScript_Computer2:: @ 816C447
 CeladonCity_Condominiums_3F_EventScript_Computer3:: @ 816C450
 	msgbox CeladonCity_Condominiums_3F_Text_ItsScriptBetterNotLookAtEnding, MSGBOX_SIGN
 	end
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver::
+	lock
+	faceplayer
+	callnative CheckHasAnyMasterTitle
+	compare VAR_RESULT, FALSE
+	goto_if_eq CeladonCity_Condominiums_3F_EventScript_TitleGiver_NoTitles
+	callnative CheckCurrentMasterTitle
+	compare VAR_RESULT, 0
+	call_if_eq CeladonCity_Condominiums_3F_EventScript_TitleGiver_NoTitleSelected
+	compare VAR_RESULT, 0
+	call_if_ne CeladonCity_Condominiums_3F_EventScript_TitleGiver_TitleSelected
+	//open multichoice here, VAR_RESULT should have the Species dumped into it, 152 for GRAND MASTER, or 0 for none
+	switch VAR_RESULT
+	case 0, CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseNoTitle
+	case 152, CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseGrandMaster
+	case 153, CeladonCity_Condominiums_3F_EventScript_TitleGiver_PressedB
+	// chose an actual mon
+	callnative SetCurrentMasterTitle
+	getspeciesname 1, VAR_RESULT
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseMonMaster, MSGBOX_NPC
+	end
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_NoTitles:
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_NoTitles, MSGBOX_NPC
+	end
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_NoTitleSelected:
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_WelcomeNoTitle
+	return
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_TitleSelected:
+	compare VAR_RESULT, 152
+	call_if_eq CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferGrand
+	compare VAR_RESULT, 152
+	call_if_ne CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferSpecies
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_WelcomeTitle
+	return
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferGrand:
+	getstring 1, CeladonCity_Condominiums_3F_EventScript_TitleGiver_Grand
+	return
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferSpecies:
+	getspeciesname 1, VAR_RESULT
+	return
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseNoTitle:
+	callnative SetCurrentMasterTitle
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseNoTitles, MSGBOX_NPC
+	end
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseGrandMaster:
+	callnative SetCurrentMasterTitle
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseGrandMaster, MSGBOX_NPC
+	end
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_PressedB:
+	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_PressedB, MSGBOX_NPC
+	end
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_NoTitles:
+	.string "Welcome!\p"
+	.string "You probably don't know what I'm\n"
+	.string "talking about, but come back once\l"
+	.string "you have earned a title!$"
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_WelcomeNoTitle:
+	.string "Welcome!\p"
+	.string "Or would you like me to call you\n"
+	.string "by a title?$"
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_WelcomeTitle:
+	.string "Welcome, {STR_VAR_2} MASTER!\p"
+	.string "Or would you like me to call you\n"
+	.string "by a different title?$"
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseNoTitles:
+	.string "Oh, you don't want to have a title?\n"
+	.string "I guess you really don't need one!$"
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseGrandMaster:
+	.string "Yo, GRAND MASTER!\n"
+	.string "A fitting title for you indeed.$"
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_PressedB:
+	.string "Oh, you're not going to change\n"
+	.string "your title?\p"
+	.string "I guess you really like the one\n"
+	.string "you have now!$"
+
+CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseMonMaster:
+	.string "Yo, {STR_VAR_2} MASTER!\n"
+	.string "A fitting title for you indeed.$"
+
+CeladonCity_Condominiums_3F_EventScript_TitleGiver_Grand:
+	.string "GRAND$"
+

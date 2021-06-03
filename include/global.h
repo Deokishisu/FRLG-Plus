@@ -833,7 +833,8 @@ struct SaveBlock1
                struct ItemSlot bagPocket_HoldItems[BAG_HELD_ITEMS_COUNT];
                u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
     /*0x05F8*/ u8 seen1[52]; //made unreferenced & can be gotten rid of, though PKHeX presumably will still set this
-    /*0x062C*/ u16 berryBlenderRecords[3]; // unused
+    /*0x062C*/ u8 filler_062C[5]; // unused; was berryBlenderRecords which was obviously unused
+               u8 masterTrainerTitle; // 0 is none, 152 is Grandmaster, 1-151 is {Kanto species} Master
     /*0x0632*/ u16 lastViewedPokedexEntry; // For easier viewing of roamers
                struct KeySystemFlags keyFlags; //Key System flags
     /*0x0638*/ u16 trainerRematchStepCounter;
