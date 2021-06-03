@@ -24,7 +24,7 @@ static s16 sPlayerToMewDeltaX;
 static s16 sPlayerToMewDeltaY;
 static u8 sMewDirectionCandidates[4];
 
-extern const struct SpritePalette gUnknown_83A5348; //gSpritePalette_GeneralFieldEffect1 in Emerald?
+extern const struct SpritePalette gSpritePalette_GeneralFieldEffect1; //gSpritePalette_GeneralFieldEffect1 in Emerald?
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
 static const s16 sFarawayIslandRockCoords[4][2] =
@@ -393,8 +393,8 @@ void SetMewAboveGrass(void)
         if (gSpecialVar_Facing != DIR_NORTH)
             gSprites[mew->spriteId].subpriority = 1;
 
-        LoadSpritePalette(&gUnknown_83A5348);
-        UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(gUnknown_83A5348.tag));
+        LoadSpritePalette(&gSpritePalette_GeneralFieldEffect1);
+        UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(gSpritePalette_GeneralFieldEffect1.tag));
 
         x = mew->currentCoords.x;
         y = mew->currentCoords.y;

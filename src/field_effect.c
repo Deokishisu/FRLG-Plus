@@ -405,10 +405,10 @@ static bool8 FieldEffectCmd_loadtiles_callnative(const u8 **script, u32 *result)
     return TRUE;
 }
 
-extern const struct SpritePalette gUnknown_83A5340; //sand footprints pal
+extern const struct SpritePalette gSpritePalette_GeneralFieldEffect0; //sand footprints pal
 extern const struct SpritePalette gBlackSandFootprintsPal;
 extern const struct SpritePalette gThreeIslandGrassPal;
-extern const struct SpritePalette gUnknown_83A5348; //tall grass pal
+extern const struct SpritePalette gSpritePalette_GeneralFieldEffect1; //tall grass pal
 extern const struct SpritePalette gSnowFootprintsPal;
 
 static bool8 FieldEffectCmd_loadfadedpal_callnative(const u8 **script, u32 *result)
@@ -459,7 +459,7 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
     u8 mapsec = GetCurrentRegionMapSectionId();
     const struct SpritePalette * spritePalette;
     u8 idx;
-    if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gUnknown_83A5340) //overwrite sand footprints palette
+    if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gSpritePalette_GeneralFieldEffect0) //overwrite sand footprints palette
     {
         if(mapsec == MAPSEC_ONE_ISLAND || mapsec == MAPSEC_TREASURE_BEACH || mapsec == MAPSEC_KINDLE_ROAD) //if one island
         {
@@ -474,7 +474,7 @@ static void FieldEffectScript_LoadFadedPal(const u8 **script)
             spritePalette = (const struct SpritePalette * )FieldEffectScript_ReadWord(script);
         }
     }
-    else if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gUnknown_83A5348) //overwrite tall grass palette
+    else if((const struct SpritePalette * )FieldEffectScript_ReadWord(script) == &gSpritePalette_GeneralFieldEffect1) //overwrite tall grass palette
     {
         if(mapsec == MAPSEC_BOND_BRIDGE || mapsec == MAPSEC_THREE_ISLE_PORT || mapsec == MAPSEC_BERRY_FOREST) //if three island
         {

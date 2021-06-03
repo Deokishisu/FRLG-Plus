@@ -54,7 +54,7 @@
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PalletTown_GarysHouse_EventScript_Starter",
+      "script": "PalletTown_RivalsHouse_EventScript_Starter",
       "flag": "FLAG_TEMP_1"
     }
   ],
