@@ -277,6 +277,10 @@ void SavePlayerBag(void)
         {
             gSaveBlock1Ptr->bagPocket_KeyItems[i] = (u8)(gLoadedSaveData.keyItems[i].itemId - 348 + 30);
         }
+        if(gLoadedSaveData.keyItems[i].itemId == ITEM_LINK_BRACELET)
+        {
+            gSaveBlock1Ptr->bagPocket_KeyItems[i] = 59;
+        }
     }
 
     // save player pokeballs.
