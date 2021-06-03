@@ -13,16 +13,18 @@
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_THREE_ISLAND",
-      "offset": 0,
-      "direction": "up"
-    }
+  "connections": 0,
+  "object_events": [
+
   ],
-  "object_events": [],
-  "warp_events": [],
-  "coord_events": [],
-  "bg_events": [],
-	"level_scaling": "0"
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
 }
