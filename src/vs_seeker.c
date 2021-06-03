@@ -678,7 +678,14 @@ bool8 UpdateVsSeekerStepCounter(void)
     if (CheckBagHasItem(ITEM_VS_SEEKER, 1) == TRUE)
     {
         if ((gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) < 100)
+        {
             gSaveBlock1Ptr->trainerRematchStepCounter++;
+            if(GetAbilityBySpecies(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), GetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM)) == ABILITY_LIGHTNING_ROD)
+            {
+               if ((gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) < 100)
+                  gSaveBlock1Ptr->trainerRematchStepCounter++;
+            }
+        }
     }
 
     if (FlagGet(FLAG_SYS_VS_SEEKER_CHARGING) == TRUE)
@@ -686,6 +693,11 @@ bool8 UpdateVsSeekerStepCounter(void)
         if (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) < 100)
         {
             x = (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) + 1);
+            if(GetAbilityBySpecies(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), GetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM)) == ABILITY_LIGHTNING_ROD)
+            {
+               if (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) < 100)
+                  x = (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) + 1);
+            }
             gSaveBlock1Ptr->trainerRematchStepCounter = (gSaveBlock1Ptr->trainerRematchStepCounter & 0xFF) | (x << 8);
         }
         if (((gSaveBlock1Ptr->trainerRematchStepCounter >> 8) & 0xFF) == 100)
@@ -859,19 +871,27 @@ static void Task_VsSeeker_3(u8 taskId)
 
 static u8 CanUseVsSeeker(void)
 {
-    u8 vsSeekerChargeSteps = gSaveBlock1Ptr->trainerRematchStepCounter;
-    if (vsSeekerChargeSteps == 100)
-    {
-        if (GetRematchableTrainerLocalId() == 0xFF)
-            return VSSEEKER_NO_ONE_IN_RANGE;
-        else
-            return VSSEEKER_CAN_USE;
-    }
-    else
-    {
-        TV_PrintIntToStringVar(0, 100 - vsSeekerChargeSteps);
-        return VSSEEKER_NOT_CHARGED;
-    }
+   u8 vsSeekerChargeSteps = gSaveBlock1Ptr->trainerRematchStepCounter;
+   if (vsSeekerChargeSteps == 100)
+   {
+      if (GetRematchableTrainerLocalId() == 0xFF)
+         return VSSEEKER_NO_ONE_IN_RANGE;
+      else
+         return VSSEEKER_CAN_USE;
+   }
+   else
+   {
+      if(GetAbilityBySpecies(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), GetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM)) == ABILITY_LIGHTNING_ROD)
+      {
+         if(vsSeekerChargeSteps % 2 == 0)
+            TV_PrintIntToStringVar(0, (100 - vsSeekerChargeSteps) / 2);
+         else
+            TV_PrintIntToStringVar(0, ((100 - vsSeekerChargeSteps) / 2) + 1);
+      }
+      else
+         TV_PrintIntToStringVar(0, 100 - vsSeekerChargeSteps);
+      return VSSEEKER_NOT_CHARGED;
+   }
 }
 
 static u8 GetVsSeekerResponseInArea(const VsSeekerData * vsSeekerData)

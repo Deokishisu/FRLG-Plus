@@ -101,6 +101,7 @@
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
 - All Kanto Pokémon, along with 90% of Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Azurill, Wynaut, Latias, Latios, and Deoxys) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
+	* As Lightningrod's Emerald overworld effect is inapplicable, it has been changed. Lightningrod now charges the Vs. Seeker twice as fast.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
 - Silph Co. is populated by workers once it is liberated from Team Rocket.
