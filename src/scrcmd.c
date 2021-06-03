@@ -1108,7 +1108,7 @@ bool8 ScrCmd_showobject_at(struct ScriptContext * ctx)
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
 
-    npc_by_local_id_and_map_set_field_1_bit_x20(localId, mapNum, mapGroup, 0);
+    ShowOrHideObjectByLocalIdAndMap(localId, mapNum, mapGroup, 0);
     return FALSE;
 }
 
@@ -1118,7 +1118,7 @@ bool8 ScrCmd_hideobject_at(struct ScriptContext * ctx)
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
 
-    npc_by_local_id_and_map_set_field_1_bit_x20(localId, mapNum, mapGroup, 1);
+    ShowOrHideObjectByLocalIdAndMap(localId, mapNum, mapGroup, 1);
     return FALSE;
 }
 
@@ -1129,7 +1129,7 @@ bool8 ScrCmd_setobjectpriority(struct ScriptContext * ctx)
     u8 mapNum = ScriptReadByte(ctx);
     u8 priority = ScriptReadByte(ctx);
 
-    sub_805F3A8(localId, mapNum, mapGroup, priority + 83);
+    SetObjectPriorityByLocalIdAndMap(localId, mapNum, mapGroup, priority + 83);
     return FALSE;
 }
 
@@ -1139,7 +1139,7 @@ bool8 ScrCmd_resetobjectpriority(struct ScriptContext * ctx)
     u8 mapGroup = ScriptReadByte(ctx);
     u8 mapNum = ScriptReadByte(ctx);
 
-    sub_805F400(localId, mapNum, mapGroup);
+    UnfixObjectPriorityByLocalIdAndMap(localId, mapNum, mapGroup);
     return FALSE;
 }
 

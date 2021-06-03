@@ -63,10 +63,10 @@ static void SpriteCB_PokeballGlow(struct Sprite * sprite);
 static void SpriteCB_PokecenterMonitor(struct Sprite * sprite);
 static void SpriteCB_HallOfFameMonitor(struct Sprite * sprite);
 
-static const u16 sNewGameOakObjectSpriteTiles[] = INCBIN_U16("graphics/field_effects/unk_83CA770.4bpp");
-static const u16 sNewGameOakObjectPals[] = INCBIN_U16("graphics/field_effects/unk_83CAF70.gbapal");
-static const u16 sUnknown_83CAF90[] = INCBIN_U16("graphics/field_effects/unk_83CAF90.4bpp");
-static const u16 sUnknown_83CAFB0[] = INCBIN_U16("graphics/field_effects/unk_83CAFB0.gbapal");
+static const u16 sNewGameOakObjectSpriteTiles[] = INCBIN_U16("graphics/field_effects/new_game_oak.4bpp");
+static const u16 sNewGameOakObjectPals[] = INCBIN_U16("graphics/field_effects/new_game_oak.gbapal");
+static const u16 sPokeballGfx[] = INCBIN_U16("graphics/field_effects/pokeball.4bpp");
+static const u16 sPokeballPal[] = INCBIN_U16("graphics/field_effects/pokeball.gbapal");
 static const u16 sUnknown_83CAFD0[] = INCBIN_U16("graphics/field_effects/unk_83CAFD0.4bpp");
 static const u16 sUnknown_83CB3D0[] = INCBIN_U16("graphics/field_effects/unk_83CB3D0.gbapal");
 static const u16 sUnknown_83CB3F0[] = INCBIN_U16("graphics/field_effects/unk_83CB3F0.4bpp");
@@ -165,7 +165,7 @@ static const struct SpriteTemplate sNewGameOakObjectTemplate = {
 };
 
 const struct SpritePalette gUnknown_83CBE9C = {
-    sUnknown_83CAFB0, 4103
+    sPokeballPal, 4103
 };
 
 const struct SpritePalette gUnknown_83CBEA4 = {
@@ -189,7 +189,7 @@ static const struct OamData sOamData_83CBEAC = {
 };
 
 static const struct SpriteFrameImage sUnknown_83CBEB4[] = {
-    {sUnknown_83CAF90, 0x20}
+    {sPokeballGfx, 0x20}
 };
 
 static const struct SpriteFrameImage sUnknown_83CBEBC[] = {
@@ -1949,13 +1949,13 @@ u8 FldEff_LavaridgeGymWarp(void)
 {
     u8 spriteId;
     sub_8063BC4((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
-    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[33], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
+    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_ASH_LAUNCH], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
     gSprites[spriteId].oam.priority = gFieldEffectArguments[3];
     gSprites[spriteId].coordOffsetEnabled = TRUE;
     return spriteId;
 }
 
-void SpriteCB_LavaridgeGymWarp(struct Sprite * sprite)
+void SpriteCB_AshLaunch(struct Sprite * sprite)
 {
     if (sprite->animEnded)
     {
@@ -2042,7 +2042,7 @@ u8 FldEff_PopOutOfAsh(void)
 {
     u8 spriteId;
     sub_8063BC4((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
-    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[32], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
+    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_ASH_PUFF], gFieldEffectArguments[0], gFieldEffectArguments[1], gFieldEffectArguments[2]);
     gSprites[spriteId].oam.priority = gFieldEffectArguments[3];
     gSprites[spriteId].coordOffsetEnabled = TRUE;
     return spriteId;
@@ -3094,7 +3094,7 @@ static void sub_8086D94(struct Sprite * sprite);
 
 u8 FldEff_NpcFlyOut(void)
 {
-    u8 spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[26], 0x78, 0, 1);
+    u8 spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0x78, 0, 1);
     struct Sprite * sprite = &gSprites[spriteId];
 
     sprite->oam.paletteNum = 0;
@@ -3285,7 +3285,7 @@ static u8 sub_8087168(void)
 {
     u8 spriteId;
     struct Sprite * sprite;
-    spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[26], 0xff, 0xb4, 0x1);
+    spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0xff, 0xb4, 0x1);
     sprite = &gSprites[spriteId];
     sprite->oam.paletteNum = 0;
     sprite->oam.priority = 1;

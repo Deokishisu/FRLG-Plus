@@ -51,7 +51,7 @@ bool16 HasAllMons(void);
 bool16 HasAllExtendedMons(void);
 u16 GetExtendedPokedexCount(u8 caseID);
 bool16 HasNationalMon(void);
-u8 sub_8106B60(u16 species);
+u8 DexScreen_RegisterMonToPokedex(u16 species);
 bool16 HasAllKantoMonsNew(void);
 bool16 HasAllMonsNew(void);
 

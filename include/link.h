@@ -65,7 +65,7 @@
 #define LINKCMD_SEND_HELD_KEYS_2   0xCAFE
 #define LINKCMD_0xCCCC             0xCCCC
 
-#define LINKTYPE_0x1111              0x1111  // trade
+#define LINKTYPE_TRADE              0x1111  // trade
 #define LINKTYPE_0x1122              0x1122  // trade
 #define LINKTYPE_0x1133              0x1133  // trade
 #define LINKTYPE_0x1144              0x1144  // trade
@@ -84,6 +84,8 @@
 
 #define MASTER_HANDSHAKE 0x8FFF
 #define SLAVE_HANDSHAKE  0xB9A0
+
+#define IsSendCmdComplete()    (gSendCmd[0] == 0)
 
 enum
 {
@@ -266,7 +268,7 @@ void Link_StartSend5FFFwithParam(u16 a0);
 void sub_80098D8(void);
 void CloseLink(void);
 bool8 IsLinkTaskFinished(void);
-bool32 sub_800B270(void);
+bool32 LinkRecvQueueLengthMoreThan2(void);
 void ResetSerial(void);
 void sub_8054A28(void);
 void SetWirelessCommType1(void);
@@ -274,15 +276,15 @@ void LoadWirelessStatusIndicatorSpriteGfx(void);
 void CreateWirelessStatusIndicatorSprite(u8, u8);
 void sub_8009FE8(void);
 void ClearLinkCallback_2(void);
-void LinkRfu_SetRfuFuncToSend6600(void);
+void Rfu_SetLinkStandbyCallback(void);
 void IntlConvertLinkPlayerName(struct LinkPlayer * linkPlayer);
 bool8 IsWirelessAdapterConnected(void);
 bool8 Link_PrepareCmd0xCCCC_Rfu0xA100(u8 blockRequestType);
 void LinkVSync(void);
 bool8 HandleLinkConnection(void);
-void PrepareLocalLinkPlayerBlock(void);
+void LocalLinkPlayerToBlock(void);
 void LinkPlayerFromBlock(u32 who);
-void SetLinkErrorFromRfu(u32 status, u8 lastSendQueueCount, u8 lastRecvQueueCount, u8 unk_06);
+void SetLinkErrorFromRfu(u32 status, u8 lastSendQueueCount, u8 lastRecvQueueCount, u8 isConnectionError);
 u8 sub_800A8D4(void);
 void sub_800AA24(void);
 void sub_800A900(u8 a0);

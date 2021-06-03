@@ -186,7 +186,7 @@ bool8 CheckBagHasItem(u16 itemId, u16 count)
     return FALSE;
 }
 
-bool8 CheckHasAtLeastOneBerry(void)
+bool8 HasAtLeastOneBerry(void)
 {
     u8 itemId;
     bool8 exists;
@@ -779,7 +779,7 @@ void TrySetObtainedItemQuestLogEvent(u16 itemId)
      || itemId == ITEM_SAPPHIRE
     )
     {
-        if (itemId != ITEM_TOWN_MAP || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN_GARYS_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN_GARYS_HOUSE)))
+        if (itemId != ITEM_TOWN_MAP || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN_RIVALS_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN_RIVALS_HOUSE)))
         {
             ptr = malloc(sizeof(*ptr));
             ptr->itemId = itemId;

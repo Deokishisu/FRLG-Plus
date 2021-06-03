@@ -713,10 +713,10 @@ TradeCenter_EventScript_Chair3:: @ 81BB974
 
 @ Nop in FRLG
 @ Separate labels to match GetDirectionForEventScript
-RecordCenter_EventScript_Spot0:: @ 81BB980
-RecordCenter_EventScript_Spot1:: @ 81BB980
-RecordCenter_EventScript_Spot2:: @ 81BB980
-RecordCenter_EventScript_Spot3:: @ 81BB980
+RecordCorner_EventScript_Spot0:: @ 81BB980
+RecordCorner_EventScript_Spot1:: @ 81BB980
+RecordCorner_EventScript_Spot2:: @ 81BB980
+RecordCorner_EventScript_Spot3:: @ 81BB980
 	end
 
 CableClub_EventScript_ReadTrainerCard:: @ 81BB981
@@ -758,7 +758,7 @@ TradeCenter_EventScript_Attendant:: @ 81BB9C1
 	end
 
 @ Nop in FRLG
-RecordCenter_EventScript_Attendant:: @ 81BB9D3
+RecordCorner_EventScript_Attendant:: @ 81BB9D3
 	end
 
 TradeCenter_ConfirmLeaveRoom:: @ 81BB9D4
@@ -989,7 +989,7 @@ CableClub_EventScript_WirelessBerryCrush:: @ 81BBD35
 	msgbox CableClub_Text_UseBerryCrush, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq CableClub_EventScript_AbortLink
-	special CheckHasAtLeastOneBerry
+	special HasAtLeastOneBerry
 	compare VAR_RESULT, FALSE
 	goto_if_eq CableClub_EventScript_NeedBerryForBerryCrush
 	setvar VAR_0x8004, LINK_GROUP_BERRY_CRUSH

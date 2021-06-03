@@ -906,8 +906,8 @@ static const u8 sTextColorTable[][3] =
 {
     {
         TEXT_COLOR_WHITE,
-        TEXT_COLOR_DARK_GREY,
-        TEXT_COLOR_LIGHT_GREY
+        TEXT_COLOR_DARK_GRAY,
+        TEXT_COLOR_LIGHT_GRAY
     }, {
         TEXT_COLOR_WHITE,
         TEXT_COLOR_RED,
@@ -1421,7 +1421,7 @@ static void sub_8155A78(void)
     {
     case 0:
         DrawDialogueFrame(0, FALSE);
-        AddTextPrinterParameterized2(0, 2, gText_SavingDontTurnOffThePower2, 0, NULL, TEXT_COLOR_DARK_GREY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GREY);
+        AddTextPrinterParameterized2(0, 2, gText_SavingDontTurnOffThePower2, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
         gUnknown_203F440->state++;
         break;
     case 1:
@@ -1431,12 +1431,12 @@ static void sub_8155A78(void)
     case 2:
         if (!IsDma3ManagerBusyWithBgCopy())
         {
-            CreateTask(Task_SaveGame_UpdatedLinkRecords, 0);
+            CreateTask(Task_LinkSave, 0);
             gUnknown_203F440->state++;
         }
         break;
     case 3:
-        if (!FuncIsActiveTask(Task_SaveGame_UpdatedLinkRecords))
+        if (!FuncIsActiveTask(Task_LinkSave))
             gUnknown_203F440->state++;
         break;
     default:
@@ -1577,7 +1577,7 @@ static void sub_8155EA0(void)
     ChangeBgX(3, 0, 0);
     ChangeBgY(3, 0, 0);
     InitStandardTextBoxWindows();
-    ResetBg0();
+    InitTextBoxGfxAndPrinters();
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
     SetBgTilemapBuffer(3, gUnknown_203F440->tilemapBuffers[0]);
     SetBgTilemapBuffer(1, gUnknown_203F440->tilemapBuffers[1]);

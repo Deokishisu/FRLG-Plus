@@ -13,7 +13,8 @@ RAYQUAZAGFXDIR := graphics/rayquaza_scene
 ROULETTEGFXDIR := graphics/roulette
 SLOTMACHINEGFXDIR := graphics/slot_machine
 PSSGFXDIR := graphics/pokemon_storage
-EVENTOBJGFXDIR := graphics/event_objects
+EVENTOBJGFXDIR := graphics/object_events
+FIELDEFFECTSGFXDIR := graphics/field_effects
 MISCGFXDIR := graphics/misc
 TEXTWINDOWGFXDIR := graphics/text_window
 SLOTMACHINEGFXDIR := graphics/slot_machine
@@ -24,6 +25,9 @@ TITLESCREENGFXDIR := graphics/title_screen
 CREDITSGFXDIR := graphics/credits
 ITEMMENUGFXDIR := graphics/item_menu
 INTROGFXDIR := graphics/intro
+BATTLETERRAINGFXDIR := graphics/battle_terrain
+BERRYPOUCHGFXDIR := graphics/berry_pouch
+HALLOFFAMEGFXDIR := graphics/hall_of_fame
 
 types := normal fight flying poison ground rock bug ghost steel mystery fire water grass electric psychic ice dragon dark
 contest_types := cool beauty cute smart tough
@@ -147,7 +151,10 @@ $(UNUSEDGFXDIR)/color_frames.4bpp: %.4bpp: %.png
 
 $(BATINTGFXDIR)/unused_window2bar.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 5
-    
+
+$(BATINTGFXDIR)/unk_battlebox.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 36
+
 $(BATINTGFXDIR)/window.gbapal: $(BATINTGFXDIR)/window1.gbapal $(BATINTGFXDIR)/window2.gbapal
 	cat $^ > $@
 
@@ -423,8 +430,20 @@ $(PSSGFXDIR)/ludicolo.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/ludico
 $(PSSGFXDIR)/whiscash.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/whiscash_bg.4bpp
 	@cat $^ >$@
 
-$(EVENTOBJGFXDIR)/pics/effects/unknown_4F6D38/0.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 11
+$(FIELDEFFECTSGFXDIR)/pics/underwater_bubbles.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(FIELDEFFECTSGFXDIR)/pics/bike_tire_tracks.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(FIELDEFFECTSGFXDIR)/pics/sand_disguise.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(FIELDEFFECTSGFXDIR)/pics/mountain_disguise.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(FIELDEFFECTSGFXDIR)/pics/tree_disguise.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(INTERFACEGFXDIR)/selector_outline.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 8
@@ -526,3 +545,51 @@ $(INTROGFXDIR)/unk_8406654.4bpp: %.4bpp: %.png
 
 $(INTROGFXDIR)/unk_8405B28.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 17
+
+$(BATTLETERRAINGFXDIR)/building/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 77
+
+$(BATTLETERRAINGFXDIR)/cave/anim.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 106
+
+$(BATTLETERRAINGFXDIR)/cave/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 84
+
+$(BATTLETERRAINGFXDIR)/grass/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 98
+
+$(BATTLETERRAINGFXDIR)/indoor/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 77
+
+$(BATTLETERRAINGFXDIR)/longgrass/anim.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 133
+
+$(BATTLETERRAINGFXDIR)/longgrass/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 98
+
+$(BATTLETERRAINGFXDIR)/mountain/anim.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 47
+
+$(BATTLETERRAINGFXDIR)/pond/anim.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 36
+
+$(BATTLETERRAINGFXDIR)/pond/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 75
+
+$(BATTLETERRAINGFXDIR)/sand/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 83
+
+$(BATTLETERRAINGFXDIR)/underwater/anim.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 26
+
+$(BATTLETERRAINGFXDIR)/underwater/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 85
+
+$(BATTLETERRAINGFXDIR)/water/terrain.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 81
+
+$(BERRYPOUCHGFXDIR)/background.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 52
+
+$(HALLOFFAMEGFXDIR)/hall_of_fame.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -num_tiles 29

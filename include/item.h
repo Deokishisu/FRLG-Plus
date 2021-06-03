@@ -81,7 +81,7 @@ void RemovePCItem(u16 itemId, u16 quantity);
 void SortAndCompactBagPocket(struct BagPocket * pocket);
 u8 CountItemsInPC(void);
 void ApplyNewEncryptionKeyToBagItems_(u32 newKey);
-bool8 CheckHasAtLeastOneBerry(void);
+bool8 HasAtLeastOneBerry(void);
 void DeserializeTmHmItemSlots(void);
 void DeserializeKeyItemSlots(void);
 u16 GetBagItemQuantity(u16 * ptr);
