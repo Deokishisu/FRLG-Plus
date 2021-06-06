@@ -2529,7 +2529,7 @@ Text_BlackBeltHiker_GiveTitle:
     .string "{STR_VAR_1} MASTER!$"
 
 Text_MasterTrainer_EarnTitle:
-    .string "{COLOR RED}You have earned the title of\n"
+    .string "{COLOR DARK_GRAY}You have earned the title of\n"
     .string "{STR_VAR_1} MASTER!$"
 
 Text_BeautyLass_AnotherBattleSometime:

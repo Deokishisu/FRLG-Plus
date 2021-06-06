@@ -98,6 +98,7 @@
 #define LISTMENU_BERRY_POWDER              5
 #define LISTMENU_TRAINER_TOWER_FLOORS      6
 #define LISTMENU_GYM_LEADERS               7
+#define LISTMENU_MASTER_TRAINER_TITLES     8
 
 // Std String Ids
 #define STDSTRING_COOL              0

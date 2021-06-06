@@ -688,7 +688,7 @@ PalletTown_ProfessorOaksLab_EventScript_MasterBattle::
 	msgbox PalletTown_ProfessorOaksLab_Text_WonBattle
 	message PalletTown_ProfessorOaksLab_Text_GrandMaster_EarnTitle
     waitmessage
-    playfanfare MUS_LEVEL_UP
+    playfanfare MUS_EVOLVED
     waitfanfare
 	waitbuttonpress
 	release
@@ -726,7 +726,7 @@ PalletTown_ProfessorOaksLab_Text_WonBattle::
 	.string "Congratulations, {PLAYER}!$"
 
 PalletTown_ProfessorOaksLab_Text_GrandMaster_EarnTitle:
-    .string "{COLOR RED}You have earned the title of\n"
+    .string "{COLOR DARK_GRAY}You have earned the title of\n"
     .string "GRAND MASTER!$"
 
 PalletTown_ProfessorOaksLab_EventScript_BattleJustWon::

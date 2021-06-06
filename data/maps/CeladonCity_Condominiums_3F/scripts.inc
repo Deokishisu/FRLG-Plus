@@ -114,7 +114,9 @@ CeladonCity_Condominiums_3F_EventScript_TitleGiver::
 	call_if_eq CeladonCity_Condominiums_3F_EventScript_TitleGiver_NoTitleSelected
 	compare VAR_RESULT, 0
 	call_if_ne CeladonCity_Condominiums_3F_EventScript_TitleGiver_TitleSelected
-	//open multichoice here, VAR_RESULT should have the Species dumped into it, 152 for GRAND MASTER, or 0 for none
+	setvar VAR_0x8004, LISTMENU_MASTER_TRAINER_TITLES
+	special ListMenu
+	waitstate
 	switch VAR_RESULT
 	case 0, CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseNoTitle
 	case 152, CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseGrandMaster

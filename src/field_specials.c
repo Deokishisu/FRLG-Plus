@@ -33,6 +33,7 @@
 #include "party_menu.h"
 #include "dynamic_placeholder_text_util.h"
 #include "new_menu_helpers.h"
+#include "battle_setup.h"
 #include "constants/songs.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -52,6 +53,7 @@ static EWRAM_DATA u8 sBrailleTextCursorSpriteID = 0;
 
 struct ListMenuTemplate sFieldSpecialsListMenuTemplate;
 u16 sFieldSpecialsListMenuScrollBuffer;
+static const u8 gTitleNames[][18];
 
 static void Task_AnimatePcTurnOn(u8 taskId);
 static void PcTurnOnUpdateMetatileId(bool16 flag);
@@ -1244,13 +1246,23 @@ void ListMenu(void)
             task->data[6] = 0;
             task->data[15] = taskId;
             break;
-        case LISTMENU_GYM_LEADERS: // Mulitchoice used instead
+        case LISTMENU_GYM_LEADERS:
             task->data[0] = 4;
             task->data[1] = 8;
             task->data[2] = 1;
             task->data[3] = 1;
             task->data[4] = 12;
             task->data[5] = 7;
+            task->data[6] = 0;
+            task->data[15] = taskId;
+            break;
+        case LISTMENU_MASTER_TRAINER_TITLES:
+            task->data[0] = 7;
+            task->data[1] = 153;
+            task->data[2] = 14;
+            task->data[3] = 1;
+            task->data[4] = 18;
+            task->data[5] = 12;
             task->data[6] = 0;
             task->data[15] = taskId;
             break;
@@ -1346,32 +1358,116 @@ static const u8 *const sListMenuLabels[][12] = {
         gText_Sabrina,
         gText_Blaine,
         gOtherText_Exit,
+    },
+    [LISTMENU_MASTER_TRAINER_TITLES] =
+    {
+        gOtherText_Exit,
     }
 };
+
+// to figure out how big the title list should be
+static u32 CountMasterTrainerFlags(void)
+{
+    u32 i;
+    bool8 flag = TRUE;
+    u32 count = 1;
+
+    flag = HasTrainerBeenFought(TRAINER_MASTER_OAK); //have all titles if beat Oak
+    if(flag)
+    {
+        count = 153; //max size
+        return count;
+    }
+
+    for(i = 1; i < 152; i++) //flags start at 1, which is SPECIES_BULBASAUR
+    {
+        flag = CheckMasterTrainerFlag(i);
+        if(flag)
+        {
+            count++;
+        }
+    }
+    return count;
+}
 
 static void Task_CreateScriptListMenu(u8 taskId)
 {
     struct WindowTemplate template;
     u32 i;
+    u32 j;
     s32 width;
     s32 mwidth;
     struct Task * task = &gTasks[taskId];
     u8 windowId;
+    u32 listSize;
     ScriptContext2_Enable();
     if (gSpecialVar_0x8004 == LISTMENU_SILPHCO_FLOORS)
         sListMenuLastScrollPosition = sElevatorScroll;
     else
         sListMenuLastScrollPosition = 0;
-    sListMenuItems = AllocZeroed(task->data[1] * sizeof(struct ListMenuItem));
-    CreateScriptListMenu();
-    mwidth = 0;
-    for (i = 0; i < task->data[1]; i++)
+    if (gSpecialVar_0x8004 == LISTMENU_MASTER_TRAINER_TITLES)
     {
-        sListMenuItems[i].label = sListMenuLabels[gSpecialVar_0x8004][i];
-        sListMenuItems[i].index = i;
-        width = GetStringWidth(2, sListMenuItems[i].label, 0);
-        if (width > mwidth)
-            mwidth = width;
+        u32 listSize = CountMasterTrainerFlags();
+        sListMenuItems = AllocZeroed((listSize + 1) * sizeof(struct ListMenuItem));
+        task->data[1] = listSize;
+        if(listSize < 7)
+        {
+            task->data[0] = listSize;
+            task->data[5] = (listSize - 1) + listSize;
+            if(listSize == 2)
+                task->data[5]++;
+        }
+        CreateScriptListMenu();
+        sFieldSpecialsListMenuTemplate.scrollMultiple = 1;
+        mwidth = 0;
+
+        for (i = 0; i < listSize; i++)
+        {
+            if(i != 0)
+            {
+                for( ; j < 152; j++) //152 because Grand Master is done elsewhere
+                {
+                    bool8 flag = TRUE;
+                    flag = CheckMasterTrainerFlag(j);
+                    if(!flag)
+                        continue;
+                    else
+                        break;
+                }
+            }
+            {   // new block because of C90 memes
+                const u8 *text = gTitleNames[j];
+                sListMenuItems[i].label = text;
+                sListMenuItems[i].index = j;
+                j++; // increment here because the break skips incrementing
+                width = GetStringWidth(2, sListMenuItems[i].label, 0);
+                if (width > mwidth)
+                    mwidth = width;
+            }
+        }
+        if(listSize == 153) // Grand Master handling because it doesn't use a regular Master Trainer flag
+        {
+            const u8 *text = gTitleNames[listSize - 1];
+            sListMenuItems[i].label = text;
+            sListMenuItems[i].index = listSize - 1;
+            width = GetStringWidth(2, sListMenuItems[listSize - 1].label, 0);
+            if (width > mwidth)
+                mwidth = width;
+        }
+    }
+    else
+    {
+        sListMenuItems = AllocZeroed(task->data[1] * sizeof(struct ListMenuItem));
+        CreateScriptListMenu();
+        mwidth = 0;
+        for (i = 0; i < task->data[1]; i++)
+        {
+            sListMenuItems[i].label = sListMenuLabels[gSpecialVar_0x8004][i];
+            sListMenuItems[i].index = i;
+            width = GetStringWidth(2, sListMenuItems[i].label, 0);
+            if (width > mwidth)
+                mwidth = width;
+        }
     }
     task->data[4] = (mwidth + 9) / 8 + 1;
     if (task->data[2] + task->data[4] > 29)
@@ -1438,7 +1534,10 @@ static void Task_ListMenuHandleInput(u8 taskId)
     case -1:
         break;
     case -2:
-        gSpecialVar_Result = 0x7F;
+        if (gSpecialVar_0x8004 == LISTMENU_MASTER_TRAINER_TITLES)
+            gSpecialVar_Result = 153;
+        else
+            gSpecialVar_Result = 0x7F;
         PlaySE(SE_SELECT);
         Task_DestroyListMenu(taskId);
         break;
@@ -2576,3 +2675,159 @@ void CableCarWarp(void)
         SetWarpDestination(MAP_GROUP(FOUR_ISLAND_CABLE_CAR_STATION), MAP_NUM(FOUR_ISLAND_CABLE_CAR_STATION), -1, 6, 10);
     }
 }
+
+static const u8 gTitleNames[][18] = {
+    _("NO TITLE"),
+    _("BULBASAUR MASTER"),
+    _("IVYSAUR MASTER"),
+    _("VENUSAUR MASTER"),
+    _("CHARMANDER MASTER"),
+    _("CHARMELEON MASTER"),
+    _("CHARIZARD MASTER"),
+    _("SQUIRTLE MASTER"),
+    _("WARTORTLE MASTER"),
+    _("BLASTOISE MASTER"),
+    _("CATERPIE MASTER"),
+    _("METAPOD MASTER"),
+    _("BUTTERFREE MASTER"),
+    _("WEEDLE MASTER"),
+    _("KAKUNA MASTER"),
+    _("BEEDRILL MASTER"),
+    _("PIDGEY MASTER"),
+    _("PIDGEOTTO MASTER"),
+    _("PIDGEOT MASTER"),
+    _("RATTATA MASTER"),
+    _("RATICATE MASTER"),
+    _("SPEAROW MASTER"),
+    _("FEAROW MASTER"),
+    _("EKANS MASTER"),
+    _("ARBOK MASTER"),
+    _("PIKACHU MASTER"),
+    _("RAICHU MASTER"),
+    _("SANDSHREW MASTER"),
+    _("SANDSLASH MASTER"),
+    _("NIDORAN♀ MASTER"),
+    _("NIDORINA MASTER"),
+    _("NIDOQUEEN MASTER"),
+    _("NIDORAN♂ MASTER"),
+    _("NIDORINO MASTER"),
+    _("NIDOKING MASTER"),
+    _("CLEFAIRY MASTER"),
+    _("CLEFABLE MASTER"),
+    _("VULPIX MASTER"),
+    _("NINETALES MASTER"),
+    _("JIGGLYPUFF MASTER"),
+    _("WIGGLYTUFF MASTER"),
+    _("ZUBAT MASTER"),
+    _("GOLBAT MASTER"),
+    _("ODDISH MASTER"),
+    _("GLOOM MASTER"),
+    _("VILEPLUME MASTER"),
+    _("PARAS MASTER"),
+    _("PARASECT MASTER"),
+    _("VENONAT MASTER"),
+    _("VENOMOTH MASTER"),
+    _("DIGLETT MASTER"),
+    _("DUGTRIO MASTER"),
+    _("MEOWTH MASTER"),
+    _("PERSIAN MASTER"),
+    _("PSYDUCK MASTER"),
+    _("GOLDUCK MASTER"),
+    _("MANKEY MASTER"),
+    _("PRIMEAPE MASTER"),
+    _("GROWLITHE MASTER"),
+    _("ARCANINE MASTER"),
+    _("POLIWAG MASTER"),
+    _("POLIWHIRL MASTER"),
+    _("POLIWRATH MASTER"),
+    _("ABRA MASTER"),
+    _("KADABRA MASTER"),
+    _("ALAKAZAM MASTER"),
+    _("MACHOP MASTER"),
+    _("MACHOKE MASTER"),
+    _("MACHAMP MASTER"),
+    _("BELLSPROUT MASTER"),
+    _("WEEPINBELL MASTER"),
+    _("VICTREEBEL MASTER"),
+    _("TENTACOOL MASTER"),
+    _("TENTACRUEL MASTER"),
+    _("GEODUDE MASTER"),
+    _("GRAVELER MASTER"),
+    _("GOLEM MASTER"),
+    _("PONYTA MASTER"),
+    _("RAPIDASH MASTER"),
+    _("SLOWPOKE MASTER"),
+    _("SLOWBRO MASTER"),
+    _("MAGNEMITE MASTER"),
+    _("MAGNETON MASTER"),
+    _("FARFETCH'D MASTER"),
+    _("DODUO MASTER"),
+    _("DODRIO MASTER"),
+    _("SEEL MASTER"),
+    _("DEWGONG MASTER"),
+    _("GRIMER MASTER"),
+    _("MUK MASTER"),
+    _("SHELLDER MASTER"),
+    _("CLOYSTER MASTER"),
+    _("GASTLY MASTER"),
+    _("HAUNTER MASTER"),
+    _("GENGAR MASTER"),
+    _("ONIX MASTER"),
+    _("DROWZEE MASTER"),
+    _("HYPNO MASTER"),
+    _("KRABBY MASTER"),
+    _("KINGLER MASTER"),
+    _("VOLTORB MASTER"),
+    _("ELECTRODE MASTER"),
+    _("EXEGGCUTE MASTER"),
+    _("EXEGGUTOR MASTER"),
+    _("CUBONE MASTER"),
+    _("MAROWAK MASTER"),
+    _("HITMONLEE MASTER"),
+    _("HITMONCHAN MASTER"),
+    _("LICKITUNG MASTER"),
+    _("KOFFING MASTER"),
+    _("WEEZING MASTER"),
+    _("RHYHORN MASTER"),
+    _("RHYDON MASTER"),
+    _("CHANSEY MASTER"),
+    _("TANGELA MASTER"),
+    _("KANGASKHAN MASTER"),
+    _("HORSEA MASTER"),
+    _("SEADRA MASTER"),
+    _("GOLDEEN MASTER"),
+    _("SEAKING MASTER"),
+    _("STARYU MASTER"),
+    _("STARMIE MASTER"),
+    _("MR. MIME MASTER"),
+    _("SCYTHER MASTER"),
+    _("JYNX MASTER"),
+    _("ELECTABUZZ MASTER"),
+    _("MAGMAR MASTER"),
+    _("PINSIR MASTER"),
+    _("TAUROS MASTER"),
+    _("MAGIKARP MASTER"),
+    _("GYARADOS MASTER"),
+    _("LAPRAS MASTER"),
+    _("DITTO MASTER"),
+    _("EEVEE MASTER"),
+    _("VAPOREON MASTER"),
+    _("JOLTEON MASTER"),
+    _("FLAREON MASTER"),
+    _("PORYGON MASTER"),
+    _("OMANYTE MASTER"),
+    _("OMASTAR MASTER"),
+    _("KABUTO MASTER"),
+    _("KABUTOPS MASTER"),
+    _("AERODACTYL MASTER"),
+    _("SNORLAX MASTER"),
+    _("ARTICUNO MASTER"),
+    _("ZAPDOS MASTER"),
+    _("MOLTRES MASTER"),
+    _("DRATINI MASTER"),
+    _("DRAGONAIR MASTER"),
+    _("DRAGONITE MASTER"),
+    _("MEWTWO MASTER"),
+    _("MEW MASTER"),
+    _("GRAND MASTER"),
+};
