@@ -2884,7 +2884,7 @@ void CreateMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFix
     SetMonData(mon, MON_DATA_LEVEL, &level);
     arg = 255;
     SetMonData(mon, MON_DATA_MAIL, &arg);
-    CalculateMonStats(mon, TRUE);
+    CalculateMonStats(mon, FALSE);
 }
 
 void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -3160,7 +3160,7 @@ void CreateMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u32
 {   //used for roamer
     CreateMon(mon, species, level, 0, 1, personality, OT_ID_PLAYER_ID, 0);
     SetMonData(mon, MON_DATA_IVS, &ivs);
-    CalculateMonStats(mon, TRUE);
+    CalculateMonStats(mon, FALSE);
 }
 
 static void CreateMonWithIVsOTID(struct Pokemon *mon, u16 species, u8 level, u8 *ivs, u32 otId)
@@ -3172,7 +3172,7 @@ static void CreateMonWithIVsOTID(struct Pokemon *mon, u16 species, u8 level, u8 
     SetMonData(mon, MON_DATA_SPEED_IV, &ivs[3]);
     SetMonData(mon, MON_DATA_SPATK_IV, &ivs[4]);
     SetMonData(mon, MON_DATA_SPDEF_IV, &ivs[5]);
-    CalculateMonStats(mon, TRUE);
+    CalculateMonStats(mon, FALSE);
 }
 
 void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 evSpread)
@@ -3204,7 +3204,7 @@ void CreateMonWithEVSpread(struct Pokemon *mon, u16 species, u8 level, u8 fixedI
         evsBits <<= 1;
     }
 
-    CalculateMonStats(mon, TRUE);
+    CalculateMonStats(mon, FALSE);
 }
 
 void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
@@ -5498,7 +5498,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
             {
                 data = gExperienceTables[gBaseStats[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + 1];
                 SetMonData(mon, MON_DATA_EXP, &data);
-                CalculateMonStats(mon, TRUE);
+                CalculateMonStats(mon, FALSE);
                 retVal = FALSE;
             }
             if ((itemEffect[cmdIndex] & ITEM3_SLEEP)

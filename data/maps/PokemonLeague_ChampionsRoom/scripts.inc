@@ -53,9 +53,11 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom:: @ 8162B76
 	lockall
 	textcolor 0
 	setflag FLAG_TEMP_2
+	goto_if_questlog PokemonLeague_ChampionsRoom_EventScript_QuestLogFix
 	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_ChampionsRoom_Movement_PlayerEnter
 	waitmovement 0
 	delay 20
+PokemonLeague_ChampionsRoom_EventScript_QuestLogFix:
 	call_if_unset FLAG_SYS_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_Intro
 	call_if_set FLAG_SYS_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_RematchIntro
 	goto_if_questlog PokemonLeague_ChampionsRoom_EventScript_QuestLogEnd

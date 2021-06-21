@@ -1335,6 +1335,8 @@ static u16 PartyMenuButtonHandler(s8 *slotPtr)
         return 8;
     if (JOY_NEW(SELECT_BUTTON))
     {
+        if(gPartyMenu.menuType != PARTY_MENU_TYPE_FIELD)
+            return 8;
         if(gPartyMenu.action != PARTY_ACTION_SWITCH)
         {
             taskId = CreateTask(CursorCB_Switch, 1);

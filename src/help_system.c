@@ -1968,7 +1968,7 @@ void HelpSystem_Enable(void)
 
 void HelpSystem_DisableToggleWithRButton(void)
 {
-    gHelpSystemToggleWithRButtonDisabled = TRUE;
+    gHelpSystemToggleWithRButtonDisabled = FALSE;
 }
 
 void HelpSystem_EnableToggleWithRButton(void)

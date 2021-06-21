@@ -25,6 +25,7 @@
 #include "new_menu_helpers.h"
 #include "strings.h"
 #include "constants/event_objects.h"
+#include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/quest_log.h"
 #include "constants/field_weather.h"
@@ -277,6 +278,9 @@ u8 GetQuestLogStartType(void)
 
 void StartRecordingQuestLogEntry(u16 eventId)
 {
+    if (eventId == QL_EVENT_DEPARTED && gMapHeader.mapLayoutId == LAYOUT_PALLET_TOWN && VarGet(VAR_MAP_SCENE_PALLET_TOWN_OAK) == 3)
+        return; //Don't record departing from Oak's Lab if Master Trainer speech is pending.
+
     if (sCurrentSceneNum >= QUEST_LOG_SCENE_COUNT)
         sCurrentSceneNum = 0;
 

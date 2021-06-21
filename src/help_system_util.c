@@ -47,9 +47,7 @@ u8 RunHelpSystemCallback(void)
         sInHelpSystem = 0;
         if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_HELP)
             return 0;
-        if (JOY_NEW(R_BUTTON) && gHelpSystemToggleWithRButtonDisabled == TRUE)
-            return 0;
-        if (JOY_NEW(L_BUTTON | R_BUTTON))
+        if (JOY_NEW(L_BUTTON))
         {
             if (!HelpSystem_IsSinglePlayer() || !gHelpSystemEnabled)
             {
@@ -657,7 +655,7 @@ s32 HelpSystem_GetMenuInput(void)
         PlaySE(SE_SELECT);
         return -2;
     }
-    else if (JOY_NEW(L_BUTTON | R_BUTTON))
+    else if (JOY_NEW(L_BUTTON))
     {
         return -6;
     }
