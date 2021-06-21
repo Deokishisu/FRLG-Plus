@@ -571,6 +571,11 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void GetStartingLevelOfRoute5DaycareMon(void)
+{
+    ConvertIntToDecimalStringN(gStringVar3, GetLevelFromBoxMonExp(&gSaveBlock1Ptr->route5DayCareMon.mon), STR_CONV_MODE_LEFT_ALIGN, 2);
+}
+
 void CheckCurrentMasterTitle(void)
 {
     gSpecialVar_Result = gSaveBlock1Ptr->masterTrainerTitle;

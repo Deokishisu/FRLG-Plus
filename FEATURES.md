@@ -85,6 +85,7 @@
 	* If the Pokémon has a baby form, it can only relearn moves exclusive to that form if it was hatched itself. Wobbuffet from Mirage Island are the sole exception, as they were caught as Wynaut and therefore can also relearn Wynaut's exclusive moves.
 	* If a Pokémon is not at a high enough level to learn a move from its own learnset, then it cannot relearn that move regardless of its presence in a pre-evolution's learnset.
 - Eggs have a 50% chance of inheriting the nature of their mother or Ditto parent if that parent holds an Everstone, ported from Emerald.
+- The Route 5 Day Care Man tells the player what level a Pokémon was when it was first deposited.
 
 #### Vanilla Bug Fixes
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.

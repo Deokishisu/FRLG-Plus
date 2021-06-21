@@ -69,6 +69,7 @@ Route5_PokemonDayCare_EventScript_CheckOnMon:: @ 81BF46E
 	end
 
 Route5_PokemonDayCare_EventScript_MonHasGrownByXLevels:: @ 81BF4AA
+	callnative GetStartingLevelOfRoute5DaycareMon
 	msgbox Route5_PokemonDayCare_Text_MonHasGrownByXLevels
 	return
 
