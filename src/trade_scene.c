@@ -2450,6 +2450,7 @@ static void CreateInGameTradePokemonInternal(u8 playerSlot, u8 inGameTradeIdx)
 {
     const struct InGameTrade * inGameTrade = &sInGameTrades[inGameTradeIdx];
     u8 level = GetMonData(&gPlayerParty[playerSlot], MON_DATA_LEVEL);
+    u16 hp = GetMonData(&gPlayerParty[playerSlot], MON_DATA_HP);
     struct MailStruct mail;
     u8 metLocation = METLOC_IN_GAME_TRADE;
     struct Pokemon * tradeMon = &gEnemyParty[0];
@@ -2472,6 +2473,12 @@ static void CreateInGameTradePokemonInternal(u8 playerSlot, u8 inGameTradeIdx)
     SetMonData(tradeMon, MON_DATA_TOUGH, &inGameTrade->conditions[4]);
     SetMonData(tradeMon, MON_DATA_SHEEN, &inGameTrade->sheen);
     SetMonData(tradeMon, MON_DATA_MET_LOCATION, &metLocation);
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {
+        if(hp == 0)
+            SetMonData(tradeMon, MON_DATA_HP, &hp);
+        SetNuzlockeDupeFlags(inGameTrade->species);
+    }
     mailNum = 0;
     if (inGameTrade->heldItem != ITEM_NONE)
     {
@@ -2487,7 +2494,7 @@ static void CreateInGameTradePokemonInternal(u8 playerSlot, u8 inGameTradeIdx)
             SetMonData(tradeMon, MON_DATA_HELD_ITEM, &inGameTrade->heldItem);
         }
     }
-    CalculateMonStats(&gEnemyParty[0], FALSE);
+    CalculateMonStats(&gEnemyParty[0], TRUE);
 }
 
 static void GetInGameTradeMail(struct MailStruct * mail, const struct InGameTrade * inGameTrade)
