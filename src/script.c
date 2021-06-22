@@ -869,11 +869,48 @@ struct BattleHouse
     u16 visitorSabrina:1;
     u16 visitorBlaine:1;    // ^^ visitors currently in house
     // 1 byte, overflows into next scripting var
-    u16 filler:3;
+    u16 spawnFails:3;       // after a Gym Leader fails to visit 6 times, this starts forcing visits
     u16 levelGrowth:5;      // adds levels to rematch Pokemon up to level 80. Maxes at +12.
     // 1 byte
     u16 steps:8;            // used to bring back Spearow and bring in visitors
 };
+
+static bool8 AllPossibleGymLeadersPresent(void)
+{
+    struct BattleHouse* BattleHouseVar;
+    u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
+    (void*) BattleHouseVar = varPtr;
+
+    if(BattleHouseVar->toldBrock && !BattleHouseVar->visitorBrock)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldMisty && !BattleHouseVar->visitorMisty)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldLtSurge && !BattleHouseVar->visitorLtSurge)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldErika && !BattleHouseVar->visitorErika)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldKoga && !BattleHouseVar->visitorKoga)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldSabrina && !BattleHouseVar->visitorSabrina)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldBlaine && !BattleHouseVar->visitorBlaine)
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
 
 u8 ReturnBattleHouseLevel(void)
 {
@@ -929,8 +966,8 @@ void UpdateBattleHouseStepCounter(void)
                 }
                 return; //no new visitors while Spearow is out
             }
-            if(Random() % 256 < chanceOfVisit)
-            {   //Gym Leader visiting, ~18% chance
+            if(!AllPossibleGymLeadersPresent() && (BattleHouseVar->spawnFails == 6 || Random() % 256 < chanceOfVisit))
+            {   //Gym Leader visiting, ~18% chance; will start forcing visits after 6 misses
                 u8 counter = 0;
                 do{
                     u8 leader = Random() % 7;
@@ -940,6 +977,7 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldBrock && !BattleHouseVar->visitorBrock)
                             {
                                 BattleHouseVar->visitorBrock = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
@@ -947,6 +985,7 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldMisty && !BattleHouseVar->visitorMisty)
                             {
                                 BattleHouseVar->visitorMisty = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
@@ -954,6 +993,7 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldLtSurge && !BattleHouseVar->visitorLtSurge)
                             {
                                 BattleHouseVar->visitorLtSurge = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
@@ -961,6 +1001,7 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldErika && !BattleHouseVar->visitorErika)
                             {
                                 BattleHouseVar->visitorErika = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
@@ -968,6 +1009,7 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldKoga && !BattleHouseVar->visitorKoga)
                             {
                                 BattleHouseVar->visitorKoga = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
@@ -975,6 +1017,7 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldSabrina && !BattleHouseVar->visitorSabrina)
                             {
                                 BattleHouseVar->visitorSabrina = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
@@ -982,12 +1025,21 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldBlaine && !BattleHouseVar->visitorBlaine)
                             {
                                 BattleHouseVar->visitorBlaine = 1;
+                                BattleHouseVar->spawnFails = 0;
                                 return;
                             }
                             break;
                     }
                     counter++;
-                }while(counter < 3); //rerolls up to 3 times if doesn't hit
+                }while(counter < 3 || BattleHouseVar->spawnFails >= 6); //rerolls up to 3 times if doesn't hit; forces a spawn if failed 6 times
+                if(counter == 3) //failed 3 rerolls, increment spawnFails
+                    if(BattleHouseVar->spawnFails != 7 && !AllPossibleGymLeadersPresent())
+                        BattleHouseVar->spawnFails++;
+            }
+            else
+            {
+                if(BattleHouseVar->spawnFails != 7 && !AllPossibleGymLeadersPresent())
+                    BattleHouseVar->spawnFails++;
             }
         }
     }
