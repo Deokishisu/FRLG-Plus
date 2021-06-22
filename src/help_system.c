@@ -842,7 +842,8 @@ static const u8 sHowTo_Options[] = {
 static const u8 sTerms_Options[] = {
     HELP_TERM_TEXT_SPEED, 
     HELP_TERM_BATTLE_SCENE, 
-    HELP_TERM_BATTLE_STYLE, 
+    HELP_TERM_BATTLE_STYLE,
+    HELP_TERM_BATTLE_ANIM_SPEED, 
     HELP_TERM_SOUND, 
     HELP_TERM_BUTTON_MODE, 
     HELP_TERM_FRAME, 
