@@ -127,3 +127,59 @@ TwoIsland_House_EventScript_SetHasTinyMushrooms:: @ 81717AC
 TwoIsland_House_EventScript_SetHasBothMushrooms:: @ 81717B0
 	setflag HAS_BOTH_MUSHROOMS
 	return
+
+TwoIsland_House_EventScript_EffortWoman:: @ 81DCDE4
+	lock
+	faceplayer
+	getfirstpartymonname 0
+	msgbox TwoIsland_House_Text_OhYourPokemon, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, LeadMonHasEffortRibbon
+	compare VAR_RESULT, TRUE
+	call_if_eq TwoIsland_House_EventScript_MonHasEffortRibbon
+	specialvar VAR_RESULT, AreLeadMonEVsMaxedOut
+	compare VAR_RESULT, FALSE
+	call_if_eq TwoIsland_House_EventScript_MonEVsNotMaxed
+	msgbox TwoIsland_House_Text_PleaseGiveItThisEffortRibbon, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	message TwoIsland_House_Text_ReceivedEffortRibbon
+	waitfanfare
+	msgbox TwoIsland_House_Text_PutEffortRibbonOnMon, MSGBOX_DEFAULT
+	special GiveLeadMonEffortRibbon
+	release
+	end
+
+TwoIsland_House_EventScript_MonEVsNotMaxed:: @ 81DCE2E
+	msgbox TwoIsland_House_Text_GoForItLittleHarder, MSGBOX_DEFAULT
+	release
+	end
+
+TwoIsland_House_EventScript_MonHasEffortRibbon:: @ 81DCE38
+	msgbox TwoIsland_House_Text_EffortRibbonLooksGoodOnIt, MSGBOX_DEFAULT
+	release
+	end
+
+TwoIsland_House_Text_OhYourPokemon: @ 81DD68A
+	.string "Oh?\n"
+	.string "Your {STR_VAR_1}…$"
+
+TwoIsland_House_Text_PleaseGiveItThisEffortRibbon: @ 81DD697
+	.string "Went for it stupendously!\p"
+	.string "As its reward, please give it this\n"
+	.string "EFFORT RIBBON.$"
+
+TwoIsland_House_Text_ReceivedEffortRibbon: @ 81DD6E3
+	.string "{COLOR DARK_GRAY}{PLAYER} received the EFFORT RIBBON.$"
+
+TwoIsland_House_Text_PutEffortRibbonOnMon: @ 81DD702
+	.string "{COLOR DARK_GRAY}{PLAYER} put the EFFORT RIBBON\n"
+	.string "on {STR_VAR_1}.$"
+
+TwoIsland_House_Text_GoForItLittleHarder: @ 81DD722
+	.string "You have to go for it a\n"
+	.string "little harder.\p"
+	.string "If you do, I'll give your POKéMON\n"
+	.string "something nice.$"
+
+TwoIsland_House_Text_EffortRibbonLooksGoodOnIt: @ 81DD77B
+	.string "Oh! Your {STR_VAR_1}, that EFFORT\n"
+	.string "RIBBON looks good on it!$"

@@ -91,6 +91,7 @@
 - Pokémon that evolve by trade can evolve by using an unmissable Key Item on them that is obtained during the story. Pokémon like Scyther also need to be holding their evolution items to evolve in this way.
 - Uncaptured legendary Pokémon, roaming Pokémon, and Snorlax will be regenerated upon entering the Hall of Fame, keeping them from being missable.
 - If upon entering the Hall of Fame a legendary beast is not currently roaming, an uncaught one will begin to roam. This allows the player to capture all three legendary beasts in one playthrough.
+- A woman in the Move Reminder's House on Two Island can check if a Pokémon is fully EV trained. If it is, she'll give it the Effort Ribbon.
 
 ##### Day Care-related:
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
