@@ -15,6 +15,7 @@
 #include "constants/maps.h"
 #include "constants/abilities.h"
 #include "constants/items.h"
+#include "constants/layouts.h"
 #include "constants/weather.h"
 
 struct WildEncounterData
@@ -43,6 +44,7 @@ static u8 PickWildMonNature(void);
 static bool8 IsAbilityAllowingEncounter(u8 level);
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, u8 type, u8 ability, u8 *monIndex);
 static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, u8 type, u8 numMon, u8 *monIndex);
+static u8 ViridianForestNuzlockeOverride(const struct WildPokemonInfo * info, u8 slot);
 
 #include "data/wild_encounters.h"
 
@@ -343,6 +345,8 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
         slot = ChooseWildMonIndex_WaterRock();
         break;
     }
+    if(gMapHeader.mapLayoutId != LAYOUT_VIRIDIAN_FOREST || gSaveBlock1Ptr->keyFlags.nuzlocke == 0)
+        slot = ViridianForestNuzlockeOverride(info, slot);
     level = ChooseWildMonLevel(&info->wildPokemon[slot]);
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
     {
@@ -1004,4 +1008,102 @@ static bool8 TryGetRandomWildMonIndexByType(const struct WildPokemon *wildMon, u
 
     *monIndex = validIndexes[Random() % validMonCount];
     return TRUE;
+}
+
+// Grinding for Brock can be miserable in Nuzlocke Mode, especially with Challenge Mode on.
+// This gives a 47% chance of a Caterpie/Weedle encounter to be bumped up to a Metapod/Kakuna one.
+// If that happens, there's a 50% chance the level will be bumped up to the max possible as well.
+// This will increase experience gains in Viridian Forest to make the grind less tedious.
+// Once the player gets the fossil from Mt. Moon, this function stops modifying the encounters,
+// it also does not interfere with the first encounter for this area.
+// When this is active, there is a ~42.4% chance to encounter a Caterpie/Weedle and
+// ~52.6% chance to encounter Metapod/Kakuna. Pikachu takes up the last 5%.
+
+static u8 ViridianForestNuzlockeOverride(const struct WildPokemonInfo * info, u8 slot)
+{
+    u8 rand;
+
+    if(FlagGet(FLAG_GOT_FOSSIL_FROM_MT_MOON))
+        return slot;
+
+    if (NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
+    {   // not a dupe && first encounter; don't modify slot to preserve first encounter odds
+        if(!IsWildMonNuzlockeDupe(info->wildPokemon[slot].species))
+            return slot;
+    }
+
+    switch(slot)
+    {
+        case 0: // Caterpie
+        case 2: // ^
+        case 4: // ^
+            rand = Random() % 100;
+            if(rand < 47) //switch to a Metapod
+            {
+                if(rand < 24) //highest level Metapod
+                {
+                    if(gSaveBlock1Ptr->keyFlags.version == 0) //FR
+                        slot = 6;
+                    else
+                        slot = 10;
+                }
+                else //not highest level
+                {
+                    if(gSaveBlock1Ptr->keyFlags.version == 0) //FR
+                        slot = 6;
+                    else
+                    {
+                        switch(slot)
+                            {
+                                case 1:
+                                    slot = 7;
+                                    break;
+                                case 3:
+                                    slot = 10;
+                                    break;
+                                case 5:
+                                    slot = 8;
+                                    break;
+                            }
+                    }
+                }
+            }
+            break;
+        case 1: // Weedle
+        case 3: // ^
+        case 5: // ^
+            rand = Random() % 100;
+            if(rand < 47) //switch to a Kakuna
+            {
+                if(rand < 24) //highest level Kakuna
+                {
+                    if(gSaveBlock1Ptr->keyFlags.version == 1) //LG
+                        slot = 6;
+                    else
+                        slot = 10;
+                }
+                else //not highest level
+                {
+                    if(gSaveBlock1Ptr->keyFlags.version == 1) //LG
+                        slot = 6;
+                    else
+                    {
+                        switch(slot)
+                        {
+                            case 1:
+                                slot = 7;
+                                break;
+                            case 3:
+                                slot = 10;
+                                break;
+                            case 5:
+                                slot = 8;
+                                break;
+                        }
+                    }
+                }
+            }
+            break; 
+    }
+    return slot;
 }
