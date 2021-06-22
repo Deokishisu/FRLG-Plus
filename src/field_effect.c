@@ -17,6 +17,7 @@
 #include "new_menu_helpers.h"
 #include "overworld.h"
 #include "party_menu.h"
+#include "pokemon_storage_system.h"
 #include "quest_log.h"
 #include "script.h"
 #include "special_field_anim.h"
@@ -752,12 +753,32 @@ static void (*const sPokeballGlowSpriteCBTable[])(struct Sprite * ) = {
     PokeballGlowEffect_7
 };
 
+static u8 CountAliveMonsInNuzlocke(void)
+{
+    u32 i, count;
+
+    for (i = 0, count = 0; i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE
+            && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+        {
+            if(GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0)
+                count++;
+        }
+    }
+
+    return count;
+}
+
 bool8 FldEff_PokecenterHeal(void)
 {
     u8 nPokemon;
     struct Task * task;
 
-    nPokemon = CalculatePlayerPartyCount();
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+        nPokemon = CountAliveMonsInNuzlocke(); 
+    else
+        nPokemon = CountPartyNonEggMons();
     task = &gTasks[CreateTask(Task_PokecenterHeal, 0xff)];
     task->data[1] = nPokemon;
     task->data[2] = 0x5d;

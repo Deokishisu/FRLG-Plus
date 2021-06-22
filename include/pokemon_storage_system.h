@@ -39,5 +39,6 @@ void PopulateBoxHpAndStatusToPartyMon(struct Pokemon *mon);
 u16 GetFirstAliveBoxMon(void);
 void SwapFirstAliveBoxPokemon(void);
 void SetBoxMonDataAt(u8 boxId, u8 boxPosition, s32 request, const void *value);
+u8 CountPartyNonEggMons(void);
 
 #endif // GUARD_POKEMON_STORAGE_SYSTEM_H

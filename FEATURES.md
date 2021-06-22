@@ -83,7 +83,7 @@
 - The summary screen now wraps around when cycling through the party Pokémon instead of stopping at the first and last.
 - Game Corner coins can be bought in increments of 1000 in addition to the other two options.
 
-##### Pokémon-related
+##### Pokémon-related:
 - All Deoxys formes are included, and are implemented in the way that the GBA games did it for link compatibility purposes. Switch Deoxys' forme by examining the meteorite exhibit in the Pewter Museum of Science.
 - No evolution restrictions; Pokémon will evolve regardless of whether or not their evolution is in the Kanto Dex.
 	* Eevee evolves into Espeon by happiness outdoors and Umbreon by happiness indoors.
@@ -92,13 +92,13 @@
 - Uncaptured legendary Pokémon, roaming Pokémon, and Snorlax will be regenerated upon entering the Hall of Fame, keeping them from being missable.
 - If upon entering the Hall of Fame a legendary beast is not currently roaming, an uncaught one will begin to roam. This allows the player to capture all three legendary beasts in one playthrough.
 
-##### Day Care-related
+##### Day Care-related:
 - The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
 - The Day Care will send a retrieved Pokémon to a box as long as it's not holding mail if the player's party is full.
 - Eggs have a 50% chance of inheriting the nature of their mother or Ditto parent if that parent holds an Everstone, ported from Emerald.
 - The Route 5 Day-Care Man tells the player what level a Pokémon was when it was first deposited.
 
-##### Miscellaneous Quality of Life Additions
+##### Miscellaneous Quality of Life Additions:
 - Instant text option.
 - No link restrictions
 	* Trade with Ruby, Sapphire, Emerald, Colosseum, and XD the moment that the player catches a second Pokémon.
@@ -108,7 +108,7 @@
 - The Pokémon Center nurses abbreviate their dialogue after getting two Trainer Card stars, similar to Generation IV and up.
 - Softlock prevention mechanisms are present. The player can no longer trap themselves on Cinnabar Island and the Indigo Plateau, and free Poké Balls are available in potential softlock situations.
 
-#### Vanilla Bug Fixes
+#### Vanilla Bug Fixes:
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
 - The Nugget Bridge Rocket can no longer give the player infinite Nuggets.
 - Vital Throw displays as --- accuracy instead of 100 accuracy.
@@ -118,7 +118,7 @@
 - Fixed Karate King Koichi and Charine localization oversights. These characters are now named Kiyo and Janine as they are in GSC/HGSS.
 - Many vanilla tile errors have been fixed. Too many.
 
-#### Miscellaneous Changes
+#### Miscellaneous Changes:
 - All Kanto Pokémon, along with 90% of Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Azurill, Wynaut, Latias, Latios, and Deoxys) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
 	* As Lightningrod's Emerald overworld effect is inapplicable, it has been changed. Lightningrod now charges the Vs. Seeker twice as fast.
