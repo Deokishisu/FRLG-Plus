@@ -107,6 +107,7 @@
 - The Trainer Card star gained from doing Wireless minigames on Two Island can also be earned by achieving a 50-win streak at the Battle Tower.
 - The Pokémon Center nurses abbreviate their dialogue after getting two Trainer Card stars, similar to Generation IV and up.
 - Softlock prevention mechanisms are present. The player can no longer trap themselves on Cinnabar Island and the Indigo Plateau, and free Poké Balls are available in potential softlock situations.
+- There is now a PC in the S.S. Anne in the room where the player can rest.
 
 #### Vanilla Bug Fixes:
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.

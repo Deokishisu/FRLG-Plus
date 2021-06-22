@@ -1,5 +1,13 @@
 SSAnne_1F_Room6_MapScripts:: @ 8160DF2
+	map_script MAP_SCRIPT_ON_LOAD SSAnne_1F_Room6_MapScript_MakePc
 	.byte 0
+
+SSAnne_1F_Room6_MapScript_MakePc:
+	setmetatile 0, 0, 0x3D0, 1
+	setmetatile 0, 1, 0x062, 1
+	setmetatile 0, 2, 0x3D1, 0
+	setmetatile 1, 2, 0x31D, 0
+	end
 
 SSAnne_1F_Room6_EventScript_Woman:: @ 8160DF3
 	lock

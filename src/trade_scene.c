@@ -12,6 +12,7 @@
 #include "menu.h"
 #include "data.h"
 #include "battle.h"
+#include "battle_setup.h"
 #include "script.h"
 #include "event_data.h"
 #include "mail.h"
