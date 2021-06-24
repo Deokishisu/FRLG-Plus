@@ -1,4 +1,4 @@
-# Pokémon FireRed and LeafGreen
+# Pokémon FireRed and LeafGreen+
 
 [![Build Status][travis-badge]][travis]
 
@@ -6,7 +6,7 @@
 [travis-badge]: https://travis-ci.org/pret/pokefirered.svg?branch=master
 
 This the repository for the Pokémon FireRed and LeafGreen+ hack. 
-* [**View the features list**](https://github.com/Deokishisu/FRLG-Plus/blob/master/FEATURES.md)
+* [**View the features list.**](https://github.com/Deokishisu/FRLG-Plus/blob/master/FEATURES.md)
 
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
