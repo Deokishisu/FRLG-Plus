@@ -419,7 +419,7 @@ static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
 static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}!");
 
 //link title strings
-static const u8 sText_LinkTrainerSentOutPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\n sent out {B_OPPONENT_MON1_NAME}!");
+static const u8 sText_LinkTrainerSentOutPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_OPPONENT_MON1_NAME}!");
 static const u8 sText_LinkTrainerSentOutTwoPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_OPPONENT_MON1_NAME} and {B_OPPONENT_MON2_NAME}!");
 static const u8 sText_LinkPartnerSentOutPkmnGoPkmnTitle[] = _("{B_LINK_PARTNER_NAME}\nsent out {B_LINK_PLAYER_MON2_NAME}!\lGo! {B_LINK_PLAYER_MON1_NAME}!");
 static const u8 sText_TwoLinkTrainersSentOutPkmnYY[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_LINK_OPPONENT_MON1_NAME}!\p{B_LINK_OPPONENT2_NAME}\nsent out {B_LINK_OPPONENT_MON2_NAME}!");
