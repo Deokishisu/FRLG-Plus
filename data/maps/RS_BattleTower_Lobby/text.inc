@@ -127,10 +127,10 @@ BattleTower_Lobby_Text_19A617:: @ 819A617
 BattleTower_Lobby_Text_19A6BE:: @ 819A6BE
 	.string "Here are some RIBBONS for beating\n"
 	.string "seven tough TRAINERS in a row.\p"
-	.string "{COLOR RED}{SHADOW GREEN}{PLAYER} received some RIBBONS!$"
+	.string "{COLOR DARK_GRAY}{PLAYER} received some RIBBONS!$"
 
 BattleTower_Lobby_Text_19A719:: @ 819A719
-	.string "{COLOR RED}{SHADOW GREEN}{PLAYER} put the RIBBONS on the\n"
+	.string "{COLOR DARK_GRAY}{PLAYER} put the RIBBONS on the\n"
 	.string "challenger POKéMON.$"
 
 BattleTower_Lobby_Text_19A747:: @ 819A747
