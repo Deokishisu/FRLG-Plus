@@ -1,6 +1,6 @@
 # Pokémon FireRed and LeafGreen+
 
-This the repository for the Pokémon FireRed and LeafGreen+ hack. 
+This is the repository for the Pokémon FireRed and LeafGreen+ hack. 
 * [**View the features list.**](https://github.com/Deokishisu/FRLG-Plus/blob/master/FEATURES.md)
 
 

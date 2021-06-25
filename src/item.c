@@ -829,6 +829,8 @@ const u8 * ItemId_GetDescription(u16 itemId)
 
 bool8 itemid_is_unique(u16 itemId)
 {
+    if(SanitizeItemId(itemId) >= ITEM_TM01 && SanitizeItemId(itemId) <= ITEM_TM50)
+        return TRUE;
     return gItems[SanitizeItemId(itemId)].importance;
 }
 
