@@ -163,8 +163,8 @@ BattleTower_Lobby_Text_Scott28Wins::
 BattleTower_Lobby_Text_ScottExplainAuroraTicket::
 	.string "Bring that ticket to your\n"
 	.string "friend at the VERMILION HARBOR.\p"
-	.string "He'll be able to take you a small\n"
-	.string "island south of SIX ISLAND.\p"
+	.string "He'll be able to take you to a\n"
+	.string "small island south of SIX ISLAND.\p"
 	.string "There's a strange stone and\n"
 	.string "nothing else there.\p"
 	.string "It's nice and private, though,\n"
