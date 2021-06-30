@@ -12508,7 +12508,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaChallenge[
         .species = SPECIES_VICTREEBEL,
         .heldItem = ITEM_NONE,
         .abilityNum = 0,
-        .moves = {MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_INGRAIN, MOVE_GIGA_DRAIN},
+        .moves = {MOVE_SLUDGE, MOVE_SLEEP_POWDER, MOVE_INGRAIN, MOVE_GIGA_DRAIN},
     },
     {
         .iv = 250,
