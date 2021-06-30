@@ -752,6 +752,9 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
     if (!VarGet(VAR_REPEL_STEP_COUNT))
         return TRUE;
 
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE) //if Nuzlocke & first encounter not done Repel doesn't work.
+        return TRUE;
+
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_HP) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))

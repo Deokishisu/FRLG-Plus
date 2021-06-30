@@ -3122,6 +3122,16 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
         u8 ivs[NUM_STATS] = {31, 31, 31, 30, 30, 31};
         CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
     }
+    else if (fixedIV == 12) // Challenge Erika's Victreebel
+    {
+        u8 ivs[NUM_STATS] = {30, 0, 30, 30, 9, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
+    else if (fixedIV == 13) // Challenge Erika's other mons
+    {
+        u8 ivs[NUM_STATS] = {30, 30, 30, 30, 30, 30};
+        CreateEnemyMonWithIVsPersonality(mon, species, level, ivs, personality);
+    }
     else
     {
         CreateMon(mon, species, level, fixedIV, 1, personality, OT_ID_RANDOM_NO_SHINY, 0);

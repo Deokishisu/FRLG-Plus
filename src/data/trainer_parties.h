@@ -12501,34 +12501,42 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeChalleng
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaChallenge[] = {
+static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderErikaChallenge[] = {
     {
-        .iv = 250,
+        .iv = 12, //Challenge Erika's Victreebel, 0 Atk, 9 SpAtk & 30 others. This nerfs Victreebel's attacking stats to be in line with Vileplume.
         .lvl = 29,
+        .evs = { 0, 0, 0, 0, 0, 0},
+        .nature = NATURE_MODEST,
         .species = SPECIES_VICTREEBEL,
         .heldItem = ITEM_NONE,
         .abilityNum = 0,
-        .moves = {MOVE_SLUDGE, MOVE_SLEEP_POWDER, MOVE_INGRAIN, MOVE_GIGA_DRAIN},
+        .moves = {MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_INGRAIN, MOVE_GIGA_DRAIN},
     },
     {
-        .iv = 250,
+        .iv = 13, // all 30
         .lvl = 24,
+        .evs = { 0, 0, 0, 0, 0, 0},
+        .nature = NATURE_HARDY,
         .species = SPECIES_TANGELA,
         .heldItem = ITEM_NONE,
         .abilityNum = 0,
         .moves = {MOVE_SLEEP_POWDER, MOVE_LEECH_SEED, MOVE_SUBSTITUTE, MOVE_GIGA_DRAIN},
     },
     {
-        .iv = 250,
+        .iv = 13, // all 30
         .lvl = 29,
+        .evs = { 0, 0, 0, 0, 0, 0},
+        .nature = NATURE_HARDY,
         .species = SPECIES_PARASECT,
         .heldItem = ITEM_SITRUS_BERRY,
         .abilityNum = 0,
         .moves = {MOVE_SPORE, MOVE_AERIAL_ACE, MOVE_DIG, MOVE_SLASH},
     },
     {
-        .iv = 250,
+        .iv = 13, // all 30
         .lvl = 29,
+        .evs = { 0, 0, 0, 0, 0, 0},
+        .nature = NATURE_HARDY,
         .species = SPECIES_VILEPLUME,
         .heldItem = ITEM_SITRUS_BERRY,
         .abilityNum = 0,
