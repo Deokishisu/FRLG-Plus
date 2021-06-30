@@ -2005,3 +2005,27 @@ Help_Text_DefineExpMod::
 	.string "1/2× halves given Experience Points.\l"
 	.string "1× is the standard modifier.\l"
 	.string "2× doubles given Experience Points.$"
+
+Help_Text_FRExclusives::
+	.string "  POKéMON exclusive to FIRERED$"
+
+Help_Text_LGExclusives::
+	.string "  POKéMON exclusive to LEAFGREEN$"
+
+Help_Text_DefineFRExclusives::
+	.string "The POKéMON exclusive to FIRERED\n"
+	.string "VERSION are EKANS, ODDISH, PSYDUCK,\l"
+	.string "GROWLITHE, SHELLDER, SCYTHER,\l"
+	.string "ELECTABUZZ, WOOPER, MURKROW,\l"
+	.string "QWILFISH, DELIBIRD, SKARMORY,\l"
+	.string "LATIOS, and their evolutionary\l"
+	.string "relatives.$"
+
+Help_Text_DefineLGExclusives::
+	.string "The POKéMON exclusive to LEAFGREEN\n"
+	.string "VERSION are SANDSHREW, VULPIX,\l"
+	.string "BELLSPROUT, SLOWPOKE, BELLSPROUT,\l"
+	.string "STARYU, MAGMAR, PINSIR, MARILL,\l"
+	.string "MISDREAVUS, SNEASEL, REMORAID,\l"
+	.string "MANTINE, LATIAS, and their\l"
+	.string "evolutionary relatives.$"

@@ -222,7 +222,8 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->option[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
     sKeySystemMenuPtr->option[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
     sKeySystemMenuPtr->option[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
-    gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
+    if(gSaveBlock1Ptr->keyFlags.changedCalcMode != 1)
+        gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
 
     for (i = 0; i < MENUITEM_COUNT - 1; i++)

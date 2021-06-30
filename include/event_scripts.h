@@ -1315,5 +1315,9 @@ extern const u8 Help_Text_DefineBattleAnimSpeed[];
 extern const u8 Help_Text_BattleAnimSpeed[];
 extern const u8 Help_Text_ExpMod[];
 extern const u8 Help_Text_DefineExpMod[];
+extern const u8 Help_Text_FRExclusives[];
+extern const u8 Help_Text_LGExclusives[];
+extern const u8 Help_Text_DefineFRExclusives[];
+extern const u8 Help_Text_DefineLGExclusives[];
 
 #endif //GUARD_EVENT_SCRIPTS_H
