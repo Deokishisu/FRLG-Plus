@@ -69,6 +69,7 @@
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 
 ##### Move Tutor-related:
+- There are eight new Move Tutors scattered throughout the world that teach Fury Cutter, Rollout, Dynamic Punch, Sleep Talk, Nightmare, Self-Destruct, Sky Attack, and Swagger respectively.
 - Move Tutors will charge after the first time they teach a move, allowing infinite tutor uses at a cost. Frenzy Plant, Blast Burn, and Hydro Cannon can be tutored infinitely for free, and no longer have a friendship requirement to learn.
 - The Move Reminder can overwrite HM moves with relearned moves.
 - The Move Reminder can teach moves from a Pokémon's pre-evolutions, with some caveats.

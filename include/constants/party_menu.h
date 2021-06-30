@@ -25,11 +25,29 @@
 #define TUTOR_MOVE_EXPLOSION       12
 #define TUTOR_MOVE_ROCK_SLIDE      13
 #define TUTOR_MOVE_SUBSTITUTE      14
-#define TUTOR_MOVE_COUNT           15 // regular tutor move count
+#define TUTOR_MOVE_DYNAMIC_PUNCH   15
+#define TUTOR_MOVE_ROLLOUT         16
+#define TUTOR_MOVE_PSYCH_UP        17
+#define TUTOR_MOVE_SNORE           18
+#define TUTOR_MOVE_ICY_WIND        19
+#define TUTOR_MOVE_ENDURE          20
+#define TUTOR_MOVE_MUD_SLAP        21
+#define TUTOR_MOVE_ICE_PUNCH       22
+#define TUTOR_MOVE_SWAGGER         23
+#define TUTOR_MOVE_SLEEP_TALK      24
+#define TUTOR_MOVE_SWIFT           25
+#define TUTOR_MOVE_DEFENSE_CURL    26
+#define TUTOR_MOVE_THUNDER_PUNCH   27
+#define TUTOR_MOVE_FIRE_PUNCH      28
+#define TUTOR_MOVE_FURY_CUTTER     29
+#define TUTOR_MOVE_NIGHTMARE       30
+#define TUTOR_MOVE_SELF_DESTRUCT   31
+#define TUTOR_MOVE_SKY_ATTACK      32
+#define TUTOR_MOVE_COUNT           33 // regular tutor move count
 
-#define TUTOR_MOVE_FRENZY_PLANT    15
-#define TUTOR_MOVE_BLAST_BURN      16
-#define TUTOR_MOVE_HYDRO_CANNON    17
+#define TUTOR_MOVE_FRENZY_PLANT    33
+#define TUTOR_MOVE_BLAST_BURN      34
+#define TUTOR_MOVE_HYDRO_CANNON    35
 
 #define FIELD_MOVE_FLASH        0
 #define FIELD_MOVE_CUT          1

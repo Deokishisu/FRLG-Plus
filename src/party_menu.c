@@ -842,7 +842,7 @@ static bool8 DisplayPartyPokemonDataForMoveTutorOrEvolutionItem(u8 slot)
     if (gPartyMenu.action == PARTY_ACTION_MOVE_TUTOR)
     {
         gSpecialVar_Result = FALSE;
-        if (gSpecialVar_0x8005 > 14)
+        if (gSpecialVar_0x8005 >= TUTOR_MOVE_COUNT)
             return FALSE;
         DisplayPartyPokemonDataToTeachMove(slot, 0, gSpecialVar_0x8005);
     }
@@ -1969,7 +1969,7 @@ static bool8 CanLearnTutorMove(u16 species, u8 tutor)
         else
             return FALSE;
     default:
-        if (sTutorLearnsets[species] & (1 << tutor))
+        if (sTutorLearnsets[species] & ((u64) 1 << tutor))
             return TRUE;
         else
             return FALSE;

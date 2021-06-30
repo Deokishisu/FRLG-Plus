@@ -1002,14 +1002,16 @@
 #define FLAG_0x3CD               0x3CD
 #define FLAG_0x3CE               0x3CE
 #define FLAG_0x3CF               0x3CF
-#define FLAG_0x3D0               0x3D0
-#define FLAG_0x3D1               0x3D1
-#define FLAG_0x3D2               0x3D2
-#define FLAG_0x3D3               0x3D3
-#define FLAG_0x3D4               0x3D4
-#define FLAG_0x3D5               0x3D5
-#define FLAG_0x3D6               0x3D6
-#define FLAG_0x3D7               0x3D7
+//New move tutors
+#define FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER  0x3D0
+#define FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT      0x3D1
+#define FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH 0x3D2
+#define FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK   0x3D3
+#define FLAG_MOVE_TUTOR_TAUGHT_NIGHTMARE    0x3D4
+#define FLAG_MOVE_TUTOR_TAUGHT_SELFDESTRUCT 0x3D5
+#define FLAG_MOVE_TUTOR_TAUGHT_SKY_ATTACK   0x3D6
+#define FLAG_MOVE_TUTOR_TAUGHT_SWAGGER      0x3D7
+//flags relating to Mystery Event?
 #define FLAG_MYSTERY_EVENT_DONE  0x3D8
 #define FLAG_0x3D9               0x3D9
 #define FLAG_0x3DA               0x3DA
