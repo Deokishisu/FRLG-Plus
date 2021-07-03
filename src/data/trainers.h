@@ -8952,7 +8952,7 @@ const struct Trainer gTrainers[] = {
         .party = {.ItemCustomMoves = sTrainerMons_LeaderLtSurgeChallenge}
     },
     [TRAINER_LEADER_ERIKA_CHALLENGE] = {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .partyFlags = F_TRAINER_PARTY_EVS,
         .trainerClass = CLASS_LEADER_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_LEADER_ERIKA,
