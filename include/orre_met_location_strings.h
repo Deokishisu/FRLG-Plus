@@ -29,6 +29,9 @@ extern const u8 gRock[];
 extern const u8 gXD_Eevee_Met_Location[];
 extern const u8 gColosseum_Starter_Met_Location[];
 extern const u8 gDukings_Plusle[];
+extern const u8 gXD_Eevee_Met_Location_JP[];
+extern const u8 gColosseum_Starter_Met_Location_JP[];
+extern const u8 gDukings_Plusle_JP[];
 extern const u8 gOtherText_MetDistantLand[];
 
 #endif // GUARD_ORRE_MET_LOCATION_STRINGS_H

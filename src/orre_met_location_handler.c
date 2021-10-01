@@ -169,10 +169,12 @@ u8* ResolveOrreMetLocationCollision(struct Pokemon *mon)
 {
 	u16 species;
 	u8 locationMet;
+	u8 language;
 	const u8 *locationString;
     u8 obedient = GetMonData(mon, MON_DATA_EVENT_LEGAL); //all XD Pokemon have this bit set
 	locationMet = GetMonData(mon, MON_DATA_MET_LOCATION);
 	species = GetMonData(mon, MON_DATA_SPECIES);
+	language = GetMonData(mon, MON_DATA_LANGUAGE);
 	switch (locationMet)
 	{
 		case 67:
@@ -201,13 +203,28 @@ u8* ResolveOrreMetLocationCollision(struct Pokemon *mon)
 			break;
 		case 0: //XD Starter Eevee
 			if((species >= SPECIES_EEVEE && species <= SPECIES_FLAREON) || species == SPECIES_ESPEON || species == SPECIES_UMBREON)
-				locationString = gXD_Eevee_Met_Location;
+			{
+				if(language == LANGUAGE_JAPANESE)
+					locationString = gXD_Eevee_Met_Location_JP;
+				else
+					locationString = gXD_Eevee_Met_Location;
+			}
 			break;
 		case 254: //Colosseum Starter Espeon and Umbreon and Duking's Plusle
 			if(species == SPECIES_ESPEON || species == SPECIES_UMBREON)
-				locationString = gColosseum_Starter_Met_Location;
+			{
+				if(language == LANGUAGE_JAPANESE)
+					locationString = gColosseum_Starter_Met_Location_JP;
+				else
+					locationString = gColosseum_Starter_Met_Location;
+			}
 			else
-				locationString = gDukings_Plusle;
+			{
+				if(language == LANGUAGE_JAPANESE)
+					locationString = gDukings_Plusle_JP;
+				else
+					locationString = gDukings_Plusle;
+			}
 			break;
 		default: //error handler; default to generic distant land text
 			locationString = gOtherText_MetDistantLand;

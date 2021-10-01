@@ -406,7 +406,7 @@ static const struct MenuAction sScriptMultiChoiceMenu_GlassWorkshopVendor[] = {
     { gText_RedFlute_Ash },
     { gText_WhiteFlute_Ash },
     { gText_BlackFlute_Ash },
-    { gOtherText_Exit }
+    { gText_SmallExit }
 };
 
 static const struct MenuAction sScriptMultiChoiceMenu_TradeColosseum_2[] = {

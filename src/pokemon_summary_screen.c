@@ -2925,15 +2925,11 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void) //if different OT
     {
         orreMetLocationString = DetermineOrreMetLocation(&sMonSummaryScreen->currentMon);
         WriteOrreMapName(mapNameStr, orreMetLocationString, 0);
-        //GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_NAME, gStringVar2);
     }
     else
         StringCopy(mapNameStr, gText_PokeSum_ATrade);
 
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, mapNameStr);
-    //GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_NAME, sMonSummaryScreen->summary.otNameStrBuf);
-    //DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, sMonSummaryScreen->summary.otNameStrBuf);
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, sMonSummaryScreen->summary.otNameStrBuf);
 
     // These pairs of strings are bytewise identical to each other in English,
     // but Japanese uses different grammar for Bold and Gentle natures.
@@ -2993,7 +2989,8 @@ static bool8 IsMonFromOrre(void)
 
 static void PokeSum_PrintTrainerMemo_Mon(void)
 {
-    if (PokeSum_BufferOtName_IsEqualToCurrentOwner(&sMonSummaryScreen->currentMon) == TRUE)
+    // Pokemon from Orre are always considered outsiders by the summary screen
+    if (PokeSum_BufferOtName_IsEqualToCurrentOwner(&sMonSummaryScreen->currentMon) == TRUE && !IsMonFromOrre)
         PokeSum_PrintTrainerMemo_Mon_HeldByOT();
     else
         PokeSum_PrintTrainerMemo_Mon_NotHeldByOT();
@@ -4238,7 +4235,21 @@ static void PokeSum_CreateMonPicSprite(void)
     personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_PERSONALITY);
     if(species == SPECIES_DEOXYS)
     {
-        personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_FORME);
+        switch(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_FORME))
+        {
+            case 1: //Attack Forme
+                species = 65531;
+                break;
+            case 2:
+                species = 65532;
+                break;
+            case 3:
+                species = 65533;
+                break;
+            default:
+                species = 65530;
+                break;
+        }
     }
     trainerId = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_ID);
 
@@ -4367,6 +4378,26 @@ static void PokeSum_CreateMonIconSprite(void)
 
     species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES2);
     personality = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_PERSONALITY);
+    if(species == SPECIES_DEOXYS)
+    {
+        switch(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_FORME))
+        {
+            case 1: //Attack Forme
+                species = 65531;
+                break;
+            case 2:
+                species = 65532;
+                break;
+            case 3:
+                species = 65533;
+                break;
+            default:
+                species = 65530;
+                break;
+        }
+    }
+
+    
 
     SafeLoadMonIconPalette(species);
 

@@ -76,7 +76,7 @@ const u8 gMapSecName_AncientTomb[] = _("ANCIENT TOMB");
 const u8 gMapSecName_InsideOfTruck[] = _("INSIDE OF TRUCK");
 const u8 gMapSecName_SkyPillar[] = _("SKY PILLAR");
 const u8 gMapSecName_SecretBase[] = _("SECRET BASE");
-
+const u8 gMapSecName_Ferry[] = _("FERRY");
 const u8 gMapSecName_PalletTown[] = _("PALLET TOWN");
 const u8 gMapSecName_ViridianCity[] = _("VIRIDIAN CITY");
 const u8 gMapSecName_PewterCity[] = _("PEWTER CITY");

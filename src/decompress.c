@@ -96,28 +96,31 @@ void LoadSpecialPokePic(const struct CompressedSpriteSheet *src, void *dest, s32
         else
             LZ77UnCompWram(gMonFrontPicTable[i].data, dest);
     }
-    else if(species == SPECIES_DEOXYS)
+    else if(species == SPECIES_DEOXYS || (species >= 65530 && species <= 65533))
     {
         if (!isFrontPic)
             LZ77UnCompWram(gMonBackPicTable[SPECIES_DEOXYS].data, dest);
         else
             LZ77UnCompWram(gMonFrontPicTable[SPECIES_DEOXYS].data, dest);
 
-        switch(personality) //pid was hijacked to hold Deoxys forms
-        {   //setting result to arbitrarily high numbers
-            //picked highest ones to not interfere with
-            //Pokemon expansion.
-            case 1: //Attack Forme
-                species = 65531;
-                break;
-            case 2:
-                species = 65532;
-                break;
-            case 3:
-                species = 65533;
-                break;
-            default: //Normal Forme
-                species = 65530;
+        if(!(species >= 65530 && species <= 65533))
+        {
+            switch(personality) //pid was hijacked to hold Deoxys forms
+            {   //setting result to arbitrarily high numbers
+                //picked highest ones to not interfere with
+                //Pokemon expansion.
+                case 1: //Attack Forme
+                    species = 65531;
+                    break;
+                case 2:
+                    species = 65532;
+                    break;
+                case 3:
+                    species = 65533;
+                    break;
+                default: //Normal Forme
+                    species = 65530;
+            }
         }
     }
     else if (species > NUM_SPECIES) // is species unknown? draw the ? icon

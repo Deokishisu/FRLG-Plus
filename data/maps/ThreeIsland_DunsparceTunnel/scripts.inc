@@ -6,12 +6,8 @@ ThreeIsland_DunsparceTunnel_MapScripts:: @ 8164D26
 
 ThreeIsland_DunsparceTunnel_OnTransition:: @ 8164D2C
 	setworldmapflag FLAG_WORLD_MAP_THREE_ISLAND_DUNSPARCE_TUNNEL
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	copyvar VAR_0x8008, VAR_RESULT
-	compare VAR_0x8008, TRUE
-	call_if_eq ThreeIsland_DunsparceTunnel_EventScript_SetLayoutDugOut
-	compare VAR_0x8008, FALSE
-	call_if_eq ThreeIsland_DunsparceTunnel_EventScript_MoveProspectorToWall
+	call_if_set FLAG_SYS_RECEIVED_EXTENDED_DEX, ThreeIsland_DunsparceTunnel_EventScript_SetLayoutDugOut
+	call_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, ThreeIsland_DunsparceTunnel_EventScript_MoveProspectorToWall
 	end
 
 ThreeIsland_DunsparceTunnel_EventScript_SetLayoutDugOut:: @ 8164D50
@@ -27,9 +23,7 @@ ThreeIsland_DunsparceTunnel_EventScript_Prospector:: @ 8164D60
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL, ThreeIsland_DunsparceTunnel_EventScript_ProspectorAlreadyGaveNugget
-	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	compare VAR_RESULT, TRUE
-	goto_if_eq ThreeIsland_DunsparceTunnel_EventScript_ProspectorStruckGold
+	goto_if_set FLAG_SYS_RECEIVED_EXTENDED_DEX, ThreeIsland_DunsparceTunnel_EventScript_ProspectorStruckGold
 	msgbox ThreeIsland_DunsparceTunnel_Text_ProspectingForGold
 	closemessage
 	applymovement LOCALID_PROSPECTOR, Movement_FaceOriginalDirection
@@ -63,6 +57,16 @@ ThreeIsland_DunsparceTunnel_EventScript_NoRoomForNugget:: @ 8164DB8
 	end
 
 ThreeIsland_DunsparceTunnel_EventScript_ProspectorAlreadyGaveNugget:: @ 8164DC2
+	call_if_set FLAG_GOT_DOME_FOSSIL, ThreeIsland_DunsparceTunnel_EventScript_BufferHelix
+	call_if_unset FLAG_GOT_DOME_FOSSIL, ThreeIsland_DunsparceTunnel_EventScript_BufferDome
 	msgbox ThreeIsland_DunsparceTunnel_Text_ThatsANugget
 	release
 	end
+
+ThreeIsland_DunsparceTunnel_EventScript_BufferHelix::
+	bufferitemnameplural 0, ITEM_HELIX_FOSSIL, 1
+	return
+
+ThreeIsland_DunsparceTunnel_EventScript_BufferDome::
+	bufferitemnameplural 0, ITEM_DOME_FOSSIL, 1
+	return

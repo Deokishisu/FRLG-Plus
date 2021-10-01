@@ -345,7 +345,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
         slot = ChooseWildMonIndex_WaterRock();
         break;
     }
-    if(gMapHeader.mapLayoutId != LAYOUT_VIRIDIAN_FOREST || gSaveBlock1Ptr->keyFlags.nuzlocke == 0)
+    if(gMapHeader.mapLayoutId == LAYOUT_VIRIDIAN_FOREST && gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
         slot = ViridianForestNuzlockeOverride(info, slot);
     level = ChooseWildMonLevel(&info->wildPokemon[slot]);
     if (flags & WILD_CHECK_REPEL && !IsWildLevelAllowedByRepel(level))
