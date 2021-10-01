@@ -19,11 +19,13 @@ CeruleanCity_BikeShop_Text_ExchangedVoucherForBicycle:: @ 81927E1
     .string "BIKE VOUCHER for a BICYCLE.$"
 
 CeruleanCity_BikeShop_Text_ThankYouComeAgain:: @ 819280E
-    .string "This BICYCLE has two gears.\n"
-    .string "Press the B Button to switch them\l"
-    .string "for more control of your speed!\p"
     .string "Thank you!\n"
     .string "Come back again sometime!$"
+
+CeruleanCity_BikeShop_Text_ExplainBicycleGears::
+    .string "This BICYCLE has two gears.\n"
+    .string "Press the B Button to switch them\l"
+    .string "for more control of your speed!$"
 
 CeruleanCity_BikeShop_Text_HowDoYouLikeNewBicycle:: @ 8192833
     .string "How do you like your new BICYCLE?\n"

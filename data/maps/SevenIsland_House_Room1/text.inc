@@ -22,8 +22,8 @@ SevenIsland_House_Room1_Text_NoShowFameChecker::
     .string "Well, go on with your travels then…$"
 
 SevenIsland_House_Room1_Text_ManyTrainersWhich::
-    .string "There are many TRAINERS in here,\n"
-    .string "who do you want to tell me about?$"
+    .string "There are many TRAINERS in here.\n"
+    .string "Who do you want to tell me about?$"
 
 SevenIsland_House_Room1_Text_NotFullFamecheckerForPerson::
     .string "Hmm… {STR_VAR_1}…?\p"
@@ -59,7 +59,7 @@ SevenIsland_House_Room1_Text_FirstTakeTime::
     .string "It'll take time for SPEAROW\n"
     .string "to return with a reply.\p"
     .string "You don't have to wait here\n"
-    .string "with me, come back later.\p"
+    .string "with me. Come back later.\p"
     .string "In the mean time, I'll start\n"
     .string "renovating the basement.$"
 
@@ -67,7 +67,7 @@ SevenIsland_House_Room1_Text_TakeTime::
     .string "It'll take time for SPEAROW\n"
     .string "to return with a reply.\p"
     .string "You don't have to wait here\n"
-    .string "with me, come back later.$"
+    .string "with me. Come back later.$"
 
 SevenIsland_House_Room1_Text_AlreadyShownPerson::
     .string "{STR_VAR_1}?\p"
@@ -125,7 +125,7 @@ SevenIsland_House_Room1_Text_OldWomanToldAllNoVisitors::
     .string "Have you come to train?\p"
     .string "Right now no one is visiting\n"
     .string "in the basement.\p"
-    .string "Desite that, my heart is filled\l"
+    .string "Despite that, my heart is filled\l"
     .string "with joy at the battles I've\l"
     .string "watched thanks to you.$"
 

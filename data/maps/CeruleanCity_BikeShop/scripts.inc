@@ -49,6 +49,7 @@ CeruleanCity_BikeShop_EventScript_ExchangeBikeVoucher:: @ 816AC22
 	setflag FLAG_GOT_BICYCLE
 	additem ITEM_BICYCLE
 	removeitem ITEM_BIKE_VOUCHER
+	msgbox CeruleanCity_BikeShop_Text_ExplainBicycleGears
 	msgbox CeruleanCity_BikeShop_Text_ThankYouComeAgain
 	release
 	end

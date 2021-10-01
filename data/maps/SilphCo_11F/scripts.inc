@@ -1,6 +1,7 @@
 .set LOCALID_GIOVANNI, 3
 .set LOCALID_GRUNT1,   4
 .set LOCALID_GRUNT2,   6
+.set LOCALID_WORKERM,  7
 .set LOCALID_WIGGLYTUFF_MASTER, 9
 .set TRAINER, VAR_0x8009
 
@@ -96,6 +97,7 @@ SilphCo_11F_EventScript_BattleGiovanni:: @ 8161EA0
 	removeobject LOCALID_GRUNT1
 	removeobject LOCALID_GRUNT2
 	playbgm MUS_GSC_PEWTER 0
+	addobject LOCALID_WORKERM
 	fadescreen FADE_FROM_BLACK
 	setvar VAR_MAP_SCENE_SILPH_CO_11F, 1
 	setflag FLAG_HIDE_SAFFRON_ROCKETS

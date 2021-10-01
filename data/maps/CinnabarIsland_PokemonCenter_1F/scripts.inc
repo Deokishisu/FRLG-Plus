@@ -1,4 +1,4 @@
-.set LOCALID_BILL, 7
+.set LOCALID_BILL, 8
 
 CinnabarIsland_PokemonCenter_1F_MapScripts:: @ 816E8D7
 	map_script MAP_SCRIPT_ON_TRANSITION, CinnabarIsland_PokemonCenter_1F_OnTransition

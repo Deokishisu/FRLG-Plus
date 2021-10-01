@@ -382,7 +382,7 @@ OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott:: @ 817103A
 	waitmovement 0
 	compare VAR_0x8005, 15
 	call_if_ne OneIsland_PokemonCenter_1F_EventScript_ScottExitsDownStep
-	removeobject 7
+	removeobject LOCALID_SCOTT
 	playse SE_EXIT
 	release
 	end
