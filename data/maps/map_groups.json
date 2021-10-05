@@ -585,6 +585,21 @@
     "RS_BattleTower_Corridor",
     "RS_BattleTower_BattleRoom",
     "BattleFrontier_OutsideWest",
-    "BattleFrontier_OutsideEast"
+    "BattleFrontier_OutsideEast",
+    "BattleFrontier_ReceptionGate",
+    "BattleFrontier_PokemonCenter_1F",
+    "BattleFrontier_PokemonCenter_2F",
+    "BattleFrontier_Mart",
+    "BattleFrontier_ExchangeServiceCorner",
+    "BattleFrontier_RankingHall",
+    "BattleFrontier_ScottsHouse",
+    "BattleFrontier_Lounge1",
+    "BattleFrontier_Lounge2",
+    "BattleFrontier_Lounge3",
+    "BattleFrontier_Lounge4",
+    "BattleFrontier_Lounge5",
+    "BattleFrontier_Lounge6",
+    "BattleFrontier_Lounge7",
+    "BattleFrontier_Lounge8"
   ]
 }

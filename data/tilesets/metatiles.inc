@@ -584,3 +584,10 @@ gMetatiles_SeviiIslands6::
 	.align 1
 gMetatileAttributes_SeviiIslands6::
 	.incbin "data/tilesets/secondary/seviiislands6/metatile_attributes.bin"
+	.align 1
+gMetatiles_BattleFrontierRankingHall::
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_BattleFrontierRankingHall::
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/metatile_attributes.bin"

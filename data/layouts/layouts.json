@@ -4692,6 +4692,78 @@
       "secondary_tileset": "gTileset_IslandHarbor",
       "border_filepath": "data/layouts/FourIsland_CableCarStation/border.bin",
       "blockdata_filepath": "data/layouts/FourIsland_CableCarStation/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_LOUNGE2",
+      "name": "BattleFrontier_Lounge2_Layout",
+      "width": 13,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/BattleFrontier_Lounge2/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_Lounge2/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_LOUNGE1",
+      "name": "BattleFrontier_Lounge1_Layout",
+      "width": 9,
+      "height": 11,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/BattleFrontier_Lounge1/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_Lounge1/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_RECEPTION_GATE",
+      "name": "BattleFrontier_ReceptionGate_Layout",
+      "width": 9,
+      "height": 14,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/BattleFrontier_ReceptionGate/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_ReceptionGate/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_EXCHANGE_SERVICE_CORNER",
+      "name": "BattleFrontier_ExchangeServiceCorner_Layout",
+      "width": 15,
+      "height": 12,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/BattleFrontier_ExchangeServiceCorner/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_ExchangeServiceCorner/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_SCOTTS_HOUSE",
+      "name": "BattleFrontier_ScottsHouse_Layout",
+      "width": 7,
+      "height": 9,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontier",
+      "border_filepath": "data/layouts/BattleFrontier_ScottsHouse/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_ScottsHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_BATTLE_FRONTIER_RANKING_HALL",
+      "name": "BattleFrontier_RankingHall_Layout",
+      "width": 47,
+      "height": 16,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BattleFrontierRankingHall",
+      "border_filepath": "data/layouts/BattleFrontier_RankingHall/border.bin",
+      "blockdata_filepath": "data/layouts/BattleFrontier_RankingHall/map.bin"
     }
   ]
 }

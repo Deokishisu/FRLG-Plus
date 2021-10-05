@@ -813,3 +813,14 @@ gTileset_SeviiIslands6::
 	.4byte gMetatiles_SeviiIslands6
 	.4byte NULL
 	.4byte gMetatileAttributes_SeviiIslands6
+
+	.align 2
+gTileset_BattleFrontierRankingHall::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_BattleFrontierRankingHall
+	.4byte gTilesetPalettes_BattleFrontierRankingHall
+	.4byte gMetatiles_BattleFrontierRankingHall
+	.4byte NULL
+	.4byte gMetatileAttributes_BattleFrontierRankingHall

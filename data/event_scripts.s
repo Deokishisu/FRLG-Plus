@@ -1242,86 +1242,89 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/FarawayIsland_Exterior/scripts.inc"
 	.include "data/maps/FarawayIsland_Exterior/text.inc"
-
 	.include "data/maps/FarawayIsland_Interior/scripts.inc"
 	.include "data/maps/FarawayIsland_Interior/text.inc"
-
 	.include "data/scripts/fuji_event.inc"
 	.include "data/scripts/national_dex_aide.inc"
-
 	.include "data/maps/OneIsland_KindleRoad_GlassWorkshop/scripts.inc"
-
 	.include "data/maps/Route20_Underwater/scripts.inc"
 	.include "data/maps/Route20_Underwater/text.inc"
-
 	.include "data/maps/BattleFrontier_OutsideWest/scripts.inc"
 	.include "data/maps/BattleFrontier_OutsideWest/text.inc"
-
 	.include "data/maps/BattleFrontier_OutsideEast/scripts.inc"
 	.include "data/maps/BattleFrontier_OutsideEast/text.inc"
-
 	.include "data/maps/RS_BattleTower/scripts.inc"
 	.include "data/maps/RS_BattleTower/text.inc"
-
 	.include "data/maps/RS_BattleTower_Lobby/scripts.inc"
 	.include "data/maps/RS_BattleTower_Lobby/text.inc"
-
 	.include "data/maps/RS_BattleTower_Elevator/scripts.inc"
 	.include "data/maps/RS_BattleTower_Elevator/text.inc"
-
 	.include "data/maps/RS_BattleTower_Corridor/scripts.inc"
 	.include "data/maps/RS_BattleTower_Corridor/text.inc"
-
 	.include "data/maps/RS_BattleTower_BattleRoom/scripts.inc"
 	.include "data/maps/RS_BattleTower_BattleRoom/text.inc"
-
 	.include "data/maps/SafariZone_NorthWest/scripts.inc"
 	.include "data/maps/SafariZone_NorthWest/text.inc"
-
 	.include "data/maps/SafariZone_NorthEast/scripts.inc"
 	.include "data/maps/SafariZone_NorthEast/text.inc"
-
 	.include "data/maps/SafariZone_NorthWest_RestHouse/scripts.inc"
 	.include "data/maps/SafariZone_NorthWest_RestHouse/text.inc"
-
 	.include "data/maps/ThreeIsland_BondBridge_Underwater/scripts.inc"
 	.include "data/maps/ThreeIsland_BondBridge_Underwater/text.inc"
-
 	.include "data/maps/ArtisanCave_B1F/scripts.inc"
 	.include "data/maps/ArtisanCave_B1F/text.inc"
-
 	.include "data/maps/ArtisanCave_1F/scripts.inc"
 	.include "data/maps/ArtisanCave_1F/text.inc"
-
 	.include "data/maps/SouthernIsland_Exterior/scripts.inc"
 	.include "data/maps/SouthernIsland_Exterior/text.inc"
-
 	.include "data/maps/SouthernIsland_Interior/scripts.inc"
 	.include "data/maps/SouthernIsland_Interior/text.inc"
-
 	.include "data/maps/CeruleanCave_1F_Blue/scripts.inc"
 	.include "data/maps/CeruleanCave_1F_Blue/text.inc"
-
 	.include "data/maps/CeruleanCave_2F_Blue/scripts.inc"
 	.include "data/maps/CeruleanCave_2F_Blue/text.inc"
-
 	.include "data/maps/CeruleanCave_B1F_Blue/scripts.inc"
 	.include "data/maps/CeruleanCave_B1F_Blue/text.inc"
-
 	.include "data/maps/CeruleanCave_1F_Yellow/scripts.inc"
 	.include "data/maps/CeruleanCave_1F_Yellow/text.inc"
-
 	.include "data/maps/CeruleanCave_2F_Yellow/scripts.inc"
 	.include "data/maps/CeruleanCave_2F_Yellow/text.inc"
-
 	.include "data/maps/CeruleanCave_B1F_Yellow/scripts.inc"
 	.include "data/maps/CeruleanCave_B1F_Yellow/text.inc"
-
 	.include "data/maps/FourIsland_Base/scripts.inc"
 	.include "data/maps/FourIsland_Base/text.inc"
-
 	.include "data/maps/FourIsland_Base_CableCarStation/scripts.inc"
 	.include "data/maps/FourIsland_Base_CableCarStation/text.inc"
-
 	.include "data/maps/FourIsland_CableCarStation/scripts.inc"
 	.include "data/maps/FourIsland_CableCarStation/text.inc"
+	.include "data/maps/BattleFrontier_Lounge2/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge2/text.inc"
+	.include "data/maps/BattleFrontier_Lounge1/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge1/text.inc"
+	.include "data/maps/BattleFrontier_Lounge3/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge3/text.inc"
+	.include "data/maps/BattleFrontier_Lounge4/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge4/text.inc"
+	.include "data/maps/BattleFrontier_Lounge5/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge5/text.inc"
+	.include "data/maps/BattleFrontier_Lounge6/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge6/text.inc"
+	.include "data/maps/BattleFrontier_Lounge7/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge7/text.inc"
+	.include "data/maps/BattleFrontier_Lounge8/scripts.inc"
+	.include "data/maps/BattleFrontier_Lounge8/text.inc"
+	.include "data/maps/BattleFrontier_ReceptionGate/scripts.inc"
+	.include "data/maps/BattleFrontier_ReceptionGate/text.inc"
+	.include "data/maps/BattleFrontier_ExchangeServiceCorner/scripts.inc"
+	.include "data/maps/BattleFrontier_ExchangeServiceCorner/text.inc"
+	.include "data/maps/BattleFrontier_ScottsHouse/scripts.inc"
+	.include "data/maps/BattleFrontier_ScottsHouse/text.inc"
+	.include "data/maps/BattleFrontier_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/BattleFrontier_PokemonCenter_1F/text.inc"
+	.include "data/maps/BattleFrontier_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/BattleFrontier_PokemonCenter_2F/text.inc"
+	.include "data/maps/BattleFrontier_Mart/scripts.inc"
+	.include "data/maps/BattleFrontier_Mart/text.inc"
+
+	.include "data/maps/BattleFrontier_RankingHall/scripts.inc"
+	.include "data/maps/BattleFrontier_RankingHall/text.inc"

@@ -419,50 +419,50 @@
       "x": 35,
       "y": 12,
       "elevation": 3,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 4
+      "dest_map": "MAP_BATTLE_FRONTIER_RANKING_HALL",
+      "dest_warp_id": 0
     },
     {
       "x": 4,
       "y": 44,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 5
+      "dest_map": "MAP_BATTLE_FRONTIER_LOUNGE1",
+      "dest_warp_id": 0
     },
     {
       "x": 10,
       "y": 28,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 6
+      "dest_map": "MAP_BATTLE_FRONTIER_EXCHANGE_SERVICE_CORNER",
+      "dest_warp_id": 0
     },
     {
       "x": 22,
       "y": 51,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 7
+      "dest_map": "MAP_BATTLE_FRONTIER_LOUNGE5",
+      "dest_warp_id": 0
     },
     {
       "x": 5,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 8
+      "dest_map": "MAP_BATTLE_FRONTIER_LOUNGE6",
+      "dest_warp_id": 0
     },
     {
       "x": 65,
       "y": 31,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 9
+      "dest_map": "MAP_BATTLE_FRONTIER_LOUNGE3",
+      "dest_warp_id": 0
     },
     {
       "x": 14,
       "y": 51,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 10
+      "dest_map": "MAP_BATTLE_FRONTIER_LOUNGE8",
+      "dest_warp_id": 0
     },
     {
       "x": 21,
@@ -475,8 +475,8 @@
       "x": 4,
       "y": 51,
       "elevation": 0,
-      "dest_map": "MAP_BATTLE_FRONTIER_OUTSIDE_EAST",
-      "dest_warp_id": 12
+      "dest_map": "MAP_BATTLE_FRONTIER_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
     },
     {
       "x": 28,

@@ -1589,3 +1589,23 @@ gTilesetPalettes_SeviiIslands6::
 	.align 2
 gTilesetTiles_SeviiIslands6::
 	.incbin "data/tilesets/secondary/seviiislands6/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_BattleFrontierRankingHall::
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_BattleFrontierRankingHall::
+	.incbin "data/tilesets/secondary/battlefrontierrankinghall/tiles.4bpp.lz"
