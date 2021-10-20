@@ -1215,7 +1215,22 @@ static void SetCursorMonData(void *pokemon, u8 mode)
             gPSSData->cursorMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
             if(gPSSData->cursorMonSpecies == SPECIES_DEOXYS)
             {
-                gPSSData->cursorMonPersonality = GetMonData(mon, MON_DATA_FORME);
+                switch(GetMonData(mon, MON_DATA_FORME))
+                {
+                    case 1: //Attack Forme
+                        gPSSData->cursorMonSpecies = 65531;
+                        break;
+                    case 2:
+                        gPSSData->cursorMonSpecies = 65532;
+                        break;
+                    case 3:
+                        gPSSData->cursorMonSpecies = 65533;
+                        break;
+                    default:
+                        gPSSData->cursorMonSpecies = 65530;
+                        break;
+                }
+                gPSSData->cursorMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
             }
             else
             {
@@ -1247,7 +1262,22 @@ static void SetCursorMonData(void *pokemon, u8 mode)
             gPSSData->cursorMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
             if(gPSSData->cursorMonSpecies == SPECIES_DEOXYS)
             {
-                gPSSData->cursorMonPersonality = GetMonData(boxMon, MON_DATA_FORME);
+                switch(GetMonData(boxMon, MON_DATA_FORME))
+                {
+                    case 1: //Attack Forme
+                        gPSSData->cursorMonSpecies = 65531;
+                        break;
+                    case 2:
+                        gPSSData->cursorMonSpecies = 65532;
+                        break;
+                    case 3:
+                        gPSSData->cursorMonSpecies = 65533;
+                        break;
+                    default:
+                        gPSSData->cursorMonSpecies = 65530;
+                        break;
+                }
+                gPSSData->cursorMonPersonality = GetMonData(boxMon, MON_DATA_PERSONALITY);
             }
             else
             {
@@ -1292,7 +1322,10 @@ static void SetCursorMonData(void *pokemon, u8 mode)
 
         txtPtr = gPSSData->cursorMonTexts[1];
         *(txtPtr)++ = CHAR_SLASH;
-        StringCopyPadded(txtPtr, gSpeciesNames[gPSSData->cursorMonSpecies], CHAR_SPACE, 5);
+        if(gPSSData->cursorMonSpecies >= 65530 && gPSSData->cursorMonSpecies <= 65533)
+            StringCopyPadded(txtPtr, gSpeciesNames[SPECIES_DEOXYS], CHAR_SPACE, 5);
+        else
+            StringCopyPadded(txtPtr, gSpeciesNames[gPSSData->cursorMonSpecies], CHAR_SPACE, 5);
 
         txtPtr = gPSSData->cursorMonTexts[2];
         *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;
