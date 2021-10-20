@@ -417,6 +417,8 @@ static const u8 sText_AllyPkmnPrefix2[] = _("Ally");
 static const u8 sText_FoePkmnPrefix4[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
 static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}!");
+static const u8 sText_MonPickedUpItem[] = _("Your POKéMON picked\nup some items!");
+static const u8 sText_MonPickedUpItemSolo[] = _("{B_BUFF1} picked up {B_BUFF2} {B_TRAINER2_LOSE_TEXT}!");
 
 //link title strings
 static const u8 sText_LinkTrainerSentOutPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_OPPONENT_MON1_NAME}!");
@@ -898,7 +900,9 @@ const u8 *const gBattleStringsTable[] = {
     [STRINGID_TRAINER1WINTEXT - 12]               = sText_Trainer1WinText,
     [STRINGID_TRAINER1MON2COMEBACK - 12]          = sText_Trainer1RecallPkmn2,
     [STRINGID_TRAINER1MON1AND2COMEBACK - 12]      = sText_Trainer1RecallBoth,
-    [STRINGID_ENEMYABOUTTOSWITCHPKMNNOPREDICT - 12] = sText_EnemyAboutToSwitchPkmnNoPredict
+    [STRINGID_ENEMYABOUTTOSWITCHPKMNNOPREDICT - 12] = sText_EnemyAboutToSwitchPkmnNoPredict,
+    [STRINGID_PICKUP - 12]                        = sText_MonPickedUpItem,
+    [STRINGID_PICKUPSOLO - 12]                    = sText_MonPickedUpItemSolo
 };
 
 const u16 gMissStringIds[] = {

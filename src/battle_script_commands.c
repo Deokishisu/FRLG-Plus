@@ -8863,6 +8863,10 @@ static void atkE5_pickup(void)
     u32 j;
     u16 species, heldItem;
     u32 ability;
+    u8 nickname[POKEMON_NAME_LENGTH * 2];
+    u32 index = 0;
+    u32 count = 0;
+    u32 pickupSuccess = 0;
 
     for (i = 0; i < PARTY_SIZE; ++i)
     {
@@ -8880,9 +8884,30 @@ static void atkE5_pickup(void)
                 if (sPickupItems[j].chance > random)
                     break;
             SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sPickupItems[j]);
+            pickupSuccess++;
+            index = i;
         }
     }
-    ++gBattlescriptCurrInstr;
+    if(pickupSuccess == 1) // only one Pokemon has picked something up, print solo message
+    {
+        GetMonData(&gPlayerParty[index], MON_DATA_NICKNAME, nickname);
+        StringCopy10(gBattleTextBuff1, nickname);
+
+        if(GetMonData(&gPlayerParty[index], MON_DATA_HELD_ITEM) == ITEM_ORAN_BERRY || GetMonData(&gPlayerParty[index], MON_DATA_HELD_ITEM) == ITEM_ASPEAR_BERRY)
+            StringCopy(gBattleTextBuff2, (u8 *)gText_An);
+        else
+            StringCopy(gBattleTextBuff2, (u8 *)gText_A);
+        CopyItemName(GetMonData(&gPlayerParty[index], MON_DATA_HELD_ITEM), gBattleTextBuff3);
+        BattleScriptPush(gBattlescriptCurrInstr + 1);
+        gBattlescriptCurrInstr = BattleScript_PickedUpItemSolo;
+    }
+    else if(pickupSuccess > 1) // multiple Pokemon have picked something up, print multi message
+    {
+        BattleScriptPush(gBattlescriptCurrInstr + 1);
+        gBattlescriptCurrInstr = BattleScript_PickedUpItem;
+    }
+    else
+        ++gBattlescriptCurrInstr;
 }
 
 static void atkE6_docastformchangeanimation(void)

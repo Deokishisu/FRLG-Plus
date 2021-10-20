@@ -2935,6 +2935,16 @@ BattleScript_PayDayMoneyAndPickUpItems::
 	pickup
 	end2
 
+BattleScript_PickedUpItem::
+	printstring STRINGID_PICKUP
+	waitmessage 0x40
+	return
+
+BattleScript_PickedUpItemSolo::
+	printstring STRINGID_PICKUPSOLO
+	waitmessage 0x40
+	return
+
 BattleScript_LocalBattleLost::
 	jumpifbattletype BATTLE_TYPE_BATTLE_TOWER, BattleScript_EReaderOrSecretBaseTrainerEnd
 	jumpifbattletype BATTLE_TYPE_TRAINER_TOWER, BattleScript_BattleTowerLost
@@ -3011,7 +3021,7 @@ BattleScript_BattleTowerTrainerBattleWon::
 	jumpifnotbattletype BATTLE_TYPE_DOUBLE, BattleScript_BattleTowerEtcTrainerBattleWonSkipText
 	printstring STRINGID_TRAINER2CLASS
 BattleScript_BattleTowerEtcTrainerBattleWonSkipText::
-	pickup
+	//pickup
 	end2
 
 BattleScript_MasterTrainerBattleWon::
@@ -3020,7 +3030,7 @@ BattleScript_MasterTrainerBattleWon::
 	waitstate
 	printstring STRINGID_TRAINER1LOSETEXT
 	waitmessage 0x40
-	pickup
+	//pickup
 	end2
 
 BattleScript_SmokeBallEscape::

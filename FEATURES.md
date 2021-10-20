@@ -74,6 +74,7 @@
 - Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, health bars animate much faster, and pressing the A or B button during text delays will skip them. When set to instant, health and experience bars will animate instantly in addition to everything that the fast setting offers.
 - New battle style option, switch, which is like shift but doesn't tell what the opponent is switching in. Shift has been renamed to predict.
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
+- A message is now printed at the end of a battle if a Pokémon has gained an item through the Pickup ability.
 
 ##### Move Tutor-related:
 - There are eight new Move Tutors scattered throughout the world that teach Fury Cutter, Rollout, Dynamic Punch, Sleep Talk, Nightmare, Self-Destruct, Sky Attack, and Swagger respectively.
