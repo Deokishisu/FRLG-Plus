@@ -61,6 +61,13 @@
 - The Generation III Poké Ball varieties can be purchased in Silph Co. after it has been liberated from Team Rocket.
 - The Light Ball is held rarely by Pikachu outside of Viridian Forest, making it obtainable without trading.
 - LGPE-style bonus Premier Balls in shops. Buying multiples of ten of any Poké Ball type will give bonus Premier Balls.
+- Trade evolution items are now available before the postgame.
+	* Up-grade can be found in Silph Co.
+	* Metal Coats can be found rarely on wild Magnemite and Magneton.
+	* Dragon Scales can be found rarely on wild Dratini and Dragonair.
+	* King's Rocks can be found rarely on wild Poliwhirl and Slowbro.
+	* Deep Sea Scales can be found rarely on wild Chinchou underwater.
+	* Deep Sea Teeth can be found rarely on wild Gyarados underwater.
 
 ##### Battle-related:
 - Health bar drains faster at higher HP levels.

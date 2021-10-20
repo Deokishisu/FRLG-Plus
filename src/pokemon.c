@@ -7727,7 +7727,19 @@ void SetWildMonHeldItem(void)
                 SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &item);
             }
             else
+            {
                 SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
+
+                // Only underwater Gyarados can hold the DeepSeaTooth
+                if(gBaseStats[species].item2 == ITEM_DEEP_SEA_TOOTH)
+                {
+                    if(gMapHeader.mapType != MAP_TYPE_UNDERWATER)
+                    {
+                        u16 item = ITEM_NONE;
+                        SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &item);
+                    }
+                }
+            }
         }
     }
 }

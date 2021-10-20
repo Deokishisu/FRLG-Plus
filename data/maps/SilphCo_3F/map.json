@@ -68,8 +68,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SilphCo_3F_EventScript_ItemHyperPotion",
-      "flag": "FLAG_HIDE_SILPH_CO_3F_HYPER_POTION"
+      "script": "FiveIsland_RocketWarehouse_EventScript_ItemUpGrade",
+      "flag": "FLAG_HIDE_FIVE_ISLAND_ROCKET_WAREHOUSE_UP_GRADE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
