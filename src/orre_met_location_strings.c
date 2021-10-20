@@ -29,9 +29,9 @@ const u8 gPokemon_HQ_Lab[] = _("POKéMON HQ LAB$");
 const u8 gRock[] = _("ROCK$");
 const u8 gXD_Eevee_Met_Location[] = _("obtained from {DYNAMIC 0x03}'s dad.\n\n\n$");
 const u8 gColosseum_Starter_Met_Location[] = _("was {DYNAMIC 0x03}'s old friend.\n\n\n$");
-const u8 gDukings_Plusle[] = _("received from {DYNAMIC 0x03}.\n$");
-const u8 gXD_Eevee_Met_Location_JP[] = _("obtained from {JPN}{DYNAMIC 0x03}{ENG}'s dad.\n\n\n$");
+const u8 gDukings_Plusle[] = _("received from {DYNAMIC 0x03}\n$");
+const u8 gXD_Eevee_Met_Location_JP[] = _("obtained from {JPN}{DYNAMIC 0x03}{ENG}'s\ndad.\n\n\n$");
 const u8 gColosseum_Starter_Met_Location_JP[] = _("was {JPN}{DYNAMIC 0x03}{ENG}'s old friend.\n\n\n$");
-const u8 gDukings_Plusle_JP[] = _("received from {JPN}{DYNAMIC 0x03}{ENG}.\n$");
+const u8 gDukings_Plusle_JP[] = _("received from {JPN}{DYNAMIC 0x03}{ENG}\n$");
 const u8 gOtherText_MetDistantLand[] = _("a distant land.$");
 

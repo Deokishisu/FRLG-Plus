@@ -2875,6 +2875,7 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void) //if different OT
     u8 natureMetOrHatchedAtLevelStr[152];
     u8 *orreMetLocationString;
     u8 playerOTNameStr[152];
+    u8 tempStr[20];
 
     DynamicPlaceholderTextUtil_Reset();
     nature = GetNature(&sMonSummaryScreen->currentMon);
@@ -2963,6 +2964,8 @@ static void PokeSum_PrintTrainerMemo_Mon_NotHeldByOT(void) //if different OT
         {
             if(IsMonFromOrre() && (metLocation == 254 || metLocation == 0))
             {
+                GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_NAME, tempStr);
+                DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, tempStr);
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(playerOTNameStr, gSummaryMetLocationTextOrreEeveelutionsDuking);
                 DynamicPlaceholderTextUtil_ExpandPlaceholders(natureMetOrHatchedAtLevelStr, playerOTNameStr);
             }
@@ -2990,7 +2993,7 @@ static bool8 IsMonFromOrre(void)
 static void PokeSum_PrintTrainerMemo_Mon(void)
 {
     // Pokemon from Orre are always considered outsiders by the summary screen
-    if (PokeSum_BufferOtName_IsEqualToCurrentOwner(&sMonSummaryScreen->currentMon) == TRUE && !IsMonFromOrre)
+    if (PokeSum_BufferOtName_IsEqualToCurrentOwner(&sMonSummaryScreen->currentMon) == TRUE && !IsMonFromOrre())
         PokeSum_PrintTrainerMemo_Mon_HeldByOT();
     else
         PokeSum_PrintTrainerMemo_Mon_NotHeldByOT();
