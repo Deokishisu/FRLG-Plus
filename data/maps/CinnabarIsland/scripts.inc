@@ -173,6 +173,7 @@ CinnabarIsland_EventScript_BillExitToPokeCenter:: @ 81670A0
 
 CinnabarIsland_Movement_BillExitToPokeCenter:: @ 81670AB
 	walk_right
+	walk_right
 	walk_down
 	walk_down
 	walk_down
