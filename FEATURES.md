@@ -36,7 +36,7 @@
 		* The Master Trainers for Ditto, Articuno, Zapdos, Moltres, Mewtwo, and Mew want to see Pokémon with 100 total Effort Values.
 		* Master Trainers that would have been on Cycling Road have been moved to Routes 16 and 18.
 			* Additionally, some Master Trainers have been repositioned on their maps to account for FRLG area design.
-		* Clearing a Master Trainer confers a title that can be used in link battles with other FRLG++ players.
+		* Clearing a Master Trainer confers a title that can be used in link battles with other FRLG+ players.
 		* Clearing all 151 Master Trainers unlocks a secret superboss Trainer.
 
 #### Quality of Life Changes:
