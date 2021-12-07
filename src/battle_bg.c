@@ -959,6 +959,8 @@ void DrawBattleEntryBackground(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1033,6 +1035,8 @@ static u8 GetBattleTerrainOverride(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 

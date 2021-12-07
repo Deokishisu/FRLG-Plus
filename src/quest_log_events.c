@@ -339,6 +339,8 @@ static bool8 ShouldRegisterEvent_HandleBeatStoryTrainer(u16 eventId, const u16 *
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1512,6 +1514,8 @@ static const u16 *BufferQuestLogText_DefeatedGymLeader(const u16 *eventData)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1632,6 +1636,8 @@ static const u16 *BufferQuestLogText_DefeatedEliteFourMember(const u16 *eventDat
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1704,6 +1710,8 @@ static const u16 *BufferQuestLogText_DefeatedTrainer(const u16 *eventData)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 

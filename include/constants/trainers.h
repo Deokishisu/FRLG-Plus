@@ -3,6 +3,7 @@
 
 #include "constants/opponents.h"
 #include "constants/master_opponents.h"
+#include "constants/mt_battle_opponents.h"
 
 #define TRAINER_ENCOUNTER_MUSIC_MALE         0 // standard male encounter music
 #define TRAINER_ENCOUNTER_MUSIC_FEMALE       1 // standard female encounter music
@@ -192,5 +193,6 @@
 #define F_TRAINER_PARTY_CUSTOM_MOVESET (1 << 0)
 #define F_TRAINER_PARTY_HELD_ITEM      (1 << 1)
 #define F_TRAINER_PARTY_EVS            (1 << 2)
+#define F_TRAINER_MT_BATTLE            (1 << 3)
 
 #endif  // GUARD_CONSTANTS_TRAINERS_H

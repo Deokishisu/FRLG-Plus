@@ -5214,6 +5214,8 @@ static void atk5D_getmoneyreward(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -5260,6 +5262,11 @@ static void atk5D_getmoneyreward(void)
                     party5 = sTrainers[gTrainerBattleOpponent_A].party.ItemCustomMovesEVs;
                     
                     lastMonLevel = party5[sTrainers[gTrainerBattleOpponent_A].partySize - 1].lvl;
+                }
+                break;
+            case F_TRAINER_MT_BATTLE:
+                {
+                    lastMonLevel = 0;
                 }
                 break;
             }

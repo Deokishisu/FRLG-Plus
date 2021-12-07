@@ -18,6 +18,7 @@
 #include "event_data.h"
 #include "trainer_tower.h"
 #include "constants/battle_anim.h"
+#include "constants/map_types.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
 
@@ -1127,6 +1128,8 @@ static void OpponentHandleDrawTrainerPic(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1165,6 +1168,8 @@ static void OpponentHandleTrainerSlide(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 

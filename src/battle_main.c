@@ -41,6 +41,7 @@
 #include "constants/hold_effects.h"
 #include "constants/items.h"
 #include "constants/layouts.h"
+#include "constants/map_types.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/songs.h"
@@ -556,6 +557,22 @@ const struct TrainerMoney gTrainerMoneyTable[] =
     { CLASS_AQUA_ADMIN, 10 },
     { CLASS_AQUA_LEADER, 20 },
     { CLASS_BOSS, 25 },
+    { CLASS_NAVIGATOR, 0 },
+    { CLASS_FUN_OLD_MAN, 0 },
+    { CLASS_MATRON, 0 },
+    { CLASS_AREA_LEADER, 0 },
+    { CLASS_RESEARCHER, 0 },
+    { CLASS_HUNTER, 0 },
+    { CLASS_RIDER, 0 },
+    { CLASS_BODYBUILDER, 0 },
+    { CLASS_CURMUDGEON, 0 },
+    { CLASS_SUPERTRAINER, 0 },
+    { CLASS_NEWSCASTER, 0 },
+    { CLASS_WORKER, 0 },
+    { CLASS_CHASER, 0 },
+    { CLASS_CASUAL_DUDE, 0 },
+    { CLASS_CASUAL_GUY, 0 },
+    { CLASS_MT_BTLMASTER, 0 },
     { 0xFF, 5 },
 };
 
@@ -1532,6 +1549,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1713,6 +1732,33 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                     }
                     SetMonData(&party[i], MON_DATA_FRIENDSHIP, &friendship);
                     CalculateMonStats(&party[i], FALSE);
+                    break;
+                }
+                case F_TRAINER_MT_BATTLE:
+                {
+                    const struct TrainerMonMtBattle *partyData = sTrainers[trainerNum].party.NoItemMtBattle;
+                    u8 gender;
+                    u8 friendship = 255;
+
+                    for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; ++j)
+                        nameHash += gSpeciesNames[partyData[i].species][j];
+                    if (partyData[i].gender == 1)
+                        gender = MON_FEMALE;
+                    else if (partyData[i].gender == 2)
+                        gender = MON_GENDERLESS;
+                    else
+                        gender = MON_MALE;
+                    personalityValue += nameHash << 8;
+                    if(ivCalcMode == IV_CALC_PERFECT)
+                        fixedIV = 31;
+                    else
+                        fixedIV = 0;
+                    CreateMonWithGenderNatureAbility(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, gender, partyData[i].nature, partyData[i].abilityNum);
+                    for (j = 0; j < MAX_MON_MOVES; ++j)
+                    {
+                        SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
+                        SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
+                    }
                     break;
                 }
             }
@@ -3754,6 +3800,8 @@ static void HandleEndTurn_BattleWon(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 

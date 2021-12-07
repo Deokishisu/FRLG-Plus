@@ -3913,7 +3913,7 @@ static void GetPlayerPositionOnRegionMap(void)
         y = gSaveBlock1Ptr->pos.y;
         break;
     case MAP_TYPE_UNDERGROUND:
-    case MAP_TYPE_UNKNOWN:
+    case MAP_TYPE_MT_BATTLE:
         mapHeader = Overworld_GetMapHeaderByGroupAndId(gSaveBlock1Ptr->escapeWarp.mapGroup, gSaveBlock1Ptr->escapeWarp.mapNum);
         sMapCursor->selectedMapsec = mapHeader->regionMapSectionId;
         width = mapHeader->mapLayout->width;

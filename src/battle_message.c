@@ -16,6 +16,7 @@
 #include "new_menu_helpers.h"
 #include "battle_controllers.h"
 #include "graphics.h"
+#include "constants/map_types.h"
 #include "constants/moves.h"
 #include "constants/items.h"
 #include "constants/trainer_classes.h"
@@ -1727,6 +1728,8 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 

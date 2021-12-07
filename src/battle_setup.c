@@ -733,6 +733,13 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
             party = gTrainers[opponentId].party.ItemCustomMovesEVs;
             for (i = 0; i < count; ++i)
                 sum += (party[i].lvl + levelScaling);
+        }    
+    case F_TRAINER_MT_BATTLE:
+        {
+            const struct TrainerMonMtBattle *party;
+            party = gTrainers[opponentId].party.NoItemMtBattle;
+            for (i = 0; i < count; ++i)
+                sum += (party[i].lvl);
         }
     }
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
@@ -764,6 +771,8 @@ static u8 GetTrainerBattleTransition(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 
@@ -1006,9 +1015,9 @@ u16 GetRivalBattleFlags(void)
 u16 Script_HasTrainerBeenFought(void)
 {
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
-    {
         return CheckMasterTrainerFlag(gSpecialVar_0x8009);
-    }
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        return FlagGet(FLAG_TEMP_1);
     return FlagGet(GetTrainerAFlag());
 }
 
@@ -1017,6 +1026,12 @@ void SetBattledTrainerFlag(void)
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
     {
         SetMasterTrainerFlag(gSpecialVar_0x8009);
+        return;
+    }
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+    {
+        VarSet(VAR_MT_BATTLE_PROGRESS, VarGet(VAR_MT_BATTLE_PROGRESS) + 1);
+        FlagSet(FLAG_TEMP_1);
         return;
     }
     FlagSet(GetTrainerAFlag());
@@ -1031,9 +1046,9 @@ static void SetBattledTrainerFlag2(void)
 bool8 HasTrainerBeenFought(u16 trainerId)
 {
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
-    {
         return CheckMasterTrainerFlag(gSpecialVar_0x8009);
-    }
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        return FlagGet(FLAG_TEMP_1);
     return FlagGet(TRAINER_FLAGS_START + trainerId);
 }
 
@@ -1042,6 +1057,12 @@ void SetTrainerFlag(u16 trainerId)
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
     {
         SetMasterTrainerFlag(gSpecialVar_0x8009);
+        return;
+    }
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+    {
+        VarSet(VAR_MT_BATTLE_PROGRESS, VarGet(VAR_MT_BATTLE_PROGRESS) + 1);
+        FlagSet(FLAG_TEMP_1);
         return;
     }
     FlagSet(TRAINER_FLAGS_START + trainerId);

@@ -6,6 +6,7 @@
 #include "link.h"
 #include "overworld.h"
 #include "quest_log.h"
+#include "constants/map_types.h"
 #include "constants/trainer_classes.h"
 
 struct QuestLogStruct_TrainerBattleRecord
@@ -32,6 +33,8 @@ void TrySetQuestLogBattleEvent(void)
 
     if(FlagGet(FLAG_MASTER_TRAINER_BATTLE))
         sTrainers = (struct Trainer*)gMasterTrainers;
+    else if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        sTrainers = (struct Trainer*)gMtBattleTrainers;
     else
         sTrainers = (struct Trainer*)gTrainers;
 

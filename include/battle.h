@@ -113,6 +113,17 @@ struct TrainerMonItemCustomMovesEVs
     u16 moves[4];
 };
 
+struct TrainerMonMtBattle
+{
+    u8 lvl;
+    u8 nature;
+    u8 gender;
+    u8 abilityNum;
+    u16 species;
+    u16 moves[4];
+};
+
+
 union TrainerMonPtr
 {
     const struct TrainerMonNoItemDefaultMoves *NoItemDefaultMoves;
@@ -120,6 +131,7 @@ union TrainerMonPtr
     const struct TrainerMonItemDefaultMoves *ItemDefaultMoves;
     const struct TrainerMonItemCustomMoves *ItemCustomMoves;
     const struct TrainerMonItemCustomMovesEVs *ItemCustomMovesEVs;
+    const struct TrainerMonMtBattle *NoItemMtBattle;
 };
 
 struct Trainer
@@ -138,6 +150,7 @@ struct Trainer
 
 extern const struct Trainer gTrainers[];
 extern const struct Trainer gMasterTrainers[];
+extern const struct Trainer gMtBattleTrainers[];
 
 struct ResourceFlags
 {
