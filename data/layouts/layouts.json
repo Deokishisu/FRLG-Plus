@@ -4764,6 +4764,30 @@
       "secondary_tileset": "gTileset_BattleFrontierRankingHall",
       "border_filepath": "data/layouts/BattleFrontier_RankingHall/border.bin",
       "blockdata_filepath": "data/layouts/BattleFrontier_RankingHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_BATTLE_EXTERIOR",
+      "name": "Mt_Battle_Exterior_Layout",
+      "width": 29,
+      "height": 27,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PalletTown",
+      "border_filepath": "data/layouts/Mt_Battle_Exterior/border.bin",
+      "blockdata_filepath": "data/layouts/Mt_Battle_Exterior/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_BATTLE_LOBBY",
+      "name": "Mt_Battle_Lobby_Layout",
+      "width": 17,
+      "height": 12,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonCenter",
+      "border_filepath": "data/layouts/Mt_Battle_Lobby/border.bin",
+      "blockdata_filepath": "data/layouts/Mt_Battle_Lobby/map.bin"
     }
   ]
 }

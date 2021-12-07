@@ -1328,3 +1328,9 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/BattleFrontier_RankingHall/scripts.inc"
 	.include "data/maps/BattleFrontier_RankingHall/text.inc"
+
+	.include "data/maps/Mt_Battle_Exterior/scripts.inc"
+	.include "data/maps/Mt_Battle_Exterior/text.inc"
+
+	.include "data/maps/Mt_Battle_Lobby/scripts.inc"
+	.include "data/maps/Mt_Battle_Lobby/text.inc"

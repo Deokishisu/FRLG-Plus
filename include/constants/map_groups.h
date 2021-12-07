@@ -556,6 +556,8 @@
 #define MAP_BATTLE_FRONTIER_LOUNGE6                 (19 | (43 << 8))
 #define MAP_BATTLE_FRONTIER_LOUNGE7                 (20 | (43 << 8))
 #define MAP_BATTLE_FRONTIER_LOUNGE8                 (21 | (43 << 8))
+#define MAP_MT_BATTLE_EXTERIOR                      (22 | (43 << 8))
+#define MAP_MT_BATTLE_LOBBY                         (23 | (43 << 8))
 
 #define MAP_GROUPS_COUNT 44
 

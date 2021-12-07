@@ -183,3 +183,22 @@ BattleFrontier_OutsideEast_Movement_SudowoodoShakeAngry: @ 8242D69
 	delay_2
 	face_down
 	step_end
+
+BattleTower_Outside_EventScript_MtBattleMan::
+	lock
+	faceplayer
+	msgbox BattleTower_Outside_Text_MtBattleMan, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq BattleTower_Outside_EventScript_MtBattleWarp
+	release
+	end
+
+BattleTower_Outside_EventScript_MtBattleWarp::
+	release
+	warpteleport MAP_MT_BATTLE_EXTERIOR, 255, 14, 20
+	waitstate
+	end
+
+BattleTower_Outside_Text_MtBattleMan::
+	.string "PLACEHOLDER\n"
+	.string "Teleport to MT. BATTLE?$"
