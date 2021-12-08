@@ -4788,6 +4788,18 @@
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/Mt_Battle_Lobby/border.bin",
       "blockdata_filepath": "data/layouts/Mt_Battle_Lobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_MT_BATTLE_AREA1",
+      "name": "Mt_Battle_Area1_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_PalletTown",
+      "border_filepath": "data/layouts/Mt_Battle_Area1/border.bin",
+      "blockdata_filepath": "data/layouts/Mt_Battle_Area1/map.bin"
     }
   ]
 }

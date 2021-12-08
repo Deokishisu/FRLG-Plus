@@ -16,7 +16,7 @@
   "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
+      "graphics_id": "OBJ_EVENT_GFX_XD_CURMUDGEON",
       "in_connection": false,
       "x": 10,
       "y": 14,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_MEOWTH",
+      "graphics_id": "OBJ_EVENT_GFX_DELCATTY",
       "in_connection": false,
       "x": 11,
       "y": 14,

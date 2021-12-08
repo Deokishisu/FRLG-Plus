@@ -16,7 +16,7 @@
   "connections": 0,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_NURSE",
+      "graphics_id": "OBJ_EVENT_GFX_XD_NURSE",
       "in_connection": false,
       "x": 2,
       "y": 2,
@@ -30,7 +30,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_CLERK",
+      "graphics_id": "OBJ_EVENT_GFX_XD_RECEPTIONIST",
       "in_connection": false,
       "x": 15,
       "y": 2,
@@ -44,10 +44,10 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_CABLE_CLUB_RECEPTIONIST",
+      "graphics_id": "OBJ_EVENT_GFX_XD_RECEPTIONIST",
       "in_connection": false,
       "x": 8,
-      "y": 4,
+      "y": 3,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -100,7 +100,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_XD_CURMUDGEON",
       "in_connection": false,
       "x": 14,
       "y": 6,

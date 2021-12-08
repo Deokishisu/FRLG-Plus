@@ -405,6 +405,18 @@ const struct SpriteFrameImage gObjectEventPicTable_OldMan1[] = {
     overworld_frame(gObjectEventPic_OldMan1, 2, 4, 9),
 };
 
+const struct SpriteFrameImage gObjectEventPicTable_Curmudgeon[] = {
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Curmudgeon, 2, 4, 8),
+};
+
 const struct SpriteFrameImage gObjectEventPicTable_WorkerM[] = {
     overworld_frame(gObjectEventPic_WorkerM, 2, 4, 0),
     overworld_frame(gObjectEventPic_WorkerM, 2, 4, 1),
@@ -1045,6 +1057,19 @@ const struct SpriteFrameImage gObjectEventPicTable_Nurse[] = {
     overworld_frame(gObjectEventPic_Nurse, 2, 4, 3),
 };
 
+const struct SpriteFrameImage gObjectEventPicTable_XDNurse[] = {
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 0),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 1),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 2),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 0),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 0),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 1),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 1),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 2),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 2),
+    overworld_frame(gObjectEventPic_XDNurse, 2, 4, 3),
+};
+
 const struct SpriteFrameImage gObjectEventPicTable_UnusedMaleReceptionist[] = {
     overworld_frame(gObjectEventPic_UnusedMaleReceptionist, 2, 4, 0),
     overworld_frame(gObjectEventPic_UnusedMaleReceptionist, 2, 4, 1),
@@ -1176,6 +1201,18 @@ const struct SpriteFrameImage gObjectEventPicTable_CableClubReceptionist[] = {
     overworld_frame(gObjectEventPic_CableClubReceptionist, 2, 4, 6),
     overworld_frame(gObjectEventPic_CableClubReceptionist, 2, 4, 7),
     overworld_frame(gObjectEventPic_CableClubReceptionist, 2, 4, 8),
+};
+
+const struct SpriteFrameImage gObjectEventPicTable_XDReceptionist[] = {
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 0),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 1),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 2),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 3),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 4),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 5),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 6),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 7),
+    overworld_frame(gObjectEventPic_XDReceptionist, 2, 4, 8),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_UnionRoomReceptionist[] = {
@@ -1733,6 +1770,18 @@ const struct SpriteFrameImage gObjectEventPicTable_Lapras[] = {
     overworld_frame(gObjectEventPic_Lapras, 2, 2, 1),
     overworld_frame(gObjectEventPic_Lapras, 2, 2, 2),
     overworld_frame(gObjectEventPic_Lapras, 2, 2, 2),
+};
+
+const struct SpriteFrameImage gObjectEventPicTable_Delcatty[] = {
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 0),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 1),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 2),
+    overworld_frame(gObjectEventPic_Delcatty, 2, 2, 2),
 };
 
 const struct SpriteFrameImage gObjectEventPicTable_Zapdos[] = {

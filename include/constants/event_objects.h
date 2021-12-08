@@ -195,8 +195,12 @@
 #define OBJ_EVENT_GFX_MASTER_PSYCHIC_M 191
 #define OBJ_EVENT_GFX_MASTER_SCIENTIST 192
 #define OBJ_EVENT_GFX_MASTER_YOUNGSTER 193
+#define OBJ_EVENT_GFX_DELCATTY 194
+#define OBJ_EVENT_GFX_XD_CURMUDGEON 195
+#define OBJ_EVENT_GFX_XD_NURSE 196
+#define OBJ_EVENT_GFX_XD_RECEPTIONIST 197
 
-#define NUM_OBJ_EVENT_GFX     194
+#define NUM_OBJ_EVENT_GFX     198
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
