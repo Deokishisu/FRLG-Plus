@@ -1,5 +1,6 @@
 #include "global.h"
 #include "gflib.h"
+#include "event_data.h"
 #include "menu.h"
 #include "list_menu.h"
 #include "menu_indicators.h"
@@ -9,6 +10,8 @@
 #include "graphics.h"
 #include "strings.h"
 #include "pokemon_icon.h"
+#include "constants/map_types.h"
+#include "constants/menu.h"
 #include "constants/songs.h"
 
 struct MysteryGiftLinkMenuStruct
@@ -75,6 +78,30 @@ const struct MoveMenuInfoIcon gMoveMenuInfoIcons[] =
     { 40, 12, 0xC8 },       // -Accuracy- icon
     { 40, 12, 0xE0 },       // -PP- icon
     { 40, 12, 0xE8 },       // -Effect- icon
+};
+
+static const u8 *const sDescriptionPtrs_PokeCouponExchange[] = {
+    gText_MentalHerb_Description,
+    gText_WhiteHerb_Description,
+    gText_QuickClaw_Description,
+    gText_FocusBand_Description,
+    gText_Brightpowder_Description,
+    gText_KingsRock_Description,
+    gText_ScopeLens_Description,
+    gText_ChoiceBand_Description,
+    gText_ShellBell_Description,
+    gText_Leftovers_Description,
+    gText_LuckyEgg_Description,
+    gText_LiechiBerry_Description,
+    gText_GanlonBerry_Description,
+    gText_SalacBerry_Description,
+    gText_PetayaBerry_Description,
+    gText_ApicotBerry_Description,
+    gText_LansatBerry_Description,
+    gText_StarfBerry_Description,
+    gText_EvolutionStone_Description,
+    gText_EvolutionStone_Description,
+    gText_Cancel_Description
 };
 
 static void ListMenuDummyTask(u8 taskId)
@@ -334,6 +361,12 @@ static u8 ListMenuInitInternal(const struct ListMenuTemplate *listMenuTemplate, 
     ListMenuPrintEntries(list, list->cursorPos, 0, list->template.maxShowed);
     ListMenuDrawCursor(list);
     ListMenuCallSelectionChangedCallback(list, TRUE);
+
+    if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE && gSpecialVar_0x8004 == LISTMENU_POKECOUPON_PRIZES)
+    {
+        FillWindowPixelBuffer(0, PIXEL_FILL(1));
+        AddTextPrinterParameterized2(0, 2, sDescriptionPtrs_PokeCouponExchange[list->template.items[list->cursorPos + list->itemsAbove].index], 0, NULL, 2, 1, 3);
+    }
 
     return listTaskId;
 }
@@ -599,6 +632,11 @@ static bool8 ListMenuChangeSelection(struct ListMenu *list, bool8 updateCursorAn
             CopyWindowToVram(list->template.windowId, COPYWIN_GFX);
             break;
         }
+    }
+    if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE && gSpecialVar_0x8004 == LISTMENU_POKECOUPON_PRIZES)
+    {
+        FillWindowPixelBuffer(0, PIXEL_FILL(1));
+        AddTextPrinterParameterized2(0, 2, sDescriptionPtrs_PokeCouponExchange[list->template.items[list->cursorPos + list->itemsAbove].index], 0, NULL, 2, 1, 3);
     }
     return FALSE;
 }

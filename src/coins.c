@@ -5,6 +5,7 @@
 #include "text_window.h"
 #include "strings.h"
 #include "constants/coins.h"
+#include "constants/map_types.h"
 
 EWRAM_DATA static u8 sCoinsWindowId = 0;
 
@@ -51,7 +52,15 @@ bool8 RemoveCoins(u16 toSub)
 
 void PrintCoinsString_Parameterized(u8 windowId, u32 coinAmount, u8 x, u8 y, u8 speed)
 {
-    ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
+    if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+    {
+        ConvertIntToDecimalStringN(gStringVar4, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 7);
+    }
+    else
+    {
+        ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, gText_Coins);
+    }
     StringExpandPlaceholders(gStringVar4, gText_Coins);
     AddTextPrinterParameterized(windowId, 0, gStringVar4, x, y, speed, NULL);
 }
@@ -68,8 +77,15 @@ void PrintCoinsString(u32 coinAmount)
     u8 windowId;
     int width;
 
-    ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
-    StringExpandPlaceholders(gStringVar4, gText_Coins);
+    if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+    {
+        ConvertIntToDecimalStringN(gStringVar4, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 7);
+    }
+    else
+    {
+        ConvertIntToDecimalStringN(gStringVar1, coinAmount, STR_CONV_MODE_RIGHT_ALIGN, 4);
+        StringExpandPlaceholders(gStringVar4, gText_Coins);
+    }
     width = GetStringWidth(0, gStringVar4, 0);
     windowId = sCoinsWindowId;
     AddTextPrinterParameterized(windowId, 0, gStringVar4, 64 - width, 0xC, 0, NULL);
@@ -85,8 +101,16 @@ void ShowCoinsWindow(u32 coinAmount, u8 x, u8 y)
     PutWindowTilemap(sCoinsWindowId);
     TextWindow_SetStdFrame0_WithPal(sCoinsWindowId, 0x21D, 0xD0);
     DrawStdFrameWithCustomTileAndPalette(sCoinsWindowId, FALSE, 0x21D, 0xD);
-    AddTextPrinterParameterized(sCoinsWindowId, 2, gText_Coins_2, 0, 0, 0xFF, 0);
-    PrintCoinsString(coinAmount);
+    if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+    {
+        AddTextPrinterParameterized(sCoinsWindowId, 2, gText_PokeCoupons, 0, 0, 0xFF, 0);
+        PrintCoinsString(gSaveBlock1Ptr->externalEventData.currentPokeCoupons);
+    }
+    else
+    {
+        AddTextPrinterParameterized(sCoinsWindowId, 2, gText_Coins_2, 0, 0, 0xFF, 0);
+        PrintCoinsString(coinAmount);
+    }
 }
 
 void HideCoinsWindow(void)

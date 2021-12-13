@@ -88,6 +88,7 @@
 #define MULTICHOICE_SOUTHERN_BIRTH_NAVEL                       81
 #define MULTICHOICE_SOUTHERN_BIRTH_NAVEL_FARAWAY               82
 #define MULTICHOICE_MASTER_YOUNGSTER                           83
+#define MULTICHOICE_POKECOUPON_EXCHANGE                        84
 
 
 #define LISTMENU_BADGES                    0
@@ -99,6 +100,7 @@
 #define LISTMENU_TRAINER_TOWER_FLOORS      6
 #define LISTMENU_GYM_LEADERS               7
 #define LISTMENU_MASTER_TRAINER_TITLES     8
+#define LISTMENU_POKECOUPON_PRIZES         9
 
 // Std String Ids
 #define STDSTRING_COOL              0

@@ -36,6 +36,7 @@
 #include "fieldmap.h"
 #include "field_door.h"
 #include "constants/event_objects.h"
+#include "constants/map_types.h"
 
 extern u16 (*const gSpecials[])(void);
 extern u16 (*const gSpecialsEnd[])(void);
@@ -1878,7 +1879,10 @@ bool8 ScrCmd_updatecoinsbox(struct ScriptContext * ctx)
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
 
-    PrintCoinsString(GetCoins());
+    if(gMapHeader.mapType == MAP_TYPE_MT_BATTLE)
+        PrintCoinsString(gSaveBlock1Ptr->externalEventData.currentPokeCoupons);
+    else
+        PrintCoinsString(GetCoins());
     return FALSE;
 }
 

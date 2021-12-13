@@ -571,6 +571,48 @@ void MEventSetRamScript(u8 *script, u16 scriptSize)
     InitRamScript(script, scriptSize, 0xFF, 0xFF, 0xFF);
 }
 
+void CheckPokeCoupons(void)
+{
+    u32 coupons;
+    coupons = gSaveBlock1Ptr->externalEventData.currentPokeCoupons;
+    if(coupons < VarGet(VAR_TEMP_2))
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }
+    gSpecialVar_Result = TRUE;
+}
+
+void RemovePokeCoupons(void)
+{
+    u32 coupons = gSaveBlock1Ptr->externalEventData.currentPokeCoupons;
+    u32 toSub = VarGet(VAR_TEMP_2);
+
+    if(coupons - toSub > 0)
+        coupons -= toSub;
+    else
+        coupons = 0;
+
+    gSaveBlock1Ptr->externalEventData.currentPokeCoupons = coupons;
+}
+
+void AddPokeCoupons(void)
+{
+    u32 coupons = gSaveBlock1Ptr->externalEventData.currentPokeCoupons;
+    u32 lifetimeCoupons = gSaveBlock1Ptr->externalEventData.totalEarnedPokeCoupons;
+    u32 toAdd = VarGet(VAR_TEMP_2);
+    coupons += toAdd;
+    lifetimeCoupons += toAdd;
+
+    if(coupons > 9999999)
+        coupons = 9999999;
+    if(lifetimeCoupons > 9999999)
+        lifetimeCoupons = 9999999;
+
+    gSaveBlock1Ptr->externalEventData.currentPokeCoupons = coupons;
+    gSaveBlock1Ptr->externalEventData.totalEarnedPokeCoupons = lifetimeCoupons;
+}
+
 void GetStartingLevelOfRoute5DaycareMon(void)
 {
     ConvertIntToDecimalStringN(gStringVar3, GetLevelFromBoxMonExp(&gSaveBlock1Ptr->route5DayCareMon.mon), STR_CONV_MODE_LEFT_ALIGN, 2);

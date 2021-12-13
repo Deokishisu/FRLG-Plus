@@ -1266,6 +1266,16 @@ void ListMenu(void)
             task->data[6] = 0;
             task->data[15] = taskId;
             break;
+        case LISTMENU_POKECOUPON_PRIZES:
+            task->data[0] = 7;
+            task->data[1] = 21;
+            task->data[2] = 1;
+            task->data[3] = 1;
+            task->data[4] = 18;
+            task->data[5] = 12;
+            task->data[6] = 0;
+            task->data[15] = taskId;
+            break;
         case 99:
             break;
         default:
@@ -1276,7 +1286,7 @@ void ListMenu(void)
     }
 }
 
-static const u8 *const sListMenuLabels[][12] = {
+static const u8 *const sListMenuLabels[][21] = {
     [LISTMENU_BADGES] = 
     {
         gText_BoulderBadge,
@@ -1362,7 +1372,31 @@ static const u8 *const sListMenuLabels[][12] = {
     [LISTMENU_MASTER_TRAINER_TITLES] =
     {
         gOtherText_Exit,
-    }
+    },
+    [LISTMENU_POKECOUPON_PRIZES] =
+    {
+        gText_MentalHerb_PokeCoupons,
+        gText_WhiteHerb_PokeCoupons,
+        gText_QuickClaw_PokeCoupons,
+        gText_FocusBand_PokeCoupons,
+        gText_Brightpowder_PokeCoupons,
+        gText_KingsRock_PokeCoupons,
+        gText_ScopeLens_PokeCoupons,
+        gText_ChoiceBand_PokeCoupons,
+        gText_ShellBell_PokeCoupons,
+        gText_Leftovers_PokeCoupons,
+        gText_LuckyEgg_PokeCoupons,
+        gText_LiechiBerry_PokeCoupons,
+        gText_GanlonBerry_PokeCoupons,
+        gText_SalacBerry_PokeCoupons,
+        gText_PetayaBerry_PokeCoupons,
+        gText_ApicotBerry_PokeCoupons,
+        gText_LansatBerry_PokeCoupons,
+        gText_StarfBerry_PokeCoupons,
+        gText_MoonStone_PokeCoupons,
+        gText_SunStone_PokeCoupons,
+        gOtherText_Exit,
+    },
 };
 
 // to figure out how big the title list should be
