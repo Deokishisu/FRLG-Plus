@@ -71,7 +71,7 @@
 
 ##### Battle-related:
 - Health bar drains faster at higher HP levels.
-- Battle animation speed setting in the options menu. When set to fast, the slide-in animation at the start of every battle is skipped, health bars animate much faster, and pressing the A or B button during text delays will skip them. When set to instant, health and experience bars will animate instantly in addition to everything that the fast setting offers.
+- Battle animation speed setting in the options menu. When set to fast, the transition and slide-in animations at the start of every battle are skipped, health bars animate much faster, and pressing the A or B button during text delays will skip them. When set to instant, health and experience bars will animate instantly in addition to everything that the fast setting offers.
 - New battle style option, switch, which is like shift but doesn't tell what the opponent is switching in. Shift has been renamed to predict.
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 - A message is now printed at the end of a battle if a Pokémon has gained an item through the Pickup ability.
@@ -122,11 +122,14 @@
 #### Vanilla Bug Fixes:
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
 - The Nugget Bridge Rocket can no longer give the player infinite Nuggets.
-- Vital Throw displays as --- accuracy instead of 100 accuracy.
+- Assist, Block, Camouflage, Charge, Conversion 2, Follow Me, Grudge, Helping Hand, Imprison, Ingrain, Magic Coat, Mean Look, Memento, Mimic, Mud Sport, Nightmare, Pain Split, Recycle, Refresh, Role Play, Skill Swap, Slack Off, Snatch, Softboiled, Spider Web, Tail Glow, Vital Throw, Water Sport, Wish and Yawn display as --- accuracy instead of 100 accuracy.
 - The misspelling of "Pokcet" in the Teachy TV program has been fixed.
 - Raikou and Entei will not disappear if they Roar the player out of their battles.
 	* The roaming IV glitch will __not__ be fixed, as it affects the legality of the legendary beasts.
 - Fixed Karate King Koichi and Charine localization oversights. These characters are now named Kiyo and Janine as they are in GSC/HGSS.
+- Fixed bug where the AI would decide to use Foresight based on the user's type and stats instead of the target's.
+- Fixed bug where the AI would incorrectly decide to try to stall with semi-invulnerable moves while a weather effect is damaging them.
+- Fixed bug where the AI would decide to use Facade based on the target's status instead of its own.
 - Many vanilla tile errors have been fixed. Too many.
 
 #### Miscellaneous Changes:
