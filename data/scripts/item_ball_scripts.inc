@@ -490,6 +490,10 @@ CeladonCity_EventScript_ItemEther:: @ 81BEBC0
 	finditem ITEM_ETHER
 	end
 
+CeladonCity_EventScript_ItemSunStone:: @ 81BEBC0
+	finditem ITEM_SUN_STONE
+	end
+
 RocketHideout_B3F_EventScript_ItemBlackGlasses:: @ 81BEBCD
 	finditem ITEM_BLACK_GLASSES
 	end

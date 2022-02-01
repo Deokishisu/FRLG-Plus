@@ -528,9 +528,9 @@
 #define FLAG_HIDE_SAFARI_ZONE_NORTHEAST_GLITTER_MAIL            0x202 //New
 #define FLAG_HIDE_ARTISAN_CAVE_B1F_HP_UP                        0x203 //New
 #define FLAG_HIDE_ARTISAN_CAVE_B1F_CARBOS                       0x204 //New
+#define FLAG_HIDE_CELADON_CITY_SUN_STONE                        0x205 //New
 
 // Unused?
-#define FLAG_0x205               0x205
 #define FLAG_0x206               0x206
 #define FLAG_0x207               0x207
 #define FLAG_0x208               0x208
