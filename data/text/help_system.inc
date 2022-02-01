@@ -1984,7 +1984,7 @@ Help_Text_TypeMatchupOwnPokemonBug:: @ 81BB156
 
 Help_Text_DefineBattleAnimSpeed::
 	.string "Set this option to FAST to skip the\n"
-	.string "slide-in animation that occurs at the\l"
+	.string "transition animations that occur at the\l"
 	.string "start of every battle and make HP Bars\l"
 	.string "animate more quickly. Pressing the A or\l"
 	.string "B Button will also skip in-battle text\l"

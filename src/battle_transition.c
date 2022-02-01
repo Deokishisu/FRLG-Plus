@@ -8,6 +8,8 @@
 #include "random.h"
 #include "sound.h"
 #include "decompress.h"
+#include "event_data.h"
+#include "field_fadetransition.h"
 #include "gpu_regs.h"
 #include "battle_transition.h"
 #include "field_effect.h"
@@ -16,6 +18,8 @@
 #include "trainer_pokemon_sprites.h"
 #include "scanline_effect.h"
 #include "event_object_movement.h"
+#include "constants/layouts.h"
+#include "constants/region_map_sections.h"
 #include "constants/songs.h"
 
 typedef bool8 (*TransitionStateFunc)(struct Task *task);
@@ -181,6 +185,7 @@ static void BT_SetSpriteAsOpponentOrPlayer(s16 spriteId, bool16 value);
 static void BT_StartSpriteSlide(s16 spriteId);
 static s16 BT_IsSpriteSlideFinished(s16 spriteId);
 static void BT_Phase2Mugshots_CreateSprites(struct Task *task);
+static bool32 IsMugshotTransition(u8 transitionId);
 
 static const u32 sBigPokeballTileset[] = INCBIN_U32("graphics/battle_transitions/big_pokeball_tileset.4bpp");
 static const u32 sSlidingPokeballTilemap[] = INCBIN_U32("graphics/battle_transitions/sliding_pokeball_tilemap.bin");
@@ -634,6 +639,13 @@ static bool8 BT_Phase1Blink(struct Task *task)
 {
     SetWeatherScreenFadeOut();
     CpuCopy32(gPlttBufferFaded, gPlttBufferUnfaded, 0x400);
+    if(gSaveBlock2Ptr->battleAnimSpeed && !IsMugshotTransition(task->tTransitionId))
+    {   // Instantly cuts to black and skips battle transition if battleAnimSpeed is Fast or Instant.
+        // Doesn't skip if a mugshot battle transition should be happening, for the cool factor.
+        palette_bg_faded_fill_black();
+        task->tState = 3;
+        return TRUE;
+    }
     if (sBT_Phase1Tasks[task->tTransitionId] != NULL)
     {
         CreateTask(sBT_Phase1Tasks[task->tTransitionId], 4);
@@ -2881,3 +2893,15 @@ static bool8 BT_DiagonalSegment_ComputePointOnSegment(s16 *data, bool8 checkBoun
 #undef trAbsDeltaX
 #undef trAbsDeltaY
 #undef trAccum
+
+static bool32 IsMugshotTransition(u8 transitionId)
+{
+    switch(transitionId)
+    {
+        case B_TRANSITION_LORELEI ... B_TRANSITION_BLUE:
+        case B_TRANSITION_OAK:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
