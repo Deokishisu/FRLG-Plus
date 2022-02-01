@@ -4608,7 +4608,7 @@ u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
 {
     u8 *dst;
     u32 i;
-    u16 idx;;
+    u16 idx;
     if ((idx = mapsec) < MAPSEC_NONE )
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)

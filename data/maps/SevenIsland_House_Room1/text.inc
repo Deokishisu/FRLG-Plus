@@ -125,7 +125,7 @@ SevenIsland_House_Room1_Text_OldWomanToldAllNoVisitors::
     .string "Have you come to train?\p"
     .string "Right now no one is visiting\n"
     .string "in the basement.\p"
-    .string "Despite that, my heart is filled\l"
+    .string "Despite that, my heart is filled\n"
     .string "with joy at the battles I've\l"
     .string "watched thanks to you.$"
 

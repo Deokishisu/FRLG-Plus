@@ -328,7 +328,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterRaichu[] = {
         .iv = 2, //ground
         .lvl = 60,
         .evs = { 4, 252, 100, 0, 0, 152},
-        .nature = NATURE_ADAMANT,
+        .nature = NATURE_HASTY,
         .species = SPECIES_RAICHU,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -624,7 +624,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterVenonat[] = 
 
 static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterVenomoth[] = {
     {
-        .iv = 3, //flying
+        .iv = 255,
         .lvl = 60,
         .evs = { 4, 0, 0, 0, 252, 252},
         .nature = NATURE_MODEST,
@@ -650,7 +650,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterDiglett[] = 
 
 static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterDugtrio[] = {
     {
-        .iv = 3, //flying
+        .iv = 255,
         .lvl = 60,
         .evs = { 4, 252, 252, 0, 0, 0},
         .nature = NATURE_ADAMANT,
@@ -1576,7 +1576,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterMrMime[] = {
         .iv = 5, //bug
         .lvl = 60,
         .evs = { 4, 0, 0, 0, 252, 252},
-        .nature = NATURE_MODEST,
+        .nature = NATURE_ADAMANT,
         .species = SPECIES_MR_MIME,
         .heldItem = ITEM_CHOICE_BAND,
         .abilityNum = 0,

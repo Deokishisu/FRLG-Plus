@@ -2057,11 +2057,11 @@ AI_CV_Protect_End:: @ 81DB3A2
 	end
 
 AI_CV_Foresight:: @ 81DB3A3
-	get_user_type1
+	get_target_type1
 	if_equal TYPE_GHOST, AI_CV_Foresight2
-	get_user_type2
+	get_target_type2
 	if_equal TYPE_GHOST, AI_CV_Foresight2
-	if_stat_level_more_than AI_USER, STAT_EVASION, 8, AI_CV_Foresight3
+	if_stat_level_more_than AI_TARGET, STAT_EVASION, 8, AI_CV_Foresight3
 	score -2
 	goto AI_CV_Foresight_End
 
@@ -2322,16 +2322,13 @@ AI_CV_SemiInvulnerable:: @ 81DB669
 	score -1
 	goto AI_CV_SemiInvulnerable_End
 
-@ BUG: The scripts for checking type-resistance to weather for semi-invulnerable moves are swapped
-@	  The result is that the AI is encouraged to stall while taking damage from weather
-@	  To fix, swap _CheckSandstormTypes/_CheckIceType in the below script
 AI_CV_SemiInvulnerable2:: @ 81DB677
 	if_status AI_TARGET, STATUS1_TOXIC_POISON, AI_CV_SemiInvulnerable_TryEncourage
 	if_status2 AI_TARGET, STATUS2_CURSED, AI_CV_SemiInvulnerable_TryEncourage
 	if_status3 AI_TARGET, STATUS3_LEECHSEED, AI_CV_SemiInvulnerable_TryEncourage
 	get_weather
-	if_equal AI_WEATHER_HAIL, AI_CV_SemiInvulnerable_CheckSandstormTypes
-	if_equal AI_WEATHER_SANDSTORM, AI_CV_SemiInvulnerable_CheckIceType
+	if_equal AI_WEATHER_HAIL, AI_CV_SemiInvulnerable_CheckIceType
+	if_equal AI_WEATHER_SANDSTORM, AI_CV_SemiInvulnerable_CheckSandstormTypes
 	goto AI_CV_SemiInvulnerable5
 
 AI_CV_SemiInvulnerable_CheckSandstormTypes:: @ 81DB6A7
@@ -2398,9 +2395,8 @@ AI_CV_Hail_ScoreDown1:: @ 81DB72D
 AI_CV_Hail_End:: @ 81DB72F
 	end
 
-@ BUG: Facade score is increased if the target is statused, but should be if the user is. Replace AI_TARGET with AI_USER
 AI_CV_Facade:: @ 81DB730
-	if_not_status AI_TARGET, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, AI_CV_Facade_End
+	if_not_status AI_USER, STATUS1_POISON | STATUS1_BURN | STATUS1_PARALYSIS | STATUS1_TOXIC_POISON, AI_CV_Facade_End
 	score +1
 
 AI_CV_Facade_End:: @ 81DB73C
