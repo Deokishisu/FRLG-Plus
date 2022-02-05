@@ -2,10 +2,13 @@ EventScript_RepelWoreOff:: @ 81BFB65
 	checkitem VAR_LAST_REPEL_USED, 1
 	compare VAR_RESULT, TRUE
 	goto_if_eq EventScript_UseAnother
+	lock
 	msgbox Text_RepelWoreOff, MSGBOX_SIGN
+	release
 	end
 
 EventScript_UseAnother:
+	lock
 	msgbox Text_UseAnother, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq EventScript_UsedRepel
@@ -14,7 +17,8 @@ EventScript_UseAnother:
 
 EventScript_UsedRepel:
 	getitemname 0, VAR_LAST_REPEL_USED
-	playse(SE_REPEL)
+	playse SE_REPEL
+	lock
 	msgbox Text_UsedNewRepel, MSGBOX_SIGN
 	removeitem VAR_LAST_REPEL_USED, 1
 	waitse

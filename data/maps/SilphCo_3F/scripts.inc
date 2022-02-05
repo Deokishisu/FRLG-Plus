@@ -57,6 +57,7 @@ SilphCo_3F_Text_WorkerF:
 	.string "had an excuse to not work.$"
 
 SilphCo_3F_EventScript_Scientist::
+	lock
 	msgbox SilphCo_3F_Text_Scientist
 	release
 	msgbox SilphCo_3F_Text_Scientist2, MSGBOX_NPC

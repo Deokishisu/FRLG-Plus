@@ -326,6 +326,7 @@ SilphCo_7F_Text_WorkerBro:
 	.string "are working properly!$"
 
 SilphCo_7F_EventScript_WorkerFPhone:: @ 8161770
+	lock
 	msgbox SilphCo_7F_Text_WorkerFPhone
 	release
 	msgbox SilphCo_7F_Text_WorkerFPhone2, MSGBOX_NPC
