@@ -2315,7 +2315,7 @@ Text_BirdKeeperCooltrainer_NoMon:
 Text_BugCatcherYoungster_NoMon:
     .string "If you're interested in battling me,\n"
     .string "you gotta put your {STR_VAR_1} in\l"
-    .string "the top-left position of you party!$"
+    .string "the top-left position of your party!$"
 
 Text_PsychicScientist_NoMon:
     .string "If you wish to battle me, you\n"
