@@ -222,6 +222,13 @@ static void HandleInputChooseAction(void)
             ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
         }
     }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        ActionSelectionDestroyCursorAt(gActionSelectionCursor[gActiveBattler]);
+        gActionSelectionCursor[gActiveBattler] = 3;
+        ActionSelectionCreateCursorAt(gActionSelectionCursor[gActiveBattler], 0);
+    }
 }
 
 static void CompleteOnBattlerSpriteCallbackDummy(void)
