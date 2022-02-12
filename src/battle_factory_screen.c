@@ -15,7 +15,7 @@
 #include "bg.h"
 #include "gpu_regs.h"
 #include "string_util.h"
-#include "international_string_util.h"
+#include "text.h"
 #include "window.h"
 #include "data.h"
 #include "decompress.h"
