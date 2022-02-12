@@ -332,7 +332,7 @@ void RemoveCameraObject(void)
 
 void BufferEReaderTrainerName(void)
 {
-    CopyEReaderTrainerName5(gStringVar1);
+    GetEreaderTrainerName(gStringVar1);
 }
 
 static const u8 sUnused_83F5B04[] = {

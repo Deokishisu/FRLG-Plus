@@ -18,6 +18,7 @@
 #include "field_weather.h"
 #include "fieldmap.h"
 #include "fldeff.h"
+#include "frontier_util.h"
 #include "graphics.h"
 #include "help_message.h"
 #include "help_system.h"
@@ -58,6 +59,7 @@
 #include "trade.h"
 #include "union_room.h"
 #include "constants/battle.h"
+#include "constants/battle_frontier.h"
 #include "constants/easy_chat.h"
 #include "constants/field_effects.h"
 #include "constants/item_effects.h"
@@ -383,6 +385,7 @@ static bool8 MonCanEvolve(void);
 static u16 ItemEffectToMonEv(struct Pokemon *mon, u8 effectType);
 static void ItemEffectToStatString(u8 effectType, u8 *dest);
 static bool8 SetUpFieldMove_Dive(void);
+static u8 GetBattleEntryLevelCap(void);
 
 static EWRAM_DATA struct PartyMenuInternal *sPartyMenuInternal = NULL;
 EWRAM_DATA struct PartyMenu gPartyMenu = {0};
@@ -5752,34 +5755,52 @@ static u8 GetPartySlotEntryStatus(s8 slot)
     return 0;
 }
 
+static u8 GetBattleEntryLevelCap(void)
+{
+    switch (VarGet(VAR_FRONTIER_FACILITY))
+    {
+    case FACILITY_MULTI_OR_EREADER:
+        return MAX_LEVEL;
+    case FACILITY_UNION_ROOM:
+        return 30;
+    default: // Battle Frontier
+        if (gSpecialVar_0x8004 == FRONTIER_LVL_50)
+            return 50;
+        return MAX_LEVEL;
+    }
+}
+
 static bool8 GetBattleEntryEligibility(struct Pokemon *mon)
 {
-    u16 species;
     u16 i = 0;
+    u16 species;
 
-    if (GetMonData(mon, MON_DATA_IS_EGG))
-        return FALSE;
-    switch (gPartyMenu.unk_8_6)
+    if (GetMonData(mon, MON_DATA_IS_EGG)
+        || GetMonData(mon, MON_DATA_LEVEL) > GetBattleEntryLevelCap()
+        || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN) // todo fix
+            && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN) // todo fix
+            && GetMonData(mon, MON_DATA_HELD_ITEM) != ITEM_NONE))
     {
-    default:
-        if (GetMonData(mon, MON_DATA_LEVEL) > 30)
-            return FALSE;
-        break;
-    case 0:
-        if (GetMonData(mon, MON_DATA_HP) == 0)
-            return FALSE;
-        break;
-    case 1:
-        if (gSaveBlock2Ptr->battleTower.battleTowerLevelType == 0 // level 50
-         && GetMonData(mon, MON_DATA_LEVEL) > 50)
-            return FALSE;
-        species = GetMonData(mon, MON_DATA_SPECIES);
-        for (; gBattleTowerBannedSpecies[i] != 0xFFFF; ++i)
-            if (gBattleTowerBannedSpecies[i] == species)
-                return FALSE;
-        break;
+        return FALSE;
     }
-    return TRUE;
+
+    switch (VarGet(VAR_FRONTIER_FACILITY))
+    {
+    case FACILITY_MULTI_OR_EREADER:
+        if (GetMonData(mon, MON_DATA_HP) != 0)
+            return TRUE;
+        return FALSE;
+    case FACILITY_UNION_ROOM:
+        return TRUE;
+    default: // Battle Frontier
+        species = GetMonData(mon, MON_DATA_SPECIES);
+        for (; gFrontierBannedSpecies[i] != 0xFFFF; i++)
+        {
+            if (gFrontierBannedSpecies[i] == species)
+                return FALSE;
+        }
+        return TRUE;
+    }
 }
 
 static u8 CheckBattleEntriesAndGetMessage(void)

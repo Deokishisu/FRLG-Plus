@@ -1437,7 +1437,7 @@ void CheckTrainerCardStars(void)
     {
         stars++;
     }
-    if((gSaveBlock2Ptr->berryPick.berriesPicked >= 200 && gSaveBlock2Ptr->pokeJump.jumpsInRow >= 200) || gSaveBlock2Ptr->battleTower.bestBattleTowerWinStreak > 49)
+    if((gSaveBlock2Ptr->berryPick.berriesPicked >= 200 && gSaveBlock2Ptr->pokeJump.jumpsInRow >= 200))// || gSaveBlock2Ptr->battleTower.bestBattleTowerWinStreak > 49)
     {
         stars++;
     }

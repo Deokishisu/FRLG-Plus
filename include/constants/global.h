@@ -98,4 +98,33 @@
 #define EV_CALC_NORMAL 0
 #define EV_CALC_ZERO 1
 
+#define EASY_CHAT_BATTLE_WORDS_COUNT 6
+#define FRONTIER_PARTY_SIZE         3
+#define FRONTIER_DOUBLES_PARTY_SIZE 4
+#define FRONTIER_MULTI_PARTY_SIZE   2
+#define MAX_FRONTIER_PARTY_SIZE     FRONTIER_DOUBLES_PARTY_SIZE
+
+// Number of facilities for Ranking Hall.
+// 7 facilities for single mode + tower double mode + tower multi mode.
+// Excludes link modes. See RANKING_HALL_* in include/constants/battle_frontier.h
+#define HALL_FACILITIES_COUNT 9
+// Received via record mixing, 1 for each player other than yourself
+#define HALL_RECORDS_COUNT 3
+
+// Battle Frontier level modes.
+#define FRONTIER_LVL_50         0
+#define FRONTIER_LVL_OPEN       1
+#define FRONTIER_LVL_MODE_COUNT 2
+#define FRONTIER_LVL_TENT       FRONTIER_LVL_MODE_COUNT // Special usage for indicating Battle Tent
+
+// Battle Frontier level modes.
+#define FRONTIER_LVL_50         0
+#define FRONTIER_LVL_OPEN       1
+#define FRONTIER_LVL_MODE_COUNT 2
+#define FRONTIER_LVL_TENT       FRONTIER_LVL_MODE_COUNT // Special usage for indicating Battle Tent
+
+#define APPRENTICE_COUNT 4
+#define APPRENTICE_MAX_QUESTIONS 9
+#define PYRAMID_BAG_ITEMS_COUNT 10
+
 #endif //GUARD_CONSTANTS_GLOBAL_H

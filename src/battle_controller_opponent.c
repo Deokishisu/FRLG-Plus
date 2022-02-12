@@ -16,6 +16,7 @@
 #include "battle_ai_script_commands.h"
 #include "battle_ai_switch_items.h"
 #include "event_data.h"
+#include "frontier_util.h"
 #include "trainer_tower.h"
 #include "constants/battle_anim.h"
 #include "constants/moves.h"
@@ -1132,10 +1133,25 @@ static void OpponentHandleDrawTrainerPic(void)
 
     if (gTrainerBattleOpponent_A == 0x400)
         trainerPicId = GetSecretBaseTrainerPicIndex();
-    else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
-        trainerPicId = GetBattleTowerTrainerFrontSpriteId();
+    else if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
+        trainerPicId = GetFrontierBrainTrainerPicIndex();
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
+    else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+    {
+        // TODO: Port two trainers spotting you from Emerald
+        /*if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TOWER_LINK_MULTI))
+        {
+            if (gActiveBattler == 1)
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+            else
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_B);
+        }
+        else
+        {*/
+            trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+        //}
+    }
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
         trainerPicId = GetEreaderTrainerFrontSpriteId();
     else
@@ -1170,8 +1186,25 @@ static void OpponentHandleTrainerSlide(void)
 
     if (gTrainerBattleOpponent_A == 0x400)
         trainerPicId = GetSecretBaseTrainerPicIndex();
-    else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
-        trainerPicId = GetBattleTowerTrainerFrontSpriteId();
+    else if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
+    {
+        trainerPicId = GetFrontierBrainTrainerPicIndex();
+    }
+    else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+    {
+        // TODO port two opponents seeing you from Emerald
+        /*if (gBattleTypeFlags & (BATTLE_TYPE_TWO_OPPONENTS | BATTLE_TYPE_TOWER_LINK_MULTI))
+        {
+            if (gActiveBattler == 1)
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+            else
+                trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_B);
+        }
+        else
+        {*/
+            trainerPicId = GetFrontierTrainerFrontSpriteId(gTrainerBattleOpponent_A);
+        //}
+    }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
         trainerPicId = GetTrainerTowerTrainerFrontSpriteId();
     else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)

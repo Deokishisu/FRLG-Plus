@@ -218,7 +218,7 @@ static u32 client_mainseq_4(struct mevent_client * svr)
         MEventSetRamScript(svr->recvBuffer, 1000);
         break;
     case 18:
-        memcpy(&gSaveBlock2Ptr->battleTower.ereaderTrainer, svr->recvBuffer, sizeof(struct BattleTowerEReaderTrainer));
+        memcpy(&gSaveBlock2Ptr->frontier.ereaderTrainer, svr->recvBuffer, sizeof(struct BattleTowerEReaderTrainer));
         ValidateEReaderTrainer();
         break;
     case 21:

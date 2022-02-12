@@ -8,6 +8,7 @@
 #include "link.h"
 #include "event_scripts.h"
 #include "event_data.h"
+#include "frontier_util.h"
 #include "item.h"
 #include "battle_tower.h"
 #include "trainer_tower.h"
@@ -1934,8 +1935,10 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                     toCpy = gTrainerClassNames[GetSecretBaseTrainerNameIndex()];
                 else if (gTrainerBattleOpponent_A == TRAINER_OPPONENT_C00)
                     toCpy = gTrainerClassNames[GetUnionRoomTrainerClass()];
-                else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
-                    toCpy = gTrainerClassNames[GetBattleTowerTrainerClassNameId()];
+                else if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
+                    toCpy = gTrainerClassNames[GetFrontierBrainTrainerClass()];
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                    toCpy = gTrainerClassNames[GetFrontierOpponentClass(gTrainerBattleOpponent_A)];
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
                     toCpy = gTrainerClassNames[GetTrainerTowerOpponentClass()];
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
@@ -1955,9 +1958,14 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 {
                     toCpy = gLinkPlayers[multiplayerId ^ BIT_SIDE].name;
                 }
-                else if (gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER)
+                else if (gTrainerBattleOpponent_A == TRAINER_FRONTIER_BRAIN)
                 {
-                    GetBattleTowerTrainerName(text);
+                    CopyFrontierBrainTrainerName(text);
+                    toCpy = text;
+                }
+                else if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
+                {
+                    GetFrontierTrainerName(text, gTrainerBattleOpponent_A);
                     toCpy = text;
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER)
@@ -1967,7 +1975,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 else if (gBattleTypeFlags & BATTLE_TYPE_EREADER_TRAINER)
                 {
-                    CopyEReaderTrainerName5(text);
+                    GetEreaderTrainerName(text);
                     toCpy = text;
                 }
                 else

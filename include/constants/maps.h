@@ -12,4 +12,6 @@
 
 #define MAP(map) MAP_GROUP(map), MAP_NUM(map)
 
+#define WARP_ID_NONE (-1)
+
 #endif  // GUARD_CONSTANTS_MAPS_H

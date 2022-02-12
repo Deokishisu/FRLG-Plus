@@ -830,8 +830,8 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     trainerCard->rse.linkBattleLosses = GetCappedGameStat(GAME_STAT_LINK_BATTLE_LOSSES, 9999);
     trainerCard->rse.pokemonTrades = GetCappedGameStat(GAME_STAT_POKEMON_TRADES, 0xFFFF);
 
-    trainerCard->rse.battleTowerWins = gSaveBlock2Ptr->battleTower.totalBattleTowerWins;
-    trainerCard->rse.battleTowerStraightWins = gSaveBlock2Ptr->battleTower.bestBattleTowerWinStreak;
+    trainerCard->rse.battleTowerWins = gSaveBlock2Ptr->frontier.towerSinglesStreak;
+    trainerCard->rse.battleTowerStraightWins = gSaveBlock2Ptr->frontier.towerNumWins;
     trainerCard->rse.contestsWithFriends = 0;
     trainerCard->rse.pokeblocksWithFriends = 0;
 

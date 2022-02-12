@@ -284,3 +284,5 @@
 	.include "src/cable_car.o"
 	.align 2
 	.include "src/battle_factory_screen.o"
+	.align 2
+	.include "src/battle_records.o"

@@ -136,29 +136,29 @@ struct PokemonStorage
 
 struct BattleTowerPokemon
 {
-    /*0x00*/ u16 species;
-    /*0x02*/ u16 heldItem;
-    /*0x04*/ u16 moves[4];
-    /*0x0C*/ u8 level;
-    /*0x0D*/ u8 ppBonuses;
-    /*0x0E*/ u8 hpEV;
-    /*0x0F*/ u8 attackEV;
-    /*0x10*/ u8 defenseEV;
-    /*0x11*/ u8 speedEV;
-    /*0x12*/ u8 spAttackEV;
-    /*0x13*/ u8 spDefenseEV;
-    /*0x14*/ u32 otId;
-    /*0x18*/ u32 hpIV:5;
-             u32 attackIV:5;
-             u32 defenseIV:5;
-             u32 speedIV:5;
-             u32 spAttackIV:5;
-             u32 spDefenseIV:5;
-             u32 gap:1;
-             u32 abilityNum:1;
-    /*0x1C*/ u32 personality;
-    /*0x20*/ u8 nickname[11];
-    /*0x2B*/ u8 friendship;
+    u16 species;
+    u16 heldItem;
+    u16 moves[MAX_MON_MOVES];
+    u8 level;
+    u8 ppBonuses;
+    u8 hpEV;
+    u8 attackEV;
+    u8 defenseEV;
+    u8 speedEV;
+    u8 spAttackEV;
+    u8 spDefenseEV;
+    u32 otId;
+    u32 hpIV:5;
+    u32 attackIV:5;
+    u32 defenseIV:5;
+    u32 speedIV:5;
+    u32 spAttackIV:5;
+    u32 spDefenseIV:5;
+    u32 gap:1;
+    u32 abilityNum:1;
+    u32 personality;
+    u8 nickname[POKEMON_NAME_LENGTH + 1];
+    u8 friendship;
 };
 
 #define BATTLE_STATS_NO 8

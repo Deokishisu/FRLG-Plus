@@ -24,7 +24,7 @@
 #include "pokedex.h"
 #include "util.h"
 #include "trainer_pokemon_sprites.h"
-#include "starter_choose.h"
+//#include "starter_choose.h"
 #include "strings.h"
 #include "graphics.h"
 #include "constants/battle_frontier.h"
