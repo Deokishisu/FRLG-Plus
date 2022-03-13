@@ -189,7 +189,7 @@
       "x": 4,
       "y": 7,
       "elevation": 3,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_CERULEAN_CAVE_1F_BLUE",
       "dest_warp_id": 2
     }
   ],
