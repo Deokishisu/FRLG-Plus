@@ -7,7 +7,7 @@ Route11_Text_HugoDefeat:: @ 8184F15
 
 Route11_Text_HugoPostBattle:: @ 8184F2E
     .string "POKéMON is life!\n"
-    .string "And to live is to play games!$"
+    .string "And to live is to gamble!$"
 
 Route11_Text_JasperIntro:: @ 8184F5D
     .string "Competition!\n"
@@ -61,7 +61,8 @@ Route11_Text_DirkDefeat:: @ 8185105
     .string "My first loss!$"
 
 Route11_Text_DirkPostBattle:: @ 8185114
-    .string "You were just lucky, that's all.$"
+    .string "Luck of the draw!\n"
+	.string "Just luck!$"
 
 Route11_Text_DarianIntro:: @ 8185135
     .string "I have never won before…$"
@@ -70,7 +71,8 @@ Route11_Text_DarianDefeat:: @ 818514E
     .string "I saw this coming…$"
 
 Route11_Text_DarianPostBattle:: @ 8185161
-    .string "I was unlucky, as always.$"
+    .string "It's just luck.\n"
+	.string "Luck of the draw.$"
 
 Route11_Text_YasuIntro:: @ 818517B
     .string "I'm the best in my class.\n"
