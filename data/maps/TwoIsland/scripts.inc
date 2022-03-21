@@ -158,6 +158,8 @@ TwoIsland_Items_ShopExpanded2:: @ 8167718
 	.2byte ITEM_SODA_POP
 	.2byte ITEM_FRESH_WATER
 	.2byte ITEM_MOOMOO_MILK
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_SUN_STONE
 	.2byte ITEM_NONE
 	release
 	end
