@@ -55,6 +55,7 @@
 ##### Inventory and Item-related:
 - Expanded item pockets. The player can hold one stack of every legally obtainable item at once.
 - Two new pockets, the Medicine and Held Items pockets, have been introduced to ease bag navigation.
+- Press Start in the bag to sort items by several criteria.
 - Left and Right in the TM Case and Berry Pouch scrolls faster.
 - Infinite TM usage. TM prices have been modified to reflect this. TMs do not restore PP when learned, like in BW/B2W2.
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.
