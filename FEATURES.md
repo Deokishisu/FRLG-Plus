@@ -45,7 +45,7 @@
 - Running indoors.
 - Toggle auto running with the R button.
 - Cut trees stay cut permanently.
-- Hold B while surfing to go faster.
+- Hold B while surfing to go faster. If autorun is enabled, hold B to go slower, as the faster speed becomes default.
 - The bike now has two gears, one for the default speed, and one for Mach Bike speed. Press B while biking to switch between them.
 - The Victory Road boulder puzzles no longer reset.
 - The two boulders that block access to Mt. Ember's exterior will no longer block the way once the player moves past them.

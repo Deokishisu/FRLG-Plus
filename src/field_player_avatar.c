@@ -503,13 +503,24 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         return;
     }
 
-    if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
+    if ((gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING))
     {
-        if(heldKeys & B_BUTTON)
-            sub_805C164(direction);
+        if(FlagGet(FLAG_AUTO_RUN_TOGGLED))
+        {
+            if(heldKeys & B_BUTTON)
+                // speed 2 is fast, same speed as running
+                PlayerGoSpeed2(direction);
+            else
+                sub_805C164(direction);
+        }
         else
-        // speed 2 is fast, same speed as running
-            PlayerGoSpeed2(direction);
+        {
+            if(heldKeys & B_BUTTON)
+                sub_805C164(direction);
+            else
+                // speed 2 is fast, same speed as running
+                PlayerGoSpeed2(direction);
+        }
         return;
     }
 
