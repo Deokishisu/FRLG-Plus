@@ -800,36 +800,42 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerCaspara
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerCaspara2[] = {
+static const struct TrainerMonNoItemCustomMoves sTrainerMons_CooltrainerCaspara2[] = {
     {
         .iv = 0,
         .lvl = 47,
         .species = SPECIES_VILEPLUME,
+        .moves = {MOVE_AROMATHERAPY, MOVE_MEGA_DRAIN, MOVE_STUN_SPORE, MOVE_PETAL_DANCE},
     },
     {
         .iv = 0,
         .lvl = 47,
         .species = SPECIES_CHARIZARD,
+        .moves = {MOVE_WING_ATTACK, MOVE_SLASH, MOVE_DRAGON_RAGE, MOVE_FIRE_SPIN},
     },
     {
         .iv = 0,
         .lvl = 48,
         .species = SPECIES_GENGAR,
+        .moves = {MOVE_SHADOW_BALL, MOVE_CURSE, MOVE_CONFUSE_RAY, MOVE_NIGHT_SHADE},
     },
     {
         .iv = 0,
         .lvl = 48,
         .species = SPECIES_AMPHAROS,
+        .moves = {MOVE_COTTON_SPORE, MOVE_THUNDER_PUNCH, MOVE_LIGHT_SCREEN, MOVE_THUNDER},
     },
     {
         .iv = 0,
         .lvl = 50,
         .species = SPECIES_SUNFLORA,
+        .moves = {MOVE_INGRAIN, MOVE_SUNNY_DAY, MOVE_PETAL_DANCE, MOVE_SOLAR_BEAM},
     },
     {
         .iv = 0,
         .lvl = 50,
         .species = SPECIES_PORYGON,
+        .moves = {MOVE_LOCK_ON, MOVE_TRI_ATTACK, MOVE_RECYCLE, MOVE_ZAP_CANNON},
     },
 };
 

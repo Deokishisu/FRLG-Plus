@@ -240,7 +240,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sTrainerMons_CooltrainerCaspara}
     },
     [TRAINER_COOLTRAINER_CASPARA_2] = {
-        .partyFlags = 0,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = CLASS_COOLTRAINER_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_COOLTRAINER_F,
@@ -249,7 +249,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_CooltrainerCaspara2),
-        .party = {.NoItemDefaultMoves = sTrainerMons_CooltrainerCaspara2}
+        .party = {.NoItemCustomMoves = sTrainerMons_CooltrainerCaspara2}
     },
     [TRAINER_SWIMMER_FEMALE_SEDEF] = {
         .partyFlags = 0,
