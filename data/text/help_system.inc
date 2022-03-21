@@ -2024,8 +2024,8 @@ Help_Text_DefineFRExclusives::
 Help_Text_DefineLGExclusives::
 	.string "The POKéMON exclusive to LEAFGREEN\n"
 	.string "VERSION are SANDSHREW, VULPIX,\l"
-	.string "BELLSPROUT, SLOWPOKE, BELLSPROUT,\l"
-	.string "STARYU, MAGMAR, PINSIR, MARILL,\l"
+	.string "BELLSPROUT, SLOWPOKE, STARYU,\l"
+	.string "MAGMAR, PINSIR, MARILL,\l"
 	.string "MISDREAVUS, SNEASEL, REMORAID,\l"
 	.string "MANTINE, LATIAS, and their\l"
 	.string "evolutionary relatives.$"
