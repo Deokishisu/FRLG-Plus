@@ -824,9 +824,10 @@ static void CreatePocketScrollArrowPair(void)
 
 static void CreatePocketSwitchArrowPair(void)
 {
+    u16 pocketForLeftRightArrows = POCKET_KEY_ITEMS; // makes left/right scroll arrows always on.
     if (sBagMenuDisplay->pocketSwitchMode != 1)
     {
-        sBagMenuDisplay->pocketSwitchArrowsTask = AddScrollIndicatorArrowPair(&sPocketSwitchArrowPairTemplate, &gBagMenuState.pocket);
+        sBagMenuDisplay->pocketSwitchArrowsTask = AddScrollIndicatorArrowPair(&sPocketSwitchArrowPairTemplate, &pocketForLeftRightArrows);
     }
 }
 
@@ -1107,6 +1108,13 @@ static void Task_BagMenu_HandleInput(u8 taskId)
     case 2:
         SwitchPockets(taskId,  1, FALSE);
         return;
+    case 3: //to poke balls from items
+        SwitchPockets(taskId, 4, FALSE);
+        return;
+    case 4: //to items from poke balls
+        SwitchPockets(taskId, -4, FALSE);
+        return;
+
     default:
         if (JOY_NEW(SELECT_BUTTON) && gBagMenuState.location == ITEMMENULOCATION_FIELD)
         {
@@ -1203,14 +1211,14 @@ static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId)
     if (JOY_NEW(DPAD_LEFT) || lrState == 1)
     {
         if (pocketId == POCKET_ITEMS - 1)
-            return 0;
+            return 3;
         PlaySE(SE_BAG_POCKET);
         return 1;
     }
     if (JOY_NEW(DPAD_RIGHT) || lrState == 2)
     {
         if (pocketId >= POCKET_POKE_BALLS - 1)
-            return 0;
+            return 4;
         PlaySE(SE_BAG_POCKET);
         return 2;
     }
@@ -1255,6 +1263,16 @@ static void Task_AnimateSwitchPockets(u8 taskId)
             gBagMenuState.pocket += data[11];
             SwitchTaskToFollowupFunc(taskId);
             SwitchPockets(taskId,  1, TRUE);
+            return;
+        case 3: //to poke balls from items
+            gBagMenuState.pocket = POCKET_POKE_BALLS - 1;
+            SwitchTaskToFollowupFunc(taskId);
+            SwitchPockets(taskId, 4, TRUE);
+            return;
+        case 4: //to items from poke balls
+            gBagMenuState.pocket = POCKET_ITEMS - 1;
+            SwitchTaskToFollowupFunc(taskId);
+            SwitchPockets(taskId,  -4, TRUE);
             return;
         }
     }
