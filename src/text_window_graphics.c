@@ -15,6 +15,7 @@ static const u16 gUnknown_847156C[] = INCBIN_U16("graphics/text_window/unk_84715
 static const u16 gUnk_Empty_Space_847168C[16] = {0};
 static const u16 gUnknown_84716AC[] = INCBIN_U16("graphics/text_window/unk_84716AC.4bpp");
 static const u16 gUnknown_84717CC[] = INCBIN_U16("graphics/text_window/unk_84717CC.4bpp");
+static const u16 gOptionsFrame11[]  = INCBIN_U16("graphics/text_window/frame11.4bpp");         //RBY
 static const u16 gUnk_Empty_Space_84718EC[16] = {0};
 static const u16 gUnknown_847190C[] = INCBIN_U16("graphics/text_window/unk_8470D6C.gbapal");
 static const u16 gUnknown_847192C[] = INCBIN_U16("graphics/text_window/unk_8470E8C.gbapal");
@@ -26,6 +27,7 @@ static const u16 gUnknown_84719CC[] = INCBIN_U16("graphics/text_window/unk_84714
 static const u16 gUnknown_84719EC[] = INCBIN_U16("graphics/text_window/unk_847156C.gbapal");
 static const u16 gUnknown_8471A0C[] = INCBIN_U16("graphics/text_window/unk_84716AC.gbapal");
 static const u16 gUnknown_8471A2C[] = INCBIN_U16("graphics/text_window/unk_84717CC.gbapal");
+static const u16 gOptionsFrame11_Pal[] = INCBIN_U16("graphics/text_window/frame11.gbapal");    //RBY
 
 const u16 gStdFrame0[] = INCBIN_U16("graphics/text_window/unk_8471A4C.4bpp");
 const u16 gStdFrame1[] = INCBIN_U16("graphics/text_window/unk_8471B6C.4bpp");
@@ -48,8 +50,9 @@ const struct TextWindowGraphics gUserFrames[] = {
     {gUnknown_847144C, gUnknown_84719CC},
     {gUnknown_847156C, gUnknown_84719EC},
     {gUnknown_84716AC, gUnknown_8471A0C},
-    {gUnknown_84717CC, gUnknown_8471A2C}
-}; // NELEMS = 10
+    {gUnknown_84717CC, gUnknown_8471A2C},
+    {gOptionsFrame11,  gOptionsFrame11_Pal},
+}; // NELEMS = 11
 
 const struct TextWindowGraphics * GetUserFrameGraphicsInfo(u8 idx)
 {
