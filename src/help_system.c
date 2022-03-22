@@ -281,6 +281,7 @@ enum
     HELP_USING_ROCK,
     HELP_USING_HALL_OF_FAME,
     HELP_USING_KEY_SYSTEM,
+    HELP_SORTING_BAG,
 };
 
 static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
@@ -333,7 +334,8 @@ static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
     [HELP_USING_BAIT]                   = Help_Text_UsingBait,
     [HELP_USING_ROCK]                   = Help_Text_UsingRock,
     [HELP_USING_HALL_OF_FAME]           = Help_Text_UsingHallOfFame,
-    [HELP_USING_KEY_SYSTEM]             = Help_Text_UsingKeySystem
+    [HELP_USING_KEY_SYSTEM]             = Help_Text_UsingKeySystem,
+    [HELP_SORTING_BAG]                  = Help_Text_SortingBag
 };
 
 static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
@@ -386,7 +388,8 @@ static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
     [HELP_USING_BAIT]                   = Help_Text_HowToUseBait,
     [HELP_USING_ROCK]                   = Help_Text_HowToUseRock,
     [HELP_USING_HALL_OF_FAME]           = Help_Text_HowToUseHallOfFame,
-    [HELP_USING_KEY_SYSTEM]             = Help_Text_HowToUseKeySystemSettings
+    [HELP_USING_KEY_SYSTEM]             = Help_Text_HowToUseKeySystemSettings,
+    [HELP_SORTING_BAG]                  = Help_Text_HowToSortBag
 };
 
 // Submenu IDs for TOPIC_TERMS
@@ -789,7 +792,8 @@ static const u8 sTerms_PokemonMoves[] = {
 };
 
 static const u8 sHowTo_Bag[] = {
-    HELP_USING_BAG, 
+    HELP_USING_BAG,
+    HELP_SORTING_BAG, 
     HELP_USING_AN_ITEM, 
     HELP_USING_KEYITEM, 
     HELP_REGISTER_KEY_ITEM, 
@@ -2182,6 +2186,7 @@ static bool8 IsHelpSystemSubmenuEnabled(u8 id)
         case HELP_USING_BAIT:
         case HELP_USING_ROCK:
         case HELP_USING_KEY_SYSTEM:
+        case HELP_SORTING_BAG:
             return TRUE;
         case HELP_USING_POKEDEX:
         case HELP_USING_PROF_OAKS_PC:
@@ -2315,6 +2320,8 @@ static bool8 HasGottenAtLeastOneHM(void)
         return TRUE;
     if (FlagGet(FLAG_HIDE_FOUR_ISLAND_ICEFALL_CAVE_1F_HM07) == TRUE)
         return TRUE;
+    if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS) == TRUE)
+        return FALSE;
     return FALSE;
 }
 

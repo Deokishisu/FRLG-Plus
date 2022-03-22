@@ -672,6 +672,9 @@ Help_Text_UsingHallOfFame:: @ 81B5A37
 Help_Text_UsingKeySystem:: @ 81B5A37
 	.string " Using “KEY SYSTEM SETTINGS”$"
 
+Help_Text_SortingBag::
+	.string "  Sorting the BAG$"
+
 Help_Text_HowToUsePokedex:: @ 81B5A4D
 	.string "{CIRCLE_1} Select “POKéDEX” on the MENU.\n"
 	.string "{CIRCLE_2} Choose POKéMON using commands such\n"
@@ -1065,6 +1068,14 @@ Help_Text_HowToUseKeySystemSettings::
 	.string "   or right to alter the settings.\n"
 	.string "{CIRCLE_3} Press the A or B Button after\n"
 	.string "   making changes to save them.$"
+
+Help_Text_HowToSortBag::
+	.string "{CIRCLE_1} Press START while in the BAG menu.\n"
+	.string "{CIRCLE_2} Press up or down on the {PLUS} Control\n"
+	.string "   Pad to select a sorting scheme.\n"
+	.string "Depending on the POCKET, items can be\n"
+	.string "sorted by NAME, TYPE, AMOUNT, and\n"
+	.string "NUMBER.$"
 
 Help_Text_HP:: @ 81B7CC1
 	.string "HP$"
