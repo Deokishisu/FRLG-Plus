@@ -56,6 +56,7 @@
 - Expanded item pockets. The player can hold one stack of every legally obtainable item at once.
 - Two new pockets, the Medicine and Held Items pockets, have been introduced to ease bag navigation.
 - Press Start in the bag to sort items by several criteria.
+- The bag pockets wrap around when switching between them.
 - Left and Right in the TM Case and Berry Pouch scrolls faster.
 - Infinite TM usage. TM prices have been modified to reflect this. TMs do not restore PP when learned, like in BW/B2W2.
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.
@@ -72,8 +73,12 @@
 	* Deep Sea Teeth can be found rarely on wild Gyarados underwater.
 
 ##### Battle-related:
-- Health bar drains faster at higher HP levels.
-- Battle animation speed setting in the options menu. When set to fast, the transition and slide-in animations at the start of every battle are skipped, health bars animate much faster, and pressing the A or B button during text delays will skip them. When set to instant, health and experience bars will animate instantly in addition to everything that the fast setting offers.
+- New options available in the options menu to speed up battles:
+	* Battle Transitions setting turns off the transition animation between the field and a battle.
+	* Battle Intro Animation setting turns off the sliding animation that occurs at the start of every battle.
+	* Battle Scene has been renamed to Move Animations and now also skips in-battle text delays when it is off.
+	* HP Bar Animation Speed gives four options for how fast the HP bar animates, including instant.
+	* Exp. Bar Animation Speed gives the player the choice to make experience bars animate instantly.
 - New battle style option, switch, which is like shift but doesn't tell what the opponent is switching in. Shift has been renamed to predict.
 - Press B on the "What will Pokémon do?" menu during wild battles to move the cursor to run.
 - A message is now printed at the end of a battle if a Pokémon has gained an item through the Pickup ability.
@@ -143,3 +148,5 @@
 - Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
 - Cycling Road forces the bike theme, like in RGBY.
 - Emerald's player character designs show in the link rooms if linking with Emerald.
+- The original RGBY textbox is available as frame type 11 in the options menu.
+- The Gambler trainer class has been decensored.

@@ -2056,7 +2056,7 @@ Help_Text_HpBarAnimSpeed::
 	.string "HP BAR ANIM SPEED$"
 
 Help_Text_ExpBarAnimSpeed::
-	.string "EXP BAR ANIM SPEED$"
+	.string "EXP. BAR ANIM SPEED$"
 
 Help_Text_Back::
 	.string "BACK$"
