@@ -2563,6 +2563,24 @@ u32 FldEff_FieldMoveShowMonInit(void)
     u32 r6 = gFieldEffectArguments[0] & 0x80000000;
     u8 partyIdx = gFieldEffectArguments[0];
     gFieldEffectArguments[0] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_SPECIES);
+    if(gFieldEffectArguments[0] == SPECIES_DEOXYS)
+    {
+        switch(GetMonData(&gPlayerParty[partyIdx], MON_DATA_FORME))
+        {
+            case 1: //Attack Forme
+                gFieldEffectArguments[0] = 65531;
+                break;
+            case 2: //Defense Forme
+                gFieldEffectArguments[0] = 65532;
+                break;
+            case 3: //Speed Forme
+                gFieldEffectArguments[0] = 65533;
+                break;
+            default: //Normal Forme
+                gFieldEffectArguments[0] = 65530;
+                break;
+        }
+    }
     gFieldEffectArguments[1] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_OT_ID);
     gFieldEffectArguments[2] = GetMonData(&gPlayerParty[partyIdx], MON_DATA_PERSONALITY);
     gFieldEffectArguments[0] |= r6;
@@ -2890,13 +2908,18 @@ static u8 sub_8086860(u32 species, u32 otId, u32 personality)
     bool16 playCry;
     u8 monSprite;
     struct Sprite * sprite;
-    playCry = (species & 0x80000000) >> 16;
+    u32 speciesForCry = species;
+
+    if(species >= 65530 && species <= 65533)
+        speciesForCry = SPECIES_DEOXYS;
+
+    playCry = (speciesForCry & 0x80000000) >> 16;
     species &= 0x7fffffff;
     monSprite = CreateMonSprite_FieldMove(species, otId, personality, 0x140, 0x50, 0);
     sprite = &gSprites[monSprite];
     sprite->callback = SpriteCallbackDummy;
     sprite->oam.priority = 0;
-    sprite->data[0] = species;
+    sprite->data[0] = speciesForCry;
     sprite->data[6] = playCry;
     return monSprite;
 }
@@ -2909,13 +2932,9 @@ static void sub_80868C0(struct Sprite * sprite)
         sprite->data[1] = 30;
         sprite->callback = sub_8086904;
         if (sprite->data[6])
-        {
             PlayCry2(sprite->data[0], 0, 0x7d, 0xa);
-        }
         else
-        {
             PlayCry1(sprite->data[0], 0);
-        }
     }
 }
 

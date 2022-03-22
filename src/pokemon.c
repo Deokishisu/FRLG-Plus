@@ -7582,6 +7582,13 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     u32 shinyValue;
 
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
+    if (species >= 65530 && species <= 65533) //Deoxys
+    {
+        if(shinyValue < 8)
+            return &gMonShinyPaletteTable[SPECIES_DEOXYS];
+        else
+            return &gMonPaletteTable[SPECIES_DEOXYS];
+    }
     if (shinyValue < 8)
         return &gMonShinyPaletteTable[species];
     else

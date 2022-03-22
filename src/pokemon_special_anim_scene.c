@@ -647,6 +647,25 @@ void PSA_CreateMonSpriteAtCloseness(u8 closeness)
     void * r4;
     u8 spriteId;
 
+    if(species == SPECIES_DEOXYS)
+    {
+        switch(GetMonData(pokemon, MON_DATA_FORME))
+        {
+            case 1: //Attack Forme
+                species = 65531;
+                break;
+            case 2: //Defense Forme
+                species = 65532;
+                break;
+            case 3: //Speed Forme
+                species = 65533;
+                break;
+            default: //Normal Forme
+                species = 65530;
+                break;
+        }
+    }
+
     if (r1 != 0xFF)
     {
         scene->monSpriteY1 = 0x48;
