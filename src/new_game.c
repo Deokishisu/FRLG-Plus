@@ -63,9 +63,13 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsWindowFrameType = 0;
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_STEREO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_PREDICT;
-    gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
-    gSaveBlock2Ptr->regionMapZoom = FALSE;
     gSaveBlock2Ptr->optionsButtonMode = OPTIONS_BUTTON_MODE_HELP;
+    
+    gSaveBlock2Ptr->optionsBattleTransitions = FALSE;
+    gSaveBlock2Ptr->optionsBattleIntroAnim = 0;
+    gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
+    gSaveBlock2Ptr->optionsHpBarAnimSpeed = 0;
+    gSaveBlock2Ptr->optionsExpBarAnimSpeed = 0;
 }
 
 static void ClearPokedexFlags(void)

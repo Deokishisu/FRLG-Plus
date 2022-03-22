@@ -1311,7 +1311,7 @@ static void PokedudeHandleLoadMonSprite(void)
                                                      y,
                                                      GetBattlerSpriteSubpriority(gActiveBattler));
     gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = -240;
-    if(gSaveBlock2Ptr->battleAnimSpeed)
+    if(gSaveBlock2Ptr->optionsBattleIntroAnim)
         gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = 0;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[2] = species;
@@ -1361,7 +1361,7 @@ static void PokedudeHandleDrawTrainerPic(void)
                                                          30);
         gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = 240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
-        if(gSaveBlock2Ptr->battleAnimSpeed)
+        if(gSaveBlock2Ptr->optionsBattleIntroAnim)
             gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
         gSprites[gBattlerSpriteIds[gActiveBattler]].callback = SpriteCB_TrainerSlideIn;
@@ -1377,7 +1377,7 @@ static void PokedudeHandleDrawTrainerPic(void)
                                                          GetBattlerSpriteSubpriority(gActiveBattler));
         gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = -240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 2;
-        if(gSaveBlock2Ptr->battleAnimSpeed)
+        if(gSaveBlock2Ptr->optionsBattleIntroAnim)
             gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 240;
         gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerFrontPicPaletteTable[tranerPicid].tag);
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[5] = gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum;

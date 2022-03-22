@@ -639,8 +639,8 @@ static bool8 BT_Phase1Blink(struct Task *task)
 {
     SetWeatherScreenFadeOut();
     CpuCopy32(gPlttBufferFaded, gPlttBufferUnfaded, 0x400);
-    if(gSaveBlock2Ptr->battleAnimSpeed && !IsMugshotTransition(task->tTransitionId))
-    {   // Instantly cuts to black and skips battle transition if battleAnimSpeed is Fast or Instant.
+    if(gSaveBlock2Ptr->optionsBattleTransitions && !IsMugshotTransition(task->tTransitionId))
+    {   // Instantly cuts to black and skips battle transition if optionsBattleTransitions is On.
         // Doesn't skip if a mugshot battle transition should be happening, for the cool factor.
         palette_bg_faded_fill_black();
         task->tState = 3;

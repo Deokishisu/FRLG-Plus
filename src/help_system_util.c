@@ -45,7 +45,7 @@ u8 RunHelpSystemCallback(void)
     {
     case 0:
         sInHelpSystem = 0;
-        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_HELP && gSaveBlock1Ptr->keyFlags.inKeySystemMenu != 1)
+        if (gSaveBlock2Ptr->optionsButtonMode != OPTIONS_BUTTON_MODE_HELP && (gSaveBlock1Ptr->keyFlags.inKeySystemMenu != 1 && !FlagGet(FLAG_SYS_IN_OPTIONS_MENU)))
             return 0;
         if (JOY_NEW(L_BUTTON))
         {

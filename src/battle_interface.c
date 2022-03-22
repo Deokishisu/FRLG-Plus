@@ -173,6 +173,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar);
 static u8 GetScaledExpFraction(s32 oldValue, s32 receivedValue, s32 maxValue, u8 scale);
 static u8 CalcBarFilledPixels(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *currValue, u8 *arg4, u8 scale);
 static s32 CalcNewBarValue(s32 maxValue, s32 currValue, s32 receivedValue, s32 *arg3, u8 arg4, u16 arg5);
+static s32 CalcNewExpBarValue(s32 maxValue, s32 currValue, s32 receivedValue, s32 *arg3, u8 arg4, u16 arg5);
 static void sub_804A510(struct TestingBar *barInfo, s32 *currValue, u8 bg, u8 x, u8 y);
 static void SafariTextIntoHealthboxObject(void *dest, u8 *windowTileData, u32 windowWidth);
 static u8 *AddTextPrinterAndCreateWindowOnHealthbox(const u8 *str, u32 x, u32 y, u32 *windowId);
@@ -1860,7 +1861,15 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
 
     if (whichBar == HEALTH_BAR) // health bar
     {
-        if(gSaveBlock2Ptr->battleAnimSpeed == 0)
+        if(gSaveBlock2Ptr->optionsHpBarAnimSpeed == 0) //standard
+        {
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                            &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                                            B_HEALTHBAR_PIXELS / 8, 1);
+        }
+        else if(gSaveBlock2Ptr->optionsHpBarAnimSpeed == 1) //fast
         {
             currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
                                             gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
@@ -1868,7 +1877,15 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                                             &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                                             B_HEALTHBAR_PIXELS / 8, 1 + (u16) (gBattleMons[battlerId].maxHP / 80));
         }
-        else if(gSaveBlock2Ptr->battleAnimSpeed == 2) // instant healthbar drop
+        else if(gSaveBlock2Ptr->optionsHpBarAnimSpeed == 2) //faster
+        {
+            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
+                                            gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
+                                            &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
+                                            B_HEALTHBAR_PIXELS / 8, 1 + (u16) (gBattleMons[battlerId].maxHP / 30));
+        }
+        else // instant healthbar drop
         {
             currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
                                             gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
@@ -1876,20 +1893,12 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                                             &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                                             B_HEALTHBAR_PIXELS / 8, 714); //max HP of Blissey, makes the healthbar drop in one tick
         }
-        else
-        {   //health bar drains even faster if battleAnimSpeed is set to Fast
-            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
-                                            gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
-                                            gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
-                                            &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
-                                            B_HEALTHBAR_PIXELS / 8, 1 + (u16) (gBattleMons[battlerId].maxHP / 30));
-        }
     }
     else // exp bar
     {
-        if(gSaveBlock2Ptr->battleAnimSpeed == 2) // instant expbar movement
+        if(gSaveBlock2Ptr->optionsExpBarAnimSpeed) // instant expbar movement
         {
-            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+            currentBarValue = CalcNewExpBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
                                             gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
                                             gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                                             &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
@@ -1904,7 +1913,7 @@ s32 MoveBattleBar(u8 battlerId, u8 healthboxSpriteId, u8 whichBar, u8 unused)
                 expFraction = 1;
             expFraction = abs(gBattleSpritesDataPtr->battleBars[battlerId].receivedValue / expFraction);
 
-            currentBarValue = CalcNewBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
+            currentBarValue = CalcNewExpBarValue(gBattleSpritesDataPtr->battleBars[battlerId].maxValue,
                                             gBattleSpritesDataPtr->battleBars[battlerId].oldValue,
                                             gBattleSpritesDataPtr->battleBars[battlerId].receivedValue,
                                             &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
@@ -1979,6 +1988,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar)
         break;
     }
 }
+
 static s32 CalcNewBarValue(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *currValue, u8 scale, u16 toAdd)
 {
     s32 ret, newValue;
@@ -2012,7 +2022,93 @@ static s32 CalcNewBarValue(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *c
     if (maxValue < scale) // handle cases of max var having less pixels than the whole bar
     {
         s32 toAdd_ = Q_24_8(maxValue) / scale;
-        if(gSaveBlock2Ptr->battleAnimSpeed == 2)
+        if(gSaveBlock2Ptr->optionsHpBarAnimSpeed == 3) //instant
+        {
+            if(*currValue - receivedValue <= 0)
+                toAdd_ = *currValue;
+            else
+                toAdd_ = *currValue - receivedValue;
+        }
+
+        if (receivedValue < 0) // fill bar right
+        {
+            *currValue += toAdd_;
+            ret = Q_24_8_TO_INT(*currValue);
+            if (ret >= newValue)
+            {
+                *currValue = Q_24_8(newValue);
+                ret = newValue;
+            }
+        }
+        else // move bar left
+        {
+            *currValue -= toAdd_;
+            ret = Q_24_8_TO_INT(*currValue);
+            // try round up
+            if ((*currValue & 0xFF) > 0)
+                ret++;
+            if (ret <= newValue)
+            {
+                *currValue = Q_24_8(newValue);
+                ret = newValue;
+            }
+        }
+    }
+    else
+    {
+        if (receivedValue < 0) // fill bar right
+        {
+            *currValue += toAdd;
+            if (*currValue > newValue)
+                *currValue = newValue;
+            ret = *currValue;
+        }
+        else // move bar left
+        {
+            *currValue -= toAdd;
+            if (*currValue < newValue)
+                *currValue = newValue;
+            ret = *currValue;
+        }
+    }
+
+    return ret;
+}
+
+static s32 CalcNewExpBarValue(s32 maxValue, s32 oldValue, s32 receivedValue, s32 *currValue, u8 scale, u16 toAdd)
+{
+    s32 ret, newValue;
+    scale *= 8;
+
+    if (*currValue == -32768) // first function call
+    {
+        if (maxValue < scale)
+            *currValue = Q_24_8(oldValue);
+        else
+            *currValue = oldValue;
+    }
+
+    newValue = oldValue - receivedValue;
+    if (newValue < 0)
+        newValue = 0;
+    else if (newValue > maxValue)
+        newValue = maxValue;
+
+    if (maxValue < scale)
+    {
+        if (newValue == Q_24_8_TO_INT(*currValue) && (*currValue & 0xFF) == 0)
+            return -1;
+    }
+    else
+    {
+        if (newValue == *currValue) // we're done, the bar's value has been updated
+            return -1;
+    }
+
+    if (maxValue < scale) // handle cases of max var having less pixels than the whole bar
+    {
+        s32 toAdd_ = Q_24_8(maxValue) / scale;
+        if(gSaveBlock2Ptr->optionsHpBarAnimSpeed == 3) //instant
         {
             if(*currValue - receivedValue <= 0)
                 toAdd_ = *currValue;

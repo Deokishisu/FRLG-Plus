@@ -771,8 +771,8 @@ Help_Text_HowToUseOption:: @ 81B6203
 	.string "   Pad to select an optional item, then\n"
 	.string "   press left or right to alter the\n"
 	.string "   settings.\n"
-	.string "{CIRCLE_3} Press the A or B Button after\n"
-	.string "   making changes to save them.$"
+	.string "{CIRCLE_3} Press the B Button after making\n"
+	.string "   changes to save them.$"
 
 Help_Text_HowToUsePotion:: @ 81B62E4
 	.string "{CIRCLE_1} Open the MENU.\n"
@@ -1177,7 +1177,7 @@ Help_Text_Frame:: @ 81B7DC6
 	.string "FRAME$"
 
 Help_Text_Cancel2:: @ 81B7DCC
-	.string "CANCEL$"
+	.string "SAVE AND EXIT$"
 
 Help_Text_TM:: @ 81B7DD3
 	.string "TM$"
@@ -1440,8 +1440,9 @@ Help_Text_DefineTextSpeed:: @ 81B9170
 	.string "FAST, or INSTANT.$"
 
 Help_Text_DefineBattleScene:: @ 81B91C2
-	.string "You can choose to turn the battle\n"
-	.string "animation ON or OFF.$"
+	.string "Press the A Button to go to a submenu\n"
+	.string "with options to change battle-related\n"
+	.string "animations and delays.$"
 
 Help_Text_DefineBattleStyle:: @ 81B91F9
 	.string "You can choose whether or not you can\n"
@@ -1993,17 +1994,72 @@ Help_Text_TypeMatchupOwnPokemonBug:: @ 81BB156
 	.string "   {CIRCLE_DOT}: FIRE, FLYING, ROCK\p"
 	.string "   {TRIANGLE}: GRASS, FIGHTING, GROUND$"
 
-Help_Text_DefineBattleAnimSpeed::
-	.string "Set this option to FAST to skip the\n"
-	.string "transition animations that occur at the\l"
-	.string "start of every battle and make HP Bars\l"
-	.string "animate more quickly. Pressing the A or\l"
-	.string "B Button will also skip in-battle text\l"
-	.string "delays. INSTANT is like FAST but HP and\l"
-	.string "EXP. Bars animate instantly.$"
+Help_Text_UsingOptionsSubmenu:: @ 81B5A37
+	.string " Using “BATTLE SCENE”$"
 
-Help_Text_BattleAnimSpeed::
-	.string "BATTLE ANIM SPEED$"
+Help_Text_HowToUseOptionSubmenu::
+	.string "{CIRCLE_1} Select “BATTLE SCENE” on the MENU.\n"
+	.string "{CIRCLE_2} Press up or down on the {PLUS} Control\n"
+	.string "   Pad to select an optional item, then\n"
+	.string "   press left or right to alter the\n"
+	.string "   settings.\n"
+	.string "{CIRCLE_3} Press the A or B Button after\n"
+	.string "   making changes to go back.$"
+
+Help_Text_DefineBattleTransitions::
+	.string "Set this option to OFF to skip the\n"
+	.string "animations that play while transitioning\n"
+	.string "from the field to a battle.\n"
+	.string "When set to OFF, the screen cuts to\n"
+	.string "black and then instantly moves to the\n"
+	.string "battlefield. This does not skip some\n"
+	.string "special TRAINER battle transitions.$"
+
+Help_Text_DefineBattleIntroAnims::
+	.string "Set this option to OFF to skip the\n"
+	.string "sliding animations that happen at the\n"
+	.string "start of every battle.$"
+
+Help_Text_DefineMoveAnimations::
+	.string "Set this option to OFF to disable\n"
+	.string "POKéMON move animations in battle.\n"
+	.string "\n"
+	.string "Additionally, pressing the A or B\n"
+	.string "Buttons will skip in-battle text\n"
+	.string "delays when this is set to OFF.$"
+
+Help_Text_DefineHpBarAnimSpeed::
+	.string "You can adjust how quickly the health\n"
+	.string "bars animate. Choose one: STANDARD,\n"
+	.string "FAST, FASTER, INSTANT.$"
+
+Help_Text_DefineExpBarAnimSpeed::
+	.string "You can adjust how quickly the\n"
+	.string "Experience bar animates. Choose\n"
+	.string "either STANDARD or INSTANT.$"
+
+Help_Text_DefineBack::
+	.string "The settings will be changed to the\n"
+	.string "selections shown in red, and you will\n"
+	.string "return to the OPTION MENU.$"
+
+Help_Text_BattleTransitions::
+	.string "BATTLE TRANSITIONS$"
+
+Help_Text_BattleIntroAnim::
+	.string "BATTLE INTRO ANIM$"
+
+Help_Text_MoveAnimations::
+	.string "MOVE ANIMATIONS$"
+
+Help_Text_HpBarAnimSpeed::
+	.string "HP BAR ANIM SPEED$"
+
+Help_Text_ExpBarAnimSpeed::
+	.string "EXP BAR ANIM SPEED$"
+
+Help_Text_Back::
+	.string "BACK$"
 
 Help_Text_ExpMod::
 	.string "EXP. MODIFIER$"

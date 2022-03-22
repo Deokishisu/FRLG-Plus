@@ -628,7 +628,7 @@ static void LoadBattleTerrainGfx(u16 terrain)
 
 static void LoadBattleTerrainEntryGfx(u16 terrain)
 {
-    if(gSaveBlock2Ptr->battleAnimSpeed) //don't do entry anim graphics if set to Fast
+    if(gSaveBlock2Ptr->optionsBattleIntroAnim) //don't do entry anim graphics if set to Fast
         return;
 
     if (terrain >= NELEMS(sBattleTerrainTable))

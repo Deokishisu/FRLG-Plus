@@ -1175,7 +1175,7 @@ static void LinkOpponentHandleDrawTrainerPic(void)
                                                      GetBattlerSpriteSubpriority(gActiveBattler));
     gSprites[gBattlerSpriteIds[gActiveBattler]].pos2.x = -240;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 2;
-    if(gSaveBlock2Ptr->battleAnimSpeed)
+    if(gSaveBlock2Ptr->optionsBattleIntroAnim)
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 240;
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = IndexOfSpritePaletteTag(gTrainerFrontPicPaletteTable[trainerPicId].tag);
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[5] = gSprites[gBattlerSpriteIds[gActiveBattler]].oam.tileNum;

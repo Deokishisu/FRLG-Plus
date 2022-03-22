@@ -298,14 +298,17 @@ struct SaveBlock2
     /*0x010*/ u8 playTimeMinutes;
     /*0x011*/ u8 playTimeSeconds;
     /*0x012*/ u8 playTimeVBlanks;
-    /*0x013*/ u8 optionsButtonMode;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
+    /*0x013*/ u8 optionsButtonMode:2;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
+              u8 optionsHpBarAnimSpeed:2; //speed at which health bar animates
+              u8 optionsPadding:4;
     /*0x014*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST/INSTANT]
               u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
     /*0x15*/  u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
               u16 optionsBattleStyle:2; // OPTIONS_BATTLE_STYLE_[PREDICT/SHIFT/SET]
               u16 optionsBattleSceneOff:1; // whether battle animations are disabled
-              u16 regionMapZoom:1; // whether the map is zoomed in
-              u16 battleAnimSpeed:2; //whether intro slide is disabled and HP bar drops fast
+              u16 optionsBattleTransitions:1; // whether battle transitions are disabled
+              u16 optionsBattleIntroAnim:1; // whether battle intro slide is disabled
+              u16 optionsExpBarAnimSpeed:1;  // whether exp bar animates instantly
     /*0x018*/ struct Pokedex pokedex;
     /*0x090*/ u8 filler_90[0x8];
     /*0x098*/ struct Time localTimeOffset;

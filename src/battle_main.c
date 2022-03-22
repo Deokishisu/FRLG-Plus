@@ -1969,11 +1969,11 @@ void SpriteCB_EnemyMon(struct Sprite *sprite)
 
 static void SpriteCB_MoveWildMonToRight(struct Sprite *sprite)
 {
-    if(gSaveBlock2Ptr->battleAnimSpeed)
+    if(gSaveBlock2Ptr->optionsBattleIntroAnim)
         sprite->invisible = TRUE;
     if ((gIntroSlideFlags & 1) == 0)
     {
-        if(gSaveBlock2Ptr->battleAnimSpeed == 0)
+        if(gSaveBlock2Ptr->optionsBattleIntroAnim == 0)
             sprite->pos2.x += 2;
         if (sprite->pos2.x == 0)
         {

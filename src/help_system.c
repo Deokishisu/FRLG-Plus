@@ -282,6 +282,7 @@ enum
     HELP_USING_HALL_OF_FAME,
     HELP_USING_KEY_SYSTEM,
     HELP_SORTING_BAG,
+    HELP_USING_OPTIONS_SUBMENU,
 };
 
 static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
@@ -335,7 +336,8 @@ static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
     [HELP_USING_ROCK]                   = Help_Text_UsingRock,
     [HELP_USING_HALL_OF_FAME]           = Help_Text_UsingHallOfFame,
     [HELP_USING_KEY_SYSTEM]             = Help_Text_UsingKeySystem,
-    [HELP_SORTING_BAG]                  = Help_Text_SortingBag
+    [HELP_SORTING_BAG]                  = Help_Text_SortingBag,
+    [HELP_USING_OPTIONS_SUBMENU]        = Help_Text_UsingOptionsSubmenu,
 };
 
 static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
@@ -389,7 +391,8 @@ static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
     [HELP_USING_ROCK]                   = Help_Text_HowToUseRock,
     [HELP_USING_HALL_OF_FAME]           = Help_Text_HowToUseHallOfFame,
     [HELP_USING_KEY_SYSTEM]             = Help_Text_HowToUseKeySystemSettings,
-    [HELP_SORTING_BAG]                  = Help_Text_HowToSortBag
+    [HELP_SORTING_BAG]                  = Help_Text_HowToSortBag,
+    [HELP_USING_OPTIONS_SUBMENU]        = Help_Text_HowToUseOptionSubmenu,
 };
 
 // Submenu IDs for TOPIC_TERMS
@@ -448,8 +451,13 @@ enum
     HELP_TERM_IV_CALC,
     HELP_TERM_EV_CALC,
     HELP_TERM_NO_PMC,
-    HELP_TERM_BATTLE_ANIM_SPEED,
-    HELP_TERM_EXP_MOD
+    HELP_TERM_BATTLE_TRANSITIONS,
+    HELP_TERM_EXP_MOD,
+    HELP_TERM_BATTLE_INTRO_ANIM,
+    HELP_TERM_MOVE_ANIMATIONS,
+    HELP_TERM_HP_BAR_ANIM_SPEED,
+    HELP_TERM_EXP_BAR_ANIM_SPEED,
+    HELP_TERM_BACK,
 };
 
 static const u8 *const sHelpSystemTermTextPtrs[] = {
@@ -507,8 +515,13 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_IV_CALC]        = Help_Text_IvCalc,
     [HELP_TERM_EV_CALC]        = Help_Text_EvCalc,
     [HELP_TERM_NO_PMC]         = Help_Text_NoFreeHeals,
-    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_BattleAnimSpeed,
-    [HELP_TERM_EXP_MOD]        = Help_Text_ExpMod
+    [HELP_TERM_BATTLE_TRANSITIONS] = Help_Text_BattleTransitions,
+    [HELP_TERM_EXP_MOD]        = Help_Text_ExpMod,
+    [HELP_TERM_BATTLE_INTRO_ANIM]   = Help_Text_BattleIntroAnim,
+    [HELP_TERM_MOVE_ANIMATIONS]     = Help_Text_MoveAnimations,
+    [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_HpBarAnimSpeed,
+    [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_ExpBarAnimSpeed,
+    [HELP_TERM_BACK] = Help_Text_Back,
 };
 
 static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
@@ -566,8 +579,13 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_IV_CALC]        = Help_Text_DefineIvCalc,
     [HELP_TERM_EV_CALC]        = Help_Text_DefineEvCalc,
     [HELP_TERM_NO_PMC]         = Help_Text_DefineNoFreeHeals,
-    [HELP_TERM_BATTLE_ANIM_SPEED] = Help_Text_DefineBattleAnimSpeed,
-    [HELP_TERM_EXP_MOD]        = Help_Text_DefineExpMod
+    [HELP_TERM_BATTLE_TRANSITIONS] = Help_Text_DefineBattleTransitions,
+    [HELP_TERM_EXP_MOD]        = Help_Text_DefineExpMod,
+    [HELP_TERM_BATTLE_INTRO_ANIM]   = Help_Text_DefineBattleIntroAnims,
+    [HELP_TERM_MOVE_ANIMATIONS]     = Help_Text_DefineMoveAnimations,
+    [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_DefineHpBarAnimSpeed,
+    [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_DefineExpBarAnimSpeed,
+    [HELP_TERM_BACK] = Help_Text_DefineBack,
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -853,7 +871,6 @@ static const u8 sTerms_Options[] = {
     HELP_TERM_TEXT_SPEED, 
     HELP_TERM_BATTLE_SCENE, 
     HELP_TERM_BATTLE_STYLE,
-    HELP_TERM_BATTLE_ANIM_SPEED, 
     HELP_TERM_SOUND, 
     HELP_TERM_BUTTON_MODE, 
     HELP_TERM_FRAME, 
@@ -1669,6 +1686,21 @@ static const u8 sTerms_KeySystem[] = {
     HELP_END
 };
 
+static const u8 sHowTo_OptionsSubMenu[] = {
+    HELP_USING_OPTIONS_SUBMENU, 
+    HELP_END
+};
+
+static const u8 sTerms_OptionsSubMenu[] = {
+    HELP_TERM_BATTLE_TRANSITIONS,
+    HELP_TERM_BATTLE_INTRO_ANIM,
+    HELP_TERM_MOVE_ANIMATIONS,
+    HELP_TERM_HP_BAR_ANIM_SPEED,
+    HELP_TERM_EXP_BAR_ANIM_SPEED,
+    HELP_TERM_BACK,
+    HELP_END
+};
+
 // Cant get this to match as a 2D array but it probably should be one, [HELPCONTEXT_COUNT][TOPIC_COUNT - 1] (Excludes TOPIC_EXIT)
 static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_COUNT - 1)] = {
     NULL,                          NULL,                       NULL,                       NULL,                    NULL, // HELPCONTEXT_NONE
@@ -1706,7 +1738,8 @@ static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_CO
     NULL,                          sHowTo_BedroomPC,           NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC
     NULL,                          sHowTo_BedroomPCItems,      NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC_ITEMS
     NULL,                          sHowTo_BedroomPCMailbox,    NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC_MAILBOX
-    NULL,                          sHowTo_KeySystem,           sTerms_KeySystem,           NULL,                    NULL  // HELPCONTEXT_KEY_SYSTEM
+    NULL,                          sHowTo_KeySystem,           sTerms_KeySystem,           NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM
+    NULL,                          sHowTo_OptionsSubMenu,      sTerms_OptionsSubMenu,      NULL,                    NULL, // HELPCONTEXT_OPTIONS_SUBMENU
 };
 
 static const u16 unref_845BCB0[] = INCBIN_U16("graphics/help_system/unused.bin");
@@ -1767,6 +1800,7 @@ static const bool8 sHelpSystemContextTopicFlags[HELPCONTEXT_COUNT + 1][TOPIC_COU
     [HELPCONTEXT_BEDROOM_PC_ITEMS]      = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE, FALSE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_BEDROOM_PC_MAILBOX]    = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE, FALSE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_KEY_SYSTEM]            = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
+    [HELPCONTEXT_OPTIONS_SUBMENU]       = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_COUNT]                 = {}
 };
 
@@ -2187,6 +2221,7 @@ static bool8 IsHelpSystemSubmenuEnabled(u8 id)
         case HELP_USING_ROCK:
         case HELP_USING_KEY_SYSTEM:
         case HELP_SORTING_BAG:
+        case HELP_USING_OPTIONS_SUBMENU:
             return TRUE;
         case HELP_USING_POKEDEX:
         case HELP_USING_PROF_OAKS_PC:
