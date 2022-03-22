@@ -945,6 +945,7 @@ extern const u8 gText_MoveAnims[];
 extern const u8 gText_HpBarAnimSpeed[];
 extern const u8 gText_ExpBarAnimSpeed[];
 extern const u8 gText_Back[];
+extern const u8 gText_Advanced[];
 extern const u8 gText_TextSpeedSlow[];
 extern const u8 gText_TextSpeedMid[];
 extern const u8 gText_TextSpeedFast[];

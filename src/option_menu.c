@@ -58,7 +58,7 @@ struct OptionMenu
              bool8 inSubMenu;
 };
 
-EWRAM_DATA struct OptionMenu *sOptionMenuPtr = NULL;
+static EWRAM_DATA struct OptionMenu *sOptionMenuPtr = NULL;
 
 //Function Declarataions
 static void CB2_InitOptionMenu(void);
@@ -265,6 +265,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->loadPaletteState = 0;
     sOptionMenuPtr->state = 0;
     sOptionMenuPtr->cursorPos = 0;
+    sOptionMenuPtr->inSubMenu = 0;
     sOptionMenuPtr->option[MENUITEM_TEXTSPEED] = gSaveBlock2Ptr->optionsTextSpeed;
     sOptionMenuPtr->option[MENUITEM_BATTLESCENE] = 0;
     sOptionMenuPtr->option[MENUITEM_BATTLESTYLE] = gSaveBlock2Ptr->optionsBattleStyle;

@@ -781,6 +781,7 @@ const u8 gText_MoveAnims[] = _("MOVE ANIMATIONS");
 const u8 gText_HpBarAnimSpeed[] = _("HP BAR ANIM SPEED");
 const u8 gText_ExpBarAnimSpeed[] = _("EXP BAR ANIM SPEED");
 const u8 gText_Back[] = _("BACK");
+const u8 gText_Advanced[] = _("ADVANCED KEYS");
 const u8 gText_TextSpeedSlow[] = _("SLOW");
 const u8 gText_TextSpeedMid[] = _("MID");
 const u8 gText_TextSpeedFast[] = _("FAST");

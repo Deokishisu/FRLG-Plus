@@ -2061,6 +2061,33 @@ Help_Text_ExpBarAnimSpeed::
 Help_Text_Back::
 	.string "BACK$"
 
+Help_Text_AdvancedKeys::
+	.string "ADVANCED KEYS$"
+
+Help_Text_DefineAdvancedKeys::
+	.string "Press the A Button to go to a submenu\n"
+	.string "with options to modify the difficulty\n"
+	.string "by changing experience gain or adding\n"
+	.string "additional rules onto the gameplay\n"
+	.string "experience.$"
+
+Help_Text_DefineAdvancedKeysBack::
+	.string "The settings will be changed to the\n"
+	.string "selections shown in red, and you will\n"
+	.string "return to the KEY SYSTEM MENU.$"
+
+Help_Text_UsingKeySystemSubmenu:: @ 81B5A37
+	.string " Using “ADVANCED KEYS”$"
+
+Help_Text_HowToUseKeySystemSubmenu::
+	.string "{CIRCLE_1} Select “ADVANCED KEYS” on the MENU.\n"
+	.string "{CIRCLE_2} Press up or down on the {PLUS} Control\n"
+	.string "   Pad to select an optional item, then\n"
+	.string "   press left or right to alter the\n"
+	.string "   settings.\n"
+	.string "{CIRCLE_3} Press the A or B Button after\n"
+	.string "   making changes to go back.$"
+
 Help_Text_ExpMod::
 	.string "EXP. MODIFIER$"
 
