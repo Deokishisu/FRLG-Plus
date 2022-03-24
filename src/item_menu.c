@@ -67,7 +67,7 @@ struct BagSlots
     u16 itemsAbove[5];
     u16 cursorPos[5];
     u16 registeredItem;
-    u16 pocket;
+    s16 pocket;
 };
 
 EWRAM_DATA struct BagStruct gBagMenuState = {};
@@ -110,7 +110,7 @@ static void All_CalculateNItemsAndMaxShowed(void);
 static void Task_BagMenu_HandleInput(u8 taskId);
 static void Task_ItemContextMenuByLocation(u8 taskId);
 static void Bag_FillMessageBoxWithPalette(u32 a0);
-static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId);
+static u8 ProcessPocketSwitchInput(u8 taskId, s16 pocketId);
 static void SwitchPockets(u8 taskId, s16 direction, bool16 a2);
 static void Task_AnimateSwitchPockets(u8 taskId);
 static void BeginMovingItemInPocket(u8 taskId, s16 itemIndex);
@@ -1202,24 +1202,28 @@ static void Bag_FillMessageBoxWithPalette(u32 a0)
     ScheduleBgCopyTilemapToVram(1);
 }
 
-static u8 ProcessPocketSwitchInput(u8 taskId, u8 pocketId)
+static u8 ProcessPocketSwitchInput(u8 taskId, s16 pocketId)
 {
     u8 lrState;
     if (sBagMenuDisplay->pocketSwitchMode != 0)
         return 0;
     lrState = GetLRKeysState();
+    if(pocketId == -4)
+        pocketId = POCKET_ITEMS - 1;
+    if(pocketId == 8)
+        pocketId = POCKET_POKE_BALLS - 1;
     if (JOY_NEW(DPAD_LEFT) || lrState == 1)
     {
+        PlaySE(SE_BAG_POCKET);
         if (pocketId == POCKET_ITEMS - 1)
             return 3;
-        PlaySE(SE_BAG_POCKET);
         return 1;
     }
     if (JOY_NEW(DPAD_RIGHT) || lrState == 2)
     {
-        if (pocketId >= POCKET_POKE_BALLS - 1)
-            return 4;
         PlaySE(SE_BAG_POCKET);
+        if (pocketId == POCKET_POKE_BALLS - 1)
+            return 4;
         return 2;
     }
     return 0;
@@ -1243,7 +1247,12 @@ static void SwitchPockets(u8 taskId, s16 direction, bool16 a2)
     }
     FillBgTilemapBufferRect_Palette0(1, 0x02D, 11, 1, 18, 12);
     ScheduleBgCopyTilemapToVram(1);
-    sub_8098528(gBagMenuState.pocket + direction);
+    if(direction == 4)
+        sub_8098528(POCKET_POKE_BALLS - 1);
+    else if(direction == -4)
+        sub_8098528(POCKET_ITEMS - 1);
+    else
+        sub_8098528(gBagMenuState.pocket + direction);
     SetTaskFuncWithFollowupFunc(taskId, Task_AnimateSwitchPockets, gTasks[taskId].func);
 }
 
@@ -1255,11 +1264,15 @@ static void Task_AnimateSwitchPockets(u8 taskId)
         switch (ProcessPocketSwitchInput(taskId, gBagMenuState.pocket + data[11]))
         {
         case 1:
+            if(data[11] == 4 && (gBagMenuState.pocket != POCKET_ITEMS - 1))
+                data[11] = -1;
             gBagMenuState.pocket += data[11];
             SwitchTaskToFollowupFunc(taskId);
             SwitchPockets(taskId, -1, TRUE);
             return;
         case 2:
+            if(data[11] == -4 && (gBagMenuState.pocket != POCKET_POKE_BALLS - 1))
+                data[11] = 1;
             gBagMenuState.pocket += data[11];
             SwitchTaskToFollowupFunc(taskId);
             SwitchPockets(taskId,  1, TRUE);
@@ -1290,7 +1303,12 @@ static void Task_AnimateSwitchPockets(u8 taskId)
             data[13]++;
         break;
     case 1:
-        gBagMenuState.pocket += data[11];
+        if(gBagMenuState.pocket == (POCKET_ITEMS - 1) && data[11] == -4)
+            gBagMenuState.pocket == POCKET_POKE_BALLS - 1;
+        else if(gBagMenuState.pocket == POCKET_POKE_BALLS - 1 && data[11] == 4)
+            gBagMenuState.pocket == (POCKET_ITEMS - 1);
+        else
+            gBagMenuState.pocket += data[11];
         PrintBagPocketName();
         Bag_BuildListMenuTemplate(gBagMenuState.pocket);
         data[0] = ListMenuInit(&gMultiuseListMenuTemplate, gBagMenuState.cursorPos[gBagMenuState.pocket], gBagMenuState.itemsAbove[gBagMenuState.pocket]);
