@@ -287,17 +287,17 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_MasterOak),
         .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOak}
     },
-    [TRAINER_GENTLEMAN_1] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_GENTLEMAN,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_RICH,
-        .trainerPic = TRAINER_PIC_RS_GENTLEMAN,
-        .trainerName = _(""),
-        .items = {},
+    [TRAINER_MISTY_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_MISTY,
+        .trainerName = _("MISTY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
         .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_Gentleman1),
-        .party = {.NoItemDefaultMoves = sTrainerMons_Gentleman1}
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderMistyRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderMistyRematchChallenge}
     },
     [TRAINER_ELITE_FOUR_SIDNEY] = {
         .partyFlags = 0,
@@ -9214,17 +9214,5 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderMistyRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderMistyRematch}
-    },
-    [TRAINER_MISTY_REMATCH_CHALLENGE] = {
-        .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LEADER_2,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
-        .trainerPic = TRAINER_PIC_LEADER_MISTY,
-        .trainerName = _("MISTY"),
-        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
-        .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_LeaderMistyRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderMistyRematchChallenge}
     },
 };

@@ -958,11 +958,66 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_Gentleman1[] = {
+static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderMistyRematchChallenge[] = {
     {
-        .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .iv = 255,
+        .lvl = 63,
+        .evs = { 72, 0, 0, 184, 244, 184},
+        .nature = NATURE_TIMID,
+        .species = SPECIES_CLOYSTER,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SPIKES, MOVE_SURF, MOVE_PROTECT, MOVE_ICE_BEAM},
+    },
+    {
+        .iv = 255,
+        .lvl = 64,
+        .evs = { 40, 0, 0, 0, 252, 216},
+        .nature = NATURE_MODEST,
+        .species = SPECIES_LANTURN,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_THUNDERBOLT, MOVE_SURF, MOVE_REST, MOVE_SLEEP_TALK},
+    },
+    {
+        .iv = 1, //ghost
+        .lvl = 64,
+        .evs = { 252, 252, 0, 4, 0, 0},
+        .nature = NATURE_ADAMANT,
+        .species = SPECIES_AZUMARILL,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 1,
+        .moves = {MOVE_SUBSTITUTE, MOVE_FOCUS_PUNCH, MOVE_HIDDEN_POWER, MOVE_ATTRACT},
+    },
+    {
+        .iv = 6, //rock
+        .lvl = 63,
+        .evs = { 252, 64, 0, 0, 0, 192},
+        .nature = NATURE_SASSY,
+        .species = SPECIES_QUAGSIRE,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 1,
+        .moves = {MOVE_CURSE, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_REST},
+    },
+    {
+        .iv = 3, //flying
+        .lvl = 66,
+        .evs = { 68, 252, 0, 188, 0, 0},
+        .nature = NATURE_JOLLY,
+        .species = SPECIES_GYARADOS,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_THUNDER_WAVE},
+    },
+    {
+        .iv = 255,
+        .lvl = 66,
+        .evs = { 4, 0, 0, 252, 252, 0},
+        .nature = NATURE_TIMID,
+        .species = SPECIES_STARMIE,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 1,
+        .moves = {MOVE_HYDRO_PUMP, MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_PSYCHIC},
     },
 };
 
@@ -13686,69 +13741,6 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] 
     {
         .iv = 255,
         .lvl = 66,
-        .species = SPECIES_STARMIE,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 1,
-        .moves = {MOVE_HYDRO_PUMP, MOVE_THUNDERBOLT, MOVE_ICE_BEAM, MOVE_PSYCHIC},
-    },
-};
-
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderMistyRematchChallenge[] = {
-    {
-        .iv = 255,
-        .lvl = 63,
-        .evs = { 72, 0, 0, 184, 244, 184},
-        .nature = NATURE_TIMID,
-        .species = SPECIES_CLOYSTER,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_SPIKES, MOVE_SURF, MOVE_PROTECT, MOVE_ICE_BEAM},
-    },
-    {
-        .iv = 255,
-        .lvl = 64,
-        .evs = { 40, 0, 0, 0, 252, 216},
-        .nature = NATURE_MODEST,
-        .species = SPECIES_LANTURN,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_THUNDERBOLT, MOVE_SURF, MOVE_REST, MOVE_SLEEP_TALK},
-    },
-    {
-        .iv = 1, //ghost
-        .lvl = 64,
-        .evs = { 252, 252, 0, 4, 0, 0},
-        .nature = NATURE_ADAMANT,
-        .species = SPECIES_AZUMARILL,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 1,
-        .moves = {MOVE_SUBSTITUTE, MOVE_FOCUS_PUNCH, MOVE_HIDDEN_POWER, MOVE_ATTRACT},
-    },
-    {
-        .iv = 6, //rock
-        .lvl = 63,
-        .evs = { 252, 64, 0, 0, 0, 192},
-        .nature = NATURE_SASSY,
-        .species = SPECIES_QUAGSIRE,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 1,
-        .moves = {MOVE_CURSE, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_REST},
-    },
-    {
-        .iv = 3, //flying
-        .lvl = 66,
-        .evs = { 68, 252, 0, 188, 0, 0},
-        .nature = NATURE_JOLLY,
-        .species = SPECIES_GYARADOS,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE, MOVE_HIDDEN_POWER, MOVE_THUNDER_WAVE},
-    },
-    {
-        .iv = 255,
-        .lvl = 66,
-        .evs = { 4, 0, 0, 252, 252, 0},
-        .nature = NATURE_TIMID,
         .species = SPECIES_STARMIE,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,

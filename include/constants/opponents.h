@@ -25,7 +25,7 @@
 #define TRAINER_SWIMMER_FEMALE_SEDEF              21
 #define TRAINER_SWIMMER_FEMALE_SEDEF_2            22
 #define TRAINER_MASTER_OAK                        23
-#define TRAINER_GENTLEMAN_1                       24
+#define TRAINER_MISTY_REMATCH_CHALLENGE           24
 #define TRAINER_ELITE_FOUR_SIDNEY                 25
 #define TRAINER_ELITE_FOUR_PHOEBE                 26
 #define TRAINER_LEADER_ROXANNE                    27
@@ -769,7 +769,6 @@
 #define TRAINER_BROCK_REMATCH                    765
 #define TRAINER_BROCK_REMATCH_CHALLENGE          766
 #define TRAINER_MISTY_REMATCH                    767
-#define TRAINER_MISTY_REMATCH_CHALLENGE          768
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is 
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
