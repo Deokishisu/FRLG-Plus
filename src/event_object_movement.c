@@ -484,6 +484,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_32 0x1121
 #define OBJ_EVENT_PAL_TAG_33 0x1122
 #define OBJ_EVENT_PAL_TAG_34 0x1123
+#define OBJ_EVENT_PAL_TAG_LADY 0x1124
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -517,6 +518,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gEmBrendanPalette,                       OBJ_EVENT_PAL_TAG_28},
     {gEmMayPalette,                           OBJ_EVENT_PAL_TAG_29},
     {gObjectEventPal_CableCar,                OBJ_EVENT_PAL_TAG_CABLE_CAR},
+    {gObjectEventPal_Lady,                    OBJ_EVENT_PAL_TAG_LADY},
     {},
 };
 
@@ -611,6 +613,13 @@ static const u16 sReflectionPaletteTags_CableCar[] = {
     OBJ_EVENT_PAL_TAG_CABLE_CAR,
 };
 
+static const u16 sReflectionPaletteTags_Lady[] = {
+    OBJ_EVENT_PAL_TAG_LADY,
+    OBJ_EVENT_PAL_TAG_LADY,
+    OBJ_EVENT_PAL_TAG_LADY,
+    OBJ_EVENT_PAL_TAG_LADY,
+};
+
 static const u16 sRSGroudonReflectionPaletteTags[] = {
     OBJ_EVENT_PAL_TAG_RS_GROUDON_REFLECTION,
     OBJ_EVENT_PAL_TAG_RS_GROUDON_REFLECTION,
@@ -639,6 +648,7 @@ const struct PairedPalettes gSpecialObjectReflectionPaletteSets[] = {
     {OBJ_EVENT_PAL_TAG_NPC_GREEN,           sGreenNPCReflectionPaletteTags},
     {OBJ_EVENT_PAL_TAG_RS_SUBMARINE_SHADOW, sRSSubmarineShadowReflectionPaletteTags},
     {OBJ_EVENT_PAL_TAG_CABLE_CAR,           sReflectionPaletteTags_CableCar},
+    {OBJ_EVENT_PAL_TAG_LADY,                sReflectionPaletteTags_Lady},
     {OBJ_EVENT_PAL_TAG_NONE, NULL},
 };
 

@@ -103,7 +103,12 @@ static const u8 sTextColorTable[] =
     [OBJ_EVENT_GFX_MASTER_BLACK_BELT / 2]       = 0x00, // OBJ_EVENT_GFX_MASTER_BUG_CATCHER
     [OBJ_EVENT_GFX_MASTER_COOLTRAINER_M / 2]    = 0x00, // OBJ_EVENT_GFX_MASTER_HIKER
     [OBJ_EVENT_GFX_MASTER_LASS / 2]             = 0x01, // OBJ_EVENT_GFX_MASTER_PSYCHIC_M
-    [OBJ_EVENT_GFX_MASTER_SCIENTIST / 2]        = 0x00 // OBJ_EVENT_GFX_MASTER_YOUNGSTER
+    [OBJ_EVENT_GFX_MASTER_SCIENTIST / 2]        = 0x00, // OBJ_EVENT_GFX_MASTER_YOUNGSTER
+    [OBJ_EVENT_GFX_LADY / 2]                    = 0x01, // OBJ_EVENT_GFX_ROCKER_2
+    [OBJ_EVENT_GFX_ANABEL / 2]                  = 0x01, // OBJ_EVENT_GFX_TUCKER
+    [OBJ_EVENT_GFX_GRETA / 2]                   = 0x01, // OBJ_EVENT_GFX_SPENSER
+    [OBJ_EVENT_GFX_NOLAND / 2]                  = 0x10, // OBJ_EVENT_GFX_LUCY
+    [OBJ_EVENT_GFX_BRANDON / 2]                 = 0x10, // OBJ_EVENT_GFX_
 };
 
 void DynamicPlaceholderTextUtil_Reset(void)

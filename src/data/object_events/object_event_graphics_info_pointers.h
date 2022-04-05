@@ -192,6 +192,15 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterLass;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterPsychicM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterScientist;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterYoungster;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lady;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rocker2;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Anabel;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Tucker;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Greta;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Spenser;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Noland;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lucy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brandon;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -388,4 +397,13 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_MASTER_PSYCHIC_M]         = &gObjectEventGraphicsInfo_MasterPsychicM,
     [OBJ_EVENT_GFX_MASTER_SCIENTIST]         = &gObjectEventGraphicsInfo_MasterScientist,
     [OBJ_EVENT_GFX_MASTER_YOUNGSTER]         = &gObjectEventGraphicsInfo_MasterYoungster,
+    [OBJ_EVENT_GFX_LADY]                     = &gObjectEventGraphicsInfo_Lady,
+    [OBJ_EVENT_GFX_ROCKER_2]                 = &gObjectEventGraphicsInfo_Rocker2,
+    [OBJ_EVENT_GFX_ANABEL]                   = &gObjectEventGraphicsInfo_Anabel,
+    [OBJ_EVENT_GFX_TUCKER]                   = &gObjectEventGraphicsInfo_Tucker,
+    [OBJ_EVENT_GFX_GRETA]                    = &gObjectEventGraphicsInfo_Greta,
+    [OBJ_EVENT_GFX_SPENSER]                  = &gObjectEventGraphicsInfo_Spenser,
+    [OBJ_EVENT_GFX_NOLAND]                   = &gObjectEventGraphicsInfo_Noland,
+    [OBJ_EVENT_GFX_LUCY]                     = &gObjectEventGraphicsInfo_Lucy,
+    [OBJ_EVENT_GFX_BRANDON]                  = &gObjectEventGraphicsInfo_Brandon,
 };
