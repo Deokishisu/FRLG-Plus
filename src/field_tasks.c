@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "bike.h"
 #include "event_data.h"
+#include "event_object_lock.h"
 #include "field_camera.h"
 #include "field_effect_helpers.h"
 #include "field_player_avatar.h"
@@ -207,6 +208,7 @@ static void IcefallCaveIcePerStepCallback(u8 taskId)
             }
             break;
         case 3:
+            ScriptFreezeObjectEvents();
             if (data[6] != 0)
             {
                 data[6]--;
