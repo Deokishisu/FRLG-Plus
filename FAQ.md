@@ -7,7 +7,7 @@
 * Mechanics:
   * [Will later-generation battle mechanics be implemented? What about the physical/special split?](#will-later-generation-battle-mechanics-be-implemented-what-about-the-physicalspecial-split)
   * [Will new moves be implemented? New held items?](#will-new-moves-be-implemented-new-held-items)
-  * [Will the Gen 6+ Experience Share be implemented?](#will-the-gen-6-experience-share-be-implemented)
+  * [Will the Generation VI+ Experience Share be implemented?](#will-the-generation-vi-experience-share-be-implemented)
   * [Will you improve breeding mechanics?](#will-you-improve-breeding-mechanics)
   * [What are the shiny chances? Will they be improved?](#what-are-the-shiny-chances-will-they-be-improved)
   * [Will you add something to change my Pokémon's IVs/Hidden Power/Nature/etc.?](#will-you-add-something-to-change-my-pokémons-ivshidden-powernatureetc)
@@ -43,14 +43,14 @@ No. This hack aims to preserve the original battle mechanics and maintain link c
 ### Will new moves be implemented? New held items?
 No. This hack aims to preserve the original battle mechanics and maintain link compatibility with the vanilla games. Adding new moves or held items runs contrary to those goals.
 
-### Will the Gen 6+ Experience Share be implemented?
+### Will the Generation VI+ Experience Share be implemented?
 No.
 
 ### Will you improve breeding mechanics?
 Breeding mechanics have been ported from Emerald, but no further improvements will be made. This hack is not meant to supplant the vanilla games when it comes to obtaining good Pokémon.
 
 ### What are the shiny chances? Will they be improved?
-The shiny chance is 1/8192, as it was in Gen 3. The odds of encountering a shiny Pokémon will not be increased.
+The shiny chance is 1/8192, as it was in Generation III. The odds of encountering a shiny Pokémon will not be increased.
 
 ### Will you add something to change my Pokémon's IVs/Hidden Power/Nature/etc.?
 No. This hack is not meant to supplant the vanilla games when it comes to obtaining good Pokémon. For IVs specifically, players can make the game behave as if all Pokémon IVs are perfect by toggling an option in the Key System Menu. This option does not affect a Pokémon's actual IVs or Hidden Power.
@@ -64,9 +64,9 @@ No. This hack aims to maintain link compatibility with the vanilla games and kee
 There are 246 Pokémon available in the hack without trading. This hack does not add any new Pokémon that were not available in Generation III. To complete the National Dex, trade with the vanilla games. This is not a 386 hack, and not all Pokémon will be obtainable without trading.
 
 ### Can you change wild Pokémon availability/levels? Can you put *x* Pokémon in *y* map? Will you add more Pokémon in the future?
-One of the goals of this hack is to make every Pokémon available to the player legal in Gen 3. This means that modifying existing Pokémon encounters or adding new Pokémon to existing encounter tables would make illegal Pokémon obtainable. There are new Pokémon available that were not in FireRed and LeafGreen originally, but they have been painstakingly implemented in such a way as to maintain their Gen 3 legality.
+One of the goals of this hack is to make every Pokémon available to the player legal in Generation III. This means that modifying existing Pokémon encounters or adding new Pokémon to existing encounter tables would make illegal Pokémon obtainable. There are new Pokémon available that were not in FireRed and LeafGreen originally, but they have been painstakingly implemented in such a way as to maintain their Generation III legality.
 
-Adding more Pokémon in the future would require finding ways to make them legal in Gen 3, and for the remaining roster of Pokémon there aren't ways to do that while still having it make sense. If you want more Pokémon, trade with vanilla.
+Adding more Pokémon in the future would require finding ways to make them legal in Generation III, and for the remaining roster of Pokémon there aren't ways to do that while still having it make sense. If you want more Pokémon, trade with vanilla.
 
 ### Is there a list of wild encounter tables?
 Yes, however it is not well-organized. [The link is here](https://github.com/Deokishisu/FRLG-Plus/blob/master/src/data/wild_encounters.h).
@@ -166,7 +166,7 @@ No.
 ### How do I link to other games? When is the earliest I can link?
 FRLG+ is fully compatible with everything that the vanilla international FireRed and LeafGreen games were compatible with. If your emulator supports linking, refer to its documentation for how to initiate a link.
 
-The player may link with all Gen 3 GBA and GCN games the moment they receive the Pokédex. Finishing the Net Center on One Island is no longer a prerequisite for trading with the Hoenn games, trading with the Orre games, using Pokémon Box: Ruby and Sapphire, or receiving Eggs or Pokémon that are not in the Kanto Pokédex.
+The player may link with all Generation III GBA and GCN games the moment they receive the Pokédex. Finishing the Net Center on One Island is no longer a prerequisite for trading with the Hoenn games, trading with the Orre games, using Pokémon Box: Ruby and Sapphire, or receiving Eggs or Pokémon that are not in the Kanto Pokédex.
 
 ### Where are the new Move Tutors and what moves do they teach?
 <details>
