@@ -391,6 +391,24 @@ static void Task_Hof_InitMonData(u8 taskId)
             sHofMonPtr[0].mon[i].species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2);
             sHofMonPtr[0].mon[i].tid = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
             sHofMonPtr[0].mon[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
+            if(sHofMonPtr[0].mon[i].species == SPECIES_DEOXYS)
+            {
+                switch(GetMonData(&gPlayerParty[i], MON_DATA_FORME))
+                {
+                case 1: //Attack Forme
+                    sHofMonPtr[0].mon[i].personality = 65531;
+                    break;
+                case 2: //Defense Forme
+                    sHofMonPtr[0].mon[i].personality = 65532;
+                    break;
+                case 3: //Speed Forme
+                    sHofMonPtr[0].mon[i].personality = 65533;
+                    break;
+                default: //Normal Forme
+                    sHofMonPtr[0].mon[i].personality = 65530;
+                    break;
+                }
+            }
             sHofMonPtr[0].mon[i].lvl = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
             GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, nick);
             for (j = 0; j < 10; j++)
@@ -506,7 +524,10 @@ static void Task_Hof_DisplayMon(u8 taskId)
         dstY = sHallOfFame_MonHalfTeamPositions[currMonId][3];
     }
 
-    spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, 1, srcX, srcY, currMonId, 0xFFFF);
+    if(currMon->species == SPECIES_DEOXYS)
+        spriteId = CreateMonPicSprite_HandleDeoxys(currMon->personality, currMon->tid, currMon->personality, 1, srcX, srcY, currMonId, 0xFFFF);
+    else
+        spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, 1, srcX, srcY, currMonId, 0xFFFF);
     gSprites[spriteId].data[1] = dstX;
     gSprites[spriteId].data[2] = dstY;
     gSprites[spriteId].data[0] = 0;
@@ -824,7 +845,11 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
                 posY = sHallOfFame_MonHalfTeamPositions[i][3];
             }
 
-            spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, TRUE, posX,
+            if(currMon->species == SPECIES_DEOXYS && (currMon->personality >= 65530 && currMon->personality <= 655333))
+                spriteId = CreateMonPicSprite_HandleDeoxys(currMon->personality, currMon->tid, currMon->personality, TRUE, posX,
+                                                       posY, i, 0xFFFF);
+            else
+                spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, TRUE, posX,
                                                        posY, i, 0xFFFF);
             gSprites[spriteId].oam.priority = 1;
             gTasks[taskId].data[5 + i] = spriteId;
