@@ -7859,6 +7859,8 @@ static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId)
     u16 statValue;
     u8 nature;
     u8 forme;
+    u8 ivCalcMode = gSaveBlock1Ptr->keyFlags.ivCalcMode;
+    u8 evCalcMode = gSaveBlock1Ptr->keyFlags.evCalcMode;
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK_ESTABLISHED || GetMonData(mon, MON_DATA_SPECIES, NULL) != SPECIES_DEOXYS)
     {
@@ -7867,9 +7869,17 @@ static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId)
     else
     {
         forme = GetMonData(mon, MON_DATA_FORME, NULL);
-
         ivVal = GetMonData(mon, MON_DATA_HP_IV + statId, NULL);
         evVal = GetMonData(mon, MON_DATA_HP_EV + statId, NULL);
+        if(!FlagGet(FLAG_SYS_IS_LINKING) || !(gBattleTypeFlags & BATTLE_TYPE_BATTLE_TOWER))
+        {   // Deoxys can't enter Battle Tower anyway, but checked just in case.
+            if(ivCalcMode == IV_CALC_PERFECT)
+                ivVal = 31;
+            if(ivCalcMode == IV_CALC_ZERO)
+                ivVal = 0;
+            if(evCalcMode == EV_CALC_ZERO)
+                evVal = 0;
+        }
         statValue = ((sDeoxysBaseStats[forme][statId] * 2 + ivVal + evVal / 4) * mon->level) / 100 + 5;
         nature = GetNature(mon);
         statValue = ModifyStatByNature(nature, statValue, (u8)statId);
