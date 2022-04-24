@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "data.h"
 #include "battle.h"
+#include "battle_setup.h"
 #include "constants/items.h"
 #include "mail_data.h"
 #include "pokemon_storage_system.h"
@@ -1787,7 +1788,7 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     pokerus = GetMonData(egg, MON_DATA_POKERUS);
     isEventLegal = GetMonData(egg, MON_DATA_EVENT_LEGAL);
 
-    CreateMon(temp, species, EGG_HATCH_LEVEL, 32, TRUE, personality, 0, 0);
+    CreateMon(temp, species, EGG_HATCH_LEVEL, 32, TRUE, personality, OT_ID_PLAYER_ID, 0);
 
     for (i = 0; i < 4; i++)
     {
@@ -1820,7 +1821,15 @@ static void AddHatchedMonToParty(u8 id)
     u16 ball;
     u16 caughtLvl;
     u8 mapNameID;
+    u32 eggOTID;
+    u8 mapsecid;
+    u8 otName[PLAYER_NAME_LENGTH];
+    bool32 wasFirstCatch = FALSE;
     struct Pokemon* mon = &gPlayerParty[id];
+
+    eggOTID = GetMonData(&gPlayerParty[id], MON_DATA_OT_ID);
+    GetMonData(&gPlayerParty[id], MON_DATA_OT_NAME, otName);
+    mapsecid = GetMonData(&gPlayerParty[id], MON_DATA_MET_LOCATION);
 
     CreatedHatchedMon(mon, &gEnemyParty[0]);
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
@@ -1841,11 +1850,61 @@ static void AddHatchedMonToParty(u8 id)
     caughtLvl = 0;
     SetMonData(mon, MON_DATA_MET_LEVEL, &caughtLvl);
 
+    //faint egg if Nuzlocke && not outsider && already gotten mon where it was received
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {
+        if(eggOTID == GetMonData(mon, MON_DATA_OT_ID))
+        {   // If not an outsider Egg
+            if(GetMonData(mon, MON_DATA_SPECIES) == SPECIES_CORSOLA)
+            {   // Gift Corsola Egg handling
+                StringCopy(gStringVar1, gTrainers[TRAINER_LADY_SELPHY].trainerName);
+                if(StringCompare(gStringVar1, otName) == 0)
+                {   // Egg's OT Name is SELPHY
+                    StringCopy(gStringVar2, gSaveBlock2Ptr->playerName);
+                    if(StringCompare(gStringVar1, gStringVar2) != 0)
+                    {  // Player's name is NOT SELPHY; this is the Corsola gift Egg
+                        mapsecid = MAPSEC_RESORT_GORGEOUS;
+                    }
+                }
+                StringCopy7(gStringVar1, gTrainers[TRAINER_BIRD_KEEPER_SEBASTIAN].trainerName);
+                if(StringCompare(gStringVar1, otName) == 0)
+                {   // Egg's OT Name is SEBASTI
+                    StringCopy(gStringVar2, gSaveBlock2Ptr->playerName);
+                    if(StringCompare(gStringVar1, gStringVar2) != 0)
+                    {   // Player's name is NOT SEBASTI; this is the Corsola gift Egg
+                        mapsecid = MAPSEC_RESORT_GORGEOUS;
+                    }
+                }
+            }
+            if(mapsecid == METLOC_SPECIAL_EGG)
+                mapsecid = MAPSEC_WATER_LABYRINTH;
+        }
+    }
+
     mapNameID = GetCurrentRegionMapSectionId();
     SetMonData(mon, MON_DATA_MET_LOCATION, &mapNameID);
 
     MonRestorePP(mon);
     CalculateMonStats(mon, FALSE);
+
+    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {
+        if(NuzlockeFlagGet(mapsecid))
+        {   // Already had an encounter where Egg was encountered
+            u16 zeroHP = 0;
+            SetMonData(mon, MON_DATA_HP, &zeroHP);
+        }
+        if(!IsWildMonNuzlockeDupe(GetMonData(mon, MON_DATA_SPECIES)))
+        {   // Set encounter flag where Egg was received if not a dupe
+            NuzlockeFlagSet(mapsecid);
+            if(GetMonData(mon, MON_DATA_HP) > 0)
+                wasFirstCatch = TRUE; // only set dupe flag if not fainted
+        }
+        if(wasFirstCatch)
+        {   // set dupe flag if hatched mon is first of its species
+            SetNuzlockeDupeFlags(SpeciesToNationalPokedexNum(GetMonData(mon, MON_DATA_SPECIES)));
+        }
+    }
 
     CheckNationalDexEligibilityOnSaveLoad();
 }
