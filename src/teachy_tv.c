@@ -675,7 +675,7 @@ static void TeachyTvSetupPostBattleWindowAndObj(u8 taskId)
 static void TeachyTvInitTextPrinter(const u8 *text)
 {
     gTextFlags.autoScroll = 0;
-    AddTextPrinterParameterized2(0, 4, text, GetTextSpeedSetting(), 0, 1, 0xC, 3);
+    AddTextPrinterParameterized2(0, 4, text, GetTextSpeedSetting(), 0, 1, 0xC, 2);
 }
 
 static void TeachyTvFree(void)
