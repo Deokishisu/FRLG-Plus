@@ -682,7 +682,7 @@ static void CB2_InitBattleInternal(void)
     gBattle_BG2_Y = 0;
     gBattle_BG3_X = 0;
     gBattle_BG3_Y = 0;
-    gBattleTerrain = BattleSetup_GetTerrainId();
+    gBattleTerrain = GetBattleTerrainFromField();
     InitBattleBgsVideo();
     LoadBattleTextboxAndBackground();
     ResetSpriteData();
