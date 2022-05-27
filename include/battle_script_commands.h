@@ -22,5 +22,6 @@ u8 GetBattlerTurnOrderNum(u8 battlerId);
 void BufferMoveToLearnIntoBattleTextBuff2(void);
 
 extern void (* const gBattleScriptingCommandsTable[])(void);
+extern const u16 gNaturePowerMoves[];
 
 #endif // GUARD_BATTLE_SCRIPT_COMMANDS_H
