@@ -1216,10 +1216,10 @@ Help_Text_Nuzlocke:: @ 81B7E0F
 	.string "NUZLOCKE$"
 
 Help_Text_Nuzlocke_Catching::
-	.string "  Catching POKéMON in NUZLOCKE MODE$"
+	.string "{CIRCLE_DOT} Catching POKéMON in NUZLOCKE MODE$"
 
 Help_Text_NuzlockeLosing::
-	.string "  Losing battles in NUZLOCKE MODE$"
+	.string "{CIRCLE_DOT} Losing battles in NUZLOCKE MODE$"
 
 Help_Text_IvCalc:: @ 81B7E0F
 	.string "IV CALCULATION$"
@@ -1229,6 +1229,9 @@ Help_Text_EvCalc:: @ 81B7E0F
 
 Help_Text_NoFreeHeals:: @ 81B7E0F
 	.string "NO FREE HEALS$"
+
+Help_Text_NoHealsInBattle:: @ 81B7E0F
+	.string "NO BATTLE HEALS$"
 
 Help_Text_DefineHP:: @ 81B7E16
 	.string "HP indicates a POKéMON's vitality.\n"
@@ -1619,6 +1622,15 @@ Help_Text_DefineNoFreeHeals::
 	.string "CENTERS. Additionally, the PC STORAGE\l"
 	.string "SYSTEM will not heal POKéMON sent to\l"
 	.string "it when ON. To heal, use items instead.$"
+
+Help_Text_DefineNoHealsInBattle::
+	.string "You can disable healing item use during\n"
+	.string "battle by switching NO BATTLE HEALS\l"
+	.string "to ON. This will disable item use from\l"
+	.string "the MEDICINE POCKET and BERRY POUCH\l"
+	.string "during POKéMON battles. Any attempt to\l"
+	.string "use a healing item in battle will forfeit\l"
+	.string "your turn as punishment.$"
 
 Help_Text_TheHelpSystem:: @ 81B9BB7
 	.string "The HELP System$"
@@ -2101,10 +2113,10 @@ Help_Text_DefineExpMod::
 	.string "2× doubles given Experience Points.$"
 
 Help_Text_FRExclusives::
-	.string "  POKéMON exclusive to FIRERED$"
+	.string "{CIRCLE_DOT} POKéMON exclusive to FIRERED$"
 
 Help_Text_LGExclusives::
-	.string "  POKéMON exclusive to LEAFGREEN$"
+	.string "{CIRCLE_DOT} POKéMON exclusive to LEAFGREEN$"
 
 Help_Text_DefineFRExclusives::
 	.string "The POKéMON exclusive to FIRERED\n"
