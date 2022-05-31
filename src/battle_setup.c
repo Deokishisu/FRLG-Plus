@@ -584,7 +584,7 @@ static void CB2_EndMarowakBattle(void)
     }
 }
 
-u8 BattleSetup_GetTerrainId(void)
+u8 GetBattleTerrainFromField(void)
 {
     u16 tileBehavior;
     s16 x, y;

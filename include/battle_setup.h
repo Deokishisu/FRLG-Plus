@@ -37,5 +37,6 @@ s8 GetScaledLevel(void);
 bool8 IsWildMonNuzlockeDupe(u16 species);
 bool8 CheckNuzlockeDupeFlags(u16 species);
 void SetNuzlockeDupeFlags(u16 species);
+u8 GetBattleTerrainFromField(void);
 
 #endif // GUARD_BATTLE_SETUP_H

@@ -792,7 +792,7 @@ static const u8 sFlailHpScaleToPowerTable[] =
     48, 20
 };
 
-static const u16 sNaturePowerMoves[] =
+const u16 gNaturePowerMoves[] =
 {
     MOVE_STUN_SPORE,
     MOVE_RAZOR_LEAF,
@@ -8358,7 +8358,7 @@ static void atkCB_setcharge(void)
 static void atkCC_callterrainattack(void) // nature power
 {
     gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-    gCurrentMove = sNaturePowerMoves[gBattleTerrain];
+    gCurrentMove = gNaturePowerMoves[gBattleTerrain];
     gBattlerTarget = GetMoveTarget(gCurrentMove, 0);
     BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
     ++gBattlescriptCurrInstr;
