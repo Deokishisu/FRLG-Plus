@@ -1817,12 +1817,6 @@ static void Task_ItemMenuAction_Cancel(u8 taskId)
 
 static void Task_ItemMenuAction_BattleUse(u8 taskId)
 {
-    if (gSaveBlock1Ptr->keyFlags.noBH == 1 && ItemId_GetBattleFunc(gSpecialVar_ItemId) != BattleUseFunc_PokeBallEtc)
-    {
-        DisplayItemMessageInBag(taskId, 2, gText_BattleRules_NoItems_Player, ItemMenu_StartFadeToExitCallback);
-        return;
-    }
-
     if (ItemId_GetBattleFunc(gSpecialVar_ItemId) != NULL)
     {
         HideBagWindow(10);
