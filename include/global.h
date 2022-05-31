@@ -754,7 +754,6 @@ struct KeySystemFlags
     u16 ivCalcMode:2;   //0 for normal, 1 for all 31, 2 for all zero
     u16 evCalcMode:1;   //0 for normal, 1 for all zero
     u16 noPMC:1;        //0 for normal, 1 for no Pokemon Center healing.
-    u16 noBH:1;        //0 for normal, 1 for no battle heals.
     u16 expMod:2;       //0 for 0x, 1 for 1/2x, 2 for 1x, 3 for 2x 
     u16 padding:4;
     u16 changedCalcMode:1; //set if calc mode is changed to recalc party on save load
