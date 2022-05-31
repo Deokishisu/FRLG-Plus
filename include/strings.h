@@ -1611,7 +1611,6 @@ extern const u8 gText_HelpPickSwitchCancel[];
 extern const u8 gChooseVersionNewGame[];
 extern const u8 gFRLG_Multichoice[];
 extern const u8 gText_NoPMC[];
-extern const u8 gText_NoBH[];
 extern const u8 gText_ExpMod[];
 extern const u8 gText_BlueFlute_Ash[];
 extern const u8 gText_YellowFlute_Ash[];
@@ -1649,6 +1648,5 @@ extern const u8 gText_WhoAreThey[];
 extern const u8 gText_HowDoIBattleThem[];
 extern const u8 gText_AboutTitles[];
 extern const u8 gText_Nothing[];
-extern const u8 gText_BattleRules_NoItems_Player[];
 
 #endif //GUARD_STRINGS_H
