@@ -31,7 +31,6 @@ enum
     MENUITEM_IV,
     MENUITEM_EV,
     MENUITEM_NO_PMC,
-    MENUITEM_NO_BH,
     MENUITEM_EXP_MOD,
     MENUITEM_BACK,
     MENUITEM_COUNT2
@@ -145,7 +144,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
 static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 0};
-static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 2, 4, 0};
+static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -160,7 +159,6 @@ static const u8 *const sKeySystemSubMenuItemsNames[MENUITEM_COUNT2] ={
     [MENUITEM_IV]         = gText_IVCalc,
     [MENUITEM_EV]         = gText_EVCalc,
     [MENUITEM_NO_PMC]     = gText_NoPMC,
-    [MENUITEM_NO_BH]      = gText_NoBH,
     [MENUITEM_EXP_MOD]    = gText_ExpMod,
     [MENUITEM_BACK]       = gText_Back,
 };
@@ -247,7 +245,6 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->subOption[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     sKeySystemMenuPtr->subOption[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
     sKeySystemMenuPtr->subOption[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
-    sKeySystemMenuPtr->subOption[MENUITEM_NO_BH] = gSaveBlock1Ptr->keyFlags.noBH;
     sKeySystemMenuPtr->subOption[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
     if(gSaveBlock1Ptr->keyFlags.changedCalcMode != 1)
         gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
@@ -662,9 +659,6 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_NO_PMC:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNuzlockeOptions[sKeySystemMenuPtr->subOption[selection]]);
                 break;
-            case MENUITEM_NO_BH:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNuzlockeOptions[sKeySystemMenuPtr->subOption[selection]]);
-                break;
             case MENUITEM_EXP_MOD:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpModOptions[sKeySystemMenuPtr->subOption[selection]]);
                 break;
@@ -691,7 +685,6 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->subOption[MENUITEM_IV];
     gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->subOption[MENUITEM_EV];
     gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->subOption[MENUITEM_NO_PMC];
-    gSaveBlock1Ptr->keyFlags.noBH = sKeySystemMenuPtr->subOption[MENUITEM_NO_BH];
     gSaveBlock1Ptr->keyFlags.expMod = sKeySystemMenuPtr->subOption[MENUITEM_EXP_MOD];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);
