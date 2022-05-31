@@ -1266,7 +1266,6 @@ const u8 gText_EVCalc[] = _("EV CALCULATION");
 const u8 gText_EVCalcZero[] = _("ALL ZERO");
 const u8 gText_EVCalcStandard[] = _("STANDARD");
 const u8 gText_NoPMC[] = _("NO FREE HEALS");
-const u8 gText_NoBH[] = _("NO BATTLE HEALS");
 const u8 gText_ExpMod[] = _("EXP. MODIFIER");
 const u8 gText_ExpModZero[] = _("0×");
 const u8 gText_ExpModHalf[] = _("1/2×");
@@ -1316,5 +1315,3 @@ const u8 gText_WhoAreThey[] = _("Who are they?");
 const u8 gText_HowDoIBattleThem[] = _("How do I battle them?");
 const u8 gText_AboutTitles[] = _("About titles");
 const u8 gText_Nothing[] = _("Exit");
-
-const u8 gText_BattleRules_NoItems_Player[] = _("MEDICINE POCKET and BERRY POUCH\nitem use is disabled in battle!{PAUSE_UNTIL_PRESS}");
