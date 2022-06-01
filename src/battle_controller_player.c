@@ -1411,13 +1411,18 @@ static void MoveSelectionDisplayMoveType(void)
 {
     u8 *txtPtr;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleBufferA[gActiveBattler][4]);
+    u16 move = moveInfo->moves[gMoveSelectionCursor[gActiveBattler]];
+    const u8 *strPtr;
 
     txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
     *txtPtr++ = EXT_CTRL_CODE_BEGIN;
     *txtPtr++ = 6;
     *txtPtr++ = 1;
     txtPtr = StringCopy(txtPtr, gUnknown_83FE770);
-    if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_HIDDEN_POWER)
+
+    switch (move)
+    {
+    case MOVE_HIDDEN_POWER:
     {
         u8 typeBits  = ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_HP_IV) & 1) << 0)
                      | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_ATK_IV) & 1) << 1)
@@ -1430,12 +1435,33 @@ static void MoveSelectionDisplayMoveType(void)
         if (type >= TYPE_MYSTERY)
             type++;
         type |= 0xC0;
-        StringCopy(txtPtr, gTypeNames[type & 0x3F]);
+        strPtr = gTypeNames[type & 0x3F];
+        break;
     }
-    else
+    case MOVE_WEATHER_BALL:
     {
-        StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
+        if (gBattleWeather & WEATHER_RAIN_ANY)
+            strPtr = gTypeNames[TYPE_WATER];
+        else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+            strPtr = gTypeNames[TYPE_ROCK];
+        else if (gBattleWeather & WEATHER_SUN_ANY)
+            strPtr = gTypeNames[TYPE_FIRE];
+        else if (gBattleWeather & WEATHER_HAIL_ANY)
+            strPtr = gTypeNames[TYPE_ICE];
+        else
+            strPtr = gTypeNames[TYPE_NORMAL];
+        break;
     }
+    case MOVE_NATURE_POWER:
+        strPtr = gTypeNames[gBattleMoves[gNaturePowerMoves[gBattleTerrain]].type];
+        break;
+    default:
+        strPtr = gTypeNames[gBattleMoves[move].type];
+        break;
+    }
+
+    StringCopy(txtPtr, strPtr);
+
     BattlePutTextOnWindow(gDisplayedStringBattle, 8);
 }
 

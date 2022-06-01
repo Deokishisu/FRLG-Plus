@@ -12,7 +12,6 @@ void StartSouthernIslandBattle(void);
 void StartLegendaryBattle(void);
 void StartGroudonKyogreBattle(void);
 void StartRegiBattle(void);
-u8 BattleSetup_GetTerrainId(void);
 u8 BattleSetup_GetBattleTowerBattleTransition(void);
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data);
 void ConfigureAndSetUpOneTrainerBattle(u8 trainerEventObjId, const u8 *trainerScript);
@@ -37,5 +36,6 @@ s8 GetScaledLevel(void);
 bool8 IsWildMonNuzlockeDupe(u16 species);
 bool8 CheckNuzlockeDupeFlags(u16 species);
 void SetNuzlockeDupeFlags(u16 species);
+u8 GetBattleTerrainFromField(void);
 
 #endif // GUARD_BATTLE_SETUP_H
