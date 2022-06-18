@@ -30,6 +30,7 @@
   * [Can I use FRLG+ as a ROM Base?](#can-i-use-frlg-as-a-rom-base)
   * [How did you implement *x* feature? Can I use *y* feature for my hack?](#how-did-you-implement-x-feature-can-i-use-y-feature-for-my-hack)
 * Miscellaneous:
+  * [What are the Challenge Mode boss trainer levels? I want to level cap my Nuzlocke run.](#what-are-the-challenge-mode-boss-trainer-levels-I-want-to-level-cap-my-nuzlocke-run)
   * [Will text be decapitalized?](#will-text-be-decapitalized)
   * [How do I link to other games? When is the earliest I can link?](#how-do-i-link-to-other-games-when-is-the-earliest-i-can-link)
   * [Where are the new Move Tutors and what moves do they teach?](#where-are-the-new-move-tutors-and-what-moves-do-they-teach)
@@ -47,7 +48,9 @@ No. This hack aims to preserve the original battle mechanics and maintain link c
 No.
 
 ### Will you improve breeding mechanics?
-Breeding mechanics have been ported from Emerald, but no further improvements will be made. This hack is not meant to supplant the vanilla games when it comes to obtaining good Pokémon.
+Breeding mechanics have been ported from Emerald, save for Volt Tackle Pichu breeding, but no further improvements will be made. This hack is not meant to supplant the vanilla games when it comes to obtaining good Pokémon.
+
+Because Volt Tackle Pichu are illegal in Generation III if they weren't generated in Emerald, the Volt Tackle breeding mechanic will not be ported.
 
 ### What are the shiny chances? Will they be improved?
 The shiny chance is 1/8192, as it was in Generation III. The odds of encountering a shiny Pokémon will not be increased.
@@ -159,6 +162,24 @@ My official stance is that all mods of FRLG+ are unauthorized and unsupported. I
 My commits are descriptively labeled. If you want to grab something from FRLG+, go back through my commits and find where I implemented it. I don't offer support or answer questions for lifting things from FRLG+, but since the project is open source anyone can take from it.
 
 ## Miscellaneous:
+
+### What are the Challenge Mode boss trainer levels? I want to level cap my Nuzlocke run.
+<details>
+<summary>Their levels are as follows:</summary>
+Brock: 15<br>
+Misty: 22<br>
+Lt. Surge: 26<br>
+Erika: 31<br>
+Koga: 46<br>
+Sabrina: 46<br>
+Blaine: 51<br>
+Giovanni: 54<br>
+Lorelei: 58<br>
+Bruno: 60<br>
+Agatha: 62<br>
+Lance: 64<br>
+Champion: 67<br>
+</details>
 
 ### Will text be decapitalized?
 No.
