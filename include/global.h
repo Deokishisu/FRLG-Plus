@@ -756,7 +756,6 @@ struct KeySystemFlags
     u16 noPMC:1;        //0 for normal, 1 for no Pokemon Center healing.
     u16 expMod:2;       //0 for 0x, 1 for 1/2x, 2 for 1x, 3 for 2x 
     u16 forgetHM:1;     //0 for normal, 1 to allow replacing hm moves
-    u16 padding:3;
     u16 changedCalcMode:1; //set if calc mode is changed to recalc party on save load
     u16 inKeySystemMenu:1; //Needed for Help Menu regardless of Button Mode
     u16 padding2;
