@@ -1162,6 +1162,8 @@ extern const u8 Help_Text_DefineNuzlocke_Catching[];
 extern const u8 Help_Text_NuzlockeLosing[];
 extern const u8 Help_Text_DefineNuzlockeLosing[];
 extern const u8 Help_Text_DefineNoFreeHeals[];
+extern const u8 Help_Text_ForgetHM[];
+extern const u8 Help_Text_DefineForgetHM[];
 
 extern const u8 EventScript_FldEffStrength[];
 extern const u8 EventScript_FailSweetScent[];

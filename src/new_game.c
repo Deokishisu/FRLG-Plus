@@ -155,6 +155,7 @@ void NewGameInitData(void)
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
     gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
+    gSaveBlock1Ptr->keyFlags.forgetHM = 0; // do not allow replacing HM moves (standard behaviour)
 }
 
 static void ResetMiniGamesResults(void)

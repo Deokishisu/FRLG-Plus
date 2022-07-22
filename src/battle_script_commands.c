@@ -5092,7 +5092,7 @@ static void atk5A_yesnoboxlearnmove(void)
             {
                 u16 moveId = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MOVE1 + movePosition);
                 
-                if (IsHMMove2(moveId))
+                if (IsHMMove2(moveId) && gSaveBlock1Ptr->keyFlags.forgetHM == 0)
                 {
                     PrepareStringBattle(STRINGID_HMMOVESCANTBEFORGOTTEN, gActiveBattler);
                     gBattleScripting.learnMoveState = 5;

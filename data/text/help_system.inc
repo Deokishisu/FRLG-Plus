@@ -2123,3 +2123,11 @@ Help_Text_DefineLGExclusives::
 	.string "MISDREAVUS, SNEASEL, REMORAID,\l"
 	.string "MANTINE, LATIAS, and their\l"
 	.string "evolutionary relatives.$"
+
+Help_Text_ForgetHM::
+	.string "FORGET HM MOVES$"
+
+Help_Text_DefineForgetHM::
+	.string "Set this option to ON to allow replacing\n"
+	.string "HM moves like regular moves when your\l"
+	.string "POKéMON is trying to learn a new move.$"

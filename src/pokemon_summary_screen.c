@@ -3983,6 +3983,9 @@ static u8 PokeSum_CanForgetSelectedMove(void)
     u16 move;
 
     move = GetMonMoveBySlotId(&sMonSummaryScreen->currentMon, sMoveSelectionCursorPos);
+    
+    if(gSaveBlock1Ptr->keyFlags.forgetHM == 1) // mod: always allow HM replace
+        return TRUE;
 
     if(IsMoveHm(move) && (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(TWO_ISLAND_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(TWO_ISLAND_HOUSE)))
     {   //in Move Reminder's house

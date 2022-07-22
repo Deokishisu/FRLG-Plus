@@ -32,6 +32,7 @@ enum
     MENUITEM_EV,
     MENUITEM_NO_PMC,
     MENUITEM_EXP_MOD,
+    MENUITEM_FORGET_HM,
     MENUITEM_BACK,
     MENUITEM_COUNT2
 };
@@ -144,7 +145,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
 static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 0};
-static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
+static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 2, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -160,6 +161,7 @@ static const u8 *const sKeySystemSubMenuItemsNames[MENUITEM_COUNT2] ={
     [MENUITEM_EV]         = gText_EVCalc,
     [MENUITEM_NO_PMC]     = gText_NoPMC,
     [MENUITEM_EXP_MOD]    = gText_ExpMod,
+    [MENUITEM_FORGET_HM]  = gText_ForgetHM,
     [MENUITEM_BACK]       = gText_Back,
 };
 
@@ -208,6 +210,12 @@ static const u8 *const sExpModOptions[] =
     gText_ExpModTwice
 };
 
+static const u8 *const sForgetHMOptions[] =
+{
+    gText_ForgetHM_Off,
+    gText_ForgetHM_On
+};
+
 static const u8 sKeySystemMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sKeySystemMenuTextColor[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_RED};
 
@@ -246,6 +254,7 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->subOption[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
     sKeySystemMenuPtr->subOption[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
     sKeySystemMenuPtr->subOption[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
+    sKeySystemMenuPtr->subOption[MENUITEM_FORGET_HM] = gSaveBlock1Ptr->keyFlags.forgetHM;
     if(gSaveBlock1Ptr->keyFlags.changedCalcMode != 1)
         gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
@@ -662,6 +671,9 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_EXP_MOD:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpModOptions[sKeySystemMenuPtr->subOption[selection]]);
                 break;
+            case MENUITEM_FORGET_HM:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sForgetHMOptions[sKeySystemMenuPtr->subOption[selection]]);
+                break;
             default:
                 break;
         }
@@ -686,6 +698,7 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->subOption[MENUITEM_EV];
     gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->subOption[MENUITEM_NO_PMC];
     gSaveBlock1Ptr->keyFlags.expMod = sKeySystemMenuPtr->subOption[MENUITEM_EXP_MOD];
+    gSaveBlock1Ptr->keyFlags.forgetHM = sKeySystemMenuPtr->subOption[MENUITEM_FORGET_HM];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);
     DestroyTask(taskId);

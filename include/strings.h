@@ -1648,5 +1648,8 @@ extern const u8 gText_WhoAreThey[];
 extern const u8 gText_HowDoIBattleThem[];
 extern const u8 gText_AboutTitles[];
 extern const u8 gText_Nothing[];
+extern const u8 gText_ForgetHM[];
+extern const u8 gText_ForgetHM_On[];
+extern const u8 gText_ForgetHM_Off[];
 
 #endif //GUARD_STRINGS_H
