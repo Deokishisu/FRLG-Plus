@@ -2532,6 +2532,17 @@ static void BufferMonMoveI(u8 i)
     else
         ConvertIntToDecimalStringN(sMonSummaryScreen->summary.movePowerStrBufs[i], gBattleMoves[currentMove].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
 
+    if (currentMove == MOVE_WEATHER_BALL && sMonSummaryScreen->moveTypes[i] == TYPE_WATER)
+        StringCopy(sMonSummaryScreen->summary.movePowerStrBufs[i], gText_100);
+    else if (currentMove == MOVE_WEATHER_BALL && sMonSummaryScreen->moveTypes[i] == TYPE_ROCK)
+        StringCopy(sMonSummaryScreen->summary.movePowerStrBufs[i], gText_100);
+    else if (currentMove == MOVE_WEATHER_BALL && sMonSummaryScreen->moveTypes[i] == TYPE_FIRE)
+        StringCopy(sMonSummaryScreen->summary.movePowerStrBufs[i], gText_100);
+    else if (currentMove == MOVE_WEATHER_BALL && sMonSummaryScreen->moveTypes[i] == TYPE_ICE)
+        StringCopy(sMonSummaryScreen->summary.movePowerStrBufs[i], gText_100);
+    else if (currentMove == MOVE_WEATHER_BALL && sMonSummaryScreen->moveTypes[i] == TYPE_NORMAL)
+        ConvertIntToDecimalStringN(sMonSummaryScreen->summary.movePowerStrBufs[i], gBattleMoves[currentMove].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
+
     if (gBattleMoves[currentMove].accuracy == 0)
         StringCopy(sMonSummaryScreen->summary.moveAccuracyStrBufs[i], gText_ThreeHyphens);
     else

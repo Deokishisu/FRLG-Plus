@@ -116,6 +116,7 @@ const u8 gText_PokeSum_OneHyphen[] = _("-");
 const u8 gText_PokeSum_TwoHyphens[] = _("--");
 const u8 gText_ThreeHyphens[] = _("---");
 const u8 gText_SevenHyphens[] = _("-------");
+const u8 gText_100[] = _("100");
 const u8 gText_MaleSymbol[] = _("♂");
 const u8 gText_FemaleSymbol[] = _("♀");
 const u8 gText_Lv[] = _("{LV_2}");
