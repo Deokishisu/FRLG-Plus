@@ -307,6 +307,9 @@ static void atkF4_subattackerhpbydmg(void);
 static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
+static void atkF8_loadabilitypopup(void);
+static void atkF9_checkcaughtmonhasitem(void);
+static void atkFA_trytakecaughtmonitem(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -558,6 +561,9 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
+    atkF8_loadabilitypopup,
+    atkF9_checkcaughtmonhasitem,
+    atkFA_trytakecaughtmonitem,
 };
 
 struct StatFractions
@@ -792,7 +798,7 @@ static const u8 sFlailHpScaleToPowerTable[] =
     48, 20
 };
 
-static const u16 sNaturePowerMoves[] =
+const u16 gNaturePowerMoves[] =
 {
     MOVE_STUN_SPORE,
     MOVE_RAZOR_LEAF,
@@ -3176,7 +3182,9 @@ static void atk23_getexp(void)
     case 2: // set exp value to the poke in expgetter_id and print message
         if (!gBattleControllerExecFlags)
         {
+            u8 level;
             item = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HELD_ITEM);
+            level = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL);
             if (item == ITEM_ENIGMA_BERRY)
                 holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
             else
@@ -3187,11 +3195,14 @@ static void atk23_getexp(void)
                 gBattleScripting.atk23_state = 5;
                 gBattleMoveDamage = 0; // used for exp
             }
-            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL || gSaveBlock1Ptr->keyFlags.expMod == 0 || FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+            else if (level == MAX_LEVEL || gSaveBlock1Ptr->keyFlags.expMod == 0 || FlagGet(FLAG_MASTER_TRAINER_BATTLE))
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.atk23_state = 5;
                 gBattleMoveDamage = 0; // used for exp
+                
+                if (gSaveBlock1Ptr->keyFlags.maxLvlEvolve && gSaveBlock1Ptr->keyFlags.expMod != 0 && !FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
             }
             else
             {
@@ -5092,7 +5103,7 @@ static void atk5A_yesnoboxlearnmove(void)
             {
                 u16 moveId = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_MOVE1 + movePosition);
                 
-                if (IsHMMove2(moveId))
+                if (IsHMMove2(moveId) && gSaveBlock1Ptr->keyFlags.forgetHM == 0)
                 {
                     PrepareStringBattle(STRINGID_HMMOVESCANTBEFORGOTTEN, gActiveBattler);
                     gBattleScripting.learnMoveState = 5;
@@ -8358,7 +8369,7 @@ static void atkCB_setcharge(void)
 static void atkCC_callterrainattack(void) // nature power
 {
     gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-    gCurrentMove = sNaturePowerMoves[gBattleTerrain];
+    gCurrentMove = gNaturePowerMoves[gBattleTerrain];
     gBattlerTarget = GetMoveTarget(gCurrentMove, 0);
     BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
     ++gBattlescriptCurrInstr;
@@ -8887,6 +8898,16 @@ static void atkE5_pickup(void)
             pickupSuccess++;
             index = i;
         }
+#ifdef SHUCKLE_MAKES_ORAN_BERRY_JUICE
+        else if (species == SPECIES_SHUCKLE && heldItem == ITEM_ORAN_BERRY)
+        {
+            if (!(Random() % 16))
+            {
+                heldItem = ITEM_BERRY_JUICE;
+                SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &heldItem);
+            }
+        }
+#endif
     }
     if(pickupSuccess == 1) // only one Pokemon has picked something up, print solo message
     {
@@ -9546,4 +9567,97 @@ static void atkF7_finishturn(void)
 {
     gCurrentActionFuncId = B_ACTION_FINISHED;
     gCurrentTurnActionNumber = gBattlersCount;
+}
+
+static void atkF8_loadabilitypopup(void)
+{
+    u8 animId;
+    const u16 *argumentPtr = NULL;
+
+    gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[2]);
+
+    if (gSaveBlock1Ptr->keyFlags.abilityPopup && !FlagGet(FLAG_SYS_IS_LINKING))
+    {
+        if (gBattlescriptCurrInstr[1] != REMOVE_POP_UP)
+            animId = B_ANIM_LOAD_ABILITY_POP_UP;
+        else
+            animId = B_ANIM_REMOVE_ABILITY_POP_UP;
+
+        BtlController_EmitBattleAnimation(0, animId, *argumentPtr);
+        MarkBattlerForControllerExec(gActiveBattler);
+    }
+
+    gBattlescriptCurrInstr += 5;
+}
+
+static void atkF9_checkcaughtmonhasitem(void)
+{
+    u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM);
+    if (itemId != ITEM_NONE && gSaveBlock1Ptr->keyFlags.takeHeldItem && CheckBagHasSpace(itemId, 1))
+    {
+        CopyItemName(itemId, gStringVar1);
+        gBattlescriptCurrInstr += 5;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    }
+}
+
+static void atkFA_trytakecaughtmonitem(void)
+{
+    u16 itemId;
+    switch (gBattleCommunication[MULTIUSE_STATE])
+    {
+    case 0:
+        HandleBattleWindow(0x17, 8, 0x1D, 0xD, 0);
+        BattlePutTextOnWindow(gText_BattleYesNoChoice, 0xE);
+        ++gBattleCommunication[MULTIUSE_STATE];
+        gBattleCommunication[CURSOR_POSITION] = 0;
+        BattleCreateYesNoCursorAt();
+        break;
+    case 1:
+        if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
+        {
+            PlaySE(SE_SELECT);
+            BattleDestroyYesNoCursorAt();
+            gBattleCommunication[CURSOR_POSITION] = 0;
+            BattleCreateYesNoCursorAt();
+        }
+        if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
+        {
+            PlaySE(SE_SELECT);
+            BattleDestroyYesNoCursorAt();
+            gBattleCommunication[CURSOR_POSITION] = 1;
+            BattleCreateYesNoCursorAt();
+        }
+        if (JOY_NEW(A_BUTTON))
+        {
+            PlaySE(SE_SELECT);
+            if (gBattleCommunication[CURSOR_POSITION] == 0)
+            {
+                ++gBattleCommunication[MULTIUSE_STATE];
+            }
+            else
+            {
+                gBattleCommunication[MULTIUSE_STATE] = 3;
+            }
+        }
+        else if (JOY_NEW(B_BUTTON))
+        {
+            PlaySE(SE_SELECT);
+            gBattleCommunication[MULTIUSE_STATE] = 3;
+        }
+        break;
+    case 2:
+        itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM);
+        AddBagItem(itemId, 1);
+        itemId = ITEM_NONE;
+        SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, &itemId);
+        gBattlescriptCurrInstr += 5;
+        break;
+    case 3:
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+        break;
+    }
 }

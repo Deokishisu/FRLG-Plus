@@ -253,69 +253,69 @@ static const struct BgTemplate sBgTemplates_FightScene2[] = {
 };
 
 static const struct BgTemplate sBgTemplates_FightScene3[] = {
-	{
-	    .bg = 1,
-	    .charBaseIndex = 0,
-	    .mapBaseIndex = 29,
-	    .screenSize = 0,
-	    .paletteMode = 0,
-	    .priority = 1,
-	    .baseTile = 0x000
+    {
+        .bg = 1,
+        .charBaseIndex = 0,
+        .mapBaseIndex = 29,
+        .screenSize = 0,
+        .paletteMode = 0,
+        .priority = 1,
+        .baseTile = 0x000
     }, {
-	    .bg = 0,
-	    .charBaseIndex = 1,
-	    .mapBaseIndex = 30,
-	    .screenSize = 2,
-	    .paletteMode = 0,
-	    .priority = 0,
-	    .baseTile = 0x000
-	}
+        .bg = 0,
+        .charBaseIndex = 1,
+        .mapBaseIndex = 30,
+        .screenSize = 2,
+        .paletteMode = 0,
+        .priority = 0,
+        .baseTile = 0x000
+    }
 };
 
 static const struct WindowTemplate sWindowTemplate[] = {
-	{
-	    .bg = 2,
-	    .tilemapLeft = 6,
-	    .tilemapTop = 4,
-	    .width = 18,
-	    .height = 9,
-	    .paletteNum = 0xD,
-	    .baseBlock = 0x000
+    {
+        .bg = 2,
+        .tilemapLeft = 6,
+        .tilemapTop = 4,
+        .width = 18,
+        .height = 9,
+        .paletteNum = 0xD,
+        .baseBlock = 0x000
     }, DUMMY_WIN_TEMPLATE
 };
 
 static const u8 sGengarBackSpritePos2UpdateMods[][2] = {
-	{0x3f, 0x3f},
-	{0x00, 0x3f},
-	{0x3f, 0x00},
-	{0x00, 0x00}
+    {0x3f, 0x3f},
+    {0x00, 0x3f},
+    {0x3f, 0x00},
+    {0x00, 0x00}
 };
 
 static const struct CompressedSpriteSheet sSpriteSheets_GameFreakScene[] = {
-	{sSpriteTiles_LargeStar, 0x0080, 0},
-	{sSpriteTiles_TrailingSparkles, 0x0080, 1},
-	{sSpriteTiles_RevealGameFreakTextSparkles, 0x0800, 2},
-	{sSpriteTiles_GameFreakLogoArt, 0x0400, 3},
-	{sSpriteTiles_PresentsText, 0x0100, 4}
+    {sSpriteTiles_LargeStar, 0x0080, 0},
+    {sSpriteTiles_TrailingSparkles, 0x0080, 1},
+    {sSpriteTiles_RevealGameFreakTextSparkles, 0x0800, 2},
+    {sSpriteTiles_GameFreakLogoArt, 0x0400, 3},
+    {sSpriteTiles_PresentsText, 0x0100, 4}
 };
 
 static const struct SpritePalette sSpritePalettes_GameFreakScene[] = {
-	{sSpritePals_LargeStar, 0},
-	{sSpritePals_Sparkles, 1},
-	{sSpritePals_GameFreakPresents, 3},
-	{0}
+    {sSpritePals_LargeStar, 0},
+    {sSpritePals_Sparkles, 1},
+    {sSpritePals_GameFreakPresents, 3},
+    {0}
 };
 
 static const struct Coords16 sTrailingSparkleCoords[] = {
-	{0x0048, 0x0050},
-	{0x0088, 0x004a},
-	{0x00a8, 0x0050},
-	{0x0078, 0x0050},
-	{0x0068, 0x0056},
-	{0x0058, 0x004a},
-	{0x00b8, 0x004a},
-	{0x0038, 0x0056},
-	{0x0098, 0x0056}
+    {0x0048, 0x0050},
+    {0x0088, 0x004a},
+    {0x00a8, 0x0050},
+    {0x0078, 0x0050},
+    {0x0068, 0x0056},
+    {0x0058, 0x004a},
+    {0x00b8, 0x004a},
+    {0x0038, 0x0056},
+    {0x0098, 0x0056}
 };
 
 static const struct OamData gOamData_840BC2C = {
@@ -345,24 +345,24 @@ static const struct OamData gOamData_840BC34 = {
 };
 
 static const union AnimCmd gAnimCmd_840BC3C[] = {
-	ANIMCMD_FRAME(0, 4),
-	ANIMCMD_FRAME(1, 4),
-	ANIMCMD_FRAME(2, 4),
-	ANIMCMD_FRAME(3, 4),
-	ANIMCMD_JUMP(0)
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(2, 4),
+    ANIMCMD_FRAME(3, 4),
+    ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd gAnimCmd_840BC50[] = {
-	ANIMCMD_FRAME(0, 4),
-	ANIMCMD_FRAME(1, 4),
-	ANIMCMD_FRAME(2, 4),
-	ANIMCMD_FRAME(3, 4),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_FRAME(1, 4),
+    ANIMCMD_FRAME(2, 4),
+    ANIMCMD_FRAME(3, 4),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const gAnimCmdTable_840BC64[] = {
-	gAnimCmd_840BC3C,
-	gAnimCmd_840BC50
+    gAnimCmd_840BC3C,
+    gAnimCmd_840BC50
 };
 
 static const struct SpriteTemplate sSpriteTemplate_LargeStar = {
@@ -399,15 +399,15 @@ static const struct OamData gOamData_840BC9C = {
 };
 
 static const union AnimCmd gAnimCmd_840BCA4[] = {
-	ANIMCMD_FRAME(0, 8),
-	ANIMCMD_FRAME(16, 8),
-	ANIMCMD_FRAME(32, 8),
-	ANIMCMD_FRAME(48, 8),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_FRAME(48, 8),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const gAnimCmdTable_840BCB8[] = {
-	gAnimCmd_840BCA4
+    gAnimCmd_840BCA4
 };
 
 static const struct SpriteTemplate sSpriteTemplate_RevealGameFreakTextSparkles = {
@@ -480,52 +480,52 @@ static const struct OamData gOamData_840BD14 = {
 };
 
 static const union AnimCmd gAnimCmd_840BD1C[] = {
-	ANIMCMD_FRAME(0, 1),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BD24[] = {
-	ANIMCMD_FRAME(64, 1),
-	ANIMCMD_END
+    ANIMCMD_FRAME(64, 1),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BD2C[] = {
-	ANIMCMD_FRAME(128, 1),
-	ANIMCMD_END
+    ANIMCMD_FRAME(128, 1),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BD34[] = {
-	ANIMCMD_FRAME(192, 1),
-	ANIMCMD_END
+    ANIMCMD_FRAME(192, 1),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BD3C[] = {
-	ANIMCMD_FRAME(256, 1),
-	ANIMCMD_END
+    ANIMCMD_FRAME(256, 1),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const sAnimTable_NidorinoAnim[] = {
-	gAnimCmd_840BD1C,
-	gAnimCmd_840BD24,
-	gAnimCmd_840BD2C,
-	gAnimCmd_840BD34,
-	gAnimCmd_840BD3C
+    gAnimCmd_840BD1C,
+    gAnimCmd_840BD24,
+    gAnimCmd_840BD2C,
+    gAnimCmd_840BD34,
+    gAnimCmd_840BD3C
 };
 
 static const union AffineAnimCmd gAffineAnimCmd_840BD58[] = {
-	AFFINEANIMCMD_FRAME(256, 256, 0, 0),
-	AFFINEANIMCMD_END
+    AFFINEANIMCMD_FRAME(256, 256, 0, 0),
+    AFFINEANIMCMD_END
 };
 
 static const union AffineAnimCmd gAffineAnimCmd_840BD68[] = {
-	AFFINEANIMCMD_FRAME(256, 256, 0, 0),
-	AFFINEANIMCMD_FRAME(32, 32, 0, 8),
-	AFFINEANIMCMD_END
+    AFFINEANIMCMD_FRAME(256, 256, 0, 0),
+    AFFINEANIMCMD_FRAME(32, 32, 0, 8),
+    AFFINEANIMCMD_END
 };
 
 static const union AffineAnimCmd *const sAffineAnimTable_NidorinoAnim[] = {
-	gAffineAnimCmd_840BD58,
-	gAffineAnimCmd_840BD68
+    gAffineAnimCmd_840BD58,
+    gAffineAnimCmd_840BD68
 };
 
 static const struct SpriteTemplate sSpriteTemplate_NidorinoAnim = {
@@ -585,19 +585,19 @@ static const struct OamData gOamData_840BDD8 = {
 };
 
 static const union AnimCmd gAnimCmds_840BDE0[] = {
-	ANIMCMD_FRAME(0, 0),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 0),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmds_840BDE8[] = {
-	ANIMCMD_FRAME(32, 4),
-	ANIMCMD_FRAME(0, 4),
-	ANIMCMD_END
+    ANIMCMD_FRAME(32, 4),
+    ANIMCMD_FRAME(0, 4),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const gAnimCmdTable_840BDF4[] = {
-	gAnimCmds_840BDE0,
-	gAnimCmds_840BDE8
+    gAnimCmds_840BDE0,
+    gAnimCmds_840BDE8
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Grass = {
@@ -624,30 +624,30 @@ static const struct OamData gOamData_840BE14 = {
 };
 
 static const union AnimCmd gAnimCmd_840BE1C[] = {
-	ANIMCMD_FRAME(0, 0),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 0),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BE24[] = {
-	ANIMCMD_FRAME(64, 0),
-	ANIMCMD_END
+    ANIMCMD_FRAME(64, 0),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BE2C[] = {
-	ANIMCMD_FRAME(96, 0),
-	ANIMCMD_END
+    ANIMCMD_FRAME(96, 0),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BE34[] = {
-	ANIMCMD_FRAME(160, 0),
-	ANIMCMD_END
+    ANIMCMD_FRAME(160, 0),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const gAnimCmdTable_840BE3C[] = {
-	gAnimCmd_840BE1C,
-	gAnimCmd_840BE24,
-	gAnimCmd_840BE2C,
-	gAnimCmd_840BE34
+    gAnimCmd_840BE1C,
+    gAnimCmd_840BE24,
+    gAnimCmd_840BE2C,
+    gAnimCmd_840BE34
 };
 
 static const struct SpriteTemplate sSpriteTemplate_GengarBack = {
@@ -674,20 +674,20 @@ static const struct OamData gOamData_840BE64 = {
 };
 
 static const union AnimCmd gAnimCmd_840BE6C[] = {
-	ANIMCMD_FRAME(0, 8),
-	ANIMCMD_FRAME(32, 4),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(32, 4),
+    ANIMCMD_END
 };
 
 static const union AnimCmd gAnimCmd_840BE78[] = {
-	ANIMCMD_FRAME(64, 8),
-	ANIMCMD_FRAME(72, 4),
-	ANIMCMD_END
+    ANIMCMD_FRAME(64, 8),
+    ANIMCMD_FRAME(72, 4),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const gAnimCmdTable_840BE84[] = {
-	gAnimCmd_840BE6C,
-	gAnimCmd_840BE78
+    gAnimCmd_840BE6C,
+    gAnimCmd_840BE78
 };
 
 static const struct SpriteTemplate sSpriteTemplate_GengarSwipe = {
@@ -714,15 +714,15 @@ static const struct OamData gOamData_840BEA4 = {
 };
 
 static const union AnimCmd gAnimCmd_840BEAC[] = {
-	ANIMCMD_FRAME(0, 10),
-	ANIMCMD_FRAME(4, 10),
-	ANIMCMD_FRAME(8, 10),
-	ANIMCMD_FRAME(12, 8),
-	ANIMCMD_END
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(4, 10),
+    ANIMCMD_FRAME(8, 10),
+    ANIMCMD_FRAME(12, 8),
+    ANIMCMD_END
 };
 
 static const union AnimCmd *const gAnimCmdTable_840BEC0[] = {
-	gAnimCmd_840BEAC
+    gAnimCmd_840BEAC
 };
 
 static const struct SpriteTemplate sSpriteTemplate_NidorinoRecoilDust = {
@@ -736,13 +736,13 @@ static const struct SpriteTemplate sSpriteTemplate_NidorinoRecoilDust = {
 };
 
 static const struct CompressedSpriteSheet sFightSceneSpriteSheets[] = {
-	{sSpriteTiles_GengarStatic, 0x0800, 6},
-	{sSpriteTiles_NidorinoStatic, 0x0800, 7},
-	{sSpriteTiles_NidorinoAnim, 0x2800, 5},
-	{sSpriteTiles_Grass, 0x0800, 8},
-	{sSpriteTiles_GengarBack, 0x1800, 9},
-	{sSpriteTiles_GengarSwipe, 0x0a00, 10},
-	{sSpriteTiles_NidorinoRecoilDust, 0x0200, 11}
+    {sSpriteTiles_GengarStatic, 0x0800, 6},
+    {sSpriteTiles_NidorinoStatic, 0x0800, 7},
+    {sSpriteTiles_NidorinoAnim, 0x2800, 5},
+    {sSpriteTiles_Grass, 0x0800, 8},
+    {sSpriteTiles_GengarBack, 0x1800, 9},
+    {sSpriteTiles_GengarSwipe, 0x0a00, 10},
+    {sSpriteTiles_NidorinoRecoilDust, 0x0200, 11}
 };
 
 // POTENTIAL UB
@@ -751,11 +751,11 @@ static const struct CompressedSpriteSheet sFightSceneSpriteSheets[] = {
 // Because such an entry is absent in this case, the function
 // continues reading into the next .rodata section.
 static const struct SpritePalette sFightSceneSpritePalettes[] = {
-	{sSpritePals_Gengar, 6},
-	{sSpritePals_Nidorino, 7},
-	{sSpritePals_Grass, 8},
-	{sSpritePals_GengarSwipe, 10},
-	{sSpritePals_NidorinoRecoilDust, 11},
+    {sSpritePals_Gengar, 6},
+    {sSpritePals_Nidorino, 7},
+    {sSpritePals_Grass, 8},
+    {sSpritePals_GengarSwipe, 10},
+    {sSpritePals_NidorinoRecoilDust, 11},
     {0}
 };
 
@@ -818,6 +818,10 @@ static bool8 RunCopyrightScreen(void)
         UpdatePaletteFade();
         gMain.state++;
         GameCubeMultiBoot_Main(&sGcmb);
+#ifdef SKIP_INTRO_BUTTON
+        if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(L_BUTTON)) || (JOY_NEW(START_BUTTON)))
+            gMain.state = 140;
+#endif
         break;
     case 140:
         GameCubeMultiBoot_Main(&sGcmb);
@@ -1757,11 +1761,15 @@ static void IntroCB_CleanUp(struct IntroSequenceData * this)
             SetHBlankCallback(NULL);
             if(gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_NO_FLASH || gSaveFileStatus == SAVE_STATUS_INVALID)
             {
+#ifdef RANDOM_INTRO_VERSION
                 u16 rand = Random();
                 if(rand % 2 == 0)
                     gSaveBlock1Ptr->keyFlags.version = 0;
                 else
                     gSaveBlock1Ptr->keyFlags.version = 1;
+#else // RANDOM_INTRO_VERSION
+                gSaveBlock1Ptr->keyFlags.version = 0;
+#endif // RANDOM_INTRO_VERSION
             }
             SetMainCallback2(CB2_InitTitleScreen);
         }

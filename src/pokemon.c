@@ -3265,7 +3265,11 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
     SetMonData(mon, MON_DATA_SPATK_IV, &value);
     value = src->spDefenseIV;
     SetMonData(mon, MON_DATA_SPDEF_IV, &value);
+#ifdef BATTLE_TOWER_IGNORE_EV_IV_KEY
     CalculateMonStats(mon, TRUE);
+#else
+    CalculateMonStats(mon, FALSE);
+#endif
 }
 
 static void CreateEventLegalMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -3771,8 +3775,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                          | ((attacker->speedIV & 2) << 2)
                          | ((attacker->spAttackIV & 2) << 3)
                          | ((attacker->spDefenseIV & 2) << 4);
-			  
-			gBattleMovePower = (40 * powerBits) / 63 + 30;
+
+            gBattleMovePower = (40 * powerBits) / 63 + 30;
         }
     }
     else
@@ -8185,4 +8189,48 @@ void SetFirstDeoxysForm(void)
             break;
         }
     }
+}
+
+bool8 DoesCaughtMonHaveItem(void)
+{
+    u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, 0);
+    if(itemId != ITEM_NONE && gSaveBlock1Ptr->keyFlags.takeHeldItem && CheckBagHasSpace(itemId, 1))
+    {
+        CopyItemName(itemId, gStringVar1);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+void PutCaughtMonItemInBag(void)
+{
+    u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, 0);
+    AddBagItem(itemId, 1);
+    itemId = ITEM_NONE;
+    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, &itemId);
+}
+
+bool8 DoesGiftMonHaveItem(void)
+{
+    u16 itemId = GetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, 0);
+    if(itemId != ITEM_NONE && gSaveBlock1Ptr->keyFlags.takeHeldItem && CheckBagHasSpace(itemId, 1))
+    {
+        CopyItemName(itemId, gStringVar1);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+void PutGiftMonItemInBag(void)
+{
+    u16 itemId = GetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, 0);
+    AddBagItem(itemId, 1);
+    itemId = ITEM_NONE;
+    SetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, &itemId);
 }

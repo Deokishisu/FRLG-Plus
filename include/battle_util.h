@@ -88,5 +88,8 @@ void ClearFuryCutterDestinyBondGrudge(u8 battlerId);
 void HandleAction_RunBattleScript(void);
 u8 GetMoveTarget(u16 move, u8 setTarget);
 u8 IsMonDisobedient(void);
+#ifdef BATTLE_MOVE_ICONS
+u8 GetBattleMoveCategory(u32 moveId);
+#endif
 
 #endif // GUARD_BATTLE_UTIL_H

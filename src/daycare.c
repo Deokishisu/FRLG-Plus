@@ -1072,6 +1072,20 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     return eggSpecies;
 }
 
+#ifdef VOLT_TACKLE_BY_BREEDING
+static void GiveVoltTackleIfLightBall(struct Pokemon *egg, struct BoxPokemon *father, struct BoxPokemon *mother)
+{
+    u32 motherItem = GetBoxMonData(mother, MON_DATA_HELD_ITEM);
+    u32 fatherItem = GetBoxMonData(father, MON_DATA_HELD_ITEM);
+
+    if (motherItem == ITEM_LIGHT_BALL || fatherItem == ITEM_LIGHT_BALL)
+    {
+        if (GiveMoveToMon(egg, MOVE_VOLT_TACKLE) == MON_HAS_MAX_MOVES)
+            DeleteFirstMoveAndGiveMoveToMon(egg, MOVE_VOLT_TACKLE);
+    }
+}
+#endif
+
 static void _GiveEggFromDaycare(struct DayCare *daycare)
 {
     struct Pokemon egg;
@@ -1084,6 +1098,11 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     SetInitialEggData(&egg, species, daycare);
     InheritIVs(&egg, daycare);
     BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
+
+#ifdef VOLT_TACKLE_BY_BREEDING
+    if (species == SPECIES_PICHU)
+        GiveVoltTackleIfLightBall(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
+#endif
 
     isEgg = TRUE;
     SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);

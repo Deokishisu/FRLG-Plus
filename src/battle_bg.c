@@ -17,6 +17,22 @@
 
 #define TAG_VS_LETTERS 10000
 
+#ifdef BATTLE_MOVE_ICONS
+#define B_WIN_MOVE_TYPE_WIDTH          5
+#define B_WIN_MOVE_TYPE_PALETTE_NUM    10
+#define B_WIN_DUMMY_MAP_LEFT           27
+#define B_WIN_DUMMY_WIDTH              2
+#define B_WIN_DUMMY_HEIGHT             2
+#define B_WIN_DUMMY_PALETTE_NUM        10
+#else // BATTLE_MOVE_ICONS
+#define B_WIN_MOVE_TYPE_WIDTH          8
+#define B_WIN_MOVE_TYPE_PALETTE_NUM    5
+#define B_WIN_DUMMY_MAP_LEFT           25
+#define B_WIN_DUMMY_WIDTH              0
+#define B_WIN_DUMMY_HEIGHT             0
+#define B_WIN_DUMMY_PALETTE_NUM        5
+#endif // BATTLE_MOVE_ICONS
+
 struct BattleBackground
 {
     const void *tileset;
@@ -205,13 +221,13 @@ static const struct WindowTemplate gUnknown_8248330[] = {
         .height = 2,
         .paletteNum = 5,
         .baseBlock = 0x290
-    }, {
+    }, { // B_WIN_MOVE_TYPE
         .bg = 0,
         .tilemapLeft = 21,
         .tilemapTop = 57,
-        .width = 8,
+        .width = B_WIN_MOVE_TYPE_WIDTH,
         .height = 2,
-        .paletteNum = 5,
+        .paletteNum = B_WIN_MOVE_TYPE_PALETTE_NUM,
         .baseBlock = 0x296
     }, {
         .bg = 0,
@@ -221,13 +237,13 @@ static const struct WindowTemplate gUnknown_8248330[] = {
         .height = 2,
         .paletteNum = 5,
         .baseBlock = 0x2a6
-    }, {
+    }, { // B_WIN_DUMMY
         .bg = 0,
-        .tilemapLeft = 25,
+        .tilemapLeft = B_WIN_DUMMY_MAP_LEFT,
         .tilemapTop = 57,
-        .width = 0,
-        .height = 0,
-        .paletteNum = 5,
+        .width = B_WIN_DUMMY_WIDTH,
+        .height = B_WIN_DUMMY_HEIGHT,
+        .paletteNum = B_WIN_DUMMY_PALETTE_NUM,
         .baseBlock = 0x2b0
     }, {
         .bg = 0,

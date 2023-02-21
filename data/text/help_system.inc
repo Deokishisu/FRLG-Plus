@@ -2123,3 +2123,59 @@ Help_Text_DefineLGExclusives::
 	.string "MISDREAVUS, SNEASEL, REMORAID,\l"
 	.string "MANTINE, LATIAS, and their\l"
 	.string "evolutionary relatives.$"
+
+Help_Text_ForgetHM::
+	.string "FORGET HM MOVES$"
+
+Help_Text_DefineForgetHM::
+	.string "Set this option to ON to allow replacing\n"
+	.string "HM moves like regular moves when your\l"
+	.string "POKéMON is trying to learn a new move.$"
+
+Help_Text_ThrowAnim::
+	.string "THROW BALL ANIM$"
+
+Help_Text_DefineThrowAnim::
+	.string "Set this option to OFF to skip the\n"
+	.string "POKé BALL throw animation.$"
+
+Help_Text_MaxLvlEvolve::
+	.string "MAX LVL EVOLVE$"
+
+Help_Text_DefineMaxLvlEvolve::
+	.string "Set this option to ON to allow POKéMON\n"
+	.string "to evolve and gain EVs on level 100.$"
+
+Help_Text_OwPoisonDamage::
+	.string "OW POISON DMG$"
+
+Help_Text_DefineOwPoisonDamage::
+	.string "You can adjust how your POKéMON are\n"
+	.string "affected by poison in the overworld.\l"
+	.string "1HP will prevent your POKéMON from\l"
+	.string "fainting. DISABLED prevents poison\l"
+	.string "damage. STANDARD is the normal way.$"
+
+Help_Text_Flashbacks::
+	.string "FLASHBACKS$"
+
+Help_Text_DefineFlashbacks::
+	.string "Set this option to OFF to disable\n"
+	.string "flashbacks when loading a saved game.$"
+
+Help_Text_AbilityPopup::
+	.string "SHOW ABILITIES$"
+
+Help_Text_DefineAbilityPopup::
+	.string "Set this option to ON to reveal\n"
+	.string "POKéMON's abilities at the beginning\l"
+	.string "of battle.$"
+
+Help_Text_TakeHeldItem::
+	.string "TAKE HELD ITEM$"
+
+Help_Text_DefineTakeHeldItem::
+	.string "Set this option to ASK to choose\n"
+	.string "whether to take POKéMON's held\l"
+	.string "item before transferring to PC.$"
+

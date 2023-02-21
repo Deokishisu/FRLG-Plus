@@ -244,6 +244,7 @@ struct BattleMove
     u8 target;
     s8 priority;
     u8 flags;
+    u8 category;
 };
 
 extern const struct BattleMove gBattleMoves[];
@@ -470,5 +471,7 @@ u16 ExtendedToNationalOrder(u16 expandedNum);
 u16 ExtendedPokedexNumToSpecies(u16 nationalNum);
 u16 NationalToExtendedOrder(u16 nationalNum);
 u16 SpeciesToExtendedPokedexNum(u16 species);
+bool8 DoesCaughtMonHaveItem(void);
+void PutCaughtMonItemInBag(void);
 
 #endif // GUARD_POKEMON_H

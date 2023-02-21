@@ -35,6 +35,7 @@ enum
     MENUITEM_MOVEANIMATIONS,
     MENUITEM_HPBARANIMSPEED,
     MENUITEM_EXPBARANIMSPEED,
+    MENUITEM_THROWANIM,
     MENUITEM_BACK,
     MENUITEM_COUNT2
 };
@@ -146,7 +147,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
 static const u16 sOptionMenuItemCounts[MENUITEM_COUNT]     = {4, 1, 3, 2, 3, 11, 0};
-static const u16 sOptionSubMenuItemCounts[MENUITEM_COUNT2] = {2, 2, 2, 4, 2, 0};
+static const u16 sOptionSubMenuItemCounts[MENUITEM_COUNT2] = {2, 2, 2, 4, 2, 2, 0};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -166,6 +167,7 @@ static const u8 *const sOptionSubmenuItemsNames[MENUITEM_COUNT2] =
     [MENUITEM_MOVEANIMATIONS] = gText_MoveAnims,
     [MENUITEM_HPBARANIMSPEED] = gText_HpBarAnimSpeed,
     [MENUITEM_EXPBARANIMSPEED] = gText_ExpBarAnimSpeed,
+    [MENUITEM_THROWANIM] = gText_ThrowAnim,
     [MENUITEM_BACK] = gText_Back,
 };
 
@@ -199,8 +201,8 @@ static const u8 *const sSoundOptions[] =
 static const u8 *const sButtonTypeOptions[] =
 {
     gText_ButtonTypeHelp,
-	gText_ButtonTypeLR,
-	gText_ButtonTypeLEqualsA
+    gText_ButtonTypeLR,
+    gText_ButtonTypeLEqualsA
 };
 
 static const u8 *const sBattleTransitionOptions[] = 
@@ -233,6 +235,12 @@ static const u8 *const sExpBarAnimSpeedOptions[] =
 {
     gText_IVCalcStandard, 
     gText_TextSpeedInstant
+};
+
+static const u8 *const sThrowAnimOptions[] =
+{
+    gText_BattleSceneOn,
+    gText_BattleSceneOff
 };
 
 static const u8 sOptionMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
@@ -277,6 +285,7 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->subOption[MENUITEM_MOVEANIMATIONS] = gSaveBlock2Ptr->optionsBattleSceneOff;
     sOptionMenuPtr->subOption[MENUITEM_HPBARANIMSPEED] = gSaveBlock2Ptr->optionsHpBarAnimSpeed;
     sOptionMenuPtr->subOption[MENUITEM_EXPBARANIMSPEED] = gSaveBlock2Ptr->optionsExpBarAnimSpeed;
+    sOptionMenuPtr->subOption[MENUITEM_THROWANIM] = gSaveBlock2Ptr->optionsThrowAnim;
     
     for (i = 0; i < MENUITEM_COUNT - 1; i++)
     {
@@ -352,7 +361,7 @@ static void CB2_OptionMenu(void)
         break;
     default:
         SetOptionMenuTask();
-		break;
+        break;
     }
     sOptionMenuPtr->state++;
 }
@@ -709,6 +718,9 @@ static void BufferOptionMenuString(u8 selection)
             case MENUITEM_EXPBARANIMSPEED:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpBarAnimSpeedOptions[sOptionMenuPtr->subOption[selection]]);
                 break;
+            case MENUITEM_THROWANIM:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sThrowAnimOptions[sOptionMenuPtr->subOption[selection]]);
+                break;
             default:
                 break;
         }
@@ -734,6 +746,7 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     gSaveBlock2Ptr->optionsBattleSceneOff = sOptionMenuPtr->subOption[MENUITEM_MOVEANIMATIONS];
     gSaveBlock2Ptr->optionsHpBarAnimSpeed = sOptionMenuPtr->subOption[MENUITEM_HPBARANIMSPEED];
     gSaveBlock2Ptr->optionsExpBarAnimSpeed = sOptionMenuPtr->subOption[MENUITEM_EXPBARANIMSPEED];
+    gSaveBlock2Ptr->optionsThrowAnim = sOptionMenuPtr->subOption[MENUITEM_THROWANIM];
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
     FREE_AND_SET_NULL(sOptionMenuPtr);
     FlagClear(FLAG_SYS_IN_OPTIONS_MENU);

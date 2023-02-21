@@ -452,4 +452,6 @@ gSpecials:: @ 815FD60
 	def_special UpdateLoreleiDollCollection
 	def_special LoopWingFlapSound
 	def_special CreateEventLegalEnemyMon
+	def_special DoesGiftMonHaveItem
+	def_special PutGiftMonItemInBag
 gSpecialsEnd::

@@ -68,6 +68,11 @@
 #define MOVE_TARGET_FOES_AND_ALLY     0x20
 #define MOVE_TARGET_OPPONENTS_FIELD   0x40
 
+#define MOVE_CATEGORY_PHYSICAL  0
+#define MOVE_CATEGORY_SPECIAL   1
+#define MOVE_CATEGORY_STATUS    2
+#define MOVE_CATEGORY_TYPE      3
+
 struct TrainerMonNoItemDefaultMoves
 {
     u16 iv;
@@ -734,5 +739,6 @@ extern u8 gChosenActionByBattler[MAX_BATTLERS_COUNT];
 extern u8 gBattleTerrain;
 extern struct MultiBattlePokemonTx gMultiPartnerParty[3];
 extern u16 gRandomTurnNumber;
+extern const u16 gNaturePowerMoves[];
 
 #endif // GUARD_BATTLE_H

@@ -657,42 +657,42 @@ static const u8 sPrintMoveTextColors[][3] = {
 
 static const struct BgTemplate sBgTempaltes[] = 
 {
-	 {
-	 	.bg = 0,
-	 	.charBaseIndex = 0,
-	 	.mapBaseIndex = 14,
-	 	.screenSize = 1,
-	 	.paletteMode = 0,
-	 	.priority = 0,
-	 	.baseTile = 0x0000
-	 },
-	 {
-	 	.bg = 2,
-	 	.charBaseIndex = 2,
-	 	.mapBaseIndex = 10,
-	 	.screenSize = 1,
-	 	.paletteMode = 0,
-	 	.priority = 1,
-	 	.baseTile = 0x0000
-	 },
-	 {
-	 	.bg = 3,
-	 	.charBaseIndex = 2,
-	 	.mapBaseIndex = 9,
-	 	.screenSize = 0,
-	 	.paletteMode = 0,
-	 	.priority = 3,
-	 	.baseTile = 0x0000
-	 },
-	 {
-	 	.bg = 1,
-	 	.charBaseIndex = 2,
-	 	.mapBaseIndex = 12,
-	 	.screenSize = 1,
-	 	.paletteMode = 0,
-	 	.priority = 2,
-	 	.baseTile = 0x0000
-	 }
+     {
+         .bg = 0,
+         .charBaseIndex = 0,
+         .mapBaseIndex = 14,
+         .screenSize = 1,
+         .paletteMode = 0,
+         .priority = 0,
+         .baseTile = 0x0000
+     },
+     {
+         .bg = 2,
+         .charBaseIndex = 2,
+         .mapBaseIndex = 10,
+         .screenSize = 1,
+         .paletteMode = 0,
+         .priority = 1,
+         .baseTile = 0x0000
+     },
+     {
+         .bg = 3,
+         .charBaseIndex = 2,
+         .mapBaseIndex = 9,
+         .screenSize = 0,
+         .paletteMode = 0,
+         .priority = 3,
+         .baseTile = 0x0000
+     },
+     {
+         .bg = 1,
+         .charBaseIndex = 2,
+         .mapBaseIndex = 12,
+         .screenSize = 1,
+         .paletteMode = 0,
+         .priority = 2,
+         .baseTile = 0x0000
+     }
 };
 
 #define POKESUM_WIN_PAGE_NAME        0
@@ -2461,15 +2461,15 @@ static void BufferMonMoveI(u8 i)
         if(sMonSummaryScreen->moveIds[i] == MOVE_HIDDEN_POWER)
         {
             u8 powerBits = ((GetMonData(mon, MON_DATA_HP_IV) & 2) >> 1)
-             	 	 | ((GetMonData(mon, MON_DATA_ATK_IV) & 2) << 0)
-             	 	 | ((GetMonData(mon, MON_DATA_DEF_IV) & 2) << 1)
-              	 	 | ((GetMonData(mon, MON_DATA_SPEED_IV) & 2) << 2)
-              	 	 | ((GetMonData(mon, MON_DATA_SPATK_IV)& 2) << 3)
-             	 	 | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 2) << 4);
-			  
-			u8 powerForHiddenPower = (40 * powerBits) / 63 + 30;
-			  
-			ConvertIntToDecimalStringN(sMonSummaryScreen->summary.movePowerStrBufs[i], powerForHiddenPower, STR_CONV_MODE_RIGHT_ALIGN, 3);
+                       | ((GetMonData(mon, MON_DATA_ATK_IV) & 2) << 0)
+                       | ((GetMonData(mon, MON_DATA_DEF_IV) & 2) << 1)
+                        | ((GetMonData(mon, MON_DATA_SPEED_IV) & 2) << 2)
+                        | ((GetMonData(mon, MON_DATA_SPATK_IV)& 2) << 3)
+                       | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 2) << 4);
+              
+            u8 powerForHiddenPower = (40 * powerBits) / 63 + 30;
+              
+            ConvertIntToDecimalStringN(sMonSummaryScreen->summary.movePowerStrBufs[i], powerForHiddenPower, STR_CONV_MODE_RIGHT_ALIGN, 3);
         }
         else
             ConvertIntToDecimalStringN(sMonSummaryScreen->summary.movePowerStrBufs[i], gBattleMoves[sMonSummaryScreen->moveIds[i]].power, STR_CONV_MODE_RIGHT_ALIGN, 3);
@@ -3983,6 +3983,9 @@ static u8 PokeSum_CanForgetSelectedMove(void)
     u16 move;
 
     move = GetMonMoveBySlotId(&sMonSummaryScreen->currentMon, sMoveSelectionCursorPos);
+    
+    if(gSaveBlock1Ptr->keyFlags.forgetHM == 1) // mod: always allow HM replace
+        return TRUE;
 
     if(IsMoveHm(move) && (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(TWO_ISLAND_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(TWO_ISLAND_HOUSE)))
     {   //in Move Reminder's house

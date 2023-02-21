@@ -8,6 +8,7 @@
 #include "constants/flags.h"
 #include "constants/vars.h"
 #include "constants/species.h"
+#include "constants/items.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -114,7 +115,8 @@ extern u8 gStringVar2[];
 extern u8 gStringVar3[];
 extern u8 gStringVar4[];
 
-#define ROUND_BITS_TO_BYTES(numBits)(((numBits) / 8) + (((numBits) % 8) ? 1 : 0))
+#define DIV_ROUND_UP(val, roundBy)(((val) / (roundBy)) + (((val) % (roundBy)) ? 1 : 0))
+#define ROUND_BITS_TO_BYTES(numBits) DIV_ROUND_UP(numBits, 8)
 
 #define DEX_FLAGS_NO (ROUND_BITS_TO_BYTES(NUM_SPECIES))
 #define NUM_FLAG_BYTES (ROUND_BITS_TO_BYTES(FLAGS_COUNT))
@@ -300,7 +302,8 @@ struct SaveBlock2
     /*0x012*/ u8 playTimeVBlanks;
     /*0x013*/ u8 optionsButtonMode:2;  // OPTIONS_BUTTON_MODE_[NORMAL/LR/L_EQUALS_A]
               u8 optionsHpBarAnimSpeed:2; //speed at which health bar animates
-              u8 optionsPadding:4;
+              u8 optionsThrowAnim:1; // pokeball throw anim
+              u8 optionsPadding:3;
     /*0x014*/ u16 optionsTextSpeed:3; // OPTIONS_TEXT_SPEED_[SLOW/MID/FAST/INSTANT]
               u16 optionsWindowFrameType:5; // Specifies one of the 20 decorative borders for text boxes
     /*0x15*/  u16 optionsSound:1; // OPTIONS_SOUND_[MONO/STEREO]
@@ -322,7 +325,8 @@ struct SaveBlock2
     /*0xAF0*/ struct BerryCrush berryCrush;
     /*0xB00*/ struct PokemonJumpResults pokeJump;
     /*0xB10*/ struct BerryPickingResults berryPick;
-    /*0xB20*/ u8 filler_B20[0x400];
+    /*0xB20*/ u8 itemsObtained[ROUND_BITS_TO_BYTES(ITEMS_COUNT)]; // size = 48
+    /*0xB50*/ u8 filler_B50[0x400 - ROUND_BITS_TO_BYTES(ITEMS_COUNT)]; // size = 976
     /*0xF20*/ u32 encryptionKey;
 }; // size: 0xF24
 
@@ -755,10 +759,15 @@ struct KeySystemFlags
     u16 evCalcMode:1;   //0 for normal, 1 for all zero
     u16 noPMC:1;        //0 for normal, 1 for no Pokemon Center healing.
     u16 expMod:2;       //0 for 0x, 1 for 1/2x, 2 for 1x, 3 for 2x 
-    u16 padding:4;
+    u16 forgetHM:1;     //0 for normal, 1 to allow replacing hm moves
+    u16 maxLvlEvolve:1; //0 for normal, 1 to allow max lvl Pokemon to evolve & continue to gain EVs
+    u16 owPoisonDmg:2;  //0 for normal, 1 to leave 1HP, 2 to disable
     u16 changedCalcMode:1; //set if calc mode is changed to recalc party on save load
     u16 inKeySystemMenu:1; //Needed for Help Menu regardless of Button Mode
-    u16 padding2;
+    u16 flashbacks:1;   //0 for normal, 1 to disable flashbacks
+    u16 abilityPopup:1; //0 to disable, 1 to enable revealing abilities on beginning of battle
+    u16 takeHeldItem:1; //0 to disable, 1 to ask to take held item before transfering new mon to PC
+    u16 padding:13;
 };
 
 // For external event data storage. The majority of these may have never been used.

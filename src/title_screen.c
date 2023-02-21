@@ -723,6 +723,12 @@ static void SetTitleScreenScene_Cry(s16 * data)
             u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
             u8 noPMCBackup = gSaveBlock1Ptr->keyFlags.noPMC;
             u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
+            u8 forgetHMBackup = gSaveBlock1Ptr->keyFlags.forgetHM;
+            u8 maxLvlEvolveBackup = gSaveBlock1Ptr->keyFlags.maxLvlEvolve;
+            u8 owPoisonDmgBackup = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
+            u8 flashbacksBackup = gSaveBlock1Ptr->keyFlags.flashbacks;
+            u8 abilityPopupBackup = gSaveBlock1Ptr->keyFlags.abilityPopup;
+            u8 takeHeldItemBackup = gSaveBlock1Ptr->keyFlags.takeHeldItem;
             SeedRngAndSetTrainerId();
             SetSaveBlocksPointers();
             ResetMenuAndMonGlobals();
@@ -738,6 +744,12 @@ static void SetTitleScreenScene_Cry(s16 * data)
             gSaveBlock1Ptr->keyFlags.changedCalcMode = ChangedCalcBackup;
             gSaveBlock1Ptr->keyFlags.noPMC = noPMCBackup;
             gSaveBlock1Ptr->keyFlags.expMod = expModBackup;
+            gSaveBlock1Ptr->keyFlags.forgetHM = forgetHMBackup;
+            gSaveBlock1Ptr->keyFlags.maxLvlEvolve = maxLvlEvolveBackup;
+            gSaveBlock1Ptr->keyFlags.owPoisonDmg = owPoisonDmgBackup;
+            gSaveBlock1Ptr->keyFlags.flashbacks = flashbacksBackup;
+            gSaveBlock1Ptr->keyFlags.abilityPopup = abilityPopupBackup;
+            gSaveBlock1Ptr->keyFlags.takeHeldItem = takeHeldItemBackup;
             SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
             InitHeap(gHeap, HEAP_SIZE);
             SetMainCallback2(CB2_InitMainMenu);

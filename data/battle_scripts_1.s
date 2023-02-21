@@ -235,6 +235,24 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDragonDance
 	.4byte BattleScript_EffectCamouflage
 
+BattleScript_BRNPrevention::
+	pause 0x20
+	printfromtable gBRNPreventionStringIds
+	waitmessage 0x40
+	return
+
+BattleScript_PRLZPrevention::
+	pause 0x20
+	printfromtable gPRLZPreventionStringIds
+	waitmessage 0x40
+	return
+
+BattleScript_PSNPrevention::
+	pause 0x20
+	printfromtable gPSNPreventionStringIds
+	waitmessage 0x40
+	return
+
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
 	jumpifnostatus3 BS_TARGET, STATUS3_UNDERWATER, BattleScript_HitFromAtkCanceler
@@ -717,9 +735,12 @@ BattleScript_AlreadyPoisoned::
 	goto BattleScript_MoveEnd
 
 BattleScript_ImmunityProtected::
+	pause 0x40
 	copybyte gEffectBattler, gBattlerTarget
 	setbyte cMULTISTRING_CHOOSER, 0
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	call BattleScript_PSNPrevention
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectPayDay::
@@ -1036,9 +1057,12 @@ BattleScript_AlreadyParalyzed::
 	goto BattleScript_MoveEnd
 
 BattleScript_LimberProtected::
+	pause 0x40
 	copybyte gEffectBattler, gBattlerTarget
 	setbyte cMULTISTRING_CHOOSER, 0
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	call BattleScript_PRLZPrevention
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectAttackDownHit::
@@ -2199,9 +2223,12 @@ BattleScript_EffectWillOWisp::
 	goto BattleScript_MoveEnd
 
 BattleScript_WaterVeilPrevents::
+	pause 0x40
 	copybyte gEffectBattler, gBattlerTarget
 	setbyte cMULTISTRING_CHOOSER, 0
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	call BattleScript_BRNPrevention
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_AlreadyBurned::
@@ -2359,8 +2386,10 @@ BattleScript_EffectRolePlay::
 	trycopyability BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNCOPIEDFOE
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectWish::
@@ -2510,8 +2539,10 @@ BattleScript_EffectSkillSwap::
 	tryswapabilities BattleScript_ButItFailed
 	attackanimation
 	waitanimation
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSWAPPEDABILITIES
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectImprison::
@@ -3954,27 +3985,35 @@ BattleScript_ItemSteal::
 
 BattleScript_DrizzleActivates::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNMADEITRAIN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_RAIN_CONTINUES, NULL
+	removeabilitypopup BS_SCRIPTING
 	call BattleScript_HandleWeatherFormChanges
 	end3
 
 BattleScript_SpeedBoostActivates::
 	playanimation BS_ATTACKER, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNRAISEDSPEED
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	end3
 
 BattleScript_TraceActivates::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNTRACED
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	end3
 
 BattleScript_RainDishActivates::
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_ATTACKER, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXRESTOREDHPALITTLE2
 	waitmessage 0x40
+	removeabilitypopup BS_ATTACKER
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
@@ -3982,15 +4021,19 @@ BattleScript_RainDishActivates::
 
 BattleScript_SandstreamActivates::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SANDSTORM_CONTINUES, NULL
+	removeabilitypopup BS_SCRIPTING
 	call BattleScript_HandleWeatherFormChanges
 	end3
 
 BattleScript_ShedSkinActivates::
+	loadabilitypopup LOAD_ABILITY_FROM_SECOND_BANK, BS_ATTACKER, BS_ATTACKER
 	printstring STRINGID_PKMNSXCUREDYPROBLEM
 	waitmessage 0x40
+	removeabilitypopup BS_ATTACKER
 	updatestatusicon BS_ATTACKER
 	end3
 
@@ -4009,8 +4052,10 @@ BattleScript_CastformChange::
 BattleScript_DoCastformChangeAnim::
 	docastformchangeanimation
 	waitstate
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNTRANSFORMED
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	return
 
 BattleScript_IntimidateActivatesEnd3::
@@ -4032,8 +4077,10 @@ BattleScript_IntimidateActivationAnimLoop::
 	jumpifbyte CMP_GREATER_THAN, cMULTISTRING_CHOOSER, 1, BattleScript_IntimidateFail
 	setgraphicalstatchangevalues
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNCUTSATTACKWITH
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 BattleScript_IntimidateFail::
 	addbyte gBattlerTarget, 1
 	goto BattleScript_IntimidateActivationAnimLoop
@@ -4049,30 +4096,38 @@ BattleScript_IntimidateAbilityFail::
 
 BattleScript_DroughtActivates::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXINTENSIFIEDSUN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES, NULL
+	removeabilitypopup BS_SCRIPTING
 	call BattleScript_HandleWeatherFormChanges
 	end3
 
 BattleScript_TookAttack::
 	attackstring
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXTOOKATTACK
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	orword gHitMarker, HITMARKER_ATTACKSTRING_PRINTED
 	return
 
 BattleScript_SturdyPreventsOHKO::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNPROTECTEDBY
 	pause 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_DampStopsExplosion::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNPREVENTSUSAGE
 	pause 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_MoveHPDrain_PPLoss::
@@ -4093,8 +4148,10 @@ BattleScript_MonMadeMoveUseless_PPLoss::
 BattleScript_MonMadeMoveUseless::
 	attackstring
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXMADEYUSELESS
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	orbyte gMoveResultFlags, MOVE_RESULT_DOESNT_AFFECT_FOE
 	goto BattleScript_MoveEnd
 
@@ -4103,112 +4160,124 @@ BattleScript_FlashFireBoost_PPLoss::
 BattleScript_FlashFireBoost::
 	attackstring
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, ABILITY_FLASH_FIRE
 	printfromtable gFlashFireStringIds
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilityPreventsPhasingOut::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNANCHORSITSELFWITH
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilityNoStatLoss::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNPREVENTSSTATLOSSWITH
 	waitmessage 0x40
-	return
-
-BattleScript_BRNPrevention::
-	pause 0x20
-	printfromtable gBRNPreventionStringIds
-	waitmessage 0x40
-	return
-
-BattleScript_PRLZPrevention::
-	pause 0x20
-	printfromtable gPRLZPreventionStringIds
-	waitmessage 0x40
-	return
-
-BattleScript_PSNPrevention::
-	pause 0x20
-	printfromtable gPSNPreventionStringIds
-	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	return
 
 BattleScript_ObliviousPreventsAttraction::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNPREVENTSROMANCEWITH
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_FlinchPrevention::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXPREVENTSFLINCHING
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_OwnTempoPrevents::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNPREVENTSCONFUSIONWITH
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_SoundproofProtected::
 	attackstring
 	ppreduce
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXBLOCKSY
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_AbilityNoSpecificStatLoss::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXPREVENTSYLOSS
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	setbyte cMULTISTRING_CHOOSER, 3
 	return
 
 BattleScript_StickyHoldActivates::
 	pause 0x20
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXMADEYINEFFECTIVE
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_ColorChangeActivates::
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNCHANGEDTYPEWITH
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	return
 
 BattleScript_RoughSkinActivates::
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_x100000
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
 	printstring STRINGID_PKMNHURTSWITH
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	tryfaintmon BS_ATTACKER, 0, NULL
 	return
 
 BattleScript_CuteCharmActivates::
 	status2animation BS_ATTACKER, STATUS2_INFATUATION
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXINFATUATEDY
 	waitmessage 0x40
+	removeabilitypopup BS_TARGET
 	return
 
 BattleScript_ApplySecondaryEffect::
 	waitstate
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_TARGET, LOAD_ABILITY_FROM_BUFFER
 	seteffectsecondary
+	removeabilitypopup BS_TARGET
 	return
 
 BattleScript_SynchronizeActivates::
 	waitstate
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	seteffectprimary
+	removeabilitypopup BS_SCRIPTING
 	return
 
 BattleScript_AbilityCuredStatus::
+	loadabilitypopup LOAD_ABILITY_NORMAL, BS_SCRIPTING, LOAD_ABILITY_FROM_BUFFER
 	printstring STRINGID_PKMNSXCUREDITSYPROBLEM
 	waitmessage 0x40
+	removeabilitypopup BS_SCRIPTING
 	updatestatusicon BS_SCRIPTING
 	return
 

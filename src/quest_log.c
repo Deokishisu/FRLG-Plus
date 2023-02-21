@@ -431,8 +431,7 @@ void TrySetUpQuestLogScenes_ElseContinueFromSave(u8 taskId)
         if (gSaveBlock1Ptr->questLog[i].startType != 0)
             sNumScenes++;
     }
-
-    if (sNumScenes != 0)
+    if (sNumScenes != 0 && gSaveBlock1Ptr->keyFlags.flashbacks)
     {
         gHelpSystemEnabled = FALSE;
         Task_BeginQuestLogPlayback(taskId);
@@ -823,6 +822,12 @@ static void QuestLog_StartFinalScene(void)
     u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
     u8 noPMCBackup = gSaveBlock1Ptr->keyFlags.noPMC;
     u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
+    u8 forgetHMBackup = gSaveBlock1Ptr->keyFlags.forgetHM;
+    u8 maxLvlEvolveBackup = gSaveBlock1Ptr->keyFlags.maxLvlEvolve;
+    u8 owPoisonDmgBackup = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
+    u8 flashbacksBackup = gSaveBlock1Ptr->keyFlags.flashbacks;
+    u8 abilityPopupBackup = gSaveBlock1Ptr->keyFlags.abilityPopup;
+    u8 takeHeldItemBackup = gSaveBlock1Ptr->keyFlags.takeHeldItem;
     ResetSpecialVars();
     Save_ResetSaveCounters();
     Save_LoadGameData(SAVE_NORMAL);
@@ -833,6 +838,12 @@ static void QuestLog_StartFinalScene(void)
     gSaveBlock1Ptr->keyFlags.evCalcMode = KeyEvCalcBackup;
     gSaveBlock1Ptr->keyFlags.noPMC = noPMCBackup;
     gSaveBlock1Ptr->keyFlags.expMod = expModBackup;
+    gSaveBlock1Ptr->keyFlags.forgetHM = forgetHMBackup;
+    gSaveBlock1Ptr->keyFlags.maxLvlEvolve = maxLvlEvolveBackup;
+    gSaveBlock1Ptr->keyFlags.owPoisonDmg = owPoisonDmgBackup;
+    gSaveBlock1Ptr->keyFlags.flashbacks = flashbacksBackup;
+    gSaveBlock1Ptr->keyFlags.abilityPopup = abilityPopupBackup;
+    gSaveBlock1Ptr->keyFlags.takeHeldItem = takeHeldItemBackup;
     gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     //recalculate party stats for IV and EV keys if they were changed
     if(ChangedCalcBackup == 1)

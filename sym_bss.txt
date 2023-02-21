@@ -49,6 +49,8 @@
 	.align 2
 	.include "src/pokemon_special_anim_scene.o"
 	.align 2
+	.include "src/battle_anim_special.o"
+	.align 2
 	.include "src/wireless_communication_status_screen.o"
 	.align 2
 	.include "src/dodrio_berry_picking.o"

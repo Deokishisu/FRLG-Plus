@@ -1,6 +1,9 @@
 #ifndef GUARD_CONFIG_H
 #define GUARD_CONFIG_H
 
+// FRLG+ compiler flags
+#include "plus/plus_cfg.h"
+
 #include "global.h"
 
 // In the Generation 3 games, Asserts were used in various debug builds.

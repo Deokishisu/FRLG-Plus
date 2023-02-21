@@ -72,6 +72,8 @@ static const u8 sText_PlayerWhiteout[] = _("{B_PLAYER_NAME} is out of\nusable PO
 static const u8 sText_PlayerPanicked[] = _("{B_PLAYER_NAME} panicked and lost ¥{B_BUFF1}…\p… … … …\p{B_PLAYER_NAME} whited out!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayerWhiteoutAgainstTrainer[] = _("{B_PLAYER_NAME} is out of\nusable POKéMON!\pPlayer lost against\n{B_TRAINER1_CLASS} {B_TRAINER1_NAME}!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayerPaidAsPrizeMoney[] = _("{B_PLAYER_NAME} paid ¥{B_BUFF1} as the prize\nmoney…\p… … … …\p{B_PLAYER_NAME} whited out!{PAUSE_UNTIL_PRESS}");
+static const u8 sText_TakeItemCaptured[] = _("{B_OPPONENT_MON1_NAME} has a {STR_VAR_1}.\pWould you like to place the\n{STR_VAR_1} in your BAG?");
+static const u8 sText_ItemTaken[] = _("You placed the {STR_VAR_1}\nin your BAG.\p");
 static const u8 sText_PlayerWhiteout2[] = _("{B_PLAYER_NAME} whited out!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PreventsEscape[] = _("{B_SCR_ACTIVE_NAME_WITH_PREFIX} prevents\nescape with {B_SCR_ACTIVE_ABILITY}!\p");
 static const u8 sText_CantEscape2[] = _("Can't escape!\p");
@@ -418,7 +420,7 @@ static const u8 sText_FoePkmnPrefix4[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
 static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}!");
 static const u8 sText_MonPickedUpItem[] = _("Your POKéMON picked\nup some items!");
-static const u8 sText_MonPickedUpItemSolo[] = _("{B_BUFF1} picked up {B_BUFF2} {B_TRAINER2_LOSE_TEXT}!");
+static const u8 sText_MonPickedUpItemSolo[] = _("{B_BUFF1} picked up {B_BUFF2} {B_TRAINER2_LOSE_TEXT}!{PAUSE_UNTIL_PRESS}");
 
 //link title strings
 static const u8 sText_LinkTrainerSentOutPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_OPPONENT_MON1_NAME}!");
@@ -902,7 +904,9 @@ const u8 *const gBattleStringsTable[] = {
     [STRINGID_TRAINER1MON1AND2COMEBACK - 12]      = sText_Trainer1RecallBoth,
     [STRINGID_ENEMYABOUTTOSWITCHPKMNNOPREDICT - 12] = sText_EnemyAboutToSwitchPkmnNoPredict,
     [STRINGID_PICKUP - 12]                        = sText_MonPickedUpItem,
-    [STRINGID_PICKUPSOLO - 12]                    = sText_MonPickedUpItemSolo
+    [STRINGID_PICKUPSOLO - 12]                    = sText_MonPickedUpItemSolo,
+    [STRINGID_TAKEITEMCAPTURED - 12]              = sText_TakeItemCaptured,
+    [STRINGID_ITEMTAKEN - 12]                     = sText_ItemTaken
 };
 
 const u16 gMissStringIds[] = {
@@ -1241,9 +1245,11 @@ const u8 gText_LinkStandby[] = _("{PAUSE 16}Link standby…");
 const u8 gText_BattleMenu[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}FIGHT{CLEAR_TO 56}BAG\nPOKéMON{CLEAR_TO 56}RUN");
 const u8 gUnknown_83FE747[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}BALL{CLEAR_TO 56}BAIT\nROCK{CLEAR_TO 56}RUN");
 const u8 gText_MoveInterfacePP[] = _("PP ");
+#ifndef BATTLE_MOVE_ICONS
 const u8 gText_MoveInterfaceType[] = _("TYPE/");
+#endif
 const u8 gUnknown_83FE770[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}");
-const u8 gText_BattleYesNoChoice[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}Yes\nNo");
+const u8 gText_BattleYesNoChoice[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}YES\nNO");
 const u8 gText_BattleSwitchWhich[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}Switch\nwhich?");
 const u8 gUnknown_83FE7B6[] = _("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 13 14 15}");
 const u8 gUnknown_83FE7BF[] = _("{RIGHT_ARROW_2}");

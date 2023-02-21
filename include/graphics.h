@@ -2892,15 +2892,15 @@ extern const u16 gFameCheckerBg3Tilemap[0x400];
 extern const u16 gFameCheckerBg2Tilemap[0x400];
 
 // tm_case
-extern const u32 gUnknown_8E845D8[];
-extern const u32 gUnknown_8E84A24[];
-extern const u32 gUnknown_8E84B70[];
-extern const u32 gUnknown_8E84CB0[];
-extern const u32 gUnknown_8E84D20[];
-extern const u32 gTMCase_TMSpriteGfx[];
-extern const u32 gUnknown_8E84F20[];
-extern const u32 gUnknown_8E85068[];
-extern const u8 gUnknown_8E99118[];
+extern const u32 gTMCase_Gfx[];
+extern const u32 gTMCaseMenu_Tilemap[];
+extern const u32 gTMCase_Tilemap[];
+extern const u32 gTMCaseMenu_Male_Pal[];
+extern const u32 gTMCaseMenu_Female_Pal[];
+extern const u32 gTMCaseDisc_Gfx[];
+extern const u32 gTMCaseDiscTypes1_Pal[];
+extern const u32 gTMCaseDiscTypes2_Pal[];
+extern const u8 gTMCaseHM_Gfx[];
 extern const u16 gTMCaseMainWindowPalette[];
 
 // egg_hatch
@@ -3881,6 +3881,7 @@ extern const u32 gBattleAnimSpriteGfx_RazorLeaf[];
 extern const u32 gBattleAnimSpriteGfx_Needle[];
 extern const u32 gBattleAnimSpriteGfx_WhirlwindLines[];
 extern const u32 gBattleAnimSpriteGfx_GoldRing[];
+extern const u32 gBattleAnimSpriteGfx_AbilityPopUp[];
 extern const u32 gBattleAnimSpriteGfx_GreenLightWall[];
 extern const u32 gBattleAnimSpriteGfx_BlackBall2[];
 extern const u32 gBattleAnimSpriteGfx_SparkH[];
@@ -4245,6 +4246,7 @@ extern const u32 gBattleAnimSpritePal_CrossImpact[];
 extern const u32 gBattleAnimSpritePal_Slash2[];
 extern const u32 gBattleAnimSpritePal_WhipHit[];
 extern const u32 gBattleAnimSpritePal_BlueRing2[];
+extern const u32 gBattleAnimSpritePal_AbilityPopUp[];
 
 // battle anim task
 extern const u32 gUnknown_D2EC24_Gfx[];
