@@ -43,7 +43,7 @@ static void FaintFromFieldPoison(u8 partyIdx)
 static bool32 MonFaintedFromPoison(u8 partyIdx)
 {
     struct Pokemon *pokemon = gPlayerParty + partyIdx;
-    if (IsMonValidSpecies(pokemon) && (GetMonData(pokemon, MON_DATA_HP) == gSaveBlock1Ptr->keyFlags.owPoisonDmg ? 1 : 0)&& GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN)
+    if (IsMonValidSpecies(pokemon) && (GetMonData(pokemon, MON_DATA_HP) == (gSaveBlock1Ptr->keyFlags.owPoisonDmg ? 1 : 0)) && GetAilmentFromStatus(GetMonData(pokemon, MON_DATA_STATUS)) == AILMENT_PSN)
         return TRUE;
     return FALSE;
 }
