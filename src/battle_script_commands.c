@@ -3211,7 +3211,7 @@ static void atk23_getexp(void)
                     else if (gSaveBlock1Ptr->keyFlags.expMod == 0)
                     {
                         MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
-                    } 
+                    }
                 }
             }
             else

@@ -14,7 +14,7 @@
 #define EXPOSE_WEATHER_BALL
 #define EXPOSE_NATURE_POWER
 
-// Celadon Game Corner Easter Egg
+// Celadon GAME CORNER Easter Egg
 #define GAME_CORNER_EASTER_EGG
 
 // Better player reflection in overworld
@@ -46,5 +46,8 @@
 
 // Auto swap to lowercase when naming a character
 #define AUTO_CASE_SWAP
+
+// ALTERING CAVE will alter as if Mystery Event was active
+#define ALTERING_CAVE_ALTERS
 
 #endif // GUARD_PLUS_CFG_H
