@@ -463,6 +463,7 @@ enum
     HELP_TERM_BACK,
     HELP_TERM_ADVANCED,
     HELP_TERM_ADVANCED_KEYS_BACK,
+    HELP_TERM_NO_ITEM_HEALS,
     HELP_TERM_MAX_EVO,
     HELP_TERM_THROW_ANIM,
     HELP_TERM_FORGET_HM,
@@ -536,6 +537,7 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_BACK]                = Help_Text_Back,
     [HELP_TERM_ADVANCED]            = Help_Text_AdvancedKeys,
     [HELP_TERM_ADVANCED_KEYS_BACK]  = Help_Text_Back,
+    [HELP_TERM_NO_ITEM_HEALS]       = Help_Text_NoItemHeals,
     [HELP_TERM_MAX_EVO]             = Help_Text_MaxLvlEvolve,
     [HELP_TERM_THROW_ANIM]          = Help_Text_ThrowAnim,
     [HELP_TERM_FORGET_HM]           = Help_Text_ForgetHM,
@@ -609,6 +611,7 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_BACK]                = Help_Text_DefineBack,
     [HELP_TERM_ADVANCED]            = Help_Text_DefineAdvancedKeys,
     [HELP_TERM_ADVANCED_KEYS_BACK]  = Help_Text_DefineAdvancedKeysBack,
+    [HELP_TERM_NO_ITEM_HEALS]       = Help_Text_DefineNoItemHeals,
     [HELP_TERM_MAX_EVO]             = Help_Text_DefineMaxLvlEvolve,
     [HELP_TERM_THROW_ANIM]          = Help_Text_DefineThrowAnim,
     [HELP_TERM_FORGET_HM]           = Help_Text_DefineForgetHM,
@@ -1739,13 +1742,14 @@ static const u8 sTerms_KeySystemSubMenu1[] = {
     HELP_TERM_IV_CALC,
     HELP_TERM_EV_CALC,
     HELP_TERM_NO_PMC,
+    HELP_TERM_NO_ITEM_HEALS,
     HELP_TERM_EXP_MOD,
-    HELP_TERM_MAX_EVO,
     HELP_TERM_ADVANCED_KEYS_BACK,
     HELP_END
 };
 
 static const u8 sTerms_KeySystemSubMenu2[] = {
+    HELP_TERM_MAX_EVO,
     HELP_TERM_FORGET_HM,
     HELP_TERM_OW_PSN_DMG,
     HELP_TERM_FLASHBACKS,

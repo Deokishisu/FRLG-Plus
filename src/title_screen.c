@@ -729,6 +729,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             u8 flashbacksBackup = gSaveBlock1Ptr->keyFlags.flashbacks;
             u8 abilityPopupBackup = gSaveBlock1Ptr->keyFlags.abilityPopup;
             u8 takeHeldItemBackup = gSaveBlock1Ptr->keyFlags.takeHeldItem;
+            u8 noIHBackup = gSaveBlock1Ptr->keyFlags.noIH;
             SeedRngAndSetTrainerId();
             SetSaveBlocksPointers();
             ResetMenuAndMonGlobals();
@@ -750,6 +751,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             gSaveBlock1Ptr->keyFlags.flashbacks = flashbacksBackup;
             gSaveBlock1Ptr->keyFlags.abilityPopup = abilityPopupBackup;
             gSaveBlock1Ptr->keyFlags.takeHeldItem = takeHeldItemBackup;
+            gSaveBlock1Ptr->keyFlags.noIH = noIHBackup;
             SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
             InitHeap(gHeap, HEAP_SIZE);
             SetMainCallback2(CB2_InitMainMenu);

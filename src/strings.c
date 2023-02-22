@@ -1288,6 +1288,11 @@ const u8 gText_AbilityPopup[] = _("SHOW ABILITIES");
 const u8 gText_TakeHeldItem[] = _("TAKE HELD ITEM");
 const u8 gText_TakeHeldItemOff[] = _("OFF");
 const u8 gText_TakeHeldItemAsk[] = _("ASK");
+const u8 gText_NoItemHeals[] = _("NO ITEM HEALS");
+const u8 gText_NoItemHealsOff[] = _("OFF");
+const u8 gText_NoItemHealsPlayer[] = _("PLAYER");
+const u8 gText_NoItemHealsEnemy[] = _("ENEMY");
+const u8 gText_NoItemHealsOn[] = _("ON");
 
 const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
 const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}SAVE");

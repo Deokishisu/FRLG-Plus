@@ -9586,7 +9586,7 @@ static void atkF8_loadabilitypopup(void)
 
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[2]);
 
-    if (gSaveBlock1Ptr->keyFlags.abilityPopup && !FlagGet(FLAG_SYS_IS_LINKING))
+    if (gSaveBlock1Ptr->keyFlags.abilityPopup && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         if (gBattlescriptCurrInstr[1] != REMOVE_POP_UP)
             animId = B_ANIM_LOAD_ABILITY_POP_UP;

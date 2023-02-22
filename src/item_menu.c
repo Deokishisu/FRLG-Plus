@@ -1469,6 +1469,34 @@ static void OpenContextMenu(u8 taskId)
     switch (gBagMenuState.location)
     {
     case ITEMMENULOCATION_BATTLE:
+        if (gSpecialVar_ItemId == ITEM_BERRY_POUCH)
+        {
+            if (gSaveBlock1Ptr->keyFlags.noIH == 1 || gSaveBlock1Ptr->keyFlags.noIH == 3)
+            {
+                sContextMenuItemsPtr = sContextMenuItems_Cancel;
+                sContextMenuNumItems = 1;
+            }
+            else
+            {
+                sContextMenuItemsBuffer[0] = ITEMMENUACTION_OPEN_BERRIES;
+                sContextMenuItemsBuffer[1] = ITEMMENUACTION_CANCEL;
+                sContextMenuItemsPtr = sContextMenuItemsBuffer;
+                sContextMenuNumItems = 2;
+            }
+        }
+        else if (ItemId_GetBattleUsage(gSpecialVar_ItemId) &&
+            ((gSaveBlock1Ptr->keyFlags.noIH != 1 && gSaveBlock1Ptr->keyFlags.noIH != 3) ||
+             (ItemId_GetBattleFunc(gSpecialVar_ItemId) != BattleUseFunc_Medicine && ItemId_GetBattleFunc(gSpecialVar_ItemId) != BattleUseFunc_Ether)))
+        {
+            sContextMenuItemsPtr = sContextMenuItems_BattleUse;
+            sContextMenuNumItems = 2;
+        }
+        else
+        {
+            sContextMenuItemsPtr = sContextMenuItems_Cancel;
+            sContextMenuNumItems = 1;
+        }
+        break;
     case ITEMMENULOCATION_TTVSCR_STATUS:
         if (gSpecialVar_ItemId == ITEM_BERRY_POUCH)
         {

@@ -1668,6 +1668,11 @@ extern const u8 gText_AbilityPopup[];
 extern const u8 gText_TakeHeldItem[];
 extern const u8 gText_TakeHeldItemOff[];
 extern const u8 gText_TakeHeldItemAsk[];
+extern const u8 gText_NoItemHeals[];
+extern const u8 gText_NoItemHealsOff[];
+extern const u8 gText_NoItemHealsPlayer[];
+extern const u8 gText_NoItemHealsEnemy[];
+extern const u8 gText_NoItemHealsOn[];
 
 extern const u8 gText_PkmnPoisonSurvived[];
 

@@ -767,7 +767,8 @@ struct KeySystemFlags
     u16 flashbacks:1;   //0 for normal, 1 to disable flashbacks
     u16 abilityPopup:1; //0 to disable, 1 to enable revealing abilities on beginning of battle
     u16 takeHeldItem:1; //0 to disable, 1 to ask to take held item before transfering new mon to PC
-    u16 padding:13;
+    u16 noIH:4; //0 to disable, 1 for player, 2 for enemy, 3 for both, disables on-use healing items
+    u16 padding:9;
 };
 
 // For external event data storage. The majority of these may have never been used.

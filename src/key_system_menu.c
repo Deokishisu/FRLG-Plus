@@ -32,15 +32,16 @@ enum
     MENUITEM_IV,
     MENUITEM_EV,
     MENUITEM_NO_PMC,
+    MENUITEM_NO_IH,
     MENUITEM_EXP_MOD,
-    MENUITEM_MAX_EVO,
     MENUITEM_BACK,
     MENUITEM_COUNT2
 };
 
 enum
 {
-    MENUITEM_FORGET_HM = 0,
+    MENUITEM_MAX_EVO = 0,
+    MENUITEM_FORGET_HM,
     MENUITEM_OW_PSN_DMG,
     MENUITEM_FLASHBACKS,
     MENUITEM_ABILITY_POPUP,
@@ -158,8 +159,8 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
 static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 1, 0};
-static const u16 sKeySystemSubMenu1ItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 2, 0};
-static const u16 sKeySystemSubMenu2ItemCounts[MENUITEM_COUNT3] = {2, 3, 2, 2, 2, 0};
+static const u16 sKeySystemSubMenu1ItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 4, 0};
+static const u16 sKeySystemSubMenu2ItemCounts[MENUITEM_COUNT3] = {2, 2, 3, 2, 2, 2, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
@@ -175,12 +176,13 @@ static const u8 *const sKeySystemSubMenu1ItemsNames[MENUITEM_COUNT2] ={
     [MENUITEM_IV]         = gText_IVCalc,
     [MENUITEM_EV]         = gText_EVCalc,
     [MENUITEM_NO_PMC]     = gText_NoPMC,
+    [MENUITEM_NO_IH]      = gText_NoItemHeals,
     [MENUITEM_EXP_MOD]    = gText_ExpMod,
-    [MENUITEM_MAX_EVO]    = gText_MaxLvlEvolve,
     [MENUITEM_BACK]       = gText_Back,
 };
 
 static const u8 *const sKeySystemSubMenu2ItemsNames[MENUITEM_COUNT3] ={
+    [MENUITEM_MAX_EVO]        = gText_MaxLvlEvolve,
     [MENUITEM_FORGET_HM]      = gText_ForgetHM,
     [MENUITEM_OW_PSN_DMG]     = gText_OwPoisonDamage,
     [MENUITEM_FLASHBACKS]     = gText_Flashbacks,
@@ -247,6 +249,14 @@ static const u8 *const sTakeHeldItemOptions[] =
     gText_TakeHeldItemAsk
 };
 
+static const u8 *const sNoItemHealsOptions[] =
+{
+    gText_NoItemHealsOff,
+    gText_NoItemHealsPlayer,
+    gText_NoItemHealsEnemy,
+    gText_NoItemHealsOn
+};
+
 static const u8 sKeySystemMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sKeySystemMenuTextColor[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_RED};
 
@@ -285,8 +295,9 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->subOption1[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     sKeySystemMenuPtr->subOption1[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
     sKeySystemMenuPtr->subOption1[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
+    sKeySystemMenuPtr->subOption1[MENUITEM_NO_IH] = gSaveBlock1Ptr->keyFlags.noIH;
     sKeySystemMenuPtr->subOption1[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
-    sKeySystemMenuPtr->subOption1[MENUITEM_MAX_EVO] = gSaveBlock1Ptr->keyFlags.maxLvlEvolve;
+    sKeySystemMenuPtr->subOption2[MENUITEM_MAX_EVO] = gSaveBlock1Ptr->keyFlags.maxLvlEvolve;
     sKeySystemMenuPtr->subOption2[MENUITEM_FORGET_HM] = gSaveBlock1Ptr->keyFlags.forgetHM;
     sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG] = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
     sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS] = gSaveBlock1Ptr->keyFlags.flashbacks;
@@ -659,7 +670,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         }
         else
         {
-            if (sKeySystemMenuPtr->cursorPos == MENUITEM_FORGET_HM)
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_MAX_EVO)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_BACK2;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
@@ -686,7 +697,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         else
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_BACK2)
-                sKeySystemMenuPtr->cursorPos = MENUITEM_FORGET_HM;
+                sKeySystemMenuPtr->cursorPos = MENUITEM_MAX_EVO;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
         }
@@ -766,11 +777,11 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_NO_PMC:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOnOffOptions[sKeySystemMenuPtr->subOption1[selection]]);
                 break;
+            case MENUITEM_NO_IH:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNoItemHealsOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
             case MENUITEM_EXP_MOD:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpModOptions[sKeySystemMenuPtr->subOption1[selection]]);
-                break;
-            case MENUITEM_MAX_EVO:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOnOffOptions[sKeySystemMenuPtr->subOption1[selection]]);
                 break;
             default:
                 break;
@@ -780,6 +791,9 @@ static void BufferKeySystemMenuString(u8 selection)
     {
         switch (selection)
         {
+            case MENUITEM_MAX_EVO:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOnOffOptions[sKeySystemMenuPtr->subOption2[selection]]);
+                break;
             case MENUITEM_FORGET_HM:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOnOffOptions[sKeySystemMenuPtr->subOption2[selection]]);
                 break;
@@ -818,8 +832,9 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->subOption1[MENUITEM_IV];
     gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->subOption1[MENUITEM_EV];
     gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->subOption1[MENUITEM_NO_PMC];
+    gSaveBlock1Ptr->keyFlags.noIH = sKeySystemMenuPtr->subOption1[MENUITEM_NO_IH];
     gSaveBlock1Ptr->keyFlags.expMod = sKeySystemMenuPtr->subOption1[MENUITEM_EXP_MOD];
-    gSaveBlock1Ptr->keyFlags.maxLvlEvolve = sKeySystemMenuPtr->subOption1[MENUITEM_MAX_EVO];
+    gSaveBlock1Ptr->keyFlags.maxLvlEvolve = sKeySystemMenuPtr->subOption2[MENUITEM_MAX_EVO];
     gSaveBlock1Ptr->keyFlags.forgetHM = sKeySystemMenuPtr->subOption2[MENUITEM_FORGET_HM];
     gSaveBlock1Ptr->keyFlags.owPoisonDmg = sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG];
     gSaveBlock1Ptr->keyFlags.flashbacks = sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS];

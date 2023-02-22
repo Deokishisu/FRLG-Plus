@@ -2179,3 +2179,13 @@ Help_Text_DefineTakeHeldItem::
 	.string "whether to take POKéMON's held\l"
 	.string "item before transferring to PC.$"
 
+Help_Text_NoItemHeals::
+	.string "NO ITEM HEALS$"
+
+Help_Text_DefineNoItemHeals::
+	.string "Enabling this option turns off the use\n"
+	.string "of healing items in battle. PLAYER\l"
+	.string "disables them for the player and ENEMY\l"
+	.string "for other POKéMON trainers. ON disables\l"
+	.string "healing items for everyone.$"
+
