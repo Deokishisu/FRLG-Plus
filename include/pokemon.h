@@ -473,5 +473,6 @@ u16 NationalToExtendedOrder(u16 nationalNum);
 u16 SpeciesToExtendedPokedexNum(u16 species);
 bool8 DoesCaughtMonHaveItem(void);
 void PutCaughtMonItemInBag(void);
+u8 GetLevelCap(void);
 
 #endif // GUARD_POKEMON_H

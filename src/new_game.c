@@ -163,6 +163,7 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->keyFlags.abilityPopup = 0; // ability popup disabled
     gSaveBlock1Ptr->keyFlags.takeHeldItem = 1; // ask to take held item
     gSaveBlock1Ptr->keyFlags.noIH = 0; // heal items enabled
+    gSaveBlock1Ptr->keyFlags.levelCap = 0; // level cap disabled
     memset(&gSaveBlock2Ptr->itemsObtained, 0, sizeof(gSaveBlock2Ptr->itemsObtained));
 }
 

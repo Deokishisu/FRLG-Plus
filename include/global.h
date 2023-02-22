@@ -762,13 +762,14 @@ struct KeySystemFlags
     u16 forgetHM:1;     //0 for normal, 1 to allow replacing hm moves
     u16 maxLvlEvolve:1; //0 for normal, 1 to allow max lvl Pokemon to evolve & continue to gain EVs
     u16 owPoisonDmg:2;  //0 for normal, 1 to leave 1HP, 2 to disable
-    u16 changedCalcMode:1; //set if calc mode is changed to recalc party on save load
-    u16 inKeySystemMenu:1; //Needed for Help Menu regardless of Button Mode
-    u16 flashbacks:1;   //0 for normal, 1 to disable flashbacks
-    u16 abilityPopup:1; //0 to disable, 1 to enable revealing abilities on beginning of battle
-    u16 takeHeldItem:1; //0 to disable, 1 to ask to take held item before transfering new mon to PC
-    u16 noIH:4; //0 to disable, 1 for player, 2 for enemy, 3 for both, disables on-use healing items
-    u16 padding:9;
+    u16 changedCalcMode:1; // set if calc mode is changed to recalc party on save load
+    u16 inKeySystemMenu:1; // Needed for Help Menu regardless of Button Mode
+    u16 flashbacks:1;      // 0 for normal, 1 to disable flashbacks
+    u16 abilityPopup:1;    // 0 to disable, 1 to enable revealing abilities on beginning of battle
+    u16 takeHeldItem:1;    // 0 to disable, 1 to ask to take held item before transfering new mon to PC
+    u16 noIH:4;            // 0 to disable, 1 for player, 2 for enemy, 3 for both, disables on-use healing items
+    u16 levelCap:1;        // 0 to disable, 1 to enable level cap
+    u16 padding:8;
 };
 
 // For external event data storage. The majority of these may have never been used.

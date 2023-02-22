@@ -3195,7 +3195,7 @@ static void atk23_getexp(void)
                 gBattleScripting.atk23_state = 5;
                 gBattleMoveDamage = 0; // used for exp
             }
-            else if (level == MAX_LEVEL || gSaveBlock1Ptr->keyFlags.expMod == 0 || FlagGet(FLAG_MASTER_TRAINER_BATTLE))
+            else if (level >= GetLevelCap() || gSaveBlock1Ptr->keyFlags.expMod == 0 || FlagGet(FLAG_MASTER_TRAINER_BATTLE))
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.atk23_state = 5;
@@ -3203,15 +3203,8 @@ static void atk23_getexp(void)
 
                 if (!FlagGet(FLAG_MASTER_TRAINER_BATTLE))
                 {
-                    if (level == MAX_LEVEL)
-                    {
-                        if (gSaveBlock1Ptr->keyFlags.maxLvlEvolve)
-                            MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
-                    }
-                    else if (gSaveBlock1Ptr->keyFlags.expMod == 0)
-                    {
+                    if (level < MAX_LEVEL || gSaveBlock1Ptr->keyFlags.maxLvlEvolve)
                         MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
-                    }
                 }
             }
             else

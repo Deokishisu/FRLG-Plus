@@ -2189,3 +2189,11 @@ Help_Text_DefineNoItemHeals::
 	.string "for other POKéMON trainers. ON disables\l"
 	.string "healing items for everyone.$"
 
+Help_Text_LevelCap::
+	.string "LEVEL CAP$"
+
+Help_Text_DefineLevelCap::
+	.string "Set this option to ON to cap your\n"
+	.string "POKéMON level to next GYM LEADER's\l"
+	.string "highest POKéMON level.$"
+

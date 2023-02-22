@@ -1176,6 +1176,8 @@ extern const u8 Help_Text_TakeHeldItem[];
 extern const u8 Help_Text_DefineTakeHeldItem[];
 extern const u8 Help_Text_NoItemHeals[];
 extern const u8 Help_Text_DefineNoItemHeals[];
+extern const u8 Help_Text_LevelCap[];
+extern const u8 Help_Text_DefineLevelCap[];
 
 extern const u8 EventScript_FldEffStrength[];
 extern const u8 EventScript_FailSweetScent[];

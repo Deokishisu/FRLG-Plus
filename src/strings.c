@@ -787,6 +787,7 @@ const u8 gText_ExpBarAnimSpeed[] = _("EXP. BAR ANIM SPEED");
 const u8 gText_Back[] = _("BACK");
 const u8 gText_Advanced1[] = _("ADVANCED KEYS 1");
 const u8 gText_Advanced2[] = _("ADVANCED KEYS 2");
+const u8 gText_Advanced3[] = _("ADVANCED KEYS 3");
 const u8 gText_TextSpeedSlow[] = _("SLOW");
 const u8 gText_TextSpeedMid[] = _("MID");
 const u8 gText_TextSpeedFast[] = _("FAST");
@@ -1293,6 +1294,7 @@ const u8 gText_NoItemHealsOff[] = _("OFF");
 const u8 gText_NoItemHealsPlayer[] = _("PLAYER");
 const u8 gText_NoItemHealsEnemy[] = _("ENEMY");
 const u8 gText_NoItemHealsOn[] = _("ON");
+const u8 gText_LevelCap[] = _("LEVEL CAP");
 
 const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
 const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}SAVE");

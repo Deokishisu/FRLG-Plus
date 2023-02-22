@@ -1971,7 +1971,7 @@ static void MoveBattleBarGraphically(u8 battlerId, u8 whichBar)
                             &gBattleSpritesDataPtr->battleBars[battlerId].currValue,
                             array, B_EXPBAR_PIXELS / 8);
         level = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_LEVEL);
-        if (level == MAX_LEVEL)
+        if (level >= GetLevelCap())
         {
             for (i = 0; i < 8; i++)
                 array[i] = 0;

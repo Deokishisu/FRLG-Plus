@@ -8234,3 +8234,37 @@ void PutGiftMonItemInBag(void)
     itemId = ITEM_NONE;
     SetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, &itemId);
 }
+
+u8 GetLevelCap(void)
+{
+    // Champion  : FLAG_SYS_GAME_CLEAR / FLAG_DEFEATED_CHAMPION
+    // Giovanni  : FLAG_BADGE08_GET    / FLAG_DEFEATED_LEADER_GIOVANNI
+    // Blaine    : FLAG_BADGE07_GET    / FLAG_DEFEATED_BLAINE
+    // Sabrina   : FLAG_BADGE06_GET    / FLAG_DEFEATED_SABRINA
+    // Koga      : FLAG_BADGE05_GET    / FLAG_DEFEATED_KOGA
+    // Erika     : FLAG_BADGE04_GET    / FLAG_DEFEATED_ERIKA
+    // Lt. Surge : FLAG_BADGE03_GET    / FLAG_DEFEATED_LT_SURGE
+    // Misty     : FLAG_BADGE02_GET    / FLAG_DEFEATED_MISTY
+    // Brock     : FLAG_BADGE01_GET    / FLAG_DEFEATED_BROCK
+
+    if (!gSaveBlock1Ptr->keyFlags.levelCap || FlagGet(FLAG_SYS_GAME_CLEAR))
+        return MAX_LEVEL;
+
+    if (FlagGet(FLAG_BADGE08_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 67 : 63);
+    if (FlagGet(FLAG_BADGE07_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 54 : 50);
+    if (FlagGet(FLAG_BADGE06_GET) && FlagGet(FLAG_BADGE05_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 51 : 47);
+    if (FlagGet(FLAG_BADGE04_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 46 : 43);
+    if (FlagGet(FLAG_BADGE03_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 31 : 29);
+    if (FlagGet(FLAG_BADGE02_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 26 : 24);
+    if (FlagGet(FLAG_BADGE01_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 22 : 21);
+
+    // no badges
+    return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 15 : 14);
+}

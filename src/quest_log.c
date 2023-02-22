@@ -829,6 +829,7 @@ static void QuestLog_StartFinalScene(void)
     u8 abilityPopupBackup = gSaveBlock1Ptr->keyFlags.abilityPopup;
     u8 takeHeldItemBackup = gSaveBlock1Ptr->keyFlags.takeHeldItem;
     u8 noIHBackup = gSaveBlock1Ptr->keyFlags.noIH;
+    u8 levelCapBackup = gSaveBlock1Ptr->keyFlags.levelCap;
 
     ResetSpecialVars();
     Save_ResetSaveCounters();
@@ -847,6 +848,7 @@ static void QuestLog_StartFinalScene(void)
     gSaveBlock1Ptr->keyFlags.abilityPopup = abilityPopupBackup;
     gSaveBlock1Ptr->keyFlags.takeHeldItem = takeHeldItemBackup;
     gSaveBlock1Ptr->keyFlags.noIH = noIHBackup;
+    gSaveBlock1Ptr->keyFlags.levelCap = levelCapBackup;
 
     gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     //recalculate party stats for IV and EV keys if they were changed

@@ -953,6 +953,7 @@ extern const u8 gText_ExpBarAnimSpeed[];
 extern const u8 gText_Back[];
 extern const u8 gText_Advanced1[];
 extern const u8 gText_Advanced2[];
+extern const u8 gText_Advanced3[];
 extern const u8 gText_TextSpeedSlow[];
 extern const u8 gText_TextSpeedMid[];
 extern const u8 gText_TextSpeedFast[];
@@ -1673,6 +1674,7 @@ extern const u8 gText_NoItemHealsOff[];
 extern const u8 gText_NoItemHealsPlayer[];
 extern const u8 gText_NoItemHealsEnemy[];
 extern const u8 gText_NoItemHealsOn[];
+extern const u8 gText_LevelCap[];
 
 extern const u8 gText_PkmnPoisonSurvived[];
 
