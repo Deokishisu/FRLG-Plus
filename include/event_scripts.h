@@ -1178,6 +1178,11 @@ extern const u8 Help_Text_NoItemHeals[];
 extern const u8 Help_Text_DefineNoItemHeals[];
 extern const u8 Help_Text_LevelCap[];
 extern const u8 Help_Text_DefineLevelCap[];
+extern const u8 Help_Text_UsingKeySystemReset[];
+extern const u8 Help_Text_HowToUseKeySystemReset[];
+extern const u8 Help_Text_ResetSettings[];
+extern const u8 Help_Text_DefineResetSettings[];
+extern const u8 Help_Text_ResetConfirm[];
 
 extern const u8 EventScript_FldEffStrength[];
 extern const u8 EventScript_FailSweetScent[];

@@ -156,14 +156,8 @@ void NewGameInitData(void)
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
     gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
-    gSaveBlock1Ptr->keyFlags.forgetHM = 0; // do not allow replacing HM moves (standard behaviour)
-    gSaveBlock1Ptr->keyFlags.maxLvlEvolve = 0; // max lvl pokemon cannot evolve or gain EV (standard behaviour)
-    gSaveBlock1Ptr->keyFlags.owPoisonDmg = 0; // standard overworld poison damage
     gSaveBlock1Ptr->keyFlags.flashbacks = 1; // flashbacks enabled
-    gSaveBlock1Ptr->keyFlags.abilityPopup = 0; // ability popup disabled
     gSaveBlock1Ptr->keyFlags.takeHeldItem = 1; // ask to take held item
-    gSaveBlock1Ptr->keyFlags.noIH = 0; // heal items enabled
-    gSaveBlock1Ptr->keyFlags.levelCap = 0; // level cap disabled
     memset(&gSaveBlock2Ptr->itemsObtained, 0, sizeof(gSaveBlock2Ptr->itemsObtained));
 }
 

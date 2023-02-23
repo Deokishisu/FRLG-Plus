@@ -2197,3 +2197,21 @@ Help_Text_DefineLevelCap::
 	.string "POKéMON level to next GYM LEADER's\l"
 	.string "highest POKéMON level.$"
 
+Help_Text_UsingKeySystemReset:: @ 81B5A37
+	.string " Using “RESET SETTINGS”$"
+
+Help_Text_HowToUseKeySystemReset::
+	.string "{CIRCLE_1} Select “RESET SETTINGS” .\n"
+	.string "{CIRCLE_2} Select OK to reset all key settings\n"
+	.string "   to their default values.$"
+
+Help_Text_ResetSettings::
+	.string "RESET SETTINGS$"
+
+Help_Text_DefineResetSettings::
+	.string "This option will reset all key settings\n"
+	.string "to their default values.$"
+
+Help_Text_ResetConfirm::
+	.string "OK$"
+

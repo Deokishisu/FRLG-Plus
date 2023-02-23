@@ -954,6 +954,7 @@ extern const u8 gText_Back[];
 extern const u8 gText_Advanced1[];
 extern const u8 gText_Advanced2[];
 extern const u8 gText_Advanced3[];
+extern const u8 gText_ResetSettings[];
 extern const u8 gText_TextSpeedSlow[];
 extern const u8 gText_TextSpeedMid[];
 extern const u8 gText_TextSpeedFast[];

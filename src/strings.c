@@ -788,6 +788,7 @@ const u8 gText_Back[] = _("BACK");
 const u8 gText_Advanced1[] = _("ADVANCED KEYS 1");
 const u8 gText_Advanced2[] = _("ADVANCED KEYS 2");
 const u8 gText_Advanced3[] = _("ADVANCED KEYS 3");
+const u8 gText_ResetSettings[] = _("RESET SETTINGS");
 const u8 gText_TextSpeedSlow[] = _("SLOW");
 const u8 gText_TextSpeedMid[] = _("MID");
 const u8 gText_TextSpeedFast[] = _("FAST");
