@@ -1081,11 +1081,17 @@ static void GiveVoltTackleIfLightBall(struct Pokemon *egg, struct BoxPokemon *fa
 
     if (motherItem == ITEM_LIGHT_BALL || fatherItem == ITEM_LIGHT_BALL)
     {
+        // Pichu wants to be real
+        u8 version = VERSION_EMERALD;
+        u8 metLocation = MAPSEC_ROUTE_117;
+        SetMonData(egg, MON_DATA_MET_GAME, &version);
+        SetMonData(egg, MON_DATA_MET_LOCATION, &metLocation);
+
         if (GiveMoveToMon(egg, MOVE_VOLT_TACKLE) == MON_HAS_MAX_MOVES)
             DeleteFirstMoveAndGiveMoveToMon(egg, MOVE_VOLT_TACKLE);
     }
 }
-#endif
+#endif // VOLT_TACKLE_BY_BREEDING
 
 static void _GiveEggFromDaycare(struct DayCare *daycare)
 {
@@ -1898,6 +1904,10 @@ static void AddHatchedMonToParty(u8 id)
             }
             if(mapsecid == METLOC_SPECIAL_EGG)
                 mapsecid = MAPSEC_WATER_LABYRINTH;
+#ifdef VOLT_TACKLE_BY_BREEDING
+            if(mapsecid == MAPSEC_ROUTE_117 && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_PICHU)
+                mapsecid = MAPSEC_FOUR_ISLAND;
+#endif
         }
     }
 

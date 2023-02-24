@@ -930,32 +930,6 @@ static void UpdateSnowflakeSprite(struct Sprite *sprite)
         sprite->pos1.x = 242 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
     else if (x > 242)
         sprite->pos1.x = -3 - (gSpriteCoordOffsetX + sprite->centerToCornerVecX);
-
-    y = (sprite->pos1.y + sprite->centerToCornerVecY + gSpriteCoordOffsetY) & 0xFF;
-    if (y > 163 && y < 171)
-    {
-        sprite->pos1.y = 250 - (gSpriteCoordOffsetY + sprite->centerToCornerVecY);
-        sprite->tPosY = sprite->pos1.y * 128;
-        sprite->tFallCounter = 0;
-        sprite->tFallDuration = 250;
-    }
-    else if (y > 242 && y < 250)
-    {
-        sprite->pos1.y = 163;
-        sprite->tPosY = sprite->pos1.y * 128;
-        sprite->tFallCounter = 0;
-        sprite->tFallDuration = 250;
-        sprite->invisible = TRUE;
-        sprite->callback = WaitSnowflakeSprite;
-    }
-
-    if (++sprite->tFallCounter == sprite->tFallDuration)
-    {
-        InitSnowflakeSpriteMovement(sprite);
-        sprite->pos1.y = 250;
-        sprite->invisible = TRUE;
-        sprite->callback = WaitSnowflakeSprite;
-    }
 }
 
 #undef tPosY
