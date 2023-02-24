@@ -4389,14 +4389,19 @@ static void sub_8124EFC(void)
         struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
         u8 moveIdx = GetMoveSlotToReplace();
         u16 move = GetMonData(mon, moveIdx + MON_DATA_MOVE1);
+#ifdef DONT_REPLENISH_PP
+        u8 bonus = GetMonData(mon, MON_DATA_PP_BONUSES);
         u8 oldpp = GetMonData(mon, moveIdx + MON_DATA_PP1);
-
+        u8 oldmaxpp = CalculatePPWithBonus(move, bonus, moveIdx);
+#endif // DONT_REPLENISH_PP
         RemoveMonPPBonus(mon, moveIdx);
         SetMonMoveSlot(mon, ItemIdToBattleMoveId(gSpecialVar_ItemId), moveIdx);
-        if(oldpp < gBattleMoves[ItemIdToBattleMoveId(gSpecialVar_ItemId)].pp)
+#ifdef DONT_REPLENISH_PP
+        if(oldpp < oldmaxpp && oldpp < gBattleMoves[ItemIdToBattleMoveId(gSpecialVar_ItemId)].pp)
         {   //if TM used, don't restore PP
             SetMonData(mon, MON_DATA_PP1 + moveIdx, &oldpp);
         }
+#endif // DONT_REPLENISH_PP
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, move);
         SetMainCallback2(gPartyMenu.exitCallback);

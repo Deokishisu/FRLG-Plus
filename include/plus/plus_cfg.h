@@ -50,4 +50,7 @@
 // ALTERING CAVE will alter as if Mystery Event was active
 #define ALTERING_CAVE_ALTERS
 
+// Learning TM/HM does not replenish PP
+#define DONT_REPLENISH_PP
+
 #endif // GUARD_PLUS_CFG_H
