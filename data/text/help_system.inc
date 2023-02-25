@@ -2129,8 +2129,8 @@ Help_Text_ForgetHM::
 
 Help_Text_DefineForgetHM::
 	.string "Set this option to ON to allow replacing\n"
-	.string "HM moves like regular moves when your\l"
-	.string "POKéMON is trying to learn a new move.$"
+	.string "HIDDEN moves when your POKéMON is\l"
+	.string "trying to learn a new move.$"
 
 Help_Text_ThrowAnim::
 	.string "THROW BALL ANIM$"
@@ -2143,8 +2143,9 @@ Help_Text_MaxLvlEvolve::
 	.string "MAX LVL EVOLVE$"
 
 Help_Text_DefineMaxLvlEvolve::
-	.string "Set this option to ON to allow POKéMON\n"
-	.string "to evolve and gain EVs on level 100.$"
+	.string "Set this option to ON to allow level 100\n"
+	.string "POKéMON to evolve using RARE CANDIES\l"
+	.string "and continue to gain EFFORT VALUES.$"
 
 Help_Text_OwPoisonDamage::
 	.string "OW POISON DMG$"
@@ -2154,21 +2155,23 @@ Help_Text_DefineOwPoisonDamage::
 	.string "affected by poison in the overworld.\l"
 	.string "1HP will prevent your POKéMON from\l"
 	.string "fainting. DISABLED prevents poison\l"
-	.string "damage. STANDARD is the normal way.$"
+	.string "damage altogether. STANDARD is the\l"
+	.string "normal way.$"
 
 Help_Text_Flashbacks::
 	.string "FLASHBACKS$"
 
 Help_Text_DefineFlashbacks::
 	.string "Set this option to OFF to disable\n"
-	.string "flashbacks when loading a saved game.$"
+	.string "journey flashbacks when loading a\l"
+	.string "saved game.$"
 
 Help_Text_AbilityPopup::
 	.string "SHOW ABILITIES$"
 
 Help_Text_DefineAbilityPopup::
 	.string "Set this option to ON to reveal\n"
-	.string "POKéMON's abilities at the beginning\l"
+	.string "POKéMON's ABILITIES at the beginning\l"
 	.string "of battle.$"
 
 Help_Text_TakeHeldItem::
@@ -2176,14 +2179,15 @@ Help_Text_TakeHeldItem::
 
 Help_Text_DefineTakeHeldItem::
 	.string "Set this option to ASK to choose\n"
-	.string "whether to take POKéMON's held\l"
-	.string "item before transferring to PC.$"
+	.string "whether to take captured or gifted\l"
+	.string "POKéMON's held item before transferring\l"
+	.string "to PC.$"
 
 Help_Text_NoItemHeals::
 	.string "NO ITEM HEALS$"
 
 Help_Text_DefineNoItemHeals::
-	.string "Enabling this option turns off the use\n"
+	.string "Enabling this option disallows the use\n"
 	.string "of healing items in battle. PLAYER\l"
 	.string "disables them for the player and ENEMY\l"
 	.string "for other POKéMON trainers. ON disables\l"
@@ -2214,4 +2218,8 @@ Help_Text_DefineResetSettings::
 
 Help_Text_ResetConfirm::
 	.string "OK$"
+
+Help_Text_DefineResetCancel:: @ 81B9439
+	.string "The settings will not be changed, and\n"
+	.string "and you will return to the OPTION MENU.$"
 

@@ -476,7 +476,8 @@ enum
     HELP_TERM_TAKE_HELD_ITEM,
     HELP_TERM_LEVEL_CAP,
     HELP_TERM_RESET_SETTINGS,
-    HELP_TERM_RESET_CONFIRM
+    HELP_TERM_RESET_CONFIRM,
+    HELP_TERM_RESET_CANCEL
 };
 
 static const u8 *const sHelpSystemTermTextPtrs[] = {
@@ -554,6 +555,7 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_LEVEL_CAP]           = Help_Text_LevelCap,
     [HELP_TERM_RESET_SETTINGS]      = Help_Text_ResetSettings,
     [HELP_TERM_RESET_CONFIRM]       = Help_Text_ResetConfirm,
+    [HELP_TERM_RESET_CANCEL]        = Help_Text_Back,
 };
 
 static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
@@ -631,6 +633,7 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_LEVEL_CAP]           = Help_Text_DefineLevelCap,
     [HELP_TERM_RESET_SETTINGS]      = Help_Text_DefineResetSettings,
     [HELP_TERM_RESET_CONFIRM]       = Help_Text_DefineResetSettings,
+    [HELP_TERM_RESET_CANCEL]        = Help_Text_DefineResetCancel,
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -1785,7 +1788,7 @@ static const u8 sTerms_KeySystemSubMenu3[] = {
 
 static const u8 sTerms_KeySystemSubMenu4[] = {
     HELP_TERM_RESET_CONFIRM,
-    HELP_TERM_ADVANCED_KEYS_BACK,
+    HELP_TERM_RESET_CANCEL,
     HELP_END
 };
 
