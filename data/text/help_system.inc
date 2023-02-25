@@ -2221,5 +2221,5 @@ Help_Text_ResetConfirm::
 
 Help_Text_DefineResetCancel:: @ 81B9439
 	.string "The settings will not be changed, and\n"
-	.string "and you will return to the OPTION MENU.$"
+	.string "you will return to the OPTION MENU.$"
 
