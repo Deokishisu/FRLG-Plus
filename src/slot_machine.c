@@ -55,7 +55,6 @@
 
 #ifdef GAME_CORNER_EASTER_EGG
 #define IMANOK_MACHINE_ID           SLOT_MACHINE_ID_MAX+1
-#define SLOT_PAYOUT_IMANOK          9
 #endif
 
 struct SlotMachineState
@@ -936,7 +935,7 @@ static bool8 imanok_test(s16 * data)
         if (data[1] == 9)
         {
             data[1] = 0;
-            PlaySE(SE_SUPER_EFFECTIVE);
+            PlaySE(SE_POKE_JUMP_SUCCESS);
             sSlotMachineState->machineidx = IMANOK_MACHINE_ID;
             return TRUE;
         }
@@ -1422,6 +1421,19 @@ static void StopReel1(u16 whichReel)
     destPos = nextPos - destPos;
     if (destPos < 0)
         destPos += 21;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+    {
+        if (nextPos < 6)
+            destPos = 19;
+        else if (nextPos < 13)
+            destPos = 6;
+        else
+            destPos = 13;
+    }
+#endif // GAME_CORNER_EASTER_EGG
+
     sSlotMachineState->reelStopOrder[0] = whichReel;
     sSlotMachineState->destReelPos[whichReel] = destPos;
 }
@@ -1469,6 +1481,17 @@ static void StopReel2(u16 whichReel)
     pos = nextPos - pos;
     if (pos < 0)
         pos += 21;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+    {
+        if (nextPos < 10)
+            pos = 19;
+        else
+            pos = 10;
+    }
+#endif //GAME_CORNER_EASTER_EGG
+
     sSlotMachineState->reelStopOrder[1] = whichReel;
     sSlotMachineState->destReelPos[whichReel] = pos;
 }
@@ -1496,23 +1519,6 @@ static void StopReel3(u16 whichReel)
         if (testPos < 0)
             testPos = 20;
     }
-#ifdef GAME_CORNER_EASTER_EGG
-    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID && numPossiblePositions == 0)
-    {
-        testPos = nextPos;
-        for (i = 0; i < 5; i++)
-        {
-            if (OneReelBiasCheck(whichReel, testPos, SLOT_PAYOUT_IMANOK))
-            {
-                possiblePositions[numPossiblePositions] = i;
-                numPossiblePositions++;
-            }
-            testPos--;
-            if (testPos < 0)
-                testPos = 20;
-        }
-    }
-#endif // GAME_CORNER_EASTER_EGG
     if (numPossiblePositions == 0)
     {
         if (sSlotMachineState->machineBias == SLOT_PAYOUT_ROCKET || sSlotMachineState->machineBias == SLOT_PAYOUT_7)
@@ -1525,6 +1531,12 @@ static void StopReel3(u16 whichReel)
     pos = nextPos - pos;
     if (pos < 0)
         pos += 21;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+        pos = 19;
+#endif // GAME_CORNER_EASTER_EGG
+
     sSlotMachineState->destReelPos[whichReel] = pos;
 }
 
@@ -1662,15 +1674,6 @@ static bool32 OneReelBiasCheck(s32 reelId, s32 reelPos, s32 biasIcon)
                 return TRUE;
         }
         return FALSE;
-#ifdef GAME_CORNER_EASTER_EGG
-    case SLOT_PAYOUT_IMANOK:
-        for (i = 0; i < 5; i++)
-        {
-            if (icons[sThirdReelBiasCheckIndices[i][0]] == icons[sThirdReelBiasCheckIndices[i][1]] && icons[sThirdReelBiasCheckIndices[i][0]] == icons[sThirdReelBiasCheckIndices[i][2]])
-                return TRUE;
-        }
-        return FALSE;
-#endif // GAME_CORNER_EASTER_EGG
     }
     for (i = 0; i < 5; i++)
     {
@@ -1724,42 +1727,29 @@ static u8 ReelIconToPayoutRank(s32 iconId)
 
 static void CalcSlotBias(void)
 {
-#ifdef GAME_CORNER_EASTER_EGG
-    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+    u16 rval = Random() / 4;
+    s32 i;
+    const u16 * biasChances = sReelBiasChances[sSlotMachineState->machineidx];
+    for (i = 0; i < 6; i++)
     {
-        //sSlotMachineState->machineBias = SLOT_PAYOUT_7;
-        sSlotMachineState->machineBias = SLOT_PAYOUT_ROCKET + (Random() % 2);
+        if (rval < biasChances[i])
+            break;
     }
-    else
+    if (sSlotMachineState->machineBias < SLOT_PAYOUT_ROCKET)
     {
-#endif // GAME_CORNER_EASTER_EGG
-        u16 rval = Random() / 4;
-        s32 i;    
-    
-        const u16 * biasChances = sReelBiasChances[sSlotMachineState->machineidx];
-        for (i = 0; i < 6; i++)
+        if (sSlotMachineState->biasCooldown == 0)
         {
-            if (rval < biasChances[i])
-                break;
+            if ((Random() & 0x3FFF) < biasChances[SLOT_PAYOUT_7])
+                sSlotMachineState->biasCooldown = (Random() & 1) ? 5 : 60;
         }
-        if (sSlotMachineState->machineBias < SLOT_PAYOUT_ROCKET)
+        if (sSlotMachineState->biasCooldown != 0)
         {
-            if (sSlotMachineState->biasCooldown == 0)
-            {
-                if ((Random() & 0x3FFF) < biasChances[SLOT_PAYOUT_7])
-                    sSlotMachineState->biasCooldown = (Random() & 1) ? 5 : 60;
-            }
-            if (sSlotMachineState->biasCooldown != 0)
-            {
-                if (i == 0 && (Random() & 0x3FFF) < 0x2CCC) // 70%
-                    sSlotMachineState->biasCooldown = (Random() & 1) ? 5 : 60;
-                sSlotMachineState->biasCooldown--;
-            }
-            sSlotMachineState->machineBias = i;
+            if (i == 0 && (Random() & 0x3FFF) < 0x2CCC) // 70%
+                sSlotMachineState->biasCooldown = (Random() & 1) ? 5 : 60;
+            sSlotMachineState->biasCooldown--;
         }
-#ifdef GAME_CORNER_EASTER_EGG
+        sSlotMachineState->machineBias = i;
     }
-#endif // GAME_CORNER_EASTER_EGG
 }
 
 static void ResetMachineBias(void)
