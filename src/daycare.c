@@ -484,9 +484,8 @@ static void ApplyDaycareExperience(struct Pokemon *mon)
     s32 i;
     bool8 firstMove;
     u16 learnedMove;
-    u8 maxLevel = GetLevelCap();
 
-    for (i = 0; i < maxLevel; i++)
+    for (i = 0; i < MAX_LEVEL; i++)
     {
         // Add the mon's gained daycare experience level by level until it can't level up anymore.
         if (TryIncrementMonLevel(mon))
@@ -522,7 +521,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     BoxMonToMon(&daycareMon->mon, &pokemon);
     PopulateBoxHpAndStatusToPartyMon(&pokemon);
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) <= GetLevelCap())
+    if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
         SetMonData(&pokemon, MON_DATA_EXP, &experience);

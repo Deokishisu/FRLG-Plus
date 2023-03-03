@@ -2508,27 +2508,9 @@ static void AbilityPopUpPrinter(const u8 * str, u8 * tiledata, u8 * tiledata2, u
 
 static void PrintBattlerAndAbilityOnAbilityPopUp(u8 battler, u8 sprite, u8 sprite2, u8 arg1, u16 arg2)
 {
-    int i;
-    u8 pokemonName[POKEMON_NAME_LENGTH + 3] = {0};
-    //u8 *textPtr;
     u16 ability;
 
-    for (i = 0; i < POKEMON_NAME_LENGTH; i++)
-    {
-        pokemonName[i] = gBattleMons[battler].nickname[i];
-        
-        if (pokemonName[i] == EOS || i + 1 == POKEMON_NAME_LENGTH)
-            break;
-    }
-
-    //textPtr = pokemonName + i + 1;
-    //if (*(textPtr - 1) == EOS)
-    //    --textPtr;
-    //textPtr[0] = CHAR_SGL_QUOT_RIGHT;
-    //textPtr[1] = CHAR_s;
-    //textPtr[2] = EOS;
-
-    AbilityPopUpPrinter((const u8*) pokemonName, (void*)(OBJ_VRAM0) + (gSprites[sprite].oam.tileNum * TILE_SIZE_4BPP),
+    AbilityPopUpPrinter(gBattleMons[battler].nickname, (void*)(OBJ_VRAM0) + (gSprites[sprite].oam.tileNum * TILE_SIZE_4BPP),
             (void*)(OBJ_VRAM0) + (gSprites[sprite2].oam.tileNum * TILE_SIZE_4BPP), 0, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GREEN, TEXT_COLOR_WHITE);
 
     if (arg1 == LOAD_ABILITY_FROM_SECOND_BANK)
@@ -2564,7 +2546,7 @@ static void SpriteCB_AbilityPopUp(struct Sprite * sprite)
                 || (GetBattlerSide(sprite->tBattler) == B_SIDE_PLAYER && (sprite->pos1.x -= 4) <= sprite->tOriginalX - ABILITY_POP_UP_POS_X_SLIDE - 16))
             {
                 gActiveAbilityPopUps &= ~(gBitTable[sprite->tBattler]);
-        DestroySprite(sprite);
+                DestroySprite(sprite);
             }
         }
     }
