@@ -6631,7 +6631,7 @@ static bool8 SetUpFieldMove_Dive(void)
 void CursorCb_MoveItemCallback(u8 taskId)
 {
     u16 item1, item2;
-    u8 buffer[100];
+    u8 buffer[128];
 
     if (gPaletteFade.active || MenuHelpers_CallLinkSomething())
         return;
@@ -6683,12 +6683,12 @@ void CursorCb_MoveItemCallback(u8 taskId)
         else
         {
             GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
-            CopyItemName(item1, gStringVar2);
-            StringExpandPlaceholders(buffer, gText_XsYAnd);
-
-            StringAppend(buffer, gText_XsYWereSwapped);
-            GetMonNickname(&gPlayerParty[gPartyMenu.slotId2], gStringVar1);
             CopyItemName(item2, gStringVar2);
+            StringExpandPlaceholders(buffer, gText_PkmnWasGivenItem2);
+
+            StringAppend(buffer, gText_PkmnWasGivenItem);
+            GetMonNickname(&gPlayerParty[gPartyMenu.slotId2], gStringVar1);
+            CopyItemName(item1, gStringVar2);
             StringExpandPlaceholders(gStringVar4, buffer);
         }
 

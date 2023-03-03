@@ -32,10 +32,11 @@ Text_NoMoreRoomForPokemon:: @ 81A5E31
     .string "can't accept any more!$"
 
 gText_TakeItemCaptured::
-	.string "{STR_VAR_2} has a {STR_VAR_1}.\p"
+	.string "{STR_VAR_2} is holding\n"
+	.string "{STR_VAR_1}.\p"
 	.string "Would you like to place the\n"
     .string "{STR_VAR_1} in your BAG?$"
 
 gText_ItemTaken::
-	.string "You placed the {STR_VAR_1}\n"
+	.string "{STR_VAR_1} was placed\n"
 	.string "in your BAG.$"
