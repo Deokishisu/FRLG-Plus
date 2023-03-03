@@ -726,7 +726,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             u8 forgetHMBackup = gSaveBlock1Ptr->keyFlags.forgetHM;
             u8 maxLvlEvolveBackup = gSaveBlock1Ptr->keyFlags.maxLvlEvolve;
             u8 owPoisonDmgBackup = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
-            u8 flashbacksBackup = gSaveBlock1Ptr->keyFlags.flashbacks;
+            u8 noFlashbacksBackup = gSaveBlock1Ptr->keyFlags.noFlashbacks;
             u8 abilityPopupBackup = gSaveBlock1Ptr->keyFlags.abilityPopup;
             u8 takeHeldItemBackup = gSaveBlock1Ptr->keyFlags.takeHeldItem;
             u8 noIHBackup = gSaveBlock1Ptr->keyFlags.noIH;
@@ -749,7 +749,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             gSaveBlock1Ptr->keyFlags.forgetHM = forgetHMBackup;
             gSaveBlock1Ptr->keyFlags.maxLvlEvolve = maxLvlEvolveBackup;
             gSaveBlock1Ptr->keyFlags.owPoisonDmg = owPoisonDmgBackup;
-            gSaveBlock1Ptr->keyFlags.flashbacks = flashbacksBackup;
+            gSaveBlock1Ptr->keyFlags.noFlashbacks = noFlashbacksBackup;
             gSaveBlock1Ptr->keyFlags.abilityPopup = abilityPopupBackup;
             gSaveBlock1Ptr->keyFlags.takeHeldItem = takeHeldItemBackup;
             gSaveBlock1Ptr->keyFlags.noIH = noIHBackup;

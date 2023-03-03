@@ -977,6 +977,8 @@ extern const u8 gText_PickSwitchCancelA[];
 extern const u8 gText_PickSwitchCancel[];
 extern const u8 gText_PickSwitchExit[];
 extern const u8 gText_PickSwitchBack[];
+extern const u8 gText_PickBackA[];
+extern const u8 gText_PickBack[];
 extern const u8 gText_TextSpeedInstant[];
 extern const u8 gText_ThrowAnim[];
 

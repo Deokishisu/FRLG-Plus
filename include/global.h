@@ -752,24 +752,24 @@ struct TrainerNameRecord
 
 struct KeySystemFlags
 {
-    u16 difficulty:2;   //0 for normal, 1 for challenge, 2 for easy, 3 for maybe another mode?
-    u16 version:1;      //0 for FR, 1 for LG
-    u16 nuzlocke:1;     //0 for normal, 1 for Nuzlocke mode
-    u16 ivCalcMode:2;   //0 for normal, 1 for all 31, 2 for all zero
-    u16 evCalcMode:1;   //0 for normal, 1 for all zero
-    u16 noPMC:1;        //0 for normal, 1 for no Pokemon Center healing.
-    u16 expMod:2;       //0 for 0x, 1 for 1/2x, 2 for 1x, 3 for 2x 
-    u16 forgetHM:1;     //0 for normal, 1 to allow replacing hm moves
-    u16 maxLvlEvolve:1; //0 for normal, 1 to allow max lvl Pokemon to evolve & continue to gain EVs
-    u16 owPoisonDmg:2;  //0 for normal, 1 to leave 1HP, 2 to disable
+    u16 difficulty:2;      //0 for normal, 1 for challenge, 2 for easy, 3 for maybe another mode?
+    u16 version:1;         //0 for FR, 1 for LG
+    u16 nuzlocke:1;        //0 for normal, 1 for Nuzlocke mode
+    u16 ivCalcMode:2;      //0 for normal, 1 for all 31, 2 for all zero
+    u16 evCalcMode:1;      //0 for normal, 1 for all zero
+    u16 noPMC:1;           //0 for normal, 1 for no Pokemon Center healing.
+    u16 expMod:2;          //0 for 0x, 1 for 1/2x, 2 for 1x, 3 for 2x 
+    u16 forgetHM:1;        //0 for normal, 1 to allow replacing hm moves
+    u16 maxLvlEvolve:1;    //0 for normal, 1 to allow max lvl Pokemon to evolve & continue to gain EVs
+    u16 owPoisonDmg:2;     //0 for normal, 1 to leave 1HP, 2 to disable
     u16 changedCalcMode:1; // set if calc mode is changed to recalc party on save load
     u16 inKeySystemMenu:1; // Needed for Help Menu regardless of Button Mode
-    u16 flashbacks:1;      // 0 for normal, 1 to disable flashbacks
+    u16 noFlashbacks:1;    // 0 for normal, 1 to disable flashbacks
     u16 abilityPopup:1;    // 0 to disable, 1 to enable revealing abilities on beginning of battle
     u16 takeHeldItem:1;    // 0 to disable, 1 to ask to take held item before transfering new mon to PC
-    u16 noIH:4;            // 0 to disable, 1 for player, 2 for enemy, 3 for both, disables on-use healing items
+    u16 noIH:2;            // 0 to disable, 1 for player, 2 for enemy, 3 for both, disables on-use healing items
     u16 levelCap:1;        // 0 to disable, 1 to enable level cap
-    u16 padding:8;
+    u16 padding:10;
 };
 
 // For external event data storage. The majority of these may have never been used.
