@@ -39,7 +39,7 @@
 #define TM_CASE_MON_SPRITES
 
 // Battle Tower ignores EV/IV key setting
-#define BATTLE_TOWER_IGNORE_EV_IV_KEY
+#define BATTLE_TOWER_IGNORES_EV_IV_SETTING
 
 // If there is no save, show random FR/LG intro
 #define RANDOM_INTRO_VERSION
@@ -52,5 +52,8 @@
 
 // Learning TM/HM does not replenish PP
 #define DONT_REPLENISH_PP
+
+// Daycare ignores Level Cap key setting
+#define DAYCARE_IGNORES_LEVEL_CAP_SETTING
 
 #endif // GUARD_PLUS_CFG_H

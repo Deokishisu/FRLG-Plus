@@ -515,15 +515,26 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     u32 experience;
     struct Pokemon pokemon;
     u8 sentPC;
+#ifdef DAYCARE_IGNORES_LEVEL_CAP_SETTING
+    u8 levelCap = MAX_LEVEL;
+#else
+    u8 levelCap = GetLevelCap();
+#endif
 
     DayCare_GetBoxMonNickname(&daycareMon->mon, gStringVar1);
     species = GetBoxMonData(&daycareMon->mon, MON_DATA_SPECIES);
     BoxMonToMon(&daycareMon->mon, &pokemon);
     PopulateBoxHpAndStatusToPartyMon(&pokemon);
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
+    if (GetMonData(&pokemon, MON_DATA_LEVEL) != levelCap)
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
+
+#ifndef DAYCARE_IGNORES_LEVEL_CAP_SETTING
+        if (levelCap != MAX_LEVEL && experience > GetExpFromLevelForSpecies(levelCap, species))
+            experience = GetExpFromLevelForSpecies(levelCap, species) - 1;
+#endif
+
         SetMonData(&pokemon, MON_DATA_EXP, &experience);
         ApplyDaycareExperience(&pokemon);
     }
@@ -573,10 +584,17 @@ u16 TakePokemonFromDaycare(void)
 static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
 {
     struct BoxPokemon tempMon = *mon;
-
     u32 experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
+#ifdef DAYCARE_IGNORES_LEVEL_CAP_SETTING
     SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
     return GetLevelFromBoxMonExp(&tempMon);
+#else
+    u8 level;
+    u8 maxLevel = GetLevelCap();
+    SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
+    level = GetLevelFromBoxMonExp(&tempMon);
+    return ((level < maxLevel) ? level : maxLevel);
+#endif // DAYCARE_IGNORES_LEVEL_CAP_SETTING
 }
 
 static u8 GetNumLevelsGainedFromSteps(struct DaycareMon *daycareMon)

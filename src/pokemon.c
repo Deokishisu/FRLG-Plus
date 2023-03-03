@@ -3265,7 +3265,7 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
     SetMonData(mon, MON_DATA_SPATK_IV, &value);
     value = src->spDefenseIV;
     SetMonData(mon, MON_DATA_SPDEF_IV, &value);
-#ifdef BATTLE_TOWER_IGNORE_EV_IV_KEY
+#ifdef BATTLE_TOWER_IGNORES_EV_IV_SETTING
     CalculateMonStats(mon, TRUE);
 #else
     CalculateMonStats(mon, FALSE);
@@ -8268,3 +8268,10 @@ u8 GetLevelCap(void)
     // no badges
     return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 15 : 14);
 }
+
+#ifndef DAYCARE_IGNORES_LEVEL_CAP_SETTING
+u32 GetExpFromLevelForSpecies(u8 level, u16 species)
+{
+    return gExperienceTables[gBaseStats[species].growthRate][level];
+}
+#endif
