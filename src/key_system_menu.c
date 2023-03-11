@@ -47,14 +47,14 @@ enum
     MENUITEM_OW_PSN_DMG,
     MENUITEM_FLASHBACKS,
     MENUITEM_ABILITY_POPUP,
-    MENUITEM_TAKE_HELD_ITEM,
+    MENUITEM_LEVEL_CAP,
     MENUITEM_BACK2,
     MENUITEM_COUNT3
 };
 
 enum
 {
-    MENUITEM_LEVEL_CAP = 0,
+    MENUITEM_TAKE_HELD_ITEM = 0,
     MENUITEM_BACK3,
     MENUITEM_COUNT4
 };
@@ -209,12 +209,12 @@ static const u8 *const sKeySystemSubMenu2ItemsNames[MENUITEM_COUNT3] ={
     [MENUITEM_OW_PSN_DMG]     = gText_OwPoisonDamage,
     [MENUITEM_FLASHBACKS]     = gText_Flashbacks,
     [MENUITEM_ABILITY_POPUP]  = gText_AbilityPopup,
-    [MENUITEM_TAKE_HELD_ITEM] = gText_TakeHeldItem,
+    [MENUITEM_LEVEL_CAP]      = gText_LevelCap,
     [MENUITEM_BACK2]          = gText_Back,
 };
 
 static const u8 *const sKeySystemSubMenu3ItemsNames[MENUITEM_COUNT4] ={
-    [MENUITEM_LEVEL_CAP]      = gText_LevelCap,
+    [MENUITEM_TAKE_HELD_ITEM] = gText_TakeHeldItem,
     [MENUITEM_BACK3]          = gText_Back,
 };
 
@@ -314,8 +314,8 @@ static void LoadSavedSettings()
     sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG] = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
     sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS] = gSaveBlock1Ptr->keyFlags.noFlashbacks;
     sKeySystemMenuPtr->subOption2[MENUITEM_ABILITY_POPUP] = gSaveBlock1Ptr->keyFlags.abilityPopup;
-    sKeySystemMenuPtr->subOption2[MENUITEM_TAKE_HELD_ITEM] = gSaveBlock1Ptr->keyFlags.takeHeldItem;
-    sKeySystemMenuPtr->subOption3[MENUITEM_LEVEL_CAP] = gSaveBlock1Ptr->keyFlags.levelCap;
+    sKeySystemMenuPtr->subOption2[MENUITEM_LEVEL_CAP] = gSaveBlock1Ptr->keyFlags.levelCap;
+    sKeySystemMenuPtr->subOption3[MENUITEM_TAKE_HELD_ITEM] = gSaveBlock1Ptr->keyFlags.takeHeldItem;
 }
 
 static void ResetKeySettings()
@@ -323,7 +323,6 @@ static void ResetKeySettings()
     bool8 calcChanged = (gSaveBlock1Ptr->keyFlags.ivCalcMode != 0 || gSaveBlock1Ptr->keyFlags.evCalcMode != 0);
     memset(&gSaveBlock1Ptr->keyFlags, 0, sizeof(gSaveBlock1Ptr->keyFlags));
     gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
-    gSaveBlock1Ptr->keyFlags.takeHeldItem = 1; // ask to take held item
     gSaveBlock1Ptr->keyFlags.changedCalcMode = calcChanged; //iv or ev calc mode changed, recalculate party stats on saveload.
     LoadSavedSettings();
 }
@@ -824,7 +823,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         }
         else if(sKeySystemMenuPtr->inSubMenu == 3)
         {
-            if (sKeySystemMenuPtr->cursorPos == MENUITEM_LEVEL_CAP)
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_TAKE_HELD_ITEM)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_BACK3;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
@@ -865,7 +864,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         else if(sKeySystemMenuPtr->inSubMenu == 3)
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_BACK3)
-                sKeySystemMenuPtr->cursorPos = MENUITEM_LEVEL_CAP;
+                sKeySystemMenuPtr->cursorPos = MENUITEM_TAKE_HELD_ITEM;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
         }
@@ -1006,8 +1005,8 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_ABILITY_POPUP:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
                 break;
-            case MENUITEM_TAKE_HELD_ITEM:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTakeHeldItemOptions[sKeySystemMenuPtr->subOption2[selection]]);
+            case MENUITEM_LEVEL_CAP:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
                 break;
             default:
                 break;
@@ -1017,8 +1016,8 @@ static void BufferKeySystemMenuString(u8 selection)
     {
         switch (selection)
         {
-            case MENUITEM_LEVEL_CAP:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption3[selection]]);
+            case MENUITEM_TAKE_HELD_ITEM:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTakeHeldItemOptions[sKeySystemMenuPtr->subOption3[selection]]);
                 break;
             default:
                 break;
@@ -1061,8 +1060,8 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.owPoisonDmg = sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG];
     gSaveBlock1Ptr->keyFlags.noFlashbacks = sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS];
     gSaveBlock1Ptr->keyFlags.abilityPopup = sKeySystemMenuPtr->subOption2[MENUITEM_ABILITY_POPUP];
-    gSaveBlock1Ptr->keyFlags.takeHeldItem = sKeySystemMenuPtr->subOption2[MENUITEM_TAKE_HELD_ITEM];
-    gSaveBlock1Ptr->keyFlags.levelCap = sKeySystemMenuPtr->subOption3[MENUITEM_LEVEL_CAP];
+    gSaveBlock1Ptr->keyFlags.levelCap = sKeySystemMenuPtr->subOption2[MENUITEM_LEVEL_CAP];
+    gSaveBlock1Ptr->keyFlags.takeHeldItem = sKeySystemMenuPtr->subOption3[MENUITEM_TAKE_HELD_ITEM];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);
     DestroyTask(taskId);

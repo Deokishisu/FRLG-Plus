@@ -9598,7 +9598,7 @@ static void atkF8_loadabilitypopup(void)
 static void atkF9_checkcaughtmonhasitem(void)
 {
     u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM);
-    if (itemId != ITEM_NONE && gSaveBlock1Ptr->keyFlags.takeHeldItem && CheckBagHasSpace(itemId, 1))
+    if (itemId != ITEM_NONE && CheckBagHasSpace(itemId, 1))
     {
         CopyItemName(itemId, gStringVar1);
         gBattlescriptCurrInstr += 5;

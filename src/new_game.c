@@ -156,7 +156,6 @@ void NewGameInitData(void)
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
     gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
-    gSaveBlock1Ptr->keyFlags.takeHeldItem = 1; // ask to take held item
     memset(&gSaveBlock2Ptr->itemsObtained, 0, sizeof(gSaveBlock2Ptr->itemsObtained));
 }
 

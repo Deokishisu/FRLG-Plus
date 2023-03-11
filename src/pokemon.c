@@ -8194,7 +8194,7 @@ void SetFirstDeoxysForm(void)
 bool8 DoesCaughtMonHaveItem(void)
 {
     u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, 0);
-    if(itemId != ITEM_NONE && gSaveBlock1Ptr->keyFlags.takeHeldItem && CheckBagHasSpace(itemId, 1))
+    if(itemId != ITEM_NONE && CheckBagHasSpace(itemId, 1))
     {
         CopyItemName(itemId, gStringVar1);
         return TRUE;
@@ -8216,7 +8216,7 @@ void PutCaughtMonItemInBag(void)
 bool8 DoesGiftMonHaveItem(void)
 {
     u16 itemId = GetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, 0);
-    if(itemId != ITEM_NONE && gSaveBlock1Ptr->keyFlags.takeHeldItem && CheckBagHasSpace(itemId, 1))
+    if(itemId != ITEM_NONE && CheckBagHasSpace(itemId, 1))
     {
         CopyItemName(itemId, gStringVar1);
         return TRUE;

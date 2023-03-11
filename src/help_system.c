@@ -473,8 +473,8 @@ enum
     HELP_TERM_OW_PSN_DMG,
     HELP_TERM_FLASHBACKS,
     HELP_TERM_ABILITY_POPUP,
-    HELP_TERM_TAKE_HELD_ITEM,
     HELP_TERM_LEVEL_CAP,
+    HELP_TERM_TAKE_HELD_ITEM,
     HELP_TERM_RESET_SETTINGS,
     HELP_TERM_RESET_CONFIRM,
     HELP_TERM_RESET_CANCEL
@@ -551,8 +551,8 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_OW_PSN_DMG]          = Help_Text_OwPoisonDamage,
     [HELP_TERM_FLASHBACKS]          = Help_Text_Flashbacks,
     [HELP_TERM_ABILITY_POPUP]       = Help_Text_AbilityPopup,
-    [HELP_TERM_TAKE_HELD_ITEM]      = Help_Text_TakeHeldItem,
     [HELP_TERM_LEVEL_CAP]           = Help_Text_LevelCap,
+    [HELP_TERM_TAKE_HELD_ITEM]      = Help_Text_TakeHeldItem,
     [HELP_TERM_RESET_SETTINGS]      = Help_Text_ResetSettings,
     [HELP_TERM_RESET_CONFIRM]       = Help_Text_ResetConfirm,
     [HELP_TERM_RESET_CANCEL]        = Help_Text_Back,
@@ -629,8 +629,8 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_OW_PSN_DMG]          = Help_Text_DefineOwPoisonDamage,
     [HELP_TERM_FLASHBACKS]          = Help_Text_DefineFlashbacks,
     [HELP_TERM_ABILITY_POPUP]       = Help_Text_DefineAbilityPopup,
-    [HELP_TERM_TAKE_HELD_ITEM]      = Help_Text_DefineTakeHeldItem,
     [HELP_TERM_LEVEL_CAP]           = Help_Text_DefineLevelCap,
+    [HELP_TERM_TAKE_HELD_ITEM]      = Help_Text_DefineTakeHeldItem,
     [HELP_TERM_RESET_SETTINGS]      = Help_Text_DefineResetSettings,
     [HELP_TERM_RESET_CONFIRM]       = Help_Text_DefineResetSettings,
     [HELP_TERM_RESET_CANCEL]        = Help_Text_DefineResetCancel,
@@ -1775,13 +1775,13 @@ static const u8 sTerms_KeySystemSubMenu2[] = {
     HELP_TERM_OW_PSN_DMG,
     HELP_TERM_FLASHBACKS,
     HELP_TERM_ABILITY_POPUP,
-    HELP_TERM_TAKE_HELD_ITEM,
+    HELP_TERM_LEVEL_CAP,
     HELP_TERM_ADVANCED_KEYS_BACK,
     HELP_END
 };
 
 static const u8 sTerms_KeySystemSubMenu3[] = {
-    HELP_TERM_LEVEL_CAP,
+    HELP_TERM_TAKE_HELD_ITEM,
     HELP_TERM_ADVANCED_KEYS_BACK,
     HELP_END
 };
