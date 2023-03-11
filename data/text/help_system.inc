@@ -2174,15 +2174,6 @@ Help_Text_DefineAbilityPopup::
 	.string "POKéMON's ABILITIES at the beginning\l"
 	.string "of battle.$"
 
-Help_Text_TakeHeldItem::
-	.string "TAKE HELD ITEM$"
-
-Help_Text_DefineTakeHeldItem::
-	.string "Set this option to ASK to choose\n"
-	.string "whether to take captured or gifted\l"
-	.string "POKéMON's held item before transferring\l"
-	.string "to PC.$"
-
 Help_Text_NoItemHeals::
 	.string "NO ITEM HEALS$"
 

@@ -474,7 +474,6 @@ enum
     HELP_TERM_FLASHBACKS,
     HELP_TERM_ABILITY_POPUP,
     HELP_TERM_LEVEL_CAP,
-    HELP_TERM_TAKE_HELD_ITEM,
     HELP_TERM_RESET_SETTINGS,
     HELP_TERM_RESET_CONFIRM,
     HELP_TERM_RESET_CANCEL
@@ -552,7 +551,6 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_FLASHBACKS]          = Help_Text_Flashbacks,
     [HELP_TERM_ABILITY_POPUP]       = Help_Text_AbilityPopup,
     [HELP_TERM_LEVEL_CAP]           = Help_Text_LevelCap,
-    [HELP_TERM_TAKE_HELD_ITEM]      = Help_Text_TakeHeldItem,
     [HELP_TERM_RESET_SETTINGS]      = Help_Text_ResetSettings,
     [HELP_TERM_RESET_CONFIRM]       = Help_Text_ResetConfirm,
     [HELP_TERM_RESET_CANCEL]        = Help_Text_Back,
@@ -630,7 +628,6 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_FLASHBACKS]          = Help_Text_DefineFlashbacks,
     [HELP_TERM_ABILITY_POPUP]       = Help_Text_DefineAbilityPopup,
     [HELP_TERM_LEVEL_CAP]           = Help_Text_DefineLevelCap,
-    [HELP_TERM_TAKE_HELD_ITEM]      = Help_Text_DefineTakeHeldItem,
     [HELP_TERM_RESET_SETTINGS]      = Help_Text_DefineResetSettings,
     [HELP_TERM_RESET_CONFIRM]       = Help_Text_DefineResetSettings,
     [HELP_TERM_RESET_CANCEL]        = Help_Text_DefineResetCancel,
@@ -1781,12 +1778,6 @@ static const u8 sTerms_KeySystemSubMenu2[] = {
 };
 
 static const u8 sTerms_KeySystemSubMenu3[] = {
-    HELP_TERM_TAKE_HELD_ITEM,
-    HELP_TERM_ADVANCED_KEYS_BACK,
-    HELP_END
-};
-
-static const u8 sTerms_KeySystemSubMenu4[] = {
     HELP_TERM_RESET_CONFIRM,
     HELP_TERM_RESET_CANCEL,
     HELP_END
@@ -1833,8 +1824,7 @@ static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_CO
     NULL,                          sHowTo_OptionsSubMenu,      sTerms_OptionsSubMenu,      NULL,                    NULL, // HELPCONTEXT_OPTIONS_SUBMENU
     NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu1,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_1
     NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu2,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_2
-    NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu3,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_3
-    NULL,                          sHowTo_KeySystemReset,      sTerms_KeySystemSubMenu4,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_4
+    NULL,                          sHowTo_KeySystemReset,      sTerms_KeySystemSubMenu3,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_3
 };
 
 static const u16 unref_845BCB0[] = INCBIN_U16("graphics/help_system/unused.bin");
@@ -1899,7 +1889,6 @@ static const bool8 sHelpSystemContextTopicFlags[HELPCONTEXT_COUNT + 1][TOPIC_COU
     [HELPCONTEXT_KEY_SYSTEM_SUBMENU_1]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_KEY_SYSTEM_SUBMENU_2]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_KEY_SYSTEM_SUBMENU_3]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
-    [HELPCONTEXT_KEY_SYSTEM_SUBMENU_4]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_COUNT]                 = {}
 };
 
