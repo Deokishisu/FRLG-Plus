@@ -346,8 +346,8 @@ static const struct ScrollArrowsTemplate sPocketSwitchArrowPairTemplate = {
     .secondArrowType = SCROLL_ARROW_RIGHT,
     .secondX = 72,
     .secondY = 72,
-    .fullyUpThreshold = 0,
-    .fullyDownThreshold = 4,
+    .fullyUpThreshold = -1,   // fixes left arrow issue when re-rendering arrows in bag pocket
+    .fullyDownThreshold = -1, // 
     .tileTag = 111,
     .palTag = 111,
     .palNum = 0,
@@ -1122,6 +1122,8 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             if (cursorPos + itemsAbove != sBagMenuDisplay->nItems[gBagMenuState.pocket])
             {
                 PlaySE(SE_SELECT);
+                BagDestroyPocketScrollArrowPair(); //destroys scroll arrows so we don't have double arrows rendered
+                CreatePocketScrollArrowPair(); //re-renders one set of scroll arrows when pressing select to move items up and down in bag pocket
                 BeginMovingItemInPocket(taskId, cursorPos + itemsAbove);
                 return;
             }
@@ -1131,6 +1133,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             if ((sBagMenuDisplay->nItems[gBagMenuState.pocket]) <= 1)
             {
                 PlaySE(SE_FAILURE);
+                BagDestroyPocketScrollArrowPair(); //fixes the sort menu arrows issue
                 DisplayItemMessageInBag(taskId, 2, sText_NothingToSort, Task_WaitAButtonAndCloseContextMenu);
                 break;
             }
@@ -1466,6 +1469,34 @@ static void OpenContextMenu(u8 taskId)
     switch (gBagMenuState.location)
     {
     case ITEMMENULOCATION_BATTLE:
+        if (gSpecialVar_ItemId == ITEM_BERRY_POUCH)
+        {
+            if (gSaveBlock1Ptr->keyFlags.noIH == 1 || gSaveBlock1Ptr->keyFlags.noIH == 3)
+            {
+                sContextMenuItemsPtr = sContextMenuItems_Cancel;
+                sContextMenuNumItems = 1;
+            }
+            else
+            {
+                sContextMenuItemsBuffer[0] = ITEMMENUACTION_OPEN_BERRIES;
+                sContextMenuItemsBuffer[1] = ITEMMENUACTION_CANCEL;
+                sContextMenuItemsPtr = sContextMenuItemsBuffer;
+                sContextMenuNumItems = 2;
+            }
+        }
+        else if (ItemId_GetBattleUsage(gSpecialVar_ItemId) &&
+            ((gSaveBlock1Ptr->keyFlags.noIH != 1 && gSaveBlock1Ptr->keyFlags.noIH != 3) ||
+             (ItemId_GetBattleFunc(gSpecialVar_ItemId) != BattleUseFunc_Medicine && ItemId_GetBattleFunc(gSpecialVar_ItemId) != BattleUseFunc_Ether)))
+        {
+            sContextMenuItemsPtr = sContextMenuItems_BattleUse;
+            sContextMenuNumItems = 2;
+        }
+        else
+        {
+            sContextMenuItemsPtr = sContextMenuItems_Cancel;
+            sContextMenuNumItems = 1;
+        }
+        break;
     case ITEMMENULOCATION_TTVSCR_STATUS:
         if (gSpecialVar_ItemId == ITEM_BERRY_POUCH)
         {
@@ -2555,23 +2586,23 @@ enum BagSortOptions
 };
 enum ItemSortType
 {
-	ITEM_TYPE_FIELD_USE,
-	ITEM_TYPE_HEALTH_RECOVERY,
-	ITEM_TYPE_STATUS_RECOVERY,
-	ITEM_TYPE_PP_RECOVERY,
-	ITEM_TYPE_STAT_BOOST_DRINK,
-	ITEM_TYPE_EVOLUTION_STONE,
-	ITEM_TYPE_EVOLUTION_ITEM,
-	ITEM_TYPE_BATTLE_ITEM,
-	ITEM_TYPE_FLUTE,
-	ITEM_TYPE_STAT_BOOST_HELD_ITEM,
-	ITEM_TYPE_HELD_ITEM,
-	ITEM_TYPE_INCENSE,
-	ITEM_TYPE_MEGA_STONE,
-	ITEM_TYPE_SELLABLE,
-	ITEM_TYPE_SHARD,
-	ITEM_TYPE_FOSSIL,
-	ITEM_TYPE_MAIL,
+    ITEM_TYPE_FIELD_USE,
+    ITEM_TYPE_HEALTH_RECOVERY,
+    ITEM_TYPE_STATUS_RECOVERY,
+    ITEM_TYPE_PP_RECOVERY,
+    ITEM_TYPE_STAT_BOOST_DRINK,
+    ITEM_TYPE_EVOLUTION_STONE,
+    ITEM_TYPE_EVOLUTION_ITEM,
+    ITEM_TYPE_BATTLE_ITEM,
+    ITEM_TYPE_FLUTE,
+    ITEM_TYPE_STAT_BOOST_HELD_ITEM,
+    ITEM_TYPE_HELD_ITEM,
+    ITEM_TYPE_INCENSE,
+    ITEM_TYPE_MEGA_STONE,
+    ITEM_TYPE_SELLABLE,
+    ITEM_TYPE_SHARD,
+    ITEM_TYPE_FOSSIL,
+    ITEM_TYPE_MAIL,
 };
 static const u8 sText_SortItemsHow[] = _("Sort items how?");
 static const u8 sText_Name[] = _("name");

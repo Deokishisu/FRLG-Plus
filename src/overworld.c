@@ -587,6 +587,9 @@ static void ApplyCurrentWarp(void)
     gSaveBlock1Ptr->location = sWarpDestination;
     sFixedDiveWarp = sDummyWarpData;
     sFixedHoleWarp = sDummyWarpData;
+#ifdef ALTERING_CAVE_ALTERS
+    VarSet(VAR_ALTERING_CAVE_WILD_SET, Random() % 9);
+#endif
 }
 
 static void SetWarpData(struct WarpData *warp, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)

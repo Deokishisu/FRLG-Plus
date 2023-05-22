@@ -313,9 +313,10 @@ static const struct MenuAction sScriptMultiChoiceMenu_Unref_Shards_7[] = {
 
 static const struct MenuAction sScriptMultiChoiceMenu_Eeveelutions[] = {
     { gText_Eevee },
-    { gText_Flareon },
-    { gText_Jolteon },
     { gText_Vaporeon },
+    { gText_Jolteon },
+    { gText_Flareon },
+    { gText_NextPage },
     { gText_QuitLooking }
 };
 
@@ -612,6 +613,13 @@ static const struct MenuAction sScriptMultiChoiceMenu_MasterYoungster[] = {
     { gText_Nothing }
 };
 
+static const struct MenuAction sScriptMultiChoiceMenu_Eeveelutions2[] = {
+    { gText_Espeon },
+    { gText_Umbreon },
+    { gText_PrevPage },
+    { gText_QuitLooking }
+};
+
 static const struct MenuAction sScriptMultiChoiceMenu_Exit[] = {
     { gOtherText_Exit }
 };
@@ -701,6 +709,7 @@ const struct MultichoiceListStruct gScriptMultiChoiceMenus[] = {
     { sScriptMultiChoiceMenu_SouthernBirthNavel, NELEMS(sScriptMultiChoiceMenu_SouthernBirthNavel) },
     { sScriptMultiChoiceMenu_SouthernBirthNavelFaraway, NELEMS(sScriptMultiChoiceMenu_SouthernBirthNavelFaraway) },
     { sScriptMultiChoiceMenu_MasterYoungster, NELEMS(sScriptMultiChoiceMenu_MasterYoungster) },
+    { sScriptMultiChoiceMenu_Eeveelutions2,  NELEMS(sScriptMultiChoiceMenu_Eeveelutions2)  },
 };
 
 // From Cool to Berries goes unused

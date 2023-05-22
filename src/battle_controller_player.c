@@ -23,6 +23,17 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 
+#ifdef BATTLE_MOVE_ICONS
+#include "menu.h"
+#else // BATTLE_MOVE_ICONS
+#ifdef EXPOSE_WEATHER_BALL
+#error EXPOSE_WEATHER_BALL requires BATTLE_MOVE_ICONS
+#endif
+#ifdef EXPOSE_NATURE_POWER
+#error EXPOSE_NATURE_POWER requires BATTLE_MOVE_ICONS
+#endif
+#endif // BATTLE_MOVE_ICONS
+
 static void PlayerHandleGetMonData(void);
 static void PlayerHandleSetMonData(void);
 static void PlayerHandleSetRawMonData(void);
@@ -359,6 +370,7 @@ static void HandleInputChooseTarget(void)
         DoBounceEffect(gActiveBattler, BOUNCE_HEALTHBOX, 7, 1);
         DoBounceEffect(gActiveBattler, BOUNCE_MON, 7, 1);
         EndBounceEffect(gMultiUsePlayerCursor, BOUNCE_HEALTHBOX);
+        MoveSelectionDisplayMoveType();
     }
     else if (JOY_NEW(DPAD_LEFT | DPAD_UP))
     {
@@ -399,6 +411,7 @@ static void HandleInputChooseTarget(void)
         }
         while (i == 0);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
+        MoveSelectionDisplayMoveType();
     }
     else if (JOY_NEW(DPAD_RIGHT | DPAD_DOWN))
     {
@@ -439,6 +452,7 @@ static void HandleInputChooseTarget(void)
         }
         while (i == 0);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
+        MoveSelectionDisplayMoveType();
     }
 }
 
@@ -1407,6 +1421,68 @@ static void MoveSelectionDisplayPpNumber(void)
     BattlePutTextOnWindow(gDisplayedStringBattle, 9);
 }
 
+#ifdef BATTLE_MOVE_ICONS
+static void MoveSelectionDisplayMoveType(void)
+{
+    u8 icon;
+    u8 type;
+    static const u8 sSplitIcons_Gfx[] = INCBIN_U8("graphics/new/split_icons_battle.4bpp");
+    struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleBufferA[gActiveBattler][4]);
+
+    if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_HIDDEN_POWER)
+    {
+        u8 typeBits  = ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_HP_IV) & 1) << 0)
+                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_ATK_IV) & 1) << 1)
+                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_DEF_IV) & 1) << 2)
+                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPEED_IV) & 1) << 3)
+                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPATK_IV) & 1) << 4)
+                     | ((GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_SPDEF_IV) & 1) << 5);
+
+        type = (15 * typeBits) / 63 + 1;
+        if (type >= TYPE_MYSTERY)
+            type++;
+        type |= 0xC0;
+        type &= 0x3F;
+    }
+#ifdef EXPOSE_WEATHER_BALL
+    else if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_WEATHER_BALL)
+    {
+        if (gBattleWeather & WEATHER_RAIN_ANY)
+            type = TYPE_WATER;
+        else if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+            type = TYPE_ROCK;
+        else if (gBattleWeather & WEATHER_SUN_ANY)
+            type = TYPE_FIRE;
+        else if (gBattleWeather & WEATHER_HAIL_ANY)
+            type = TYPE_ICE;
+        else
+            type = TYPE_NORMAL;
+    }
+#endif // EXPOSE_WEATHER_BALL
+#ifdef EXPOSE_NATURE_POWER
+    else if (moveInfo->moves[gMoveSelectionCursor[gActiveBattler]] == MOVE_NATURE_POWER)
+    {
+        type = gBattleMoves[gNaturePowerMoves[gBattleTerrain]].type;
+    }
+#endif // EXPOSE_NATURE_POWER
+    else
+    {
+        type = gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type;
+    }
+
+    ListMenuLoadStdPalAt(0xA0, 1);
+    FillWindowPixelBuffer(8, PIXEL_FILL(15));
+    BlitMoveInfoIcon(8, type + 1, 1, 4);
+    PutWindowTilemap(8);
+    CopyWindowToVram(8, COPYWIN_BOTH);
+
+    icon = GetBattleMoveCategory(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]);
+    FillWindowPixelBuffer(10, PIXEL_FILL(15));
+    BlitBitmapToWindow(10, sSplitIcons_Gfx + 0x80 * icon, 0, 3, 16, 16);
+    PutWindowTilemap(10);
+    CopyWindowToVram(10, COPYWIN_BOTH);
+}
+#else // BATTLE_MOVE_ICONS
 static void MoveSelectionDisplayMoveType(void)
 {
     u8 *txtPtr;
@@ -1438,6 +1514,7 @@ static void MoveSelectionDisplayMoveType(void)
     }
     BattlePutTextOnWindow(gDisplayedStringBattle, 8);
 }
+#endif // BATTLE_MOVE_ICONS
 
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 arg1)
 {
@@ -2538,7 +2615,7 @@ static void PlayerHandleExpUpdate(void)
 {
     u8 monId = gBattleBufferA[gActiveBattler][1];
 
-    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= MAX_LEVEL)
+    if (GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL) >= GetLevelCap())
     {
         PlayerBufferExecCompleted();
     }

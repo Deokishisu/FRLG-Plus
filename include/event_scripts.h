@@ -1162,6 +1162,24 @@ extern const u8 Help_Text_DefineNuzlocke_Catching[];
 extern const u8 Help_Text_NuzlockeLosing[];
 extern const u8 Help_Text_DefineNuzlockeLosing[];
 extern const u8 Help_Text_DefineNoFreeHeals[];
+extern const u8 Help_Text_ForgetHM[];
+extern const u8 Help_Text_DefineForgetHM[];
+extern const u8 Help_Text_MaxLvlEvolve[];
+extern const u8 Help_Text_DefineMaxLvlEvolve[];
+extern const u8 Help_Text_OwPoisonDamage[];
+extern const u8 Help_Text_DefineOwPoisonDamage[];
+extern const u8 Help_Text_Flashbacks[];
+extern const u8 Help_Text_DefineFlashbacks[];
+extern const u8 Help_Text_NoItemHeals[];
+extern const u8 Help_Text_DefineNoItemHeals[];
+extern const u8 Help_Text_LevelCap[];
+extern const u8 Help_Text_DefineLevelCap[];
+extern const u8 Help_Text_UsingKeySystemReset[];
+extern const u8 Help_Text_HowToUseKeySystemReset[];
+extern const u8 Help_Text_ResetSettings[];
+extern const u8 Help_Text_DefineResetSettings[];
+extern const u8 Help_Text_ResetConfirm[];
+extern const u8 Help_Text_DefineResetCancel[];
 
 extern const u8 EventScript_FldEffStrength[];
 extern const u8 EventScript_FailSweetScent[];
@@ -1338,5 +1356,7 @@ extern const u8 Help_Text_FRExclusives[];
 extern const u8 Help_Text_LGExclusives[];
 extern const u8 Help_Text_DefineFRExclusives[];
 extern const u8 Help_Text_DefineLGExclusives[];
+extern const u8 Help_Text_DefineThrowAnim[];
+extern const u8 Help_Text_ThrowAnim[];
 
 #endif //GUARD_EVENT_SCRIPTS_H

@@ -515,15 +515,26 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
     u32 experience;
     struct Pokemon pokemon;
     u8 sentPC;
+#ifdef DAYCARE_IGNORES_LEVEL_CAP_SETTING
+    u8 levelCap = MAX_LEVEL;
+#else
+    u8 levelCap = GetLevelCap();
+#endif
 
     DayCare_GetBoxMonNickname(&daycareMon->mon, gStringVar1);
     species = GetBoxMonData(&daycareMon->mon, MON_DATA_SPECIES);
     BoxMonToMon(&daycareMon->mon, &pokemon);
     PopulateBoxHpAndStatusToPartyMon(&pokemon);
 
-    if (GetMonData(&pokemon, MON_DATA_LEVEL) != MAX_LEVEL)
+    if (GetMonData(&pokemon, MON_DATA_LEVEL) != levelCap)
     {
         experience = GetMonData(&pokemon, MON_DATA_EXP) + daycareMon->steps;
+
+#ifndef DAYCARE_IGNORES_LEVEL_CAP_SETTING
+        if (levelCap != MAX_LEVEL && experience > GetExpFromLevelForSpecies(levelCap, species))
+            experience = GetExpFromLevelForSpecies(levelCap, species) - 1;
+#endif
+
         SetMonData(&pokemon, MON_DATA_EXP, &experience);
         ApplyDaycareExperience(&pokemon);
     }
@@ -573,10 +584,17 @@ u16 TakePokemonFromDaycare(void)
 static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
 {
     struct BoxPokemon tempMon = *mon;
-
     u32 experience = GetBoxMonData(mon, MON_DATA_EXP) + steps;
+#ifdef DAYCARE_IGNORES_LEVEL_CAP_SETTING
     SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
     return GetLevelFromBoxMonExp(&tempMon);
+#else
+    u8 level;
+    u8 maxLevel = GetLevelCap();
+    SetBoxMonData(&tempMon, MON_DATA_EXP,  &experience);
+    level = GetLevelFromBoxMonExp(&tempMon);
+    return ((level < maxLevel) ? level : maxLevel);
+#endif // DAYCARE_IGNORES_LEVEL_CAP_SETTING
 }
 
 static u8 GetNumLevelsGainedFromSteps(struct DaycareMon *daycareMon)
@@ -1072,6 +1090,26 @@ static u16 DetermineEggSpeciesAndParentSlots(struct DayCare *daycare, u8 *parent
     return eggSpecies;
 }
 
+#ifdef VOLT_TACKLE_BY_BREEDING
+static void GiveVoltTackleIfLightBall(struct Pokemon *egg, struct BoxPokemon *father, struct BoxPokemon *mother)
+{
+    u32 motherItem = GetBoxMonData(mother, MON_DATA_HELD_ITEM);
+    u32 fatherItem = GetBoxMonData(father, MON_DATA_HELD_ITEM);
+
+    if (motherItem == ITEM_LIGHT_BALL || fatherItem == ITEM_LIGHT_BALL)
+    {
+        // Pichu wants to be real
+        u8 version = VERSION_EMERALD;
+        u8 metLocation = MAPSEC_ROUTE_117;
+        SetMonData(egg, MON_DATA_MET_GAME, &version);
+        SetMonData(egg, MON_DATA_MET_LOCATION, &metLocation);
+
+        if (GiveMoveToMon(egg, MOVE_VOLT_TACKLE) == MON_HAS_MAX_MOVES)
+            DeleteFirstMoveAndGiveMoveToMon(egg, MOVE_VOLT_TACKLE);
+    }
+}
+#endif // VOLT_TACKLE_BY_BREEDING
+
 static void _GiveEggFromDaycare(struct DayCare *daycare)
 {
     struct Pokemon egg;
@@ -1084,6 +1122,11 @@ static void _GiveEggFromDaycare(struct DayCare *daycare)
     SetInitialEggData(&egg, species, daycare);
     InheritIVs(&egg, daycare);
     BuildEggMoveset(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
+
+#ifdef VOLT_TACKLE_BY_BREEDING
+    if (species == SPECIES_PICHU)
+        GiveVoltTackleIfLightBall(&egg, &daycare->mons[parentSlots[1]].mon, &daycare->mons[parentSlots[0]].mon);
+#endif
 
     isEgg = TRUE;
     SetMonData(&egg, MON_DATA_IS_EGG, &isEgg);
@@ -1878,6 +1921,10 @@ static void AddHatchedMonToParty(u8 id)
             }
             if(mapsecid == METLOC_SPECIAL_EGG)
                 mapsecid = MAPSEC_WATER_LABYRINTH;
+#ifdef VOLT_TACKLE_BY_BREEDING
+            if(mapsecid == MAPSEC_ROUTE_117 && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_PICHU)
+                mapsecid = MAPSEC_FOUR_ISLAND;
+#endif
         }
     }
 

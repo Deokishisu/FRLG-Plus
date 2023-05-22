@@ -85,6 +85,13 @@ BattleScript_CaughtPokemonSkipNewDex::
 	waitstate
 	setbyte gBattleCommunication, 0
 	trygivecaughtmonnick BattleScript_CaughtPokemonSkipNickname
+	checkcaughtmonhasitem BattleScript_ContinueCaughtMon
+	printstring STRINGID_TAKEITEMCAPTURED
+	waitstate
+	setbyte gBattleCommunication, 0
+	trytakecaughtmonitem BattleScript_ContinueCaughtMon
+	printstring STRINGID_ITEMTAKEN
+BattleScript_ContinueCaughtMon::
 	givecaughtmon
 	printfromtable gCaughtMonStringIds
 	waitmessage 64
@@ -104,6 +111,13 @@ BattleScript_CaughtPokemonSkipNewDex2::
 	waitstate
 	setbyte gBattleCommunication, 2
 	trygivecaughtmonnick BattleScript_CaughtPokemonSkipNickname
+	checkcaughtmonhasitem BattleScript_ContinueCaughtMon2
+	printstring STRINGID_TAKEITEMCAPTURED
+	waitstate
+	setbyte gBattleCommunication, 0
+	trytakecaughtmonitem BattleScript_ContinueCaughtMon2
+	printstring STRINGID_ITEMTAKEN
+BattleScript_ContinueCaughtMon2::
 	givecaughtmon
 	printfromtable gCaughtMonStringIds
 	waitmessage 64

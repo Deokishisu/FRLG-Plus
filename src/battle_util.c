@@ -3198,3 +3198,10 @@ u8 IsMonDisobedient(void)
         }
     }
 }
+
+#ifdef BATTLE_MOVE_ICONS
+u8 GetBattleMoveCategory(u32 moveId)
+{
+    return gBattleMoves[moveId].category;
+}
+#endif // BATTLE_MOVE_ICONS

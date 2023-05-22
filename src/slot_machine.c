@@ -51,6 +51,12 @@
 #define SLOTTASK_SHOWHELP           14
 #define SLOTTASK_HIDEHELP           15
 
+#define SLOT_MACHINE_ID_MAX         5
+
+#ifdef GAME_CORNER_EASTER_EGG
+#define IMANOK_MACHINE_ID           SLOT_MACHINE_ID_MAX+1
+#endif
+
 struct SlotMachineState
 {
     MainCallback savedCallback;
@@ -799,7 +805,7 @@ void PlaySlotMachine(u16 machineIdx, MainCallback savedCallback)
         SetMainCallback2(savedCallback);
     else
     {
-        if (machineIdx > 5)
+        if (machineIdx > SLOT_MACHINE_ID_MAX)
             machineIdx = 0;
         sSlotMachineState->machineidx = machineIdx;
         sSlotMachineState->savedCallback = savedCallback;
@@ -874,9 +880,80 @@ static void CB2_RunSlotMachine(void)
     UpdatePaletteFade();
 }
 
+#ifdef GAME_CORNER_EASTER_EGG
+static bool8 imanok_test(s16 * data)
+{
+    if (JOY_NEW(DPAD_UP))
+    {
+        if (data[1] < 3)
+        {
+            if (data[1] < 2)
+                data[1]++;
+        }
+        else
+            data[1] = 0;
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        if (data[1] == 2 || data[1] == 3)
+            data[1]++;
+        else
+            data[1] = 0;
+    }
+    else if (JOY_NEW(DPAD_LEFT))
+    {
+        if (data[1] == 4 || data[1] == 6)
+        {
+            data[1]++;
+            return TRUE;
+        }
+        else
+            data[1] = 0;
+    }
+    else if (JOY_NEW(DPAD_RIGHT))
+    {
+        if (data[1] == 5 || data[1] == 7)
+        {
+            data[1]++;
+            return TRUE;
+        }
+        else
+            data[1] = 0;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        if (data[1] == 8)
+        {
+            data[1]++;
+            return TRUE;
+        }
+        else
+            data[1] = 0;
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        if (data[1] == 9)
+        {
+            data[1] = 0;
+            PlaySE(SE_POKE_JUMP_SUCCESS);
+            sSlotMachineState->machineidx = IMANOK_MACHINE_ID;
+            return TRUE;
+        }
+        else
+            data[1] = 0;
+    }
+    return FALSE;
+}
+#endif // GAME_CORNER_EASTER_EGG
+
 static void MainTask_SlotsGameLoop(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (imanok_test(data))
+        return;
+#endif
 
     switch (data[0])
     {
@@ -1005,6 +1082,11 @@ static void MainTask_NoCoinsGameOver(u8 taskId)
 static void MainTask_ShowHelp(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (imanok_test(data))
+        return;
+#endif
 
     switch (data[0])
     {
@@ -1200,6 +1282,9 @@ static void SetMainTask(TaskFunc taskFunc)
 {
     gTasks[sSlotMachineState->taskId].func = taskFunc;
     gTasks[sSlotMachineState->taskId].data[0] = 0;
+#ifdef GAME_CORNER_EASTER_EGG
+    gTasks[sSlotMachineState->taskId].data[1] = 0;
+#endif
 }
 
 static void Task_SpinReels(u8 taskId)
@@ -1336,6 +1421,19 @@ static void StopReel1(u16 whichReel)
     destPos = nextPos - destPos;
     if (destPos < 0)
         destPos += 21;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+    {
+        if (nextPos < 6)
+            destPos = 19;
+        else if (nextPos < 13)
+            destPos = 6;
+        else
+            destPos = 13;
+    }
+#endif // GAME_CORNER_EASTER_EGG
+
     sSlotMachineState->reelStopOrder[0] = whichReel;
     sSlotMachineState->destReelPos[whichReel] = destPos;
 }
@@ -1383,6 +1481,17 @@ static void StopReel2(u16 whichReel)
     pos = nextPos - pos;
     if (pos < 0)
         pos += 21;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+    {
+        if (nextPos < 10)
+            pos = 19;
+        else
+            pos = 10;
+    }
+#endif //GAME_CORNER_EASTER_EGG
+
     sSlotMachineState->reelStopOrder[1] = whichReel;
     sSlotMachineState->destReelPos[whichReel] = pos;
 }
@@ -1422,6 +1531,12 @@ static void StopReel3(u16 whichReel)
     pos = nextPos - pos;
     if (pos < 0)
         pos += 21;
+
+#ifdef GAME_CORNER_EASTER_EGG
+    if (sSlotMachineState->machineidx == IMANOK_MACHINE_ID)
+        pos = 19;
+#endif // GAME_CORNER_EASTER_EGG
+
     sSlotMachineState->destReelPos[whichReel] = pos;
 }
 

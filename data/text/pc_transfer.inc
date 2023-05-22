@@ -30,3 +30,13 @@ Text_NoMoreRoomForPokemon:: @ 81A5E31
     .string "There's no more room for POKéMON!\p"
     .string "The POKéMON BOXES are full and\n"
     .string "can't accept any more!$"
+
+gText_TakeItemCaptured::
+	.string "{STR_VAR_2} is holding\n"
+	.string "{STR_VAR_1}.\p"
+	.string "Would you like to place the\n"
+    .string "{STR_VAR_1} in your BAG?$"
+
+gText_ItemTaken::
+	.string "{STR_VAR_1} was placed\n"
+	.string "in your BAG.$"

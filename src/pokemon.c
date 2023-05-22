@@ -3265,7 +3265,11 @@ void CreateBattleTowerMon(struct Pokemon *mon, struct BattleTowerPokemon *src)
     SetMonData(mon, MON_DATA_SPATK_IV, &value);
     value = src->spDefenseIV;
     SetMonData(mon, MON_DATA_SPDEF_IV, &value);
+#ifdef BATTLE_TOWER_IGNORES_EV_IV_SETTING
     CalculateMonStats(mon, TRUE);
+#else
+    CalculateMonStats(mon, FALSE);
+#endif
 }
 
 static void CreateEventLegalMon(struct Pokemon *mon, u16 species, u8 level, u8 fixedIV, u8 hasFixedPersonality, u32 fixedPersonality, u8 otIdType, u32 fixedOtId)
@@ -3771,8 +3775,8 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                          | ((attacker->speedIV & 2) << 2)
                          | ((attacker->spAttackIV & 2) << 3)
                          | ((attacker->spDefenseIV & 2) << 4);
-			  
-			gBattleMovePower = (40 * powerBits) / 63 + 30;
+
+            gBattleMovePower = (40 * powerBits) / 63 + 30;
         }
     }
     else
@@ -8186,3 +8190,88 @@ void SetFirstDeoxysForm(void)
         }
     }
 }
+
+bool8 DoesCaughtMonHaveItem(void)
+{
+    u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, 0);
+    if(itemId != ITEM_NONE && CheckBagHasSpace(itemId, 1))
+    {
+        CopyItemName(itemId, gStringVar1);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+void PutCaughtMonItemInBag(void)
+{
+    u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, 0);
+    AddBagItem(itemId, 1);
+    itemId = ITEM_NONE;
+    SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM, &itemId);
+}
+
+bool8 DoesGiftMonHaveItem(void)
+{
+    u16 itemId = GetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, 0);
+    if(itemId != ITEM_NONE && CheckBagHasSpace(itemId, 1))
+    {
+        CopyItemName(itemId, gStringVar1);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+void PutGiftMonItemInBag(void)
+{
+    u16 itemId = GetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, 0);
+    AddBagItem(itemId, 1);
+    itemId = ITEM_NONE;
+    SetBoxMonData(GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos), MON_DATA_HELD_ITEM, &itemId);
+}
+
+u8 GetLevelCap(void)
+{
+    // Champion  : FLAG_SYS_GAME_CLEAR / FLAG_DEFEATED_CHAMPION
+    // Giovanni  : FLAG_BADGE08_GET    / FLAG_DEFEATED_LEADER_GIOVANNI
+    // Blaine    : FLAG_BADGE07_GET    / FLAG_DEFEATED_BLAINE
+    // Sabrina   : FLAG_BADGE06_GET    / FLAG_DEFEATED_SABRINA
+    // Koga      : FLAG_BADGE05_GET    / FLAG_DEFEATED_KOGA
+    // Erika     : FLAG_BADGE04_GET    / FLAG_DEFEATED_ERIKA
+    // Lt. Surge : FLAG_BADGE03_GET    / FLAG_DEFEATED_LT_SURGE
+    // Misty     : FLAG_BADGE02_GET    / FLAG_DEFEATED_MISTY
+    // Brock     : FLAG_BADGE01_GET    / FLAG_DEFEATED_BROCK
+
+    if (!gSaveBlock1Ptr->keyFlags.levelCap || FlagGet(FLAG_SYS_GAME_CLEAR))
+        return MAX_LEVEL;
+
+    if (FlagGet(FLAG_BADGE08_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 67 : 63);
+    if (FlagGet(FLAG_BADGE07_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 54 : 50);
+    if (FlagGet(FLAG_BADGE06_GET) && FlagGet(FLAG_BADGE05_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 51 : 47);
+    if (FlagGet(FLAG_BADGE04_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 46 : 43);
+    if (FlagGet(FLAG_BADGE03_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 31 : 29);
+    if (FlagGet(FLAG_BADGE02_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 26 : 24);
+    if (FlagGet(FLAG_BADGE01_GET))
+        return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 22 : 21);
+
+    // no badges
+    return ((gSaveBlock1Ptr->keyFlags.difficulty == DIFFICULTY_CHALLENGE) ? 15 : 14);
+}
+
+#ifndef DAYCARE_IGNORES_LEVEL_CAP_SETTING
+u32 GetExpFromLevelForSpecies(u8 level, u16 species)
+{
+    return gExperienceTables[gBaseStats[species].growthRate][level];
+}
+#endif

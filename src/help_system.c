@@ -284,6 +284,7 @@ enum
     HELP_SORTING_BAG,
     HELP_USING_OPTIONS_SUBMENU,
     HELP_USING_KEY_SYSTEM_SUBMENU,
+    HELP_USING_KEY_SYSTEM_RESET
 };
 
 static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
@@ -340,6 +341,7 @@ static const u8 *const sHelpSystemMenuTopicTextPtrs[] = {
     [HELP_SORTING_BAG]                  = Help_Text_SortingBag,
     [HELP_USING_OPTIONS_SUBMENU]        = Help_Text_UsingOptionsSubmenu,
     [HELP_USING_KEY_SYSTEM_SUBMENU]     = Help_Text_UsingKeySystemSubmenu,
+    [HELP_USING_KEY_SYSTEM_RESET]       = Help_Text_UsingKeySystemReset,
 };
 
 static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
@@ -396,6 +398,7 @@ static const u8 *const sHelpSystemHowToUseMenuTextPtrs[] = {
     [HELP_SORTING_BAG]                  = Help_Text_HowToSortBag,
     [HELP_USING_OPTIONS_SUBMENU]        = Help_Text_HowToUseOptionSubmenu,
     [HELP_USING_KEY_SYSTEM_SUBMENU]     = Help_Text_HowToUseKeySystemSubmenu,
+    [HELP_USING_KEY_SYSTEM_RESET]       = Help_Text_HowToUseKeySystemReset,
 };
 
 // Submenu IDs for TOPIC_TERMS
@@ -463,6 +466,16 @@ enum
     HELP_TERM_BACK,
     HELP_TERM_ADVANCED,
     HELP_TERM_ADVANCED_KEYS_BACK,
+    HELP_TERM_NO_ITEM_HEALS,
+    HELP_TERM_MAX_EVO,
+    HELP_TERM_THROW_ANIM,
+    HELP_TERM_FORGET_HM,
+    HELP_TERM_OW_PSN_DMG,
+    HELP_TERM_FLASHBACKS,
+    HELP_TERM_LEVEL_CAP,
+    HELP_TERM_RESET_SETTINGS,
+    HELP_TERM_RESET_CONFIRM,
+    HELP_TERM_RESET_CANCEL
 };
 
 static const u8 *const sHelpSystemTermTextPtrs[] = {
@@ -510,25 +523,35 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_ID_NO2]         = Help_Text_IDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_Money2,
     [HELP_TERM_BADGES2]        = Help_Text_Badges2,
-    [HELP_TERM_VERSION]        = Help_Text_Version,
-    [HELP_TERM_FR_EXCLUSIVES]  = Help_Text_FRExclusives,
-    [HELP_TERM_LG_EXCLUSIVES]  = Help_Text_LGExclusives,
-    [HELP_TERM_DIFFICULTY]     = Help_Text_Difficulty,
-    [HELP_TERM_NUZLOCKE]       = Help_Text_Nuzlocke,
-    [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_Nuzlocke_Catching,
-    [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_NuzlockeLosing,
-    [HELP_TERM_IV_CALC]        = Help_Text_IvCalc,
-    [HELP_TERM_EV_CALC]        = Help_Text_EvCalc,
-    [HELP_TERM_NO_PMC]         = Help_Text_NoFreeHeals,
-    [HELP_TERM_BATTLE_TRANSITIONS] = Help_Text_BattleTransitions,
-    [HELP_TERM_EXP_MOD]        = Help_Text_ExpMod,
+    [HELP_TERM_VERSION]             = Help_Text_Version,
+    [HELP_TERM_FR_EXCLUSIVES]       = Help_Text_FRExclusives,
+    [HELP_TERM_LG_EXCLUSIVES]       = Help_Text_LGExclusives,
+    [HELP_TERM_DIFFICULTY]          = Help_Text_Difficulty,
+    [HELP_TERM_NUZLOCKE]            = Help_Text_Nuzlocke,
+    [HELP_TERM_NUZLOCKE_CATCHING]   = Help_Text_Nuzlocke_Catching,
+    [HELP_TERM_NUZLOCKE_LOSING]     = Help_Text_NuzlockeLosing,
+    [HELP_TERM_IV_CALC]             = Help_Text_IvCalc,
+    [HELP_TERM_EV_CALC]             = Help_Text_EvCalc,
+    [HELP_TERM_NO_PMC]              = Help_Text_NoFreeHeals,
+    [HELP_TERM_BATTLE_TRANSITIONS]  = Help_Text_BattleTransitions,
+    [HELP_TERM_EXP_MOD]             = Help_Text_ExpMod,
     [HELP_TERM_BATTLE_INTRO_ANIM]   = Help_Text_BattleIntroAnim,
     [HELP_TERM_MOVE_ANIMATIONS]     = Help_Text_MoveAnimations,
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_HpBarAnimSpeed,
-    [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_ExpBarAnimSpeed,
-    [HELP_TERM_BACK]           = Help_Text_Back,
-    [HELP_TERM_ADVANCED]       = Help_Text_AdvancedKeys,
-    [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_Back,
+    [HELP_TERM_EXP_BAR_ANIM_SPEED]  = Help_Text_ExpBarAnimSpeed,
+    [HELP_TERM_BACK]                = Help_Text_Back,
+    [HELP_TERM_ADVANCED]            = Help_Text_AdvancedKeys,
+    [HELP_TERM_ADVANCED_KEYS_BACK]  = Help_Text_Back,
+    [HELP_TERM_NO_ITEM_HEALS]       = Help_Text_NoItemHeals,
+    [HELP_TERM_MAX_EVO]             = Help_Text_MaxLvlEvolve,
+    [HELP_TERM_THROW_ANIM]          = Help_Text_ThrowAnim,
+    [HELP_TERM_FORGET_HM]           = Help_Text_ForgetHM,
+    [HELP_TERM_OW_PSN_DMG]          = Help_Text_OwPoisonDamage,
+    [HELP_TERM_FLASHBACKS]          = Help_Text_Flashbacks,
+    [HELP_TERM_LEVEL_CAP]           = Help_Text_LevelCap,
+    [HELP_TERM_RESET_SETTINGS]      = Help_Text_ResetSettings,
+    [HELP_TERM_RESET_CONFIRM]       = Help_Text_ResetConfirm,
+    [HELP_TERM_RESET_CANCEL]        = Help_Text_Back,
 };
 
 static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
@@ -576,25 +599,35 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_ID_NO2]         = Help_Text_DefineIDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_DefineMoney2,
     [HELP_TERM_BADGES2]        = Help_Text_DefineBadges2,
-    [HELP_TERM_VERSION]        = Help_Text_DefineVersion,
-    [HELP_TERM_FR_EXCLUSIVES]  = Help_Text_DefineFRExclusives,
-    [HELP_TERM_LG_EXCLUSIVES]  = Help_Text_DefineLGExclusives,
-    [HELP_TERM_DIFFICULTY]     = Help_Text_DefineDifficulty,
-    [HELP_TERM_NUZLOCKE]       = Help_Text_DefineNuzlocke,
-    [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_DefineNuzlocke_Catching,
-    [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_DefineNuzlockeLosing,
-    [HELP_TERM_IV_CALC]        = Help_Text_DefineIvCalc,
-    [HELP_TERM_EV_CALC]        = Help_Text_DefineEvCalc,
-    [HELP_TERM_NO_PMC]         = Help_Text_DefineNoFreeHeals,
-    [HELP_TERM_BATTLE_TRANSITIONS] = Help_Text_DefineBattleTransitions,
-    [HELP_TERM_EXP_MOD]        = Help_Text_DefineExpMod,
+    [HELP_TERM_VERSION]             = Help_Text_DefineVersion,
+    [HELP_TERM_FR_EXCLUSIVES]       = Help_Text_DefineFRExclusives,
+    [HELP_TERM_LG_EXCLUSIVES]       = Help_Text_DefineLGExclusives,
+    [HELP_TERM_DIFFICULTY]          = Help_Text_DefineDifficulty,
+    [HELP_TERM_NUZLOCKE]            = Help_Text_DefineNuzlocke,
+    [HELP_TERM_NUZLOCKE_CATCHING]   = Help_Text_DefineNuzlocke_Catching,
+    [HELP_TERM_NUZLOCKE_LOSING]     = Help_Text_DefineNuzlockeLosing,
+    [HELP_TERM_IV_CALC]             = Help_Text_DefineIvCalc,
+    [HELP_TERM_EV_CALC]             = Help_Text_DefineEvCalc,
+    [HELP_TERM_NO_PMC]              = Help_Text_DefineNoFreeHeals,
+    [HELP_TERM_BATTLE_TRANSITIONS]  = Help_Text_DefineBattleTransitions,
+    [HELP_TERM_EXP_MOD]             = Help_Text_DefineExpMod,
     [HELP_TERM_BATTLE_INTRO_ANIM]   = Help_Text_DefineBattleIntroAnims,
     [HELP_TERM_MOVE_ANIMATIONS]     = Help_Text_DefineMoveAnimations,
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_DefineHpBarAnimSpeed,
-    [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_DefineExpBarAnimSpeed,
-    [HELP_TERM_BACK]          = Help_Text_DefineBack,
-    [HELP_TERM_ADVANCED]       = Help_Text_DefineAdvancedKeys,
-    [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_DefineAdvancedKeysBack,
+    [HELP_TERM_EXP_BAR_ANIM_SPEED]  = Help_Text_DefineExpBarAnimSpeed,
+    [HELP_TERM_BACK]                = Help_Text_DefineBack,
+    [HELP_TERM_ADVANCED]            = Help_Text_DefineAdvancedKeys,
+    [HELP_TERM_ADVANCED_KEYS_BACK]  = Help_Text_DefineAdvancedKeysBack,
+    [HELP_TERM_NO_ITEM_HEALS]       = Help_Text_DefineNoItemHeals,
+    [HELP_TERM_MAX_EVO]             = Help_Text_DefineMaxLvlEvolve,
+    [HELP_TERM_THROW_ANIM]          = Help_Text_DefineThrowAnim,
+    [HELP_TERM_FORGET_HM]           = Help_Text_DefineForgetHM,
+    [HELP_TERM_OW_PSN_DMG]          = Help_Text_DefineOwPoisonDamage,
+    [HELP_TERM_FLASHBACKS]          = Help_Text_DefineFlashbacks,
+    [HELP_TERM_LEVEL_CAP]           = Help_Text_DefineLevelCap,
+    [HELP_TERM_RESET_SETTINGS]      = Help_Text_DefineResetSettings,
+    [HELP_TERM_RESET_CONFIRM]       = Help_Text_DefineResetSettings,
+    [HELP_TERM_RESET_CANCEL]        = Help_Text_DefineResetCancel,
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -1686,6 +1719,7 @@ static const u8 sTerms_KeySystem[] = {
     HELP_TERM_LG_EXCLUSIVES,
     HELP_TERM_DIFFICULTY,
     HELP_TERM_ADVANCED,
+    HELP_TERM_RESET_SETTINGS,
     HELP_TERM_CANCEL,
     HELP_END
 };
@@ -1701,6 +1735,7 @@ static const u8 sTerms_OptionsSubMenu[] = {
     HELP_TERM_MOVE_ANIMATIONS,
     HELP_TERM_HP_BAR_ANIM_SPEED,
     HELP_TERM_EXP_BAR_ANIM_SPEED,
+    HELP_TERM_THROW_ANIM,
     HELP_TERM_BACK,
     HELP_END
 };
@@ -1710,15 +1745,37 @@ static const u8 sHowTo_KeySystemSubMenu[] = {
     HELP_END
 };
 
-static const u8 sTerms_KeySystemSubMenu[] = {
+static const u8 sHowTo_KeySystemReset[] = {
+    HELP_USING_KEY_SYSTEM_RESET,
+    HELP_END
+};
+
+static const u8 sTerms_KeySystemSubMenu1[] = {
     HELP_TERM_NUZLOCKE,
     HELP_TERM_NUZLOCKE_CATCHING,
     HELP_TERM_NUZLOCKE_LOSING,
     HELP_TERM_IV_CALC,
     HELP_TERM_EV_CALC,
     HELP_TERM_NO_PMC,
+    HELP_TERM_NO_ITEM_HEALS,
     HELP_TERM_EXP_MOD,
     HELP_TERM_ADVANCED_KEYS_BACK,
+    HELP_END
+};
+
+static const u8 sTerms_KeySystemSubMenu2[] = {
+    HELP_TERM_MAX_EVO,
+    HELP_TERM_FORGET_HM,
+    HELP_TERM_OW_PSN_DMG,
+    HELP_TERM_FLASHBACKS,
+    HELP_TERM_LEVEL_CAP,
+    HELP_TERM_ADVANCED_KEYS_BACK,
+    HELP_END
+};
+
+static const u8 sTerms_KeySystemSubMenu3[] = {
+    HELP_TERM_RESET_CONFIRM,
+    HELP_TERM_RESET_CANCEL,
     HELP_END
 };
 
@@ -1761,7 +1818,9 @@ static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_CO
     NULL,                          sHowTo_BedroomPCMailbox,    NULL,                       NULL,                    NULL, // HELPCONTEXT_BEDROOM_PC_MAILBOX
     NULL,                          sHowTo_KeySystem,           sTerms_KeySystem,           NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM
     NULL,                          sHowTo_OptionsSubMenu,      sTerms_OptionsSubMenu,      NULL,                    NULL, // HELPCONTEXT_OPTIONS_SUBMENU
-    NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu,    NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU
+    NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu1,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_1
+    NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu2,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_2
+    NULL,                          sHowTo_KeySystemReset,      sTerms_KeySystemSubMenu3,   NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU_3
 };
 
 static const u16 unref_845BCB0[] = INCBIN_U16("graphics/help_system/unused.bin");
@@ -1823,7 +1882,9 @@ static const bool8 sHelpSystemContextTopicFlags[HELPCONTEXT_COUNT + 1][TOPIC_COU
     [HELPCONTEXT_BEDROOM_PC_MAILBOX]    = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE, FALSE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_KEY_SYSTEM]            = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_OPTIONS_SUBMENU]       = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
-    [HELPCONTEXT_KEY_SYSTEM_SUBMENU]       = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
+    [HELPCONTEXT_KEY_SYSTEM_SUBMENU_1]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
+    [HELPCONTEXT_KEY_SYSTEM_SUBMENU_2]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
+    [HELPCONTEXT_KEY_SYSTEM_SUBMENU_3]  = CONTEXT_TOPIC_FLAGS(FALSE,  TRUE,  TRUE, FALSE, FALSE,  TRUE),
     [HELPCONTEXT_COUNT]                 = {}
 };
 
@@ -2246,6 +2307,7 @@ static bool8 IsHelpSystemSubmenuEnabled(u8 id)
         case HELP_SORTING_BAG:
         case HELP_USING_OPTIONS_SUBMENU:
         case HELP_USING_KEY_SYSTEM_SUBMENU:
+        case HELP_USING_KEY_SYSTEM_RESET:
             return TRUE;
         case HELP_USING_POKEDEX:
         case HELP_USING_PROF_OAKS_PC:

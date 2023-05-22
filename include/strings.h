@@ -223,7 +223,9 @@ extern const u8 gText_WhatWillPlayerThrow[];
 extern const u8 gText_BattleSwitchWhich[];
 extern const u8 gUnknown_83FE770[];
 extern const u8 gText_MoveInterfacePP[];
+#ifndef BATTLE_MOVE_ICONS
 extern const u8 gText_MoveInterfaceType[];
+#endif
 extern const u8 gText_LinkStandby[];
 extern const u8 gText_BattleMenu[];
 extern const u8 gText_WhatWillPkmnDo[];
@@ -767,9 +769,13 @@ extern const u8 gText_Black[];
 extern const u8 gText_Pink[];
 extern const u8 gText_Sepia[];
 extern const u8 gText_Eevee[];
-extern const u8 gText_Flareon[];
-extern const u8 gText_Jolteon[];
 extern const u8 gText_Vaporeon[];
+extern const u8 gText_Jolteon[];
+extern const u8 gText_Flareon[];
+extern const u8 gText_Espeon[];
+extern const u8 gText_Umbreon[];
+extern const u8 gText_NextPage[];
+extern const u8 gText_PrevPage[];
 extern const u8 gText_QuitLooking[];
 extern const u8 gText_FreshWater[];
 extern const u8 gText_SodaPop[];
@@ -945,7 +951,9 @@ extern const u8 gText_MoveAnims[];
 extern const u8 gText_HpBarAnimSpeed[];
 extern const u8 gText_ExpBarAnimSpeed[];
 extern const u8 gText_Back[];
-extern const u8 gText_Advanced[];
+extern const u8 gText_Advanced1[];
+extern const u8 gText_Advanced2[];
+extern const u8 gText_ResetSettings[];
 extern const u8 gText_TextSpeedSlow[];
 extern const u8 gText_TextSpeedMid[];
 extern const u8 gText_TextSpeedFast[];
@@ -968,7 +976,10 @@ extern const u8 gText_PickSwitchCancelA[];
 extern const u8 gText_PickSwitchCancel[];
 extern const u8 gText_PickSwitchExit[];
 extern const u8 gText_PickSwitchBack[];
+extern const u8 gText_PickBackA[];
+extern const u8 gText_PickBack[];
 extern const u8 gText_TextSpeedInstant[];
+extern const u8 gText_ThrowAnim[];
 
 // evolution_scene
 extern const u8 gText_PkmnIsEvolving[];
@@ -1593,8 +1604,8 @@ extern const u8 gText_EasyDifficulty[];
 extern const u8 gText_NormalDifficulty[];
 extern const u8 gText_ChallengeDifficulty[];
 extern const u8 gText_Nuzlocke[];
-extern const u8 gText_Nuzlocke_On[];
-extern const u8 gText_Nuzlocke_Off[];
+extern const u8 gText_KeySystem_On[];
+extern const u8 gText_KeySystem_Off[];
 extern const u8 gText_IVCalc[];
 extern const u8 gText_IVCalcZero[];
 extern const u8 gText_IVCalcStandard[];
@@ -1649,4 +1660,29 @@ extern const u8 gText_HowDoIBattleThem[];
 extern const u8 gText_AboutTitles[];
 extern const u8 gText_Nothing[];
 
-#endif //GUARD_STRINGS_H
+extern const u8 gText_ForgetHM[];
+extern const u8 gText_MaxLvlEvolve[];
+extern const u8 gText_OwPoisonDamage[];
+extern const u8 gText_OwPoisonDamageStandard[];
+extern const u8 gText_OwPoisonDamage1HP[];
+extern const u8 gText_OwPoisonDamageDisabled[];
+extern const u8 gText_Flashbacks[];
+extern const u8 gText_NoItemHeals[];
+extern const u8 gText_NoItemHealsOff[];
+extern const u8 gText_NoItemHealsPlayer[];
+extern const u8 gText_NoItemHealsEnemy[];
+extern const u8 gText_NoItemHealsOn[];
+extern const u8 gText_LevelCap[];
+
+extern const u8 gText_PkmnPoisonSurvived[];
+
+#ifdef MOVE_HELD_ITEMS_BETWEEN_MONS
+extern const u8 gMenuText_Move[];
+extern const u8 gText_MoveItemWhere[];
+extern const u8 gText_PkmnWasGivenItem2[];
+#endif // MOVE_HELD_ITEMS_BETWEEN_MONS
+
+extern const u8 gText_TakeItemCaptured[];
+extern const u8 gText_ItemTaken[];
+
+#endif // GUARD_STRINGS_H

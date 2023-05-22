@@ -5,6 +5,15 @@
 
 typedef void (*ItemUseFunc)(u8);
 
+#ifdef SHOW_OBTAIN_ITEM_DESCRIPTION
+enum
+{
+    FLAG_GET_OBTAINED,
+    FLAG_SET_OBTAINED,
+};
+bool8 GetSetItemObtained(u16 item, u8 caseId);
+#endif // SHOW_OBTAIN_ITEM_DESCRIPTION
+
 struct Item
 {
     u8 name[ITEM_NAME_LENGTH];

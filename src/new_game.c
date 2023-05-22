@@ -70,6 +70,7 @@ static void SetDefaultOptions(void)
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->optionsHpBarAnimSpeed = 0;
     gSaveBlock2Ptr->optionsExpBarAnimSpeed = 0;
+    gSaveBlock2Ptr->optionsThrowAnim = 0;
 }
 
 static void ClearPokedexFlags(void)
@@ -155,6 +156,7 @@ void NewGameInitData(void)
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
     gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
+    memset(&gSaveBlock2Ptr->itemsObtained, 0, sizeof(gSaveBlock2Ptr->itemsObtained));
 }
 
 static void ResetMiniGamesResults(void)

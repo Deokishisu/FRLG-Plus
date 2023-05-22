@@ -2123,3 +2123,86 @@ Help_Text_DefineLGExclusives::
 	.string "MISDREAVUS, SNEASEL, REMORAID,\l"
 	.string "MANTINE, LATIAS, and their\l"
 	.string "evolutionary relatives.$"
+
+Help_Text_ForgetHM::
+	.string "FORGET HM MOVES$"
+
+Help_Text_DefineForgetHM::
+	.string "Set this option to ON to allow replacing\n"
+	.string "HIDDEN moves when your POKéMON is\l"
+	.string "trying to learn a new move.$"
+
+Help_Text_ThrowAnim::
+	.string "THROW BALL ANIM$"
+
+Help_Text_DefineThrowAnim::
+	.string "Set this option to OFF to skip the\n"
+	.string "POKé BALL throw animation.$"
+
+Help_Text_MaxLvlEvolve::
+	.string "MAX LVL EVOLVE$"
+
+Help_Text_DefineMaxLvlEvolve::
+	.string "Set this option to ON to allow level 100\n"
+	.string "POKéMON to evolve using RARE CANDIES\l"
+	.string "and continue to gain EFFORT VALUES.$"
+
+Help_Text_OwPoisonDamage::
+	.string "OW POISON DMG$"
+
+Help_Text_DefineOwPoisonDamage::
+	.string "You can adjust how your POKéMON are\n"
+	.string "affected by poison in the overworld.\l"
+	.string "1HP will prevent your POKéMON from\l"
+	.string "fainting. DISABLED prevents poison\l"
+	.string "damage altogether. STANDARD is the\l"
+	.string "normal way.$"
+
+Help_Text_Flashbacks::
+	.string "FLASHBACKS$"
+
+Help_Text_DefineFlashbacks::
+	.string "Set this option to OFF to disable\n"
+	.string "journey flashbacks when loading a\l"
+	.string "saved game.$"
+
+Help_Text_NoItemHeals::
+	.string "NO ITEM HEALS$"
+
+Help_Text_DefineNoItemHeals::
+	.string "Enabling this option disallows the use\n"
+	.string "of healing items in battle. PLAYER\l"
+	.string "disables them for the player and ENEMY\l"
+	.string "for other POKéMON trainers. ON disables\l"
+	.string "healing items for everyone.$"
+
+Help_Text_LevelCap::
+	.string "LEVEL CAP$"
+
+Help_Text_DefineLevelCap::
+	.string "Set this option to ON to cap your\n"
+	.string "POKéMON level to next GYM LEADER's\l"
+	.string "highest POKéMON level.$"
+
+Help_Text_UsingKeySystemReset:: @ 81B5A37
+	.string " Using “RESET SETTINGS”$"
+
+Help_Text_HowToUseKeySystemReset::
+	.string "{CIRCLE_1} Select “RESET SETTINGS” .\n"
+	.string "{CIRCLE_2} Select OK to reset all key settings\n"
+	.string "   to their default values.$"
+
+Help_Text_ResetSettings::
+	.string "RESET SETTINGS$"
+
+Help_Text_DefineResetSettings::
+	.string "This option will reset all key settings\n"
+	.string "to their default values.$"
+
+Help_Text_ResetConfirm::
+	.string "OK$"
+
+Help_Text_DefineResetCancel:: @ 81B9439
+	.string "The settings will not be changed, and\n"
+	.string "you will return to the OPTION MENU.$"
+

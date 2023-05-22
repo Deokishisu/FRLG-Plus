@@ -5,6 +5,21 @@
 #include "item_menu_icons.h"
 #include "constants/items.h"
 
+#ifdef SHOW_OBTAIN_ITEM_DESCRIPTION
+#include "menu.h"
+#include "item.h"
+#include "event_data.h"
+#include "new_menu_helpers.h"
+#include "overworld.h"
+#endif // SHOW_OBTAIN_ITEM_DESCRIPTION
+
+enum {
+    TAG_BAG = 100,
+    TAG_SWAP_LINE,
+    TAG_ITEM_ICON,
+    TAG_ITEM_ICON_ALT,
+};
+
 static EWRAM_DATA u8 sItemMenuIconSpriteIds[12] = {0};
 static EWRAM_DATA void * sItemIconTilesBuffer = NULL;
 static EWRAM_DATA void * sItemIconTilesBufferPadded = NULL;
@@ -79,23 +94,23 @@ static const union AffineAnimCmd *const sAffineAnimTable_BagOrSatchel[] = {
 const struct CompressedSpriteSheet gSpriteSheet_Backpack = {
     gUnknown_8E8362C,
     0x3000,
-    100
+    TAG_BAG
 };
 
 const struct CompressedSpriteSheet gSpriteSheet_Satchel = {
     gUnknown_8E83DBC,
     0x3000,
-    100
+    TAG_BAG
 };
 
 const struct CompressedSpritePalette gSpritePalette_BagOrSatchel = {
     gUnknown_8E84560,
-    100
+    TAG_BAG
 };
 
 static const struct SpriteTemplate sSpriteTemplate_BagOrSatchel = {
-    100,
-    100,
+    TAG_BAG,
+    TAG_BAG,
     &sOamData_BagOrSatchel,
     sAnimTable_BagOrSatchel,
     NULL,
@@ -135,17 +150,17 @@ static const union AnimCmd *const gUnknown_83D4234[] = {
 const struct CompressedSpriteSheet gBagSwapSpriteSheet = {
     gFile_graphics_interface_bag_swap_sheet,
     0x100,
-    101
+    TAG_SWAP_LINE
 };
 
 const struct CompressedSpritePalette gBagSwapSpritePalette = {
     gFile_graphics_interface_bag_swap_palette,
-    101
+    TAG_SWAP_LINE
 };
 
 static const struct SpriteTemplate gUnknown_83D4250 = {
-    101,
-    101,
+    TAG_SWAP_LINE,
+    TAG_SWAP_LINE,
     &gUnknown_83D4214,
     gUnknown_83D4234,
     NULL,
@@ -171,8 +186,8 @@ static const union AnimCmd *const sAnimTable_ItemIcon[] = {
 };
 
 static const struct SpriteTemplate sSpriteTemplate_ItemIcon = {
-    102,
-    102,
+    TAG_ITEM_ICON,
+    TAG_ITEM_ICON,
     &sOamData_ItemIcon,
     sAnimTable_ItemIcon,
     NULL,
@@ -748,17 +763,18 @@ u8 AddItemIconObjectWithCustomObjectTemplate(const struct SpriteTemplate * origT
 
 void CreateItemMenuIcon(u16 itemId, u8 idx)
 {
-    u8 * ptr = &sItemMenuIconSpriteIds[10];
+    u8 * spriteIds = &sItemMenuIconSpriteIds[10];
     u8 spriteId;
 
-    if (ptr[idx] == 0xFF)
+    if (spriteIds[idx] == 0xFF)
     {
-        FreeSpriteTilesByTag(102 + idx);
-        FreeSpritePaletteByTag(102 + idx);
-        spriteId = AddItemIconObject(102 + idx, 102 + idx, itemId);
+        // Either TAG_ITEM_ICON or TAG_ITEM_ICON_ALT
+        FreeSpriteTilesByTag(TAG_ITEM_ICON + idx);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON + idx);
+        spriteId = AddItemIconObject(TAG_ITEM_ICON + idx, TAG_ITEM_ICON + idx, itemId);
         if (spriteId != MAX_SPRITES)
         {
-            ptr[idx] = spriteId;
+            spriteIds[idx] = spriteId;
             gSprites[spriteId].pos2.x = 24;
             gSprites[spriteId].pos2.y = 140;
         }
@@ -767,12 +783,12 @@ void CreateItemMenuIcon(u16 itemId, u8 idx)
 
 void DestroyItemMenuIcon(u8 idx)
 {
-    u8 * ptr = &sItemMenuIconSpriteIds[10];
+    u8 * spriteIds = &sItemMenuIconSpriteIds[10];
 
-    if (ptr[idx] != 0xFF)
+    if (spriteIds[idx] != 0xFF)
     {
-        DestroySpriteAndFreeResources(&gSprites[ptr[idx]]);
-        ptr[idx] = 0xFF;
+        DestroySpriteAndFreeResources(&gSprites[spriteIds[idx]]);
+        spriteIds[idx] = 0xFF;
     }
 }
 
@@ -783,21 +799,247 @@ const void * GetItemIconGfxPtr(u16 itemId, u8 attrId)
     return sItemIconGfxPtrs[itemId][attrId];
 }
 
-void sub_80989A0(u16 itemId, u8 idx)
+void CreateBerryPouchItemIcon(u16 itemId, u8 idx)
 {
-    u8 * ptr = &sItemMenuIconSpriteIds[10];
+    u8 * spriteIds = &sItemMenuIconSpriteIds[10];
     u8 spriteId;
 
-    if (ptr[idx] == 0xFF)
+    if (spriteIds[idx] == 0xFF)
     {
-        FreeSpriteTilesByTag(102 + idx);
-        FreeSpritePaletteByTag(102 + idx);
-        spriteId = AddItemIconObject(102 + idx, 102 + idx, itemId);
+        // Either TAG_ITEM_ICON or TAG_ITEM_ICON_ALT
+        FreeSpriteTilesByTag(TAG_ITEM_ICON + idx);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON + idx);
+        spriteId = AddItemIconObject(TAG_ITEM_ICON + idx, TAG_ITEM_ICON + idx, itemId);
         if (spriteId != MAX_SPRITES)
         {
-            ptr[idx] = spriteId;
+            spriteIds[idx] = spriteId;
             gSprites[spriteId].pos2.x = 24;
-            gSprites[spriteId].pos2.y = 147;
+            gSprites[spriteId].pos2.y = 147; // This value is the only difference from CreateItemMenuIcon
         }
     }
 }
+
+#ifdef SHOW_OBTAIN_ITEM_DESCRIPTION
+static const union AffineAnimCmd sSpriteAffineAnim_KeyItemTM[] =
+{
+    AFFINEANIMCMD_FRAME(0, 0, 128, 1), //Start rotated left
+    AFFINEANIMCMD_FRAME(16, 16, -8, 16), //Double sprite size + rotate right
+    AFFINEANIMCMD_FRAME(0, 0, -3, 8), //End at right 24
+    AFFINEANIMCMD_FRAME(0, 0, 3, 16), //End at left 24
+    AFFINEANIMCMD_FRAME(0, 0, -3, 16), //End at right 24
+    AFFINEANIMCMD_FRAME(0, 0, 3, 16), //End at left 24
+    AFFINEANIMCMD_FRAME(0, 0, -3, 8), //End at 0
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd* const sSpriteAffineAnimTable_KeyItemTM[] =
+{
+    sSpriteAffineAnim_KeyItemTM,
+};
+
+static u8 ReformatItemDescription(u16 item, u8* dest, u8 maxChars)
+{
+    u8 count = 0, numLines = 1, k = 0;
+    u8 buffer[150];
+    u8 *desc = (u8 *)ItemId_GetDescription(item);
+    u8* lineStart;
+
+    memset(dest, 0xFF, 500);
+
+    lineStart = dest;
+
+    StringExpandPlaceholders(buffer, desc);
+
+    while (buffer[k] != EOS)
+    {
+        if (GetStringWidth(0, lineStart, 0) >= maxChars)
+        {
+            do
+            {
+                dest--;
+                k--;
+            } while (buffer[k] != CHAR_SPACE && buffer[k] != CHAR_NEWLINE);
+
+            if (buffer[k + 1] != EOS)
+            {
+                *dest = CHAR_NEWLINE;
+                numLines++;
+            }
+            count = 0;
+            dest++;
+            k++;
+            lineStart = dest;
+            continue;
+        }
+        *dest = buffer[k];
+
+        if (buffer[k] == CHAR_NEWLINE)
+        {
+            if (buffer[k - 1] != CHAR_SPACE)
+                *dest = CHAR_SPACE;
+            else
+                dest--;
+        }
+        dest++;
+        k++;
+        count++;
+    }
+    *dest = EOS;
+
+    return numLines;
+}
+
+#define ITEM_ICON_X 26
+#define ITEM_ICON_Y 24
+
+#define IS_KEY_ITEM_TM(pocket) ((pocket == POCKET_KEY_ITEMS || pocket == POCKET_TM_CASE))
+
+static u8 ShowObtainedItemDescription(u16 item)
+{
+    struct WindowTemplate template;
+    s16 textX, textY, maxWidth, windowHeight, numLines;
+    u8 buffer[500], windowId;
+
+    if (IS_KEY_ITEM_TM(ItemId_GetPocket(item)))
+    {
+        textX = 1;
+        maxWidth = 222;
+    }
+    else
+    {
+        textX = ITEM_ICON_X + 2;
+        maxWidth = 195;
+    }
+    numLines = ReformatItemDescription(item, buffer, maxWidth);
+
+    if (numLines == 1)
+    {
+        textY = 4;
+        windowHeight = 3;
+    }
+    else if (numLines >= 3)
+    {
+        textY = 0;
+        windowHeight = 5;
+    }
+    else
+    {
+        textY = 0;
+        windowHeight = 4;
+    }
+    template = SetWindowTemplateFields(0, 1, 1, 28, windowHeight, 14, 0x20);
+    windowId = AddWindow(&template);
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    DrawStdFrameWithCustomTileAndPalette(windowId, FALSE, 0x214, 14);
+    PutWindowTilemap(windowId);
+    CopyWindowToVram(windowId, COPYWIN_BOTH);
+    AddTextPrinterParameterized(windowId, 0, buffer, textX, textY, 0, NULL);
+    GetSetItemObtained(item, FLAG_SET_OBTAINED);
+
+    return windowId;
+}
+
+void CreateItemIconOnFindMessage(void)
+{
+    struct Sprite * sprite;
+    u16 reg1 = GetGpuReg(REG_OFFSET_DISPCNT), reg2 = GetGpuReg(REG_OFFSET_WINOUT), itemId = gSpecialVar_0x8009;
+    s16 x, y;
+    u8 spriteId, spriteId2 = MAX_SPRITES, windowId = 0xFF;
+
+    spriteId = AddItemIconObject(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
+
+    if (Overworld_GetFlashLevel())
+    {
+        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
+        SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ);
+
+        spriteId2 = AddItemIconObject(TAG_ITEM_ICON, TAG_ITEM_ICON, itemId);
+    }
+    if (spriteId != MAX_SPRITES)
+    {
+        sprite = &gSprites[spriteId];
+
+        if (IS_KEY_ITEM_TM(ItemId_GetPocket(itemId)))
+        {
+            x = 112;
+            y = 64;
+
+            sprite->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
+            sprite->oam.matrixNum = AllocOamMatrix();
+            sprite->affineAnims = sSpriteAffineAnimTable_KeyItemTM;
+
+            StartSpriteAffineAnim(sprite, 0);
+
+            if (!GetSetItemObtained(itemId, FLAG_GET_OBTAINED))
+                windowId = ShowObtainedItemDescription(itemId);
+        }
+        else
+        {
+            if (GetSetItemObtained(itemId, FLAG_GET_OBTAINED))
+            {
+                x = 213;
+                y = 140;
+            }
+            else
+            {
+                x = ITEM_ICON_X;
+                y = ITEM_ICON_Y;
+
+                windowId = ShowObtainedItemDescription(itemId);
+            }
+        }
+        sprite->pos2.x = x;
+        sprite->pos2.y = y;
+        sprite->oam.priority = 0;
+        sprite->data[0] = windowId;
+        sprite->data[1] = reg1;
+        sprite->data[2] = reg2;
+        sprite->data[3] = spriteId2;
+    }
+    if (spriteId2 != MAX_SPRITES)
+    {
+        sprite = &gSprites[spriteId2];
+
+        sprite->pos2.x = x;
+        sprite->pos2.y = y;
+        sprite->oam.priority = 0;
+        sprite->oam.objMode = ST_OAM_OBJ_WINDOW;
+    }
+    gSpecialVar_0x8009 = spriteId; // save sprite id for use later
+}
+
+void DestroyItemIconOnFindMessage(void)
+{
+    u8 windowId, spriteId2, spriteId = gSpecialVar_0x8009;
+    u16 reg1, reg2;
+    struct Sprite * sprite = &gSprites[spriteId];
+
+    windowId = sprite->data[0];
+    reg1 = sprite->data[1];
+    reg2 = sprite->data[2];
+    spriteId2 = sprite->data[3];
+
+    FreeSpriteTilesByTag(TAG_ITEM_ICON);
+    FreeSpritePaletteByTag(TAG_ITEM_ICON);
+    FreeSpriteOamMatrix(sprite);
+    DestroySprite(sprite);
+
+    if (spriteId2 != MAX_SPRITES)
+    {
+        SetGpuReg(REG_OFFSET_DISPCNT, reg1);
+        SetGpuReg(REG_OFFSET_WINOUT, reg2);
+
+        FreeSpriteTilesByTag(TAG_ITEM_ICON);
+        FreeSpritePaletteByTag(TAG_ITEM_ICON);
+        DestroySprite(&gSprites[spriteId2]);
+    }
+    if (windowId != 0xFF)
+    {
+        ClearDialogWindowAndFrame(windowId, TRUE);
+        RemoveWindow(windowId);
+    }
+}
+#else // SHOW_OBTAIN_ITEM_DESCRIPTION
+void CreateItemIconOnFindMessage(void){}  // nullsub
+void DestroyItemIconOnFindMessage(void){} // nullsub
+#endif // SHOW_OBTAIN_ITEM_DESCRIPTION

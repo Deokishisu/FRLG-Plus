@@ -161,6 +161,8 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1},
 };
 
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
@@ -326,6 +328,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(MASTER_SCIENTIST, gTrainerFrontPic_MasterScientist, 0x800),
     TRAINER_SPRITE(MASTER_YOUNGSTER, gTrainerFrontPic_MasterYoungster, 0x800),
     TRAINER_SPRITE(MASTER_SWIMMER, gTrainerFrontPic_MasterSwimmer, 0x800),
+    TRAINER_SPRITE(ROCKET_EXECUTIVE_F, gTrainerFrontPic_RocketExecutiveF, 0x800),
+    TRAINER_SPRITE(ROCKET_EXECUTIVE_M, gTrainerFrontPic_RocketExecutiveM, 0x800),
 };
 
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
@@ -491,4 +495,6 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(MASTER_SCIENTIST, gTrainerPalette_MasterScientist),
     TRAINER_PAL(MASTER_YOUNGSTER, gTrainerPalette_MasterYoungster),
     TRAINER_PAL(MASTER_SWIMMER, gTrainerPalette_MasterSwimmer),
+    TRAINER_PAL(ROCKET_EXECUTIVE_F, gTrainerPalette_RocketExecutiveF),
+    TRAINER_PAL(ROCKET_EXECUTIVE_M, gTrainerPalette_RocketExecutiveM),
 };

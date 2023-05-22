@@ -20,7 +20,9 @@ enum
 {
     MENUITEM_VERSION = 0,
     MENUITEM_DIFFICULTY,
-    MENUITEM_ADVANCED,
+    MENUITEM_ADVANCED_1,
+    MENUITEM_ADVANCED_2,
+    MENUITEM_RESET,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
 };
@@ -31,9 +33,28 @@ enum
     MENUITEM_IV,
     MENUITEM_EV,
     MENUITEM_NO_PMC,
+    MENUITEM_NO_IH,
     MENUITEM_EXP_MOD,
     MENUITEM_BACK,
     MENUITEM_COUNT2
+};
+
+enum
+{
+    MENUITEM_MAX_EVO = 0,
+    MENUITEM_FORGET_HM,
+    MENUITEM_OW_PSN_DMG,
+    MENUITEM_FLASHBACKS,
+    MENUITEM_LEVEL_CAP,
+    MENUITEM_BACK2,
+    MENUITEM_COUNT3
+};
+
+enum
+{
+    MENUITEM_BACK3 = 0,
+    MENUITEM_RESET_CONFIRM,
+    MENUITEM_COUNT4
 };
 
 // Window Ids
@@ -47,12 +68,14 @@ enum
 struct KeySystemMenu
 {
     /*0x00*/ u16 option[MENUITEM_COUNT];
-             u16 subOption[MENUITEM_COUNT2];
-    /*0x0E*/ u8 cursorPos;
-    /*0x10*/ u8 loadState;
-    /*0x11*/ u8 state;
-    /*0x12*/ u8 loadPaletteState;
-             bool8 inSubMenu;
+             u16 subOption1[MENUITEM_COUNT2];
+             u16 subOption2[MENUITEM_COUNT3];
+             u16 subOption3[MENUITEM_COUNT4];
+    /*0x??*/ u8 cursorPos;
+    /*0x??*/ u8 loadState;
+    /*0x??*/ u8 state;
+    /*0x??*/ u8 loadPaletteState;
+             u8 inSubMenu;
 
 };
 
@@ -143,24 +166,43 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 };
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 0};
-static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
+static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 1, 1, 0};
+static const u16 sKeySystemSubMenu1ItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 4, 0};
+static const u16 sKeySystemSubMenu2ItemCounts[MENUITEM_COUNT3] = {2, 2, 3, 2, 2, 0};
+static const u16 sKeySystemSubMenu3ItemCounts[MENUITEM_COUNT4] = {0, 1};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
     [MENUITEM_VERSION]    = gText_Version,
     [MENUITEM_DIFFICULTY] = gText_Difficulty,
-    [MENUITEM_ADVANCED]   = gText_Advanced,
+    [MENUITEM_ADVANCED_1] = gText_Advanced1,
+    [MENUITEM_ADVANCED_2] = gText_Advanced2,
+    [MENUITEM_RESET]      = gText_ResetSettings,
     [MENUITEM_CANCEL]     = gText_OptionMenuSaveAndExit,
 };
 
-static const u8 *const sKeySystemSubMenuItemsNames[MENUITEM_COUNT2] ={
+static const u8 *const sKeySystemSubMenu1ItemsNames[MENUITEM_COUNT2] ={
     [MENUITEM_NUZLOCKE]   = gText_Nuzlocke,
     [MENUITEM_IV]         = gText_IVCalc,
     [MENUITEM_EV]         = gText_EVCalc,
     [MENUITEM_NO_PMC]     = gText_NoPMC,
+    [MENUITEM_NO_IH]      = gText_NoItemHeals,
     [MENUITEM_EXP_MOD]    = gText_ExpMod,
     [MENUITEM_BACK]       = gText_Back,
+};
+
+static const u8 *const sKeySystemSubMenu2ItemsNames[MENUITEM_COUNT3] ={
+    [MENUITEM_MAX_EVO]        = gText_MaxLvlEvolve,
+    [MENUITEM_FORGET_HM]      = gText_ForgetHM,
+    [MENUITEM_OW_PSN_DMG]     = gText_OwPoisonDamage,
+    [MENUITEM_FLASHBACKS]     = gText_Flashbacks,
+    [MENUITEM_LEVEL_CAP]      = gText_LevelCap,
+    [MENUITEM_BACK2]          = gText_Back,
+};
+
+static const u8 *const sKeySystemSubMenu3ItemsNames[MENUITEM_COUNT4] ={
+    [MENUITEM_BACK3]          = gText_Back,
+    [MENUITEM_RESET_CONFIRM]  = gMenuText_Confirm,
 };
 
 static const u8 *const sVersionOptions[] =
@@ -181,10 +223,16 @@ static const u8 *const sAdvancedOptions[] =
     gText_BattleScenePressA
 };
 
-static const u8 *const sNuzlockeOptions[] =
+static const u8 *const sKeySystemOnOffOptions[] =
 {
-    gText_Nuzlocke_Off,
-    gText_Nuzlocke_On
+    gText_KeySystem_On,
+    gText_KeySystem_Off
+};
+
+static const u8 *const sKeySystemOffOnOptions[] =
+{
+    gText_KeySystem_Off,
+    gText_KeySystem_On
 };
 
 static const u8 *const sIVCalcOptions[] =
@@ -197,7 +245,7 @@ static const u8 *const sIVCalcOptions[] =
 static const u8 *const sEVCalcOptions[] =
 {
     gText_EVCalcStandard,
-	gText_EVCalcZero
+    gText_EVCalcZero
 };
 
 static const u8 *const sExpModOptions[] = 
@@ -208,10 +256,52 @@ static const u8 *const sExpModOptions[] =
     gText_ExpModTwice
 };
 
+static const u8 *const sOwPoisonDamageOptions[] =
+{
+    gText_OwPoisonDamageStandard,
+    gText_OwPoisonDamage1HP,
+    gText_OwPoisonDamageDisabled
+};
+
+static const u8 *const sNoItemHealsOptions[] =
+{
+    gText_NoItemHealsOff,
+    gText_NoItemHealsPlayer,
+    gText_NoItemHealsEnemy,
+    gText_NoItemHealsOn
+};
+
 static const u8 sKeySystemMenuPickSwitchCancelTextColor[] = {TEXT_DYNAMIC_COLOR_6, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY};
 static const u8 sKeySystemMenuTextColor[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_LIGHT_RED, TEXT_COLOR_RED};
 
 // Functions
+static void LoadSavedSettings()
+{
+    sKeySystemMenuPtr->option[MENUITEM_VERSION] = gSaveBlock1Ptr->keyFlags.version;
+    sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY] = gSaveBlock1Ptr->keyFlags.difficulty;
+    sKeySystemMenuPtr->subOption1[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
+    sKeySystemMenuPtr->subOption1[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
+    sKeySystemMenuPtr->subOption1[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
+    sKeySystemMenuPtr->subOption1[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
+    sKeySystemMenuPtr->subOption1[MENUITEM_NO_IH] = gSaveBlock1Ptr->keyFlags.noIH;
+    sKeySystemMenuPtr->subOption1[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
+    sKeySystemMenuPtr->subOption2[MENUITEM_MAX_EVO] = gSaveBlock1Ptr->keyFlags.maxLvlEvolve;
+    sKeySystemMenuPtr->subOption2[MENUITEM_FORGET_HM] = gSaveBlock1Ptr->keyFlags.forgetHM;
+    sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG] = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
+    sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS] = gSaveBlock1Ptr->keyFlags.noFlashbacks;
+    sKeySystemMenuPtr->subOption2[MENUITEM_LEVEL_CAP] = gSaveBlock1Ptr->keyFlags.levelCap;
+}
+
+static void ResetKeySettings()
+{
+    bool8 calcChanged = (gSaveBlock1Ptr->keyFlags.changedCalcMode || gSaveBlock1Ptr->keyFlags.ivCalcMode != 0 || gSaveBlock1Ptr->keyFlags.evCalcMode != 0);
+    memset(&gSaveBlock1Ptr->keyFlags, 0, sizeof(gSaveBlock1Ptr->keyFlags));
+    gSaveBlock1Ptr->keyFlags.expMod = 2; // normal exp
+    gSaveBlock1Ptr->keyFlags.changedCalcMode = calcChanged; //iv or ev calc mode changed, recalculate party stats on saveload.
+    gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
+    LoadSavedSettings();
+}
+
 static void CB2_InitKeySystemMenu(void)
 {
     RunTasks();
@@ -238,14 +328,11 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->state = 0;
     sKeySystemMenuPtr->cursorPos = 0;
     sKeySystemMenuPtr->inSubMenu = 0;
-    sKeySystemMenuPtr->option[MENUITEM_VERSION] = gSaveBlock1Ptr->keyFlags.version;
-    sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY] = gSaveBlock1Ptr->keyFlags.difficulty;
-    sKeySystemMenuPtr->option[MENUITEM_ADVANCED] = 0;
-    sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
-    sKeySystemMenuPtr->subOption[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
-    sKeySystemMenuPtr->subOption[MENUITEM_EV] = gSaveBlock1Ptr->keyFlags.evCalcMode;
-    sKeySystemMenuPtr->subOption[MENUITEM_NO_PMC] = gSaveBlock1Ptr->keyFlags.noPMC;
-    sKeySystemMenuPtr->subOption[MENUITEM_EXP_MOD] = gSaveBlock1Ptr->keyFlags.expMod;
+    sKeySystemMenuPtr->option[MENUITEM_ADVANCED_1] = 0;
+    sKeySystemMenuPtr->option[MENUITEM_ADVANCED_2] = 0;
+    sKeySystemMenuPtr->option[MENUITEM_RESET] = 0;
+    sKeySystemMenuPtr->subOption3[MENUITEM_RESET_CONFIRM] = 0;
+    LoadSavedSettings();
     if(gSaveBlock1Ptr->keyFlags.changedCalcMode != 1)
         gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 1;
@@ -257,8 +344,18 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     }
     for (i = 0; i < MENUITEM_COUNT2 - 1; i++)
     {
-        if (sKeySystemMenuPtr->subOption[i] > (sKeySystemSubMenuItemCounts[i]) - 1)
-            sKeySystemMenuPtr->subOption[i] = 0;
+        if (sKeySystemMenuPtr->subOption1[i] > (sKeySystemSubMenu1ItemCounts[i]) - 1)
+            sKeySystemMenuPtr->subOption1[i] = 0;
+    }
+    for (i = 0; i < MENUITEM_COUNT3 - 1; i++)
+    {
+        if (sKeySystemMenuPtr->subOption2[i] > (sKeySystemSubMenu2ItemCounts[i]) - 1)
+            sKeySystemMenuPtr->subOption2[i] = 0;
+    }
+    for (i = 0; i < MENUITEM_COUNT4 - 1; i++)
+    {
+        if (sKeySystemMenuPtr->subOption3[i] > (sKeySystemSubMenu3ItemCounts[i]) - 1)
+            sKeySystemMenuPtr->subOption3[i] = 0;
     }
     SetHelpContext(HELPCONTEXT_KEY_SYSTEM);
     SetMainCallback2(CB2_KeySystemMenu);
@@ -304,14 +401,24 @@ static void CB2_KeySystemMenu(void)
         LoadKeySystemMenuItemNames();
         break;
     case 7:
-        if(!sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu == 0)
         {
             for (i = 0; i < MENUITEM_COUNT; i++)
                 BufferKeySystemMenuString(i);
         }
-        else
+        else if(sKeySystemMenuPtr->inSubMenu == 1)
         {
             for (i = 0; i < MENUITEM_COUNT2; i++)
+                BufferKeySystemMenuString(i);
+        }
+        else if(sKeySystemMenuPtr->inSubMenu == 2)
+        {
+            for (i = 0; i < MENUITEM_COUNT3; i++)
+                BufferKeySystemMenuString(i);
+        }
+        else
+        {
+            for (i = 0; i < MENUITEM_COUNT4; i++)
                 BufferKeySystemMenuString(i);
         }
         break;
@@ -323,7 +430,7 @@ static void CB2_KeySystemMenu(void)
         break;
     default:
         SetKeySystemMenuTask();
-		break;
+        break;
     }
     sKeySystemMenuPtr->state++;
 }
@@ -369,7 +476,9 @@ static void KeySystemMenu_PickSwitchCancel(void)
     FillWindowPixelBuffer(2, PIXEL_FILL(15)); 
     if(!sKeySystemMenuPtr->inSubMenu)
     {
-        if(sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED)
+        if(sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED_1 ||
+           sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED_2 ||
+           sKeySystemMenuPtr->cursorPos == MENUITEM_RESET)
         {
             x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancelA, 0);
             AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancelA);
@@ -383,6 +492,19 @@ static void KeySystemMenu_PickSwitchCancel(void)
         {
             x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancel, 0);
             AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancel);
+        }
+    }
+    else if(sKeySystemMenuPtr->inSubMenu == 3)
+    {
+        if (sKeySystemMenuPtr->cursorPos == MENUITEM_RESET_CONFIRM)
+        {
+            x = 0xE4 - GetStringWidth(0, gText_PickBackA, 0);
+            AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickBackA);
+        }
+        else
+        {
+            x = 0xE4 - GetStringWidth(0, gText_PickBack, 0);
+            AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickBack);
         }
     }
     else
@@ -463,25 +585,50 @@ static void Task_KeySystemMenu(u8 taskId)
             BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
             break;
         case 6:
-            if(!sKeySystemMenuPtr->inSubMenu)
+            if(sKeySystemMenuPtr->inSubMenu == 0)
             {
-                sKeySystemMenuPtr->inSubMenu = TRUE;
+                if (sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED_1)
+                {
+                    sKeySystemMenuPtr->inSubMenu = 1;
+                    SetHelpContext(HELPCONTEXT_KEY_SYSTEM_SUBMENU_1);
+                }
+                else if (sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED_2)
+                {
+                    sKeySystemMenuPtr->inSubMenu = 2;
+                    SetHelpContext(HELPCONTEXT_KEY_SYSTEM_SUBMENU_2);
+                }
+                else
+                {
+                    sKeySystemMenuPtr->inSubMenu = 3;
+                    SetHelpContext(HELPCONTEXT_KEY_SYSTEM_SUBMENU_3);
+                }
                 PrintKeySystemMenuHeader();
                 sKeySystemMenuPtr->state = 6;
                 sKeySystemMenuPtr->loadState = 1;
                 sKeySystemMenuPtr->cursorPos = 0;
-                SetHelpContext(HELPCONTEXT_KEY_SYSTEM_SUBMENU);
                 DestroyTask(taskId);
                 SetMainCallback2(CB2_KeySystemMenu);
                 break;
             }
             else
             {
-                sKeySystemMenuPtr->inSubMenu = FALSE;
+                if (sKeySystemMenuPtr->inSubMenu == 1)
+                {
+                    sKeySystemMenuPtr->cursorPos = MENUITEM_ADVANCED_1;
+                }
+                else if (sKeySystemMenuPtr->inSubMenu == 2)
+                {
+                    sKeySystemMenuPtr->cursorPos = MENUITEM_ADVANCED_2;
+                }
+                else
+                {
+                    sKeySystemMenuPtr->cursorPos = MENUITEM_RESET;
+                }
+                sKeySystemMenuPtr->inSubMenu = 0;
                 PrintKeySystemMenuHeader();
                 sKeySystemMenuPtr->state = 6;
                 sKeySystemMenuPtr->loadState = 1;
-                sKeySystemMenuPtr->cursorPos = MENUITEM_ADVANCED;
+                
                 SetHelpContext(HELPCONTEXT_KEY_SYSTEM);
                 DestroyTask(taskId);
                 SetMainCallback2(CB2_KeySystemMenu);
@@ -511,7 +658,7 @@ static u8 KeySystemMenu_ProcessInput(void)
 
     if (JOY_REPT(DPAD_RIGHT))
     {
-        if(!sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu == 0)
         {        
             current = sKeySystemMenuPtr->option[(sKeySystemMenuPtr->cursorPos)];
             if (current == (sKeySystemMenuItemCounts[sKeySystemMenuPtr->cursorPos] - 1))
@@ -520,19 +667,37 @@ static u8 KeySystemMenu_ProcessInput(void)
                 sKeySystemMenuPtr->option[sKeySystemMenuPtr->cursorPos] = current + 1;
             return 4;
         }
+        else if(sKeySystemMenuPtr->inSubMenu == 1)
+        {
+            current = sKeySystemMenuPtr->subOption1[(sKeySystemMenuPtr->cursorPos)];
+            if (current == (sKeySystemSubMenu1ItemCounts[sKeySystemMenuPtr->cursorPos] - 1))
+                sKeySystemMenuPtr->subOption1[sKeySystemMenuPtr->cursorPos] = 0;
+            else
+                sKeySystemMenuPtr->subOption1[sKeySystemMenuPtr->cursorPos] = current + 1;
+            return 4;
+        }
+        else if(sKeySystemMenuPtr->inSubMenu == 2)
+        {
+            current = sKeySystemMenuPtr->subOption2[(sKeySystemMenuPtr->cursorPos)];
+            if (current == (sKeySystemSubMenu2ItemCounts[sKeySystemMenuPtr->cursorPos] - 1))
+                sKeySystemMenuPtr->subOption2[sKeySystemMenuPtr->cursorPos] = 0;
+            else
+                sKeySystemMenuPtr->subOption2[sKeySystemMenuPtr->cursorPos] = current + 1;
+            return 4;
+        }
         else
         {
-            current = sKeySystemMenuPtr->subOption[(sKeySystemMenuPtr->cursorPos)];
-            if (current == (sKeySystemSubMenuItemCounts[sKeySystemMenuPtr->cursorPos] - 1))
-                sKeySystemMenuPtr->subOption[sKeySystemMenuPtr->cursorPos] = 0;
+            current = sKeySystemMenuPtr->subOption3[(sKeySystemMenuPtr->cursorPos)];
+            if (current == (sKeySystemSubMenu3ItemCounts[sKeySystemMenuPtr->cursorPos] - 1))
+                sKeySystemMenuPtr->subOption3[sKeySystemMenuPtr->cursorPos] = 0;
             else
-                sKeySystemMenuPtr->subOption[sKeySystemMenuPtr->cursorPos] = current + 1;
+                sKeySystemMenuPtr->subOption3[sKeySystemMenuPtr->cursorPos] = current + 1;
             return 4;
         }
     }
     else if (JOY_REPT(DPAD_LEFT))
     {
-        if(!sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu == 0)
         {
             curr = &sKeySystemMenuPtr->option[sKeySystemMenuPtr->cursorPos];
             if (*curr == 0)
@@ -541,11 +706,29 @@ static u8 KeySystemMenu_ProcessInput(void)
                 --*curr;
             return 4;
         }
+        else if(sKeySystemMenuPtr->inSubMenu == 1)
+        {
+            curr = &sKeySystemMenuPtr->subOption1[sKeySystemMenuPtr->cursorPos];
+            if (*curr == 0)
+                *curr = sKeySystemSubMenu1ItemCounts[sKeySystemMenuPtr->cursorPos] - 1;
+            else
+                --*curr;
+            return 4;
+        }
+        else if(sKeySystemMenuPtr->inSubMenu == 2)
+        {
+            curr = &sKeySystemMenuPtr->subOption2[sKeySystemMenuPtr->cursorPos];
+            if (*curr == 0)
+                *curr = sKeySystemSubMenu2ItemCounts[sKeySystemMenuPtr->cursorPos] - 1;
+            else
+                --*curr;
+            return 4;
+        }
         else
         {
-            curr = &sKeySystemMenuPtr->subOption[sKeySystemMenuPtr->cursorPos];
+            curr = &sKeySystemMenuPtr->subOption3[sKeySystemMenuPtr->cursorPos];
             if (*curr == 0)
-                *curr = sKeySystemSubMenuItemCounts[sKeySystemMenuPtr->cursorPos] - 1;
+                *curr = sKeySystemSubMenu3ItemCounts[sKeySystemMenuPtr->cursorPos] - 1;
             else
                 --*curr;
             return 4;
@@ -553,17 +736,31 @@ static u8 KeySystemMenu_ProcessInput(void)
     }
     else if (JOY_REPT(DPAD_UP))
     {
-        if(!sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu == 0)
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_VERSION)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_CANCEL;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
         }
-        else
+        else if(sKeySystemMenuPtr->inSubMenu == 1)
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_NUZLOCKE)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_BACK;
+            else
+                sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
+        }
+        else if(sKeySystemMenuPtr->inSubMenu == 2)
+        {
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_MAX_EVO)
+                sKeySystemMenuPtr->cursorPos = MENUITEM_BACK2;
+            else
+                sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
+        }
+        else
+        {
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_BACK3)
+                sKeySystemMenuPtr->cursorPos = MENUITEM_RESET_CONFIRM;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
         }
@@ -572,17 +769,31 @@ static u8 KeySystemMenu_ProcessInput(void)
     }
     else if (JOY_REPT(DPAD_DOWN))
     {
-        if(!sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu == 0)
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_CANCEL)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_VERSION;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
         }
-        else
+        else if(sKeySystemMenuPtr->inSubMenu == 1)
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_BACK)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_NUZLOCKE;
+            else
+                sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
+        }
+        else if(sKeySystemMenuPtr->inSubMenu == 2)
+        {
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_BACK2)
+                sKeySystemMenuPtr->cursorPos = MENUITEM_MAX_EVO;
+            else
+                sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
+        }
+        else
+        {
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_RESET_CONFIRM)
+                sKeySystemMenuPtr->cursorPos = MENUITEM_BACK3;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
         }
@@ -591,22 +802,40 @@ static u8 KeySystemMenu_ProcessInput(void)
     }
     else if (JOY_NEW(A_BUTTON))
     {
-        if(!sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu == 0)
         {
-            if(sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED)
+            if(sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED_1 ||
+               sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED_2 ||
+               sKeySystemMenuPtr->cursorPos == MENUITEM_RESET)
                 return 6;
             if(sKeySystemMenuPtr->cursorPos == MENUITEM_CANCEL)
+            {
+                PlaySE(5);
                 return 1;
+            }
+        }
+        else if(sKeySystemMenuPtr->inSubMenu == 3)
+        {
+            if(sKeySystemMenuPtr->cursorPos == MENUITEM_RESET_CONFIRM)
+            {
+                PlaySE(5);
+                ResetKeySettings();
+            }
+
+            return 6;
         }
         else
             return 6;
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        if(sKeySystemMenuPtr->inSubMenu)
+        if(sKeySystemMenuPtr->inSubMenu != 0)
             return 6;
         else
+        {
+            PlaySE(5);
             return 1;
+        }
     }
     else
     {
@@ -626,7 +855,7 @@ static void BufferKeySystemMenuString(u8 selection)
     y = ((GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT) - 1) * selection) + 2;
     FillWindowPixelRect(1, 1, x, y, 0x6F, GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT));
 
-    if(!sKeySystemMenuPtr->inSubMenu)
+    if(sKeySystemMenuPtr->inSubMenu == 0)
     {
         switch (selection)
         {
@@ -636,8 +865,63 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_DIFFICULTY:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sDifficultyOptions[sKeySystemMenuPtr->option[selection]]);
                 break;
-            case MENUITEM_ADVANCED:
+            case MENUITEM_ADVANCED_1:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sAdvancedOptions[sKeySystemMenuPtr->option[selection]]);
+                break;
+            case MENUITEM_ADVANCED_2:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sAdvancedOptions[sKeySystemMenuPtr->option[selection]]);
+                break;
+            case MENUITEM_RESET:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sAdvancedOptions[sKeySystemMenuPtr->option[selection]]);
+                break;
+            default:
+                break;
+        }
+    }
+    else if(sKeySystemMenuPtr->inSubMenu == 1)
+    {
+        switch (selection)
+        {
+            case MENUITEM_NUZLOCKE:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
+            case MENUITEM_IV:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sIVCalcOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
+            case MENUITEM_EV:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sEVCalcOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
+            case MENUITEM_NO_PMC:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
+            case MENUITEM_NO_IH:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNoItemHealsOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
+            case MENUITEM_EXP_MOD:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpModOptions[sKeySystemMenuPtr->subOption1[selection]]);
+                break;
+            default:
+                break;
+        }
+    }
+    else if(sKeySystemMenuPtr->inSubMenu == 2)
+    {
+        switch (selection)
+        {
+            case MENUITEM_MAX_EVO:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
+                break;
+            case MENUITEM_FORGET_HM:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
+                break;
+            case MENUITEM_OW_PSN_DMG:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sOwPoisonDamageOptions[sKeySystemMenuPtr->subOption2[selection]]);
+                break;
+            case MENUITEM_FLASHBACKS:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOnOffOptions[sKeySystemMenuPtr->subOption2[selection]]);
+                break;
+            case MENUITEM_LEVEL_CAP:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
                 break;
             default:
                 break;
@@ -647,20 +931,8 @@ static void BufferKeySystemMenuString(u8 selection)
     {
         switch (selection)
         {
-            case MENUITEM_NUZLOCKE:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNuzlockeOptions[sKeySystemMenuPtr->subOption[selection]]);
-                break;
-            case MENUITEM_IV:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sIVCalcOptions[sKeySystemMenuPtr->subOption[selection]]);
-                break;
-            case MENUITEM_EV:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sEVCalcOptions[sKeySystemMenuPtr->subOption[selection]]);
-                break;
-            case MENUITEM_NO_PMC:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sNuzlockeOptions[sKeySystemMenuPtr->subOption[selection]]);
-                break;
-            case MENUITEM_EXP_MOD:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpModOptions[sKeySystemMenuPtr->subOption[selection]]);
+            case MENUITEM_RESET_CONFIRM:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sAdvancedOptions[sKeySystemMenuPtr->subOption3[selection]]);
                 break;
             default:
                 break;
@@ -677,15 +949,21 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     FreeAllWindowBuffers();
     gSaveBlock1Ptr->keyFlags.version = sKeySystemMenuPtr->option[MENUITEM_VERSION];
     gSaveBlock1Ptr->keyFlags.difficulty = sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY];
-    gSaveBlock1Ptr->keyFlags.nuzlocke = sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE];
-    if(gSaveBlock1Ptr->keyFlags.ivCalcMode != sKeySystemMenuPtr->subOption[MENUITEM_IV] || gSaveBlock1Ptr->keyFlags.evCalcMode != sKeySystemMenuPtr->subOption[MENUITEM_EV])
+    gSaveBlock1Ptr->keyFlags.nuzlocke = sKeySystemMenuPtr->subOption1[MENUITEM_NUZLOCKE];
+    if(gSaveBlock1Ptr->keyFlags.ivCalcMode != sKeySystemMenuPtr->subOption1[MENUITEM_IV] || gSaveBlock1Ptr->keyFlags.evCalcMode != sKeySystemMenuPtr->subOption1[MENUITEM_EV])
     {
         gSaveBlock1Ptr->keyFlags.changedCalcMode = 1; //iv or ev calc mode changed, recalculate party stats on saveload.
     }
-    gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->subOption[MENUITEM_IV];
-    gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->subOption[MENUITEM_EV];
-    gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->subOption[MENUITEM_NO_PMC];
-    gSaveBlock1Ptr->keyFlags.expMod = sKeySystemMenuPtr->subOption[MENUITEM_EXP_MOD];
+    gSaveBlock1Ptr->keyFlags.ivCalcMode = sKeySystemMenuPtr->subOption1[MENUITEM_IV];
+    gSaveBlock1Ptr->keyFlags.evCalcMode = sKeySystemMenuPtr->subOption1[MENUITEM_EV];
+    gSaveBlock1Ptr->keyFlags.noPMC = sKeySystemMenuPtr->subOption1[MENUITEM_NO_PMC];
+    gSaveBlock1Ptr->keyFlags.noIH = sKeySystemMenuPtr->subOption1[MENUITEM_NO_IH];
+    gSaveBlock1Ptr->keyFlags.expMod = sKeySystemMenuPtr->subOption1[MENUITEM_EXP_MOD];
+    gSaveBlock1Ptr->keyFlags.maxLvlEvolve = sKeySystemMenuPtr->subOption2[MENUITEM_MAX_EVO];
+    gSaveBlock1Ptr->keyFlags.forgetHM = sKeySystemMenuPtr->subOption2[MENUITEM_FORGET_HM];
+    gSaveBlock1Ptr->keyFlags.owPoisonDmg = sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG];
+    gSaveBlock1Ptr->keyFlags.noFlashbacks = sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS];
+    gSaveBlock1Ptr->keyFlags.levelCap = sKeySystemMenuPtr->subOption2[MENUITEM_LEVEL_CAP];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);
     DestroyTask(taskId);
@@ -694,10 +972,14 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
 static void PrintKeySystemMenuHeader(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    if(!sKeySystemMenuPtr->inSubMenu)
+    if(sKeySystemMenuPtr->inSubMenu == 0)
         AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_KeySystemSettings, 8, 1, TEXT_SPEED_FF, NULL);
+    else if(sKeySystemMenuPtr->inSubMenu == 1)
+        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_Advanced1, 8, 1, TEXT_SPEED_FF, NULL);
+    else if(sKeySystemMenuPtr->inSubMenu == 2)
+        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_Advanced2, 8, 1, TEXT_SPEED_FF, NULL);
     else
-        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_Advanced, 8, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_ResetSettings, 8, 1, TEXT_SPEED_FF, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, COPYWIN_BOTH);
 }
@@ -731,18 +1013,32 @@ static void LoadKeySystemMenuItemNames(void)
     u32 i;
     
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    if(!sKeySystemMenuPtr->inSubMenu)
+    if(sKeySystemMenuPtr->inSubMenu == 0)
     {
         for (i = 0; i < MENUITEM_COUNT; i++)
         {
-            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
+        }
+    }
+    else if(sKeySystemMenuPtr->inSubMenu == 1)
+    {
+        for (i = 0; i < MENUITEM_COUNT2; i++)
+        {
+            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i + MENUITEM_COUNT], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
+        }
+    }
+    else if(sKeySystemMenuPtr->inSubMenu == 2)
+    {
+        for (i = 0; i < MENUITEM_COUNT3; i++)
+        {
+            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i + MENUITEM_COUNT + MENUITEM_COUNT2], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
         }
     }
     else
     {
-        for (i = 0; i < MENUITEM_COUNT2; i++)
+        for (i = 0; i < MENUITEM_COUNT4; i++)
         {
-            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i + MENUITEM_COUNT], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i + MENUITEM_COUNT + MENUITEM_COUNT2 + MENUITEM_COUNT3], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);
         }
     }
 }

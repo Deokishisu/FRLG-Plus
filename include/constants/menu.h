@@ -88,6 +88,7 @@
 #define MULTICHOICE_SOUTHERN_BIRTH_NAVEL                       81
 #define MULTICHOICE_SOUTHERN_BIRTH_NAVEL_FARAWAY               82
 #define MULTICHOICE_MASTER_YOUNGSTER                           83
+#define MULTICHOICE_EEVEELUTIONS2                              84
 
 
 #define LISTMENU_BADGES                    0

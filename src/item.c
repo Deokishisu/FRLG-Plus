@@ -898,3 +898,23 @@ bool8 CheckAssetsForSoftlock(void)
     }
     return TRUE;
 }
+#ifdef SHOW_OBTAIN_ITEM_DESCRIPTION
+bool8 GetSetItemObtained(u16 item, u8 caseId)
+{
+    u8 index, bit, mask;
+
+    index = item / 8;
+    bit = item % 8;
+    mask = 1 << bit;
+
+    switch (caseId)
+    {
+        case FLAG_GET_OBTAINED:
+            return gSaveBlock2Ptr->itemsObtained[index] & mask;
+        case FLAG_SET_OBTAINED:
+            gSaveBlock2Ptr->itemsObtained[index] |= mask;
+            return TRUE;
+    }
+    return FALSE;
+}
+#endif // SHOW_OBTAIN_ITEM_DESCRIPTION

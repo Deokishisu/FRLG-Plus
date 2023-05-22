@@ -565,6 +565,9 @@ static bool8 ShouldUseItem(void)
     u8 validMons = 0;
     bool8 shouldUse = FALSE;
 
+    if (gSaveBlock1Ptr->keyFlags.noIH == 2 || gSaveBlock1Ptr->keyFlags.noIH == 3)
+        return FALSE;
+
     for (i = 0; i < PARTY_SIZE; ++i)
         if (GetMonData(&gEnemyParty[i], MON_DATA_HP) != 0
          && GetMonData(&gEnemyParty[i], MON_DATA_SPECIES2) != SPECIES_NONE

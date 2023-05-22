@@ -13,8 +13,9 @@ EventScript_NameReceivedBoxMon:: @ 81A8C33
 	return
 
 EventScript_TransferredToPC:: @ 81A8C3C
-	bufferboxname 0, VAR_PC_BOX_TO_SEND_MON
 	getspeciesname 1, VAR_TEMP_1
+	call Common_EventScript_CheckMonHasItem
+	bufferboxname 0, VAR_PC_BOX_TO_SEND_MON
 	call_if_unset FLAG_SYS_NOT_SOMEONES_PC, EventScript_TransferredSomeonesPC
 	call_if_set FLAG_SYS_NOT_SOMEONES_PC, EventScript_TransferredBillsPC
 	return
@@ -43,4 +44,21 @@ EventScript_TransferredBillsPCBoxFull:: @ 81A8C9B
 	specialvar VAR_RESULT, GetPCBoxToSendMon
 	bufferboxname 2, VAR_RESULT
 	msgbox Text_MonSentToBoxBillsBoxFull
+	return
+
+Common_EventScript_CheckMonHasItem::
+	specialvar VAR_RESULT, DoesGiftMonHaveItem
+	compare VAR_RESULT, TRUE
+	goto_if_eq Common_EventScript_AskToTakeItem
+	return
+
+Common_EventScript_AskToTakeItem::
+	msgbox gText_TakeItemCaptured, MSGBOX_YESNO
+	compare VAR_RESULT, TRUE
+	goto_if_eq Common_EventScript_TakeCaughtMonItem
+	return
+
+Common_EventScript_TakeCaughtMonItem::
+	special PutGiftMonItemInBag
+	msgbox gText_ItemTaken, MSGBOX_DEFAULT
 	return

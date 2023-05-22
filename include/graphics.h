@@ -2604,6 +2604,8 @@ extern const u32 gTrainerFrontPic_MasterPsychicM[];
 extern const u32 gTrainerFrontPic_MasterScientist[];
 extern const u32 gTrainerFrontPic_MasterYoungster[];
 extern const u32 gTrainerFrontPic_MasterSwimmer[];
+extern const u32 gTrainerFrontPic_RocketExecutiveF[];
+extern const u32 gTrainerFrontPic_RocketExecutiveM[];
 
 extern const u32 gTrainerPalette_AquaLeaderArchie[];
 extern const u32 gTrainerPalette_AquaGruntM[];
@@ -2770,6 +2772,8 @@ extern const u32 gTrainerPalette_MasterPsychicM[];
 extern const u32 gTrainerPalette_MasterScientist[];
 extern const u32 gTrainerPalette_MasterYoungster[];
 extern const u32 gTrainerPalette_MasterSwimmer[];
+extern const u32 gTrainerPalette_RocketExecutiveF[];
+extern const u32 gTrainerPalette_RocketExecutiveM[];
 
 extern const u8 gFireRedMenuElements_Gfx[];
 extern const u16 gFireRedMenuElements1_Pal[];
@@ -2892,15 +2896,15 @@ extern const u16 gFameCheckerBg3Tilemap[0x400];
 extern const u16 gFameCheckerBg2Tilemap[0x400];
 
 // tm_case
-extern const u32 gUnknown_8E845D8[];
-extern const u32 gUnknown_8E84A24[];
-extern const u32 gUnknown_8E84B70[];
-extern const u32 gUnknown_8E84CB0[];
-extern const u32 gUnknown_8E84D20[];
-extern const u32 gTMCase_TMSpriteGfx[];
-extern const u32 gUnknown_8E84F20[];
-extern const u32 gUnknown_8E85068[];
-extern const u8 gUnknown_8E99118[];
+extern const u32 gTMCase_Gfx[];
+extern const u32 gTMCaseMenu_Tilemap[];
+extern const u32 gTMCase_Tilemap[];
+extern const u32 gTMCaseMenu_Male_Pal[];
+extern const u32 gTMCaseMenu_Female_Pal[];
+extern const u32 gTMCaseDisc_Gfx[];
+extern const u32 gTMCaseDiscTypes1_Pal[];
+extern const u32 gTMCaseDiscTypes2_Pal[];
+extern const u8 gTMCaseHM_Gfx[];
 extern const u16 gTMCaseMainWindowPalette[];
 
 // egg_hatch
