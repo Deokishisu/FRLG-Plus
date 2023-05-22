@@ -30,7 +30,7 @@
 #define SHOW_OBTAIN_ITEM_DESCRIPTION
 
 // Allow choosing a mon which is already out in battle
-#define BATTLE_CAN_CHOOSE_CURRENT_MON
+//#define BATTLE_CAN_CHOOSE_CURRENT_MON
 
 // Allow moving held items between mons in party
 #define MOVE_HELD_ITEMS_BETWEEN_MONS

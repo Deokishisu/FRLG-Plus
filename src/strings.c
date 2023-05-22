@@ -1287,7 +1287,6 @@ const u8 gText_OwPoisonDamageStandard[] = _("STANDARD");
 const u8 gText_OwPoisonDamage1HP[] = _("1HP");
 const u8 gText_OwPoisonDamageDisabled[] = _("DISABLED");
 const u8 gText_Flashbacks[] = _("FLASHBACKS");
-const u8 gText_AbilityPopup[] = _("SHOW ABILITIES");
 const u8 gText_NoItemHeals[] = _("NO ITEM HEALS");
 const u8 gText_NoItemHealsOff[] = _("OFF");
 const u8 gText_NoItemHealsPlayer[] = _("PLAYER");

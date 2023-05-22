@@ -2166,14 +2166,6 @@ Help_Text_DefineFlashbacks::
 	.string "journey flashbacks when loading a\l"
 	.string "saved game.$"
 
-Help_Text_AbilityPopup::
-	.string "SHOW ABILITIES$"
-
-Help_Text_DefineAbilityPopup::
-	.string "Set this option to ON to reveal\n"
-	.string "POKéMON's ABILITIES at the beginning\l"
-	.string "of battle.$"
-
 Help_Text_NoItemHeals::
 	.string "NO ITEM HEALS$"
 

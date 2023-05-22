@@ -1667,7 +1667,6 @@ extern const u8 gText_OwPoisonDamageStandard[];
 extern const u8 gText_OwPoisonDamage1HP[];
 extern const u8 gText_OwPoisonDamageDisabled[];
 extern const u8 gText_Flashbacks[];
-extern const u8 gText_AbilityPopup[];
 extern const u8 gText_NoItemHeals[];
 extern const u8 gText_NoItemHealsOff[];
 extern const u8 gText_NoItemHealsPlayer[];

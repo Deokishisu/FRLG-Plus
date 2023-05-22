@@ -234,7 +234,6 @@ extern const u8 BattleScript_SilphScopeUnveiled[];
 extern const u8 BattleScript_BattleTowerTrainerBattleWon[];
 extern const u8 BattleScript_PickedUpItem[];
 extern const u8 BattleScript_PickedUpItemSolo[];
-extern const u8 BattleScript_AnimPopUpBoxScript[];
 
 extern const u8 *const gBattleScriptsForMoveEffects[];
 extern const u8 *const gBattlescriptsForBallThrow[];

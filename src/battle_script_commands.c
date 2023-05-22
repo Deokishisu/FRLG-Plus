@@ -307,9 +307,8 @@ static void atkF4_subattackerhpbydmg(void);
 static void atkF5_removeattackerstatus1(void);
 static void atkF6_finishaction(void);
 static void atkF7_finishturn(void);
-static void atkF8_loadabilitypopup(void);
-static void atkF9_checkcaughtmonhasitem(void);
-static void atkFA_trytakecaughtmonitem(void);
+static void atkF8_checkcaughtmonhasitem(void);
+static void atkF9_trytakecaughtmonitem(void);
 
 void (* const gBattleScriptingCommandsTable[])(void) =
 {
@@ -561,9 +560,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     atkF5_removeattackerstatus1,
     atkF6_finishaction,
     atkF7_finishturn,
-    atkF8_loadabilitypopup,
-    atkF9_checkcaughtmonhasitem,
-    atkFA_trytakecaughtmonitem,
+    atkF8_checkcaughtmonhasitem,
+    atkF9_trytakecaughtmonitem,
 };
 
 struct StatFractions
@@ -9574,28 +9572,7 @@ static void atkF7_finishturn(void)
     gCurrentTurnActionNumber = gBattlersCount;
 }
 
-static void atkF8_loadabilitypopup(void)
-{
-    u8 animId;
-    const u16 *argumentPtr = NULL;
-
-    gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[2]);
-
-    if (gSaveBlock1Ptr->keyFlags.abilityPopup && !(gBattleTypeFlags & BATTLE_TYPE_LINK))
-    {
-        if (gBattlescriptCurrInstr[1] != REMOVE_POP_UP)
-            animId = B_ANIM_LOAD_ABILITY_POP_UP;
-        else
-            animId = B_ANIM_REMOVE_ABILITY_POP_UP;
-
-        BtlController_EmitBattleAnimation(0, animId, *argumentPtr);
-        MarkBattlerForControllerExec(gActiveBattler);
-    }
-
-    gBattlescriptCurrInstr += 5;
-}
-
-static void atkF9_checkcaughtmonhasitem(void)
+static void atkF8_checkcaughtmonhasitem(void)
 {
     u16 itemId = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerAttacker ^ BIT_SIDE]], MON_DATA_HELD_ITEM);
     if (itemId != ITEM_NONE && CheckBagHasSpace(itemId, 1))
@@ -9609,7 +9586,7 @@ static void atkF9_checkcaughtmonhasitem(void)
     }
 }
 
-static void atkFA_trytakecaughtmonitem(void)
+static void atkF9_trytakecaughtmonitem(void)
 {
     u16 itemId;
     switch (gBattleCommunication[MULTIUSE_STATE])

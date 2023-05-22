@@ -1170,8 +1170,6 @@ extern const u8 Help_Text_OwPoisonDamage[];
 extern const u8 Help_Text_DefineOwPoisonDamage[];
 extern const u8 Help_Text_Flashbacks[];
 extern const u8 Help_Text_DefineFlashbacks[];
-extern const u8 Help_Text_AbilityPopup[];
-extern const u8 Help_Text_DefineAbilityPopup[];
 extern const u8 Help_Text_NoItemHeals[];
 extern const u8 Help_Text_DefineNoItemHeals[];
 extern const u8 Help_Text_LevelCap[];

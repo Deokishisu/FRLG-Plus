@@ -45,7 +45,6 @@ enum
     MENUITEM_FORGET_HM,
     MENUITEM_OW_PSN_DMG,
     MENUITEM_FLASHBACKS,
-    MENUITEM_ABILITY_POPUP,
     MENUITEM_LEVEL_CAP,
     MENUITEM_BACK2,
     MENUITEM_COUNT3
@@ -169,7 +168,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
 static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 1, 1, 0};
 static const u16 sKeySystemSubMenu1ItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 4, 0};
-static const u16 sKeySystemSubMenu2ItemCounts[MENUITEM_COUNT3] = {2, 2, 3, 2, 2, 2, 0};
+static const u16 sKeySystemSubMenu2ItemCounts[MENUITEM_COUNT3] = {2, 2, 3, 2, 2, 0};
 static const u16 sKeySystemSubMenu3ItemCounts[MENUITEM_COUNT4] = {0, 1};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
@@ -197,7 +196,6 @@ static const u8 *const sKeySystemSubMenu2ItemsNames[MENUITEM_COUNT3] ={
     [MENUITEM_FORGET_HM]      = gText_ForgetHM,
     [MENUITEM_OW_PSN_DMG]     = gText_OwPoisonDamage,
     [MENUITEM_FLASHBACKS]     = gText_Flashbacks,
-    [MENUITEM_ABILITY_POPUP]  = gText_AbilityPopup,
     [MENUITEM_LEVEL_CAP]      = gText_LevelCap,
     [MENUITEM_BACK2]          = gText_Back,
 };
@@ -291,7 +289,6 @@ static void LoadSavedSettings()
     sKeySystemMenuPtr->subOption2[MENUITEM_FORGET_HM] = gSaveBlock1Ptr->keyFlags.forgetHM;
     sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG] = gSaveBlock1Ptr->keyFlags.owPoisonDmg;
     sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS] = gSaveBlock1Ptr->keyFlags.noFlashbacks;
-    sKeySystemMenuPtr->subOption2[MENUITEM_ABILITY_POPUP] = gSaveBlock1Ptr->keyFlags.abilityPopup;
     sKeySystemMenuPtr->subOption2[MENUITEM_LEVEL_CAP] = gSaveBlock1Ptr->keyFlags.levelCap;
 }
 
@@ -923,9 +920,6 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_FLASHBACKS:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOnOffOptions[sKeySystemMenuPtr->subOption2[selection]]);
                 break;
-            case MENUITEM_ABILITY_POPUP:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
-                break;
             case MENUITEM_LEVEL_CAP:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sKeySystemOffOnOptions[sKeySystemMenuPtr->subOption2[selection]]);
                 break;
@@ -969,7 +963,6 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gSaveBlock1Ptr->keyFlags.forgetHM = sKeySystemMenuPtr->subOption2[MENUITEM_FORGET_HM];
     gSaveBlock1Ptr->keyFlags.owPoisonDmg = sKeySystemMenuPtr->subOption2[MENUITEM_OW_PSN_DMG];
     gSaveBlock1Ptr->keyFlags.noFlashbacks = sKeySystemMenuPtr->subOption2[MENUITEM_FLASHBACKS];
-    gSaveBlock1Ptr->keyFlags.abilityPopup = sKeySystemMenuPtr->subOption2[MENUITEM_ABILITY_POPUP];
     gSaveBlock1Ptr->keyFlags.levelCap = sKeySystemMenuPtr->subOption2[MENUITEM_LEVEL_CAP];
     gSaveBlock1Ptr->keyFlags.inKeySystemMenu = 0;
     FREE_AND_SET_NULL(sKeySystemMenuPtr);

@@ -1243,20 +1243,13 @@
 	.endm
 
 @new commands
-	.macro loadabilitypopup value:req, battler:req, ability:req
-	.byte 0xf8
-	.byte \value
-	.byte \battler
-	.2byte \ability
-	.endm
-
 	.macro checkcaughtmonhasitem param0:req
-	.byte 0xf9
+	.byte 0xf8
 	.4byte \param0
 	.endm
 
 	.macro trytakecaughtmonitem param0:req
-	.byte 0xfa
+	.byte 0xf9
 	.4byte \param0
 	.endm
 
@@ -1388,8 +1381,4 @@
 
 	.macro jumpifnotbattletype flags:req, jumpptr:req
 	jumpifword CMP_NO_COMMON_BITS, gBattleTypeFlags, \flags, \jumpptr
-	.endm
-
-	.macro removeabilitypopup battler:req
-	loadabilitypopup REMOVE_POP_UP, \battler, LOAD_ABILITY_FROM_BUFFER
 	.endm
