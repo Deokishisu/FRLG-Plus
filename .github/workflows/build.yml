@@ -1,47 +1,66 @@
-name: CI
-
 on:
   push:
-    branches: [ master ]
-  pull_request:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Upload Release Asset
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest
+    
     steps:
-      - name: Checkout
-        uses: actions/checkout@master
+      - name: Cache Build Environment
+        id: cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+                /usr
+                /opt
+                /agbcc
+                /Pokemon-Burning-Red-and-Sparking-Green
+                /bin
+          key: default-cache
+          
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Install binutils
-        run: sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi
-        # build-essential, git, and libpng-dev are already installed
-        # gcc-arm-none-eabi is only needed for the modern build
-        # as an alternative to dkP
-
-      - name: Install agbcc
+      - name: Prepare dependencies
+        if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
-          git clone https://github.com/pret/agbcc.git
-          cd agbcc 
-          ./build.sh
-          ./install.sh ../
-
-      - name: Compare FireRed
+              sudo apt update -y -qq
+              sudo apt install build-essential -y -qq
+              sudo apt install binutils-arm-none-eabi -y -qq
+              sudo apt-get install libpng-dev -y -qq
+              cd ..
+              git clone https://github.com/pret/agbcc --quiet
+              cd ./agbcc
+              ./build.sh
+              ./install.sh ../Pokemon-Burning-Red-and-Sparking-Green
+              cd ../Pokemon-Burning-Red-and-Sparking-Green
+      
+      - name: Ensure setup
+        if: steps.cache-build.outputs.cache-hit
         run: |
-          make -j${nproc} compare_firered
-          make -j${nproc} compare_firered_rev1
-
-      - name: Compare LeafGreen
-        run: |
-          make -j${nproc} compare_leafgreen
-          make -j${nproc} compare_leafgreen_rev1
-
-      - name: Modern
-        run: make -j${nproc} modern
-
-      - name: Webhook
-        if: ${{ github.event_name == 'push' }}
+              cd ./Pokemon-Burning-Red-and-Sparking-Green
+      - name: Build project 
+        run: make
+        
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          CALCROM_DISCORD_WEBHOOK_USERNAME: OK
-          CALCROM_DISCORD_WEBHOOK_AVATAR_URL: https://i.imgur.com/38BQHdd.png
-          CALCROM_DISCORD_WEBHOOK_URL: ${{ secrets.CALCROM_DISCORD_WEBHOOK_URL }}
-        run: sh .github/calcrom/webhook.sh pokefirered
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Rom to Release
+        id: upload-rom
+        uses: softprops/action-gh-release@v1
+        with:
+          files: pokefirered.gba
