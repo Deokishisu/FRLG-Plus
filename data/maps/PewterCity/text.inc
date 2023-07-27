@@ -90,9 +90,8 @@ PewterCity_Text_GoTakeOnBrock:: @ 817E6C7
     .string "go take on BROCK!$"
 
 PewterCity_Text_TrainerTipsEarningEXP:: @ 817E6F6
-    .string "TRAINER TIPS\p"
-    .string "All POKéMON that appear in battle,\n"
-    .string "however briefly, earn EXP Points.$"
+    .string "PEWTER GARDEN\n"
+    .string "Relaxing and exotic atmosphere.$"
 
 PewterCity_Text_CallPoliceIfInfoOnThieves:: @ 817E748
     .string "NOTICE!\p"
