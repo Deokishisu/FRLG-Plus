@@ -13,10 +13,10 @@ VermilionCity_Text_SSAnneHasDepartedForYear:: @ 817F7A6
     .string "this time next year.$"
 
 VermilionCity_Text_BuildingOnThisLand:: @ 817F7FD
-    .string "I'm putting up a building on this\n"
+    .string "I'm watching POKéMON on this\n"
     .string "plot of land. I own it all.\p"
-    .string "My POKéMON is tamping the land\n"
-    .string "to lay the foundation.$"
+    .string "My POKéMON is playing with\n"
+    .string "the other POKéMON.$"
 
 VermilionCity_Text_Machop:: @ 817F871
     .string "MACHOP: Guoh! Gogogoh!$"

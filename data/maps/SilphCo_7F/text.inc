@@ -5,19 +5,19 @@ SilphCo_7F_Text_HaveMonForSavingUs:: @ 8176266
     .string "I want you to have this POKéMON\n"
     .string "for saving us.$"
 
-SilphCo_7F_Text_ObtainedLaprasFromEmployee:: @ 81762D7
-    .string "{PLAYER} obtained a LAPRAS from\n"
+SilphCo_7F_Text_ObtainedCastformFromEmployee:: @ 81762D7
+    .string "{PLAYER} obtained a CASTFORM from\n"
     .string "the SILPH employee!$"
 
-SilphCo_7F_Text_ExplainLapras:: @ 8176305
-    .string "It's a LAPRAS.\n"
-    .string "It's a very intelligent POKéMON.\p"
+SilphCo_7F_Text_ExplainCastform:: @ 8176305
+    .string "It's a CASTFORM.\n"
+    .string "It's an artificial POKéMON.\p"
     .string "We kept it in our lab, but it will\n"
     .string "be much better off with you.\p"
     .string "I think you will be a good TRAINER\n"
-    .string "for LAPRAS!\p"
-    .string "It's a good swimmer.\n"
-    .string "It'll give you a lift across water!$"
+    .string "for CASTFORM!\p"
+    .string "When exposed to certain weather\n"
+    .string "conditions, it'll change forms!$"
 
 SilphCo_7F_Text_RocketBossWentToBoardroom:: @ 81763DD
     .string "TEAM ROCKET's BOSS went to the\n"

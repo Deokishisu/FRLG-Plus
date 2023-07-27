@@ -877,7 +877,7 @@
 #define FLAG_NUZLOCKE_BATTLE_FRONTIER  0x355
 
 // Unused?
-#define FLAG_0x356               0x356
+#define FLAG_GOT_LAPRAS_FROM_SCIENCE               0x356
 #define FLAG_0x357               0x357
 #define FLAG_0x358               0x358
 #define FLAG_0x359               0x359

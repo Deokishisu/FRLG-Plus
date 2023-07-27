@@ -107,7 +107,7 @@ PowerPlant_EventScript_Electrode1:: @ 816382F
 	goto_if_questlog EventScript_ReleaseEnd
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 34, ITEM_NONE
+	setwildbattle SPECIES_ELECTRODE, 45, ITEM_NONE
 	waitse
 	playmoncry SPECIES_ELECTRODE, 2
 	delay 40
@@ -136,7 +136,7 @@ PowerPlant_EventScript_Electrode2:: @ 816388D
 	goto_if_questlog EventScript_ReleaseEnd
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 34, ITEM_NONE
+	setwildbattle SPECIES_ELECTRODE, 45, ITEM_NONE
 	waitse
 	playmoncry SPECIES_ELECTRODE, 2
 	delay 40

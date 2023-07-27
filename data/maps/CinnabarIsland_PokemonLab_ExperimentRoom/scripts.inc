@@ -312,7 +312,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte:: @ 816E758
 	setvar VAR_TEMP_1, SPECIES_OMANYTE
 	getspeciesname 0, SPECIES_OMANYTE
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
-	givemon SPECIES_OMANYTE, 5, ITEM_NONE
+	givemon SPECIES_OMANYTE, 40, ITEM_NONE
 	compare VAR_RESULT, 2
 	goto_if_eq EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_HELIX
@@ -326,7 +326,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto:: @ 816E79D
 	setvar VAR_TEMP_1, SPECIES_KABUTO
 	getspeciesname 0, SPECIES_KABUTO
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
-	givemon SPECIES_KABUTO, 5, ITEM_NONE
+	givemon SPECIES_KABUTO, 40, ITEM_NONE
 	compare VAR_RESULT, 2
 	goto_if_eq EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_DOME
@@ -340,7 +340,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl:: @ 816E7E2
 	setvar VAR_TEMP_1, SPECIES_AERODACTYL
 	getspeciesname 0, SPECIES_AERODACTYL
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
-	givemon SPECIES_AERODACTYL, 5, ITEM_NONE
+	givemon SPECIES_AERODACTYL, 40, ITEM_NONE
 	compare VAR_RESULT, 2
 	goto_if_eq EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_AMBER

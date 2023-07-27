@@ -139,69 +139,69 @@ SilphCo_7F_Movement_RivalExitBottom:: @ 8161ABF
 SilphCo_7F_EventScript_LaprasGuy:: @ 8161AC8
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_LAPRAS_FROM_SILPH, SilphCo_7F_EventScript_AlreadyGotLapras
+	goto_if_set FLAG_GOT_LAPRAS_FROM_SILPH, SilphCo_7F_EventScript_AlreadyGotCastform
 	msgbox SilphCo_7F_Text_HaveMonForSavingUs
-	setvar VAR_TEMP_1, SPECIES_LAPRAS
-	givemon SPECIES_LAPRAS, 25, ITEM_NONE
+	setvar VAR_TEMP_1, SPECIES_CASTFORM
+	givemon SPECIES_CASTFORM, 45, ITEM_NONE
 	compare VAR_RESULT, 0
-	goto_if_eq SilphCo_7F_EventScript_ReceiveLaprasParty
+	goto_if_eq SilphCo_7F_EventScript_ReceiveCastformParty
 	compare VAR_RESULT, 1
-	goto_if_eq SilphCo_7F_EventScript_ReceiveLaprasPC
+	goto_if_eq SilphCo_7F_EventScript_ReceiveCastformPC
 	compare VAR_RESULT, 2
 	goto_if_eq EventScript_NoMoreRoomForPokemon
 	release
 	end
 
-SilphCo_7F_EventScript_ReceiveLaprasParty:: @ 8161B12
+SilphCo_7F_EventScript_ReceiveCastformParty:: @ 8161B12
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
-	message SilphCo_7F_Text_ObtainedLaprasFromEmployee
+	message SilphCo_7F_Text_ObtainedCastformFromEmployee
 	waitmessage
 	waitfanfare
-	getspeciesname 0, SPECIES_LAPRAS
+	getspeciesname 0, SPECIES_CASTFORM
 	callnative CheckNuzlockeMode
 	compare VAR_RESULT, TRUE
-	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasParty
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameCastformParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
-	goto_if_eq SilphCo_7F_EventScript_EndReceiveLapras
-CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasParty::
+	goto_if_eq SilphCo_7F_EventScript_EndReceiveCastform
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameCastformParty::
 	call EventScript_GetGiftMonPartySlot
 	call EventScript_ChangePokemonNickname
-	goto SilphCo_7F_EventScript_EndReceiveLapras
+	goto SilphCo_7F_EventScript_EndReceiveCastform
 	end
 
-SilphCo_7F_EventScript_ReceiveLaprasPC:: @ 8161B45
+SilphCo_7F_EventScript_ReceiveCastformPC:: @ 8161B45
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
-	message SilphCo_7F_Text_ObtainedLaprasFromEmployee
+	message SilphCo_7F_Text_ObtainedCastformFromEmployee
 	waitmessage
 	waitfanfare
-	getspeciesname 0, SPECIES_LAPRAS
+	getspeciesname 0, SPECIES_CASTFORM
 	callnative CheckNuzlockeMode
 	compare VAR_RESULT, TRUE
-	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasPC
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameCastformPC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
-	goto_if_eq SilphCo_7F_EventScript_LaprasTransferredToPC
-CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasPC::
+	goto_if_eq SilphCo_7F_EventScript_CastformTransferredToPC
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameCastformPC::
 	call EventScript_NameReceivedBoxMon
-	goto SilphCo_7F_EventScript_LaprasTransferredToPC
+	goto SilphCo_7F_EventScript_CastformTransferredToPC
 	end
 
-SilphCo_7F_EventScript_LaprasTransferredToPC:: @ 8161B73
+SilphCo_7F_EventScript_CastformTransferredToPC:: @ 8161B73
 	call EventScript_TransferredToPC
-	goto SilphCo_7F_EventScript_EndReceiveLapras
+	goto SilphCo_7F_EventScript_EndReceiveCastform
 	end
 
-SilphCo_7F_EventScript_EndReceiveLapras:: @ 8161B7E
+SilphCo_7F_EventScript_EndReceiveCastform:: @ 8161B7E
 	textcolor 0
-	msgbox SilphCo_7F_Text_ExplainLapras
+	msgbox SilphCo_7F_Text_ExplainCastform
 	setflag FLAG_GOT_LAPRAS_FROM_SILPH
 	release
 	end
 
-SilphCo_7F_EventScript_AlreadyGotLapras:: @ 8161B8D
+SilphCo_7F_EventScript_AlreadyGotCastform:: @ 8161B8D
 	msgbox SilphCo_7F_Text_RocketBossWentToBoardroom
 	release
 	end

@@ -83,7 +83,7 @@ SaffronCity_Dojo_EventScript_HitmonchanBall:: @ 816EC46
 
 SaffronCity_Dojo_EventScript_GiveHitmon:: @ 816EC82
 	erasemonpic
-	givemon VAR_TEMP_1, 25, ITEM_NONE
+	givemon VAR_TEMP_1, 30, ITEM_NONE
 	compare VAR_RESULT, 0
 	goto_if_eq SaffronCity_Dojo_EventScript_ReceivedHitmonParty
 	compare VAR_RESULT, 1
