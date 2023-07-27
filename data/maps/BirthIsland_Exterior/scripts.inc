@@ -85,7 +85,7 @@ BirthIsland_Exterior_EventScript_Deoxys:: @ 81652C0
 	waitmoncry
 	setvar VAR_LAST_TALKED, LOCALID_DEOXYS
 	setvar VAR_0x8004, SPECIES_DEOXYS
-	setvar VAR_0x8005, 30  @ Level
+	setvar VAR_0x8005, 80  @ Level
 	setvar VAR_0x8006, ITEM_NONE
 	special CreateEventLegalEnemyMon
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE

@@ -41,7 +41,7 @@ CeruleanCave_B1F_EventScript_Mewtwo:: @ 81624F5
 	delay 20
 	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
-	setwildbattle SPECIES_MEWTWO, 70, ITEM_NONE
+	setwildbattle SPECIES_MEWTWO, 90, ITEM_NONE
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle
 	waitstate

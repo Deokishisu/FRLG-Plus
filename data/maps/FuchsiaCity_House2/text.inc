@@ -44,7 +44,7 @@ FuchsiaCity_House2_Text_ObtainedLaprasFromScientist:: @ 81762D7
 
 FuchsiaCity_House2_Text_ExplainLapras:: @ 8176305
     .string "LAPRAS can ferry you across seas and\n"
-    .string "use attacks like ICE BEAM!p\"
+    .string "use attacks like ICE BEAM!\p"
     .string "I hope you will take good care.\n"
     .string "of this intelligent POKéMON.$"
 
