@@ -1,5 +1,6 @@
 .set LOCALID_NINETALES_MASTER, 13
 .set TRAINER, VAR_0x8009
+.equ LOCALID_BULBASAUR, 1
 
 Route9_MapScripts:: @ 8167FCF
 	map_script MAP_SCRIPT_ON_TRANSITION, Route9_MapScript_SetMasterTrainerMovementTypes
@@ -35,7 +36,7 @@ Route9_EventScript_Lady::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_BULBASAUR_FROM_LADY, Route9_EventScript_AlreadyGotBulbasaur
-	checkitem SUPER_POTION, 1
+	checkitem ITEM_SUPER_POTION, 1
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route9_EventScript_WantBulbasaur
 	msgbox Route9_Text_FoundInjuredBulbasaur
