@@ -170,7 +170,7 @@ VermilionCity_Text_JustCaughtASquirtle::
 VermilionCity_Text_WantThisSquirtle::
     .string "You have the THUNDERBADGE?\p"
     .string "You must be a good TRAINER!\p"
-    .string "I just caught A SQUIRTLE that was\n"
+    .string "I just caught a SQUIRTLE that was\n"
     .string "always getting into misschief.\p"
     .string "Would you take good care of it?$"
 

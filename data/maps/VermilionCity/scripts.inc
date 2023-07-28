@@ -512,7 +512,7 @@ VermilionCity_EventScript_WantSquirtle::
 
 VermilionCity_EventScript_GiveSquirtle::
 	setvar VAR_TEMP_1, SPECIES_SQUIRTLE
-	givemon SPECIES_SQUIRTLE, 20, ITEM_NONE
+	givemon SPECIES_SQUIRTLE, 20, ITEM_THUNDERSTONE
 	compare VAR_RESULT, 0
 	goto_if_eq VermilionCity_EventScript_ReceiveSquirtleParty
 	compare VAR_RESULT, 1

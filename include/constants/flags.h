@@ -879,7 +879,7 @@
 // Unused?
 #define FLAG_GOT_LAPRAS_FROM_SCIENCE               0x356
 #define FLAG_GOT_SQUIRTLE_FROM_POLICE               0x357
-#define FLAG_0x358               0x358
+#define FLAG_GOT_BULBASAUR_FROM_LADY               0x358
 #define FLAG_0x359               0x359
 
 #define FLAG_TOLD_SAFARI_EXPANSION     0x35A

@@ -169,8 +169,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "in_connection": false,
-      "x": 23,
-      "y": 20,
+      "x": 9,
+      "y": 27,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,

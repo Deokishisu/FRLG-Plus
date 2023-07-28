@@ -104,3 +104,42 @@ Route9_Text_RouteSign:: @ 8184B66
     .string "ROUTE 9\n"
     .string "CERULEAN CITY - ROCK TUNNEL$"
 
+Route9_Text_Bulbasaur::
+    .string "BULBASAUR: …$"
+
+Route9_Text_BulbasaurWeak::
+    .string "BULBASAUR looks very weak…$"
+
+Route9_Text_FoundInjuredBulbasaur::
+    .string "I take care of injured POKéMON.\p"
+    .string "This BULBASAUR needs\n"
+    .string "medicine, however.\p"
+    .string "A SUPER POTION would\n" 
+    .string "be just what we need…$"
+
+Route9_Text_WantThisBulbasaur::
+    .string "You're a TRAINER, aren't you?\p"
+    .string "I take care of injured POKéMON.\p"
+    .string "This BULBASAUR needs\n"
+    .string "medicine, and quickly.\p"
+    .string "If you treat this POKéMON,\n"
+    .string "it will surely accept you as\p"
+    .string "its TRAINER.\p"
+    .string "Do you have a SUPER POTION\n"
+    .string "to spare?$"
+
+Route9_Text_Oh::
+    .string "But… poor BULBASAUR…$"
+
+Route9_Text_BulbasaurHealed::
+   .string "BULBASAUR is eager to join you!\p"
+   .string "Now, administer the medicine.$"
+
+Route9_Text_ObtainedBulbasaurFromLady::
+    .string "{PLAYER} obtained a BULBASAUR!$"
+
+Route9_Text_TreatHimRight::
+    .string "OK! Please treat BULBASAUR right!$"
+
+Route9_Text_HowIsBulbasaur::
+    .string "Hello! How is BULBASAUR doing?$"
