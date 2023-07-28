@@ -32,23 +32,23 @@ PalletTown_RivalsHouse_EventScript_PositionForStarterGiveaway::
 
 PalletTown_RivalsHouse_EventScript_SetStarterGfx::
 	compare VAR_STARTER_MON, 0
-	call_if_eq PalletTown_RivalsHouse_EventScript_SetSquirtleGfx
+	call_if_eq PalletTown_RivalsHouse_EventScript_SetSmoochumGfx
 	compare VAR_STARTER_MON, 1
-	call_if_eq PalletTown_RivalsHouse_EventScript_SetCharmanderGfx
+	call_if_eq PalletTown_RivalsHouse_EventScript_SetElekidGfx
 	compare VAR_STARTER_MON, 2
-	call_if_ge PalletTown_RivalsHouse_EventScript_SetBulbasaurGfx
+	call_if_ge PalletTown_RivalsHouse_EventScript_SetMagbyGfx
 	return
 
-PalletTown_RivalsHouse_EventScript_SetSquirtleGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SQUIRTLE
+PalletTown_RivalsHouse_EventScript_SetSmoochumGfx::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SMOOCHUM
 	return
 
-PalletTown_RivalsHouse_EventScript_SetCharmanderGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_CHARMANDER
+PalletTown_RivalsHouse_EventScript_SetElekidGfx::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_ELEKID
 	return
 
-PalletTown_RivalsHouse_EventScript_SetBulbasaurGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_BULBASAUR
+PalletTown_RivalsHouse_EventScript_SetMagbyGfx::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_MAGBY
 	return
 
 PalletTown_RivalsHouse_EventScript_MoveDaisyToTable:: @ 8168D44
@@ -64,45 +64,45 @@ PalletTown_RivalsHouse_EventScript_Starter::
 	lock
 	faceplayer
 	compare VAR_STARTER_MON, 0
-	goto_if_eq PalletTown_RivalsHouse_EventScript_Squirtle
+	goto_if_eq PalletTown_RivalsHouse_EventScript_Smoochum
 	compare VAR_STARTER_MON, 1
-	goto_if_eq PalletTown_RivalsHouse_EventScript_Charmander
+	goto_if_eq PalletTown_RivalsHouse_EventScript_Elekid
 	compare VAR_STARTER_MON, 2
-	goto_if_ge PalletTown_RivalsHouse_EventScript_Bulbasaur
+	goto_if_ge PalletTown_RivalsHouse_EventScript_Magby
 	end
 
-PalletTown_RivalsHouse_EventScript_Squirtle::
+PalletTown_RivalsHouse_EventScript_Smoochum::
 	waitse
-	playmoncry SPECIES_SQUIRTLE, 0
-	msgbox PalletTown_RivalsHouse_Text_Squirtle
+	playmoncry SPECIES_SMOOCHUM, 0
+	msgbox PalletTown_RivalsHouse_Text_Smoochum
 	waitmoncry
 	release
 	end
 
-PalletTown_RivalsHouse_Text_Squirtle:
-	.string "SQUIRTLE: Squirtle squirt!$"
+PalletTown_RivalsHouse_Text_Smoochum:
+	.string "SMOOCHUM: Smoochum squirt!$"
 
-PalletTown_RivalsHouse_EventScript_Charmander::
+PalletTown_RivalsHouse_EventScript_Elekid::
 	waitse
-	playmoncry SPECIES_CHARMANDER, 0
-	msgbox PalletTown_RivalsHouse_Text_Charmander
+	playmoncry SPECIES_ELEKID, 0
+	msgbox PalletTown_RivalsHouse_Text_Elekid
 	waitmoncry
 	release
 	end
 
-PalletTown_RivalsHouse_Text_Charmander:
-	.string "CHARMANDER: Char char!$"
+PalletTown_RivalsHouse_Text_Elekid:
+	.string "ELEKID: Char char!$"
 
-PalletTown_RivalsHouse_EventScript_Bulbasaur::
+PalletTown_RivalsHouse_EventScript_Magby::
 	waitse
-	playmoncry SPECIES_BULBASAUR, 0
-	msgbox PalletTown_RivalsHouse_Text_Bulbasaur
+	playmoncry SPECIES_MAGBY, 0
+	msgbox PalletTown_RivalsHouse_Text_Magby
 	waitmoncry
 	release
 	end
 
-PalletTown_RivalsHouse_Text_Bulbasaur:
-	.string "BULBASAUR: Bubba! Zoar!$"
+PalletTown_RivalsHouse_Text_Magby:
+	.string "MAGBY: Bubba! Zoar!$"
 
 PalletTown_RivalsHouse_EventScript_Daisy:: @ 8168D56
 	lock
@@ -313,21 +313,21 @@ PalletTown_RivalsHouse_EventScript_GiveFinalStarter_2:
 	goto PalletTown_RivalsHouse_EventScript_GiveFinalStarter_1
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_6:
-	getspeciesname 0, SPECIES_SQUIRTLE
+	getspeciesname 0, SPECIES_SMOOCHUM
 	getstring 1, PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_0
-	setvar VAR_TEMP_2, SPECIES_SQUIRTLE
+	setvar VAR_TEMP_2, SPECIES_SMOOCHUM
 	goto PalletTown_RivalsHouse_EventScript_GiveFinalStarter_4
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_7:
-	getspeciesname 0, SPECIES_CHARMANDER
+	getspeciesname 0, SPECIES_ELEKID
 	getstring 1, PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_1
-	setvar VAR_TEMP_2, SPECIES_CHARMANDER
+	setvar VAR_TEMP_2, SPECIES_ELEKID
 	goto PalletTown_RivalsHouse_EventScript_GiveFinalStarter_4
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_8:
-	getspeciesname 0, SPECIES_BULBASAUR
+	getspeciesname 0, SPECIES_MAGBY
 	getstring 1, PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_2
-	setvar VAR_TEMP_2, SPECIES_BULBASAUR
+	setvar VAR_TEMP_2, SPECIES_MAGBY
 	goto PalletTown_RivalsHouse_EventScript_GiveFinalStarter_4
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_10:
@@ -353,13 +353,13 @@ PalletTown_RivalsHouse_Movement_FaceUp:
 	step_end
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_0:
-	.string "SQUIRTLE: Squirt! Squirtle!$"
+	.string "SMOOCHUM: Smoosmoo!$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_1:
-	.string "CHARMANDER: Charmander! Char!$"
+	.string "ELEKID: Bzeetts!$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_2:
-	.string "BULBASAUR: Zoar! Bubba!$"
+	.string "MAGBY: Vreoosh!$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_3:
 	.string "DAISY: Grandpa gave me this\n{STR_VAR_1} to look after, but…\p{STR_VAR_1}'s gotten terribly bored \ncooped up here at home.\p{PLAYER}, I think it would be much\nhappier traveling with you.\pWill you please take {STR_VAR_1}\nwith you on your adventures?$"

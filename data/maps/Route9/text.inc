@@ -112,19 +112,17 @@ Route9_Text_BulbasaurWeak::
 
 Route9_Text_FoundInjuredBulbasaur::
     .string "I take care of injured POKéMON.\p"
-    .string "This BULBASAUR needs\n"
-    .string "medicine, however.\p"
-    .string "A SUPER POTION would\n" 
-    .string "be just what we need…$"
+    .string "This BULBASAUR needs medicine.\p"
+    .string "A SUPER POTION would be just what\n"
+    .string "we need…$"
 
 Route9_Text_WantThisBulbasaur::
     .string "You're a TRAINER, aren't you?\p"
     .string "I take care of injured POKéMON.\p"
-    .string "This BULBASAUR needs\n"
-    .string "medicine, and quickly.\p"
-    .string "If you treat this POKéMON,\n"
-    .string "it will surely accept you as\p"
-    .string "its TRAINER.\p"
+    .string "This BULBASAUR needs medicine,\n"
+    .string "and quickly.\p"
+    .string "If you treat this POKéMON, it will\n"
+    .string "surely accept you as its TRAINER.\p"
     .string "Do you have a SUPER POTION\n"
     .string "to spare?$"
 
@@ -139,7 +137,8 @@ Route9_Text_ObtainedBulbasaurFromLady::
     .string "{PLAYER} obtained a BULBASAUR!$"
 
 Route9_Text_TreatHimRight::
-    .string "OK! Please treat BULBASAUR right!$"
+    .string "I hope you take good care of\n"
+    .string "BULBASAUR.$"
 
 Route9_Text_HowIsBulbasaur::
-    .string "Hello! How is BULBASAUR doing?$"
+    .string "Good day. Is BULBASAUR doing good?$"
