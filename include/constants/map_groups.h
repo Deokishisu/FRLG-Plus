@@ -298,6 +298,7 @@
 #define MAP_VIRIDIAN_CITY_MART              (3 | (5 << 8))
 #define MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F (4 | (5 << 8))
 #define MAP_VIRIDIAN_CITY_POKEMON_CENTER_2F (5 | (5 << 8))
+#define MAP_VIRIDIAN_CITY_NEW_HOUSE         (6 | (5 << 8))
 
 // gMapGroup_IndoorPewter
 #define MAP_PEWTER_CITY_MUSEUM_1F         (0 | (6 << 8))

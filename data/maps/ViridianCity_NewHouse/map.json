@@ -1,0 +1,63 @@
+{
+  "id": "MAP_VIRIDIAN_CITY_NEW_HOUSE",
+  "name": "ViridianCity_NewHouse",
+  "layout": "LAYOUT_HOUSE1",
+  "music": "MUS_FUCHSIA",
+  "region_map_section": "MAPSEC_VIRIDIAN_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHER",
+      "in_connection": false,
+      "x": 4,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "ViridianCity_NewHouse_EventScript_FishingGuru",
+      "flag": "0",
+      "type": "object"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_VIRIDIAN_CITY",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 4,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_VIRIDIAN_CITY",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 5,
+      "y": 7,
+      "elevation": 3,
+      "dest_map": "MAP_VIRIDIAN_CITY",
+      "dest_warp_id": 5
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}
