@@ -599,7 +599,7 @@
 #define FLAG_GOT_COIN_CASE                               0x243
 #define FLAG_GOT_GOOD_ROD                                0x244
 #define FLAG_GOT_TM29_FROM_MR_PSYCHIC                    0x245
-#define FLAG_GOT_LAPRAS_FROM_SILPH                       0x246
+#define FLAG_GOT_CASTFORM_FROM_SILPH                       0x246
 #define FLAG_GOT_POKEBALLS_FROM_OAK_AFTER_22_RIVAL       0x247
 #define FLAG_DID_MIMIEN_TRADE                            0x248
 #define FLAG_BOUGHT_MAGIKARP                             0x249
@@ -878,7 +878,7 @@
 
 // Unused?
 #define FLAG_GOT_LAPRAS_FROM_SCIENCE               0x356
-#define FLAG_0x357               0x357
+#define FLAG_GOT_SQUIRTLE_FROM_POLICE               0x357
 #define FLAG_0x358               0x358
 #define FLAG_0x359               0x359
 

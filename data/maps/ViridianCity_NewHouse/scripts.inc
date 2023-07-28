@@ -6,7 +6,8 @@ ViridianCity_NewHouse_EventScript_FishingGuru::
 	faceplayer
 	goto_if_set FLAG_GOT_OLD_ROD, ViridianCity_NewHouse_EventScript_AlreadyGotOldRod
 	msgbox ViridianCity_NewHouse_Text_ImFishingGuruDoYouLikeToFish, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, ViridianCity_NewHouse_EventScript_GiveOldRod
+	compare VAR_RESULT, YES
+	goto_if_eq ViridianCity_NewHouse_EventScript_GiveOldRod
 	msgbox ViridianCity_NewHouse_Text_OhThatsSoDisappointing
 	release
 	end
@@ -17,8 +18,9 @@ ViridianCity_NewHouse_EventScript_AlreadyGotOldRod::
 	end
 
 ViridianCity_NewHouse_EventScript_GiveOldRod::
-	checkitemspace ITEM_OLD_ROD
-	goto_if_eq VAR_RESULT, FALSE, ViridianCity_NewHouse_EventScript_NoRoomForOldRod
+	checkitemspace ITEM_OLD_ROD, 1
+	compare VAR_RESULT, FALSE
+	goto_if_eq ViridianCity_NewHouse_EventScript_NoRoomForOldRod
 	additem ITEM_OLD_ROD
 	msgbox ViridianCity_NewHouse_Text_TakeThisAndFish
 	msgreceiveditem ViridianCity_NewHouse_Text_ReceivedOldRodFromFishingGuru, ITEM_OLD_ROD

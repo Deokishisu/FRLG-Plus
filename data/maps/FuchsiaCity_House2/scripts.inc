@@ -41,11 +41,11 @@ FuchsiaCity_House2_EventScript_ReceiveLaprasParty:: @ 8161B12
 	getspeciesname 0, SPECIES_LAPRAS
 	callnative CheckNuzlockeMode
 	compare VAR_RESULT, TRUE
-	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasParty
+	goto_if_eq FuchsiaCity_House2_EventScript_NicknameLaprasParty
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq FuchsiaCity_House2_EventScript_EndReceiveLapras
-CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasParty::
+	FuchsiaCity_House2_EventScript_NicknameLaprasParty::
 	call EventScript_GetGiftMonPartySlot
 	call EventScript_ChangePokemonNickname
 	goto FuchsiaCity_House2_EventScript_EndReceiveLapras
@@ -60,11 +60,11 @@ FuchsiaCity_House2_EventScript_ReceiveLaprasPC:: @ 8161B45
 	getspeciesname 0, SPECIES_LAPRAS
 	callnative CheckNuzlockeMode
 	compare VAR_RESULT, TRUE
-	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasPC
+	goto_if_eq FuchsiaCity_House2_EventScript_NicknameLaprasPC
 	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq FuchsiaCity_House2_EventScript_LaprasTransferredToPC
-CeladonCity_Condominiums_RoofRoom_EventScript_NicknameLaprasPC::
+	FuchsiaCity_House2_EventScript_NicknameLaprasPC::
 	call EventScript_NameReceivedBoxMon
 	goto FuchsiaCity_House2_EventScript_LaprasTransferredToPC
 	end

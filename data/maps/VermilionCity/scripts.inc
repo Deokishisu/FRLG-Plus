@@ -492,3 +492,86 @@ VermilionCity_EventScript_GymSign:: @ 8166C6E
 VermilionCity_EventScript_HarborSign:: @ 8166C86
 	msgbox VermilionCity_Text_VermilionHarbor, MSGBOX_SIGN
 	end
+
+VermilionCity_EventScript_PoliceMan::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_SQUIRTLE_FROM_POLICE, VermilionCity_EventScript_AlreadyGotSquirtle
+	goto_if_set FLAG_BADGE03_GET, VermilionCity_EventScript_ObtainSquirtle
+	msgbox VermilionCity_Text_JustCaughtASquirtle
+	release
+	end
+
+VermilionCity_EventScript_WantSquirtle::
+	msgbox VermilionCity_Text_WantThisSquirtle, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq VermilionCity_EventScript_GiveSquirtle
+	msgbox VermilionCity_Text_Oh
+	release
+	end
+
+VermilionCity_EventScript_GiveSquirtle::
+	setvar VAR_TEMP_1, SPECIES_SQUIRTLE
+	givemon SPECIES_SQUIRTLE, 20, ITEM_NONE
+	compare VAR_RESULT, 0
+	goto_if_eq VermilionCity_EventScript_ReceiveSquirtleParty
+	compare VAR_RESULT, 1
+	goto_if_eq VermilionCity_EventScript_ReceiveSquirtlePC
+	compare VAR_RESULT, 2
+	goto_if_eq EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+VermilionCity_EventScript_ReceiveSquirtleParty::
+	textcolor 3
+	playfanfare MUS_LEVEL_UP
+	message VermilionCity_Text_ObtainedSquirtleFromPolice
+	waitmessage
+	waitfanfare
+	getspeciesname 0, SPECIES_SQUIRTLE
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq VermilionCity_EventScript_NicknameSquirtleParty
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq VermilionCity_EventScript_EndReceiveSquirtle
+	VermilionCity_EventScript_NicknameSquirtleParty::
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto VermilionCity_EventScript_EndReceiveSquirtle
+	end
+
+VermilionCity_EventScript_ReceiveSquirtlePC::
+	textcolor 3
+	playfanfare MUS_LEVEL_UP
+	message VermilionCity_Text_ObtainedSquirtleFromPolice
+	waitmessage
+	waitfanfare
+	getspeciesname 0, SPECIES_SQUIRTLE
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq VermilionCity_EventScript_NicknameSquirtlePC
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq VermilionCity_EventScript_SquirtleTransferredToPC
+	VermilionCity_EventScript_NicknameSquirtlePC::
+	call EventScript_NameReceivedBoxMon
+	goto VermilionCity_EventScript_SquirtleTransferredToPC
+	end
+
+VermilionCity_EventScript_SquirtleTransferredToPC:: @ 8161B73
+	call EventScript_TransferredToPC
+	goto VermilionCity_EventScript_EndReceiveSquirtle
+	end
+
+VermilionCity_EventScript_EndReceiveSquirtle:: @ 8161B7E
+	textcolor 0
+	msgbox VermilionCity_Text_TreatHimRight
+	setflag FLAG_GOT_SQUIRTLE_FROM_POLICE
+	release
+	end
+
+VermilionCity_EventScript_AlreadyGotSquirtle:: @ 8161B8D
+	msgbox VermilionCity_Text_HowIsSquirtle
+	release
+	end
