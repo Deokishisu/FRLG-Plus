@@ -913,7 +913,7 @@ PewterCity_EventScript_EggGentleman:: @ 816884E
 	goto PewterCity_EventScript_TryGiveEgg
 	end
 
-PewterCity_EventScript_TryGiveEgg
+PewterCity_EventScript_TryGiveEgg::
 	getpartysize
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq PewterCity_EventScript_NoRoomForEgg
