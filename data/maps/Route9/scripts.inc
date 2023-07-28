@@ -37,7 +37,7 @@ Route9_EventScript_Lady::
 	goto_if_set FLAG_GOT_BULBASAUR_FROM_LADY, Route9_EventScript_AlreadyGotBulbasaur
 	checkitem SUPER_POTION, 1
 	compare VAR_RESULT, TRUE
-	goto_if_eq, Route9_EventScript_WantBulbasaur
+	goto_if_eq Route9_EventScript_WantBulbasaur
 	msgbox Route9_Text_FoundInjuredBulbasaur
 	release
 	end
@@ -64,7 +64,7 @@ Route9_EventScript_GiveBulbasaur::
 
 Route9_EventScript_ReceiveBulbasaurParty::
 	msgbox Route9_Text_BulbasaurHealed
-	hideobjectat (14, Route9)
+	removeobject LOCALID_BULBASAUR
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
 	message Route9_Text_ObtainedBulbasaurFromLady
@@ -85,7 +85,7 @@ Route9_EventScript_ReceiveBulbasaurParty::
 
 Route9_EventScript_ReceiveBulbasaurPC::
 	msgbox Route9_Text_BulbasaurHealed
-	hideobjectat  (14, Route9)
+	removeobject LOCALID_BULBASAUR
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
 	message Route9_Text_ObtainedBulbasaurFromLady
