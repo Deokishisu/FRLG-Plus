@@ -909,6 +909,11 @@ PewterCity_EventScript_EggGentleman:: @ 816884E
 	goto_if_set FLAG_GOT_TOGEPI_EGG, PewterCity_EventScript_PostEggComment
 	goto_if_set FLAG_NO_ROOM_FOR_TOGEPI_EGG, PewterCity_EventScript_ReturnForEgg
 	msgbox PewterCity_Text_LetMeTakeLookAtMons
+	msgbox PewterCity_Text_TreatMonRightHaveThis
+	goto PewterCity_EventScript_TryGiveEgg
+	end
+
+PewterCity_EventScript_TryGiveEgg
 	getpartysize
 	compare VAR_RESULT, PARTY_SIZE
 	goto_if_eq PewterCity_EventScript_NoRoomForEgg
@@ -927,11 +932,6 @@ PewterCity_EventScript_MonDaisyComment:: @ 8168895
 	famechecker FAMECHECKER_DAISY, 2
 	msgbox PewterCity_Text_CuteMonRemindsMeOfDaisy
 	release
-	end
-
-PewterCity_EventScript_LeadMonMaxFriendship:: @ 81688AC
-	msgbox PewterCity_Text_TreatMonRightHaveThis
-	goto PewterCity_EventScript_TryGiveEgg
 	end
 
 @ If the player has a Togepi/Togetic from this game (assumed to be the one the man gave you) then comment on it
