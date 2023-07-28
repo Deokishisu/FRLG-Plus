@@ -5,7 +5,6 @@
 
 PalletTown_RivalsHouse_MapScripts:: @ 8168D27
 	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_RivalsHouse_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, PalletTown_RivalsHouse_EventScript_SetStarterGfx
 	.byte 0
 
 PalletTown_RivalsHouse_OnTransition:: @ 8168D2D
@@ -29,27 +28,6 @@ PalletTown_RivalsHouse_EventScript_PositionForStarterGiveaway::
 	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_DOWN
 	setobjectxyperm 3, 8, 4
 	end
-
-PalletTown_RivalsHouse_EventScript_SetStarterGfx::
-	compare VAR_STARTER_MON, 0
-	call_if_eq PalletTown_RivalsHouse_EventScript_SetSmoochumGfx
-	compare VAR_STARTER_MON, 1
-	call_if_eq PalletTown_RivalsHouse_EventScript_SetElekidGfx
-	compare VAR_STARTER_MON, 2
-	call_if_ge PalletTown_RivalsHouse_EventScript_SetMagbyGfx
-	return
-
-PalletTown_RivalsHouse_EventScript_SetSmoochumGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SMOOCHUM
-	return
-
-PalletTown_RivalsHouse_EventScript_SetElekidGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_ELEKID
-	return
-
-PalletTown_RivalsHouse_EventScript_SetMagbyGfx::
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_MAGBY
-	return
 
 PalletTown_RivalsHouse_EventScript_MoveDaisyToTable:: @ 8168D44
 	setobjectmovementtype LOCALID_DAISY, MOVEMENT_TYPE_FACE_RIGHT
@@ -362,7 +340,7 @@ PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_2:
 	.string "MAGBY: Vreoosh!$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_3:
-	.string "DAISY: Grandpa gave me this\n{STR_VAR_1} to look after, but…\p{STR_VAR_1}'s gotten terribly bored \ncooped up here at home.\p{PLAYER}, I think it would be much\nhappier traveling with you.\pWill you please take {STR_VAR_1}\nwith you on your adventures?$"
+	.string "DAISY: Grandpa gave me a\n{STR_VAR_1} to look after, but…\p{STR_VAR_1}'s gotten terribly bored \ncooped up here at home.\p{PLAYER}, I think it would be much\nhappier traveling with you.\pWill you please take {STR_VAR_1}\nwith you on your adventures?$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_4:
 	.string "I understand, though {STR_VAR_1}\nlooks disappointed.\pPlease come back if you change\nyour mind.$"
