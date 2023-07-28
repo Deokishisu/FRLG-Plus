@@ -8892,8 +8892,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
     {
         .mapGroup = MAP_GROUP(CELADON_CITY),
         .mapNum = MAP_NUM(CELADON_CITY),
-        .landMonsInfo_FR = NULL,
-        .landMonsInfo_LG = NULL,
+        .landMonsInfo_FR = &sCeladonCity_FireRed_LandMonsInfo,
+        .landMonsInfo_LG = &sCeladonCity_LeafGreen_LandMonsInfo,
         .waterMonsInfo_FR = &sCeladonCity_FireRed_WaterMonsInfo,
         .waterMonsInfo_LG = &sCeladonCity_LeafGreen_WaterMonsInfo,
         .rockSmashMonsInfo_FR = NULL,
