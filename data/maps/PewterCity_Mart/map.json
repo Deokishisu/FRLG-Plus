@@ -2,7 +2,7 @@
   "id": "MAP_PEWTER_CITY_MART",
   "name": "PewterCity_Mart",
   "layout": "LAYOUT_MART",
-  "music": "MUS_POKE_CENTER",
+  "music": "MUS_POKE_MART",
   "region_map_section": "MAPSEC_PEWTER_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -13,10 +13,11 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "in_connection": false,
       "x": 8,
       "y": 2,
       "elevation": 3,
@@ -30,6 +31,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY",
+      "in_connection": false,
       "x": 6,
       "y": 4,
       "elevation": 3,
@@ -43,6 +45,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CLERK",
+      "in_connection": false,
       "x": 2,
       "y": 3,
       "elevation": 0,
@@ -78,7 +81,11 @@
       "dest_warp_id": 3
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-	"level_scaling": "0"
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
 }

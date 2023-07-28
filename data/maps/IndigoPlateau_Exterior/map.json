@@ -15,14 +15,15 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE23",
+      "direction": "down",
       "offset": 0,
-      "direction": "down"
+      "map": "MAP_ROUTE23"
     }
   ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_BLUE",
+      "in_connection": false,
       "x": 11,
       "y": 6,
       "elevation": 0,
@@ -36,6 +37,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PROF_OAK",
+      "in_connection": false,
       "x": 11,
       "y": 6,
       "elevation": 0,
@@ -57,7 +59,11 @@
       "dest_warp_id": 0
     }
   ],
-  "coord_events": [],
-  "bg_events": [],
-	"level_scaling": "0"
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
 }

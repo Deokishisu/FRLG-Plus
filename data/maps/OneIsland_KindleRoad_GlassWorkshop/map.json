@@ -2,7 +2,7 @@
   "id": "MAP_ONE_ISLAND_KINDLE_ROAD_GLASS_WORKSHOP",
   "name": "OneIsland_KindleRoad_GlassWorkshop",
   "layout": "LAYOUT_ONE_ISLAND_KINDLE_ROAD_GLASS_WORKSHOP",
-  "music": "MUS_DEWFORD",
+  "music": "MUS_RUSTBORO",
   "region_map_section": "MAPSEC_KINDLE_ROAD",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
