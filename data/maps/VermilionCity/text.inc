@@ -162,7 +162,7 @@ VermilionCity_Text_Route2AideHasPackageForYou:: @ 817FDD2
     .string "please look for him.$"
 
 VermilionCity_Text_JustCaughtASquirtle::
-    .string "I just caught A SQUIRTLE that was\n"
+    .string "I just caught a SQUIRTLE that was\n"
     .string "always getting into misschief.\p"
     .string "I think it needs a good TRAINER\n"
     .string "to set it straight.$"
