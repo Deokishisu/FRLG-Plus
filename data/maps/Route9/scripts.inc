@@ -1,6 +1,6 @@
 .set LOCALID_NINETALES_MASTER, 13
 .set TRAINER, VAR_0x8009
-.equ LOCALID_BULBASAUR, 1
+.equ LOCALID_BULBASAUR, 14
 
 Route9_MapScripts:: @ 8167FCF
 	map_script MAP_SCRIPT_ON_TRANSITION, Route9_MapScript_SetMasterTrainerMovementTypes
