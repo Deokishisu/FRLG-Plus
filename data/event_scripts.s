@@ -1328,3 +1328,6 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/BattleFrontier_RankingHall/scripts.inc"
 	.include "data/maps/BattleFrontier_RankingHall/text.inc"
+
+	.include "data/maps/ViridianCity_NewHouse/scripts.inc"
+	.include "data/maps/ViridianCity_NewHouse/text.inc"
