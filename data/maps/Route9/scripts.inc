@@ -24,8 +24,8 @@ Route9_EventScript_Bulbasaur::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_BULBASAUR, 0
-	msgbox Text_Bulbasaur
+	playmoncry SPECIES_BULBASAUR, 11
+	msgbox Route9_Text_Bulbasaur
 	waitmoncry
 	msgbox Route9_Text_BulbasaurWeak
 	release
@@ -64,7 +64,7 @@ Route9_EventScript_GiveBulbasaur::
 
 Route9_EventScript_ReceiveBulbasaurParty::
 	msgbox Route9_Text_BulbasaurHealed
-	hideobjectat 14
+	hideobjectat (14, Route9)
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
 	message Route9_Text_ObtainedBulbasaurFromLady
@@ -85,7 +85,7 @@ Route9_EventScript_ReceiveBulbasaurParty::
 
 Route9_EventScript_ReceiveBulbasaurPC::
 	msgbox Route9_Text_BulbasaurHealed
-	hideobjectat 14
+	hideobjectat  (14, Route9)
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
 	message Route9_Text_ObtainedBulbasaurFromLady
