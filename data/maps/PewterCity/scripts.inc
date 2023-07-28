@@ -909,8 +909,7 @@ PewterCity_EventScript_EggGentleman:: @ 816884E
 	goto_if_set FLAG_GOT_TOGEPI_EGG, PewterCity_EventScript_PostEggComment
 	goto_if_set FLAG_NO_ROOM_FOR_TOGEPI_EGG, PewterCity_EventScript_ReturnForEgg
 	msgbox PewterCity_Text_LetMeTakeLookAtMons
-	goto_if_eq PewterCity_EventScript_LeadMonMaxFriendship
-	msgbox PewterCity_Text_HmmISeeIsee
+	goto_PewterCity_EventScript_LeadMonMaxFriendship
 	release
 	end
 

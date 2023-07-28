@@ -170,10 +170,6 @@ PewterCity_Text_LetMeTakeLookAtMons:: @ 818A80D
     .string "Let me take a look.\n"
     .string "… … …   … … …$"
 
-PewterCity_Text_HmmISeeIsee:: @ 818A88F
-    .string "Ah, hmm…\n"
-    .string "I see, I see…$"
-
 PewterCity_Text_TreatMonRightHaveThis:: @ 818A8A6
     .string "Oh, impressive.\n"
     .string "You treat your POKéMON right.\p"
