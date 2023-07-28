@@ -497,7 +497,7 @@ VermilionCity_EventScript_PoliceMan::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_SQUIRTLE_FROM_POLICE, VermilionCity_EventScript_AlreadyGotSquirtle
-	goto_if_set FLAG_BADGE03_GET, VermilionCity_EventScript_ObtainSquirtle
+	goto_if_set FLAG_BADGE03_GET, VermilionCity_EventScript_WantSquirtle
 	msgbox VermilionCity_Text_JustCaughtASquirtle
 	release
 	end
