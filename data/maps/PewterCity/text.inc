@@ -69,16 +69,16 @@ PewterCity_Text_ThisIsTheMuseum:: @ 817E5AC
     .string "worth it. See you around!$"
 
 PewterCity_Text_DoYouKnowWhatImDoing:: @ 817E602
-    .string "Psssst!\n"
-    .string "Do you know what I'm doing?$"
+    .string "This garden!\n"
+    .string "Isn't it exciting?$"
 
 PewterCity_Text_ThatsRightItsHardWork:: @ 817E626
-    .string "That's right!\n"
-    .string "It's hard work!$"
+    .string "I agree wholeheartedly,\n"
+    .string "for I am the gardener!$"
 
 PewterCity_Text_SprayingRepelToKeepWildMonsOut:: @ 817E644
-    .string "I'm spraying REPEL to keep wild\n"
-    .string "POKéMON out of my garden!$"
+    .string "I don't understand.\n"
+    .string "It has such variety of POKéMON!$"
 
 PewterCity_Text_BrocksLookingForChallengersFollowMe:: @ 817E67E
     .string "You're a TRAINER, right?\p"
@@ -91,7 +91,7 @@ PewterCity_Text_GoTakeOnBrock:: @ 817E6C7
 
 PewterCity_Text_TrainerTipsEarningEXP:: @ 817E6F6
     .string "PEWTER GARDEN\n"
-    .string "Relaxing and exotic atmosphere.$"
+    .string "Exotic and full of surprises.$"
 
 PewterCity_Text_CallPoliceIfInfoOnThieves:: @ 817E748
     .string "NOTICE!\p"
