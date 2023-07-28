@@ -161,27 +161,27 @@ VermilionCity_Text_Route2AideHasPackageForYou:: @ 817FDD2
     .string "If you're in the ROUTE 2 area,\n"
     .string "please look for him.$"
 
-VermilionCity_Text_JustCaughtASquirtle
+VermilionCity_Text_JustCaughtASquirtle::
     .string "I just caught A SQUIRTLE that was\n"
     .string "always getting into misschief.\p"
     .string "I think it needs a good TRAINER\n"
     .string "to set it straight.$"
 
-VermilionCity_Text_WantThisSquirtle
+VermilionCity_Text_WantThisSquirtle::
     .string "You have the THUNDERBADGE?\p"
     .string "You must be a good TRAINER!\p"
     .string "I just caught A SQUIRTLE that was\n"
     .string "always getting into misschief.\p"
     .string "Would you take good care of it?$"
 
-VermilionCity_Text_Oh
+VermilionCity_Text_Oh::
     .string "Oh… What am I to do now?$"
 
-VermilionCity_Text_ObtainedSquirtleFromPolice
+VermilionCity_Text_ObtainedSquirtleFromPolice::
     .string "{PLAYER} obtained a SQUIRTLE!$"
 
-VermilionCity_Text_TreatHimRight
+VermilionCity_Text_TreatHimRight::
     .string "OK! Please treat SQUIRTLE right!$"
 
-VermilionCity_Text_HowIsSquirtle
+VermilionCity_Text_HowIsSquirtle::
     .string "Hello! How is SQUIRTLE doing?$"
