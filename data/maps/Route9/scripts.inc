@@ -110,7 +110,6 @@ Route9_EventScript_BulbasaurTransferredToPC:: @ 8161B73
 	end
 
 Route9_EventScript_EndReceiveBulbasaur:: @ 8161B7E
-	textcolor 0
 	msgbox Route9_Text_TreatHimRight
 	setflag FLAG_GOT_BULBASAUR_FROM_LADY
 	removeitem ITEM_SUPER_POTION, 1

@@ -23,8 +23,6 @@ PalletTown_RivalsHouse_EventScript_CheckRemoveStarter::
 	end
 
 PalletTown_RivalsHouse_EventScript_PositionForStarterGiveaway::
-	setobjectmovementtype LOCALID_DAISY, MOVEMENT_TYPE_FACE_UP
-	setobjectxyperm LOCALID_DAISY, 8, 5
 	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_DOWN
 	setobjectxyperm 3, 8, 4
 	end
@@ -37,50 +35,6 @@ PalletTown_RivalsHouse_EventScript_MoveDaisyToTable:: @ 8168D44
 PalletTown_RivalsHouse_EventScript_AlreadyReceivedTownMap:: @ 8168D50
 	setvar RECEIVED_TOWN_MAP, TRUE
 	return
-
-PalletTown_RivalsHouse_EventScript_Starter::
-	lock
-	faceplayer
-	compare VAR_STARTER_MON, 0
-	goto_if_eq PalletTown_RivalsHouse_EventScript_Smoochum
-	compare VAR_STARTER_MON, 1
-	goto_if_eq PalletTown_RivalsHouse_EventScript_Elekid
-	compare VAR_STARTER_MON, 2
-	goto_if_ge PalletTown_RivalsHouse_EventScript_Magby
-	end
-
-PalletTown_RivalsHouse_EventScript_Smoochum::
-	waitse
-	playmoncry SPECIES_SMOOCHUM, 0
-	msgbox PalletTown_RivalsHouse_Text_Smoochum
-	waitmoncry
-	release
-	end
-
-PalletTown_RivalsHouse_Text_Smoochum:
-	.string "SMOOCHUM: Smoochum squirt!$"
-
-PalletTown_RivalsHouse_EventScript_Elekid::
-	waitse
-	playmoncry SPECIES_ELEKID, 0
-	msgbox PalletTown_RivalsHouse_Text_Elekid
-	waitmoncry
-	release
-	end
-
-PalletTown_RivalsHouse_Text_Elekid:
-	.string "ELEKID: Char char!$"
-
-PalletTown_RivalsHouse_EventScript_Magby::
-	waitse
-	playmoncry SPECIES_MAGBY, 0
-	msgbox PalletTown_RivalsHouse_Text_Magby
-	waitmoncry
-	release
-	end
-
-PalletTown_RivalsHouse_Text_Magby:
-	.string "MAGBY: Bubba! Zoar!$"
 
 PalletTown_RivalsHouse_EventScript_Daisy:: @ 8168D56
 	lock
@@ -340,7 +294,7 @@ PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_2:
 	.string "MAGBY: Vreoosh!$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_3:
-	.string "DAISY: Grandpa gave me a\n{STR_VAR_1} to look after, but…\p{STR_VAR_1}'s gotten terribly bored \ncooped up here at home.\p{PLAYER}, I think it would be much\nhappier traveling with you.\pWill you please take {STR_VAR_1}\nwith you on your adventures?$"
+	.string "DAISY: Grandpa gave me a {STR_VAR_1}\nto look after, but…\p{STR_VAR_1}'s gotten terribly bored \ncooped up here at home.\p{PLAYER}, I think it would be much\nhappier traveling with you.\pWill you please take {STR_VAR_1}\nwith you on your adventures?$"
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_4:
 	.string "I understand, though {STR_VAR_1}\nlooks disappointed.\pPlease come back if you change\nyour mind.$"
