@@ -23,6 +23,8 @@ PalletTown_RivalsHouse_EventScript_CheckRemoveStarter::
 	end
 
 PalletTown_RivalsHouse_EventScript_PositionForStarterGiveaway::
+	setobjectmovementtype LOCALID_DAISY, MOVEMENT_TYPE_FACE_UP
+	setobjectxyperm LOCALID_DAISY, 8, 5
 	setobjectmovementtype 3, MOVEMENT_TYPE_FACE_DOWN
 	setobjectxyperm 3, 8, 4
 	end
