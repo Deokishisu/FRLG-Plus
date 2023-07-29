@@ -64,9 +64,23 @@ Route9_EventScript_GiveBulbasaur::
 	end
 
 Route9_EventScript_ReceiveBulbasaurParty::
-	msgbox Route9_Text_BulbasaurHealed
+	applymovement LOCALID_BULBASAUR, Route9_Movement_Bulbasaur
+	waitmovement 0
+	textcolor 4
+	msgbox Route9_Text_Administer
+	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerHeal\
+	waitmovement 0
+	waitse
+	playse USE_ITEM
+	applymovement LOCALID_BULBASAUR, Route9_Movement_BulbaJump
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_BULBASAUR, 1
+	waitmoncry
+	textcolor 3
+	msgbox Route9_Text_BulbasaurEager
 	removeobject LOCALID_BULBASAUR
-	textcolor 1
+	textcolor 3
 	playfanfare MUS_LEVEL_UP
 	message Route9_Text_ObtainedBulbasaurFromLady
 	waitmessage
@@ -85,7 +99,21 @@ Route9_EventScript_ReceiveBulbasaurParty::
 	end
 
 Route9_EventScript_ReceiveBulbasaurPC::
-	msgbox Route9_Text_BulbasaurHealed
+	applymovement LOCALID_BULBASAUR, Route9_Movement_Bulbasaur
+	waitmovement 0
+	textcolor 4
+	msgbox Route9_Text_Administer
+	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerHeal\
+	waitmovement 0
+	waitse
+	playse USE_ITEM
+	applymovement LOCALID_BULBASAUR, Route9_Movement_BulbaJump
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_BULBASAUR, 1
+	waitmoncry
+	textcolor 3
+	msgbox Route9_Text_BulbasaurEager
 	removeobject LOCALID_BULBASAUR
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
@@ -110,7 +138,7 @@ Route9_EventScript_BulbasaurTransferredToPC:: @ 8161B73
 	end
 
 Route9_EventScript_EndReceiveBulbasaur:: @ 8161B7E
-	textcolor 2
+	textcolor 4
 	msgbox Route9_Text_TreatHimRight
 	setflag FLAG_GOT_BULBASAUR_FROM_LADY
 	removeitem ITEM_SUPER_POTION, 1
@@ -121,3 +149,17 @@ Route9_EventScript_AlreadyGotBulbasaur:: @ 8161B8D
 	msgbox Route9_Text_HowIsBulbasaur
 	release
 	end
+
+Route9_Movement_Bulbasaur::
+	walk_right
+	walk_in_place_down
+	jump_down
+	step_end
+
+Route9_Movement_PlayerHeal::
+	walk_in_place_up
+	step_end
+
+Route9_Movement_BulbaJump::
+	jump_down
+	step_end

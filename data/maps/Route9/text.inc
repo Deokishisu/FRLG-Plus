@@ -129,9 +129,11 @@ Route9_Text_WantThisBulbasaur::
 Route9_Text_Oh::
     .string "But… poor BULBASAUR…$"
 
-Route9_Text_BulbasaurHealed::
-   .string "BULBASAUR is eager to join you!\p"
-   .string "Now, administer the medicine.$"
+Route9_Text_Administer::
+   .string "Now, please administer the medicine.$"
+
+Route9_Text_BulbasaurEager::
+   .string BULBASAUR is happy to join you!\p
 
 Route9_Text_ObtainedBulbasaurFromLady::
     .string "{PLAYER} obtained a BULBASAUR!$"

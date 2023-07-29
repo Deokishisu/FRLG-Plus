@@ -64,10 +64,6 @@ RockTunnel_1F_EventScript_Guy::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_CHARMANDER_FROM_GUY, RockTunnel_1F_EventScript_AlreadyGotCharmander
-	release
-	end
-
-RockTunnel_1F_EventScript_WantCharmander::
 	msgbox RockTunnel_1F_Text_WantThisCharmander, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq RockTunnel_1F_EventScript_GiveCharmander
