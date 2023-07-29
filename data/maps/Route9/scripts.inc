@@ -164,5 +164,5 @@ Route9_Movement_BulbaJump::
 	step_end
 	
 Route9_Movement_PlayerBack::
-	walk_in_place_right
+	walk_in_place_left
 	step_end
