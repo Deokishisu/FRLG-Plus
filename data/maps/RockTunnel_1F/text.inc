@@ -81,3 +81,23 @@ RockTunnel_1F_Text_RouteSign:: @ 817962D
     .string "ROCK TUNNEL\n"
     .string "CERULEAN CITY - LAVENDER TOWN$"
 
+RockTunnel_1F_Text_WantThisCharmander::
+    .string "I'm not good at raising POKéMON…\p"
+    .string "I should release my CHARMANDER\n"
+    .string "because I haven't raised it well…\p"
+    .string "If you promise me you'll take care\n"
+    .string "of it, it's yours.$"
+
+RockTunnel_1F_Text_Oh::
+    .string "Oh… I'd better release it then.$"
+
+RockTunnel_1F_Text_ObtainedCharmanderFromGuy::
+    .string "{PLAYER} obtained a CHARMANDER!$"
+
+RockTunnel_1F_Text_TreatHimRight::
+    .string "Take good care of my CHARMANDER!$"
+
+RockTunnel_1F_Text_HowIsCharmander::
+    .string "How's CHARMANDER doing?\p"
+    .string "I hope you're raising it better\n"
+    .string "than I ever could.$"

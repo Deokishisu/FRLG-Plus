@@ -59,3 +59,84 @@ RockTunnel_1F_EventScript_Dana:: @ 8162E73
 	trainerbattle_single TRAINER_PICNICKER_DANA, RockTunnel_1F_Text_DanaIntro, RockTunnel_1F_Text_DanaDefeat
 	msgbox RockTunnel_1F_Text_DanaPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+RockTunnel_1F_EventScript_Guy::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_CHARMANDER_FROM_GUY, RockTunnel_1F_EventScript_AlreadyGotCharmander
+	release
+	end
+
+RockTunnel_1F_EventScript_WantCharmander::
+	msgbox RockTunnel_1F_Text_WantThisCharmander, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq RockTunnel_1F_EventScript_GiveCharmander
+	msgbox RockTunnel_1F_Text_Oh
+	release
+	end
+
+RockTunnel_1F_EventScript_GiveCharmander::
+	setvar VAR_TEMP_1, SPECIES_CHARMANDER
+	givemon SPECIES_CHARMANDER, 20, ITEM_FIRE_STONE
+	compare VAR_RESULT, 0
+	goto_if_eq RockTunnel_1F_EventScript_ReceiveCharmanderParty
+	compare VAR_RESULT, 1
+	goto_if_eq RockTunnel_1F_EventScript_ReceiveCharmanderPC
+	compare VAR_RESULT, 2
+	goto_if_eq EventScript_NoMoreRoomForPokemon
+	release
+	end
+
+RockTunnel_1F_EventScript_ReceiveCharmanderParty::
+	textcolor 3
+	playfanfare MUS_LEVEL_UP
+	message RockTunnel_1F_Text_ObtainedCharmanderFromGuy
+	waitmessage
+	waitfanfare
+	getspeciesname 0, SPECIES_CHARMANDER
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq RockTunnel_1F_EventScript_NicknameCharmanderParty
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RockTunnel_1F_EventScript_EndReceiveCharmander
+	RockTunnel_1F_EventScript_NicknameCharmanderParty::
+	call EventScript_GetGiftMonPartySlot
+	call EventScript_ChangePokemonNickname
+	goto RockTunnel_1F_EventScript_EndReceiveCharmander
+	end
+
+RockTunnel_1F_EventScript_ReceiveCharmanderPC::
+	textcolor 3
+	playfanfare MUS_LEVEL_UP
+	message RockTunnel_1F_Text_ObtainedCharmanderFromGuy
+	waitmessage
+	waitfanfare
+	getspeciesname 0, SPECIES_CHARMANDER
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq RockTunnel_1F_EventScript_NicknameCharmanderPC
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RockTunnel_1F_EventScript_CharmanderTransferredToPC
+	RockTunnel_1F_EventScript_NicknameCharmanderPC::
+	call EventScript_NameReceivedBoxMon
+	goto RockTunnel_1F_EventScript_CharmanderTransferredToPC
+	end
+
+RockTunnel_1F_EventScript_CharmanderTransferredToPC::
+	call EventScript_TransferredToPC
+	goto RockTunnel_1F_EventScript_EndReceiveCharmander
+	end
+
+RockTunnel_1F_EventScript_EndReceiveCharmander::
+	textcolor 0
+	msgbox RockTunnel_1F_Text_TreatHimRight
+	setflag FLAG_GOT_CHARMANDER_FROM_GUY
+	release
+	end
+
+RockTunnel_1F_EventScript_AlreadyGotCharmander::
+	msgbox RockTunnel_1F_Text_HowIsCharmander
+	release
+	end

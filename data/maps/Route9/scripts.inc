@@ -66,7 +66,7 @@ Route9_EventScript_GiveBulbasaur::
 Route9_EventScript_ReceiveBulbasaurParty::
 	msgbox Route9_Text_BulbasaurHealed
 	removeobject LOCALID_BULBASAUR
-	textcolor 3
+	textcolor 1
 	playfanfare MUS_LEVEL_UP
 	message Route9_Text_ObtainedBulbasaurFromLady
 	waitmessage
