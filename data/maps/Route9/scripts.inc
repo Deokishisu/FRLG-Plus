@@ -71,7 +71,7 @@ Route9_EventScript_ReceiveBulbasaurParty::
 	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerHeal\
 	waitmovement 0
 	waitse
-	playse USE_ITEM
+	playse SE_USE_ITEM
 	applymovement LOCALID_BULBASAUR, Route9_Movement_BulbaJump
 	waitmovement 0
 	waitse
@@ -106,7 +106,7 @@ Route9_EventScript_ReceiveBulbasaurPC::
 	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerHeal\
 	waitmovement 0
 	waitse
-	playse USE_ITEM
+	playse SE_USE_ITEM
 	applymovement LOCALID_BULBASAUR, Route9_Movement_BulbaJump
 	waitmovement 0
 	waitse
