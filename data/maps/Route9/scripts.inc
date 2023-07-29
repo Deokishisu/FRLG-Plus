@@ -137,7 +137,7 @@ Route9_EventScript_BulbasaurTransferredToPC:: @ 8161B73
 
 Route9_EventScript_EndReceiveBulbasaur:: @ 8161B7E
 	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerBack\
-	waitmovement
+	waitmovement 0
 	textcolor 1
 	msgbox Route9_Text_TreatHimRight
 	setflag FLAG_GOT_BULBASAUR_FROM_LADY
