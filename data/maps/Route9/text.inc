@@ -143,4 +143,5 @@ Route9_Text_TreatHimRight::
     .string "BULBASAUR.$"
 
 Route9_Text_HowIsBulbasaur::
-    .string "Good day. Is BULBASAUR doing good?$"
+    .string "Good day.\p"
+	.string "Is BULBASAUR doing okay?$"
