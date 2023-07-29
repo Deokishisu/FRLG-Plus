@@ -66,7 +66,6 @@ Route9_EventScript_GiveBulbasaur::
 Route9_EventScript_ReceiveBulbasaurParty::
 	applymovement LOCALID_BULBASAUR, Route9_Movement_Bulbasaur
 	waitmovement 0
-	textcolor 4
 	msgbox Route9_Text_Administer
 	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerHeal\
 	waitmovement 0
@@ -101,7 +100,6 @@ Route9_EventScript_ReceiveBulbasaurParty::
 Route9_EventScript_ReceiveBulbasaurPC::
 	applymovement LOCALID_BULBASAUR, Route9_Movement_Bulbasaur
 	waitmovement 0
-	textcolor 4
 	msgbox Route9_Text_Administer
 	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerHeal\
 	waitmovement 0
@@ -153,7 +151,6 @@ Route9_EventScript_AlreadyGotBulbasaur:: @ 8161B8D
 Route9_Movement_Bulbasaur::
 	walk_right
 	walk_in_place_down
-	jump_down
 	step_end
 
 Route9_Movement_PlayerHeal::
@@ -161,5 +158,5 @@ Route9_Movement_PlayerHeal::
 	step_end
 
 Route9_Movement_BulbaJump::
-	jump_down
+	jump_in_place_down
 	step_end
