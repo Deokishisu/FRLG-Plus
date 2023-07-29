@@ -133,7 +133,7 @@ Route9_Text_Administer::
    .string "Now, please administer the medicine.$"
 
 Route9_Text_BulbasaurEager::
-   .string BULBASAUR is happy to join you!\p
+   .string "BULBASAUR is happy to join you!$"
 
 Route9_Text_ObtainedBulbasaurFromLady::
     .string "{PLAYER} obtained a BULBASAUR!$"
