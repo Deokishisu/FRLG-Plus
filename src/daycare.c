@@ -1176,12 +1176,12 @@ void GiveRivalStarterEgg(void)
     switch(species)
     {
         case SPECIES_ELEKID:
+            GiveMoveToMon(&egg, MOVE_THUNDER_PUNCH);
             GiveMoveToMon(&egg, MOVE_CROSS_CHOP);
-            GiveMoveToMon(&egg, MOVE_ICE_PUNCH);
             break;
         case SPECIES_MAGBY:
+            GiveMoveToMon(&egg, MOVE_FIRE_PUNCH);
             GiveMoveToMon(&egg, MOVE_CROSS_CHOP);
-            GiveMoveToMon(&egg, MOVE_THUNDER_PUNCH);
             break;
         case SPECIES_SMOOCHUM:
             GiveMoveToMon(&egg, MOVE_ICE_PUNCH);
