@@ -76,3 +76,5 @@
 	.set EVO_LEVEL_NINJASK,    0x000d @ Pokémon reaches the specified level (special value for Ninjask)
 	.set EVO_LEVEL_SHEDINJA,   0x000e @ Pokémon reaches the specified level (special value for Shedinja)
 	.set EVO_BEAUTY,           0x000f @ Pokémon levels up with beauty ≥ specified value
+	.set EVO_LEVEL_GOREBYSS,    0x0010 @ Pokémon reaches the specified level with a Silcoon personality value
+	.set EVO_LEVEL_HUNTAIL,    0x0011 @ Pokémon reaches the specified level with a Cascoon personality value

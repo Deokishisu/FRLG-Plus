@@ -307,6 +307,8 @@ enum
 #define EVO_LEVEL_SHEDINJA   0x000e // Pokémon reaches the specified level (special value for Shedinja)
 #define EVO_BEAUTY           0x000f // Pokémon levels up with beauty ≥ specified value
 #define EVO_STONE_HELD       0x0010 // specified item is used on Pokémon and it's holding the specified item
+#define EVO_LEVEL_GOREBYSS    0x0011 // Pokémon reaches the specified level with a Silcoon personality value
+#define EVO_LEVEL_HUNTAIL    0x0012 // Pokémon reaches the specified level with a Cascoon personality value
 
 struct Evolution
 {
