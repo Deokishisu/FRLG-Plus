@@ -46,7 +46,7 @@ const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =
                             {EVO_ITEM, ITEM_LINK_BRACELET, SPECIES_ALAKAZAM, 0},
                             {EVO_LEVEL, 36, SPECIES_ALAKAZAM, 0}},
     [SPECIES_MACHOP]     = {{EVO_LEVEL, 28, SPECIES_MACHOKE, 0}},
-    }[SPECIES_MACHOKE]    = {{EVO_TRADE, 0, SPECIES_MACHAMP, 0},
+    [SPECIES_MACHOKE]    = {{EVO_TRADE, 0, SPECIES_MACHAMP, 0},
                             {EVO_ITEM, ITEM_LINK_BRACELET, SPECIES_MACHAMP, 0},
                             {EVO_LEVEL, 40, SPECIES_MACHAMP, 0}},
     [SPECIES_BELLSPROUT] = {{EVO_LEVEL, 21, SPECIES_WEEPINBELL, 0}},
