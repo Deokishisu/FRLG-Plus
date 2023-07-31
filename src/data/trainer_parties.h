@@ -2692,12 +2692,12 @@ static const struct TrainerMonItemDefaultMoves sTrainerMons_PokemaniacAshton[] =
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SuperNerdJovan[] = {
     {
         .iv = 0,
-        .lvl = 11,
+        .lvl = 12,
         .species = SPECIES_MAGNEMITE,
     },
     {
         .iv = 0,
-        .lvl = 11,
+        .lvl = 12,
         .species = SPECIES_VOLTORB,
     },
 };
@@ -2705,63 +2705,59 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SuperNerdJovan[] =
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SuperNerdMiguel[] = {
     {
         .iv = 0,
-        .lvl = 12,
+        .lvl = 16,
         .species = SPECIES_GRIMER,
     },
     {
         .iv = 0,
-        .lvl = 12,
-        .species = SPECIES_VOLTORB,
+        .lvl = 16,
+        .species = SPECIES_ELECTRIKE,
     },
     {
         .iv = 0,
-        .lvl = 12,
+        .lvl = 16,
         .species = SPECIES_KOFFING,
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sTrainerMons_SuperNerdAidan[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SuperNerdAidan[] = {
     {
         .iv = 0,
-        .lvl = 20,
+        .lvl = 25,
         .species = SPECIES_VOLTORB,
-        .moves = {MOVE_SONIC_BOOM, MOVE_SCREECH, MOVE_TACKLE, MOVE_CHARGE},
     },
     {
         .iv = 0,
-        .lvl = 20,
+        .lvl = 26,
         .species = SPECIES_KOFFING,
-        .moves = {MOVE_SLUDGE, MOVE_SMOG, MOVE_TACKLE, MOVE_POISON_GAS},
     },
     {
         .iv = 0,
-        .lvl = 20,
-        .species = SPECIES_VOLTORB,
-        .moves = {MOVE_SONIC_BOOM, MOVE_SCREECH, MOVE_TACKLE, MOVE_CHARGE},
-    },
-    {
-        .iv = 0,
-        .lvl = 20,
+        .lvl = 27,
         .species = SPECIES_MAGNEMITE,
-        .moves = {MOVE_SONIC_BOOM, MOVE_SUPERSONIC, MOVE_THUNDER_SHOCK, MOVE_TACKLE},
+    },
+    {
+        .iv = 0,
+        .lvl = 29,
+        .species = SPECIES_MANECTRIC,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SuperNerdGlenn[] = {
     {
         .iv = 0,
-        .lvl = 22,
-        .species = SPECIES_GRIMER,
+        .lvl = 26,
+        .species = SPECIES_GULPIN,
     },
     {
         .iv = 0,
-        .lvl = 22,
-        .species = SPECIES_MUK,
+        .lvl = 26,
+        .species = SPECIES_SLAKOTH,
     },
     {
         .iv = 0,
-        .lvl = 22,
-        .species = SPECIES_GRIMER,
+        .lvl = 27,
+        .species = SPECIES_DROWZEE,
     },
 };
 

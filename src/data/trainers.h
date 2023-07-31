@@ -1713,7 +1713,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_CamperLiam),
-        .party = {.NoItemCustomMoves = sTrainerMons_CamperLiam}
+        .party = {.NoItemDefaultMoves = sTrainerMons_CamperLiam}
     },
     [TRAINER_CAMPER_SHANE] = {
         .partyFlags = 0,
@@ -2025,7 +2025,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_PokemaniacAshton),
-        .party = {.NoItemDefaultMoves = sTrainerMons_PokemaniacAshton}
+        .party = {.ItemDefaultMoves = sTrainerMons_PokemaniacAshton}
     },
     [TRAINER_SUPER_NERD_JOVAN] = {
         .partyFlags = 0,
