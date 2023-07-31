@@ -2061,7 +2061,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_SuperNerdAidan),
-        .party = {.NoItemCustomMoves = sTrainerMons_SuperNerdAidan}
+        .party = {.NoItemDefaultMoves = sTrainerMons_SuperNerdAidan}
     },
     [TRAINER_SUPER_NERD_GLENN] = {
         .partyFlags = 0,
