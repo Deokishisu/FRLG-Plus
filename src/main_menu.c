@@ -36,7 +36,6 @@ enum MainMenuWindow
     MAIN_MENU_WINDOW_KEYSYSTEM_MYSTERYGIFT_ENABLED,
     MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY,
     MAIN_MENU_WINDOW_ERROR,
-    MAIN_MENU_WINDOW_FRLG_CHOICE,
     MAIN_MENU_WINDOW_COUNT
 };
 
@@ -74,13 +73,6 @@ static void LoadUserFrameToBg(u8 bgId);
 static void SetStdFrame0OnBg(u8 bgId);
 static void MainMenu_DrawWindow(const struct WindowTemplate * template);
 static void MainMenu_EraseWindow(const struct WindowTemplate * template);
-static void Task_DoFireredOrLeafgreenMultichoice(u8 taskId);
-static void Task_ChooseVersionOnNewGame(u8 taskId);
-static void Task_StartNewGame(u8 taskId);
-static void CreateFRLGChoiceMenu(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos);
-static void MainMenu_DrawWindow_WindowFunction(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 paletteNum);
-static void DrawFRLGChoiceFrame(u8 windowId, bool8 copyToVram, u16 baseTileNum, u8 paletteNum);
-
 
 static const u8 sString_Dummy[] = _("");
 static const u8 sString_Newline[] = _("\n");
@@ -158,15 +150,6 @@ static const struct WindowTemplate sWindowTemplate[] = {
         .paletteNum = 15,
         .baseBlock = 0x001
     }, 
-    [MAIN_MENU_WINDOW_FRLG_CHOICE] = {
-        .bg = 0x00,
-        .tilemapLeft = 0x13,
-        .tilemapTop = 0x0f,
-        .width = 0x08,
-        .height = 0x04,
-        .paletteNum = 2,
-        .baseBlock = 0x0155
-    },
     [MAIN_MENU_WINDOW_COUNT] = DUMMY_WIN_TEMPLATE
 };
 
@@ -259,7 +242,7 @@ static bool32 MainMenuGpuInit(u8 a0)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON);
     taskId = CreateTask(Task_SetWin0BldRegsAndCheckSaveFile, 0);
     gTasks[taskId].tCursorPos = 0;
-    gTasks[taskId].tUnused8 = 0;
+    gTasks[taskId].tUnused8 = a0;
     return FALSE;
 }
 
@@ -312,11 +295,6 @@ static void Task_SetWin0BldRegsAndCheckSaveFile(u8 taskId)
             }
             break;
         case SAVE_STATUS_EMPTY:
-            SetStdFrame0OnBg(0);
-            gTasks[taskId].tMenuType = MAIN_MENU_NEWGAME;
-            gTasks[taskId].tUnused8 = 3;
-            PrintSaveErrorStatus(taskId, gChooseVersionNewGame);
-            break;
         default:
             LoadUserFrameToBg(0);
             gTasks[taskId].tMenuType = MAIN_MENU_NEWGAME;
@@ -336,8 +314,6 @@ static void PrintSaveErrorStatus(u8 taskId, const u8 *str)
     PrintMessageOnWindow4(str);
     gTasks[taskId].func = Task_SaveErrorStatus_RunPrinterThenWaitButton;
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0xFFFF);
-    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
-    SetGpuReg(REG_OFFSET_WIN0V, ((0x0 << 8) + (2 << 8)) | ((0xA0) - 2));
     ShowBg(0);
     SetVBlankCallback(VBlankCB_MainMenu);
 }
@@ -347,26 +323,15 @@ static void Task_SaveErrorStatus_RunPrinterThenWaitButton(u8 taskId)
     if (!gPaletteFade.active)
     {
         RunTextPrinters();
-        if(gTasks[taskId].tUnused8 == 3)
+        if (!IsTextPrinterActive(MAIN_MENU_WINDOW_ERROR) && JOY_NEW(A_BUTTON))
         {
-            if(!IsTextPrinterActive(MAIN_MENU_WINDOW_ERROR))
-            {
-                gTasks[taskId].func = Task_DoFireredOrLeafgreenMultichoice;
-            }
-        }
-        else
-        {
-            if (!IsTextPrinterActive(MAIN_MENU_WINDOW_ERROR) && JOY_NEW(A_BUTTON))
-            {
-                ClearWindowTilemap(MAIN_MENU_WINDOW_ERROR);
-                MainMenu_EraseWindow(&sWindowTemplate[MAIN_MENU_WINDOW_ERROR]);
-                LoadUserFrameToBg(0);
-
-                if (gTasks[taskId].tMenuType == MAIN_MENU_NEWGAME)
-                    gTasks[taskId].func = Task_SetWin0BldRegsNoSaveFileCheck;
-                else
-                    gTasks[taskId].func = Task_PrintMainMenuText;
-            }
+            ClearWindowTilemap(MAIN_MENU_WINDOW_ERROR);
+            MainMenu_EraseWindow(&sWindowTemplate[MAIN_MENU_WINDOW_ERROR]);
+            LoadUserFrameToBg(0);
+            if (gTasks[taskId].tMenuType == MAIN_MENU_NEWGAME)
+                gTasks[taskId].func = Task_SetWin0BldRegsNoSaveFileCheck;
+            else
+                gTasks[taskId].func = Task_PrintMainMenuText;
         }
     }
 }
@@ -566,10 +531,11 @@ static void Task_ExecuteMainMenuSelection(u8 taskId)
         {
         default:
         case MAIN_MENU_NEWGAME:
-            SetStdFrame0OnBg(0);
-            gTasks[taskId].func = Task_ChooseVersionOnNewGame;
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
-            return;
+            gUnknown_2031DE0 = 0;
+            FreeAllWindowBuffers();
+            DestroyTask(taskId);
+            StartNewGameScene();
+            break;
         case MAIN_MENU_CONTINUE:
             gPlttBufferUnfaded[0] = RGB_BLACK;
             gPlttBufferFaded[0] = RGB_BLACK;
@@ -591,151 +557,6 @@ static void Task_ExecuteMainMenuSelection(u8 taskId)
             break;
         }
     }
-}
-
-static void Task_DoFireredOrLeafgreenMultichoice(u8 taskId)
-{
-    struct WindowTemplate windowTemplate;
-    s8 input;
-
-    switch (gTasks[taskId].tUnused8)
-    {
-    case 3:
-        //StringExpandPlaceholders(gStringVar4, gChooseVersionNewGame);
-        //MAIN_MENU_WINDOW_ERROR = AddWindow(&sWindowTemplate_Prompt_FRLG);
-        //FillWindowPixelBuffer(MAIN_MENU_WINDOW_ERROR, 0x11);
-        //AddTextPrinterParameterized4(MAIN_MENU_WINDOW_ERROR, 2, 0, 2, 0, 2, sMG_Ereader_TextColor_2, 0, gStringVar4);
-        //DrawTextBorderOuter(MAIN_MENU_WINDOW_ERROR, 0x001, 0x0F);
-        //CopyWindowToVram(MAIN_MENU_WINDOW_ERROR, COPYWIN_GFX);
-        //PutWindowTilemap(MAIN_MENU_WINDOW_ERROR);
-        gTasks[taskId].tUnused8++;
-        break;
-    case 4:
-        windowTemplate = sWindowTemplate[MAIN_MENU_WINDOW_FRLG_CHOICE];
-        windowTemplate.tilemapTop = 9;
-        CreateFRLGChoiceMenu(&windowTemplate, 2, 0, 2, 0x0155, 2, 0);
-        gTasks[taskId].tUnused8++;
-        break;
-    case 5:
-        input = Menu_ProcessInputNoWrapAround();
-        if (input == 0 || input == 1)
-        {
-            if(input == 0)
-            {
-                gSaveBlock1Ptr->keyFlags.version = 0;
-            }
-            else
-            {
-                gSaveBlock1Ptr->keyFlags.version = 1;
-            }
-            PlaySE(SE_SELECT);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-            gTasks[taskId].tUnused8 = 3;
-            rbox_fill_rectangle(MAIN_MENU_WINDOW_ERROR);
-            ClearWindowTilemap(MAIN_MENU_WINDOW_ERROR);
-            CopyWindowToVram(MAIN_MENU_WINDOW_ERROR, COPYWIN_MAP);
-            RemoveWindow(MAIN_MENU_WINDOW_ERROR);
-            gTasks[taskId].func = Task_StartNewGame;
-            break;
-        }
-        break;
-    /*case 0xFF:
-        if(input == 0)
-        {
-            gSaveBlock1Ptr->keyFlags.version = 0;
-        }
-        else
-        {
-            gSaveBlock1Ptr->keyFlags.version = 1;
-        }
-        PlaySE(SE_SELECT);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        gTasks[taskId].tUnused8 = 3;
-        rbox_fill_rectangle(MAIN_MENU_WINDOW_ERROR);
-        ClearWindowTilemap(MAIN_MENU_WINDOW_ERROR);
-        CopyWindowToVram(MAIN_MENU_WINDOW_ERROR, COPYWIN_MAP);
-        RemoveWindow(MAIN_MENU_WINDOW_ERROR);
-        gTasks[taskId].func = Task_StartNewGame;
-        break;*/
-    }
-}
-
-void CreateFRLGChoiceMenu(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos)
-{
-    struct TextPrinterTemplate textSubPrinter;
-    u8 YesNoWindowId;
-
-    YesNoWindowId = AddWindow(window);
-    DrawFRLGChoiceFrame(YesNoWindowId, 1, baseTileNum, paletteNum);
-    textSubPrinter.currentChar = gFRLG_Multichoice;
-    textSubPrinter.windowId = YesNoWindowId;
-    textSubPrinter.fontId = fontId;
-    textSubPrinter.x = GetMenuCursorDimensionByFont(fontId, 0) + left;
-    textSubPrinter.y = top;
-    textSubPrinter.currentX = textSubPrinter.x;
-    textSubPrinter.currentY = textSubPrinter.y;
-    textSubPrinter.fgColor = GetFontAttribute(fontId, FONTATTR_COLOR_FOREGROUND);
-    textSubPrinter.bgColor = GetFontAttribute(fontId, FONTATTR_COLOR_BACKGROUND);
-    textSubPrinter.shadowColor = GetFontAttribute(fontId, FONTATTR_COLOR_SHADOW);
-    textSubPrinter.unk = GetFontAttribute(fontId, FONTATTR_UNKNOWN);
-    textSubPrinter.letterSpacing = GetFontAttribute(fontId, FONTATTR_LETTER_SPACING);
-    textSubPrinter.lineSpacing = GetFontAttribute(fontId, FONTATTR_LINE_SPACING);
-    AddTextPrinter(&textSubPrinter, 0xFF, NULL);
-    Menu_InitCursor(YesNoWindowId, fontId, left, top, GetFontAttribute(fontId, FONTATTR_MAX_LETTER_HEIGHT) + textSubPrinter.lineSpacing, 2, initialCursorPos);
-}
-
-static void DrawFRLGChoiceFrame(u8 windowId, bool8 copyToVram, u16 baseTileNum, u8 paletteNum)
-{
-    u16 TileNum;
-    u8 PaletteNum;
-
-    TileNum = baseTileNum;
-    PaletteNum = paletteNum;
-    CallWindowFunction(windowId, MainMenu_DrawWindow_WindowFunction);
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    PutWindowTilemap(windowId);
-    if (copyToVram == TRUE)
-        CopyWindowToVram(windowId, COPYWIN_BOTH);
-}
-
-static void Task_ChooseVersionOnNewGame(u8 taskId)
-{
-    s8 state = 0;
-
-    //undarken screen
-    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
-    SetGpuReg(REG_OFFSET_WIN0V, ((0x0 << 8) + (2 << 8)) | ((0xA0) - 2));
-    switch (gTasks[taskId].tUnused8)
-    {
-    case 0:
-        FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 30, 20);
-        PrintMessageOnWindow4(gChooseVersionNewGame);
-        gTasks[taskId].tUnused8++;
-        break;
-    case 1:
-        if (!gPaletteFade.active)
-            gTasks[taskId].tUnused8++;
-        break;
-    case 2:
-        RunTextPrinters();
-        if (!IsTextPrinterActive(MAIN_MENU_WINDOW_ERROR))
-            gTasks[taskId].tUnused8++;
-        break;
-    case 3: //yesno here
-        gTasks[taskId].func = Task_DoFireredOrLeafgreenMultichoice;
-        //PlaySE(SE_SELECT);
-        //BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-        //gTasks[taskId].func = Task_StartNewGame;
-        break;
-    }
-}
-
-static void Task_StartNewGame(u8 taskId)
-{
-    gUnknown_2031DE0 = 0;
-    FreeAllWindowBuffers();
-    DestroyTask(taskId);
-    StartNewGameScene();
 }
 
 static void Task_MysteryGiftError(u8 taskId)
@@ -965,89 +786,6 @@ static void SetStdFrame0OnBg(u8 bgId)
 {
     TextWindow_SetStdFrame0_WithPal(MAIN_MENU_WINDOW_NEWGAME_ONLY, 0x1B1, 0x20);
     MainMenu_EraseWindow(&sWindowTemplate[MAIN_MENU_WINDOW_ERROR]);
-}
-
-static void MainMenu_DrawWindow_WindowFunction(u8 bg, u8 tilemapLeft, u8 tilemapTop, u8 width, u8 height, u8 paletteNum)
-{
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B1, 
-        tilemapLeft - 1, 
-        tilemapTop - 1,
-        1,
-        1,
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B2, 
-        tilemapLeft, 
-        tilemapTop - 1, 
-        width, 
-        height, 
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B3, 
-        tilemapLeft + 
-        width, 
-        tilemapTop - 1,
-        1,
-        1,
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B4, 
-        tilemapLeft - 1, 
-        tilemapTop,
-        1, 
-        height,
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B6, 
-        tilemapLeft + 
-        width, 
-        tilemapTop,
-        1, 
-        height,
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B7, 
-        tilemapLeft - 1, 
-        tilemapTop + 
-        height,
-        1,
-        1,
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B8, 
-        tilemapLeft, 
-        tilemapTop + 
-        height, 
-        width,
-        1,
-        2
-    );
-    FillBgTilemapBufferRect(
-        bg, 
-        0x1B9, 
-        tilemapLeft + 
-        width, 
-        tilemapTop + 
-        height,
-        1,
-        1,
-        2
-    );
-    CopyBgTilemapBufferToVram(bg);
 }
 
 static void MainMenu_DrawWindow(const struct WindowTemplate * windowTemplate)

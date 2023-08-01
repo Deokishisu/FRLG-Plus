@@ -1623,14 +1623,12 @@ static bool8 map_post_load_hook_exec(void)
 
 void CB2_NewGame(void)
 {
-    u8 versionBackup = gSaveBlock1Ptr->keyFlags.version;
     FieldClearVBlankHBlankCallbacks();
     StopMapMusic();
     ResetSafariZoneFlag_();
     NewGameInitData();
     AddBagItem(ITEM_BERRY_POUCH, 1);
     AddBagItem(ITEM_TM_CASE, 1);
-    gSaveBlock1Ptr->keyFlags.version = versionBackup;
     ResetInitialPlayerAvatarState();
     PlayTimeCounter_Start();
     ScriptContext1_Init();
