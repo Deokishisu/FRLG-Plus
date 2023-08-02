@@ -6868,7 +6868,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourAgatha[] = {
         .iv = 250,
         .lvl = 66,
         .species = SPECIES_GENGAR,
-        .heldItem = ITEM_STARF_BERRY_BERRY,
+        .heldItem = ITEM_STARF_BERRY,
         .abilityNum = 0,
         .moves = {MOVE_THUNDERBOLT, MOVE_WILL_O_WISP, MOVE_ICE_PUNCH, MOVE_DESTINY_BOND},
     },
@@ -7364,7 +7364,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_RivalSsAnneCharman
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerSquirtle[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerSquirtle[] = {
     {
         .iv = 100,
         .lvl = 34,
@@ -7402,7 +7402,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerSqui
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerBulbasaur[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerBulbasaur[] = {
     {
         .iv = 100,
         .lvl = 34,
@@ -7440,7 +7440,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerBulb
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerCharmander[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerCharmander[] = {
     {
         .iv = 100,
         .lvl = 34,
@@ -7560,7 +7560,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalSilphCharmander[
         .lvl = 46,
         .species = SPECIES_CROBAT,
 		.heldItem = ITEM_SCOPE_LENS
-		.moves = {MOVE_POISON_FANG, MOVE_HYPNOSIS', MOVE_CONFUSE_RAY, MOVE_SHADOW_BALL},
+		.moves = {MOVE_POISON_FANG, MOVE_HYPNOSIS, MOVE_CONFUSE_RAY, MOVE_SHADOW_BALL},
     },
     {
         .iv = 100,
@@ -7588,7 +7588,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalSilphCharmander[
         .lvl = 49,
         .species = SPECIES_ELECTABUZZ,
 		.heldItem = ITEM_MAGNET
-		'.moves = {MOVE_THUNDERBOLT, MOVE_CROSS_CHOP, MOVE_ICE_PUNCH, MOVE_FIRE_PUNCH},
+		.moves = {MOVE_THUNDERBOLT, MOVE_CROSS_CHOP, MOVE_ICE_PUNCH, MOVE_FIRE_PUNCH},
     },
 };
 
@@ -7961,7 +7961,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_ChannelerJanae[] =
     {
         .iv = 0,
         .lvl = 33,
-        .species = SPECIES_JANAE,
+        .species = SPECIES_SHEDINJA,
     },
 };
 
