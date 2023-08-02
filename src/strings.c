@@ -1273,10 +1273,7 @@ const u8 gText_ExpModNormal[] = _("1×");
 const u8 gText_ExpModTwice[] = _("2×");
 
 const u8 gText_KeySystemSettings[] = _("KEY SYSTEM SETTINGS");
-const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}SAVE");
-const u8 gChooseVersionNewGame[] = _("Start NEW GAME on which version?\nOther KEY SYSTEM SETTINGS can\lbe set later from the main menu.");
-const u8 gFRLG_Multichoice[] = _("FIRERED\nLEAFGREEN");
-
+const u8 gText_HelpPickSwitchCancel[] = _("{L_BUTTON}KEY INFO {DPAD_UPDOWN}PICK {DPAD_LEFTRIGHT}SWITCH {A_BUTTON}{B_BUTTON}CANCEL");
 const u8 gText_BlueFlute_Ash[] = _("{SMALL}BLUE FLUTE{CLEAR_TO 0x40} 250");
 const u8 gText_YellowFlute_Ash[] = _("{SMALL}YELLOW FLUTE{CLEAR_TO 0x40} 500");
 const u8 gText_RedFlute_Ash[] = _("{SMALL}RED FLUTE{CLEAR_TO 0x40} 500");
