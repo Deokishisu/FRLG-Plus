@@ -3590,7 +3590,7 @@ static const struct TrainerMonItemDefaultMoves sTrainerMons_FishermanClaude[] = 
         .iv = 0,
         .lvl = 45,
         .species = SPECIES_CLAMPERL,
-        .heldItem = ITEM_DEEPSEATOOTH,
+        .heldItem = ITEM_DEEP_SEA_TOOTH,
     },
 };
 
@@ -6744,6 +6744,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourLorelei[] = 
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
         .moves = {MOVE_SING, MOVE_PROTECT, MOVE_PERISH_SONG, MOVE_BLIZZARD},
+        .moves = {MOVE_SING, MOVE_PROTECT, MOVE_PERISH_SONG, MOVE_BLIZZARD},
     },
     {
         .iv = 250,
@@ -6811,6 +6812,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourBruno[] = {
         .heldItem = ITEM_SITRUS_BERRY,
         .abilityNum = 0,
         .moves = {MOVE_ROCK_BLAST, MOVE_EARTHQUAKE, MOVE_AERIAL_ACE, MOVE_ROCK_SMASH},
+	},
     {
         .iv = 250,
         .lvl = 65,
@@ -7434,7 +7436,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerBulb
         .lvl = 38,
         .species = SPECIES_MAGMAR,
 		.heldItem = ITEM_STARF_BERRY
-		'.moves = {MOVE_FLAMETHROWER, MOVE_BRICK_BREAK, MOVE_THUNDER_PUNCH, MOVE_SUNNY_DAY},
+		.moves = {MOVE_FLAMETHROWER, MOVE_BRICK_BREAK, MOVE_THUNDER_PUNCH, MOVE_SUNNY_DAY},
     },
 };
 
