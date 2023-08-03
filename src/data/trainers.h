@@ -5147,7 +5147,7 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_RivalSsAnneCharmander),
         .party = {.NoItemDefaultMoves = sTrainerMons_RivalSsAnneCharmander}
     },
-    [TRAINER_RIVAL_POKENON_TOWER_SQUIRTLE] = {
+    [TRAINER_RIVAL_POKEMON_TOWER_SQUIRTLE] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_RIVAL_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -5156,10 +5156,10 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_RivalPokenonTowerSquirtle),
-        .party = {.ItemCustomMoves = sTrainerMons_RivalPokenonTowerSquirtle}
+        .partySize = NELEMS(sTrainerMons_RivalPokemonTowerSquirtle),
+        .party = {.ItemCustomMoves = sTrainerMons_RivalPokemonTowerSquirtle}
     },
-    [TRAINER_RIVAL_POKENON_TOWER_BULBASAUR] = {
+    [TRAINER_RIVAL_POKEMON_TOWER_BULBASAUR] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_RIVAL_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -5168,10 +5168,10 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_RivalPokenonTowerBulbasaur),
-        .party = {.ItemCustomMoves = sTrainerMons_RivalPokenonTowerBulbasaur}
+        .partySize = NELEMS(sTrainerMons_RivalPokemonTowerBulbasaur),
+        .party = {.ItemCustomMoves = sTrainerMons_RivalPokemonTowerBulbasaur}
     },
-    [TRAINER_RIVAL_POKENON_TOWER_CHARMANDER] = {
+    [TRAINER_RIVAL_POKEMON_TOWER_CHARMANDER] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_RIVAL_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
@@ -5180,8 +5180,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_RivalPokenonTowerCharmander),
-        .party = {.ItemCustomMoves = sTrainerMons_RivalPokenonTowerCharmander}
+        .partySize = NELEMS(sTrainerMons_RivalPokemonTowerCharmander),
+        .party = {.ItemCustomMoves = sTrainerMons_RivalPokemonTowerCharmander}
     },
     [TRAINER_RIVAL_SILPH_SQUIRTLE] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
