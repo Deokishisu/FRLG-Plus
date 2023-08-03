@@ -8993,7 +8993,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_PainterDaisy[] = {
         .iv = 0,
         .lvl = 64,
         .species = SPECIES_SMEARGLE,
-		.heldItem = ITEM_CHOICE_BAND
+		.heldItem = ITEM_CHOICE_BAND,
         .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     },
     {
