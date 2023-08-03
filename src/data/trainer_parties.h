@@ -9139,7 +9139,7 @@ static const struct TrainerMonNoItemCustomMoves sTrainerMons_BikerRicardo[] = {
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BikerJaren[] = {
     {
         .iv = 0,
-        .lvl = 2'6,
+        .lvl = 26,
         .species = SPECIES_GRIMER,
     },
     {
