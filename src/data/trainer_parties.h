@@ -8428,14 +8428,14 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_CoolCoupleRayTyra[] =
         .iv = 255,
         .lvl = 58,
         .species = SPECIES_OMASTAR,
-		.heldItem = SCOPE_LENS,
+		.heldItem = ITEM_SCOPE_LENS,
         .moves = {MOVE_RAIN_DANCE, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HAZE},
     },
     {
         .iv = 255,
         .lvl = 58,
         .species = SPECIES_KABUTOPS,
-		.heldItem = SALAC_BERRY,
+		.heldItem = ITEM_SALAC_BERRY,
         .moves = {MOVE_ENDURE, MOVE_ANCIENT_POWER, MOVE_FLAIL, MOVE_HYDRO_PUMP},
     },
 };
