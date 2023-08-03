@@ -10771,8 +10771,8 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CamperChris2[] = {
         .species = SPECIES_CAMERUPT,
     },
     {
-        .iv = 34,
-        .lvl = ,
+        .iv = 40,
+        .lvl = 34,
         .species = SPECIES_CHARMELEON,
     },
 };
