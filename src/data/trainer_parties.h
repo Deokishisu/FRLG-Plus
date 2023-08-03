@@ -7681,7 +7681,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalRoute22LateBulba
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sTrainerMons_RivalRoute22LateCharmander[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalRoute22LateCharmander[] = {
     {
         .iv = 255,
         .lvl = 56,
