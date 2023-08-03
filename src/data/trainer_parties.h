@@ -7375,28 +7375,28 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerSqui
         .iv = 100,
         .lvl = 36,
         .species = SPECIES_FLAAFFY,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
 		.moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_COTTON_SPORE, MOVE_HIDDEN_POWER},
     },
     {
         .iv = 100,
         .lvl = 36,
         .species = SPECIES_HOUNDOOM,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
 		.moves = {MOVE_FLAMETHROWER, MOVE_FAINT_ATTACK, MOVE_SOLAR_BEAM, MOVE_SUNNY_DAY},
     },
     {
         .iv = 100,
         .lvl = 36,
         .species = SPECIES_KADABRA,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
 		.moves = {MOVE_PSYCHIC, MOVE_TRICK, MOVE_CALM_MIND, MOVE_FIRE_PUNCH},
     },
     {
         .iv = 255,
         .lvl = 38,
         .species = SPECIES_JYNX,
-		.heldItem = ITEM_STARF_BERRY
+		.heldItem = ITEM_STARF_BERRY,
 		.moves = {MOVE_ICE_BEAM, MOVE_FAKE_TEARS, MOVE_PSYCHIC, MOVE_LOVELY_KISS},
     },
 };
