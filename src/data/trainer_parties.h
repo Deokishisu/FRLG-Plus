@@ -7364,7 +7364,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_RivalSsAnneCharman
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerSquirtle[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerSquirtle[] = {
     {
         .iv = 100,
         .lvl = 34,
@@ -7402,7 +7402,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerSqui
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerBulbasaur[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerBulbasaur[] = {
     {
         .iv = 100,
         .lvl = 34,
@@ -7440,7 +7440,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerBulb
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokemonTowerCharmander[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerCharmander[] = {
     {
         .iv = 100,
         .lvl = 34,
