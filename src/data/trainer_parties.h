@@ -6744,7 +6744,6 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourLorelei[] = 
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
         .moves = {MOVE_SING, MOVE_PROTECT, MOVE_PERISH_SONG, MOVE_BLIZZARD},
-        .moves = {MOVE_SING, MOVE_PROTECT, MOVE_PERISH_SONG, MOVE_BLIZZARD},
     },
     {
         .iv = 250,
