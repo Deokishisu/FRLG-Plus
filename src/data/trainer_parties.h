@@ -7398,7 +7398,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerSqui
         .lvl = 38,
         .species = SPECIES_JYNX,
 		.heldItem = ITEM_STARF_BERRY
-		'.moves = {MOVE_ICE_BEAM, MOVE_FAKE_TEARS, MOVE_PSYCHIC, MOVE_LOVELY_KISS},
+		.moves = {MOVE_ICE_BEAM, MOVE_FAKE_TEARS, MOVE_PSYCHIC, MOVE_LOVELY_KISS},
     },
 };
 
@@ -7474,7 +7474,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerChar
         .lvl = 38,
         .species = SPECIES_ELECTABUZZ,
 		.heldItem = ITEM_STARF_BERRY
-		'.moves = {MOVE_THUNDERBOLT, MOVE_LIGHT_SCREEN, MOVE_FIRE_PUNCH, MOVE_THUNDER_WAVE},
+		.moves = {MOVE_THUNDERBOLT, MOVE_LIGHT_SCREEN, MOVE_FIRE_PUNCH, MOVE_THUNDER_WAVE},
     },
 };
 
@@ -7512,7 +7512,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalSilphSquirtle[] 
         .lvl = 49,
         .species = SPECIES_JYNX,
 		.heldItem = ITEM_TWISTED_SPOON
-		'.moves = {MOVE_LOVELY_KISS, MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_BODY_SLAM},
+		.moves = {MOVE_LOVELY_KISS, MOVE_ICE_BEAM, MOVE_PSYCHIC, MOVE_BODY_SLAM},
     },
 };
 
@@ -7550,7 +7550,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalSilphBulbasaur[]
         .lvl = 49,
         .species = SPECIES_MAGMAR,
 		.heldItem = ITEM_CHARCOAL
-		'.moves = {MOVE_FIRE_BLAST, MOVE_THUNDER_PUNCH, MOVE_CROSS_CHOP, MOVE_BARRIER},
+		.moves = {MOVE_FIRE_BLAST, MOVE_THUNDER_PUNCH, MOVE_CROSS_CHOP, MOVE_BARRIER},
     },
 };
 
