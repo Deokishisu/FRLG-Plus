@@ -8986,7 +8986,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_PainterDaisy[] = {
         .iv = 50,
         .lvl = 64,
         .species = SPECIES_SMEARGLE,
-		.heldItem = ITEM_CHOICE_BAND
+		.heldItem = ITEM_CHOICE_BAND,
         .moves = {MOVE_EXPLOSION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     },
     {
@@ -9000,14 +9000,14 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_PainterDaisy[] = {
         .iv = 255,
         .lvl = 64,
         .species = SPECIES_SMEARGLE,
-		.heldItem = ITEM_SCOPE_LENS
+		.heldItem = ITEM_SCOPE_LENS,
         .moves = {MOVE_HYDRO_CANNON, MOVE_BLAST_BURN, MOVE_FRENZY_PLANT, MOVE_SPORE},
     },
     {
         .iv = 255,
         .lvl = 64,
         .species = SPECIES_SMEARGLE,
-		.heldItem = ITEM_QUICK_CLAW
+		.heldItem = ITEM_QUICK_CLAW,
         .moves = {MOVE_SPORE, MOVE_MIND_READER, MOVE_SHEER_COLD, MOVE_CONFUSE_RAY},
     },
 };
@@ -9335,42 +9335,42 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_ScientistGideon[] = {
         .iv = 255,
         .lvl = 62,
         .species = SPECIES_ELECTRODE,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
         .moves = {MOVE_THUNDERBOLT, MOVE_SCREECH, MOVE_SHARPEN, MOVE_EXPLOSION},
     },
     {
         .iv = 255,
         .lvl = 63,
         .species = SPECIES_MAGNETON,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
         .moves = {MOVE_THUNDERBOLT, MOVE_METAL_SOUND, MOVE_SUBSTITUTE, MOVE_TOXIC},
     },
     {
         .iv = 255,
         .lvl = 64,
         .species = SPECIES_MANECTRIC,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
         .moves = {MOVE_FLAMETHROWER, MOVE_THUNDERBOLT, MOVE_SUBSTITUTE, MOVE_THUNDER_WAVE},
     },
     {
         .iv = 255,
         .lvl = 65,
         .species = SPECIES_ALAKAZAM,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
         .moves = {MOVE_CALM_MIND, MOVE_RECOVER, MOVE_THUNDER_WAVE, MOVE_PSYCHIC},
     },
     {
         .iv = 255,
         .lvl = 65,
         .species = SPECIES_PORYGON,
-		.heldItem = ITEM_NONE
+		.heldItem = ITEM_NONE,
         .moves = {MOVE_TOXIC, MOVE_RECYCLE, MOVE_SUBSTITUTE, MOVE_ICE_BEAM},
     },
     {
         .iv = 255,
         .lvl = 66,
         .species = SPECIES_CASTFORM,
-		.heldItem = ITEM_STARF_BERRY
+		.heldItem = ITEM_STARF_BERRY,
         .moves = {MOVE_WEATHER_BALL, MOVE_ICE_BEAM, MOVE_SOLAR_BEAM, MOVE_SUNNY_DAY},
     },
 };
@@ -9665,7 +9665,7 @@ static const struct TrainerMonNoItemCustomMoves sTrainerMons_PainterRayna[] = {
         .iv = 50,
         .lvl = 64,
         .species = SPECIES_SMEARGLE,
-        .moves = {MOVE_SPORE, MOVE_SPIDER_WEB, MOVE_HYDRO_CANNON, MOVE_SELF_EXPLOSION},
+        .moves = {MOVE_SPORE, MOVE_SPIDER_WEB, MOVE_HYDRO_CANNON, MOVE_EXPLOSION},
     },
 };
 
@@ -10115,7 +10115,7 @@ static const struct TrainerMonNoItemCustomMoves sTrainerMons_PkmnRangerLogan[] =
         .iv = 100,
         .lvl = 45,
         .species = SPECIES_VILEPLUME,
-        .moves = {MOVE_LEECH_SEED, MOVE_SLEEP_POWDER_POWDER, MOVE_SUBSTITUTE, MOVE_GIGA_DRAIN},
+        .moves = {MOVE_LEECH_SEED, MOVE_SLEEP_POWDER, MOVE_SUBSTITUTE, MOVE_GIGA_DRAIN},
     },
     {
         .iv = 100,
