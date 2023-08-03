@@ -6204,7 +6204,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sTrainerMons_TeamRocketGrunt42}
     },
     [TRAINER_PSYCHIC_JACLYN] = {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_PSYCHIC_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_PSYCHIC_F,
@@ -6213,7 +6213,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_PsychicJaclyn),
-        .party = {.NoItemCustomMoves = sTrainerMons_PsychicJaclyn}
+        .party = {.ItemCustomMoves = sTrainerMons_PsychicJaclyn}
     },
     [TRAINER_CRUSH_GIRL_SHARON] = {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM,
@@ -6312,7 +6312,7 @@ const struct Trainer gTrainers[] = {
         .party = {.ItemDefaultMoves = sTrainerMons_LadyJacki}
     },
     [TRAINER_PAINTER_DAISY] = {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_PAINTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE,
         .trainerPic = TRAINER_PIC_PAINTER,
@@ -6321,7 +6321,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_PainterDaisy),
-        .party = {.NoItemCustomMoves = sTrainerMons_PainterDaisy}
+        .party = {.ItemCustomMoves = sTrainerMons_PainterDaisy}
     },
     [TRAINER_BIKER_GOON] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
@@ -6336,7 +6336,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemCustomMoves = sTrainerMons_BikerGoon}
     },
     [TRAINER_BIKER_GOON_2] = {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .partyFlags = 0,
         .trainerClass = CLASS_BIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_BIKER,
@@ -6345,7 +6345,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_BikerGoon2),
-        .party = {.NoItemCustomMoves = sTrainerMons_BikerGoon2}
+        .party = {.NoItemDefaultMoves = sTrainerMons_BikerGoon2}
     },
     [TRAINER_BIKER_GOON_3] = {
         .partyFlags = 0,
@@ -6372,7 +6372,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sTrainerMons_Biker2}
     },
     [TRAINER_BUG_CATCHER_ANTHONY] = {
-        .partyFlags = 0,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
         .trainerClass = CLASS_BUG_CATCHER_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_BUG_CATCHER,
@@ -6381,7 +6381,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_BugCatcherAnthony),
-        .party = {.NoItemDefaultMoves = sTrainerMons_BugCatcherAnthony}
+        .party = {.NoItemCustomMoves = sTrainerMons_BugCatcherAnthony}
     },
     [TRAINER_BUG_CATCHER_CHARLIE] = {
         .partyFlags = 0,
@@ -6540,7 +6540,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemCustomMoves = sTrainerMons_TeamRocketAdmin2}
     },
     [TRAINER_SCIENTIST_GIDEON] = {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_SCIENTIST,
@@ -6549,7 +6549,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = NELEMS(sTrainerMons_ScientistGideon),
-        .party = {.NoItemCustomMoves = sTrainerMons_ScientistGideon}
+        .party = {.ItemCustomMoves = sTrainerMons_ScientistGideon}
     },
     [TRAINER_SWIMMER_FEMALE_AMARA] = {
         .partyFlags = 0,
