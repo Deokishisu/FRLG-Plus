@@ -7434,7 +7434,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerBulb
         .iv = 255,
         .lvl = 38,
         .species = SPECIES_MAGMAR,
-		.heldItem = ITEM_STARF_BERRY
+		.heldItem = ITEM_STARF_BERRY,
 		.moves = {MOVE_FLAMETHROWER, MOVE_BRICK_BREAK, MOVE_THUNDER_PUNCH, MOVE_SUNNY_DAY},
     },
 };
@@ -7472,7 +7472,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_RivalPokenonTowerChar
         .iv = 255,
         .lvl = 38,
         .species = SPECIES_ELECTABUZZ,
-		.heldItem = ITEM_STARF_BERRY
+		.heldItem = ITEM_STARF_BERRY,
 		.moves = {MOVE_THUNDERBOLT, MOVE_LIGHT_SCREEN, MOVE_FIRE_PUNCH, MOVE_THUNDER_WAVE},
     },
 };
@@ -8423,19 +8423,19 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_TwinsEliAnne[] = {
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sTrainerMons_CoolCoupleRayTyra[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_CoolCoupleRayTyra[] = {
     {
         .iv = 255,
         .lvl = 58,
         .species = SPECIES_OMASTAR,
-		.heldItem = SCOPE_LENS
+		.heldItem = SCOPE_LENS,
         .moves = {MOVE_RAIN_DANCE, MOVE_HYDRO_PUMP, MOVE_ICE_BEAM, MOVE_HAZE},
     },
     {
         .iv = 255,
         .lvl = 58,
         .species = SPECIES_KABUTOPS,
-		.heldItem = SALAC_BERRY
+		.heldItem = SALAC_BERRY,
         .moves = {MOVE_ENDURE, MOVE_ANCIENT_POWER, MOVE_FLAIL, MOVE_HYDRO_PUMP},
     },
 };
