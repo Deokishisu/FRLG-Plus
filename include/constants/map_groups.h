@@ -139,6 +139,7 @@
 #define MAP_SIX_ISLAND_DOTTED_HOLE_SAPPHIRE_ROOM (123 | (1 << 8))
 #define MAP_SIX_ISLAND_PATTERN_BUSH              (124 | (1 << 8))
 #define MAP_SIX_ISLAND_ALTERING_CAVE             (125 | (1 << 8))
+#define MAP_VIRIDIAN_FOREST_DEPTHS               (126 | (1 << 8))
 
 // gMapGroup_SpecialArea
 #define MAP_NAVEL_ROCK_EXTERIOR                       (0 | (2 << 8))

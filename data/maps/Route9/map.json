@@ -211,8 +211,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BULBASAUR",
       "in_connection": false,
-      "x": 17,
-      "y": 1,
+      "x": 7,
+      "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
@@ -225,8 +225,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_AROMA_LADY",
       "in_connection": false,
-      "x": 17,
-      "y": 2,
+      "x": 7,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,

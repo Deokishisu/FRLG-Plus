@@ -4776,6 +4776,18 @@
       "secondary_tileset": "gTileset_GenericBuilding1",
       "border_filepath": "data/layouts/ViridianCity_NewHouse/border.bin",
       "blockdata_filepath": "data/layouts/ViridianCity_NewHouse/map.bin"
+    },
+    {
+      "id": "LAYOUT_VIRIDIAN_FOREST_DEPTHS",
+      "name": "ViridianForestDepths_Layout",
+      "width": 42,
+      "height": 34,
+      "border_width": 3,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianForest",
+      "border_filepath": "data/layouts/ViridianForestDepths/border.bin",
+      "blockdata_filepath": "data/layouts/ViridianForestDepths/map.bin"
     }
   ]
 }

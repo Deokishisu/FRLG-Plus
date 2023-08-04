@@ -1331,3 +1331,6 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/ViridianCity_NewHouse/scripts.inc"
 	.include "data/maps/ViridianCity_NewHouse/text.inc"
+
+	.include "data/maps/ViridianForestDepths/scripts.inc"
+	.include "data/maps/ViridianForestDepths/text.inc"
