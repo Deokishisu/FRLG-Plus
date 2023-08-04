@@ -1021,27 +1021,113 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderMistyRematch
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_EliteFourSidney[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     {
-        .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .iv = 255,
+        .lvl = 88,
+        .species = SPECIES_TAUROS,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 1,
+        .moves = {MOVE_EARTHQUAKE, MOVE_DOUBLE_EDGE, MOVE_SWAGGER, MOVE_IRON_TAIL},
+    },
+    {
+        .iv = 255,
+        .lvl = 89,
+        .species = SPECIES_ALTARIA,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_REST, MOVE_TOXIC, MOVE_EARTHQUAKE, MOVE_FLY},
+    },
+    {
+        .iv = 255,
+        .lvl = 89,
+        .species = SPECIES_ESPEON,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_PSYCHIC, MOVE_CALM_MIND, MOVE_SUBSTITUTE, MOVE_BATON_PASS},
+    },
+    {
+        .iv = 255,
+        .lvl = 88,
+        .species = SPECIES_URSARING,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_EARTHQUAKE, MOVE_BULK_UP, MOVE_SWAGGER, MOVE_ROCK_SLIDE},
+    },
+    {
+        .iv = 255,
+        .lvl = 91,
+        .species = SPECIES_BLISSEY,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SOFT_BOILED, MOVE_SEISMIC_TOSS, MOVE_THUNDERBOLT, MOVE_TOXIC},
+    },
+    {
+        .iv = 255,
+        .lvl = 91,
+        .species = SPECIES_SNORLAX,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_CURSE, MOVE_REST, MOVE_EARTHQUAKE, MOVE_SHADOW_BALL},
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_EliteFourPhoebe[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderGiovanniRematch[] = {
     {
-        .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .iv = 255,
+        .lvl = 88,
+        .species = SPECIES_FLYGON,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 1,
+        .moves = {MOVE_EARTHQUAKE, MOVE_FIRE_BLAST, MOVE_SANDSTORM, MOVE_ROCK_SLIDE},
+    },
+    {
+        .iv = 255,
+        .lvl = 89,
+        .species = SPECIES_SKARMORY,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SPIKES, MOVE_WHIRLWIND, MOVE_DRILL_PECK, MOVE_TOXIC},
+    },
+    {
+        .iv = 255,
+        .lvl = 89,
+        .species = SPECIES_SLAKING,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_DOUBLE_EDGE, MOVE_SHADOW_BALL, MOVE_EARTHQUAKE, MOVE_BRICK_BREAK},
+    },
+    {
+        .iv = 255,
+        .lvl = 88,
+        .species = SPECIES_GENGAR,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_PSYCHIC, MOVE_HYPNOSIS, MOVE_THUNDERBOLT, MOVE_ICE_PUNCH},
+    },
+    {
+        .iv = 255,
+        .lvl = 91,
+        .species = SPECIES_SWAMPERT,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SURF, MOVE_EARTHQUAKE, MOVE_REST, MOVE_SLEEP_TALK},
+    },
+    {
+        .iv = 255,
+        .lvl = 91,
+        .species = SPECIES_TYRANITAR,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_ROCK_SLIDE, MOVE_HYPER_BEAM, MOVE_DRAGON_DANCE, MOVE_EARTHQUAKE},
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_LeaderRoxanne[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_TeamRocketGrunt0[] = {
     {
         .iv = 0,
         .lvl = 5,
-        .species = SPECIES_EKANS,
+        .species = SPECIES_POOCHYENA,
     },
 };
 
