@@ -26,9 +26,9 @@
 #define TRAINER_SWIMMER_FEMALE_SEDEF_2            22
 #define TRAINER_MASTER_OAK                        23
 #define TRAINER_MISTY_REMATCH_CHALLENGE           24
-#define TRAINER_ELITE_FOUR_SIDNEY                 25
-#define TRAINER_ELITE_FOUR_PHOEBE                 26
-#define TRAINER_LEADER_ROXANNE                    27
+#define TRAINER_DAISY                             25
+#define TRAINER_LEADER_GIOVANNI                   26
+#define TRAINER_TEAM_ROCKET_GRUNT_0               27
 #define TRAINER_LEADER_BRAWLY                     28
 #define TRAINER_LEADER_TATE_LIZA                  29
 #define TRAINER_SCHOOL_KID_1                      30
