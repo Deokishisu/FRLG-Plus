@@ -27,7 +27,7 @@
 #define TRAINER_MASTER_OAK                        23
 #define TRAINER_MISTY_REMATCH_CHALLENGE           24
 #define TRAINER_DAISY                             25
-#define TRAINER_LEADER_GIOVANNI                   26
+#define TRAINER_LEADER_GIOVANNI_REMATCH           26
 #define TRAINER_TEAM_ROCKET_GRUNT_0               27
 #define TRAINER_LEADER_BRAWLY                     28
 #define TRAINER_LEADER_TATE_LIZA                  29
