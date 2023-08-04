@@ -23,6 +23,18 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_LeaderLtSurgeRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderLtSurgeRematch}
     },
+    [TRAINER_LT_SURGE_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_LT_SURGE,
+        .trainerName = _("LT. SURGE"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderLtSurgeRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderLtSurgeRematchChallenge}
+    },
     [TRAINER_ERIKA_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_LEADER_2,
@@ -34,6 +46,18 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderErikaRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderErikaRematch}
+    },
+    [TRAINER_ERIKA_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_ERIKA,
+        .trainerName = _("ERIKA"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderErikaRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderErikaRematchChallenge}
     },
     [TRAINER_KOGA_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -47,6 +71,18 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_LeaderKogaRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderKogaRematch}
     },
+    [TRAINER_KOGA_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_KOGA,
+        .trainerName = _("KOGA"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderKogaRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderKogaRematchChallenge}
+    },
     [TRAINER_SABRINA_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_LEADER_2,
@@ -59,6 +95,18 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_LeaderSabrinaRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderSabrinaRematch}
     },
+    [TRAINER_SABRINA_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_SABRINA,
+        .trainerName = _("SABRINA"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderSabrinaRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderSabrinaRematchChallenge}
+    },
     [TRAINER_BLAINE_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_LEADER_2,
@@ -70,6 +118,18 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderBlaineRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderBlaineRematch}
+    },
+    [TRAINER_BLAINE_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_BLAINE,
+        .trainerName = _("BLAINE"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderBlaineRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderBlaineRematchChallenge}
     },
     [TRAINER_PKMN_RANGER_HELENA] = {
         .partyFlags = 0,
@@ -227,8 +287,20 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_MasterOak),
         .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOak}
     },
+    [TRAINER_MISTY_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_MISTY,
+        .trainerName = _("MISTY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderMistyRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderMistyRematchChallenge}
+    },
     [TRAINER_DAISY] = {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,,
         .trainerClass = CLASS_LEADER_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_ELITE_FOUR_GLACIA,
@@ -8843,6 +8915,270 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_CueBallPaxton),
         .party = {.NoItemDefaultMoves = sTrainerMons_CueBallPaxton}
     },
+    [TRAINER_LEADER_BROCK_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_BROCK,
+        .trainerName = _("BROCK"),
+        .items = {ITEM_POTION},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderBrockChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderBrockChallenge}
+    },
+    [TRAINER_LEADER_MISTY_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_MISTY,
+        .trainerName = _("MISTY"),
+        .items = {ITEM_SUPER_POTION},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderMistyChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderMistyChallenge}
+    },
+    [TRAINER_LEADER_LT_SURGE_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_LT_SURGE,
+        .trainerName = _("LT. SURGE"),
+        .items = {ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderLtSurgeChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderLtSurgeChallenge}
+    },
+    [TRAINER_LEADER_ERIKA_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_ERIKA,
+        .trainerName = _("ERIKA"),
+        .items = {ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderErikaChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderErikaChallenge}
+    },
+    [TRAINER_LEADER_KOGA_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_KOGA,
+        .trainerName = _("KOGA"),
+        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderKogaChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderKogaChallenge}
+    },
+    [TRAINER_LEADER_SABRINA_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_LEADER_SABRINA,
+        .trainerName = _("SABRINA"),
+        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderSabrinaChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderSabrinaChallenge}
+    },
+    [TRAINER_LEADER_BLAINE_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_BLAINE,
+        .trainerName = _("BLAINE"),
+        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderBlaineChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderBlaineChallenge}
+    },
+    [TRAINER_LEADER_GIOVANNI_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,
+        .trainerPic = TRAINER_PIC_LEADER_GIOVANNI,
+        .trainerName = _("GIOVANNI"),
+        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderGiovanniChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderGiovanniChallenge}
+    },
+    [TRAINER_ELITE_FOUR_LORELEI_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_LORELEI,
+        .trainerName = _("LORELEI"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourLoreleiChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourLoreleiChallenge}
+    },
+    [TRAINER_ELITE_FOUR_BRUNO_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_BRUNO,
+        .trainerName = _("BRUNO"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourBrunoChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourBrunoChallenge}
+    },
+    [TRAINER_ELITE_FOUR_AGATHA_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_AGATHA,
+        .trainerName = _("AGATHA"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourAgathaChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourAgathaChallenge}
+    },
+    [TRAINER_ELITE_FOUR_LANCE_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_LANCE,
+        .trainerName = _("LANCE"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourLanceChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourLanceChallenge}
+    },
+    [TRAINER_CHAMPION_FIRST_SQUIRTLE_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_CHAMPION_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_RIVAL,
+        .trainerName = _("TERRY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_ChampionFirstSquirtleChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_ChampionFirstSquirtleChallenge}
+    },
+    [TRAINER_CHAMPION_FIRST_BULBASAUR_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_CHAMPION_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_RIVAL,
+        .trainerName = _("TERRY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_ChampionFirstBulbasaurChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_ChampionFirstBulbasaurChallenge}
+    },
+    [TRAINER_CHAMPION_FIRST_CHARMANDER_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_CHAMPION_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_RIVAL,
+        .trainerName = _("TERRY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_ChampionFirstCharmanderChallenge),
+        .party = {.ItemCustomMoves = sTrainerMons_ChampionFirstCharmanderChallenge}
+    },
+    [TRAINER_ELITE_FOUR_LORELEI_CHALLENGE_2] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_LORELEI,
+        .trainerName = _("LORELEI"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourLoreleiChallenge2),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourLoreleiChallenge2}
+    },
+    [TRAINER_ELITE_FOUR_BRUNO_CHALLENGE_2] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_BRUNO,
+        .trainerName = _("BRUNO"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourBrunoChallenge2),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourBrunoChallenge2}
+    },
+    [TRAINER_ELITE_FOUR_AGATHA_CHALLENGE_2] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR | F_TRAINER_FEMALE,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_AGATHA,
+        .trainerName = _("AGATHA"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourAgathaChallenge2),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourAgathaChallenge2}
+    },
+    [TRAINER_ELITE_FOUR_LANCE_CHALLENGE_2] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_ELITE_FOUR_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_ELITE_FOUR,
+        .trainerPic = TRAINER_PIC_ELITE_FOUR_LANCE,
+        .trainerName = _("LANCE"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_EliteFourLanceChallenge2),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourLanceChallenge2}
+    },
+    [TRAINER_CHAMPION_REMATCH_SQUIRTLE_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_CHAMPION_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_RIVAL,
+        .trainerName = _("TERRY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_ChampionRematchSquirtleChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_ChampionRematchSquirtleChallenge}
+    },
+    [TRAINER_CHAMPION_REMATCH_BULBASAUR_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_CHAMPION_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_RIVAL,
+        .trainerName = _("TERRY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_ChampionRematchBulbasaurChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_ChampionRematchBulbasaurChallenge}
+    },
+    [TRAINER_CHAMPION_REMATCH_CHARMANDER_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_CHAMPION_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_CHAMPION_RIVAL,
+        .trainerName = _("TERRY"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_ChampionRematchCharmanderChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_ChampionRematchCharmanderChallenge}
+    },
     [TRAINER_BROCK_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_LEADER_2,
@@ -8854,6 +9190,18 @@ const struct Trainer gTrainers[] = {
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderBrockRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderBrockRematch}
+    },
+    [TRAINER_BROCK_REMATCH_CHALLENGE] = {
+        .partyFlags = F_TRAINER_PARTY_EVS,
+        .trainerClass = CLASS_LEADER_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_LEADER_BROCK,
+        .trainerName = _("BROCK"),
+        .items = {ITEM_FULL_RESTORE, ITEM_FULL_RESTORE},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_LeaderBrockRematchChallenge),
+        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderBrockRematchChallenge}
     },
     [TRAINER_MISTY_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
