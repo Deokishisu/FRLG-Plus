@@ -1,15 +1,15 @@
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
-        .species = SPECIES_ELECTRODE,
+        .lvl = 83,
+        .species = SPECIES_MANECTRIC,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
-        .moves = {MOVE_THUNDERBOLT, MOVE_SUBSTITUTE, MOVE_EXPLOSION, MOVE_THUNDER_WAVE},
+        .moves = {MOVE_THUNDERBOLT, MOVE_CRUNCH, MOVE_FLAMETHROWER, MOVE_THUNDER_WAVE},
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_JOLTEON,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -17,7 +17,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematch[
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_ELECTABUZZ,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -25,7 +25,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematch[
     },
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_AMPHAROS,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -33,7 +33,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematch[
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_MAGNETON,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -41,7 +41,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematch[
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_RAICHU,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -115,39 +115,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderLtSurgeRemat
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
-        .species = SPECIES_JUMPLUFF,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_ATTRACT, MOVE_SLEEP_POWDER, MOVE_SUBSTITUTE, MOVE_LEECH_SEED},
-    },
-    {
-        .iv = 255,
-        .lvl = 64,
-        .species = SPECIES_EXEGGUTOR,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_PSYCHIC, MOVE_SLEEP_POWDER, MOVE_LEECH_SEED, MOVE_EXPLOSION},
-    },
-    {
-        .iv = 255,
-        .lvl = 64,
-        .species = SPECIES_TANGELA,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_SUNNY_DAY, MOVE_SLEEP_POWDER, MOVE_SOLAR_BEAM, MOVE_TOXIC},
-    },
-    {
-        .iv = 255,
-        .lvl = 63,
-        .species = SPECIES_PARASECT,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_SPORE, MOVE_SWORDS_DANCE, MOVE_SLUDGE_BOMB, MOVE_AERIAL_ACE},
-    },
-    {
-        .iv = 255,
-        .lvl = 66,
+        .lvl = 83,
         .species = SPECIES_VICTREEBEL,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -155,8 +123,40 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 84,
+        .species = SPECIES_LUDICOLO,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SURF, MOVE_LEECH_SEED, MOVE_ICE_BEAM, MOVE_RAIN_DANCE},
+    },
+    {
+        .iv = 255,
+        .lvl = 84,
+        .species = SPECIES_JUMPLUFF,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_ATTRACT, MOVE_SLEEP_POWDER, MOVE_SUBSTITUTE, MOVE_LEECH_SEED},
+    },
+    {
+        .iv = 255,
+        .lvl = 83,
+        .species = SPECIES_BLISSEY,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SOFT_BOILED, MOVE_THUNDER_WAVE, MOVE_ICE_BEAM, MOVE_SEISMIC_TOSS},
+    },
+    {
+        .iv = 255,
+        .lvl = 86,
         .species = SPECIES_VILEPLUME,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_SUNNY_DAY, MOVE_MOONLIGHT, MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER},
+    },
+    {
+        .iv = 255,
+        .lvl = 86,
+        .species = SPECIES_BELLOSSOM,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
         .moves = {MOVE_SUNNY_DAY, MOVE_MOONLIGHT, MOVE_SOLAR_BEAM, MOVE_SLEEP_POWDER},
@@ -229,15 +229,15 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderErikaRematch
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderKogaRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
-        .species = SPECIES_QWILFISH,
-        .heldItem = ITEM_SALAC_BERRY,
+        .lvl = 83,
+        .species = SPECIES_WEEZING,
+        .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_SUBSTITUTE, MOVE_SLUDGE_BOMB, MOVE_DESTINY_BOND, MOVE_SPIKES},
+        .moves = {MOVE_SLUDGE_BOMB, MOVE_FLAMETHROWER, MOVE_WILL_O_WISP, MOVE_PAIN_SPLIT},
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_ARIADOS,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -245,23 +245,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderKogaRematch[] =
     },
     {
         .iv = 255,
-        .lvl = 64,
-        .species = SPECIES_CROBAT,
-        .heldItem = ITEM_CHOICE_BAND,
-        .abilityNum = 0,
-        .moves = {MOVE_SLUDGE_BOMB, MOVE_AERIAL_ACE, MOVE_DOUBLE_EDGE, MOVE_TOXIC},
-    },
-    {
-        .iv = 255,
-        .lvl = 63,
-        .species = SPECIES_MUK,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 1,
-        .moves = {MOVE_SLUDGE_BOMB, MOVE_FIRE_BLAST, MOVE_CURSE, MOVE_EXPLOSION},
-    },
-    {
-        .iv = 255,
-        .lvl = 66,
+        .lvl = 84,
         .species = SPECIES_TENTACRUEL,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -269,11 +253,27 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderKogaRematch[] =
     },
     {
         .iv = 255,
-        .lvl = 66,
-        .species = SPECIES_WEEZING,
+        .lvl = 83,
+        .species = SPECIES_FORRETRESS,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 1,
+        .moves = {MOVE_TOXIC, MOVE_SPIKES, MOVE_ZAP_CANNON, MOVE_EARTHQUAKE},
+    },
+    {
+        .iv = 255,
+        .lvl = 86,
+        .species = SPECIES_ELECTRODE,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_SLUDGE_BOMB, MOVE_FLAMETHROWER, MOVE_WILL_O_WISP, MOVE_PAIN_SPLIT},
+        .moves = {MOVE_EXPLOSION, MOVE_THUNDER, MOVE_THUNDER_WAVE, MOVE_SHARPEN},
+    },
+    {
+        .iv = 255,
+        .lvl = 86,
+        .species = SPECIES_CROBAT,
+        .heldItem = ITEM_CHOICE_BAND,
+        .abilityNum = 0,
+        .moves = {MOVE_SLUDGE_BOMB, MOVE_AERIAL_ACE, MOVE_DOUBLE_EDGE, MOVE_TOXIC},
     },
 };
 
@@ -343,7 +343,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderKogaRematchC
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderSabrinaRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_MR_MIME,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -351,15 +351,15 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderSabrinaRematch[
     },
     {
         .iv = 255,
-        .lvl = 64,
-        .species = SPECIES_HYPNO,
+        .lvl = 84,
+        .species = SPECIES_GARDEVOIR,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_SEISMIC_TOSS, MOVE_REFLECT, MOVE_HYPNOSIS, MOVE_PSYCHIC},
+        .moves = {MOVE_WISH, MOVE_THUNDERBOLT, MOVE_MAGICAL_LEAF, MOVE_PSYCHIC},
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_ESPEON,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -367,15 +367,15 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderSabrinaRematch[
     },
     {
         .iv = 255,
-        .lvl = 63,
-        .species = SPECIES_SLOWBRO,
+        .lvl = 83,
+        .species = SPECIES_GENGAR,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
-        .moves = {MOVE_EARTHQUAKE, MOVE_CURSE, MOVE_SHADOW_BALL, MOVE_REST},
+        .moves = {MOVE_HYPNOSIS, MOVE_PSYCHIC, MOVE_ICE_PUNCH, MOVE_THUNDERBOLT},
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_JYNX,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -383,7 +383,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderSabrinaRematch[
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_ALAKAZAM,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -457,7 +457,15 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderSabrinaRemat
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBlaineRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
+        .species = SPECIES_ARCANINE,
+        .heldItem = ITEM_LEFTOVERS,
+        .abilityNum = 0,
+        .moves = {MOVE_HOWL, MOVE_EXTREME_SPEED, MOVE_DOUBLE_EDGE, MOVE_FIRE_BLAST},
+    },
+    {
+        .iv = 255,
+        .lvl = 84,
         .species = SPECIES_NINETALES,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -465,23 +473,15 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBlaineRematch[]
     },
     {
         .iv = 255,
-        .lvl = 64,
-        .species = SPECIES_MAGMAR,
-        .heldItem = ITEM_LEFTOVERS,
-        .abilityNum = 0,
-        .moves = {MOVE_THUNDER_PUNCH, MOVE_CROSS_CHOP, MOVE_FLAMETHROWER, MOVE_FIRE_BLAST},
-    },
-    {
-        .iv = 255,
-        .lvl = 64,
-        .species = SPECIES_RAPIDASH,
+        .lvl = 84,
+        .species = SPECIES_TYPHLOSION,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
-        .moves = {MOVE_SUNNY_DAY, MOVE_HYPNOSIS, MOVE_SOLAR_BEAM, MOVE_FIRE_BLAST},
+        .moves = {MOVE_REST, MOVE_BLAST_BURN, MOVE_THUNDER_PUNCH, MOVE_EARTHQUAKE},
     },
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_HOUNDOOM,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -489,19 +489,19 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBlaineRematch[]
     },
     {
         .iv = 255,
-        .lvl = 66,
-        .species = SPECIES_FLAREON,
+        .lvl = 86,
+        .species = SPECIES_BLAZIKEN,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_WISH, MOVE_FLAMETHROWER, MOVE_PROTECT, MOVE_BATON_PASS},
+        .moves = {MOVE_BLAST_BURN, MOVE_EARTHQUAKE, MOVE_SKY_UPPERCUT, MOVE_THUNDER_PUNCH},
     },
     {
         .iv = 255,
-        .lvl = 66,
-        .species = SPECIES_ARCANINE,
+        .lvl = 86,
+        .species = SPECIES_MAGMAR,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_HOWL, MOVE_EXTREME_SPEED, MOVE_DOUBLE_EDGE, MOVE_FIRE_BLAST},
+        .moves = {MOVE_THUNDER_PUNCH, MOVE_CROSS_CHOP, MOVE_FLAMETHROWER, MOVE_FIRE_BLAST},
     },
 };
 
@@ -571,17 +571,17 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBlaineRematc
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_PkmnRangerHelena[] = {
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_NIDOQUEEN,
     },
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_CLEFABLE,
     },
     {
         .iv = 0,
-        .lvl = 36,
+        .lvl = 46,
         .species = SPECIES_WIGGLYTUFF,
     },
 };
@@ -589,32 +589,32 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_PkmnRangerHelena[]
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_PkmnRangerHelena2[] = {
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_NIDOQUEEN,
     },
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_CLEFABLE,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_WIGGLYTUFF,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_AZUMARILL,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_CHANSEY,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_DUNSPARCE,
     },
 };
@@ -622,17 +622,17 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_PkmnRangerHelena2[
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerAtticus[] = {
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_NIDOKING,
     },
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_MACHAMP,
     },
     {
         .iv = 0,
-        .lvl = 36,
+        .lvl = 46,
         .species = SPECIES_VICTREEBEL,
     },
 };
@@ -640,32 +640,32 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerAtticus
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerAtticus2[] = {
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_NIDOKING,
     },
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_MACHAMP,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_VICTREEBEL,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_KABUTOPS,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_STANTLER,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_DRAGONITE,
     },
 };
@@ -673,22 +673,22 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerAtticus
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_FishermanDeforest[] = {
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_POLIWRATH,
     },
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_SLOWBRO,
     },
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_CLOYSTER,
     },
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_OMASTAR,
     },
 };
@@ -696,32 +696,32 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_FishermanDeforest[
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_FishermanDeforest2[] = {
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_POLIWRATH,
     },
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_SLOWBRO,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_POLIWRATH,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_CLOYSTER,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_OMASTAR,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_POLIWRATH,
     },
 };
@@ -729,22 +729,22 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_FishermanDeforest2
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BirdKeeperSpedo[] = {
     {
         .iv = 0,
-        .lvl = 36,
+        .lvl = 47,
         .species = SPECIES_PIDGEOT,
     },
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_FEAROW,
     },
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_GOLBAT,
     },
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_PIDGEOTTO,
     },
 };
@@ -752,32 +752,32 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BirdKeeperSpedo[] 
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BirdKeeperSpedo2[] = {
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_PIDGEOT,
     },
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_FEAROW,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_CROBAT,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_PIDGEOT,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_PIDGEOTTO,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_AERODACTYL,
     },
 };
@@ -785,17 +785,17 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BirdKeeperSpedo2[]
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerCaspara[] = {
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_VILEPLUME,
     },
     {
         .iv = 0,
-        .lvl = 36,
+        .lvl = 46,
         .species = SPECIES_CHARIZARD,
     },
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 46,
         .species = SPECIES_GENGAR,
     },
 };
@@ -803,37 +803,37 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_CooltrainerCaspara
 static const struct TrainerMonNoItemCustomMoves sTrainerMons_CooltrainerCaspara2[] = {
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_VILEPLUME,
         .moves = {MOVE_AROMATHERAPY, MOVE_MEGA_DRAIN, MOVE_STUN_SPORE, MOVE_PETAL_DANCE},
     },
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_CHARIZARD,
         .moves = {MOVE_WING_ATTACK, MOVE_SLASH, MOVE_DRAGON_RAGE, MOVE_FIRE_SPIN},
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_GENGAR,
         .moves = {MOVE_SHADOW_BALL, MOVE_CURSE, MOVE_CONFUSE_RAY, MOVE_NIGHT_SHADE},
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_AMPHAROS,
         .moves = {MOVE_COTTON_SPORE, MOVE_THUNDER_PUNCH, MOVE_LIGHT_SCREEN, MOVE_THUNDER},
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_SUNFLORA,
         .moves = {MOVE_INGRAIN, MOVE_SUNNY_DAY, MOVE_PETAL_DANCE, MOVE_SOLAR_BEAM},
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_PORYGON,
         .moves = {MOVE_LOCK_ON, MOVE_TRI_ATTACK, MOVE_RECYCLE, MOVE_ZAP_CANNON},
     },
@@ -842,22 +842,22 @@ static const struct TrainerMonNoItemCustomMoves sTrainerMons_CooltrainerCaspara2
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef[] = {
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_DEWGONG,
     },
     {
         .iv = 0,
-        .lvl = 34,
+        .lvl = 45,
         .species = SPECIES_TENTACRUEL,
     },
     {
         .iv = 0,
-        .lvl = 36,
+        .lvl = 47,
         .species = SPECIES_BLASTOISE,
     },
     {
         .iv = 0,
-        .lvl = 35,
+        .lvl = 47,
         .species = SPECIES_DEWGONG,
     },
 };
@@ -865,32 +865,32 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef
 static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef2[] = {
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_BLASTOISE,
     },
     {
         .iv = 0,
-        .lvl = 47,
+        .lvl = 58,
         .species = SPECIES_POLITOED,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_SLOWKING,
     },
     {
         .iv = 0,
-        .lvl = 48,
+        .lvl = 59,
         .species = SPECIES_DEWGONG,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_TENTACRUEL,
     },
     {
         .iv = 0,
-        .lvl = 50,
+        .lvl = 60,
         .species = SPECIES_MANTINE,
     },
 };
@@ -898,7 +898,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef
 static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     {
         .iv = 1, //ghost
-        .lvl = 80,
+        .lvl = 98,
         .evs = { 4, 252, 0, 252, 0, 0},
         .nature = NATURE_ADAMANT,
         .species = SPECIES_TAUROS,
@@ -908,7 +908,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
     {
         .iv = 255, //dark
-        .lvl = 81,
+        .lvl = 99,
         .evs = { 124, 0, 0, 96, 188, 96},
         .nature = NATURE_MODEST,
         .species = SPECIES_EXEGGUTOR,
@@ -918,7 +918,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
     {
         .iv = 4, //fighting
-        .lvl = 81,
+        .lvl = 99,
         .evs = { 252, 252, 0, 4, 0, 0},
         .nature = NATURE_BRAVE,
         .species = SPECIES_ARCANINE,
@@ -928,7 +928,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
     {
         .iv = 6, //rock
-        .lvl = 80,
+        .lvl = 98,
         .evs = { 68, 252, 0, 188, 0, 0},
         .nature = NATURE_ADAMANT,
         .species = SPECIES_GYARADOS,
@@ -938,7 +938,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
     {
         .iv = 8, //ice
-        .lvl = 80,
+        .lvl = 98,
         .evs = { 4, 0, 0, 252, 252, 0},
         .nature = NATURE_MODEST,
         .species = SPECIES_RAICHU,
@@ -948,7 +948,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
     {
         .iv = 255,
-        .lvl = 82,
+        .lvl = 100,
         .evs = { 144, 96, 132, 0, 0, 136},
         .nature = NATURE_CAREFUL,
         .species = SPECIES_SNORLAX,
@@ -13809,7 +13809,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_ChampionRematchCha
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_TYRANITAR,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -13817,7 +13817,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_OMASTAR,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
@@ -13825,7 +13825,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_STEELIX,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
@@ -13833,7 +13833,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_AERODACTYL,
         .heldItem = ITEM_LIECHI_BERRY,
         .abilityNum = 0,
@@ -13841,7 +13841,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_RHYDON,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
@@ -13849,7 +13849,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_GOLEM,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
@@ -13860,7 +13860,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
 static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBrockRematchChallenge[] = {
     {
         .iv = 5, //bug 31/31/31/30/31/30
-        .lvl = 63,
+        .lvl = 80,
         .evs = { 248, 80, 0, 180, 0, 0},
         .nature = NATURE_ADAMANT,
         .species = SPECIES_TYRANITAR,
@@ -13890,7 +13890,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBrockRematch
     },
     {
         .iv = 3, //flying
-        .lvl = 63,
+        .lvl = 80,
         .evs = { 4, 252, 0, 252, 0, 0},
         .nature = NATURE_JOLLY,
         .species = SPECIES_AERODACTYL,
@@ -13923,7 +13923,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBrockRematch
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] = {
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_CLOYSTER,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -13931,7 +13931,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_LANTURN,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -13939,7 +13939,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 64,
+        .lvl = 84,
         .species = SPECIES_AZUMARILL,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
@@ -13947,7 +13947,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 63,
+        .lvl = 83,
         .species = SPECIES_QUAGSIRE,
         .heldItem = ITEM_CHESTO_BERRY,
         .abilityNum = 1,
@@ -13955,7 +13955,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_GYARADOS,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -13963,7 +13963,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematch[] 
     },
     {
         .iv = 255,
-        .lvl = 66,
+        .lvl = 86,
         .species = SPECIES_STARMIE,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
