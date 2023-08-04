@@ -3400,7 +3400,7 @@ static const u16 sSmoochumLevelUpLearnset[] = {
 static const u16 sElekidLevelUpLearnset[] = {
     LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),
     LEVEL_UP_MOVE(4, MOVE_LEER),
-    LEVEL_UP_MOVE(6, MOVE_THUNDER_PUNCH),
+    LEVEL_UP_MOVE(6, MOVE_THUNDER_SHOCK),
     LEVEL_UP_MOVE(11, MOVE_KARATE_CHOP),
     LEVEL_UP_MOVE(15, MOVE_SWIFT),
 	LEVEL_UP_MOVE(19, MOVE_THUNDER_PUNCH),
@@ -3411,7 +3411,7 @@ static const u16 sElekidLevelUpLearnset[] = {
 };
 
 static const u16 sMagbyLevelUpLearnset[] = {
-    LEVEL_UP_MOVE(1, MOVE_EMBER),
+    LEVEL_UP_MOVE(1, MOVE_SCRATCH),
     LEVEL_UP_MOVE(4, MOVE_LEER),
     LEVEL_UP_MOVE(6, MOVE_EMBER),
 	LEVEL_UP_MOVE(11, MOVE_KARATE_CHOP),
