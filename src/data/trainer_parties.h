@@ -835,7 +835,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef
     },
 };
 
-static const struct TrainerMonItemCustomMoves sTrainerMons_MasterOak[] = {
+static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     {
         .iv = 1, //ghost
         .lvl = 98,
