@@ -1206,9 +1206,6 @@ Help_Text_Money2:: @ 81B7E09
 Help_Text_Badges2:: @ 81B7E0F
 	.string "BADGES$"
 
-Help_Text_Version:: @ 81B7E0F
-	.string "VERSION$"
-
 Help_Text_Difficulty:: @ 81B7E0F
 	.string "DIFFICULTY$"
 
@@ -1547,15 +1544,6 @@ Help_Text_DefineBadges2:: @ 81B9B2F
 	.string "LEAGUE BADGES that you have won.\l"
 	.string "Earn BADGES by defeating GYM LEADERS\l"
 	.string "in various cities and towns.$"
-
-Help_Text_DefineVersion:: @ 81B7E0F
-	.string "You can change your game version\n"
-	.string "between FIRERED VERSION and\l"
-	.string "LEAFGREEN VERSION. Your game version\l"
-	.string "determines what POKéMON are available,\l"
-	.string "themes graphics for some interfaces,\l"
-	.string "what the titlescreen looks like, and the\l"
-	.string "text entries of your POKéDEX data.$"
 
 Help_Text_DefineDifficulty:: @ 81B7E0F
 	.string "You can adjust the game's difficulty.\n"

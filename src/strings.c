@@ -1248,7 +1248,6 @@ const u8 gText_Medicine[] = _("MEDICINE");
 const u8 gText_HeldItemsPocket[] = _("HELD ITEMS POCKET");
 const u8 gText_MedicinePocket[] = _("MEDICINE POCKET");
 
-const u8 gText_Version[] = _("VERSION");
 const u8 gText_FireredVersion[] = _("FIRERED VERSION");
 const u8 gText_LeafgreenVersion[] = _("LEAFGREEN VERSION");
 const u8 gText_Difficulty[] = _("DIFFICULTY");

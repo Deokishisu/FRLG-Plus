@@ -18,8 +18,7 @@ bool32 MenuHelpers_CallLinkSomething(void);
 // Menu items
 enum
 {
-    MENUITEM_VERSION = 0,
-    MENUITEM_DIFFICULTY,
+    MENUITEM_DIFFICULTY = 0,
     MENUITEM_ADVANCED,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
@@ -148,7 +147,6 @@ static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
-    [MENUITEM_VERSION]    = gText_Version,
     [MENUITEM_DIFFICULTY] = gText_Difficulty,
     [MENUITEM_ADVANCED]   = gText_Advanced,
     [MENUITEM_CANCEL]     = gText_OptionMenuSaveAndExit,
@@ -161,12 +159,6 @@ static const u8 *const sKeySystemSubMenuItemsNames[MENUITEM_COUNT2] ={
     [MENUITEM_NO_PMC]     = gText_NoPMC,
     [MENUITEM_EXP_MOD]    = gText_ExpMod,
     [MENUITEM_BACK]       = gText_Back,
-};
-
-static const u8 *const sVersionOptions[] =
-{
-    gText_FireredVersion, 
-    gText_LeafgreenVersion
 };
 
 static const u8 *const sDifficultyOptions[] =
@@ -238,7 +230,6 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->state = 0;
     sKeySystemMenuPtr->cursorPos = 0;
     sKeySystemMenuPtr->inSubMenu = 0;
-    sKeySystemMenuPtr->option[MENUITEM_VERSION] = gSaveBlock1Ptr->keyFlags.version;
     sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY] = gSaveBlock1Ptr->keyFlags.difficulty;
     sKeySystemMenuPtr->option[MENUITEM_ADVANCED] = 0;
     sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
@@ -555,7 +546,7 @@ static u8 KeySystemMenu_ProcessInput(void)
     {
         if(!sKeySystemMenuPtr->inSubMenu)
         {
-            if (sKeySystemMenuPtr->cursorPos == MENUITEM_VERSION)
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_DIFFICULTY)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_CANCEL;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
@@ -575,7 +566,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         if(!sKeySystemMenuPtr->inSubMenu)
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_CANCEL)
-                sKeySystemMenuPtr->cursorPos = MENUITEM_VERSION;
+                sKeySystemMenuPtr->cursorPos = MENUITEM_DIFFICULTY;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
         }
@@ -630,9 +621,6 @@ static void BufferKeySystemMenuString(u8 selection)
     {
         switch (selection)
         {
-            case MENUITEM_VERSION:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sVersionOptions[sKeySystemMenuPtr->option[selection]]);
-                break;
             case MENUITEM_DIFFICULTY:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sDifficultyOptions[sKeySystemMenuPtr->option[selection]]);
                 break;
@@ -675,7 +663,6 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     gFieldCallback = FieldCB_DefaultWarpExit;
     SetMainCallback2(gMain.savedCallback);
     FreeAllWindowBuffers();
-    gSaveBlock1Ptr->keyFlags.version = sKeySystemMenuPtr->option[MENUITEM_VERSION];
     gSaveBlock1Ptr->keyFlags.difficulty = sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY];
     gSaveBlock1Ptr->keyFlags.nuzlocke = sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE];
     if(gSaveBlock1Ptr->keyFlags.ivCalcMode != sKeySystemMenuPtr->subOption[MENUITEM_IV] || gSaveBlock1Ptr->keyFlags.evCalcMode != sKeySystemMenuPtr->subOption[MENUITEM_EV])

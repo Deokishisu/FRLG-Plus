@@ -1585,7 +1585,6 @@ extern const u8 gText_PkmnFriendlyBaseVar2CantFall[];
 extern const u8 gText_PkmnAdoresBaseVar2Fell[];
 extern const u8 gText_HeldItemsPocket[];
 extern const u8 gText_MedicinePocket[];
-extern const u8 gText_Version[];
 extern const u8 gText_FireredVersion[];
 extern const u8 gText_LeafgreenVersion[];
 extern const u8 gText_Difficulty[];
