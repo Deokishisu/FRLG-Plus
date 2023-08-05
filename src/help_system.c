@@ -444,8 +444,6 @@ enum
     HELP_TERM_ID_NO2,
     HELP_TERM_MONEY2,
     HELP_TERM_BADGES2,
-    HELP_TERM_FR_EXCLUSIVES,
-    HELP_TERM_LG_EXCLUSIVES,
     HELP_TERM_DIFFICULTY,
     HELP_TERM_NUZLOCKE,
     HELP_TERM_NUZLOCKE_CATCHING,
@@ -574,8 +572,6 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_ID_NO2]         = Help_Text_DefineIDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_DefineMoney2,
     [HELP_TERM_BADGES2]        = Help_Text_DefineBadges2,
-    [HELP_TERM_FR_EXCLUSIVES]  = Help_Text_DefineFRExclusives,
-    [HELP_TERM_LG_EXCLUSIVES]  = Help_Text_DefineLGExclusives,
     [HELP_TERM_DIFFICULTY]     = Help_Text_DefineDifficulty,
     [HELP_TERM_NUZLOCKE]       = Help_Text_DefineNuzlocke,
     [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_DefineNuzlocke_Catching,
@@ -1678,8 +1674,6 @@ static const u8 sHowTo_KeySystem[] = {
 };
 
 static const u8 sTerms_KeySystem[] = {
-    HELP_TERM_FR_EXCLUSIVES,
-    HELP_TERM_LG_EXCLUSIVES,
     HELP_TERM_DIFFICULTY,
     HELP_TERM_ADVANCED,
     HELP_TERM_CANCEL,
