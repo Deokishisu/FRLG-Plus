@@ -174,7 +174,7 @@ ViridianForest_EventScript_EndReceiveTorchic::
 	ViridianForest_EventScript_Grunt::
 	lock
 	faceplayer
-	msgbox ViridianForest_Text_Grunt
+	message ViridianForest_Text_Grunt
 	waitmessage
 	playbgm MUS_ENCOUNTER_ROCKET, 0
 	waitbuttonpress
