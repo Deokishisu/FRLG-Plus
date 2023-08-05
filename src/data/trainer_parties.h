@@ -49,7 +49,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematch[
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderLtSurgeRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
@@ -151,7 +151,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaRematch[] 
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderErikaRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
@@ -253,7 +253,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderKogaRematch[] =
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderKogaRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderKogaRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
@@ -355,7 +355,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderSabrinaRematch[
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderSabrinaRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderSabrinaRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
@@ -457,7 +457,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBlaineRematch[]
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBlaineRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBlaineRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
@@ -835,7 +835,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_SwimmerFemaleSedef
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_MasterOak[] = {
     {
         .iv = 1, //ghost
         .lvl = 98,
@@ -898,7 +898,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_MasterOak[] = {
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderMistyRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
@@ -12768,7 +12768,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderLtSurgeChalleng
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderErikaChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderErikaChallenge[] = {
     {
         .iv = 250,
         .lvl = 32,
@@ -13248,7 +13248,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_ChampionFirstCharmand
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourLoreleiChallenge2[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourLoreleiChallenge2[] = {
     {
         .iv = 255,
         .lvl = 87,
@@ -13299,7 +13299,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourLoreleiCh
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourBrunoChallenge2[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourBrunoChallenge2[] = {
     {
         .iv = 255,
         .lvl = 90,
@@ -13350,7 +13350,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourBrunoChal
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourAgathaChallenge2[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourAgathaChallenge2[] = {
     {
         .iv = 255,
         .lvl = 93,
@@ -13401,7 +13401,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourAgathaCha
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourLanceChallenge2[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourLanceChallenge2[] = {
     {
         .iv = 255,
         .lvl = 94,
@@ -13452,7 +13452,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_EliteFourLanceChal
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_ChampionRematchSquirtleChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_ChampionRematchSquirtleChallenge[] = {
     {
         .iv = 255,
         .lvl = 97,
@@ -13656,7 +13656,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematch[] 
     },
 };
 
-static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBrockRematchChallenge[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderBrockRematchChallenge[] = {
     {
         .iv = 255,
         .lvl = 83,
