@@ -16,13 +16,21 @@ ViridianForestDepths_EventScript_Treecko::
 	msgbox ViridianForestDepths_Text_TreeckoNoise
 	waitmoncry
 	msgbox ViridianForestDepths_Text_TreeckoStuck
-	compare VAR_RESULT, YES	
-	waitse
-	playmoncry SPECIES_TREECKO, 0
-	msgbox ViridianForestDepths_Text_TreeckoSaved
-	goto_if_eq ViridianForestDepths_EventScript_GiveTreecko
+	compare VAR_RESULT, YES
+	goto_if_eq ViridianForestDepths_EventScript_TreeckoHappy
+	msgbox ViridianForestDepths_Text_TreeckoSad
 	release
 	end
+	
+ViridianForestDepths_EventScript_TreeckoHappy::
+	applymovement LOCALID_TREECKO, ViridianForestDepths_Movement_TreeckoJump
+	waitmovement 0
+	waitse
+	playmoncry SPECIES_TREECKO, 0
+	msgbox ViridianForestDepths_Text_TreeckoHappy
+	goto_if_eq ViridianForestDepths_EventScript_GiveTreecko
+	release
+	end	
 	
 ViridianForestDepths_EventScript_GiveTreecko::
 	setvar VAR_TEMP_1, SPECIES_TREECKO
@@ -84,3 +92,8 @@ ViridianForestDepths_EventScript_EndReceiveTreecko::
 	setflag FLAG_GOT_TREECKO
 	release
 	end
+	
+ViridianForestDepths_Movement_TreeckoJump::
+	jump_in_place_down
+	jump_in_place_down
+	step_end
