@@ -298,7 +298,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderKogaRematchC
         .iv = 255,
         .lvl = 86,
         .species = SPECIES_CROBAT,
-        .heldItem = ITEM_SITRUS_BERRY
+        .heldItem = ITEM_SITRUS_BERRY,
         .abilityNum = 0,
         .moves = {MOVE_SLUDGE_BOMB, MOVE_AERIAL_ACE, MOVE_DOUBLE_EDGE, MOVE_TOXIC},
     },
@@ -502,7 +502,7 @@ static const struct TrainerMonItemCustomMovesEVs sTrainerMons_LeaderBlaineRematc
         .iv = 255,
         .lvl = 86,
         .species = SPECIES_MAGMAR,
-        .heldItem = ITEM_SITRUS_BERRY
+        .heldItem = ITEM_SITRUS_BERRY,
         .abilityNum = 0,
         .moves = {MOVE_THUNDER_PUNCH, MOVE_CROSS_CHOP, MOVE_FLAMETHROWER, MOVE_FIRE_BLAST},
     },
@@ -13089,7 +13089,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_EliteFourLanceChallen
         .iv = 255,
         .lvl = 69,
         .species = SPECIES_DRAGONITE,
-        .heldItem = ITEM_SITRUS_BERRY
+        .heldItem = ITEM_SITRUS_BERRY,
         .abilityNum = 0,
         .moves = {MOVE_SUBSTITUTE, MOVE_FOCUS_PUNCH, MOVE_THUNDERBOLT, MOVE_ICE_BEAM},
     },
