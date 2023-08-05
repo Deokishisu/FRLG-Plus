@@ -175,6 +175,7 @@ ViridianForest_EventScript_EndReceiveTorchic::
 	lock
 	faceplayer
 	msgbox ViridianForest_Text_Grunt
+	waitmessage
 	playbgm MUS_ENCOUNTER_ROCKET, 0
 	waitbuttonpress
 	trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNTILDA, ViridianForest_Text_GruntDefeat

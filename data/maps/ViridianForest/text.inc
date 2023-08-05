@@ -113,7 +113,7 @@ ViridianForest_Text_TorchicScared::
 ViridianForest_Text_TorchicSaved::
     .string "TORCHIC looks relieved.\p"
     .string "It seems to want to join you!\p"
-	.string "Do you want to bring TORCHIC\p"
+	.string "Do you want to bring TORCHIC\n"
 	.string "along?$"
 
 ViridianForest_Text_ObtainedTorchic::
