@@ -2,7 +2,7 @@
   "id": "MAP_VIRIDIAN_FOREST_DEPTHS",
   "name": "ViridianForestDepths",
   "layout": "LAYOUT_VIRIDIAN_FOREST_DEPTHS",
-  "music": "SE_WIN_OPEN",
+  "music": "MUS_LAVENDER",
   "region_map_section": "MAPSEC_VIRIDIAN_FOREST",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",
