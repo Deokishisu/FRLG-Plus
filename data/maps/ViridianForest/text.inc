@@ -112,25 +112,24 @@ ViridianForest_Text_TorchicScared::
 
 ViridianForest_Text_TorchicSaved::
     .string "TORCHIC looks relieved.\p"
-    .string "It seems to want to join you\n"
-	.string "Do you want to bring\n"
-	.string "TORCHIC along?$"
+    .string "It seems to want to join you!\p"
+	.string "Do you want to bring TORCHIC\p"
+	.string "along?$"
 
 ViridianForest_Text_ObtainedTorchic::
-    .string "{PLAYER} obtained a BULBASAUR!$"
+    .string "{PLAYER} obtained a TORCHIC!$"
 
 ViridianForest_Text_Grunt::
     .string "And you are?\p"
 	.string "Yes, I'm trying to get this\n"
 	.string "stupid thing to listen.\p"
 	.string "Is that so bad?\p"
-	.string "W-wait, it's my POKéMON.\n"
-	.string "I can do whatever I want\n"
-	.string "with it!\p"
-	.string "I think you need to be\n"
+	.string "W-wait, it's my POKéMON.\p"
+	.string "I can do whatever I want with it!\p"
+	.string "I really think you need to be\n"
 	.string "taught a lesson.\p"
-	.string "I will teach you not to\n"
-	.string "mess with TEAM ROCKET!$"
+	.string "I will teach you not to mess\n"
+	.string "with TEAM ROCKET!$"
 	
 
 ViridianForest_Text_GruntDefeat::
@@ -138,8 +137,6 @@ ViridianForest_Text_GruntDefeat::
 
 ViridianForest_Text_GruntLeave::
 	.string "You know what?\p"
-	.string "You can keep the stupid\n"
-	.string "POKéMON!\p"
-	.string "I will just catch a\n"
-	.string "new one!\p"
+	.string "You can keep the stupid "POKéMON,\n"
+	.string "I will just catch a new one!\p"
 	.string "Whahaha!$"

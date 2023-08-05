@@ -180,6 +180,9 @@ ViridianForest_EventScript_EndReceiveTorchic::
 	waitbuttonpress
 	trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNT_0, ViridianForest_Text_GruntDefeat
 	msgbox ViridianForest_Text_GruntLeave
+	fadescreen FADE_TO_BLACK
+	removeobject LOCALID_GRUNT
+	fadescreen FADE_FROM_BLACK
 	setflag FLAG_BEAT_VIRIDIAN_GRUNT
 	release
 	end
