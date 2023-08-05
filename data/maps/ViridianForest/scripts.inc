@@ -104,7 +104,7 @@ ViridianForest_EventScript_Torchic::
 ViridianForest_EventScript_ObtainTorchic::
 	waitse
 	playmoncry SPECIES_TORCHIC, 0
-	msgbox ViridianForest_Text_TorchicSaved
+	msgbox ViridianForest_Text_TorchicSaved, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq ViridianForest_EventScript_GiveTorchic
 	release

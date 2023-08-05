@@ -15,9 +15,12 @@ ViridianForestDepths_EventScript_Treecko::
 	playmoncry SPECIES_TREECKO, 11
 	msgbox ViridianForestDepths_Text_TreeckoNoise
 	waitmoncry
-	msgbox ViridianForestDepths_Text_TreeckoStuck
+	msgbox ViridianForestDepths_Text_TreeckoStuck, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq ViridianForestDepths_EventScript_TreeckoHappy
+	waitse
+	playmoncry SPECIES_TREECKO, 5
+	waitmoncry
 	msgbox ViridianForestDepths_Text_TreeckoSad
 	release
 	end
@@ -27,6 +30,7 @@ ViridianForestDepths_EventScript_TreeckoHappy::
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_TREECKO, 0
+	waitmoncry
 	msgbox ViridianForestDepths_Text_TreeckoHappy
 	goto_if_eq ViridianForestDepths_EventScript_GiveTreecko
 	release
