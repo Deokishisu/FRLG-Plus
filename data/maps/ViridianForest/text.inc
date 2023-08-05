@@ -103,7 +103,7 @@ ViridianForest_Text_LeavingViridianForest:: @ 8172773
     .string "LEAVING VIRIDIAN FOREST\n"
     .string "PEWTER CITY AHEAD$"
 	
-msgbox ViridianForest_Text_TorchicNoise::
+ViridianForest_Text_TorchicNoise::
     .string "Chiiiiic!!$"
 
 ViridianForest_Text_TorchicScared::
