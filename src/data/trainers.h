@@ -33,7 +33,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderLtSurgeRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderLtSurgeRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderLtSurgeRematchChallenge}
     },
     [TRAINER_ERIKA_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -57,7 +57,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderErikaRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderErikaRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderErikaRematchChallenge}
     },
     [TRAINER_KOGA_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -81,7 +81,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderKogaRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderKogaRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderKogaRematchChallenge}
     },
     [TRAINER_SABRINA_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -105,7 +105,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderSabrinaRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderSabrinaRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderSabrinaRematchChallenge}
     },
     [TRAINER_BLAINE_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -129,7 +129,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderBlaineRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderBlaineRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderBlaineRematchChallenge}
     },
     [TRAINER_PKMN_RANGER_HELENA] = {
         .partyFlags = 0,
@@ -297,7 +297,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderMistyRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderMistyRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderMistyRematchChallenge}
     },
     [TRAINER_DAISY] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -8961,7 +8961,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderErikaChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderErikaChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderErikaChallenge}
     },
     [TRAINER_LEADER_KOGA_CHALLENGE] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9105,7 +9105,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_EliteFourLoreleiChallenge2),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourLoreleiChallenge2}
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourLoreleiChallenge2}
     },
     [TRAINER_ELITE_FOUR_BRUNO_CHALLENGE_2] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9117,7 +9117,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_EliteFourBrunoChallenge2),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourBrunoChallenge2}
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourBrunoChallenge2}
     },
     [TRAINER_ELITE_FOUR_AGATHA_CHALLENGE_2] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9129,7 +9129,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_EliteFourAgathaChallenge2),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourAgathaChallenge2}
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourAgathaChallenge2}
     },
     [TRAINER_ELITE_FOUR_LANCE_CHALLENGE_2] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9141,7 +9141,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_EliteFourLanceChallenge2),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_EliteFourLanceChallenge2}
+        .party = {.ItemCustomMoves = sTrainerMons_EliteFourLanceChallenge2}
     },
     [TRAINER_CHAMPION_REMATCH_SQUIRTLE_CHALLENGE] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9153,7 +9153,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_ChampionRematchSquirtleChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_ChampionRematchSquirtleChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_ChampionRematchSquirtleChallenge}
     },
     [TRAINER_CHAMPION_REMATCH_BULBASAUR_CHALLENGE] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9165,7 +9165,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_ChampionRematchBulbasaurChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_ChampionRematchBulbasaurChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_ChampionRematchBulbasaurChallenge}
     },
     [TRAINER_CHAMPION_REMATCH_CHARMANDER_CHALLENGE] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9177,7 +9177,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_ChampionRematchCharmanderChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_ChampionRematchCharmanderChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_ChampionRematchCharmanderChallenge}
     },
     [TRAINER_BROCK_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
@@ -9201,7 +9201,7 @@ const struct Trainer gTrainers[] = {
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .partySize = NELEMS(sTrainerMons_LeaderBrockRematchChallenge),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_LeaderBrockRematchChallenge}
+        .party = {.ItemCustomMoves = sTrainerMons_LeaderBrockRematchChallenge}
     },
     [TRAINER_MISTY_REMATCH] = {
         .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
