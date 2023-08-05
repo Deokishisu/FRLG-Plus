@@ -137,6 +137,6 @@ ViridianForest_Text_GruntDefeat::
 
 ViridianForest_Text_GruntLeave::
 	.string "You know what?\p"
-	.string "You can keep the stupid "POKéMON,\n"
+	.string "You can keep the stupid POKéMON,\n"
 	.string "I will just catch a new one!\p"
 	.string "Whahaha!$"
