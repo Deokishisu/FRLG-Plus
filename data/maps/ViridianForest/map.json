@@ -200,7 +200,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_ABRA",
       "in_connection": false,
-      "x": 31,
+      "x": 30,
       "y": 19,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_UP_RIGHT_DOWN",
