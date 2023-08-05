@@ -121,8 +121,8 @@ ViridianForest_Text_ObtainedTorchic::
 
 ViridianForest_Text_Grunt::
     .string "And you are?\p"
-	.string "Yes, I'm trying to get this\n"
-	.string "stupid thing to listen.\p"
+	.string "Yes, I'm trying to get this stupid\n"
+	.string "thing to listen.\p"
 	.string "Is that so bad?\p"
 	.string "W-wait, it's my POKéMON.\p"
 	.string "I can do whatever I want with it!\p"

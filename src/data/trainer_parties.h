@@ -1051,7 +1051,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderGiovanniRematch
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_TeamRocketGruntF[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_TeamRocketGruntilda[] = {
     {
         .iv = 0,
         .lvl = 5,
