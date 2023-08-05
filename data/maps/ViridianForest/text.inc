@@ -115,6 +115,10 @@ ViridianForest_Text_TorchicSaved::
     .string "It seems to want to join you!\p"
 	.string "Do you want to bring TORCHIC\n"
 	.string "along?$"
+	
+ViridianForest_Text_TorchicSad::
+    .string "TORCHIC is looking slightly\n"
+	.string "disappointed.$"
 
 ViridianForest_Text_ObtainedTorchic::
     .string "{PLAYER} obtained a TORCHIC!$"
@@ -130,7 +134,6 @@ ViridianForest_Text_Grunt::
 	.string "taught a lesson.\p"
 	.string "I will teach you not to mess\n"
 	.string "with TEAM ROCKET!$"
-	
 
 ViridianForest_Text_GruntDefeat::
     .string "Okay, okay! Whatever!$"
