@@ -2,14 +2,14 @@
   "id": "MAP_VIRIDIAN_FOREST_DEPTHS",
   "name": "ViridianForestDepths",
   "layout": "LAYOUT_VIRIDIAN_FOREST_DEPTHS",
-  "music": "MUS_MT_MOON",
+  "music": "SE_WIN_OPEN",
   "region_map_section": "MAPSEC_VIRIDIAN_FOREST",
   "requires_flash": false,
-  "weather": "WEATHER_NONE",
+  "weather": "WEATHER_RAIN",
   "map_type": "MAP_TYPE_NONE",
-  "allow_cycling": false,
-  "allow_escaping": false,
-  "allow_running": false,
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -18,7 +18,20 @@
 
   ],
   "warp_events": [
-
+    {
+      "x": 23,
+      "y": 65,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 23,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+      "dest_warp_id": 5
+    }
   ],
   "coord_events": [
 

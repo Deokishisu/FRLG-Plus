@@ -4780,8 +4780,8 @@
     {
       "id": "LAYOUT_VIRIDIAN_FOREST_DEPTHS",
       "name": "ViridianForestDepths_Layout",
-      "width": 42,
-      "height": 34,
+      "width": 30,
+      "height": 71,
       "border_width": 3,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
