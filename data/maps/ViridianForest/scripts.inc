@@ -178,7 +178,7 @@ ViridianForest_EventScript_EndReceiveTorchic::
 	waitmessage
 	playbgm MUS_ENCOUNTER_ROCKET, 0
 	waitbuttonpress
-	trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNT_0, ViridianForest_Text_GruntDefeat
+	trainerbattle_no_intro TRAINER_TEAM_ROCKET_GRUNT_F, ViridianForest_Text_GruntDefeat
 	msgbox ViridianForest_Text_GruntLeave
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_GRUNT
