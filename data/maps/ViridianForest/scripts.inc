@@ -108,7 +108,7 @@ ViridianForest_EventScript_ObtainTorchic::
 	msgbox ViridianForest_Text_TorchicSaved, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq ViridianForest_EventScript_GiveTorchic
-	msgbox ViridianForestDepths_Text_TorchicSad
+	msgbox ViridianForest_Text_TorchicSad
 	release
 	end
 	
