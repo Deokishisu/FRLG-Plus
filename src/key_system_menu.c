@@ -142,7 +142,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 };
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 0};
+static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 1, 0};
 static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
