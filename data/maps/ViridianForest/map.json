@@ -208,8 +208,8 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "ViridianForest_EventScript_Grunt",
+      "flag": "FLAG_BEAT_VIRIDIAN_GRUNT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ABRA",
@@ -222,8 +222,8 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
-      "flag": "0"
+      "script": "ViridianForest_EventScript_Torchic",
+      "flag": "FLAG_GOT_TORCHIC"
     }
   ],
   "warp_events": [

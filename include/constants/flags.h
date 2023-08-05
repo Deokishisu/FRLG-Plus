@@ -886,8 +886,8 @@
 #define FLAG_FOUR_ISLAND_SNOW          0x35B
 
 // Unused?
-#define FLAG_0x35C               0x35C
-#define FLAG_0x35D               0x35D
+#define FLAG_BEAT_VIRIDIAN_GRUNT               0x35C
+#define FLAG_GOT_TORCHIC               0x35D
 #define FLAG_0x35E               0x35E
 #define FLAG_0x35F               0x35F
 #define FLAG_0x360               0x360

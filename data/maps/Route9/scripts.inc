@@ -108,7 +108,7 @@ Route9_EventScript_ReceiveBulbasaurPC::
 	applymovement LOCALID_BULBASAUR, Route9_Movement_BulbaJump
 	waitmovement 0
 	waitse
-	playmoncry SPECIES_BULBASAUR, 1
+	playmoncry SPECIES_BULBASAUR, 0
 	waitmoncry
 	textcolor 3
 	msgbox Route9_Text_BulbasaurEager
@@ -130,12 +130,12 @@ Route9_EventScript_ReceiveBulbasaurPC::
 	goto Route9_EventScript_BulbasaurTransferredToPC
 	end
 
-Route9_EventScript_BulbasaurTransferredToPC:: @ 8161B73
+Route9_EventScript_BulbasaurTransferredToPC::
 	call EventScript_TransferredToPC
 	goto Route9_EventScript_EndReceiveBulbasaur
 	end
 
-Route9_EventScript_EndReceiveBulbasaur:: @ 8161B7E
+Route9_EventScript_EndReceiveBulbasaur::
 	applymovement OBJ_EVENT_ID_PLAYER, Route9_Movement_PlayerBack\
 	waitmovement 0
 	textcolor 1
@@ -145,7 +145,7 @@ Route9_EventScript_EndReceiveBulbasaur:: @ 8161B7E
 	release
 	end
 
-Route9_EventScript_AlreadyGotBulbasaur:: @ 8161B8D
+Route9_EventScript_AlreadyGotBulbasaur::
 	msgbox Route9_Text_HowIsBulbasaur
 	release
 	end
