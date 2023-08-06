@@ -332,8 +332,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_TeamRocketGrunt),
-        .party = {.NoItemDefaultMoves = sTrainerMons_TeamRocketGrunt}
+        .partySize = NELEMS(sTrainerMons_TeamRocketJungle),
+        .party = {.NoItemDefaultMoves = sTrainerMons_TeamRocketJungle}
     },
     [TRAINER_LEADER_BRAWLY] = {
         .partyFlags = 0,
