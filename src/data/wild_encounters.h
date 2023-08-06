@@ -7471,6 +7471,24 @@ const struct WildPokemon sArtisanCave_LandMons[] =
 
 const struct WildPokemonInfo sArtisanCave_LandMonsInfo = { 10, sArtisanCave_LandMons };
 
+const struct WildPokemon sViridianForestDepths_LandMons[] =
+{
+    { 6, 6, SPECIES_CATERPIE },
+    { 6, 6, SPECIES_WEEDLE },
+    { 5, 5, SPECIES_GASTLY },
+    { 6, 6, SPECIES_SHUPPET },
+    { 6, 6, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_NINCADA },
+    { 7, 7, SPECIES_WURMPLE },
+    { 6, 6, SPECIES_VENONAT },
+    { 5, 5, SPECIES_MISDREAVUS },
+    { 6, 6, SPECIES_METAPOD },
+    { 6, 6, SPECIES_KAKUNA },
+    { 9, 9, SPECIES_SABLEYE },
+};
+
+const struct WildPokemonInfo sViridianForestDepths_LandMonsInfo = { 14, sViridianForestDepths_LandMons };
+
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
     {
@@ -9212,5 +9230,17 @@ const struct WildPokemonHeader gWildMonHeaders[] =
         .rockSmashMonsInfo_LG = &sCeruleanCaveB1F_LeafGreen_RockSmashMonsInfo,
         .fishingMonsInfo_FR = &sCeruleanCaveB1F_FireRed_FishingMonsInfo,
         .fishingMonsInfo_LG = &sCeruleanCaveB1F_LeafGreen_FishingMonsInfo,
+    },
+	{
+        .mapGroup = MAP_GROUP(VIRIDIAN_FOREST_DEPTHS),
+        .mapNum = MAP_NUM(VIRIDIAN_FOREST_DEPTHS),
+        .landMonsInfo_FR = &sViridianForestDepths_LandMonsInfo,
+        .landMonsInfo_LG = &sViridianForestDepths_LandMonsInfo,
+        .waterMonsInfo_FR = NULL,
+        .waterMonsInfo_LG = NULL,
+        .rockSmashMonsInfo_FR = NULL,
+        .rockSmashMonsInfo_LG = NULL,
+        .fishingMonsInfo_FR = NULL,
+        .fishingMonsInfo_LG = NULL,
     },
 };

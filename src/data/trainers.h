@@ -323,7 +323,7 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_LeaderGiovanniRematch),
         .party = {.ItemCustomMoves = sTrainerMons_LeaderGiovanniRematch}
     },
-    [TRAINER_TEAM_ROCKET_GRUNTILDA] = {
+    [TRAINER_TEAM_ROCKET_JUNGLE] = {
         .partyFlags = 0,
         .trainerClass = CLASS_TEAM_ROCKET,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,

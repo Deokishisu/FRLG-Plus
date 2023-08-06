@@ -7,6 +7,22 @@ ViridianForestDepths_MapScripts::
 	ViridianForestDepths_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VIRIDIAN_FOREST
 	end
+	
+ViridianForestDepths_EventScript_WelcomeSign1::
+	msgbox ViridianForestDepths_Text_Welcome1, MSGBOX_SIGN
+	end
+
+ViridianForestDepths_EventScript_WelcomeSign2::
+	msgbox ViridianForestDepths_Text_Welcome2, MSGBOX_SIGN
+	end
+
+ViridianForestDepths_EventScript_GraveSign::
+	msgbox ViridianForestDepths_Text_GraveSign, MSGBOX_SIGN
+	end
+	
+ViridianForestDepths_EventScript_GraveTextSign::
+	msgbox ViridianForestDepths_Text_GraveTextSign, MSGBOX_SIGN
+	end
 
 ViridianForestDepths_EventScript_Treecko::
 	lock
