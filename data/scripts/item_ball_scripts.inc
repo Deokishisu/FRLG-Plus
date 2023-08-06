@@ -17,6 +17,22 @@ ViridianForest_EventScript_ItemAntidote:: @ 81BE5B5
 ViridianForest_EventScript_ItemPotion:: @ 81BE5C2
 	finditem ITEM_POTION
 	end
+	
+ViridianForestDepths_EventScript_ItemGreatBall::
+	finditem ITEM_GREAT_BALL
+	end
+
+ViridianForestDepths_EventScript_ItemTM10::
+	finditem ITEM_TM10
+	end
+
+ViridianForestDepths_EventScript_ItemSpellTag::
+	finditem ITEM_SPELL_TAG
+	end
+	
+ViridianForestDepths_EventScript_ItemSuperPotion::
+	finditem ITEM_SUPER_POTION
+	end
 
 MtMoon_1F_EventScript_ItemParalyzeHeal:: @ 81BE5CF
 	finditem ITEM_PARALYZE_HEAL
