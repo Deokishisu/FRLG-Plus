@@ -3,7 +3,7 @@ ViridianForestDepths_Text_WelcomeSign1::
     .string "Beware of GHOST POKéMON!$"
 
 ViridianForestDepths_Text_WelcomeSign2::
-    .string "VIRIDIAN FOREST GROVE\p"
+    .string "VIRIDIAN FOREST GROVE\n"
     .string "Burial ground ahead$"
 
 ViridianForestDepths_Text_GraveSign::
@@ -11,11 +11,11 @@ ViridianForestDepths_Text_GraveSign::
 	
 ViridianForestDepths_Text_GraveTextSign::
     .string "This burial ground houses the\n"
-    .string "remains of the great HERO,\p"
-	.string "who protected VIRIDIAN against\n"
+    .string "remains of the great HERO, who\p"
+	.string "protected VIRIDIAN against\n"
 	.string "the invading forces of JOHTO.\p"
 	.string "May he and his POKéMON rest\n"
-	.string "in peace$"
+	.string "in peace.$"
 
 ViridianForestDepths_Text_TreeckoNoise::
     .string "Trrrrrrrrrk!!$"
