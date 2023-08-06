@@ -9,11 +9,11 @@ ViridianForestDepths_MapScripts::
 	end
 	
 ViridianForestDepths_EventScript_WelcomeSign1::
-	msgbox ViridianForestDepths_Text_Welcome1, MSGBOX_SIGN
+	msgbox ViridianForestDepths_Text_WelcomeSign1, MSGBOX_SIGN
 	end
 
 ViridianForestDepths_EventScript_WelcomeSign2::
-	msgbox ViridianForestDepths_Text_Welcome2, MSGBOX_SIGN
+	msgbox ViridianForestDepths_Text_WelcomeSign2, MSGBOX_SIGN
 	end
 
 ViridianForestDepths_EventScript_GraveSign::
