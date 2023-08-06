@@ -184,14 +184,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar = {SPRITE
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_GREEN, OBJ_EVENT_PAL_TAG_NONE, 256, 16, 32, 4, SHADOW_SIZE_M, FALSE, FALSE, TRACKS_FOOT, &gObjectEventBaseOam_16x32, gObjectEventSpriteOamTables_16x32, gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Sudowoodo, gDummySpriteAffineAnimTable};
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chikorita = 
-{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_GREEN, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+4, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Chikorita, gDummySpriteAffineAnimTable};
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cyndaquil = 
-{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_BLUE, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+2, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Cyndaquil, gDummySpriteAffineAnimTable};
 
@@ -202,14 +202,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Totodile =
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Totodile, gDummySpriteAffineAnimTable};
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Magby = 
-{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_WHITE, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+5, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Magby, gDummySpriteAffineAnimTable};
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elekid = 
 {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+2, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Elekid, gDummySpriteAffineAnimTable};
 
