@@ -221,13 +221,13 @@ gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Smoochum, gDummySprite
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Treecko = 
 {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_GREEN, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+4, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Treecko, gDummySpriteAffineAnimTable};
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Torchic = 
 {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_WHITE, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+5, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Torchic, gDummySpriteAffineAnimTable};
 
