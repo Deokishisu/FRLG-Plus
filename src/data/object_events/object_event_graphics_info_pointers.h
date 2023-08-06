@@ -180,6 +180,15 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmBrendan;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmMay;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chikorita;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cyndaquil;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Totodile;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Magby;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elekid;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Smoochum;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Treecko;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Torchic;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mudkip;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Abra;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerFWater2;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterBeauty;
@@ -385,6 +394,15 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_EM_MAY]                   = &gObjectEventGraphicsInfo_EmMay,
     [OBJ_EVENT_GFX_CABLE_CAR]                = &gObjectEventGraphicsInfo_CableCar,
     [OBJ_EVENT_GFX_SUDOWOODO]                = &gObjectEventGraphicsInfo_Sudowoodo,
+    [OBJ_EVENT_GFX_CHIKORITA]                = &gObjectEventGraphicsInfo_Chikorita,
+    [OBJ_EVENT_GFX_CYNDAQUIL]                = &gObjectEventGraphicsInfo_Cyndaquil,
+    [OBJ_EVENT_GFX_TOTODILE]                 = &gObjectEventGraphicsInfo_Totodile,
+    [OBJ_EVENT_GFX_MAGBY]                    = &gObjectEventGraphicsInfo_Magby,
+    [OBJ_EVENT_GFX_ELEKID]                   = &gObjectEventGraphicsInfo_Elekid,
+    [OBJ_EVENT_GFX_SMOOCHUM]                 = &gObjectEventGraphicsInfo_Smoochum,
+    [OBJ_EVENT_GFX_TREECKO]                  = &gObjectEventGraphicsInfo_Treecko,
+    [OBJ_EVENT_GFX_TORCHIC]                  = &gObjectEventGraphicsInfo_Torchic,
+    [OBJ_EVENT_GFX_MUDKIP]                   = &gObjectEventGraphicsInfo_Mudkip,
     [OBJ_EVENT_GFX_ABRA]                     = &gObjectEventGraphicsInfo_Abra,
     [OBJ_EVENT_GFX_SWIMMER_F_WATER_2]        = &gObjectEventGraphicsInfo_SwimmerFWater2,
     [OBJ_EVENT_GFX_MASTER_BEAUTY]            = &gObjectEventGraphicsInfo_MasterBeauty,

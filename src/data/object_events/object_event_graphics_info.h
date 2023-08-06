@@ -182,6 +182,61 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmBrendan = {SPRIT
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EmMay = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_29, OBJ_EVENT_PAL_TAG_NONE, 256, 16, 32, 3, SHADOW_SIZE_M, FALSE, FALSE, TRACKS_FOOT, &gObjectEventBaseOam_16x32, gObjectEventSpriteOamTables_16x32, gObjectEventImageAnimTable_Standard, gObjectEventPicTable_EmMay, gDummySpriteAffineAnimTable};
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CableCar = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_CABLE_CAR, OBJ_EVENT_PAL_TAG_NONE, 2048, 64, 64, 10, SHADOW_SIZE_M, TRUE, FALSE, TRACKS_NONE, &gObjectEventBaseOam_64x64, gObjectEventSpriteOamTables_64x64, gObjectEventImageAnimTable_Inanimate, gObjectEventPicTable_CableCar, gDummySpriteAffineAnimTable};
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Sudowoodo = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_GREEN, OBJ_EVENT_PAL_TAG_NONE, 256, 16, 32, 4, SHADOW_SIZE_M, FALSE, FALSE, TRACKS_FOOT, &gObjectEventBaseOam_16x32, gObjectEventSpriteOamTables_16x32, gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Sudowoodo, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chikorita = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Chikorita, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cyndaquil = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Cyndaquil, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Totodile = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Totodile, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Magby = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Magby, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elekid = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Elekid, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Smoochum = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Smoochum, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Treecko = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Treecko, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Torchic = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Torchic, gDummySpriteAffineAnimTable};
+
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Mudkip = 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+&gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
+gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Mudkip, gDummySpriteAffineAnimTable};
+
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Abra = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_BLUE, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 2, SHADOW_SIZE_M, FALSE, FALSE, TRACKS_FOOT, &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Abra, gDummySpriteAffineAnimTable};
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerFWater2 = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_GREEN, OBJ_EVENT_PAL_TAG_NONE, 256, 16, 32, 4, SHADOW_SIZE_M, FALSE, FALSE, TRACKS_FOOT, &gObjectEventBaseOam_16x32, gObjectEventSpriteOamTables_16x32, gObjectEventImageAnimTable_Standard, gObjectEventPicTable_SwimmerFWater2, gDummySpriteAffineAnimTable};
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MasterBeauty = {SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_BLUE, OBJ_EVENT_PAL_TAG_NONE, 256, 16, 32, 2, SHADOW_SIZE_M, FALSE, FALSE, TRACKS_FOOT, &gObjectEventBaseOam_16x32, gObjectEventSpriteOamTables_16x32, gObjectEventImageAnimTable_Standard, gObjectEventPicTable_MasterBeauty, gDummySpriteAffineAnimTable};
