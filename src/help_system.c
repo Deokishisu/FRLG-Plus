@@ -444,7 +444,6 @@ enum
     HELP_TERM_ID_NO2,
     HELP_TERM_MONEY2,
     HELP_TERM_BADGES2,
-    HELP_TERM_DIFFICULTY,
     HELP_TERM_NUZLOCKE,
     HELP_TERM_NUZLOCKE_CATCHING,
     HELP_TERM_NUZLOCKE_LOSING,
@@ -458,7 +457,6 @@ enum
     HELP_TERM_HP_BAR_ANIM_SPEED,
     HELP_TERM_EXP_BAR_ANIM_SPEED,
     HELP_TERM_BACK,
-    HELP_TERM_ADVANCED,
     HELP_TERM_ADVANCED_KEYS_BACK,
 };
 
@@ -581,6 +579,7 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_DefineHpBarAnimSpeed,
     [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_DefineExpBarAnimSpeed,
     [HELP_TERM_BACK]          = Help_Text_DefineBack,
+    [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_DefineAdvancedKeysBack,
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
@@ -1667,8 +1666,6 @@ static const u8 sHowTo_KeySystem[] = {
 };
 
 static const u8 sTerms_KeySystem[] = {
-    HELP_TERM_DIFFICULTY,
-    HELP_TERM_ADVANCED,
     HELP_TERM_CANCEL,
     HELP_END
 };
