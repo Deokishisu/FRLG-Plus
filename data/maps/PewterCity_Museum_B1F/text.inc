@@ -1,8 +1,8 @@
 PewterCity_Museum_B1F_Text_HikerExplains::
-    .string "Welcome to the UNDERGROUND CHALLENGE!\p"
-	.string "In this darkened room resembling a\n"
-	.string "dimly lit cave, your task is to!\p"
-    .string "reach the end, where a radiant\n"
+    .string "Welcome to the UNDERGROUND\n"
+	.string "CHALLENGE!\p"
+	.string "In this darkened room, your task is\n"
+	.string "to reach the end, where a radiant\p"
 	.string "prize awaits you!\p"
 	.string "If you aren't up to the task,\n"
 	.string "return back to the surface.\p"
@@ -11,11 +11,10 @@ PewterCity_Museum_B1F_Text_HikerExplains::
 PewterCity_Museum_B1F_Text_Scientist::
     .string "How are you liking our little\n"
 	.string "UNDERGROUND CHALLENGE?\p"
-	.string "We wanted to let our visitors\n"
-    .string "experience the feeling of\p"
-	.string "spelunking and exploring the\n"
-	.string "various caverns of our region,\p"
-	.string "KANTO.$"
+	.string "We wanted to let our visitors feel\n"
+    .string "the excitement of spelunking and\p"
+	.string "exploring the various caverns of\n"
+	.string "the KANTO region.$"
 
 PewterCity_Museum_B1F_Text_YouEarnedFlash::
     .string "Congratulations!\p"
