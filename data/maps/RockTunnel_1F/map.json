@@ -238,7 +238,7 @@
       "y": 33,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": ""
+      "script": "RockTunnel_1F_EventScript_RouteSign"
     }
   ],
   "level_scaling": "2"
