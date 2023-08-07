@@ -1337,3 +1337,6 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/PewterCity_Museum_B1F/scripts.inc"
 	.include "data/maps/PewterCity_Museum_B1F/text.inc"
+
+	.include "data/maps/MtMoon_Square/scripts.inc"
+	.include "data/maps/MtMoon_Square/text.inc"

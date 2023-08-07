@@ -254,6 +254,27 @@
       "elevation": 3,
       "dest_map": "MAP_ROUTE4",
       "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 48,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_SQUARE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 46,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 6
+    },
+    {
+      "x": 29,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 5
     }
   ],
   "coord_events": [

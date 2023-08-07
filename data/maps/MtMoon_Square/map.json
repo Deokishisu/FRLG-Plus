@@ -1,0 +1,64 @@
+{
+  "id": "MAP_MT_MOON_SQUARE",
+  "name": "MtMoon_Square",
+  "layout": "LAYOUT_MT_MOON_SQUARE",
+  "music": "MUS_MT_MOON",
+  "region_map_section": "MAPSEC_MT_MOON",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MUDKIP",
+      "in_connection": false,
+      "x": 39,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "",
+      "flag": "FLAG_GOT_MUDKIP"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 34,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_1F",
+      "dest_warp_id": 4
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "MtMoon_Square_EventScript_Mudkip"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 25,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "MtMoon_Square_EventScript_WelcomeSign"
+    }
+  ],
+  "level_scaling": "1"
+}

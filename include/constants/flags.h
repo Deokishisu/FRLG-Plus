@@ -889,7 +889,7 @@
 #define FLAG_BEAT_VIRIDIAN_GRUNT               0x35C
 #define FLAG_GOT_TORCHIC               0x35D
 #define FLAG_GOT_TREECKO               0x35E
-#define FLAG_0x35F               0x35F
+#define FLAG_GOT_MUDKIP                0x35F
 #define FLAG_0x360               0x360
 #define FLAG_0x361               0x361
 #define FLAG_0x362               0x362
