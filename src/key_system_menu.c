@@ -31,7 +31,7 @@ enum
     MENUITEM_EV,
     MENUITEM_NO_PMC,
     MENUITEM_EXP_MOD,
-    MENUITEM_BACK,
+    MENUITEM_CANCEL,
     MENUITEM_COUNT2
 };
 
@@ -158,7 +158,7 @@ static const u8 *const sKeySystemSubMenuItemsNames[MENUITEM_COUNT2] ={
     [MENUITEM_EV]         = gText_EVCalc,
     [MENUITEM_NO_PMC]     = gText_NoPMC,
     [MENUITEM_EXP_MOD]    = gText_ExpMod,
-    [MENUITEM_BACK]       = gText_Back,
+    [MENUITEM_CANCEL]     = gText_OptionMenuSaveAndExit,
 };
 
 static const u8 *const sDifficultyOptions[] =
@@ -229,7 +229,7 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->loadPaletteState = 0;
     sKeySystemMenuPtr->state = 0;
     sKeySystemMenuPtr->cursorPos = 0;
-    sKeySystemMenuPtr->inSubMenu = 0;
+    sKeySystemMenuPtr->inSubMenu = 1;
     sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY] = gSaveBlock1Ptr->keyFlags.difficulty;
     sKeySystemMenuPtr->option[MENUITEM_ADVANCED] = 0;
     sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
@@ -594,10 +594,7 @@ static u8 KeySystemMenu_ProcessInput(void)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        if(sKeySystemMenuPtr->inSubMenu)
-            return 6;
-        else
-            return 1;
+        return 1;
     }
     else
     {
@@ -681,10 +678,7 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
 static void PrintKeySystemMenuHeader(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    if(!sKeySystemMenuPtr->inSubMenu)
-        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_KeySystemSettings, 8, 1, TEXT_SPEED_FF, NULL);
-    else
-        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_Advanced, 8, 1, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_KeySystemSettings, 8, 1, TEXT_SPEED_FF, NULL);
     PutWindowTilemap(0);
     CopyWindowToVram(0, COPYWIN_BOTH);
 }
