@@ -20,7 +20,6 @@ enum
 {
     MENUITEM_DIFFICULTY = 0,
     MENUITEM_ADVANCED,
-    MENUITEM_CANCEL,
     MENUITEM_COUNT
 };
 
@@ -149,7 +148,6 @@ static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
     [MENUITEM_DIFFICULTY] = gText_Difficulty,
     [MENUITEM_ADVANCED]   = gText_Advanced,
-    [MENUITEM_CANCEL]     = gText_OptionMenuSaveAndExit,
 };
 
 static const u8 *const sKeySystemSubMenuItemsNames[MENUITEM_COUNT2] ={
