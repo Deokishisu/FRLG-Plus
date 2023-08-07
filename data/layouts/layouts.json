@@ -1157,7 +1157,7 @@
       "id": "LAYOUT_MT_MOON_1F",
       "name": "MtMoon_1F_Layout",
       "width": 48,
-      "height": 50,
+      "height": 51,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",

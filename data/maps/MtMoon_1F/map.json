@@ -257,14 +257,14 @@
     },
     {
       "x": 5,
-      "y": 48,
+      "y": 49,
       "elevation": 0,
       "dest_map": "MAP_MT_MOON_SQUARE",
       "dest_warp_id": 0
     },
     {
       "x": 5,
-      "y": 46,
+      "y": 47,
       "elevation": 0,
       "dest_map": "MAP_MT_MOON_1F",
       "dest_warp_id": 6
