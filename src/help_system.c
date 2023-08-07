@@ -507,7 +507,6 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_ID_NO2]         = Help_Text_IDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_Money2,
     [HELP_TERM_BADGES2]        = Help_Text_Badges2,
-    [HELP_TERM_DIFFICULTY]     = Help_Text_Difficulty,
     [HELP_TERM_NUZLOCKE]       = Help_Text_Nuzlocke,
     [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_Nuzlocke_Catching,
     [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_NuzlockeLosing,
@@ -521,7 +520,6 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_HpBarAnimSpeed,
     [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_ExpBarAnimSpeed,
     [HELP_TERM_BACK]           = Help_Text_Back,
-    [HELP_TERM_ADVANCED]       = Help_Text_AdvancedKeys,
     [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_Back,
 };
 
@@ -570,7 +568,6 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_ID_NO2]         = Help_Text_DefineIDNo2,
     [HELP_TERM_MONEY2]         = Help_Text_DefineMoney2,
     [HELP_TERM_BADGES2]        = Help_Text_DefineBadges2,
-    [HELP_TERM_DIFFICULTY]     = Help_Text_DefineDifficulty,
     [HELP_TERM_NUZLOCKE]       = Help_Text_DefineNuzlocke,
     [HELP_TERM_NUZLOCKE_CATCHING] = Help_Text_DefineNuzlocke_Catching,
     [HELP_TERM_NUZLOCKE_LOSING] = Help_Text_DefineNuzlockeLosing,
@@ -584,8 +581,6 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_DefineHpBarAnimSpeed,
     [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_DefineExpBarAnimSpeed,
     [HELP_TERM_BACK]          = Help_Text_DefineBack,
-    [HELP_TERM_ADVANCED]       = Help_Text_DefineAdvancedKeys,
-    [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_DefineAdvancedKeysBack,
 };
 
 // Submenu IDs for TOPIC_ABOUT_GAME
