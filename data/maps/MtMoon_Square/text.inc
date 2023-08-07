@@ -17,7 +17,7 @@ MtMoon_Square_Text_MudkipAngryFood::
 MtMoon_Square_Text_MudkipStillAngry::
 	.string "MUDKIP remains  upset with you!$"
 
-MtMoon_Square_Text_MudkipHappyJoin
+MtMoon_Square_Text_MudkipHappyJoin::
     .string "MUDKIP is no longer angry!\p"
 	.string "It seems to really appreciate your\n"
 	.string "kind gesture and wants you as its.\p"
