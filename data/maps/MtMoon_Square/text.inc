@@ -15,7 +15,7 @@ MtMoon_Square_Text_MudkipAngryFood::
 	.string "Give MUDKIP a SITRUS BERRY?$"
 	
 MtMoon_Square_Text_MudkipStillAngry::
-	.string "MUDKIP remains  upset with you!$"
+	.string "MUDKIP remains  upset with you.$"
 
 MtMoon_Square_Text_MudkipHappyJoin::
     .string "MUDKIP is no longer angry!\p"
@@ -23,6 +23,9 @@ MtMoon_Square_Text_MudkipHappyJoin::
 	.string "kind gesture and wants you as its.\p"
 	.string "TRAINER.\p"
 	.string "Do you want to bring MUDKIP along?\p"
+	
+MtMoon_Square_Text_MudkipSad::
+	.string "MUDKIP seems a little down.$"
 
 MtMoon_Square_Text_ObtainedMudkip::
     .string "{PLAYER} obtained a MUDKIP!$"
