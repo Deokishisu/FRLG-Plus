@@ -376,8 +376,8 @@ static void KeySystemMenu_PickSwitchCancel(void)
     }
     else
     {
-        x = 0xE4 - GetStringWidth(0, gText_PickSwitchBack, 0);
-        AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickSwitchBack);
+        x = 0xE4 - GetStringWidth(0, gText_PickSwitchExit, 0);
+        AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickSwitchExit);
     }
     PutWindowTilemap(2);
     CopyWindowToVram(2, COPYWIN_BOTH);
@@ -580,15 +580,7 @@ static u8 KeySystemMenu_ProcessInput(void)
     }
     else if (JOY_NEW(A_BUTTON))
     {
-        if(!sKeySystemMenuPtr->inSubMenu)
-        {
-            if(sKeySystemMenuPtr->cursorPos == MENUITEM_ADVANCED)
-                return 6;
-            if(sKeySystemMenuPtr->cursorPos == MENUITEM_CANCEL)
-                return 1;
-        }
-        else
-            return 6;
+        return 1;
     }
     else if (JOY_NEW(B_BUTTON))
     {
