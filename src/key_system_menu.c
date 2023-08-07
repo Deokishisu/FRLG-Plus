@@ -141,7 +141,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 };
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
-static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 1, 3};
+static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 1};
 static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
@@ -552,7 +552,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         else
         {
             if (sKeySystemMenuPtr->cursorPos == MENUITEM_NUZLOCKE)
-                sKeySystemMenuPtr->cursorPos = MENUITEM_BACK;
+                sKeySystemMenuPtr->cursorPos = MENUITEM_CANCEL;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos - 1;
         }
@@ -570,7 +570,7 @@ static u8 KeySystemMenu_ProcessInput(void)
         }
         else
         {
-            if (sKeySystemMenuPtr->cursorPos == MENUITEM_BACK)
+            if (sKeySystemMenuPtr->cursorPos == MENUITEM_CANCEL)
                 sKeySystemMenuPtr->cursorPos = MENUITEM_NUZLOCKE;
             else
                 sKeySystemMenuPtr->cursorPos = sKeySystemMenuPtr->cursorPos + 1;
