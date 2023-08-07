@@ -310,6 +310,7 @@
 #define MAP_PEWTER_CITY_POKEMON_CENTER_1F (5 | (6 << 8))
 #define MAP_PEWTER_CITY_POKEMON_CENTER_2F (6 | (6 << 8))
 #define MAP_PEWTER_CITY_HOUSE2            (7 | (6 << 8))
+#define MAP_PEWTER_CITY_MUSEUM_B1F        (8 | (6 << 8))
 
 // gMapGroup_IndoorCerulean
 #define MAP_CERULEAN_CITY_HOUSE1            (0 | (7 << 8))

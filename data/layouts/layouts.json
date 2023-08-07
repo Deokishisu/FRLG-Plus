@@ -4788,6 +4788,18 @@
       "secondary_tileset": "gTileset_ViridianForest",
       "border_filepath": "data/layouts/ViridianForestDepths/border.bin",
       "blockdata_filepath": "data/layouts/ViridianForestDepths/map.bin"
+    },
+    {
+      "id": "LAYOUT_PEWTER_CITY_MUSEUM_B1F",
+      "name": "PewterCity_Museum_B1F_Layout",
+      "width": 32,
+      "height": 11,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Museum",
+      "border_filepath": "data/layouts/PewterCity_Museum_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/PewterCity_Museum_B1F/map.bin"
     }
   ]
 }

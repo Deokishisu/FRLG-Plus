@@ -32,7 +32,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "in_connection": false,
-      "x": 2,
+      "x": 1,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -102,8 +102,8 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
       "in_connection": false,
-      "x": 1,
-      "y": 9,
+      "x": 0,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
@@ -156,6 +156,13 @@
       "elevation": 3,
       "dest_map": "MAP_PEWTER_CITY_MUSEUM_2F",
       "dest_warp_id": 0
+    },
+    {
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_PEWTER_CITY_MUSEUM_B1F",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
@@ -190,7 +197,7 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 4,
+      "x": 3,
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
@@ -198,8 +205,8 @@
     },
     {
       "type": "sign",
-      "x": 4,
-      "y": 7,
+      "x": 7,
+      "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PewterCity_Museum_1F_EventScript_KabutopsFossil"
