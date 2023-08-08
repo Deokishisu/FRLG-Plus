@@ -457,6 +457,7 @@ enum
     HELP_TERM_HP_BAR_ANIM_SPEED,
     HELP_TERM_EXP_BAR_ANIM_SPEED,
     HELP_TERM_BACK,
+    HELP_TERM_ADVANCED,
     HELP_TERM_ADVANCED_KEYS_BACK,
 };
 
@@ -518,6 +519,7 @@ static const u8 *const sHelpSystemTermTextPtrs[] = {
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_HpBarAnimSpeed,
     [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_ExpBarAnimSpeed,
     [HELP_TERM_BACK]           = Help_Text_Back,
+    [HELP_TERM_ADVANCED]    = Help_Text_AdvancedKeys,
     [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_Back,
 };
 
@@ -579,6 +581,7 @@ static const u8 *const sHelpSystemTermDefinitionsTextPtrs[] = {
     [HELP_TERM_HP_BAR_ANIM_SPEED]   = Help_Text_DefineHpBarAnimSpeed,
     [HELP_TERM_EXP_BAR_ANIM_SPEED] = Help_Text_DefineExpBarAnimSpeed,
     [HELP_TERM_BACK]          = Help_Text_DefineBack,
+    [HELP_TERM_ADVANCED] = Help_Text_DefineAdvancedKeys,
     [HELP_TERM_ADVANCED_KEYS_BACK] = Help_Text_DefineAdvancedKeysBack,
 };
 
@@ -1666,6 +1669,7 @@ static const u8 sHowTo_KeySystem[] = {
 };
 
 static const u8 sTerms_KeySystem[] = {
+    HELP_TERM_ADVANCED,
     HELP_TERM_CANCEL,
     HELP_END
 };
