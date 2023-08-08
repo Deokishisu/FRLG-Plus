@@ -258,21 +258,21 @@
     {
       "x": 6,
       "y": 49,
-      "elevation": 0,
+      "elevation": 3,
       "dest_map": "MAP_MT_MOON_SQUARE",
       "dest_warp_id": 0
     },
     {
       "x": 6,
       "y": 47,
-      "elevation": 0,
+      "elevation": 3,
       "dest_map": "MAP_MT_MOON_1F",
       "dest_warp_id": 6
     },
     {
       "x": 29,
       "y": 37,
-      "elevation": 0,
+      "elevation": 3,
       "dest_map": "MAP_MT_MOON_1F",
       "dest_warp_id": 5
     }

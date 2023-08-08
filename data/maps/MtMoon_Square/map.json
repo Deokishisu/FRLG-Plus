@@ -34,7 +34,7 @@
     {
       "x": 34,
       "y": 19,
-      "elevation": 0,
+      "elevation": 3,
       "dest_map": "MAP_MT_MOON_1F",
       "dest_warp_id": 4
     }
@@ -44,7 +44,7 @@
       "type": "trigger",
       "x": 39,
       "y": 6,
-      "elevation": 0,
+      "elevation": 3,
       "var": "VAR_TEMP_0",
       "var_value": "0",
       "script": "MtMoon_Square_EventScript_Mudkip"
@@ -55,7 +55,7 @@
       "type": "sign",
       "x": 25,
       "y": 11,
-      "elevation": 0,
+      "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "MtMoon_Square_EventScript_WelcomeSign"
     }
