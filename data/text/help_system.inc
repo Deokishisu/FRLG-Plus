@@ -2050,19 +2050,18 @@ Help_Text_Back::
 	.string "BACK$"
 
 Help_Text_AdvancedKeys::
-	.string "ADVANCED KEYS$"
+	.string "KEY SYSTEM MENU$"
 
 Help_Text_DefineAdvancedKeys::
-	.string "Press the A Button to go to a submenu\n"
-	.string "with options to modify the difficulty\n"
-	.string "by changing experience gain or adding\n"
-	.string "additional rules onto the gameplay\n"
-	.string "experience.$"
+    .string "This menu contains options to modify\n"
+	.string "the difficulty:\n"
+	.string "change experience gain or add\n"
+	.string "additional rules to the gameplay.$"
 
 Help_Text_DefineAdvancedKeysBack::
 	.string "The settings will be changed to the\n"
 	.string "selections shown in red, and you will\n"
-	.string "return to the KEY SYSTEM MENU.$"
+	.string "return to the HOME SCREEN.$"
 
 Help_Text_UsingKeySystemSubmenu:: @ 81B5A37
 	.string " Using “ADVANCED KEYS”$"
