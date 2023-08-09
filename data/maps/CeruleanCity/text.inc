@@ -192,7 +192,7 @@ Cerulean_City_Text_SweetieBuyTotodileForJust500::
 	.string "Don't ask how I got my hands on it.\n"
 	.string "That's just a matter of business.\p"
 	.string "Well, what do you say?\p"
-	.string "Care to buy this wondrous POKéMON?n\"
+	.string "Care to buy this wondrous POKéMON?\n"
 	.string "It's only ¥5,000!$"
 
 Cerulean_City_Text_PaidOutrageouslyForTotodile::
