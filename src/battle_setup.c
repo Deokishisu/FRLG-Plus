@@ -256,7 +256,8 @@ const u8 NuzlockeLUT[MAPSEC_COUNT] = //84 used, 214 total
     [MAPSEC_ARTISAN_CAVE] = 0x54,
     [MAPSEC_SOUTHERN_ISLAND] = 0x55, //84
     [MAPSEC_UNDERWATER_124] = 0x33, //reused Bond Bridge; same area but Underwater
-    [MAPSEC_BATTLE_FRONTIER] = 0x56
+    [MAPSEC_BATTLE_FRONTIER] = 0x56,
+    [MAPSEC_PEWTER_CITY] = 0x57
 };
 
 

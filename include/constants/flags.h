@@ -875,37 +875,37 @@
 #define FLAG_NUZLOCKE_ARTISAN_CAVE     0x353
 #define FLAG_NUZLOCKE_SOUTHERN_ISLAND  0x354
 #define FLAG_NUZLOCKE_BATTLE_FRONTIER  0x355
-
-// Unused?
-#define FLAG_GOT_LAPRAS_FROM_SCIENCE               0x356
-#define FLAG_GOT_SQUIRTLE_FROM_POLICE               0x357
-#define FLAG_GOT_BULBASAUR_FROM_LADY               0x358
-#define FLAG_GOT_CHARMANDER_FROM_GUY               0x359
-
-#define FLAG_TOLD_SAFARI_EXPANSION     0x35A
-#define FLAG_FOUR_ISLAND_SNOW          0x35B
-
-// Unused?
-#define FLAG_BEAT_VIRIDIAN_GRUNT               0x35C
-#define FLAG_GOT_TORCHIC               0x35D
-#define FLAG_GOT_TREECKO               0x35E
-#define FLAG_GOT_MUDKIP                0x35F
+#define FLAG_NUZLOCKE_PEWTER_CITY      0x356
+// Nuzlocke LUT reserved
+#define FLAG_0x357               0x357
+#define FLAG_0x358               0x358
+#define FLAG_0x359               0x359
+#define FLAG_0x35A               0x35A
+#define FLAG_0x35B               0x35B
+#define FLAG_0x35C               0x35C
+#define FLAG_0x35D               0x35D
+#define FLAG_0x35E               0x35E
+#define FLAG_0x35F               0x35F
 #define FLAG_0x360               0x360
 #define FLAG_0x361               0x361
 #define FLAG_0x362               0x362
 #define FLAG_0x363               0x363
 #define FLAG_0x364               0x364
 #define FLAG_0x365               0x365
-#define FLAG_0x366               0x366
-#define FLAG_0x367               0x367
-#define FLAG_0x368               0x368
-#define FLAG_0x369               0x369
-#define FLAG_0x36A               0x36A
-#define FLAG_0x36B               0x36B
-#define FLAG_0x36C               0x36C
-#define FLAG_0x36D               0x36D
-#define FLAG_0x36E               0x36E
-#define FLAG_0x36F               0x36F
+
+//New
+#define FLAG_GOT_LAPRAS_FROM_SCIENCE   0x366
+#define FLAG_GOT_SQUIRTLE_FROM_POLICE  0x367
+#define FLAG_GOT_BULBASAUR_FROM_LADY   0x368
+#define FLAG_GOT_CHARMANDER_FROM_GUY   0x369
+#define FLAG_TOLD_SAFARI_EXPANSION     0x36A
+#define FLAG_FOUR_ISLAND_SNOW          0x36B
+#define FLAG_BEAT_VIRIDIAN_GRUNT       0x36C
+#define FLAG_GOT_TORCHIC               0x36D
+#define FLAG_GOT_TREECKO               0x36E
+#define FLAG_GOT_MUDKIP                0x36F
+
+// Unused?
 #define FLAG_0x370               0x370
 #define FLAG_0x371               0x371
 #define FLAG_0x372               0x372
