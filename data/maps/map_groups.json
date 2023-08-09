@@ -167,8 +167,20 @@
     "MtEmber_RubyPath_B1F_Stairs",
     "MtEmber_RubyPath_B2F_Stairs",
     "ThreeIsland_BerryForest",
-    "ViridianForestDepths",
-    "MtMoon_Square"
+	"FourIsland_IcefallCave_Entrance",
+    "FourIsland_IcefallCave_1F",
+    "FourIsland_IcefallCave_B1F",
+    "FourIsland_IcefallCave_Back",
+    "FiveIsland_RocketWarehouse",
+    "SixIsland_DottedHole_1F",
+    "SixIsland_DottedHole_B1F",
+    "SixIsland_DottedHole_B2F",
+    "SixIsland_DottedHole_B3F",
+    "SixIsland_DottedHole_B4F",
+    "SixIsland_DottedHole_SapphireRoom",
+    "SixIsland_PatternBush",
+    "SixIsland_AlteringCave",
+    "ViridianForestDepths"
   ],
   "gMapGroup_SpecialArea": [
     "NavelRock_Exterior",
@@ -243,19 +255,7 @@
     "CeruleanCave_1F_Yellow",
     "CeruleanCave_2F_Yellow",
     "CeruleanCave_B1F_Yellow",
-	"FourIsland_IcefallCave_Entrance",
-    "FourIsland_IcefallCave_1F",
-    "FourIsland_IcefallCave_B1F",
-    "FourIsland_IcefallCave_Back",
-    "FiveIsland_RocketWarehouse",
-    "SixIsland_DottedHole_1F",
-    "SixIsland_DottedHole_B1F",
-    "SixIsland_DottedHole_B2F",
-    "SixIsland_DottedHole_B3F",
-    "SixIsland_DottedHole_B4F",
-    "SixIsland_DottedHole_SapphireRoom",
-    "SixIsland_PatternBush",
-    "SixIsland_AlteringCave"
+    "MtMoon_Square"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PalletTown",
