@@ -44,6 +44,8 @@ ViridianForestDepths_EventScript_Treecko::
 ViridianForestDepths_EventScript_TreeckoHappy::
 	waitse
 	waitse
+	waitse
+	waitse
 	playse SE_LEDGE
 	waitse
 	playse SE_LEDGE

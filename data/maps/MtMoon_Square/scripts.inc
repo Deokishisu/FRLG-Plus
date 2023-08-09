@@ -59,6 +59,8 @@ MtMoon_Square_EventScript_MudkipHappy::
 	removeitem ITEM_SITRUS_BERRY, 1
 	waitse
 	waitse
+	waitse
+	waitse
 	playse SE_LEDGE
 	waitse
 	playse SE_LEDGE
