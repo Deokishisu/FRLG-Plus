@@ -43,8 +43,9 @@ ViridianForestDepths_EventScript_Treecko::
 	
 ViridianForestDepths_EventScript_TreeckoHappy::
 	waitse
+	waitse
 	playse SE_LEDGE
-		waitse
+	waitse
 	playse SE_LEDGE
 	applymovement LOCALID_TREECKO, ViridianForestDepths_Movement_TreeckoJump
 	waitmovement 0
