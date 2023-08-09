@@ -186,7 +186,7 @@
       "x": 19,
       "y": 5,
       "elevation": 3,
-      "dest_map": "MAP_MT_MOON_1F",
+      "dest_map": "MAP_MT_MOON_SQUARE",
       "dest_warp_id": 3
     },
     {
