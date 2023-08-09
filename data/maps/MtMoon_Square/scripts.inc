@@ -21,6 +21,9 @@ MtMoon_Square_EventScript_Mudkip::
 	lockall
 	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipExclamation
 	waitmovement 0
+	playse SE_LEDGE
+	playse SE_LEDGE
+	playse SE_LEDGE
 	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipJump3times
 	waitmovement 0
 	waitse
