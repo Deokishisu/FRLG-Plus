@@ -7,6 +7,7 @@
 .set LOCALID_POLIWRATH_MASTER, 13
 .set LOCALID_JYNX_MASTER,      14
 .set TRAINER, VAR_0x8009
+.equ TOTODILE_PRICE, 5000
 
 CeruleanCity_MapScripts:: @ 8166471
 	map_script MAP_SCRIPT_ON_TRANSITION, CeruleanCity_OnTransition
@@ -429,3 +430,130 @@ CeruleanCity_EventScript_SetCeruleanCaveY::
 	release
 	end
 
+Cerulean_City_EventScript_TotodileSalesman:: @ 816F75F
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_TOTODILE, Cerulean_City_EventScript_AlreadyBoughtTotodile
+	showmoneybox 0, 0, 0
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq Cerulean_City_EventScript_AskBuyTotodileMale
+	compare VAR_RESULT, FEMALE
+	goto_if_eq Cerulean_City_EventScript_AskBuyTotodileFemale
+	end
+
+Cerulean_City_EventScript_AskBuyTotodileMale:: @ 816F786
+	msgbox Cerulean_City_Text_LaddieBuyTotodileForJust500, MSGBOX_YESNO
+	goto Cerulean_City_EventScript_TryBuyTotodile
+	end
+
+Cerulean_City_EventScript_AskBuyTotodileFemale:: @ 816F794
+	msgbox Cerulean_City_Text_SweetieBuyTotodileForJust500, MSGBOX_YESNO
+	goto Cerulean_City_EventScript_TryBuyTotodile
+	end
+
+Cerulean_City_EventScript_TryBuyTotodile:: @ 816F7A2
+	compare VAR_RESULT, NO
+	goto_if_eq Cerulean_City_EventScript_DeclineTotodile
+	checkmoney TOTODILE_PRICE, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq Cerulean_City_EventScript_NotEnoughMoney
+	textcolor 3
+	setvar VAR_TEMP_1, SPECIES_TOTODILE
+	givemon SPECIES_TOTODILE, 15, ITEM_NONE
+	compare VAR_RESULT, 0
+	goto_if_eq Cerulean_City_EventScript_BuyTotodileParty
+	compare VAR_RESULT, 1
+	goto_if_eq Cerulean_City_EventScript_BuyTotodilePC
+	compare VAR_RESULT, 2
+	goto_if_eq Cerulean_City_EventScript_NoRoomForTotodile
+	end
+
+Cerulean_City_EventScript_BuyTotodileParty:: @ 816F7F6
+	call Cerulean_City_EventScript_PayForTotodile
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameTotodileParty
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Cerulean_City_EventScript_EndPurchaseTotodile
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameTotodileParty::
+	call EventScript_GetGiftMonPartySlot
+	fadescreen FADE_TO_BLACK
+	hidemoneybox 0, 0
+	special ChangePokemonNickname
+	waitstate
+	goto Cerulean_City_EventScript_BoughtTotodile
+	end
+
+Cerulean_City_EventScript_BuyTotodilePC:: @ 816F822
+	call Cerulean_City_EventScript_PayForTotodile
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	goto_if_eq CeladonCity_Condominiums_RoofRoom_EventScript_NicknameTotodilePC
+	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq Cerulean_City_EventScript_TransferTotodileCloseMoneyBox
+CeladonCity_Condominiums_RoofRoom_EventScript_NicknameTotodilePC::
+	fadescreen FADE_TO_BLACK
+	hidemoneybox 0, 0
+	special ChangeBoxPokemonNickname
+	waitstate
+	lock
+	faceplayer
+	goto Cerulean_City_EventScript_TransferTotodile
+	end
+
+Cerulean_City_EventScript_TransferTotodileCloseMoneyBox:: @ 816F84B
+	call EventScript_TransferredToPC
+	goto Cerulean_City_EventScript_EndPurchaseTotodile
+	end
+
+Cerulean_City_EventScript_TransferTotodile:: @ 816F856
+	call EventScript_TransferredToPC
+	goto Cerulean_City_EventScript_BoughtTotodile
+	end
+
+Cerulean_City_EventScript_EndPurchaseTotodile:: @ 816F861
+	hidemoneybox 0, 0
+	goto Cerulean_City_EventScript_BoughtTotodile
+	end
+
+Cerulean_City_EventScript_BoughtTotodile:: @ 816F86A
+	setflag FLAG_GOT_TOTODILE
+	release
+	end
+
+Cerulean_City_EventScript_PayForTotodile:: @ 816F86F
+	removemoney TOTODILE_PRICE, 0
+	updatemoneybox 0, 0, 0
+	playfanfare MUS_LEVEL_UP
+	message Cerulean_City_Text_PaidOutrageouslyForTotodile
+	waitmessage
+	waitfanfare
+	getspeciesname 0, SPECIES_TOTODILE
+	callnative CheckNuzlockeMode
+	compare VAR_RESULT, TRUE
+	return
+
+Cerulean_City_EventScript_DeclineTotodile:: @ 816F888
+	msgbox Cerulean_City_Text_OnlyDoingThisAsFavorToYou
+	hidemoneybox 0, 0
+	release
+	end
+
+Cerulean_City_EventScript_NotEnoughMoney:: @ 816F895
+	msgbox Cerulean_City_Text_YoullNeedMoreMoney
+	hidemoneybox 0, 0
+	release
+	end
+
+Cerulean_City_EventScript_AlreadyBoughtTotodile:: @ 816F8A2
+	msgbox Cerulean_City_Text_IDontGiveRefunds
+	release
+	end
+
+Cerulean_City_EventScript_NoRoomForTotodile:: @ 816F8AC
+	textcolor 0
+	msgbox Cerulean_City_Text_NoRoomForMorePokemon
+	hidemoneybox 0, 0
+	release
+	end

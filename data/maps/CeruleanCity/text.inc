@@ -175,3 +175,50 @@ CeruleanCity_Text_GymSign:: @ 817F4EF
     .string "LEADER: MISTY\l"
     .string "The Tomboyish Mermaid!$"
 
+Cerulean_City_Text_LaddieBuyTotodileForJust500::
+    .string "Good day, kiddo! How are you?\p"
+	.string "I have a little surprise for you:\n"
+	.string "a rare, powerful POKéMON!\p"
+	.string "Don't ask how I got my hands on it.\n"
+	.string "That's just a matter of business.\p"
+	.string "Well, what do you say?\p"
+	.string "Care to buy this wondrous POKéMON?n\"
+	.string "It's only ¥5,000!$"
+
+Cerulean_City_Text_SweetieBuyTotodileForJust500::
+    .string "Hey, hey gorgeous! How are you?\p"
+	.string "I have a little surprise for you:\n"
+	.string "a rare, powerful POKéMON!\p"
+	.string "Don't ask how I got my hands on it.\n"
+	.string "That's just a matter of business.\p"
+	.string "Well, what do you say?\p"
+	.string "Care to buy this wondrous POKéMON?n\"
+	.string "It's only ¥5,000!$"
+
+Cerulean_City_Text_PaidOutrageouslyForTotodile::
+    .string "{PLAYER} paid ¥5,000 and\n"
+    .string "bought the TOTODILE!$"
+
+Cerulean_City_Text_OnlyDoingThisAsFavorToYou::
+    .string "Well, it is a rare POKéMON\n"
+    .string "after all.\p"
+	.string "Not everyone can handle that.$"
+
+Cerulean_City_Text_NoRoomForMorePokemon::
+    .string "There's no more room for any\n"
+    .string "POKéMON, it seems.$"
+
+Cerulean_City_Text_YoullNeedMoreMoney::
+    .string "You'll need more money!\n"
+	.string "I don't give discounts.$"
+
+Cerulean_City_Text_IDontGiveRefunds::
+    .string "Are you happy with your purchase?\n"
+    .string "It was totally worth it, right?$"
+
+Cerulean_City_Text_ShouldStoreMonsUsingPC::
+    .string "Sometimes, you'll have too many\n"
+    .string "POKéMON with you to add any more.\p"
+    .string "In that case, you should just\n"
+    .string "store some using any PC.$"
+

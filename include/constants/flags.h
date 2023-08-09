@@ -904,12 +904,12 @@
 #define FLAG_GOT_TORCHIC               0x36D
 #define FLAG_GOT_TREECKO               0x36E
 #define FLAG_GOT_MUDKIP                0x36F
+#define FLAG_GOT_CHIKORITA       0x370
+#define FLAG_GOT_CYNDAQUIL               0x371
+#define FLAG_GOT_TOTODILE               0x372
+#define FLAG_GOT_HITMON                0x373
 
 // Unused?
-#define FLAG_0x370               0x370
-#define FLAG_0x371               0x371
-#define FLAG_0x372               0x372
-#define FLAG_0x373               0x373
 #define FLAG_0x374               0x374
 #define FLAG_0x375               0x375
 #define FLAG_0x376               0x376
