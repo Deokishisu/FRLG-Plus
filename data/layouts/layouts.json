@@ -4812,6 +4812,18 @@
       "secondary_tileset": "gTileset_BerryForest",
       "border_filepath": "data/layouts/MtMoon_Square/border.bin",
       "blockdata_filepath": "data/layouts/MtMoon_Square/map.bin"
+    },
+    {
+      "id": "LAYOUT_FIERY_PASSAGE",
+      "name": "Fiery_Passage_Layout",
+      "width": 100,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MtEmber",
+      "border_filepath": "data/layouts/Fiery_Passage/border.bin",
+      "blockdata_filepath": "data/layouts/Fiery_Passage/map.bin"
     }
   ]
 }

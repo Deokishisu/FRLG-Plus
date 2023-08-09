@@ -898,7 +898,7 @@ Text_TheDoorIsOpen:: @ 81A5CDF
 	.include "data/text/poke_mart.inc"
 
 Text_MonFlewAway:: @ 81A63C4
-	.string "The {STR_VAR_1} flew away!$"
+	.string "The {STR_VAR_1} fled!$"
 
 
 Text_FoundTMHMContainsMove:: @ 81A63E8
@@ -1340,3 +1340,6 @@ EventScript_NoMoreRoomForPokemon:: @ 81A927C
 
 	.include "data/maps/MtMoon_Square/scripts.inc"
 	.include "data/maps/MtMoon_Square/text.inc"
+
+	.include "data/maps/Fiery_Passage/scripts.inc"
+	.include "data/maps/Fiery_Passage/text.inc"

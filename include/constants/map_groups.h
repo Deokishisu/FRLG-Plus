@@ -215,6 +215,7 @@
 #define MAP_CERULEAN_CAVE_2F_YELLOW                   (70 | (2 << 8))
 #define MAP_CERULEAN_CAVE_B1F_YELLOW                  (71 | (2 << 8))
 #define MAP_MT_MOON_SQUARE                            (72 | (2 << 8))
+#define MAP_FIERY_PASSAGE                             (73 | (2 << 8))
 
 // gMapGroup_TownsAndRoutes
 #define MAP_PALLET_TOWN                          (0 | (3 << 8))

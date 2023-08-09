@@ -182,7 +182,13 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 5,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_FIERY_PASSAGE",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
     {
