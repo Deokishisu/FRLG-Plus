@@ -56,7 +56,7 @@ MtMoon_Square_EventScript_MudkipGiveBerry::
 	releaseall
 	end
 	
-MtMoon_Square_EventScript_MudkipBerryTaken
+MtMoon_Square_EventScript_MudkipBerryTaken::
 	removeitem ITEM_SITRUS_BERRY, 1
 	setflag FLAG_GAVE_MUDKIP_BERRY
 	goto_if_eq MtMoon_Square_EventScript_MudkipHappy
