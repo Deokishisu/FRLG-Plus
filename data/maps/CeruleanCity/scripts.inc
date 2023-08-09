@@ -530,8 +530,6 @@ Cerulean_City_EventScript_PayForTotodile:: @ 816F86F
 	waitmessage
 	waitfanfare
 	getspeciesname 0, SPECIES_TOTODILE
-	callnative CheckNuzlockeMode
-	compare VAR_RESULT, TRUE
 	return
 
 Cerulean_City_EventScript_DeclineTotodile:: @ 816F888
