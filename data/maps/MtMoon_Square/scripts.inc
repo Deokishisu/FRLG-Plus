@@ -59,9 +59,9 @@ MtMoon_Square_EventScript_MudkipHappy::
 	removeitem ITEM_SITRUS_BERRY, 1
 	waitse
 	playse SE_LEDGE
+	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipJump2times
 	waitse
 	playse SE_LEDGE
-	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipJump2times
 	waitse
 	playmoncry SPECIES_MUDKIP, 2
 	waitmoncry
