@@ -9,9 +9,8 @@ MtMoon_Square_Text_MudkipNoise::
 MtMoon_Square_Text_MudkipAngryFood::
     .string "You stepped on a SITRUS BERRY!\p"
 	.string "The MUDKIP looks very upset.\p"
-	.string "It probably will stay angry\n"
-	.string "with you unless you give\p"
-	.string "it another SITRUS BERRY.\p"
+	.string "It probably will stay angry unless\n"
+	.string "you give it another SITRUS BERRY.\p"
 	.string "Give MUDKIP a SITRUS BERRY?$"
 	
 MtMoon_Square_Text_MudkipStillAngry::
@@ -20,8 +19,8 @@ MtMoon_Square_Text_MudkipStillAngry::
 MtMoon_Square_Text_MudkipHappyJoin::
     .string "MUDKIP is no longer angry!\p"
 	.string "It seems to really appreciate your\n"
-	.string "kind gesture and wants to tag\p"
-	.string "along with you.\p"
+	.string "kind gesture and wants to join you\p"
+	.string "on your adventure.\p"
 	.string "Do you want to bring MUDKIP along?$"
 	
 MtMoon_Square_Text_MudkipSad::
