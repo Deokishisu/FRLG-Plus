@@ -58,7 +58,7 @@ MtMoon_Square_EventScript_MudkipGiveBerry::
 	
 MtMoon_Square_EventScript_MudkipBerryTaken::
 	removeitem ITEM_SITRUS_BERRY, 1
-	setvar VAR_MT_MOON_MUDKIP_BERRY_GIVEN
+	setvar VAR_MT_MOON_MUDKIP_BERRY_GIVEN 1
 	goto_if_eq MtMoon_Square_EventScript_MudkipHappy
 
 MtMoon_Square_EventScript_MudkipHappy::
