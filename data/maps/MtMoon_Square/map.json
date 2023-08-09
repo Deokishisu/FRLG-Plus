@@ -45,7 +45,7 @@
       "x": 39,
       "y": 6,
       "elevation": 3,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_MT_MOON_MUDKIP_BERRY_GIVEN",
       "var_value": "0",
       "script": "MtMoon_Square_EventScript_Mudkip"
     }

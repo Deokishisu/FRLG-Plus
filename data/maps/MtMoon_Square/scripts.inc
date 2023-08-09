@@ -10,6 +10,7 @@ MtMoon_Square_EventScript_WelcomeSign::
 MtMoon_Square_EventScript_MudkipStand::
 	lock
 	faceplayer
+	goto_if_set VAR_MT_MOON_MUDKIP_BERRY_GIVEN, MtMoon_Square_EventScript_MudkipHappy, 1
 	playmoncry SPECIES_MUDKIP, 2
 	textcolor 2
 	msgbox MtMoon_Square_Text_MudkipNoise
@@ -47,16 +48,20 @@ MtMoon_Square_EventScript_Mudkip::
 MtMoon_Square_EventScript_MudkipGiveBerry::
 	checkitem ITEM_SITRUS_BERRY, 1
 	compare VAR_RESULT, TRUE
-	goto_if_eq MtMoon_Square_EventScript_MudkipHappy
+	goto_if_eq MtMoon_Square_EventScript_MudkipBerryTaken
 	waitse
 	playmoncry SPECIES_MUDKIP, 2
 	waitmoncry
 	msgbox MtMoon_Square_Text_MudkipStillAngry
 	releaseall
 	end
+	
+MtMoon_Square_EventScript_MudkipBerryTaken
+	removeitem ITEM_SITRUS_BERRY, 1
+	setflag FLAG_GAVE_MUDKIP_BERRY
+	goto_if_eq MtMoon_Square_EventScript_MudkipHappy
 
 MtMoon_Square_EventScript_MudkipHappy::
-	removeitem ITEM_SITRUS_BERRY, 1
 	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipJump2times
 	waitse
 	playse SE_LEDGE
