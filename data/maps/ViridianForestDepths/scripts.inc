@@ -42,7 +42,7 @@ ViridianForestDepths_EventScript_Treecko::
 	end
 	
 ViridianForestDepths_EventScript_TreeckoHappy::
-	delay frames 120
+	delay 120
 	waitse
 	playse SE_LEDGE
 	waitse
