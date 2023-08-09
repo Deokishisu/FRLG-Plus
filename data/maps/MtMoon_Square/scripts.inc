@@ -10,7 +10,7 @@ MtMoon_Square_EventScript_WelcomeSign::
 MtMoon_Square_EventScript_MudkipStand::
 	lock
 	faceplayer
-	goto_if_set VAR_MT_MOON_MUDKIP_BERRY_GIVEN 1, MtMoon_Square_EventScript_MudkipHappy
+	goto_if_set VAR_MT_MOON_MUDKIP_BERRY_GIVEN, 1, MtMoon_Square_EventScript_MudkipHappy
 	playmoncry SPECIES_MUDKIP, 2
 	textcolor 2
 	msgbox MtMoon_Square_Text_MudkipNoise
@@ -58,7 +58,7 @@ MtMoon_Square_EventScript_MudkipGiveBerry::
 	
 MtMoon_Square_EventScript_MudkipBerryTaken::
 	removeitem ITEM_SITRUS_BERRY, 1
-	setflag FLAG_GAVE_MUDKIP_BERRY
+	setvar VAR_MT_MOON_MUDKIP_BERRY_GIVEN
 	goto_if_eq MtMoon_Square_EventScript_MudkipHappy
 
 MtMoon_Square_EventScript_MudkipHappy::
