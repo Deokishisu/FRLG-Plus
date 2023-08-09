@@ -34,7 +34,7 @@ Fiery_Passage_EventScript_Cyndaquil::
 	setwildbattle SPECIES_CYNDAQUIL, 15, ITEM_NONE
 	waitse
 	playmoncry SPECIES_CYNDAQUIL, 2
-	message Text_Quuill!
+	Fiery_Passage_Text_Cyndaquil
 	waitmessage
 	waitmoncry
 	delay 10
