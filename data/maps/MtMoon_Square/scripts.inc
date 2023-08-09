@@ -10,7 +10,8 @@ MtMoon_Square_EventScript_WelcomeSign::
 MtMoon_Square_EventScript_MudkipStand::
 	lock
 	faceplayer
-	goto_if_eq VAR_MT_MOON_MUDKIP_BERRY_GIVEN, 1, MtMoon_Square_EventScript_MudkipHappy
+	compare VAR_MT_MOON_MUDKIP_BERRY_GIVEN, 1
+	goto_if_eq MtMoon_Square_EventScript_MudkipHappy
 	playmoncry SPECIES_MUDKIP, 2
 	textcolor 2
 	msgbox MtMoon_Square_Text_MudkipNoise
