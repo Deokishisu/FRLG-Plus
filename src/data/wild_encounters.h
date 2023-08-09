@@ -7489,7 +7489,7 @@ const struct WildPokemon sViridianForestDepths_LandMons[] =
 
 const struct WildPokemonInfo sViridianForestDepths_LandMonsInfo = { 14, sViridianForestDepths_LandMons };
 
-const struct WildPokemon sFieryPassage_LandMonsInfo_LandMons[] =
+const struct WildPokemon sFiery_Passage_LandMonsInfo_LandMons[] =
 {
     { 16, 16, SPECIES_SLUGMA },
     { 17, 17, SPECIES_LARVITAR },
@@ -7505,7 +7505,7 @@ const struct WildPokemon sFieryPassage_LandMonsInfo_LandMons[] =
     { 22, 22, SPECIES_TORKOAL },
 };
 
-const struct WildPokemonInfo sFieryPassage_LandMonsInfo = { 5, sFieryPassage_LandMons };
+const struct WildPokemonInfo sFiery_Passage_LandMonsInfo = { 5, sFiery_Passage_LandMons };
 
 const struct WildPokemonHeader gWildMonHeaders[] =
 {
@@ -9264,8 +9264,8 @@ const struct WildPokemonHeader gWildMonHeaders[] =
 	{
         .mapGroup = MAP_GROUP(FIERY_PASSAGE),
         .mapNum = MAP_NUM(FIERY_PASSAGE),
-        .landMonsInfo_FR = &sFieryPassage_LandMonsInfo,
-        .landMonsInfo_LG = &sFieryPassage_LandMonsInfo,
+        .landMonsInfo_FR = &sFiery_Passage_LandMonsInfo,
+        .landMonsInfo_LG = &sFiery_Passage_LandMonsInfo,
         .waterMonsInfo_FR = NULL,
         .waterMonsInfo_LG = NULL,
         .rockSmashMonsInfo_FR = NULL,
