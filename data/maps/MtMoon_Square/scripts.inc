@@ -21,8 +21,11 @@ MtMoon_Square_EventScript_Mudkip::
 	lockall
 	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipExclamation
 	waitmovement 0
+	waitse
 	playse SE_LEDGE
+	waitse
 	playse SE_LEDGE
+	waitse
 	playse SE_LEDGE
 	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipJump3times
 	waitmovement 0
@@ -54,6 +57,10 @@ MtMoon_Square_EventScript_MudkipGiveBerry::
 
 MtMoon_Square_EventScript_MudkipHappy::
 	removeitem ITEM_SITRUS_BERRY, 1
+	waitse
+	playse SE_LEDGE
+	waitse
+	playse SE_LEDGE
 	applymovement LOCALID_MUDKIP, MtMoon_Square_Movement_MudkipJump2times
 	waitse
 	playmoncry SPECIES_MUDKIP, 2
