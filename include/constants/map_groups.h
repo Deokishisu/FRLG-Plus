@@ -140,7 +140,6 @@
 #define MAP_SIX_ISLAND_PATTERN_BUSH              (124 | (1 << 8))
 #define MAP_SIX_ISLAND_ALTERING_CAVE             (125 | (1 << 8))
 #define MAP_VIRIDIAN_FOREST_DEPTHS               (126 | (1 << 8))
-#define MAP_MT_MOON_SQUARE                       (127 | (1 << 8))
 
 // gMapGroup_SpecialArea
 #define MAP_NAVEL_ROCK_EXTERIOR                       (0 | (2 << 8))
@@ -215,6 +214,7 @@
 #define MAP_CERULEAN_CAVE_1F_YELLOW                   (69 | (2 << 8))
 #define MAP_CERULEAN_CAVE_2F_YELLOW                   (70 | (2 << 8))
 #define MAP_CERULEAN_CAVE_B1F_YELLOW                  (71 | (2 << 8))
+#define MAP_MT_MOON_SQUARE                            (72 | (2 << 8))
 
 // gMapGroup_TownsAndRoutes
 #define MAP_PALLET_TOWN                          (0 | (3 << 8))

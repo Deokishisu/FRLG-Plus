@@ -43,11 +43,11 @@ ViridianForestDepths_EventScript_Treecko::
 	
 ViridianForestDepths_EventScript_TreeckoHappy::
 	delay 120
-	waitse
-	playse SE_LEDGE
-	waitse
-	playse SE_LEDGE
 	applymovement LOCALID_TREECKO, ViridianForestDepths_Movement_TreeckoJump
+	waitse
+	playse SE_LEDGE
+	waitse
+	playse SE_LEDGE
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_TREECKO, 0
