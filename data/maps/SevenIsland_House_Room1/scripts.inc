@@ -165,7 +165,7 @@ SevenIsland_House_Room1_EventScript_Blaine::
 	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
-SevenIsland_House_Room1_EventScript_Blaine::
+SevenIsland_House_Room1_EventScript_Daisy::
 	setvar 0x8004, FAMECHECKER_DAISY
 	getstring 0, gText_Daisy
 	getstring 1, SevenIsland_House_Room1_Text_SheString

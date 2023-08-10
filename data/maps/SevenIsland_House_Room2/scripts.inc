@@ -1369,17 +1369,17 @@ SevenIsland_House_Room2_Text_Daisy_Declined:
 	.string "… … … …$"
 
 @ TODO
-SevenIsland_House_Room2_Eventscript_MoveErikaRight:
+SevenIsland_House_Room2_Eventscript_MoveDaisyRight:
 	applymovement LOCALID_ERIKA, SevenIsland_House_Room2_Movement_ErikaAroundPlayer
 	waitmovement 0
 	return
 
-SevenIsland_House_Room2_Eventscript_MoveErikaDown:
+SevenIsland_House_Room2_Eventscript_MoveDaisyDown:
 	applymovement LOCALID_ERIKA, SevenIsland_House_Room2_Movement_ErikaDownToMat
 	waitmovement 0
 	return
 
-SevenIsland_House_Room2_Movement_ErikaAroundPlayer:
+SevenIsland_House_Room2_Movement_DaisyAroundPlayer:
 	walk_right
 	walk_down
 	walk_down
@@ -1392,7 +1392,7 @@ SevenIsland_House_Room2_Movement_ErikaAroundPlayer:
 	walk_in_place_fastest_left
 	step_end
 
-SevenIsland_House_Room2_Movement_ErikaDownToMat:
+SevenIsland_House_Room2_Movement_DaisyDownToMat:
 	walk_down
 	walk_down
 	walk_down
