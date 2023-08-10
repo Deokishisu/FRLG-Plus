@@ -1435,7 +1435,7 @@ SevenIsland_House_Room2_Eventscript_DaisyExit:
 	textcolor 1
 	msgbox SevenIsland_House_Room2_Text_DaisyExit, MSGBOX_DEFAULT
 	release
-	applymovement LOCALID_Daisy, SevenIsland_House_Room2_Movement_LeaderExits
+	applymovement LOCALID_DAISY, SevenIsland_House_Room2_Movement_LeaderExits
 	waitmovement 0
 	playse SE_EXIT
 	setvar LEADER_READY, 0
