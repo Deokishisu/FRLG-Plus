@@ -1254,6 +1254,7 @@ void ListMenu(void)
             task->data[4] = 12;
             task->data[5] = 7;
             task->data[6] = 0;
+            // TODO!
             task->data[15] = taskId;
             break;
         case LISTMENU_MASTER_TRAINER_TITLES:
@@ -1357,6 +1358,7 @@ static const u8 *const sListMenuLabels[][12] = {
         gText_Koga,
         gText_Sabrina,
         gText_Blaine,
+        gText_Daisy,
         gOtherText_Exit,
     },
     [LISTMENU_MASTER_TRAINER_TITLES] =

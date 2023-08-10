@@ -1296,6 +1296,7 @@ const u8 gText_Misty[] = _("MISTY");
 const u8 gText_Erika[] = _("ERIKA");
 const u8 gText_Sabrina[] = _("SABRINA");
 const u8 gText_Blaine[] = _("BLAINE");
+const u8 gText_Daisy[] = _("DAISY");
 const u8 gText_CommaSpace[] = _(", ");
 const u8 gText_NewLine[] = _("\n");
 const u8 gText_AndSpace[] = _("and ");

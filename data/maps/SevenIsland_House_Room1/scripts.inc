@@ -35,7 +35,7 @@ SevenIsland_House_Room1_OnTransition:: @ 8170895
 	call_if_eq SevenIsland_House_Room1_EventScript_HideSpearow
 	setvar TYPE, CHECK_ALL_TOLD
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 7
+	compare VAR_RESULT, 8
 	call_if_eq SevenIsland_House_Room1_EventScript_WalkSpearow
 	end
 
@@ -90,6 +90,7 @@ SevenIsland_House_Room1_EventScript_ShowingFameChecker::
 	case 4, SevenIsland_House_Room1_EventScript_Koga
 	case 5, SevenIsland_House_Room1_EventScript_Sabrina
 	case 6, SevenIsland_House_Room1_EventScript_Blaine
+	case 7, SevenIsland_House_Room1_EventScript_Daisy
 	case 8, SevenIsland_House_Room1_EventScript_RefuseToSelectLeader
 	case 127, SevenIsland_House_Room1_EventScript_RefuseToSelectLeader
 	end
@@ -159,6 +160,16 @@ SevenIsland_House_Room1_EventScript_Blaine::
 	getstring 0, gText_Blaine
 	getstring 1, SevenIsland_House_Room1_Text_HeString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Blaine0
+	callnative CheckFilledFameCheckerFor0x8004
+	compare VAR_RESULT, TRUE
+	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
+
+SevenIsland_House_Room1_EventScript_Blaine::
+	setvar 0x8004, FAMECHECKER_DAISY
+	getstring 0, gText_Daisy
+	getstring 1, SevenIsland_House_Room1_Text_SheString
+	getstring 2, gFameCheckerFlavorTextOriginLocation_Daisy0
 	callnative CheckFilledFameCheckerFor0x8004
 	compare VAR_RESULT, TRUE
 	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
@@ -282,7 +293,7 @@ SevenIsland_House_Room1_EventScript_OldWomanBasementOpen::
 	copyvar VAR_0x8000, VAR_RESULT
 	setvar TYPE, CHECK_ANY_VISITORS
 	callnative UseBattleHouseVar
-	compare VAR_0x8000, 7
+	compare VAR_0x8000, 8
 	goto_if_ge SevenIsland_House_Room1_EventScript_OldWomanToldAll
 	compare VAR_RESULT, 0
 	goto_if_eq SevenIsland_House_Room1_EventScript_OldWomanNoVisitors

@@ -5,6 +5,7 @@
 .equ LOCALID_KOGA, 5
 .equ LOCALID_SABRINA, 6
 .equ LOCALID_BLAINE, 7
+.equ LOCALID_DAISY, 8
 
 .equ SET_SPEAROW_STATE, 0
 .equ SET_TOLD_FAMECHECKER, 1
@@ -57,6 +58,10 @@ SevenIsland_House_Room2_OnTransition:: @ 8170A89
 	callnative UseBattleHouseVar
 	compare VAR_RESULT, 0
 	call_if_eq SevenIsland_House_Room2_HideBlaine
+	setvar ARGUMENT, FAMECHECKER_DAISY
+	callnative UseBattleHouseVar
+	compare VAR_RESULT, 0
+	call_if_eq SevenIsland_House_Room2_HideDaisy
 	end
 
 SevenIsland_House_Room2_HideBrock::
@@ -85,6 +90,10 @@ SevenIsland_House_Room2_HideSabrina::
 
 SevenIsland_House_Room2_HideBlaine::
 	setflag FLAG_TEMP_7
+	return	
+
+SevenIsland_House_Room2_HideDaisy::
+	setflag FLAG_TEMP_8
 	return	
 	
 SevenIsland_House_Room2_EventScript_LeftPainting::
@@ -172,6 +181,7 @@ SevenIsland_House_Room2_Eventscript_Trigger::
 	case LOCALID_KOGA, SevenIsland_House_Room2_Eventscript_KogaBattle
 	case LOCALID_SABRINA, SevenIsland_House_Room2_Eventscript_SabrinaBattle
 	case LOCALID_BLAINE, SevenIsland_House_Room2_Eventscript_BlaineBattle
+	case LOCALID_DAISY, SevenIsland_House_Room2_Eventscript_DaisyBattle
 	release
 	end
 
@@ -1290,6 +1300,157 @@ SevenIsland_House_Room2_Text_BlaineExit:
 	.string "more and more active everyday…\p"
 	.string "I should head back and keep an\n"
 	.string "eye on it.$"
+
+@ DAISY
+SevenIsland_House_Room2_Eventscript_Daisy::
+	lock
+	faceplayer
+	compare LEADER_READY, 4
+	goto_if_eq SevenIsland_House_Room2_Eventscript_DaisyReady
+	compare LEADER_READY, 0
+	goto_if_ne SevenIsland_House_Room2_Eventscript_DaisyOtherLeaderReady
+	msgbox SevenIsland_House_Room2_Text_Daisy_Intro, MSGBOX_YESNO
+	compare VAR_RESULT, FALSE
+	goto_if_eq SevenIsland_House_Room2_Eventscript_DaisyDeclined
+	closemessage
+	@ TODO
+	@getplayerxy X_COORD, Y_COORD
+	@compare Y_COORD, 3
+	@call_if_eq SevenIsland_House_Room2_Eventscript_MoveErikaRight
+	@compare Y_COORD, 3
+	@call_if_ne SevenIsland_House_Room2_Eventscript_MoveErikaDown
+	@setobjectmovementtypeinstant LOCALID_DAISY, MOVEMENT_TYPE_FACE_LEFT
+	setvar LEADER_READY, LOCALID_DAISY
+	msgbox SevenIsland_House_Room2_Text_DaisySquareUp, MSGBOX_DEFAULT 
+	release
+	end
+
+SevenIsland_House_Room2_Text_Daisy_Intro:
+	.string "DAISY: Oh, if it isn't the one who's\n"
+	.string "been trying to fill the POKéDEX.\p"
+	.string "I hope things have been going well\n"
+	.string "for you since our last encounter.\p"
+	.string "…I see. You've certainly been busy.\n"
+	.string "I'm not particularly fond of those\l"
+	.string "kinds of public things…\p"
+	.string "However, battles are different.\n"
+	.string "That's what you came for, isn't it?$"
+
+SevenIsland_House_Room2_Text_DaisySquareUp:
+	.string "DAISY: Plant yourself over there\n"
+	.string "and we'll begin.$"
+
+SevenIsland_House_Room2_Eventscript_DaisyReady:
+	msgbox SevenIsland_House_Room2_Text_DaisySquareUp, MSGBOX_DEFAULT
+	release
+	getplayerxy X_COORD, Y_COORD
+	compare X_COORD, 6
+	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
+	waitmovement 0
+	release
+	end
+
+SevenIsland_House_Room2_Eventscript_DaisyOtherLeaderReady:
+	msgbox SevenIsland_House_Room2_Text_DaisyOtherLeader, MSGBOX_DEFAULT
+	release
+	end
+
+SevenIsland_House_Room2_Text_DaisyOtherLeader:
+	.string "DAISY: …Zzz…zzz…\n"
+	.string "Oh, you're preparing for a battle?$"
+
+SevenIsland_House_Room2_Eventscript_DaisyDeclined::
+	msgbox SevenIsland_House_Room2_Text_Daisy_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SevenIsland_House_Room2_Text_Daisy_Declined:
+	.string "… … … …$"
+
+@ TODO
+SevenIsland_House_Room2_Eventscript_MoveErikaRight:
+	applymovement LOCALID_ERIKA, SevenIsland_House_Room2_Movement_ErikaAroundPlayer
+	waitmovement 0
+	return
+
+SevenIsland_House_Room2_Eventscript_MoveErikaDown:
+	applymovement LOCALID_ERIKA, SevenIsland_House_Room2_Movement_ErikaDownToMat
+	waitmovement 0
+	return
+
+SevenIsland_House_Room2_Movement_ErikaAroundPlayer:
+	walk_right
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_left
+	step_end
+
+SevenIsland_House_Room2_Movement_ErikaDownToMat:
+	walk_down
+	walk_down
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_in_place_fastest_left
+	step_end
+
+SevenIsland_House_Room2_Eventscript_DaisyBattle:
+	setvar TYPE, SET_VISITOR_STATE
+	setvar ARGUMENT, FAMECHECKER_DAISY
+	callnative UseBattleHouseVar
+	applymovement LOCALID_DAISY, SevenIsland_House_Room2_Movement_StepFastestLeft
+	waitmovement 0
+	textcolor 1
+	msgbox SevenIsland_House_Room2_Text_DaisyBeforeBattle, MSGBOX_DEFAULT
+	release
+	trainerbattle_no_intro TRAINER_DAISY, SevenIsland_House_Room2_Text_DaisyLoss
+	setvar TYPE, SET_LEVEL_GROWTH
+	callnative UseBattleHouseVar
+	goto SevenIsland_House_Room2_Eventscript_DaisyExit
+	release
+	end
+
+SevenIsland_House_Room2_Text_DaisyBeforeBattle:
+	.string "DAISY: I graciously accept your\n"
+	.string "challenge. I shall not lose!$"
+
+SevenIsland_House_Room2_Text_DaisyLoss:
+	.string "DAISY: Oh!\n"
+	.string "It appears it is my loss… … … …$"
+
+SevenIsland_House_Room2_Eventscript_DaisyExit:
+	applymovement LOCALID_DAISY, SevenIsland_House_Room2_Movement_StepFastestLeft
+	waitmovement 0
+	textcolor 1
+	msgbox SevenIsland_House_Room2_Text_DaisyExit, MSGBOX_DEFAULT
+	release
+	applymovement LOCALID_Daisy, SevenIsland_House_Room2_Movement_LeaderExits
+	waitmovement 0
+	playse SE_EXIT
+	setvar LEADER_READY, 0
+	removeobject LOCALID_DAISY
+	release
+	end
+
+SevenIsland_House_Room2_Text_DaisyExit:
+	.string "DAISY: Simply marvelous.\p"
+	.string "That was an effort worthy of\n"
+	.string "at least ten RAINBOWBADGES.\p"
+	.string "I feel inspired by our rematch.\n"
+	.string "I should return to CELADON and\l"
+	.string "tend to my flowers.\p"
+	.string "…Until next time, {PLAYER}.$"
 
 SevenIsland_House_Room2_Eventscript_CheckInFront:
 	compare Y_COORD, 5

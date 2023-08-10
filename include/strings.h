@@ -1632,6 +1632,7 @@ extern const u8 gText_Erika[];
 extern const u8 gText_Koga[];
 extern const u8 gText_Sabrina[];
 extern const u8 gText_Blaine[];
+extern const u8 gText_Daisy[];
 extern const u8 gText_CommaSpace[];
 extern const u8 gText_NewLine[];
 extern const u8 gText_AndSpace[];

@@ -859,6 +859,7 @@ struct BattleHouse
     u16 toldKoga:1;
     u16 toldSabrina:1;
     u16 toldBlaine:1;       // ^^ filled out Fame Checker and told lady for person
+    u16 toldDaisy:1;
     // 1 byte
     u16 boxesMoved:1;       // controls setting the layout. Happens when Spearow returns for the first time.
     u16 visitorBrock:1;
@@ -868,6 +869,7 @@ struct BattleHouse
     u16 visitorKoga:1;
     u16 visitorSabrina:1;
     u16 visitorBlaine:1;    // ^^ visitors currently in house
+    u16 visitorDaisy:1;
     // 1 byte, overflows into next scripting var
     u16 spawnFails:3;       // after a Gym Leader fails to visit 6 times, this starts forcing visits
     u16 levelGrowth:5;      // adds levels to rematch Pokemon up to level 80. Maxes at +12.
@@ -906,6 +908,10 @@ static bool8 AllPossibleGymLeadersPresent(void)
         return FALSE;
     }
     if(BattleHouseVar->toldBlaine && !BattleHouseVar->visitorBlaine)
+    {
+        return FALSE;
+    }
+    if(BattleHouseVar->toldDaisy && !BattleHouseVar->visitorDaisy)
     {
         return FALSE;
     }
@@ -956,6 +962,8 @@ void UpdateBattleHouseStepCounter(void)
                     BattleHouseVar->visitorSabrina = 1;
                 if(BattleHouseVar->toldBlaine)
                     BattleHouseVar->visitorBlaine = 1;
+                if(BattleHouseVar->toldDaisy)
+                    BattleHouseVar->visitorDaisy = 1;
                 return;
             }
             if(BattleHouseVar->spearowState)
@@ -970,7 +978,7 @@ void UpdateBattleHouseStepCounter(void)
             {   //Gym Leader visiting, ~18% chance; will start forcing visits after 6 misses
                 u8 counter = 0;
                 do{
-                    u8 leader = Random() % 7;
+                    u8 leader = Random() % 8;
                     switch(leader)
                     {
                         case 0:
@@ -1025,6 +1033,14 @@ void UpdateBattleHouseStepCounter(void)
                             if(BattleHouseVar->toldBlaine && !BattleHouseVar->visitorBlaine)
                             {
                                 BattleHouseVar->visitorBlaine = 1;
+                                BattleHouseVar->spawnFails = 0;
+                                return;
+                            }
+                            break;
+                        case 7:
+                            if(BattleHouseVar->toldDaisy && !BattleHouseVar->visitorDaisy)
+                            {
+                                BattleHouseVar->visitorDaisy = 1;
                                 BattleHouseVar->spawnFails = 0;
                                 return;
                             }
@@ -1084,6 +1100,9 @@ void UseBattleHouseVar(void)
                 case FAMECHECKER_BLAINE:
                     BattleHouseVar->toldBlaine = 1;
                     break;
+                case FAMECHECKER_DAISY:
+                    BattleHouseVar->toldDaisy = 1;
+                    break;
             }
             break;
         case SET_VISITOR_STATE:
@@ -1109,6 +1128,9 @@ void UseBattleHouseVar(void)
                     break;
                 case FAMECHECKER_BLAINE:
                     BattleHouseVar->visitorBlaine ^= 1;
+                    break;
+                case FAMECHECKER_DAISY:
+                    BattleHouseVar->visitorDaisy ^= 1;
                     break;
             }
             break;
@@ -1143,6 +1165,9 @@ void UseBattleHouseVar(void)
                 case FAMECHECKER_BLAINE:
                     gSpecialVar_Result = BattleHouseVar->toldBlaine;
                     break;
+                case FAMECHECKER_DAISY:
+                    gSpecialVar_Result = BattleHouseVar->toldDaisy;
+                    break;
             }
             break;
         case CHECK_VISITOR_STATE:
@@ -1168,6 +1193,9 @@ void UseBattleHouseVar(void)
                     break;
                 case FAMECHECKER_BLAINE:
                     gSpecialVar_Result = BattleHouseVar->visitorBlaine;
+                    break;
+                case FAMECHECKER_DAISY:
+                    gSpecialVar_Result = BattleHouseVar->visitorDaisy;
                     break;
             }
             break;
@@ -1220,6 +1248,11 @@ void UseBattleHouseVar(void)
                 gSpecialVar_Result++;
                 StringCopy(gStringVar1, gText_Blaine);
             }
+            if(BattleHouseVar->visitorDaisy)
+            {
+                gSpecialVar_Result++;
+                StringCopy(gStringVar1, gText_Daisy);
+            }
             break;
         case CHECK_ALL_TOLD:
             gSpecialVar_Result = 0;
@@ -1237,6 +1270,8 @@ void UseBattleHouseVar(void)
                 gSpecialVar_Result++;
             if(BattleHouseVar->toldBlaine)
                 gSpecialVar_Result++;
+            if(BattleHouseVar->toldDaisy)
+                gSpecialVar_Result++;
             break;
         case CREATE_VISITOR_STRING: //used for mailbox outside
             if(BattleHouseVar->visitorBrock)
@@ -1252,6 +1287,8 @@ void UseBattleHouseVar(void)
             if(BattleHouseVar->visitorSabrina)
                 totalCount++;
             if(BattleHouseVar->visitorBlaine)
+                totalCount++;
+            if(BattleHouseVar->visitorDaisy)
                 totalCount++;
             StringCopy(gStringVar1, gExpandedPlaceholder_Empty);
             gSpecialVar_Result = 0;
@@ -1389,6 +1426,30 @@ void UseBattleHouseVar(void)
                 }
                 gSpecialVar_Result++;
                 StringAppend(gStringVar1, gText_Blaine);
+                if(totalCount != runningCount && totalCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_CommaSpace);
+                    if(runningCount == (totalCount - 1))
+                    {
+                        StringAppend(gStringVar1, gText_AndSpace);
+                    }
+                }
+                if(totalCount == 2 && runningCount != 2)
+                {
+                    StringAppend(gStringVar1, gText_RegionMap_Space);
+                    StringAppend(gStringVar1, gText_AndSpace);
+                }
+            }
+            if(BattleHouseVar->visitorDaisy)
+            {
+                runningCount++;
+                if(gSpecialVar_Result == 4)
+                {
+                    StringAppend(gStringVar1, gText_NewLine);
+                    gSpecialVar_Result = 0;
+                }
+                gSpecialVar_Result++;
+                StringAppend(gStringVar1, gText_Daisy);
             }
             break;
 
