@@ -190,8 +190,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Chikorita =
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Chikorita, gDummySpriteAffineAnimTable};
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cyndaquil = 
-{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_BLUE, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
-2, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
+{SPRITE_INVALID_TAG, OBJ_EVENT_PAL_TAG_NPC_PINK, OBJ_EVENT_PAL_TAG_NONE, 128, 16, 16, 
+3, SHADOW_SIZE_S, FALSE, FALSE, TRACKS_FOOT, 
 &gObjectEventBaseOam_16x16, gObjectEventSpriteOamTables_16x16, 
 gObjectEventImageAnimTable_Standard, gObjectEventPicTable_Cyndaquil, gDummySpriteAffineAnimTable};
 
