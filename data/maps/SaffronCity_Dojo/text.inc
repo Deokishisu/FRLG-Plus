@@ -37,6 +37,10 @@ SaffronCity_Dojo_Text_MasterKoichiDefeat2::
 SaffronCity_Dojo_Text_ChoosePrizedFightingMon2::
     .string "Get another, bud.\n"
     .string "Also fuck you.$"
+	
+SaffronCity_Dojo_Text_GoAhead::
+    .string "Go ahead, then.\n"
+    .string "Asshole.$"
 
 SaffronCity_Dojo_Text_MikeIntro:: @ 819B275
     .string "Hoargh!\n"
