@@ -21,6 +21,22 @@ SaffronCity_Dojo_Text_ChoosePrizedFightingMon:: @ 819B1A7
 SaffronCity_Dojo_Text_StayAndTrainWithUs:: @ 819B24C
     .string "Grunt!\n"
     .string "Stay and train at karate with us!$"
+	
+SaffronCity_Dojo_Text_AnotherHitmon::
+    .string "X\n"
+    .string "X$"
+	
+SaffronCity_Dojo_Text_MasterKoichiIntro2::
+    .string "X\n"
+    .string "X$"
+	
+SaffronCity_Dojo_Text_MasterKoichiDefeat2::
+    .string "X\n"
+    .string "X$"
+	
+SaffronCity_Dojo_Text_ChoosePrizedFightingMon2::
+    .string "X\n"
+    .string "X$"
 
 SaffronCity_Dojo_Text_MikeIntro:: @ 819B275
     .string "Hoargh!\n"
