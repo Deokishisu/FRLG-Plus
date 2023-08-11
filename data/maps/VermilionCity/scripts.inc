@@ -78,6 +78,7 @@ VermilionCity_EventScript_HideOaksAide:: @ 8166913
 
 VermilionCity_EventScript_Woman:: @ 8166917
 	msgbox VermilionCity_Text_GrimerMultipliesInSludge, MSGBOX_NPC
+	setflag FLAG_SYS_GAME_CLEAR
 	end
 
 VermilionCity_EventScript_OldMan1:: @ 8166920
