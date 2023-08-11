@@ -210,6 +210,7 @@ SaffronCity_Dojo_EventScript_Mike:: @ 816ED8B
 
 SaffronCity_Dojo_EventScript_MasterKoichi:: @ 816EDA2
 	trainerbattle_single TRAINER_BLACK_BELT_KOICHI, SaffronCity_Dojo_Text_MasterKoichiIntro, SaffronCity_Dojo_Text_MasterKoichiDefeat, SaffronCity_Dojo_EventScript_DefeatedMasterKoichi
+	goto_if_set FLAG_GOT_HITMON_2_FROM_DOJO, SaffronCity_Dojo_EventScript_MasterKoichiAlreadyGotHitmon
 	goto_if_set FLAG_GOT_HITMON_FROM_DOJO, SaffronCity_Dojo_EventScript_MasterKoichiAnotherHitmon
 	msgbox SaffronCity_Dojo_Text_ChoosePrizedFightingMon, MSGBOX_AUTOCLOSE
 	end
@@ -222,10 +223,12 @@ SaffronCity_Dojo_EventScript_MasterKoichiAnotherHitmon::
 	end
 	
 SaffronCity_Dojo_EventScript_AnotherBattle::
-	trainerbattle_single TRAINER_LEADER_BRAWLY, SaffronCity_Dojo_Text_MasterKoichiIntro2, SaffronCity_Dojo_Text_MasterKoichiDefeat2, SaffronCity_Dojo_EventScript_DefeatedMasterKoichi
+	msgbox SaffronCity_Dojo_Text_MasterKoichiIntro2
+	waitmessage
+	playbgm MUS_ENCOUNTER_ROCKET, 0
+	waitbuttonpress
+	trainerbattle_no_intro TRAINER_LEADER_BRAWLY, SaffronCity_Dojo_Text_MasterKoichiDefeat2
 	setflag FLAG_CAN_GET_HITMON_2
-	
-	goto_if_set FLAG_GOT_HITMON_2_FROM_DOJO, SaffronCity_Dojo_EventScript_MasterKoichiAlreadyGotHitmon
 	msgbox SaffronCity_Dojo_Text_ChoosePrizedFightingMon2, MSGBOX_AUTOCLOSE
 	end
 
