@@ -11,6 +11,7 @@ PalletTown_RivalsHouse_MapScripts:: @ 8168D27
 	.byte 0
 
 PalletTown_RivalsHouse_OnTransition:: @ 8168D2D
+	clearflag FLAG_TEMP_3
 	setvar TYPE, CHECK_VISITOR_STATE
 	setvar ARGUMENT, FAMECHECKER_DAISY
 	callnative UseBattleHouseVar
