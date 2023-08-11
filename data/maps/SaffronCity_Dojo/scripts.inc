@@ -174,7 +174,8 @@ SaffronCity_Dojo_EventScript_EndGiveMon:: @ 816ED29
 	
 SaffronCity_Dojo_EventScript_SetFinalFlag::
 	setflag FLAG_GOT_HITMON_2_FROM_DOJO
-	return
+	release
+	end
 
 SaffronCity_Dojo_EventScript_Statue:: @ 816ED2B
 	msgbox SaffronCity_Dojo_Text_FightingDojo, MSGBOX_SIGN
