@@ -336,7 +336,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sTrainerMons_TeamRocketJungle}
     },
     [TRAINER_BLACK_BELT_KOICHI2] = {
-        .partyFlags = F_TRAINER_PARTY_HELD_ITEM,
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_BLACK_BELT_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_BLACK_BELT,
