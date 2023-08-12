@@ -375,7 +375,7 @@ gSpecials:: @ 815FD60
 	def_special TryJoinLinkGroup
 	def_special UnionRoomSpecial
 	def_special ShowWirelessCommunicationScreen
-	def_special EnableNationalPokedex
+	def_special EnableNationalPokedex @16F
 	def_special SetWalkingIntoSignVars
 	def_special DisableMsgBoxWalkaway
 	def_special VsSeekerFreezeObjectsAfterChargeComplete
@@ -393,7 +393,7 @@ gSpecials:: @ 815FD60
 	def_special BackupHelpContext
 	def_special RestoreHelpContext
 	def_special ValidateReceivedWonderCard
-	def_special SetUnlockedPokedexFlags
+	def_special SetUnlockedPokedexFlags @181
 	def_special InitUnionRoom
 	def_special BufferUnionRoomPlayerName
 	def_special QuestLog_StartRecordingInputsAfterDeferredEvent

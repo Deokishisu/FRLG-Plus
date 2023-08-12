@@ -38,7 +38,7 @@ Fiery_Passage_EventScript_Cyndaquil::
 	waitmessage
 	waitmoncry
 	delay 10
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	playbgm MUS_ENCOUNTER_BOY, 0
 	waitbuttonpress
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle
