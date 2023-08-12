@@ -160,14 +160,14 @@ gOakText_AskPlayerGender:: @ 81C59D5
 
 gNewGameAdventureIntro1::
     .string "Welcome to Pokémon FireRed Rebirth,\n"
-    .string "an update of FireRed Omega. This hack,\n"
-	.string "inspired by Drayano's work, incorporates\n"
-    .string "all 386 Pokémon that exist in this game.\n"
-    .string "\n"
+    .string "an update of Drayano's FireRed Omega.\n"
+	.string "This hack, inspired by his many works,\n"
+    .string "allows you to catch 386 Pokémon,\n"
+    .string "nearly all of them from the third Gen.\n"
+	.string "\n"
     .string "FireRed Rebirth has revamped Wild\n"
     .string "Pokémon, trainer battles and new areas\n"
-    .string "containing a slew of original events,\n"
-    .string "along with new quality of life features.$"
+    .string "containing a slew of original events.$"
 
 gNewGameAdventureIntro2::
     .string "Things like level-up moves and stats\n"
@@ -175,9 +175,9 @@ gNewGameAdventureIntro2::
     .string "of making various Pokémon more viable\n"
     .string "than before. Evolution methods were\n"
     .string "added so that all Pokémon can evolve\n"
-    .string "without the need for trading. Your\n"
-    .string "Pokédex will come with the National\n"
-	.string "Pokédex immediately.\n"
+    .string "without the need for trading. Last,\n"
+    .string "but not least, this game introduces\n"
+	.string "many handy quality of life features.$"
 
 gNewGameAdventureIntro3::
     .string "I hope you enjoy the challenging\n"
