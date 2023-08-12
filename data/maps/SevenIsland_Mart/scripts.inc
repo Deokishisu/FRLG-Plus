@@ -15,7 +15,7 @@ SevenIsland_Mart_EventScript_Clerk:: @ 8170B31
 	.align 2
 SevenIsland_Mart_Items:: @ 8170B58
 	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_LUXURY_BALL
 	.2byte ITEM_FULL_RESTORE
 	.2byte ITEM_MAX_POTION
 	.2byte ITEM_HYPER_POTION

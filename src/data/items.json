@@ -35,7 +35,7 @@
     {
       "english": "ULTRA BALL",
       "itemId": "ITEM_ULTRA_BALL",
-      "price": 1200,
+      "price": 775,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A very high-grade BALL that offers\\na higher POKéMON catch rate than\\na GREAT BALL.",

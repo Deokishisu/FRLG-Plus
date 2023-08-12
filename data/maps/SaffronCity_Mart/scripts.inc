@@ -22,7 +22,7 @@ SaffronCity_Mart_EventScript_Clerk:: @ 816EFB5
 
 	.align 2
 SaffronCity_Mart_Items:: @ 816EFDC
-	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_FLUFFY_TAIL
 	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_REVIVE
 	.2byte ITEM_FULL_HEAL

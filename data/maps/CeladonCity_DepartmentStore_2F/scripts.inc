@@ -42,7 +42,7 @@ CeladonCity_DepartmentStore_2F_EventScript_ClerkItems:: @ 816BB10
 	.align 2
 CeladonCity_DepartmentStore_2F_Items:: @ 816BB38
 	.2byte ITEM_GREAT_BALL
-	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_REVIVE
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
@@ -73,7 +73,6 @@ CeladonCity_DepartmentStore_2F_TMs:: @ 816BB74
 	.2byte ITEM_TM31
 	.2byte ITEM_TM43
 	.2byte ITEM_TM45
-	.2byte ITEM_TM10
 	.2byte ITEM_NONE
 	release
 	end

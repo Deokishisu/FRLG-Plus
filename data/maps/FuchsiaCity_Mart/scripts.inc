@@ -23,8 +23,8 @@ FuchsiaCity_Mart_EventScript_Clerk:: @ 816D4F3
 	.align 2
 FuchsiaCity_Mart_Items:: @ 816D518
 	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_GREAT_BALL
-	.2byte ITEM_SUPER_POTION
+	.2byte ITEM_POISON_BARB
+	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_REVIVE
 	.2byte ITEM_FULL_HEAL
 	.2byte ITEM_MAX_REPEL

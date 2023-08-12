@@ -21,7 +21,7 @@ SixIsland_Mart_Items:: @ 8171E8C
 	.2byte ITEM_FULL_HEAL
 	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_MAX_REPEL
-	.2byte ITEM_DREAM_MAIL
+	.2byte ITEM_TIMER_BALL
 	.2byte ITEM_NONE
 	release
 	end
