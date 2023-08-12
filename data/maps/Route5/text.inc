@@ -7,8 +7,7 @@ Route5_Text_Burglar::
     .string "Can't you see I'm busy?\p"
 	.string "You're gonna snitch on me,\n"
 	.string "aren't you?!\p"
-	.string "I'll make sure that won't\n"
-	.string "happen!$"
+	.string "I'll make sure that won't happen!$"
 	
 Route5_Text_BurglarDefeat::
 	.string "Darn it!!\n"
