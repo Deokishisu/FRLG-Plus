@@ -1533,7 +1533,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_MagmaAdminCourtney
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BurglarHeckel[] = {
+static const struct TrainerMonNoItemCustomMoves sTrainerMons_BurglarHeckel[] = {
     {
         .iv = 0,
         .lvl = 23,
