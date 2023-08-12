@@ -1059,7 +1059,7 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_TeamRocketJungle[]
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BlackBeltKoichi2[] = {
+static const struct TrainerMonItemCustomMoves sTrainerMons_BlackBeltKoichi2[] = {
     {
         .iv = 250,
         .lvl = 50,
