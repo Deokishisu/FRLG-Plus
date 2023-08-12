@@ -51,7 +51,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "NULL",
+      "script": "Route5_EventScript_Burglar",
       "flag": "FLAG_GOT_CHIKORITA"
     }
   ],
@@ -95,7 +95,7 @@
       "y": 32,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route5_EventScript_UndergroundPathSign"
+      "script": ""
     }
   ],
   "level_scaling": "2"

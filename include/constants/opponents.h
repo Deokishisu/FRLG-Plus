@@ -83,7 +83,7 @@
 #define TRAINER_AQUA_ADMIN_SHELLY                 79
 #define TRAINER_MAGMA_ADMIN_TABITHA               80
 #define TRAINER_MAGMA_ADMIN_COURTNEY              81
-#define TRAINER_LEADER_WATTSON                    82
+#define TRAINER_BURGLAR_HECKEL                    82
 #define TRAINER_LEADER_FLANNERY                   83
 #define TRAINER_LEADER_NORMAN                     84
 #define TRAINER_LEADER_WINONA                     85

@@ -983,17 +983,17 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_MagmaAdminCourtney),
         .party = {.NoItemDefaultMoves = sTrainerMons_MagmaAdminCourtney}
     },
-    [TRAINER_LEADER_WATTSON] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_LEADER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_WATTSON,
-        .trainerName = _("WATTSON"),
+    [TRAINER_BURGLAR_HECKEL] = {
+        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
+        .trainerClass = CLASS_BURGLAR,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_ROCKET,
+        .trainerPic = TRAINER_PIC_BURGLAR,
+        .trainerName = _("HECKEL"),
         .items = {},
         .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_LeaderWattson),
-        .party = {.NoItemDefaultMoves = sTrainerMons_LeaderWattson}
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_BurglarHeckel),
+        .party = {.NoItemCustomMoves = sTrainerMons_BurglarHeckel}
     },
     [TRAINER_LEADER_FLANNERY] = {
         .partyFlags = 0,

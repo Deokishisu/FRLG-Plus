@@ -1533,11 +1533,24 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_MagmaAdminCourtney
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_LeaderWattson[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BurglarHeckel[] = {
     {
         .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .lvl = 23,
+        .species = SPECIES_RATICATE,
+		.moves = {MOVE_HYPER_FANG, MOVE_SCARY_FACE, MOVE_QUICK_ATTACK, MOVE_FRUSTRATION},
+    },
+	{
+        .iv = 0,
+        .lvl = 23,
+        .species = SPECIES_MEOWTH,
+		.moves = {MOVE_PAY_DAY, MOVE_BITE, MOVE_GROWL, MOVE_SCRATCH},
+    },
+    {
+        .iv = 0,
+        .lvl = 15,
+        .species = SPECIES_CHIKORITA,
+		.moves = {MOVE_FRUSTRATION, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     },
 };
 
