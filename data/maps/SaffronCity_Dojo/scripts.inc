@@ -229,7 +229,7 @@ SaffronCity_Dojo_EventScript_AnotherBattle::
 	message SaffronCity_Dojo_Text_MasterKoichiIntro2
 	playbgm MUS_ENCOUNTER_BOY, 0
 	waitbuttonpress
-	trainerbattle_no_intro TRAINER_LEADER_BRAWLY, SaffronCity_Dojo_Text_MasterKoichiDefeat2
+	trainerbattle_no_intro TRAINER_BLACK_BELT_KOICHI2, SaffronCity_Dojo_Text_MasterKoichiDefeat2
 	setflag FLAG_CAN_GET_HITMON_2
 	msgbox SaffronCity_Dojo_Text_ChoosePrizedFightingMon2, MSGBOX_AUTOCLOSE
 	end
