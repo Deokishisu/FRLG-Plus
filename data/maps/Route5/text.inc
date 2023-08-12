@@ -22,7 +22,7 @@ Route5_Text_BurglarHaveChikorita::
 	.string "Promise to let me go and you\n"
 	.string "can have it!$"
 	
-Route5_Text_ObtainedChikorita
+Route5_Text_ObtainedChikorita::
 	.string "{PLAYER} obtained a CHIKORITA\n"
 	.string "from the shady BURGLAR!$"
 	
