@@ -159,14 +159,14 @@ gOakText_AskPlayerGender:: @ 81C59D5
     .string "Or are you a girl?$"
 
 gNewGameAdventureIntro1::
-    .string "Welcome to Pokémon FireRed Rebirth,\n"
+    .string "Welcome to Pokémon Rekindled Red,\n"
     .string "an update of Drayano's FireRed Omega.\n"
 	.string "This game allows you to catch every\n"
     .string "Pokémon seen in the National Pokédex.\n"
 	.string "\n"
     .string "Harder trainer battles, new areas and\n"
     .string "a slew of original events and features\n"
-	.string "are added in Pokémon FireRed Rebirth.$"
+	.string "are added in Pokémon Rekindled Red.$"
 
 gNewGameAdventureIntro2::
     .string "Things like level-up moves and stats\n"
