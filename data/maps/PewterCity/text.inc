@@ -190,7 +190,8 @@ PewterCity_Text_DontHaveSpaceInYourParty:: @ 818A940
 PewterCity_Text_GladIMetSomeoneLikeYou:: @ 818A9C0
     .string "I received that EGG while I was\n"
     .string "traveling.\p"
-    .string "I'm glad I met someone like you.$"
+    .string "Be sure to show me the POKéMON\n"
+	.string "that's inside once it hatches.$"
 
 PewterCity_Text_CuteMonRemindsMeOfDaisy:: @ 818AA0C
     .string "Oh, hello.\n"
