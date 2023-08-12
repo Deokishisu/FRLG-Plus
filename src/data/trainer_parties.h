@@ -952,7 +952,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderMistyRematchCha
 static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     {
         .iv = 255,
-        .lvl = 88,
+        .lvl = 80,
         .species = SPECIES_TAUROS,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 1,
@@ -960,7 +960,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     },
     {
         .iv = 255,
-        .lvl = 89,
+        .lvl = 81,
         .species = SPECIES_ALTARIA,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -968,7 +968,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     },
     {
         .iv = 255,
-        .lvl = 89,
+        .lvl = 81,
         .species = SPECIES_ESPEON,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -976,7 +976,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     },
     {
         .iv = 255,
-        .lvl = 88,
+        .lvl = 80,
         .species = SPECIES_URSARING,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -984,7 +984,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     },
     {
         .iv = 255,
-        .lvl = 91,
+        .lvl = 83,
         .species = SPECIES_BLISSEY,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -992,7 +992,7 @@ static const struct TrainerMonItemCustomMoves sTrainerMons_LeaderDaisy[] = {
     },
     {
         .iv = 255,
-        .lvl = 91,
+        .lvl = 83,
         .species = SPECIES_SNORLAX,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
@@ -1059,11 +1059,48 @@ static const struct TrainerMonNoItemDefaultMoves sTrainerMons_TeamRocketJungle[]
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sTrainerMons_LeaderBrawly[] = {
+static const struct TrainerMonNoItemDefaultMoves sTrainerMons_BlackBeltKoichi2[] = {
     {
-        .iv = 0,
-        .lvl = 5,
-        .species = SPECIES_EKANS,
+        .iv = 250,
+        .lvl = 50,
+        .species = SPECIES_BRELOOM,
+		.heldItem = ITEM_BLACK_BELT,
+        .moves = {MOVE_SPORE, MOVE_SKY_UPPERCUT, MOVE_LEECH_SEED, MOVE_SUBSTITUTE},
+    },
+    {
+        .iv = 250,
+        .lvl = 51,
+        .species = SPECIES_HITMONLEE,
+		.heldItem = ITEM_BLACK_BELT,
+        .moves = {MOVE_REVERSAL, MOVE_BULK_UP, MOVE_ENDURE, MOVE_MACH_PUNCH},
+    },
+    {
+        .iv = 250,
+        .lvl = 49,
+        .species = SPECIES_MEDICHAM,
+		.heldItem = ITEM_BLACK_BELT,
+        .moves = {MOVE_BRICK_BREAK, MOVE_SHADOW_BALL, MOVE_ROCK_SLIDE, MOVE_FAKE_OUT},
+    },
+    {
+        .iv = 250,
+        .lvl = 50,
+        .species = SPECIES_HERACROSS,
+		.heldItem = ITEM_BLACK_BELT,
+        .moves = {MOVE_AERIAL_ACE, MOVE_MEGAHORN, MOVE_BRICK_BREAK, MOVE_ROCK_SLIDE},
+    },
+    {
+        .iv = 250,
+        .lvl = 51,
+        .species = SPECIES_HITMONCHAN,
+		.heldItem = ITEM_BLACK_BELT,
+        .moves = {MOVE_SKY_UPPERCUT, MOVE_BRICK_BREAK, MOVE_MACH_PUNCH, MOVE_ROCK_SLIDE},
+    },
+    {
+        .iv = 250,
+        .lvl = 53,
+        .species = SPECIES_HITMONTOP,
+		.heldItem = ITEM_BLACK_BELT,
+        .moves = {MOVE_BULK_UP, MOVE_HI_JUMP_KICK, MOVE_EARTHQUAKE, MOVE_BRICK_BREAK},
     },
 };
 

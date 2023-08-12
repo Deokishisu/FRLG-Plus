@@ -335,17 +335,17 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_TeamRocketJungle),
         .party = {.NoItemDefaultMoves = sTrainerMons_TeamRocketJungle}
     },
-    [TRAINER_LEADER_BRAWLY] = {
-        .partyFlags = 0,
-        .trainerClass = CLASS_LEADER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_LEADER_BRAWLY,
-        .trainerName = _("BRAWLY"),
-        .items = {},
+    [TRAINER_BLACK_BELT_KOICHI2] = {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM,
+        .trainerClass = CLASS_BLACK_BELT_2,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BLACK_BELT,
+        .trainerName = _("KIYO"),
+        .items = {ITEM_MOOMOO_MILK, ITEM_ENERGY_ROOT, ITEM_HEAL_POWDER, ITEM_MOOMOO_MILK},
         .doubleBattle = FALSE,
-        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_LeaderBrawly),
-        .party = {.NoItemDefaultMoves = sTrainerMons_LeaderBrawly}
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = NELEMS(sTrainerMons_BlackBeltKoichi2),
+        .party = {.ItemCustomMoves = sTrainerMons_BlackBeltKoichi2}
     },
     [TRAINER_LEADER_TATE_LIZA] = {
         .partyFlags = 0,
@@ -3875,17 +3875,17 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_BlackBeltAtsushi),
         .party = {.ItemDefaultMoves = sTrainerMons_BlackBeltAtsushi}
     },
-    [TRAINER_BLACK_BELT_KIYO] = {
+    [TRAINER_BLACK_BELT_KOICHI] = {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_BLACK_BELT_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_BLACK_BELT,
-        .trainerName = _("KOICHI"),
+        .trainerName = _("KIYO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_BlackBeltKiyo),
-        .party = {.ItemDefaultMoves = sTrainerMons_BlackBeltKiyo}
+        .partySize = NELEMS(sTrainerMons_BlackBeltKoichi),
+        .party = {.ItemDefaultMoves = sTrainerMons_BlackBeltKoichi}
     },
     [TRAINER_BLACK_BELT_TAKASHI] = {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM,

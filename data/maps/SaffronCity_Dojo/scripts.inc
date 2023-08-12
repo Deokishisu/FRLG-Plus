@@ -221,6 +221,7 @@ SaffronCity_Dojo_EventScript_MasterKoichiAnotherHitmon::
 	msgbox SaffronCity_Dojo_Text_AnotherHitmon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq SaffronCity_Dojo_EventScript_AnotherBattle
+	msgbox SaffronCity_Dojo_Text_ChallengeAnytime
 	release
 	end
 	

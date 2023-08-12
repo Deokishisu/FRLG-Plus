@@ -24,11 +24,14 @@ SaffronCity_Dojo_Text_StayAndTrainWithUs:: @ 819B24C
 	
 SaffronCity_Dojo_Text_AnotherHitmon::
     .string "You wish to battle me once again?\p"
-    .string "I warn you: this time, I will not\n"
+    .string "I warn you! this time, I will not\n"
 	.string "hold back!$"
 	
+SaffronCity_Dojo_Text_ChallengeAnytime::
+   .string "You can chellenge me anytime!$"
+	
 SaffronCity_Dojo_Text_MasterKoichiIntro2::
-    .string "Get ready for the fight of your life!$"
+    .string "That is the spirit! HYAAH!$"
 	
 SaffronCity_Dojo_Text_MasterKoichiDefeat2::
     .string "Hwa!\n"
