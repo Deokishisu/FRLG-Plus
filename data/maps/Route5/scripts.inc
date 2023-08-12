@@ -63,7 +63,7 @@ Route5_EventScript_ReceiveChikoritaParty::
 Route5_EventScript_ReceiveChikoritaPC::
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
-	message Route5_Text_ObtainedChikoritaFromGuy
+	message Route5_Text_ObtainedChikorita
 	waitmessage
 	waitfanfare
 	getspeciesname 0, SPECIES_CHIKORITA
