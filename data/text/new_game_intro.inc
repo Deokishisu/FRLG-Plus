@@ -164,9 +164,9 @@ gNewGameAdventureIntro1::
 	.string "This game allows you to catch every\n"
     .string "Pokémon seen in the National Pokédex.\n"
 	.string "\n"
-    .string "FireRed Rebirth has increased Pokémon\n"
-    .string "availability, harder trainer battles,\n"
-    .string "new areas and a slew of original events.$"
+    .string "Harder trainer battles, new areas and\n"
+    .string "a slew of original events and features\n"
+	.string "are added in Pokémon FireRed Rebirth.$"
 
 gNewGameAdventureIntro2::
     .string "Things like level-up moves and stats\n"
@@ -174,9 +174,9 @@ gNewGameAdventureIntro2::
     .string "of making various Pokémon more viable\n"
     .string "than before. Evolution methods were\n"
     .string "added so that all Pokémon can evolve\n"
-    .string "without the need for trading. Last,\n"
-    .string "but not least, this game introduces\n"
-	.string "many handy quality of life features.$"
+    .string "without the need for trading. Last but\n"
+    .string "not least, this game introduces many\n"
+	.string "handy quality of life features.$"
 
 gNewGameAdventureIntro3::
     .string "I hope you enjoy the challenging\n"
