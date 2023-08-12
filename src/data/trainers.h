@@ -3875,17 +3875,17 @@ const struct Trainer gTrainers[] = {
         .partySize = NELEMS(sTrainerMons_BlackBeltAtsushi),
         .party = {.ItemDefaultMoves = sTrainerMons_BlackBeltAtsushi}
     },
-    [TRAINER_BLACK_BELT_KOICHI] = {
+    [TRAINER_BLACK_BELT_KIYO] = {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM,
         .trainerClass = CLASS_BLACK_BELT_2,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_BLACK_BELT,
-        .trainerName = _("KIYO"),
+        .trainerName = _("KOICHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = NELEMS(sTrainerMons_BlackBeltKoichi),
-        .party = {.ItemDefaultMoves = sTrainerMons_BlackBeltKoichi}
+        .partySize = NELEMS(sTrainerMons_BlackBeltKiyo),
+        .party = {.ItemDefaultMoves = sTrainerMons_BlackBeltKiyo}
     },
     [TRAINER_BLACK_BELT_TAKASHI] = {
         .partyFlags = F_TRAINER_PARTY_HELD_ITEM,
