@@ -84,7 +84,8 @@ Route5_EventScript_ChikoritaTransferredToPC::
 	end
 
 Route5_EventScript_EndReceiveChikorita::
-	message Route5_Text_BurglarGottaGo
+	textcolor 0 
+	msgbox Route5_Text_BurglarGottaGo
 	setflag FLAG_GOT_CHIKORITA
 	fadescreen FADE_TO_BLACK
 	removeobject LOCALID_BURGLAR
