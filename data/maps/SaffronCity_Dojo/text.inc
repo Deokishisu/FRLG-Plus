@@ -23,24 +23,25 @@ SaffronCity_Dojo_Text_StayAndTrainWithUs:: @ 819B24C
     .string "Stay and train at karate with us!$"
 	
 SaffronCity_Dojo_Text_AnotherHitmon::
-    .string "You want another monnie?\n"
-    .string "Kay?$"
+    .string "You wish to battle me once again?\p"
+    .string "I warn you: this time, I will not\n"
+	.string "hold back!$"
 	
 SaffronCity_Dojo_Text_MasterKoichiIntro2::
-    .string "This time I win.\n"
-    .string "HA!$"
+    .string "Get ready for the fight of your life!$"
 	
 SaffronCity_Dojo_Text_MasterKoichiDefeat2::
-    .string "OUCH\n"
-    .string "OUCH$"
+    .string "Hwa!\n"
+    .string "Beaten again!$"
 	
 SaffronCity_Dojo_Text_ChoosePrizedFightingMon2::
-    .string "Get another, bud.\n"
-    .string "Also fuck you.$"
+    .string "You and your POKéMON fought\n"
+	.string "admirably!\p"
+    .string "I will give you my remaining prized\n"
+    .string "FIGHTING POKéMON!\p"
 	
 SaffronCity_Dojo_Text_GoAhead::
-    .string "Go ahead, then.\n"
-    .string "Asshole.$"
+    .string "Go ahead! You deserve this prize!$"
 
 SaffronCity_Dojo_Text_MikeIntro:: @ 819B275
     .string "Hoargh!\n"

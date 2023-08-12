@@ -225,8 +225,8 @@ SaffronCity_Dojo_EventScript_MasterKoichiAnotherHitmon::
 	end
 	
 SaffronCity_Dojo_EventScript_AnotherBattle::
-	msgbox SaffronCity_Dojo_Text_MasterKoichiIntro2
-	playbgm MUS_ENCOUNTER_SUSPICIOUS, 0
+	message SaffronCity_Dojo_Text_MasterKoichiIntro2
+	playbgm MUS_ENCOUNTER_BOY, 0
 	waitbuttonpress
 	trainerbattle_no_intro TRAINER_LEADER_BRAWLY, SaffronCity_Dojo_Text_MasterKoichiDefeat2
 	setflag FLAG_CAN_GET_HITMON_2
