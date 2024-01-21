@@ -58,6 +58,7 @@
 #define LINKCMD_0x5FFF             0x5FFF
 #define LINKCMD_0x6666             0x6666
 #define LINKCMD_0x7777             0x7777
+#define LINKCMD_COUNTDOWN          0x7FFF
 #define LINKCMD_CONT_BLOCK         0x8888
 #define LINKCMD_0xAAAA             0xAAAA
 #define LINKCMD_0xAAAB             0xAAAB
@@ -189,7 +190,7 @@ struct Link
 
 struct BlockRequest
 {
-    void * address;
+    void *address;
     u32 size;
 };
 
@@ -217,8 +218,6 @@ void Task_DestroySelf(u8);
 void OpenLink(void);
 void CloseLink(void);
 u16 LinkMain2(const u16 *);
-void sub_8007B14(void);
-bool32 sub_8007B24(void);
 void ClearLinkCallback(void);
 void ClearLinkCallback_2(void);
 u8 GetLinkPlayerCount(void);
@@ -227,8 +226,6 @@ u8 GetLinkPlayerDataExchangeStatusTimed(int lower, int higher);
 bool8 IsLinkPlayerDataExchangeComplete(void);
 u32 GetLinkPlayerTrainerId(u8);
 void ResetLinkPlayers(void);
-void sub_8007E24(void);
-void sub_8007E4C(void);
 u8 GetMultiplayerId(void);
 u8 bitmask_all_link_players_but_self(void);
 bool8 SendBlock(u8, const void *, u16);
@@ -252,32 +249,22 @@ void SerialCB(void);
 u8 GetLinkPlayerCount(void);
 bool32 InUnionRoom(void);
 
-void sub_800E0E8(void);
-bool8 sub_800A520(void);
-bool8 sub_8010500(void);
-void sub_800DFB4(u8, u8);
 void SetLinkStandbyCallback(void);
 void SetWirelessCommType1(void);
-void sub_8009734(void);
-void sub_800A620(void);
 void LinkRfu_DestroyIdleTask(void);
-u8 sub_800ABAC(void);
-u8 sub_800ABBC(void);
 void SetCloseLinkCallback(void);
 void OpenLink(void);
 bool8 IsLinkMaster(void);
 void CheckShouldAdvanceLinkState(void);
 void Link_StartSend5FFFwithParam(u16 a0);
-void sub_80098D8(void);
 void CloseLink(void);
 bool8 IsLinkTaskFinished(void);
 bool32 LinkRecvQueueLengthMoreThan2(void);
 void ResetSerial(void);
-void sub_8054A28(void);
 void SetWirelessCommType1(void);
 void LoadWirelessStatusIndicatorSpriteGfx(void);
 void CreateWirelessStatusIndicatorSprite(u8, u8);
-void sub_8009FE8(void);
+void StartSendingKeysToLink(void);
 void ClearLinkCallback_2(void);
 void Rfu_SetLinkStandbyCallback(void);
 void ConvertLinkPlayerName(struct LinkPlayer * linkPlayer);

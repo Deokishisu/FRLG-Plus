@@ -54,7 +54,7 @@ const struct TextWindowGraphics gUserFrames[] = {
     {gOptionsFrame11,  gOptionsFrame11_Pal},
 }; // NELEMS = 11
 
-const struct TextWindowGraphics * GetUserFrameGraphicsInfo(u8 idx)
+const struct TextWindowGraphics *GetWindowFrameTilesPal(u8 idx)
 {
     if (idx >= 20) // if (idx >= NELEMS(gUserFrames))
         return &gUserFrames[0];

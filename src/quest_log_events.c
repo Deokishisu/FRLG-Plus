@@ -14,7 +14,7 @@
 #include "region_map.h"
 #include "strings.h"
 #include "constants/maps.h"
-#include "constants/trainer_classes.h"
+#include "constants/trainers.h"
 #include "constants/items.h"
 #include "constants/region_map_sections.h"
 
@@ -344,11 +344,11 @@ static bool8 ShouldRegisterEvent_HandleBeatStoryTrainer(u16 eventId, const u16 *
 
     if (eventId == QL_EVENT_DEFEATED_TRAINER)
     {
-        u8 trainerClass = sTrainers[*eventData].trainerClass;
-        if (   trainerClass == CLASS_RIVAL
-               || trainerClass == CLASS_RIVAL_2
-               || trainerClass == CLASS_CHAMPION_2
-               || trainerClass == CLASS_BOSS)
+        u8 trainerClass = gTrainers[*eventData].trainerClass;
+        if (trainerClass == TRAINER_CLASS_RIVAL_EARLY
+         || trainerClass == TRAINER_CLASS_RIVAL_LATE
+         || trainerClass == TRAINER_CLASS_CHAMPION
+         || trainerClass == TRAINER_CLASS_BOSS)
             return FALSE;
         return TRUE;
     }
@@ -797,12 +797,12 @@ static const u16 *sub_8113E88(u16 eventId, const u16 *eventData)
     return eventData;
 }
 
-static void QuestLog_GetSpeciesName(u16 species, u8 *dest, u8 stringVarId)
+static void QuestLog_bufferspeciesname(u16 species, u8 *dest, u8 stringVarId)
 {
     if (dest != NULL)
     {
         if (species != SPECIES_EGG)
-            GetSpeciesName(dest, species);
+            bufferspeciesname(dest, species);
         else
             StringCopy(dest, gText_EggNickname);
     }
@@ -829,8 +829,8 @@ static u16 *BufferQuestLogData_SwitchedPartyOrder(u16 *a0, const u16 *eventData)
 static const u16 *BufferQuestLogText_SwitchedPartyOrder(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_SWITCHED_PARTY_ORDER, eventData);
-    QuestLog_GetSpeciesName(r4[0], gStringVar1, 0);
-    QuestLog_GetSpeciesName(r4[1], gStringVar2, 0);
+    QuestLog_bufferspeciesname(r4[0], gStringVar1, 0);
+    QuestLog_bufferspeciesname(r4[1], gStringVar2, 0);
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_SwitchMon1WithMon2);
     r4 += 2;
     return r4;
@@ -869,7 +869,7 @@ static const u16 *BufferQuestLogText_UsedItem(const u16 *eventData)
         }
         else if (r5[1] != 0xFFFF)
         {
-            QuestLog_GetSpeciesName(r5[1], gStringVar2, 0);
+            QuestLog_bufferspeciesname(r5[1], gStringVar2, 0);
             StringExpandPlaceholders(gStringVar4, gText_QuestLog_UsedItemOnMonAtThisLocation);
         }
         else
@@ -882,7 +882,7 @@ static const u16 *BufferQuestLogText_UsedItem(const u16 *eventData)
         StringExpandPlaceholders(gStringVar4, gText_QuestLog_UsedTheKeyItem);
         break;
     case POCKET_TM_CASE:
-        QuestLog_GetSpeciesName(r5[1], gStringVar1, 0);
+        QuestLog_bufferspeciesname(r5[1], gStringVar1, 0);
         StringCopy(gStringVar2, gMoveNames[ItemIdToBattleMoveId(r5[0])]);
         if (r5[2] != 0xFFFF)
         {
@@ -923,7 +923,7 @@ static u16 *BufferQuestLogData_GaveHeldItemFromPartyMenu(u16 *a0, const u16 *eve
 static const u16 *BufferQuestLogText_GaveHeldItemFromPartyMenu(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_GAVE_HELD_ITEM, eventData);
-    QuestLog_GetSpeciesName(r4[1], gStringVar1, 0);
+    QuestLog_bufferspeciesname(r4[1], gStringVar1, 0);
     StringCopy(gStringVar2, ItemId_GetName(r4[0]));
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_GaveMonHeldItem);
     r4 += 2;
@@ -938,7 +938,7 @@ static u16 *BufferQuestLogData_GaveHeldItemFromBagMenu(u16 *a0, const u16 *event
 static const u16 *BufferQuestLogText_GaveHeldItemFromBagMenu(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_GAVE_HELD_ITEM_BAG, eventData);
-    QuestLog_GetSpeciesName(r4[1], gStringVar1, 0);
+    QuestLog_bufferspeciesname(r4[1], gStringVar1, 0);
     StringCopy(gStringVar2, ItemId_GetName(r4[0]));
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_GaveMonHeldItem2);
     r4 += 2;
@@ -954,7 +954,7 @@ static const u16 *BufferQuestLogText_GaveHeldItemFromPC(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_GAVE_HELD_ITEM_PC, eventData);
 
-    QuestLog_GetSpeciesName(r4[1], gStringVar2, 0);
+    QuestLog_bufferspeciesname(r4[1], gStringVar2, 0);
     StringCopy(gStringVar1, ItemId_GetName(r4[0]));
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_GaveMonHeldItemFromPC);
     r4 += 2;
@@ -970,7 +970,7 @@ static const u16 *BufferQuestLogText_TookHeldItem(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_TOOK_HELD_ITEM, eventData);
 
-    QuestLog_GetSpeciesName(r4[1], gStringVar1, 0);
+    QuestLog_bufferspeciesname(r4[1], gStringVar1, 0);
     StringCopy(gStringVar2, ItemId_GetName(r4[0]));
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_TookHeldItemFromMon);
     r4 += 2;
@@ -997,7 +997,7 @@ static u16 *BufferQuestLogData_SwappedHeldItem(u16 *a0, const u16 *eventData)
 static const u16 *BufferQuestLogText_SwappedHeldItem(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_SWAPPED_HELD_ITEM, eventData);
-    QuestLog_GetSpeciesName(r4[2], gStringVar1, 0);
+    QuestLog_bufferspeciesname(r4[2], gStringVar1, 0);
     StringCopy(gStringVar2, ItemId_GetName(r4[0])); // Item taken
     StringCopy(gStringVar3, ItemId_GetName(r4[1])); // Item given
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_SwappedHeldItemsOnMon);
@@ -1013,7 +1013,7 @@ static u16 *BufferQuestLogData_SwappedHeldItemFromPC(u16 *a0, const u16 *eventDa
 static const u16 *BufferQuestLogText_SwappedHeldItemFromPC(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_SWAPPED_HELD_ITEM_PC, eventData);
-    QuestLog_GetSpeciesName(r4[2], gStringVar2, 0);
+    QuestLog_bufferspeciesname(r4[2], gStringVar2, 0);
     StringCopy(gStringVar3, ItemId_GetName(r4[0]));
     StringCopy(gStringVar1, ItemId_GetName(r4[1]));
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_SwappedHeldItemFromPC);
@@ -1064,8 +1064,8 @@ static const u16 *BufferQuestLogText_LinkTraded(const u16 *a0)
     memcpy(gStringVar1, r6, PLAYER_NAME_LENGTH);
 
     BufferLinkPartnersName(gStringVar1);
-    QuestLog_GetSpeciesName(a0[3], gStringVar2, 0); // Mon received
-    QuestLog_GetSpeciesName(a0[2], gStringVar3, 0); // Mon sent
+    QuestLog_bufferspeciesname(a0[3], gStringVar2, 0); // Mon received
+    QuestLog_bufferspeciesname(a0[2], gStringVar3, 0); // Mon sent
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_TradedMon1ForPersonsMon2);
     r6 += 4;
     return r6;
@@ -1218,8 +1218,8 @@ static const u16 *BufferQuestLogText_LinkTradedUnionRoom(const u16 *a0)
     memset(gStringVar1, EOS, PLAYER_NAME_LENGTH + 1);
     memcpy(gStringVar1, r6, PLAYER_NAME_LENGTH);
     BufferLinkPartnersName(gStringVar1);
-    QuestLog_GetSpeciesName(a0[3], gStringVar2, 0);
-    QuestLog_GetSpeciesName(a0[2], gStringVar3, 0);
+    QuestLog_bufferspeciesname(a0[3], gStringVar2, 0);
+    QuestLog_bufferspeciesname(a0[2], gStringVar3, 0);
     StringExpandPlaceholders(gStringVar4, gText_QuestLog_TradedMon1ForTrainersMon2);
     r6 += 8;
     return (const u16 *)r6;
@@ -1265,9 +1265,9 @@ static const u16 *BufferQuestLogText_SwitchedMonsBetweenBoxes(const u16 *eventDa
     boxIdxs = (const u8 *)eventData + 4;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, GetBoxNamePtr(boxIdxs[0]));
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, GetBoxNamePtr(boxIdxs[1]));
-    QuestLog_GetSpeciesName(eventData[1], NULL, 3);
+    QuestLog_bufferspeciesname(eventData[1], NULL, 3);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_SwitchedMonsBetweenBoxes);
     return eventData + 3;
 }
@@ -1290,8 +1290,8 @@ static const u16 *BufferQuestLogText_SwitchedMonsWithinBox(const u16 *eventData)
     boxIdxs = (const u8 *)eventData + 4;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, GetBoxNamePtr(boxIdxs[0]));
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
-    QuestLog_GetSpeciesName(eventData[1], NULL, 2);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[1], NULL, 2);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_SwitchedMonsWithinBox);
     return eventData + 3;
 }
@@ -1326,8 +1326,8 @@ static const u16 *BufferQuestLogText_SwitchedPartyMonForPCMon(const u16 *eventDa
     boxIdxs = (const u8 *)eventData + 4;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, GetBoxNamePtr(boxIdxs[0]));
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
-    QuestLog_GetSpeciesName(eventData[1], NULL, 2);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[1], NULL, 2);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_SwitchedPartyMonForPCMon);
     return eventData + 3;
 }
@@ -1353,7 +1353,7 @@ static const u16 *BufferQuestLogText_MovedMonBetweenBoxes(const u16 *eventData)
     boxIdxs = (const u8 *)eventData + 2;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, GetBoxNamePtr(boxIdxs[0]));
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, GetBoxNamePtr(boxIdxs[1]));
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_MovedMonToNewBox);
     return (const u16 *)boxIdxs + 1;
@@ -1377,7 +1377,7 @@ static const u16 *BufferQuestLogText_MovedMonWithinBox(const u16 *eventData)
     boxIdxs = (const u8 *)eventData + 2;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, GetBoxNamePtr(boxIdxs[0]));
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_MovedMonWithinBox);
     return (const u16 *)boxIdxs + 1;
 }
@@ -1400,7 +1400,7 @@ static const u16 *BufferQuestLogText_WithdrewMonFromPC(const u16 *eventData)
     boxIdxs = (const u8 *)eventData + 2;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, GetBoxNamePtr(boxIdxs[0]));
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_WithdrewMonFromPC);
     return (const u16 *)boxIdxs + 1;
 }
@@ -1422,7 +1422,7 @@ static const u16 *BufferQuestLogText_DepositedMonInPC(const u16 *eventData)
     eventData = sub_8113E88(QL_EVENT_DEPOSITED_MON_PC, eventData);
     boxIdxs = (const u8 *)eventData + 2;
     DynamicPlaceholderTextUtil_Reset();
-    QuestLog_GetSpeciesName(eventData[0], NULL, 0);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 0);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, GetBoxNamePtr(boxIdxs[0]));
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_DepositedMonInPC);
     return (const u16 *)boxIdxs + 1;
@@ -1521,8 +1521,8 @@ static const u16 *BufferQuestLogText_DefeatedGymLeader(const u16 *eventData)
     GetMapNameGeneric(gStringVar1, r6[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sTrainers[eventData[2]].trainerName);
-    QuestLog_GetSpeciesName(eventData[0], 0, 2);
-    QuestLog_GetSpeciesName(eventData[1], 0, 3);
+    QuestLog_bufferspeciesname(eventData[0], 0, 2);
+    QuestLog_bufferspeciesname(eventData[1], 0, 3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, sDefeatedOpponentFlavorTexts[r6[1]]);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_TookOnGymLeadersMonWithMonAndWon);
     return eventData + 4;
@@ -1561,10 +1561,10 @@ static const u16 *BufferQuestLogText_DefeatedWildMon(const u16 *a0)
     DynamicPlaceholderTextUtil_Reset();
     GetMapNameGeneric(gStringVar1, data[2]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
-    QuestLog_GetSpeciesName(a0[2], NULL, 1);
+    QuestLog_bufferspeciesname(a0[2], NULL, 1);
     ConvertIntToDecimalStringN(gStringVar2, data[0], STR_CONV_MODE_LEFT_ALIGN, 3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gStringVar2);
-    QuestLog_GetSpeciesName(a0[3], NULL, 3);
+    QuestLog_bufferspeciesname(a0[3], NULL, 3);
     ConvertIntToDecimalStringN(gStringVar3, data[1], STR_CONV_MODE_LEFT_ALIGN, 3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, gStringVar3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gSaveBlock2Ptr->playerName);
@@ -1639,8 +1639,8 @@ static const u16 *BufferQuestLogText_DefeatedEliteFourMember(const u16 *eventDat
     r5 = (const u8 *)eventData + 6;
     DynamicPlaceholderTextUtil_Reset();
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, sTrainers[eventData[2]].trainerName);
-    QuestLog_GetSpeciesName(eventData[0], NULL, 1);
-    QuestLog_GetSpeciesName(eventData[1], NULL, 2);
+    QuestLog_bufferspeciesname(eventData[0], NULL, 1);
+    QuestLog_bufferspeciesname(eventData[1], NULL, 2);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(3, sDefeatedOpponentFlavorTexts[r5[1]]);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_TookOnEliteFoursMonWithMonAndWon);
     return eventData + 4;
@@ -1677,9 +1677,9 @@ static const u16 *BufferQuestLogText_DefeatedChampion(const u16 *a0)
         break;
     case 1:
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gSaveBlock1Ptr->rivalName);
-        QuestLog_GetSpeciesName(a0[2], NULL, 1);
+        QuestLog_bufferspeciesname(a0[2], NULL, 1);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gSaveBlock2Ptr->playerName);
-        QuestLog_GetSpeciesName(a0[3], NULL, 3);
+        QuestLog_bufferspeciesname(a0[3], NULL, 3);
         DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_PlayerSentOutMon1RivalSentOutMon2);
         break;
     case 2:
@@ -1711,15 +1711,15 @@ static const u16 *BufferQuestLogText_DefeatedTrainer(const u16 *eventData)
     GetMapNameGeneric(gStringVar1, r6[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
 
-    if (sTrainers[r5[2]].trainerClass == CLASS_RIVAL
-        || sTrainers[r5[2]].trainerClass == CLASS_RIVAL_2
-        || sTrainers[r5[2]].trainerClass == CLASS_CHAMPION_2)
+    if (gTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_EARLY
+     || gTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_LATE
+     || gTrainers[r5[2]].trainerClass == TRAINER_CLASS_CHAMPION)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL));
     else
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sTrainers[r5[2]].trainerName);
 
-    QuestLog_GetSpeciesName(r5[0], NULL, 2);
-    QuestLog_GetSpeciesName(r5[1], NULL, 3);
+    QuestLog_bufferspeciesname(r5[0], NULL, 2);
+    QuestLog_bufferspeciesname(r5[1], NULL, 3);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(4, sDefeatedOpponentFlavorTexts[r6[1]]);
     DynamicPlaceholderTextUtil_ExpandPlaceholders(gStringVar4, gText_QuestLog_TookOnTrainersMonWithMonAndWon);
     return (const u16 *)(r6 + 2);
@@ -1968,7 +1968,7 @@ static const u16 *BufferQuestLogText_UsedFieldMove(const u16 *eventData)
 {
     const u16 *r4 = sub_8113E88(QL_EVENT_USED_FIELD_MOVE, eventData);
     const u8 *r5 = (const u8 *)r4 + 2;
-    QuestLog_GetSpeciesName(r4[0], gStringVar1, 0);
+    QuestLog_bufferspeciesname(r4[0], gStringVar1, 0);
     if (r5[1] != 0xFF)
         GetMapNameGeneric(gStringVar2, r5[1]);
 

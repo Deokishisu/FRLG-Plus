@@ -1,4 +1,4 @@
-Text_DreamEaterTeach:: @ 817E316
+Text_DreamEaterTeach::
     .string "Yawn!\n"
     .string "I must have dozed off in the sun.\p"
     .string "I had this weird dream about\n"
@@ -9,14 +9,14 @@ Text_DreamEaterTeach:: @ 817E316
     .string "Let me teach it to a POKéMON so\n"
     .string "I can forget about it!$"
 
-Text_DreamEaterDeclined:: @ 817E3E9
+Text_DreamEaterDeclined::
     .string "…Snore…$"
 
-Text_DreamEaterWhichMon:: @ 817E3F1
+Text_DreamEaterWhichMon::
     .string "Which POKéMON wants to learn\n"
     .string "DREAM EATER?$"
 
-Text_DreamEaterTaught:: @ 817E41B
+Text_DreamEaterTaught::
     .string "…ZZZ…\n"
     .string "I…can't eat…anymore…$"
 
@@ -38,13 +38,13 @@ Text_DreamEaterNotEnoughMoney::
     .string "I'll be happy to teach it to a\n"
     .string "POKéMON when you have enough money.$"
 
-PewterCity_Text_ClefairyCameFromMoon:: @ 817E436
+PewterCity_Text_ClefairyCameFromMoon::
     .string "CLEFAIRY came from the moon.\n"
     .string "That's what the rumor is.\p"
     .string "They appeared after MOON STONES\n"
     .string "fell on MT. MOON.$"
 
-PewterCity_Text_BrockOnlySeriousTrainerHere:: @ 817E49F
+PewterCity_Text_BrockOnlySeriousTrainerHere::
     .string "There aren't many serious POKéMON\n"
     .string "TRAINERS here.\p"
     .string "They're all like BUG CATCHERS,\n"
@@ -52,94 +52,94 @@ PewterCity_Text_BrockOnlySeriousTrainerHere:: @ 817E49F
     .string "But PEWTER GYM's BROCK isn't like\n"
     .string "that, not one bit.$"
 
-PewterCity_Text_DidYouCheckOutMuseum:: @ 817E53E
+PewterCity_Text_DidYouCheckOutMuseum::
     .string "Did you check out the MUSEUM?$"
 
-PewterCity_Text_WerentThoseFossilsAmazing:: @ 817E55C
+PewterCity_Text_WerentThoseFossilsAmazing::
     .string "Weren't those fossils from MT. MOON\n"
     .string "amazing?$"
 
-PewterCity_Text_ReallyYouHaveToGo:: @ 817E589
+PewterCity_Text_ReallyYouHaveToGo::
     .string "Really?\n"
     .string "You absolutely have to go!$"
 
-PewterCity_Text_ThisIsTheMuseum:: @ 817E5AC
+PewterCity_Text_ThisIsTheMuseum::
     .string "This is it, the MUSEUM.\p"
     .string "You have to pay to get in, but it's\n"
     .string "worth it. See you around!$"
 
-PewterCity_Text_DoYouKnowWhatImDoing:: @ 817E602
+PewterCity_Text_DoYouKnowWhatImDoing::
     .string "Psssst!\n"
     .string "Do you know what I'm doing?$"
 
-PewterCity_Text_ThatsRightItsHardWork:: @ 817E626
+PewterCity_Text_ThatsRightItsHardWork::
     .string "That's right!\n"
     .string "It's hard work!$"
 
-PewterCity_Text_SprayingRepelToKeepWildMonsOut:: @ 817E644
+PewterCity_Text_SprayingRepelToKeepWildMonsOut::
     .string "I'm spraying REPEL to keep wild\n"
     .string "POKéMON out of my garden!$"
 
-PewterCity_Text_BrocksLookingForChallengersFollowMe:: @ 817E67E
+PewterCity_Text_BrocksLookingForChallengersFollowMe::
     .string "You're a TRAINER, right?\p"
     .string "BROCK's looking for new\n"
     .string "challengers. Follow me!$"
 
-PewterCity_Text_GoTakeOnBrock:: @ 817E6C7
+PewterCity_Text_GoTakeOnBrock::
     .string "If you have the right stuff,\n"
     .string "go take on BROCK!$"
 
-PewterCity_Text_TrainerTipsEarningEXP:: @ 817E6F6
+PewterCity_Text_TrainerTipsEarningEXP::
     .string "TRAINER TIPS\p"
     .string "All POKéMON that appear in battle,\n"
     .string "however briefly, earn EXP Points.$"
 
-PewterCity_Text_CallPoliceIfInfoOnThieves:: @ 817E748
+PewterCity_Text_CallPoliceIfInfoOnThieves::
     .string "NOTICE!\p"
     .string "Thieves have been stealing POKéMON\n"
     .string "fossils from MT. MOON.\p"
     .string "Please call the PEWTER POLICE if\n"
     .string "you have any information.$"
 
-PewterCity_Text_MuseumOfScience:: @ 817E7C5
+PewterCity_Text_MuseumOfScience::
     .string "PEWTER MUSEUM OF SCIENCE$"
 
-PewterCity_Text_GymSign:: @ 817E7DE
+PewterCity_Text_GymSign::
     .string "PEWTER CITY POKéMON GYM\n"
     .string "LEADER: BROCK\l"
     .string "The Rock-Solid POKéMON TRAINER!$"
 
-PewterCity_Text_CitySign:: @ 817E824
+PewterCity_Text_CitySign::
     .string "PEWTER CITY\n"
     .string "A Stone Gray City$"
 
-PewterCity_Text_OhPlayer:: @ 817E902
+PewterCity_Text_OhPlayer::
     .string "Oh, {PLAYER}{KUN}!$"
 
-PewterCity_Text_AskedToDeliverThis:: @ 817E90C
+PewterCity_Text_AskedToDeliverThis::
     .string "I'm glad I caught up to you.\n"
     .string "I'm PROF. OAK's AIDE.\p"
     .string "I've been asked to deliver this,\n"
     .string "so here you go.$"
 
-PewterCity_Text_ReceivedRunningShoesFromAide:: @ 817E970
+PewterCity_Text_ReceivedRunningShoesFromAide::
     .string "{PLAYER} received the\n"
     .string "letter from the AIDE.$"
 
-PewterCity_Text_SwitchedShoesWithRunningShoes:: @ 817E99D
+PewterCity_Text_SwitchedShoesWithRunningShoes::
     .string "{PLAYER} switched shoes with the\n"
     .string "RUNNING SHOES.$"
 
-PewterCity_Text_ExplainRunningShoes:: @ 817E9C7
+PewterCity_Text_ExplainRunningShoes::
     .string "Press the B Button to run.\n"
     .string "But only where there's room to run!$"
 
-PewterCity_Text_MustBeGoingBackToLab:: @ 817EA06
+PewterCity_Text_MustBeGoingBackToLab::
     .string "Well, I must be going back to\n"
     .string "the LAB.\p"
     .string "Bye-bye!$"
 
-PewterCity_Text_RunningShoesLetterFromMom:: @ 817EA36
+PewterCity_Text_RunningShoesLetterFromMom::
     .string "{PLAYER} opened the letter…\p"
     .string "Dear {PLAYER},\p"
     .string "I see my beloved challenger\n"
@@ -151,7 +151,7 @@ PewterCity_Text_RunningShoesLetterFromMom:: @ 817EA36
     .string "you! Don't ever give up!\p"
     .string "From Mom$"
 
-PewterCity_Text_RunningShoesLetterFromMomFemale:: @ 817EA36
+PewterCity_Text_RunningShoesLetterFromMomFemale::
     .string "{PLAYER} opened the letter…\p"
     .string "Dear {PLAYER},\p"
     .string "I see my beloved challenger\n"

@@ -1,13 +1,14 @@
 .set LOCALID_CHANSEY_MASTER, 7
 .set TRAINER, VAR_0x8009
 
-FuchsiaCity_PokemonCenter_1F_MapScripts:: @ 816D6F1
+FuchsiaCity_PokemonCenter_1F_MapScripts::
+FuchsiaCity_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
 	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
-FuchsiaCity_PokemonCenter_1F_OnTransition:: @ 816D6FC
+FuchsiaCity_PokemonCenter_1F_OnTransition::
 	setrespawn SPAWN_FUCHSIA_CITY
 	goto FuchsiaCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes
 	end
@@ -15,29 +16,28 @@ FuchsiaCity_PokemonCenter_1F_OnTransition:: @ 816D6FC
 FuchsiaCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_CHANSEY
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq FuchsiaCity_PokemonCenter_1F_MapScript_ChanseyMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, FuchsiaCity_PokemonCenter_1F_MapScript_ChanseyMasterMovementType
 	end
 
 FuchsiaCity_PokemonCenter_1F_MapScript_ChanseyMasterMovementType::
 	setobjectmovementtype LOCALID_CHANSEY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-FuchsiaCity_PokemonCenter_1F_EventScript_Nurse:: @ 816D700
+FuchsiaCity_PokemonCenter_1F_EventScript_Nurse::
 	lock
 	faceplayer
 	call EventScript_PkmnCenterNurse
 	release
 	end
 
-FuchsiaCity_PokemonCenter_1F_EventScript_Man:: @ 816D709
+FuchsiaCity_PokemonCenter_1F_EventScript_Man::
 	msgbox FuchsiaCity_PokemonCenter_1F_Text_CantBecomeGoodTrainerWithOneMon, MSGBOX_NPC
 	end
 
-FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerF:: @ 816D712
+FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerF::
 	msgbox FuchsiaCity_PokemonCenter_1F_Text_PokemonLeagueWestOfViridian, MSGBOX_NPC
 	end
 
-FuchsiaCity_PokemonCenter_1F_EventScript_Youngster:: @ 816D71B
+FuchsiaCity_PokemonCenter_1F_EventScript_Youngster::
 	msgbox FuchsiaCity_PokemonCenter_1F_Text_VisitSafariZoneForPokedex, MSGBOX_NPC
 	end

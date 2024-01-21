@@ -1,4 +1,4 @@
-FiveIsland_House1_Text_HusbandWentOffFishing:: @ 81A3CAC
+FiveIsland_House1_Text_HusbandWentOffFishing::
     .string "Don't worry about buying anything\n"
     .string "for dinner tonight!\p"
     .string "…That's what my husband said when\n"

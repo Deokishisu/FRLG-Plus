@@ -20,7 +20,7 @@ struct LoadedSaveData
  /*0x00F0*/ struct ItemSlot pokeBalls[BAG_POKEBALLS_COUNT];
  /*0x0130*/ struct ItemSlot TMsHMs[BAG_TMHM_COUNT];
  /*0x0230*/ struct ItemSlot berries[BAG_BERRIES_COUNT];
- /*0x02E8*/ struct MailStruct mail[MAIL_COUNT];
+ /*0x02E8*/ struct Mail mail[MAIL_COUNT];
             struct ItemSlot medicine[BAG_MEDICINE_COUNT];
             struct ItemSlot heldItems[BAG_HELD_ITEMS_COUNT];
 };
@@ -77,9 +77,9 @@ void SetSaveBlocksPointers(void)
 
     offset = (Random()) & ((SAVEBLOCK_MOVE_RANGE - 1) & ~3);
 
-    gSaveBlock2Ptr = (void*)(&gSaveBlock2) + offset;
-    *sav1_LocalVar = (void*)(&gSaveBlock1) + offset;
-    gPokemonStoragePtr = (void*)(&gPokemonStorage) + offset;
+    gSaveBlock2Ptr = (void *)(&gSaveBlock2) + offset;
+    *sav1_LocalVar = (void *)(&gSaveBlock1) + offset;
+    gPokemonStoragePtr = (void *)(&gPokemonStorage) + offset;
 
     SetBagPocketsPointers();
     SetQuestLogRecordAndPlaybackPointers(oldSave);

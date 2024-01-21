@@ -1723,9 +1723,9 @@ const struct BattleAnimBackground gBattleAnimBackgroundTable[] =
     [BG_FISSURE] = {gBattleAnimBgImage_Fissure, gBattleAnimBgPalette_Fissure, gBattleAnimBgTilemap_Fissure},
     [BG_BUG_OPPONENT] = {gBattleAnimBgImage_Highspeed, gBattleAnimBgPalette_Bug, gBattleAnimBgTilemap_HighspeedOpponent},
     [BG_BUG_PLAYER] = {gBattleAnimBgImage_Highspeed, gBattleAnimBgPalette_Bug, gBattleAnimBgTilemap_HighspeedPlayer},
-    [BG_SOLARBEAM_OPPONENT] = {gBattleAnimBgImage_Impact, gBattleAnimBgPalette_Solarbeam, gBattleAnimBgTilemap_ImpactOpponent},
-    [BG_SOLARBEAM_PLAYER] = {gBattleAnimBgImage_Impact, gBattleAnimBgPalette_Solarbeam, gBattleAnimBgTilemap_ImpactPlayer},
-    [BG_SOLARBEAM_CONTESTS] = {gBattleAnimBgImage_Impact, gBattleAnimBgPalette_Solarbeam, gBattleAnimBgTilemap_ImpactContests},
+    [BG_SOLAR_BEAM_OPPONENT] = {gBattleAnimBgImage_Impact, gBattleAnimBgPalette_SolarBeam, gBattleAnimBgTilemap_ImpactOpponent},
+    [BG_SOLAR_BEAM_PLAYER] = {gBattleAnimBgImage_Impact, gBattleAnimBgPalette_SolarBeam, gBattleAnimBgTilemap_ImpactPlayer},
+    [BG_SOLAR_BEAM_CONTESTS] = {gBattleAnimBgImage_Impact, gBattleAnimBgPalette_SolarBeam, gBattleAnimBgTilemap_ImpactContests},
 };
 
 static void (*const sScriptCmdTable[])(void) =
@@ -1857,7 +1857,7 @@ void LaunchBattleAnimation(const u8 *const animsTable[], u16 tableId, bool8 isMo
         {
             if (tableId == gMovesWithQuietBGM[i])
             {
-                m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 128);
+                m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 128);
                 break;
             }
         }
@@ -2127,7 +2127,7 @@ static void ScriptCmd_end(void)
 
     if (!continuousAnim)
     {
-        m4aMPlayVolumeControl(&gMPlayInfo_BGM, 0xFFFF, 256);
+        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
         ResetSpritePriorityOfAllVisibleBattlers();
         UpdateOamPriorityInAllHealthboxes(1);
         gAnimScriptActive = FALSE;
@@ -2183,8 +2183,8 @@ static void ScriptCmd_monbg(void)
         spriteId = gBattlerSpriteIds[battlerId];
         taskId = CreateTask(task_pA_ma0A_obj_to_bg_pal, 10);
         gTasks[taskId].data[t1_MONBG_BATTLER] = spriteId;
-        gTasks[taskId].data[1] = gSprites[spriteId].pos1.x + gSprites[spriteId].pos2.x;
-        gTasks[taskId].data[2] = gSprites[spriteId].pos1.y + gSprites[spriteId].pos2.y;
+        gTasks[taskId].data[1] = gSprites[spriteId].x + gSprites[spriteId].x2;
+        gTasks[taskId].data[2] = gSprites[spriteId].y + gSprites[spriteId].y2;
         if (!toBG_2)
         {
             gTasks[taskId].data[3] = gBattle_BG1_X;
@@ -2214,8 +2214,8 @@ static void ScriptCmd_monbg(void)
         spriteId = gBattlerSpriteIds[battlerId];
         taskId = CreateTask(task_pA_ma0A_obj_to_bg_pal, 10);
         gTasks[taskId].data[t1_MONBG_BATTLER] = spriteId;
-        gTasks[taskId].data[1] = gSprites[spriteId].pos1.x + gSprites[spriteId].pos2.x;
-        gTasks[taskId].data[2] = gSprites[spriteId].pos1.y + gSprites[spriteId].pos2.y;
+        gTasks[taskId].data[1] = gSprites[spriteId].x + gSprites[spriteId].x2;
+        gTasks[taskId].data[2] = gSprites[spriteId].y + gSprites[spriteId].y2;
         if (!toBG_2)
         {
             gTasks[taskId].data[3] = gBattle_BG1_X;
@@ -2257,8 +2257,8 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2)
     if (!toBG_2)
     {
 
-        RequestDma3Fill(0, (void*)(BG_SCREEN_ADDR(8)), 0x2000, DMA3_32BIT);
-        RequestDma3Fill(0, (void*)(BG_SCREEN_ADDR(28)), 0x1000, DMA3_32BIT);
+        RequestDma3Fill(0, (void *)(BG_SCREEN_ADDR(8)), 0x2000, DMA3_32BIT);
+        RequestDma3Fill(0, (void *)(BG_SCREEN_ADDR(28)), 0x1000, DMA3_32BIT);
         GetBattleAnimBg1Data(&animBg);
         CpuFill16(toBG_2, animBg.bgTiles, 0x1000);
         CpuFill16(toBG_2, animBg.bgTilemap, 0x800);
@@ -2268,23 +2268,23 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2)
         SetAnimBgAttribute(1, BG_ANIM_AREA_OVERFLOW_MODE, 0);
 
         battlerSpriteId = gBattlerSpriteIds[battlerId];
-        gBattle_BG1_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x20;
-        gBattle_BG1_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x20;
+        gBattle_BG1_X =  -(gSprites[battlerSpriteId].x + gSprites[battlerSpriteId].x2) + 0x20;
+        gBattle_BG1_Y =  -(gSprites[battlerSpriteId].y + gSprites[battlerSpriteId].y2) + 0x20;
         gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
 
         SetGpuReg(REG_OFFSET_BG1HOFS, gBattle_BG1_X);
         SetGpuReg(REG_OFFSET_BG1VOFS, gBattle_BG1_Y);
 
         LoadPalette(&gPlttBufferUnfaded[0x100 + battlerId * 16], animBg.paletteId * 16, 0x20);
-        CpuCopy32(&gPlttBufferUnfaded[0x100 + battlerId * 16], (void*)(BG_PLTT + animBg.paletteId * 32), 0x20);
+        CpuCopy32(&gPlttBufferUnfaded[0x100 + battlerId * 16], (void *)(BG_PLTT + animBg.paletteId * 32), 0x20);
 
         CopyBattlerSpriteToBg(1, 0, 0, GetBattlerPosition(battlerId), animBg.paletteId, animBg.bgTiles,
                               animBg.bgTilemap, animBg.tilesOffset);
     }
     else
     {
-        RequestDma3Fill(0, (void*)(BG_SCREEN_ADDR(12)), 0x2000, DMA3_32BIT);
-        RequestDma3Fill(0, (void*)(BG_SCREEN_ADDR(30)), 0x1000, DMA3_32BIT);
+        RequestDma3Fill(0, (void *)(BG_SCREEN_ADDR(12)), 0x2000, DMA3_32BIT);
+        RequestDma3Fill(0, (void *)(BG_SCREEN_ADDR(30)), 0x1000, DMA3_32BIT);
         GetBattleAnimBgData(&animBg, 2);
         CpuFill16(0, animBg.bgTiles + 0x1000, 0x1000);
         CpuFill16(0, animBg.bgTilemap + 0x400, 0x800);
@@ -2293,37 +2293,36 @@ void MoveBattlerSpriteToBG(u8 battlerId, bool8 toBG_2)
         SetAnimBgAttribute(2, BG_ANIM_AREA_OVERFLOW_MODE, 0);
 
         battlerSpriteId = gBattlerSpriteIds[battlerId];
-        gBattle_BG2_X =  -(gSprites[battlerSpriteId].pos1.x + gSprites[battlerSpriteId].pos2.x) + 0x20;
-        gBattle_BG2_Y =  -(gSprites[battlerSpriteId].pos1.y + gSprites[battlerSpriteId].pos2.y) + 0x20;
+        gBattle_BG2_X =  -(gSprites[battlerSpriteId].x + gSprites[battlerSpriteId].x2) + 0x20;
+        gBattle_BG2_Y =  -(gSprites[battlerSpriteId].y + gSprites[battlerSpriteId].y2) + 0x20;
         gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
 
         SetGpuReg(REG_OFFSET_BG2HOFS, gBattle_BG2_X);
         SetGpuReg(REG_OFFSET_BG2VOFS, gBattle_BG2_Y);
 
         LoadPalette(&gPlttBufferUnfaded[0x100 + battlerId * 16], 0x90, 0x20);
-        CpuCopy32(&gPlttBufferUnfaded[0x100 + battlerId * 16], (void*)(BG_PLTT + 0x120), 0x20);
+        CpuCopy32(&gPlttBufferUnfaded[0x100 + battlerId * 16], (void *)(BG_PLTT + 0x120), 0x20);
 
         CopyBattlerSpriteToBg(2, 0, 0, GetBattlerPosition(battlerId), animBg.paletteId, animBg.bgTiles + 0x1000,
                               animBg.bgTilemap + 0x400, animBg.tilesOffset);
     }
 }
 
-void sub_80730C0(u16 a, u16 *b, s32 c, u8 d)
+void RelocateBattleBgPal(u16 paletteNum, u16 *dest, s32 offset, u8 largeScreen)
 {
-    u8 i, j;   
-    u32 var;
+    u8 i, j;
+    u32 size;
 
-    if (d == 0)
-        var = 32;
+    if (!largeScreen)
+        size = 32;
     else
-        var = 64;
-    
-    a <<= 12;
-    for (i = 0; i < var; i++)
+        size = 64;
+    paletteNum <<= 12;
+    for (i = 0; i < size; i++)
     {
         for (j = 0; j < 32; j++)
         {
-            b[32 * i + j] = ((b[32 * i + j] & 0xFFF) | a) + c;
+            dest[j + i * 32] = ((dest[j + i * 32] & 0xFFF) | paletteNum) + offset;
         }
     }
 }
@@ -2356,8 +2355,8 @@ static void task_pA_ma0A_obj_to_bg_pal(u8 taskId)
     spriteId = gTasks[taskId].data[0];
     palIndex = gTasks[taskId].data[6];
     GetBattleAnimBg1Data(&animBg);
-    x = gTasks[taskId].data[1] - (gSprites[spriteId].pos1.x + gSprites[spriteId].pos2.x);
-    y = gTasks[taskId].data[2] - (gSprites[spriteId].pos1.y + gSprites[spriteId].pos2.y);
+    x = gTasks[taskId].data[1] - (gSprites[spriteId].x + gSprites[spriteId].x2);
+    y = gTasks[taskId].data[2] - (gSprites[spriteId].y + gSprites[spriteId].y2);
 
     if (gTasks[taskId].data[5] == 0)
     {

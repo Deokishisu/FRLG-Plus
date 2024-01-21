@@ -14,6 +14,7 @@
 #include "quest_log.h"
 #include "constants/maps.h"
 #include "constants/field_weather.h"
+#include "constants/sound.h"
 
 enum CreditsSceneIdx
 {
@@ -755,7 +756,7 @@ static void CreateCreditsWindow(void)
     sCreditsMgr->windowId = AddWindow(&sCreditsWindowTemplate);
     FillWindowPixelBuffer(sCreditsMgr->windowId, PIXEL_FILL(0));
     PutWindowTilemap(sCreditsMgr->windowId);
-    CopyWindowToVram(sCreditsMgr->windowId, COPYWIN_BOTH);
+    CopyWindowToVram(sCreditsMgr->windowId, COPYWIN_FULL);
     sCreditsMgr->windowIsActive = TRUE;
 }
 
@@ -849,9 +850,9 @@ static s32 RollCredits(void)
         }
         sCreditsMgr->timer = 360;
         if(gSaveBlock1Ptr->keyFlags.version == 0) //FR
-            AddTextPrinterParameterized4(sCreditsMgr->windowId, 1, 0x08, 0x29, 1, 2, sTextColor_Header, 0, gString_PokemonFireRed_Staff);
+            AddTextPrinterParameterized4(sCreditsMgr->windowId, FONT_1, 0x08, 0x29, 1, 2, sTextColor_Header, 0, gString_PokemonFireRed_Staff);
         else //LG
-            AddTextPrinterParameterized4(sCreditsMgr->windowId, 1, 0x08, 0x29, 1, 2, sTextColor_Header, 0, gString_PokemonLeafGreen_Staff);
+            AddTextPrinterParameterized4(sCreditsMgr->windowId, FONT_1, 0x08, 0x29, 1, 2, sTextColor_Header, 0, gString_PokemonLeafGreen_Staff);
         sCreditsMgr->mainseqno = CREDITSSCENE_WAIT_TITLE_STAFF;
         return 0;
     case CREDITSSCENE_WAIT_TITLE_STAFF:
@@ -895,7 +896,7 @@ static s32 RollCredits(void)
         case CREDITSSCRCMD_THEENDGFX:
             sCreditsMgr->mainseqno = CREDITSSCENE_THEEND_DESTROY_ASSETS;
             sCreditsMgr->whichMon = sCreditsScript[sCreditsMgr->scrcmdidx].param;
-            BeginNormalPaletteFade(0xFFFFFFFF, 4, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 4, 0, 16, RGB_BLACK);
             break;
         case CREDITSSCRCMD_WAITBUTTON:
             sCreditsMgr->mainseqno = CREDITSSCENE_WAITBUTTON;
@@ -908,12 +909,12 @@ static s32 RollCredits(void)
         if (gPaletteFade.active)
             return sCreditsMgr->canSpeedThrough;
         win0v[0] = sCreditsTexts[sCreditsScript[sCreditsMgr->scrcmdidx].param].unk_8; // unused
-        AddTextPrinterParameterized4(sCreditsMgr->windowId, 1, 2, 6, 0, 0, sTextColor_Header, -1, sCreditsTexts[sCreditsScript[sCreditsMgr->scrcmdidx].param].unk_0);
+        AddTextPrinterParameterized4(sCreditsMgr->windowId, FONT_1, 2, 6, 0, 0, sTextColor_Header, -1, sCreditsTexts[sCreditsScript[sCreditsMgr->scrcmdidx].param].unk_0);
         sCreditsMgr->mainseqno = CREDITSSCENE_PRINT_ADDPRINTER2;
         return sCreditsMgr->canSpeedThrough;
     case CREDITSSCENE_PRINT_ADDPRINTER2:
         win0v[0] = sCreditsTexts[sCreditsScript[sCreditsMgr->scrcmdidx].param].unk_8;
-        AddTextPrinterParameterized4(sCreditsMgr->windowId, 2, 8, 6, 0, 0, sTextColor_Regular, -1, sCreditsTexts[sCreditsScript[sCreditsMgr->scrcmdidx].param].unk_4);
+        AddTextPrinterParameterized4(sCreditsMgr->windowId, FONT_2, 8, 6, 0, 0, sTextColor_Regular, -1, sCreditsTexts[sCreditsScript[sCreditsMgr->scrcmdidx].param].unk_4);
         sCreditsMgr->mainseqno = CREDITSSCENE_PRINT_DELAY;
         return sCreditsMgr->canSpeedThrough;
     case CREDITSSCENE_PRINT_DELAY:
@@ -999,7 +1000,7 @@ static s32 RollCredits(void)
     case CREDITSSCENE_WAITBUTTON:
         if (JOY_NEW(A_BUTTON))
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_WHITE);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_WHITE);
             sCreditsMgr->mainseqno = CREDITSSCENE_TERMINATE;
             return 0;
         }
@@ -1010,7 +1011,7 @@ static s32 RollCredits(void)
         else
         {
             sCreditsMgr->mainseqno = CREDITSSCENE_TERMINATE;
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_WHITE);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_WHITE);
         }
         return 0;
     case CREDITSSCENE_TERMINATE:
@@ -1035,28 +1036,28 @@ static void LoadCreditsMonPic(u8 whichMon)
     case CREDITSMON_CHARIZARD:
         InitWindows(sWindowTemplates_Charizard);
         FillWindowPixelBuffer(0, PIXEL_FILL(0));
-        LoadMonPicInWindow(SPECIES_CHARIZARD, 8, 0, TRUE, 10, 0);
+        LoadMonPicInWindow(SPECIES_CHARIZARD, SHINY_ODDS, 0, TRUE, 10, 0);
         CopyToWindowPixelBuffer(1, (const void *)sWindow1Map_Charizard, 0, 0);
         CopyToWindowPixelBuffer(2, (const void *)sWindow2Map_Charizard, 0, 0);
         break;
     case CREDITSMON_VENUSAUR:
         InitWindows(sWindowTemplates_Venusaur);
         FillWindowPixelBuffer(0, PIXEL_FILL(0));
-        LoadMonPicInWindow(SPECIES_VENUSAUR, 8, 0, TRUE, 10, 0);
+        LoadMonPicInWindow(SPECIES_VENUSAUR, SHINY_ODDS, 0, TRUE, 10, 0);
         CopyToWindowPixelBuffer(1, (const void *)sWindow1Map_Venusaur, 0, 0);
         CopyToWindowPixelBuffer(2, (const void *)sWindow2Map_Venusaur, 0, 0);
         break;
     case CREDITSMON_BLASTOISE:
         InitWindows(sWindowTemplates_Blastoise);
         FillWindowPixelBuffer(0, PIXEL_FILL(0));
-        LoadMonPicInWindow(SPECIES_BLASTOISE, 8, 0, TRUE, 10, 0);
+        LoadMonPicInWindow(SPECIES_BLASTOISE, SHINY_ODDS, 0, TRUE, 10, 0);
         CopyToWindowPixelBuffer(1, (const void *)sWindow1Map_Blastoise, 0, 0);
         CopyToWindowPixelBuffer(2, (const void *)sWindow2Map_Blastoise, 0, 0);
         break;
     case CREDITSMON_PIKACHU:
         InitWindows(sWindowTemplates_Pikachu);
         FillWindowPixelBuffer(0, PIXEL_FILL(0));
-        LoadMonPicInWindow(SPECIES_PIKACHU, 8, 0, TRUE, 10, 0);
+        LoadMonPicInWindow(SPECIES_PIKACHU, SHINY_ODDS, 0, TRUE, 10, 0);
         CopyToWindowPixelBuffer(1, (const void *)sWindow1Map_Pikachu, 0, 0);
         CopyToWindowPixelBuffer(2, (const void *)sWindow2Map_Pikachu, 0, 0);
         break;
@@ -1131,7 +1132,7 @@ static bool32 DoCreditsMonScene(void)
     case 2:
         ShowBg(2);
         ShowBg(0);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         sCreditsMgr->creditsMonTimer = 40;
         sCreditsMgr->subseqno++;
         break;
@@ -1185,7 +1186,7 @@ static bool32 DoCreditsMonScene(void)
         {
             HideBg(2);
             ShowBg(1);
-            PlayCry2(GetCreditsMonSpecies(sCreditsMgr->whichMon), 0, 125, 10);
+            PlayCry_NormalNoDucking(GetCreditsMonSpecies(sCreditsMgr->whichMon), 0, CRY_VOLUME_RS, CRY_PRIORITY_NORMAL);
             sCreditsMgr->creditsMonTimer = 128;
             sCreditsMgr->subseqno++;
         }
@@ -1195,7 +1196,7 @@ static bool32 DoCreditsMonScene(void)
             sCreditsMgr->creditsMonTimer--;
         else
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             sCreditsMgr->subseqno++;
         }
         break;
@@ -1246,9 +1247,9 @@ static bool32 DoCopyrightOrTheEndGfxScene(void)
     case 2:
         ShowBg(0);
         if (sCreditsMgr->whichMon != 0)
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0, RGB_BLACK);
         else
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         sCreditsMgr->subseqno++;
         break;
     case 3:
@@ -1270,10 +1271,10 @@ static void Task_MovePlayerAndGroundSprites(u8 taskId)
     case 0:
         break;
     case 1:
-        if (gSprites[data->playerSpriteId].pos1.x != 0xD0)
+        if (gSprites[data->playerSpriteId].x != 0xD0)
         {
-            gSprites[data->playerSpriteId].pos1.x--;
-            gSprites[data->groundSpriteId].pos1.x--;
+            gSprites[data->playerSpriteId].x--;
+            gSprites[data->groundSpriteId].x--;
         }
         else
         {
@@ -1283,10 +1284,10 @@ static void Task_MovePlayerAndGroundSprites(u8 taskId)
     case 2:
         if (sCreditsMgr->unk_1D & 1)
         {
-            if (gSprites[data->playerSpriteId].pos1.y != 0x50)
+            if (gSprites[data->playerSpriteId].y != 0x50)
             {
-                gSprites[data->playerSpriteId].pos1.y--;
-                gSprites[data->groundSpriteId].pos1.y--;
+                gSprites[data->playerSpriteId].y--;
+                gSprites[data->groundSpriteId].y--;
             }
             else
             {
@@ -1297,8 +1298,8 @@ static void Task_MovePlayerAndGroundSprites(u8 taskId)
     case 3:
         if (sCreditsMgr->mainseqno == 15)
         {
-            gSprites[data->playerSpriteId].pos1.x--;
-            gSprites[data->groundSpriteId].pos1.x--;
+            gSprites[data->playerSpriteId].x--;
+            gSprites[data->groundSpriteId].x--;
         }
         break;
     }

@@ -4,40 +4,36 @@
 
 .equ SIGN_LADY_READY, VAR_TEMP_2
 
-PalletTown_MapScripts:: @ 816545A
+PalletTown_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PalletTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_OnFrame
 	.byte 0
 
-PalletTown_OnTransition:: @ 8165465
+PalletTown_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_PALLET_TOWN
 	call_if_set FLAG_PALLET_LADY_NOT_BLOCKING_SIGN, PalletTown_EventScript_TryReadySignLady
-	compare VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 0
-	call_if_eq PalletTown_EventScript_SetSignLadyPos
-	compare VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
-	call_if_eq PalletTown_EventScript_SetSignLadyDone
-	compare VAR_MAP_SCENE_PALLET_TOWN_OAK, 3
-	call_if_eq PalletTown_EventScript_PlaceMasterYoungsterOutsideLab
+	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 0, PalletTown_EventScript_SetSignLadyPos
+	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1, PalletTown_EventScript_SetSignLadyDone
+	call_if_eq VAR_MAP_SCENE_PALLET_TOWN_OAK, 3, PalletTown_EventScript_PlaceMasterYoungsterOutsideLab
 	end
 
-PalletTown_EventScript_TryReadySignLady:: @ 8165488
+PalletTown_EventScript_TryReadySignLady::
 	goto_if_unset FLAG_OPENED_START_MENU, EventScript_Return
-	compare VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
-	goto_if_ge EventScript_Return
+	goto_if_ge VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1, EventScript_Return
 	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
 	return
 
-PalletTown_EventScript_SetSignLadyDone:: @ 81654A2
+PalletTown_EventScript_SetSignLadyDone::
 	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 2
 	return
 
-PalletTown_EventScript_SetSignLadyPos:: @ 81654A8
+PalletTown_EventScript_SetSignLadyPos::
 	goto_if_set FLAG_PALLET_LADY_NOT_BLOCKING_SIGN, PalletTown_EventScript_MoveSignLadyToRouteEntrance
 	setobjectxyperm LOCALID_SIGN_LADY, 5, 15
 	setobjectmovementtype LOCALID_SIGN_LADY, MOVEMENT_TYPE_FACE_UP
 	return
 
-PalletTown_EventScript_MoveSignLadyToRouteEntrance:: @ 81654BD
+PalletTown_EventScript_MoveSignLadyToRouteEntrance::
 	setobjectxyperm LOCALID_SIGN_LADY, 12, 2
 	setobjectmovementtype LOCALID_SIGN_LADY, MOVEMENT_TYPE_FACE_DOWN
 	setvar SIGN_LADY_READY, TRUE
@@ -48,7 +44,7 @@ PalletTown_EventScript_PlaceMasterYoungsterOutsideLab::
 	setobjectmovementtype LOCALID_MASTER_YOUNGSTER, MOVEMENT_TYPE_FACE_RIGHT
 	return
 
-PalletTown_OnFrame:: @ 81654CE
+PalletTown_OnFrame::
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_OAK, 2, PalletTown_EventScript_OakRatingScene
 	map_script_2 VAR_MAP_SCENE_PALLET_TOWN_OAK, 3, PalletTown_EventScript_MasterTrainerYoungster
 	.2byte 0
@@ -99,9 +95,9 @@ PalletTown_Movement_MoveYoungsterOffScreen:
 	step_end
 
 @ Oak approaches player after exiting their house post Elite Four to check if they should receieve the National Dex
-PalletTown_EventScript_OakRatingScene:: @ 81654D8
+PalletTown_EventScript_OakRatingScene::
 	lockall
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	setobjectxyperm LOCALID_PROF_OAK, 14, 14
 	setobjectmovementtype LOCALID_PROF_OAK, MOVEMENT_TYPE_FACE_LEFT
 	addobject LOCALID_PROF_OAK
@@ -112,12 +108,10 @@ PalletTown_EventScript_OakRatingScene:: @ 81654D8
 	specialvar VAR_RESULT, GetPokedexCount
 	copyvar VAR_0x8008, VAR_0x8005
 	copyvar VAR_0x8009, VAR_0x8006
-	getnumberstring 0, VAR_0x8008
-	getnumberstring 1, VAR_0x8009
-	compare VAR_0x8009, 60
-	call_if_lt PalletTown_EventScript_NotEnoughMonsForNationalDex
-	compare VAR_0x8009, 60
-	call_if_ge PalletTown_EventScript_EnoughMonsForNationalDex
+	buffernumberstring STR_VAR_1, VAR_0x8008
+	buffernumberstring STR_VAR_2, VAR_0x8009
+	call_if_lt VAR_0x8009, 60, PalletTown_EventScript_NotEnoughMonsForNationalDex
+	call_if_ge VAR_0x8009, 60, PalletTown_EventScript_EnoughMonsForNationalDex
 	playbgm MUS_FOLLOW_ME, 0
 	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabFromHouse
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabFromHouse
@@ -132,12 +126,12 @@ PalletTown_EventScript_OakRatingScene:: @ 81654D8
 	setvar VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 7
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 3
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
-	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 255, 6, 12
+	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
 	waitstate
 	releaseall
 	end
 
-PalletTown_EventScript_EndOakRatingScene:: @ 816557E
+PalletTown_EventScript_EndOakRatingScene::
 	closemessage
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakExit
 	waitmovement 0
@@ -146,7 +140,7 @@ PalletTown_EventScript_EndOakRatingScene:: @ 816557E
 	releaseall
 	end
 
-PalletTown_EventScript_NotEnoughMonsForNationalDex:: @ 8165593
+PalletTown_EventScript_NotEnoughMonsForNationalDex::
 	msgbox PalletTown_Text_CaughtXPuttingInHonestEffort
 	closemessage
 	return
@@ -156,7 +150,7 @@ PalletTown_EventScript_EnoughMonsForNationalDex::
 	closemessage
 	return
 
-PalletTown_Movement_OakWalkToPlayersDoor:: @ 81655AF
+PalletTown_Movement_OakWalkToPlayersDoor::
 	walk_left
 	walk_left
 	walk_left
@@ -173,7 +167,7 @@ PalletTown_Movement_OakWalkToPlayersDoor:: @ 81655AF
 	walk_in_place_fastest_up
 	step_end
 
-PalletTown_Movement_OakExit:: @ 81655BE
+PalletTown_Movement_OakExit::
 	walk_right
 	walk_right
 	walk_right
@@ -189,7 +183,7 @@ PalletTown_Movement_OakExit:: @ 81655BE
 	walk_right
 	step_end
 
-PalletTown_Movement_OakWalkToLabFromHouse:: @ 81655CC
+PalletTown_Movement_OakWalkToLabFromHouse::
 	walk_right
 	walk_right
 	walk_right
@@ -208,7 +202,7 @@ PalletTown_Movement_OakWalkToLabFromHouse:: @ 81655CC
 	walk_in_place_fastest_up
 	step_end
 
-PalletTown_Movement_PlayerWalkToLabFromHouse:: @ 81655DD
+PalletTown_Movement_PlayerWalkToLabFromHouse::
 	walk_down
 	walk_right
 	walk_right
@@ -226,21 +220,21 @@ PalletTown_Movement_PlayerWalkToLabFromHouse:: @ 81655DD
 	walk_right
 	step_end
 
-PalletTown_EventScript_OakTriggerLeft:: @ 81655ED
+PalletTown_EventScript_OakTriggerLeft::
 	lockall
 	setvar VAR_TEMP_1, 0
 	goto PalletTown_EventScript_OakTrigger
 	end
 
-PalletTown_EventScript_OakTriggerRight:: @ 81655F9
+PalletTown_EventScript_OakTriggerRight::
 	lockall
 	setvar VAR_TEMP_1, 1
 	goto PalletTown_EventScript_OakTrigger
 	end
 
-PalletTown_EventScript_OakTrigger:: @ 8165605
+PalletTown_EventScript_OakTrigger::
 	famechecker FAMECHECKER_OAK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	delay 30
 	playbgm MUS_OAK, 0
 	message PalletTown_Text_OakDontGoOut
@@ -254,18 +248,14 @@ PalletTown_EventScript_OakTrigger:: @ 8165605
 	waitmovement 0
 	delay 30
 	addobject LOCALID_PROF_OAK
-	compare VAR_TEMP_1, 0
-	call_if_eq PalletTown_EventScript_OakEnterLeft
-	compare VAR_TEMP_1, 1
-	call_if_eq PalletTown_EventScript_OakEnterRight
+	call_if_eq VAR_TEMP_1, 0, PalletTown_EventScript_OakEnterLeft
+	call_if_eq VAR_TEMP_1, 1, PalletTown_EventScript_OakEnterRight
 	delay 30
 	msgbox PalletTown_Text_OakGrassUnsafeNeedMon
 	closemessage
 	delay 30
-	compare VAR_TEMP_1, 0
-	call_if_eq PalletTown_EventScript_OakLeadPlayerToLabLeft
-	compare VAR_TEMP_1, 1
-	call_if_eq PalletTown_EventScript_OakLeadPlayerToLabRight
+	call_if_eq VAR_TEMP_1, 0, PalletTown_EventScript_OakLeadPlayerToLabLeft
+	call_if_eq VAR_TEMP_1, 1, PalletTown_EventScript_OakLeadPlayerToLabRight
 	opendoor 16, 13
 	waitdooranim
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterLab
@@ -278,34 +268,34 @@ PalletTown_EventScript_OakTrigger:: @ 8165605
 	setvar VAR_MAP_SCENE_PALLET_TOWN_OAK, 1
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_DONT_TRANSITION_MUSIC
-	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 255, 6, 12
+	warp MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB, 6, 12
 	waitstate
 	releaseall
 	end
 
-PalletTown_EventScript_OakEnterLeft:: @ 81656B8
+PalletTown_EventScript_OakEnterLeft::
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterLeft
 	waitmovement 0
 	return
 
-PalletTown_EventScript_OakEnterRight:: @ 81656C3
+PalletTown_EventScript_OakEnterRight::
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakEnterRight
 	waitmovement 0
 	return
 
-PalletTown_EventScript_OakLeadPlayerToLabLeft:: @ 81656CE
+PalletTown_EventScript_OakLeadPlayerToLabLeft::
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabLeft
 	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabLeft
 	waitmovement 0
 	return
 
-PalletTown_EventScript_OakLeadPlayerToLabRight:: @ 81656E0
+PalletTown_EventScript_OakLeadPlayerToLabRight::
 	applymovement LOCALID_PROF_OAK, PalletTown_Movement_OakWalkToLabRight
 	applymovement OBJ_EVENT_ID_PLAYER, PalletTown_Movement_PlayerWalkToLabRight
 	waitmovement 0
 	return
 
-PalletTown_Movement_OakEnterLeft:: @ 81656F2
+PalletTown_Movement_OakEnterLeft::
 	walk_up
 	walk_up
 	walk_right
@@ -316,7 +306,7 @@ PalletTown_Movement_OakEnterLeft:: @ 81656F2
 	walk_up
 	step_end
 
-PalletTown_Movement_OakEnterRight:: @ 81656FB
+PalletTown_Movement_OakEnterRight::
 	walk_right
 	walk_up
 	walk_up
@@ -347,14 +337,14 @@ PalletTown_Movement_OakEnterRight:: @ 81656FB
 	walk_right
 	.endm
 
-PalletTown_Movement_OakWalkToLabLeft:: @ 8165705
+PalletTown_Movement_OakWalkToLabLeft::
 	walk_down
 	walk_to_lab
 	walk_right
 	walk_in_place_fastest_up
 	step_end
 
-PalletTown_Movement_OakWalkToLabRight:: @ 8165719
+PalletTown_Movement_OakWalkToLabRight::
 	walk_down
 	walk_left
 	walk_to_lab
@@ -362,38 +352,35 @@ PalletTown_Movement_OakWalkToLabRight:: @ 8165719
 	walk_in_place_fastest_up
 	step_end
 
-PalletTown_Movement_OakEnterLab:: @ 816572E
+PalletTown_Movement_OakEnterLab::
 	walk_up
 	set_invisible
 	step_end
 
-PalletTown_Movement_PlayerWalkToLabLeft:: @ 8165731
+PalletTown_Movement_PlayerWalkToLabLeft::
 	walk_down
 	walk_down
 	walk_to_lab
 	step_end
 
-PalletTown_Movement_PlayerWalkToLabRight:: @ 8165744
+PalletTown_Movement_PlayerWalkToLabRight::
 	walk_down
 	walk_down
 	walk_left
 	walk_to_lab
 	step_end
 
-PalletTown_Movement_PlayerEnterLab:: @ 8165758
+PalletTown_Movement_PlayerEnterLab::
 	walk_right
 	walk_up
 	set_invisible
 	step_end
 
-PalletTown_EventScript_SignLady:: @ 816575C
+PalletTown_EventScript_SignLady::
 	lock
-	compare VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 2
-	goto_if_eq PalletTown_EventScript_SignLadyDone
-	compare VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
-	goto_if_eq PalletTown_EventScript_SignLadyJustShowedSign
-	compare SIGN_LADY_READY, TRUE
-	goto_if_eq PalletTown_EventScript_SignLadyStartShowSign
+	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 2, PalletTown_EventScript_SignLadyDone
+	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1, PalletTown_EventScript_SignLadyJustShowedSign
+	goto_if_eq SIGN_LADY_READY, TRUE, PalletTown_EventScript_SignLadyStartShowSign
 	goto_if_set FLAG_TEMP_2, PalletTown_EventScript_SignLadyGoReadSign
 	msgbox PalletTown_Text_HmmIsThatRight
 	applymovement LOCALID_SIGN_LADY, Movement_FacePlayer
@@ -405,87 +392,85 @@ PalletTown_EventScript_SignLady:: @ 816575C
 	waitmovement 0
 	msgbox PalletTown_Text_OhLookLook
 	closemessage
-	compare VAR_FACING, DIR_EAST
-	call_if_eq PalletTown_EventScript_SignLadyMoveOutOfWayRight
-	compare VAR_FACING, DIR_EAST
-	call_if_ne PalletTown_EventScript_SignLadyMoveOutOfWayLeft
-	moveobjectoffscreen 1
+	call_if_eq VAR_FACING, DIR_EAST, PalletTown_EventScript_SignLadyMoveOutOfWayRight
+	call_if_ne VAR_FACING, DIR_EAST, PalletTown_EventScript_SignLadyMoveOutOfWayLeft
+	copyobjectxytoperm LOCALID_SIGN_LADY
 	setflag FLAG_TEMP_2
 	release
 	end
 
-PalletTown_EventScript_SignLadyMoveOutOfWayRight:: @ 81657D7
+PalletTown_EventScript_SignLadyMoveOutOfWayRight::
 	applymovement LOCALID_SIGN_LADY, PalletTown_Movement_SignLadyMoveOutOfWayRight
 	waitmovement 0
 	return
 
-PalletTown_EventScript_SignLadyMoveOutOfWayLeft:: @ 81657E2
+PalletTown_EventScript_SignLadyMoveOutOfWayLeft::
 	applymovement LOCALID_SIGN_LADY, PalletTown_Movement_SignLadyMoveOutOfWayLeft
 	waitmovement 0
 	return
 
-PalletTown_EventScript_SignLadyDone:: @ 81657ED
+PalletTown_EventScript_SignLadyDone::
 	applymovement LOCALID_SIGN_LADY, Movement_FacePlayer
 	waitmovement 0
 	msgbox PalletTown_Text_RaisingMonsToo
 	release
 	end
 
-PalletTown_EventScript_SignLadyGoReadSign:: @ 8165801
+PalletTown_EventScript_SignLadyGoReadSign::
 	applymovement LOCALID_SIGN_LADY, Movement_FacePlayer
 	waitmovement 0
 	msgbox PalletTown_Text_ReadItReadIt
 	release
 	end
 
-PalletTown_EventScript_SignLadyJustShowedSign:: @ 8165815
+PalletTown_EventScript_SignLadyJustShowedSign::
 	applymovement LOCALID_SIGN_LADY, Movement_FacePlayer
 	waitmovement 0
 	msgbox PalletTown_Text_SignsAreUsefulArentThey
 	release
 	end
 
-PalletTown_Movement_SignLadyMoveOutOfWayRight:: @ 8165829
+PalletTown_Movement_SignLadyMoveOutOfWayRight::
 	walk_right
 	walk_in_place_fastest_left
 	step_end
 
-PalletTown_Movement_SignLadyMoveOutOfWayLeft:: @ 816582C
+PalletTown_Movement_SignLadyMoveOutOfWayLeft::
 	walk_left
 	walk_in_place_fastest_right
 	step_end
 
-PalletTown_EventScript_FatMan:: @ 816582F
+PalletTown_EventScript_FatMan::
 	msgbox PalletTown_Text_CanStoreItemsAndMonsInPC, MSGBOX_NPC
 	end
 
-PalletTown_EventScript_OaksLabSign:: @ 8165838
+PalletTown_EventScript_OaksLabSign::
 	lockall
 	famechecker FAMECHECKER_OAK, 0
 	msgbox PalletTown_Text_OakPokemonResearchLab
 	releaseall
 	end
 
-PalletTown_EventScript_PlayersHouseSign:: @ 8165850
+PalletTown_EventScript_PlayersHouseSign::
 	msgbox PalletTown_Text_PlayersHouse, MSGBOX_SIGN
 	end
 
-PalletTown_EventScript_RivalsHouseSign:: @ 8165859
+PalletTown_EventScript_RivalsHouseSign::
 	msgbox PalletTown_Text_RivalsHouse, MSGBOX_SIGN
 	end
 
-PalletTown_EventScript_TownSign:: @ 8165862
+PalletTown_EventScript_TownSign::
 	msgbox PalletTown_Text_TownSign, MSGBOX_SIGN
 	end
 
-PalletTown_EventScript_TrainerTips:: @ 816586B
+PalletTown_EventScript_TrainerTips::
 	lockall
 	msgbox PalletTown_Text_PressStartToOpenMenu
 	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
 	releaseall
 	end
 
-PalletTown_EventScript_SignLadyTrigger:: @ 816587B
+PalletTown_EventScript_SignLadyTrigger::
 	lockall
 	applymovement LOCALID_SIGN_LADY, Movement_WalkInPlaceFastestRight
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestLeft
@@ -494,12 +479,12 @@ PalletTown_EventScript_SignLadyTrigger:: @ 816587B
 	releaseall
 	end
 
-PalletTown_EventScript_SignLadyShowSign:: @ 8165894
-	textcolor 1
+PalletTown_EventScript_SignLadyShowSign::
+	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox PalletTown_Text_LookCopiedTrainerTipsSign
 	closemessage
 	delay 20
-	textcolor 3
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	setflag FLAG_OPENED_START_MENU
 	setvar VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY, 1
 	setvar SIGN_LADY_READY, FALSE
@@ -510,7 +495,7 @@ PalletTown_EventScript_SignLadyShowSign:: @ 8165894
 	normalmsg
 	return
 
-PalletTown_EventScript_SignLadyStartShowSign:: @ 81658C2
+PalletTown_EventScript_SignLadyStartShowSign::
 	applymovement LOCALID_SIGN_LADY, Movement_FacePlayer
 	waitmovement 0
 	call PalletTown_EventScript_SignLadyShowSign

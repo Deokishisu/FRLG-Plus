@@ -1,7 +1,9 @@
 .set LOCALID_MOLTRES_MASTER, 14
 .set TRAINER, VAR_0x8009
+.set LOCALID_BOULDER1, 11
+.set LOCALID_BOULDER2, 12
 
-VictoryRoad_2F_MapScripts:: @ 8160F92
+VictoryRoad_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, VictoryRoad_2F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
@@ -9,98 +11,93 @@ VictoryRoad_2F_MapScripts:: @ 8160F92
 VictoryRoad_2F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MOLTRES
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq VictoryRoad_2F_MapScript_MoltresMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, VictoryRoad_2F_MapScript_MoltresMasterMovementType
 	end
 
 VictoryRoad_2F_MapScript_MoltresMasterMovementType::
 	setobjectmovementtype LOCALID_MOLTRES_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-VictoryRoad_2F_OnLoad:: @ 8160F98
-	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100
-	call_if_ne VictoryRoad_2F_EventScript_SetRockBarrier1
-	call_if_eq VictoryRoad_2F_EventScript_MoveSwitch1Boulder
-	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100
-	call_if_ne VictoryRoad_2F_EventScript_SetRockBarrier2
-	call_if_eq VictoryRoad_2F_EventScript_MoveSwitch2Boulder
+VictoryRoad_2F_OnLoad::
+	call_if_ne VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100, VictoryRoad_2F_EventScript_SetRockBarrier1
+	call_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100. VictoryRoad_2F_EventScript_MoveSwitch1Boulder
+	call_if_ne VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100, VictoryRoad_2F_EventScript_SetRockBarrier2
+	call_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100, VictoryRoad_2F_EventScript_MoveSwitch2Boulder
 	end
 
 VictoryRoad_2F_EventScript_MoveSwitch1Boulder::
-	setobjectxyperm 11, 2, 19
+	setobjectxyperm LOCALID_BOULDER1, 2, 19
 	return
 
 VictoryRoad_2F_EventScript_MoveSwitch2Boulder::
-	setobjectxyperm 12, 14, 19
+	setobjectxyperm LOCALID_BOULDER2, 14, 19
 	return
 
-VictoryRoad_2F_EventScript_SetRockBarrier1:: @ 8160FAF
+VictoryRoad_2F_EventScript_SetRockBarrier1::
 	setmetatile 13, 10, METATILE_Cave_RockBarrier_Top, 1
 	setmetatile 13, 11, METATILE_Cave_RockBarrier_Bottom, 1
 	return
 
-VictoryRoad_2F_EventScript_SetRockBarrier2:: @ 8160FC2
+VictoryRoad_2F_EventScript_SetRockBarrier2::
 	setmetatile 33, 16, METATILE_Cave_RockBarrier_Top, 1
 	setmetatile 33, 17, METATILE_Cave_RockBarrier_Bottom, 1
 	return
 
-VictoryRoad_2F_EventScript_FloorSwitch1:: @ 8160FD5
+VictoryRoad_2F_EventScript_FloorSwitch1::
 	lockall
-	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100
-	goto_if_eq VictoryRoad_2F_EventScript_FloorSwitch1AlreadyPressed
+	goto_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100, VictoryRoad_2F_EventScript_FloorSwitch1AlreadyPressed
 	setmetatile 13, 10, METATILE_Cave_Floor_Ledge_Top, 0
 	setmetatile 13, 11, METATILE_Cave_Floor_Ledge_Bottom, 0
 	playse SE_ICE_BREAK
 	special DrawWholeMapView
 	waitse
-	moveobjectoffscreen 11
+	copyobjectxytoperm LOCALID_BOULDER1
 	setvar VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100
 	releaseall
 	end
 
-VictoryRoad_2F_EventScript_FloorSwitch1AlreadyPressed:: @ 8161004
+VictoryRoad_2F_EventScript_FloorSwitch1AlreadyPressed::
 	releaseall
 	end
 
-VictoryRoad_2F_EventScript_FloorSwitch2:: @ 8161006
+VictoryRoad_2F_EventScript_FloorSwitch2::
 	lockall
-	compare VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100
-	goto_if_eq VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed
+	goto_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100, VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed
 	setmetatile 33, 16, METATILE_Cave_Floor_Ledge_Top, 0
 	setmetatile 33, 17, METATILE_Cave_Floor_Ledge_Bottom, 0
 	playse SE_ICE_BREAK
 	special DrawWholeMapView
 	waitse
-	moveobjectoffscreen 12
+	copyobjectxytoperm LOCALID_BOULDER2
 	setvar VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100
 	releaseall
 	end
 
-VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed:: @ 8161035
+VictoryRoad_2F_EventScript_FloorSwitch2AlreadyPressed::
 	releaseall
 	end
 
-VictoryRoad_2F_EventScript_Dawson:: @ 8161037
+VictoryRoad_2F_EventScript_Dawson::
 	trainerbattle_single TRAINER_POKEMANIAC_DAWSON, VictoryRoad_2F_Text_DawsonIntro, VictoryRoad_2F_Text_DawsonDefeat
 	msgbox VictoryRoad_2F_Text_DawsonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-VictoryRoad_2F_EventScript_Daisuke:: @ 816104E
+VictoryRoad_2F_EventScript_Daisuke::
 	trainerbattle_single TRAINER_BLACK_BELT_DAISUKE, VictoryRoad_2F_Text_DaisukeIntro, VictoryRoad_2F_Text_DaisukeDefeat
 	msgbox VictoryRoad_2F_Text_DaisukePostBattle, MSGBOX_AUTOCLOSE
 	end
 
-VictoryRoad_2F_EventScript_Nelson:: @ 8161065
+VictoryRoad_2F_EventScript_Nelson::
 	trainerbattle_single TRAINER_JUGGLER_NELSON, VictoryRoad_2F_Text_NelsonIntro, VictoryRoad_2F_Text_NelsonDefeat
 	msgbox VictoryRoad_2F_Text_NelsonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-VictoryRoad_2F_EventScript_Gregory:: @ 816107C
+VictoryRoad_2F_EventScript_Gregory::
 	trainerbattle_single TRAINER_JUGGLER_GREGORY, VictoryRoad_2F_Text_GregoryIntro, VictoryRoad_2F_Text_GregoryDefeat
 	msgbox VictoryRoad_2F_Text_GregoryPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-VictoryRoad_2F_EventScript_Vincent:: @ 8161093
+VictoryRoad_2F_EventScript_Vincent::
 	trainerbattle_single TRAINER_TAMER_VINCENT, VictoryRoad_2F_Text_VincentIntro, VictoryRoad_2F_Text_VincentDefeat
 	msgbox VictoryRoad_2F_Text_VincentPostBattle, MSGBOX_AUTOCLOSE
 	end

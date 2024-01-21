@@ -1,4 +1,4 @@
-SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyMale:: @ 819AC60
+SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyMale::
     .string "{PLAYER}: Hi!\n"
     .string "Do you like POKéMON?\p"
     .string "{PLAYER}: Uh, no, I just asked you.\p"
@@ -7,7 +7,7 @@ SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyMale:: @ 819AC60
     .string "COPYCAT: Hmm? Quit mimicking?\n"
     .string "But, that's my favorite hobby!$"
 
-SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyFemale:: @ 819ACF1
+SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyFemale::
     .string "{PLAYER}: Hi.\n"
     .string "You must like POKéMON.\p"
     .string "{PLAYER}: No, not me.\n"
@@ -18,7 +18,7 @@ SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyFemale:: @ 819ACF1
     .string "COPYCAT: Hmm? Quit mimicking?\l"
     .string "But that's my favorite hobby!$"
 
-Text_MimicTeach:: @ 819AD85
+Text_MimicTeach::
     .string "Oh wow!\n"
     .string "A POKé DOLL!\p"
     .string "For me?\n"
@@ -26,14 +26,14 @@ Text_MimicTeach:: @ 819AD85
     .string "You know what?\n"
     .string "I can teach the move MIMIC.$"
 
-Text_MimicDeclined:: @ 819ADD8
+Text_MimicDeclined::
     .string "Don't you like MIMIC?$"
 
-Text_MimicWhichMon:: @ 819ADEE
+Text_MimicWhichMon::
     .string "I really love MIMIC!\n"
     .string "Who's going to learn it?$"
 
-Text_MimicTaughtMale:: @ 819AE1C
+Text_MimicTaughtMale::
     .string "{PLAYER}: Hi!\n"
     .string "Thanks for earlier!\p"
     .string "{PLAYER}: Pardon?\p"
@@ -42,7 +42,7 @@ Text_MimicTaughtMale:: @ 819AE1C
     .string "COPYCAT: You bet!\n"
     .string "It's a scream!$"
 
-Text_MimicTaughtFemale:: @ 819AE90
+Text_MimicTaughtFemale::
     .string "{PLAYER}: Hi!\n"
     .string "Thanks for what you did for us.\p"
     .string "{PLAYER}: Pardon?\p"
@@ -85,7 +85,7 @@ Text_MimicTaughtMale2::
     .string "COPYCAT: You bet!\n"
     .string "It's a scream!$"
 
-Text_MimicTaughtFemale2:: @ 819AE90
+Text_MimicTaughtFemale2::
     .string "{PLAYER}: Okay!\n"
     .string "Thanks for what you did for us.\p"
     .string "{PLAYER}: Pardon?\p"
@@ -94,23 +94,22 @@ Text_MimicTaughtFemale2:: @ 819AE90
     .string "COPYCAT: You bet!\n"
     .string "It's a scream!$"
 
-SaffronCity_CopycatsHouse_2F_Text_Doduo:: @ 819B030
+SaffronCity_CopycatsHouse_2F_Text_Doduo::
     .string "DODUO: Giiih!\p"
     .string "PRETTY MIRROR LOOK AT ME,\n"
     .string "SEE HOW PRETTY I CAN BE?$"
 
-SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll:: @ 819B071
+SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll::
     .string "This is a rare POKéMON!\n"
     .string "Huh? It's only a doll!$"
 
-SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket:: @ 819B0A0
+SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket::
     .string "A game with MARIO wearing a bucket\n"
     .string "on his head!$"
 
-SaffronCity_CopycatsHouse_2F_Text_MySecrets:: @ 819B0D0
+SaffronCity_CopycatsHouse_2F_Text_MySecrets::
     .string "…\p"
     .string "My Secrets!\p"
     .string "Skill: Mimicry!\n"
     .string "Hobby: Collecting dolls!\l"
     .string "Favorite POKéMON: CLEFAIRY!$"
-

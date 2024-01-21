@@ -3,23 +3,20 @@
 .set LOCALID_SHELLDER_MASTER, 15
 .set TRAINER, VAR_0x8009
 
-Route19_MapScripts:: @ 8168231
+Route19_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route19_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route19_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_STARYU
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route19_MapScript_StaryuMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route19_MapScript_StaryuMasterMovementType
 	setvar TRAINER, MASTER_HORSEA
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route19_MapScript_HorseaMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route19_MapScript_HorseaMasterMovementType
 	setvar TRAINER, MASTER_SHELLDER
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route19_MapScript_ShellderMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route19_MapScript_ShellderMasterMovementType
 	end
 
 Route19_MapScript_StaryuMasterMovementType::
@@ -34,6 +31,6 @@ Route19_MapScript_ShellderMasterMovementType::
 	setobjectmovementtype LOCALID_SHELLDER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route19_EventScript_RouteSign:: @ 8168232
+Route19_EventScript_RouteSign::
 	msgbox Route19_Text_RouteSign, MSGBOX_SIGN
 	end

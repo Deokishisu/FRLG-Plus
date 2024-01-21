@@ -365,7 +365,7 @@ static void SetOptionMenuTask(void)
 
 static void InitOptionMenuBg(void)
 {
-    void * dest = (void *)VRAM;
+    void *dest = (void *)VRAM;
     DmaClearLarge16(3, dest, VRAM_SIZE, 0x1000);    
     DmaClear32(3, (void *)OAM, OAM_SIZE);
     DmaClear16(3, (void *)PLTT, PLTT_SIZE);    
@@ -400,27 +400,27 @@ static void OptionMenu_PickSwitchCancel(void)
     {
         if(sOptionMenuPtr->cursorPos == MENUITEM_BATTLESCENE)
         {
-            x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancelA, 0);
-            AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancelA);
+            x = 0xE4 - GetStringWidth(FONT_0, gText_PickSwitchCancelA, 0);
+            AddTextPrinterParameterized3(2, FONT_0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancelA);
         }
         else if(sOptionMenuPtr->cursorPos == MENUITEM_CANCEL)
         {
-            x = 0xE4 - GetStringWidth(0, gText_PickSwitchExit, 0);
-            AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchExit);
+            x = 0xE4 - GetStringWidth(FONT_0, gText_PickSwitchExit, 0);
+            AddTextPrinterParameterized3(2, FONT_0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchExit);
         }
         else
         {
-            x = 0xE4 - GetStringWidth(0, gText_PickSwitchCancel, 0);
-            AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancel);
+            x = 0xE4 - GetStringWidth(FONT_0, gText_PickSwitchCancel, 0);
+            AddTextPrinterParameterized3(2, FONT_0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchCancel);
         }
     }
     else
     {
-        x = 0xE4 - GetStringWidth(0, gText_PickSwitchBack, 0);
-        AddTextPrinterParameterized3(2, 0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchBack);
+        x = 0xE4 - GetStringWidth(FONT_0, gText_PickSwitchBack, 0);
+        AddTextPrinterParameterized3(2, FONT_0, x, 0, sOptionMenuPickSwitchCancelTextColor, 0, gText_PickSwitchBack);
     }
     PutWindowTilemap(2);
-    CopyWindowToVram(2, COPYWIN_BOTH);
+    CopyWindowToVram(2, COPYWIN_FULL);
 }
 
 static void OptionMenu_ResetSpriteData(void)
@@ -437,10 +437,10 @@ static bool8 LoadOptionMenuPalette(void)
     switch (sOptionMenuPtr->loadPaletteState)
     {
     case 0:
-        LoadBgTiles(1, GetUserFrameGraphicsInfo(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
+        LoadBgTiles(1, GetWindowFrameTilesPal(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
         break;
     case 1:
-        LoadPalette(GetUserFrameGraphicsInfo(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, 0x20, 0x20);
+        LoadPalette(GetWindowFrameTilesPal(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, 0x20, 0x20);
         break;
     case 2:
         LoadPalette(sOptionMenuPalette, 0x10, 0x20);
@@ -461,7 +461,7 @@ static void Task_OptionMenu(u8 taskId)
     switch (sOptionMenuPtr->loadState)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
         OptionMenu_SetVBlankCallback();
         sOptionMenuPtr->loadState++;
         break;
@@ -481,8 +481,8 @@ static void Task_OptionMenu(u8 taskId)
             sOptionMenuPtr->loadState++;
             break;
         case 2:
-            LoadBgTiles(1, GetUserFrameGraphicsInfo(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
-            LoadPalette(GetUserFrameGraphicsInfo(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, 0x20, 0x20);
+            LoadBgTiles(1, GetWindowFrameTilesPal(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->tiles, 0x120, 0x1AA);
+            LoadPalette(GetWindowFrameTilesPal(sOptionMenuPtr->option[MENUITEM_FRAMETYPE])->palette, 0x20, 0x20);
             BufferOptionMenuString(sOptionMenuPtr->cursorPos);
             break;
         case 3:
@@ -519,7 +519,7 @@ static void Task_OptionMenu(u8 taskId)
         }
         break;
     case 3:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
         sOptionMenuPtr->loadState++;
         break;
     case 4:
@@ -536,7 +536,7 @@ static void Task_OptionMenu(u8 taskId)
 static u8 OptionMenu_ProcessInput(void)
 { 
     u16 current;
-    u16* curr;
+    u16 *curr;
     if (JOY_REPT(DPAD_RIGHT))
     {
         if(!sOptionMenuPtr->inSubMenu)
@@ -658,33 +658,33 @@ static void BufferOptionMenuString(u8 selection)
     
     memcpy(dst, sOptionMenuTextColor, 3);
     x = 0x82;
-    y = ((GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT) - 1) * selection) + 2;
-    FillWindowPixelRect(1, 1, x, y, 0x46, GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT));
+    y = ((GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT) - 1) * selection) + 2;
+    FillWindowPixelRect(1, 1, x, y, 0x46, GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT));
 
     if(!sOptionMenuPtr->inSubMenu)
     {
         switch (selection)
         {
             case MENUITEM_TEXTSPEED:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sTextSpeedOptions[sOptionMenuPtr->option[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sTextSpeedOptions[sOptionMenuPtr->option[selection]]);
                 break;
             case MENUITEM_BATTLESCENE:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleSceneOptions[sOptionMenuPtr->option[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sBattleSceneOptions[sOptionMenuPtr->option[selection]]);
                 break;
             case MENUITEM_BATTLESTYLE:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleStyleOptions[sOptionMenuPtr->option[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sBattleStyleOptions[sOptionMenuPtr->option[selection]]);
                 break;
             case MENUITEM_SOUND:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sSoundOptions[sOptionMenuPtr->option[selection]]);
                 break;
             case MENUITEM_BUTTONMODE:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sButtonTypeOptions[sOptionMenuPtr->option[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sButtonTypeOptions[sOptionMenuPtr->option[selection]]);
                 break;
             case MENUITEM_FRAMETYPE:
                 StringCopy(str, gText_FrameType);
                 ConvertIntToDecimalStringN(buf, sOptionMenuPtr->option[selection] + 1, 1, 2);
                 StringAppendN(str, buf, 3);
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, str);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, str);
                 break;
             default:
                 break;
@@ -695,19 +695,19 @@ static void BufferOptionMenuString(u8 selection)
         switch (selection)
         {
             case MENUITEM_BATTLETRANSITIONS:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleTransitionOptions[sOptionMenuPtr->subOption[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sBattleTransitionOptions[sOptionMenuPtr->subOption[selection]]);
                 break;
             case MENUITEM_BATTLEINTROANIM:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sBattleIntroAnimOptions[sOptionMenuPtr->subOption[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sBattleIntroAnimOptions[sOptionMenuPtr->subOption[selection]]);
                 break;
             case MENUITEM_MOVEANIMATIONS:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sMoveAnimOptions[sOptionMenuPtr->subOption[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sMoveAnimOptions[sOptionMenuPtr->subOption[selection]]);
                 break;
             case MENUITEM_HPBARANIMSPEED:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sHpBarAnimSpeedOptions[sOptionMenuPtr->subOption[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sHpBarAnimSpeedOptions[sOptionMenuPtr->subOption[selection]]);
                 break;
             case MENUITEM_EXPBARANIMSPEED:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sExpBarAnimSpeedOptions[sOptionMenuPtr->subOption[selection]]);
+                AddTextPrinterParameterized3(1, FONT_2, x, y, dst, -1, sExpBarAnimSpeedOptions[sOptionMenuPtr->subOption[selection]]);
                 break;
             default:
                 break;
@@ -715,7 +715,7 @@ static void BufferOptionMenuString(u8 selection)
     }
     
     PutWindowTilemap(1);
-    CopyWindowToVram(1, COPYWIN_BOTH);
+    CopyWindowToVram(1, COPYWIN_FULL);
 }
 
 static void CloseAndSaveOptionMenu(u8 taskId)
@@ -744,11 +744,11 @@ static void PrintOptionMenuHeader(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     if(!sOptionMenuPtr->inSubMenu)
-        AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_MenuOption, 8, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_TEXT_OPTION, FONT_2, gText_MenuOption, 8, 1, TEXT_SKIP_DRAW, NULL);
     else
-        AddTextPrinterParameterized(WIN_TEXT_OPTION, 2, gText_BattleScene, 8, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_TEXT_OPTION, FONT_2, gText_BattleScene, 8, 1, TEXT_SKIP_DRAW, NULL);
     PutWindowTilemap(0);
-    CopyWindowToVram(0, COPYWIN_BOTH);
+    CopyWindowToVram(0, COPYWIN_FULL);
 }
 
 static void DrawOptionMenuBg(void)
@@ -784,14 +784,14 @@ static void LoadOptionMenuItemNames(void)
     {
         for (i = 0; i < MENUITEM_COUNT; i++)
         {
-            AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+            AddTextPrinterParameterized(WIN_OPTIONS, FONT_2, sOptionMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SKIP_DRAW, NULL);    
         }
     }
     else
     {
         for (i = 0; i < MENUITEM_COUNT2; i++)
         {
-            AddTextPrinterParameterized(WIN_OPTIONS, 2, sOptionMenuItemsNames[i + MENUITEM_COUNT], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+            AddTextPrinterParameterized(WIN_OPTIONS, FONT_2, sOptionMenuItemsNames[i + MENUITEM_COUNT], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SKIP_DRAW, NULL);    
         }
     }
 }
@@ -799,8 +799,8 @@ static void LoadOptionMenuItemNames(void)
 static void UpdateSettingSelectionDisplay(u16 selection)
 {
     u16 maxLetterHeight, y;
-
-    maxLetterHeight = GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT);
+    
+    maxLetterHeight = GetFontAttribute(FONT_2, FONTATTR_MAX_LETTER_HEIGHT);
     y = selection * (maxLetterHeight - 1) + 0x3A;
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(y, y + maxLetterHeight));
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0x10, 0xE0));

@@ -84,7 +84,7 @@ static const struct OamData sOamData_ScrollArrowIndicator =
     .y = 0,
     .affineMode = 0,
     .objMode = 0,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = 0,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -224,7 +224,7 @@ static const struct OamData sOamData_RedArrowCursor =
     .y = 0,
     .affineMode = 0,
     .objMode = 0,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = 0,
     .shape = SPRITE_SHAPE(16x16),
     .x = 0,
@@ -282,11 +282,11 @@ static void SpriteCallback_ScrollIndicatorArrow(struct Sprite *sprite)
         {
         case 0:
             multiplier = sprite->tMultiplier;
-            sprite->pos2.x = (gSineTable[(u8)(sprite->tSinePos)] * multiplier) / 256;
+            sprite->x2 = (gSineTable[(u8)(sprite->tSinePos)] * multiplier) / 256;
             break;
         case 1:
             multiplier = sprite->tMultiplier;
-            sprite->pos2.y = (gSineTable[(u8)(sprite->tSinePos)] * multiplier) / 256;
+            sprite->y2 = (gSineTable[(u8)(sprite->tSinePos)] * multiplier) / 256;
             break;
         }
         sprite->tSinePos += sprite->tFrequency;
@@ -331,7 +331,7 @@ u8 AddScrollIndicatorArrowPair(const struct ScrollArrowsTemplate *arrowInfo, u16
     spriteSheet.size = 0x100;
     spriteSheet.tag = arrowInfo->tileTag;
     LoadCompressedSpriteSheet(&spriteSheet);
-    if (arrowInfo->palTag == SPRITE_INVALID_TAG)
+    if (arrowInfo->palTag == TAG_NONE)
     {
         LoadPalette(sRedArrowPal, (16 * arrowInfo->palNum) + 0x100, 0x20);
     }
@@ -353,7 +353,7 @@ u8 AddScrollIndicatorArrowPair(const struct ScrollArrowsTemplate *arrowInfo, u16
     data->topSpriteId = AddScrollIndicatorArrowObject(arrowInfo->firstArrowType, arrowInfo->firstX, arrowInfo->firstY, arrowInfo->tileTag, arrowInfo->palTag);
     data->bottomSpriteId = AddScrollIndicatorArrowObject(arrowInfo->secondArrowType, arrowInfo->secondX, arrowInfo->secondY, arrowInfo->tileTag, arrowInfo->palTag);
 
-    if (arrowInfo->palTag == SPRITE_INVALID_TAG)
+    if (arrowInfo->palTag == TAG_NONE)
     {
         gSprites[data->topSpriteId].oam.paletteNum = arrowInfo->palNum;
         gSprites[data->bottomSpriteId].oam.paletteNum = arrowInfo->palNum;
@@ -410,9 +410,9 @@ void RemoveScrollIndicatorArrowPair(u8 taskId)
 {
     struct ScrollIndicatorPair *data = (struct ScrollIndicatorPair *)gTasks[taskId].data;
 
-    if (data->tileTag != SPRITE_INVALID_TAG)
+    if (data->tileTag != TAG_NONE)
         FreeSpriteTilesByTag(data->tileTag);
-    if (data->palTag != SPRITE_INVALID_TAG)
+    if (data->palTag != TAG_NONE)
         FreeSpritePaletteByTag(data->palTag);
     DestroySprite(&gSprites[data->topSpriteId]);
     DestroySprite(&gSprites[data->bottomSpriteId]);
@@ -537,7 +537,7 @@ u8 ListMenuAddRedOutlineCursorObject(const struct CursorStruct *cursor)
     spriteSheet.size = 0x100;
     spriteSheet.tag = cursor->tileTag;
     LoadCompressedSpriteSheet(&spriteSheet);
-    if (cursor->palTag == SPRITE_INVALID_TAG)
+    if (cursor->palTag == TAG_NONE)
     {
         LoadPalette(sRedArrowPal, (16 * cursor->palNum) + 0x100, 0x20);
     }
@@ -562,7 +562,7 @@ u8 ListMenuAddRedOutlineCursorObject(const struct CursorStruct *cursor)
     gSprites[data->spriteId].oam.priority = 0;
     gSprites[data->spriteId].subpriority = 0;
     gSprites[data->spriteId].subspriteTableNum = 0;
-    if (cursor->palTag == SPRITE_INVALID_TAG)
+    if (cursor->palTag == TAG_NONE)
         gSprites[data->spriteId].oam.paletteNum = cursor->palNum;
     return taskId;
 }
@@ -571,8 +571,8 @@ void ListMenuUpdateRedOutlineCursorObject(u8 taskId, u16 x, u16 y)
 {
     struct RedOutlineCursor *data = (struct RedOutlineCursor *)gTasks[taskId].data;
 
-    gSprites[data->spriteId].pos1.x = x + 120;
-    gSprites[data->spriteId].pos1.y = y + 120;
+    gSprites[data->spriteId].x = x + 120;
+    gSprites[data->spriteId].y = y + 120;
 }
 
 void ListMenuRemoveRedOutlineCursorObject(u8 taskId)
@@ -580,9 +580,9 @@ void ListMenuRemoveRedOutlineCursorObject(u8 taskId)
     struct RedOutlineCursor *data = (struct RedOutlineCursor *)gTasks[taskId].data;
 
     Free(data->subspritesPtr);
-    if (data->tileTag != SPRITE_INVALID_TAG)
+    if (data->tileTag != TAG_NONE)
         FreeSpriteTilesByTag(data->tileTag);
-    if (data->palTag != SPRITE_INVALID_TAG)
+    if (data->palTag != TAG_NONE)
         FreeSpritePaletteByTag(data->palTag);
     DestroySprite(&gSprites[data->spriteId]);
     DestroyTask(taskId);
@@ -590,7 +590,7 @@ void ListMenuRemoveRedOutlineCursorObject(u8 taskId)
 
 static void SpriteCallback_RedArrowCursor(struct Sprite *sprite)
 {
-    sprite->pos2.x = gSineTable[(u8)(sprite->data[0])] / 64;
+    sprite->x2 = gSineTable[(u8)(sprite->data[0])] / 64;
     sprite->data[0] += 8;
 }
 
@@ -610,7 +610,7 @@ static u8 ListMenuAddRedArrowCursorObject(const struct CursorStruct *cursor)
     spriteSheet.size = 0x80;
     spriteSheet.tag = cursor->tileTag;
     LoadCompressedSpriteSheet(&spriteSheet);
-    if (cursor->palTag == SPRITE_INVALID_TAG)
+    if (cursor->palTag == TAG_NONE)
     {
         LoadPalette(sRedArrowPal, (16 * cursor->palNum) + 0x100, 0x20);
     }
@@ -628,9 +628,9 @@ static u8 ListMenuAddRedArrowCursorObject(const struct CursorStruct *cursor)
     spriteTemplate.tileTag = cursor->tileTag;
     spriteTemplate.paletteTag = cursor->palTag;
     data->spriteId = CreateSprite(&spriteTemplate, cursor->left, cursor->top, 0);
-    gSprites[data->spriteId].pos2.x = 8;
-    gSprites[data->spriteId].pos2.y = 8;
-    if (cursor->palTag == SPRITE_INVALID_TAG)
+    gSprites[data->spriteId].x2 = 8;
+    gSprites[data->spriteId].y2 = 8;
+    if (cursor->palTag == TAG_NONE)
         gSprites[data->spriteId].oam.paletteNum = cursor->palNum;
     return taskId;
 }
@@ -639,17 +639,17 @@ static void ListMenuUpdateRedArrowCursorObject(u8 taskId, u16 x, u16 y)
 {
     struct RedArrowCursor *data = (struct RedArrowCursor *)gTasks[taskId].data;
 
-    gSprites[data->spriteId].pos1.x = x;
-    gSprites[data->spriteId].pos1.y = y;
+    gSprites[data->spriteId].x = x;
+    gSprites[data->spriteId].y = y;
 }
 
 static void ListMenuRemoveRedArrowCursorObject(u8 taskId)
 {
     struct RedArrowCursor *data = (struct RedArrowCursor *)gTasks[taskId].data;
 
-    if (data->tileTag != SPRITE_INVALID_TAG)
+    if (data->tileTag != TAG_NONE)
         FreeSpriteTilesByTag(data->tileTag);
-    if (data->palTag != SPRITE_INVALID_TAG)
+    if (data->palTag != TAG_NONE)
         FreeSpritePaletteByTag(data->palTag);
     DestroySprite(&gSprites[data->spriteId]);
     DestroyTask(taskId);

@@ -1,4 +1,4 @@
-SevenIsland_House_Room1_Text_OnlyEnjoymentWatchingBattles:: @ 81A049B
+SevenIsland_House_Room1_Text_OnlyEnjoymentWatchingBattles::
     .string "I may not look like much now,\n"
     .string "but when I was younger…\p"
     .string "I flew everywhere, challenging\n"
@@ -89,10 +89,10 @@ SevenIsland_House_Room1_Text_HeString::
 SevenIsland_House_Room1_Text_SheString::
     .string "she$"
 
-SevenIsland_House_Room1_Text_Spearow:: @ 818F32C
+SevenIsland_House_Room1_Text_Spearow::
     .string "SPEAROW: Tetweet!$"
 
-SevenIsland_House_Room1_Text_SlightBreezeAroundBox:: @ 81A0567
+SevenIsland_House_Room1_Text_SlightBreezeAroundBox::
     .string "There is a slight breeze blowing\n"
     .string "around the box.$"
 

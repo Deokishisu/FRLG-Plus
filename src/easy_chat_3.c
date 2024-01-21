@@ -23,16 +23,16 @@ struct ECWork
     u16 bg2ScrollRow;
     int tgtBgY;
     int deltaBgY;
-    struct Sprite * selectDestFieldCursorSprite;
-    struct Sprite * rectCursorSpriteRight;
-    struct Sprite * rectCursorSpriteLeft;
-    struct Sprite * selectWordCursorSprite;
-    struct Sprite * selectGroupHelpSprite;
-    struct Sprite * modeIconsSprite;
-    struct Sprite * upTriangleCursorSprite;
-    struct Sprite * downTriangleCursorSprite;
-    struct Sprite * startPgUpButtonSprite;
-    struct Sprite * selectPgDnButtonSprite;
+    struct Sprite *selectDestFieldCursorSprite;
+    struct Sprite *rectCursorSpriteRight;
+    struct Sprite *rectCursorSpriteLeft;
+    struct Sprite *selectWordCursorSprite;
+    struct Sprite *selectGroupHelpSprite;
+    struct Sprite *modeIconsSprite;
+    struct Sprite *upTriangleCursorSprite;
+    struct Sprite *downTriangleCursorSprite;
+    struct Sprite *startPgUpButtonSprite;
+    struct Sprite *selectPgDnButtonSprite;
     u16 bg1TilemapBuffer[BG_SCREEN_SIZE / 2];
     u16 bg3TilemapBuffer[BG_SCREEN_SIZE / 2];
 };
@@ -104,7 +104,7 @@ static int GetBg2ScrollRow(void);
 static void SetRegWin0Coords(u8 left, u8 top, u8 right, u8 bottom);
 static void LoadSpriteGfx(void);
 static void CreateSelectDestFieldCursorSprite(void);
-static void SpriteCB_BounceCursor(struct Sprite * sprite);
+static void SpriteCB_BounceCursor(struct Sprite *sprite);
 static void SetSelectDestFieldCursorSpritePosAndResetAnim(u8 x, u8 y);
 static void FreezeSelectDestFieldCursorSprite(void);
 static void UnfreezeSelectDestFieldCursorSprite(void);
@@ -114,7 +114,7 @@ static void EC_MoveCursor(void);
 static void MoveCursor_Group(s8 a0, s8 a1);
 static void MoveCursor_Alpha(s8 a0, s8 a1);
 static void CreateSelectWordCursorSprite(void);
-static void SpriteCB_SelectWordCursorSprite(struct Sprite * sprite);
+static void SpriteCB_SelectWordCursorSprite(struct Sprite *sprite);
 static void SetSelectWordCursorSpritePos(void);
 static void SetSelectWordCursorSpritePosExplicit(u8 x, u8 y);
 static void DestroySelectWordCursorSprite(void);
@@ -695,12 +695,12 @@ static bool8 ECInterfaceCmd_02(void)
     {
         if (*ecWord == 0xFFFF)
         {
-            stringWidth = GetStringWidth(1, gUnknown_843F8D8, 0) * 7;
+            stringWidth = GetStringWidth(FONT_1, gUnknown_843F8D8, 0) * 7;
         }
         else
         {
             CopyEasyChatWord(str, *ecWord);
-            stringWidth = GetStringWidth(1, str, 0);
+            stringWidth = GetStringWidth(FONT_1, str, 0);
         }
 
         trueStringWidth = stringWidth + 17;
@@ -1319,23 +1319,25 @@ static void PrintTitleText(void)
     if (titleText == NULL)
         return;
 
-    xOffset = (128 - GetStringWidth(1, titleText, 0)) / 2u;
+    xOffset = (128 - GetStringWidth(FONT_1, titleText, 0)) / 2u;
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    EC_AddTextPrinterParameterized2(0, 1, titleText, xOffset, 0, TEXT_SPEED_FF, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
+    EC_AddTextPrinterParameterized2(0, FONT_1, titleText, xOffset, 0, TEXT_SKIP_DRAW, TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
     PutWindowTilemap(0);
-    CopyWindowToVram(0, COPYWIN_BOTH);
+    CopyWindowToVram(0, COPYWIN_FULL);
 }
 
 static void EC_AddTextPrinterParameterized(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, void (*callback)(struct TextPrinterTemplate *, u16))
 {
-    if (fontId == 1) y += 2;
+    if (fontId == FONT_1)
+        y += 2;
     AddTextPrinterParameterized(windowId, fontId, str, x, y, speed, callback);
 }
 
 static void EC_AddTextPrinterParameterized2(u8 windowId, u8 fontId, const u8 *str, u8 x, u8 y, u8 speed, u8 bg, u8 fg, u8 shadow)
 {
     u8 color[3];
-    if (fontId == 1) y += 2;
+    if (fontId == FONT_1)
+        y += 2;
     color[0] = bg;
     color[1] = fg;
     color[2] = shadow;
@@ -1374,17 +1376,17 @@ static void PrintECInterfaceTextById(u8 direction)
 
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
     if (text1)
-        EC_AddTextPrinterParameterized(1, 1, text1, 0, 0, TEXT_SPEED_FF, NULL);
+        EC_AddTextPrinterParameterized(1, FONT_1, text1, 0, 0, TEXT_SKIP_DRAW, NULL);
 
     if (text2)
-        EC_AddTextPrinterParameterized(1, 1, text2, 0, 16, TEXT_SPEED_FF, NULL);
+        EC_AddTextPrinterParameterized(1, FONT_1, text2, 0, 16, TEXT_SKIP_DRAW, NULL);
 
-    CopyWindowToVram(1, COPYWIN_BOTH);
+    CopyWindowToVram(1, COPYWIN_FULL);
 }
 
 static void EC_CreateYesNoMenuWithInitialCursorPos(u8 initialCursorPos)
 {
-    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, 1, 0, 2, 0x001, 14, initialCursorPos);
+    CreateYesNoMenu(&sEasyChatYesNoWindowTemplate, FONT_1, 0, 2, 0x001, 14, initialCursorPos);
 }
 
 static void CreatePhraseFrameWindow(void)
@@ -1435,7 +1437,7 @@ static void PrintECFields(void)
                 ecWord++;
                 for (k = 0; k < 7; k++)
                 {
-                    *str++ = CHAR_EXTRA_EMOJI;
+                    *str++ = CHAR_EXTRA_SYMBOL;
                     *str++ = 9;
                 }
 
@@ -1451,10 +1453,10 @@ static void PrintECFields(void)
         }
 
         *str = EOS;
-        EC_AddTextPrinterParameterized(sEasyChatGraphicsResources->windowId, 1, sEasyChatGraphicsResources->ecPrintBuffer, 0, i * 16, TEXT_SPEED_FF, NULL);
+        EC_AddTextPrinterParameterized(sEasyChatGraphicsResources->windowId, FONT_1, sEasyChatGraphicsResources->ecPrintBuffer, 0, i * 16, TEXT_SKIP_DRAW, NULL);
     }
 
-    CopyWindowToVram(sEasyChatGraphicsResources->windowId, COPYWIN_BOTH);
+    CopyWindowToVram(sEasyChatGraphicsResources->windowId, COPYWIN_FULL);
 }
 
 static void DrawECFrameInTilemapBuffer(u16 *tilemap)
@@ -1566,7 +1568,7 @@ static void PrintECGroupsMenu(void)
                 return;
             }
 
-            EC_AddTextPrinterParameterized(2, 1, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, TEXT_SPEED_FF, NULL);
+            EC_AddTextPrinterParameterized(2, FONT_1, GetEasyChatWordGroupName(groupId), x * 84 + 10, y, TEXT_SKIP_DRAW, NULL);
         }
 
         y += 16;
@@ -1578,7 +1580,7 @@ static void PrintEasyChatKeyboardText(void)
     u32 i;
 
     for (i = 0; i < NELEMS(sEasyChatKeyboardText); i++)
-        EC_AddTextPrinterParameterized(2, 1, sEasyChatKeyboardText[i], 10, 96 + i * 16, TEXT_SPEED_FF, NULL);
+        EC_AddTextPrinterParameterized(2, FONT_1, sEasyChatKeyboardText[i], 10, 96 + i * 16, TEXT_SKIP_DRAW, NULL);
 }
 
 static void PrintECWordsMenu(void)
@@ -1652,7 +1654,7 @@ static void PrintECRowsWin2(u8 row, u8 remrow)
 
                 CopyEasyChatWordPadded(sEasyChatGraphicsResources->ecPaddedWordBuffer, easyChatWord, 0);
 
-                EC_AddTextPrinterParameterized(2, 1, sEasyChatGraphicsResources->ecPaddedWordBuffer, (j * 13 + 3) * 8, y_, TEXT_SPEED_FF, NULL);
+                EC_AddTextPrinterParameterized(2, FONT_1, sEasyChatGraphicsResources->ecPaddedWordBuffer, (j * 13 + 3) * 8, y_, TEXT_SKIP_DRAW, NULL);
             }
         }
         y += 16;
@@ -1933,24 +1935,24 @@ static void CreateSelectDestFieldCursorSprite(void)
     gSprites[spriteId].data[1] = 1;
 }
 
-static void SpriteCB_BounceCursor(struct Sprite * sprite)
+static void SpriteCB_BounceCursor(struct Sprite *sprite)
 {
     if (sprite->data[1])
     {
         if (++sprite->data[0] > 2)
         {
             sprite->data[0] = 0;
-            if (++sprite->pos2.x > 0)
-                sprite->pos2.x = -6;
+            if (++sprite->x2 > 0)
+                sprite->x2 = -6;
         }
     }
 }
 
 static void SetSelectDestFieldCursorSpritePosAndResetAnim(u8 x, u8 y)
 {
-    sEasyChatGraphicsResources->selectDestFieldCursorSprite->pos1.x = x;
-    sEasyChatGraphicsResources->selectDestFieldCursorSprite->pos1.y = y;
-    sEasyChatGraphicsResources->selectDestFieldCursorSprite->pos2.x = 0;
+    sEasyChatGraphicsResources->selectDestFieldCursorSprite->x = x;
+    sEasyChatGraphicsResources->selectDestFieldCursorSprite->y = y;
+    sEasyChatGraphicsResources->selectDestFieldCursorSprite->x2 = 0;
     sEasyChatGraphicsResources->selectDestFieldCursorSprite->data[0] = 0;
 }
 
@@ -1958,7 +1960,7 @@ static void FreezeSelectDestFieldCursorSprite(void)
 {
     sEasyChatGraphicsResources->selectDestFieldCursorSprite->data[0] = 0;
     sEasyChatGraphicsResources->selectDestFieldCursorSprite->data[1] = 0;
-    sEasyChatGraphicsResources->selectDestFieldCursorSprite->pos2.x = 0;
+    sEasyChatGraphicsResources->selectDestFieldCursorSprite->x2 = 0;
 }
 
 static void UnfreezeSelectDestFieldCursorSprite(void)
@@ -1970,11 +1972,11 @@ static void CreateRedRectangularCursorSpritePair(void)
 {
     u8 spriteId = CreateSprite(&sSpriteTemplate_RedRectangularCursor, 0, 0, 3);
     sEasyChatGraphicsResources->rectCursorSpriteRight = &gSprites[spriteId];
-    sEasyChatGraphicsResources->rectCursorSpriteRight->pos2.x = 32;
+    sEasyChatGraphicsResources->rectCursorSpriteRight->x2 = 32;
 
     spriteId = CreateSprite(&sSpriteTemplate_RedRectangularCursor, 0, 0, 3);
     sEasyChatGraphicsResources->rectCursorSpriteLeft = &gSprites[spriteId];
-    sEasyChatGraphicsResources->rectCursorSpriteLeft->pos2.x = -32;
+    sEasyChatGraphicsResources->rectCursorSpriteLeft->x2 = -32;
 
     sEasyChatGraphicsResources->rectCursorSpriteRight->hFlip = TRUE;
     EC_MoveCursor();
@@ -2008,22 +2010,22 @@ static void MoveCursor_Group(s8 x, s8 y)
     if (x != -1)
     {
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteRight, 0);
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.x = x * 84 + 58;
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.y = y * 16 + 96;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->x = x * 84 + 58;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->y = y * 16 + 96;
 
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteLeft, 0);
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.x = x * 84 + 58;
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.y = y * 16 + 96;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->x = x * 84 + 58;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->y = y * 16 + 96;
     }
     else
     {
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteRight, 1);
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.x = 216;
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.y = y * 16 + 112;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->x = 216;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->y = y * 16 + 112;
 
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteLeft, 1);
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.x = 216;
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.y = y * 16 + 112;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->x = 216;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->y = y * 16 + 112;
     }
 }
 
@@ -2048,22 +2050,22 @@ static void MoveCursor_Alpha(s8 cursorX, s8 cursorY)
         }
 
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteRight, anim);
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.x = x;
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.y = y;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->x = x;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->y = y;
 
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteLeft, anim);
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.x = x;
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.y = y;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->x = x;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->y = y;
     }
     else
     {
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteRight, 1);
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.x = 216;
-        sEasyChatGraphicsResources->rectCursorSpriteRight->pos1.y = cursorY * 16 + 112;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->x = 216;
+        sEasyChatGraphicsResources->rectCursorSpriteRight->y = cursorY * 16 + 112;
 
         StartSpriteAnim(sEasyChatGraphicsResources->rectCursorSpriteLeft, 1);
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.x = 216;
-        sEasyChatGraphicsResources->rectCursorSpriteLeft->pos1.y = cursorY * 16 + 112;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->x = 216;
+        sEasyChatGraphicsResources->rectCursorSpriteLeft->y = cursorY * 16 + 112;
     }
 }
 
@@ -2076,13 +2078,13 @@ static void CreateSelectWordCursorSprite(void)
     SetSelectWordCursorSpritePos();
 }
 
-static void SpriteCB_SelectWordCursorSprite(struct Sprite * sprite)
+static void SpriteCB_SelectWordCursorSprite(struct Sprite *sprite)
 {
     if (++sprite->data[0] > 2)
     {
         sprite->data[0] = 0;
-        if (++sprite->pos2.x > 0)
-            sprite->pos2.x = -6;
+        if (++sprite->x2 > 0)
+            sprite->x2 = -6;
     }
 }
 
@@ -2101,9 +2103,9 @@ static void SetSelectWordCursorSpritePosExplicit(u8 x, u8 y)
 {
     if (sEasyChatGraphicsResources->selectWordCursorSprite)
     {
-        sEasyChatGraphicsResources->selectWordCursorSprite->pos1.x = x * 8 + 4;
-        sEasyChatGraphicsResources->selectWordCursorSprite->pos1.y = (y + 1) * 8 + 1;
-        sEasyChatGraphicsResources->selectWordCursorSprite->pos2.x = 0;
+        sEasyChatGraphicsResources->selectWordCursorSprite->x = x * 8 + 4;
+        sEasyChatGraphicsResources->selectWordCursorSprite->y = (y + 1) * 8 + 1;
+        sEasyChatGraphicsResources->selectWordCursorSprite->x2 = 0;
         sEasyChatGraphicsResources->selectWordCursorSprite->data[0] = 0;
     }
 }
@@ -2121,7 +2123,7 @@ static void CreateSelectGroupHelpSprite(void)
 {
     u8 spriteId = CreateSprite(&sSpriteTemplate_SelectGroupHelp, 208, 128, 6);
     sEasyChatGraphicsResources->selectGroupHelpSprite = &gSprites[spriteId];
-    sEasyChatGraphicsResources->selectGroupHelpSprite->pos2.x = -64;
+    sEasyChatGraphicsResources->selectGroupHelpSprite->x2 = -64;
 
     spriteId = CreateSprite(&sSpriteTemplate_EasyChatModeIcons, 208, 80, 5);
     sEasyChatGraphicsResources->modeIconsSprite = &gSprites[spriteId];
@@ -2135,10 +2137,10 @@ static bool8 AnimateSeletGroupModeAndHelpSpriteEnter(void)
     default:
         return FALSE;
     case 0:
-        sEasyChatGraphicsResources->selectGroupHelpSprite->pos2.x += 8;
-        if (sEasyChatGraphicsResources->selectGroupHelpSprite->pos2.x >= 0)
+        sEasyChatGraphicsResources->selectGroupHelpSprite->x2 += 8;
+        if (sEasyChatGraphicsResources->selectGroupHelpSprite->x2 >= 0)
         {
-            sEasyChatGraphicsResources->selectGroupHelpSprite->pos2.x = 0;
+            sEasyChatGraphicsResources->selectGroupHelpSprite->x2 = 0;
             if (!IsEasyChatAlphaMode())
                 StartSpriteAnim(sEasyChatGraphicsResources->modeIconsSprite, 1);
             else
@@ -2175,8 +2177,8 @@ static bool8 RunModeIconHidingAnimation(void)
             sEasyChatGraphicsResources->modeIconState = 1;
         break;
     case 1:
-        sEasyChatGraphicsResources->selectGroupHelpSprite->pos2.x -= 8;
-        if (sEasyChatGraphicsResources->selectGroupHelpSprite->pos2.x <= -64)
+        sEasyChatGraphicsResources->selectGroupHelpSprite->x2 -= 8;
+        if (sEasyChatGraphicsResources->selectGroupHelpSprite->x2 <= -64)
         {
             DestroySprite(sEasyChatGraphicsResources->modeIconsSprite);
             DestroySprite(sEasyChatGraphicsResources->selectGroupHelpSprite);
@@ -2241,14 +2243,14 @@ static void UpdateVerticalScrollArrowSpriteXPos(int direction)
     if (!direction)
     {
         // Group select
-        sEasyChatGraphicsResources->upTriangleCursorSprite->pos1.x = 96;
-        sEasyChatGraphicsResources->downTriangleCursorSprite->pos1.x = 96;
+        sEasyChatGraphicsResources->upTriangleCursorSprite->x = 96;
+        sEasyChatGraphicsResources->downTriangleCursorSprite->x = 96;
     }
     else
     {
         // Word select
-        sEasyChatGraphicsResources->upTriangleCursorSprite->pos1.x = 120;
-        sEasyChatGraphicsResources->downTriangleCursorSprite->pos1.x = 120;
+        sEasyChatGraphicsResources->upTriangleCursorSprite->x = 120;
+        sEasyChatGraphicsResources->downTriangleCursorSprite->x = 120;
     }
 }
 
@@ -2293,6 +2295,6 @@ static void CreateFooterWindow(void)
     template.baseBlock = 0x030;
     windowId = AddWindow(&template);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
-    EC_AddTextPrinterParameterized(windowId, 1, gUnknown_841EE2B, 0, 0, 0, NULL);
+    EC_AddTextPrinterParameterized(windowId, FONT_1, gUnknown_841EE2B, 0, 0, 0, NULL);
     PutWindowTilemap(windowId);
 }

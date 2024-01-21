@@ -123,7 +123,7 @@ static void InitLocalLinkPlayer(void);
 static void sub_800978C(void);
 static void CB2_LinkTest(void);
 static void ProcessRecvCmds(u8 id);
-static void sub_800A040(void);
+static void LinkCB_SendHeldKeys(void);
 static void ResetBlockSend(void);
 static bool32 InitBlockSend(const void *src, size_t size);
 static void LinkCB_BlockSendBegin(void);
@@ -447,7 +447,7 @@ void LinkTestProcessKeyInput(void)
     }
     if (JOY_NEW(L_BUTTON))
     {
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB(2, 0, 0));
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB(2, 0, 0));
     }
     if (JOY_NEW(START_BUTTON))
     {
@@ -708,13 +708,13 @@ void BuildSendCmd(u16 command)
     }
 }
 
-void sub_8009FE8(void)
+void StartSendingKeysToLink(void)
 {
     if (gWirelessCommType)
     {
         StartSendingKeysToRfu();
     }
-    gLinkCallback = sub_800A040;
+    gLinkCallback = LinkCB_SendHeldKeys;
 }
 
 bool32 IsSendingKeysToLink(void)
@@ -723,14 +723,14 @@ bool32 IsSendingKeysToLink(void)
     {
         return IsSendingKeysToRfu();
     }
-    if (gLinkCallback == sub_800A040)
+    if (gLinkCallback == LinkCB_SendHeldKeys)
     {
         return TRUE;
     }
     return FALSE;
 }
 
-static void sub_800A040(void)
+static void LinkCB_SendHeldKeys(void)
 {
     if (gReceivedRemoteLinkPlayers == TRUE)
     {
@@ -1367,7 +1367,7 @@ static void LinkCB_WaitAckCommand5FFF(void)
     }
     if (count == linkPlayerCount)
     {
-        gBattleTypeFlags &= ~(BATTLE_TYPE_LINK_ESTABLISHED | 0xFFFF0000);
+        gBattleTypeFlags &= ~(BATTLE_TYPE_LINK_IN_BATTLE | 0xFFFF0000);
         gLinkVSyncDisabled = TRUE;
         CloseLink();
         gLinkCallback = NULL;
@@ -1459,7 +1459,7 @@ void CB2_LinkError(void)
     ResetSpriteData();
     FreeAllSpritePalettes();
     ResetPaletteFadeControl();
-    FillPalette(0, 0, 2);
+    FillPalette(RGB_BLACK, 0, 2);
     ResetTasks();
     ScanlineEffect_Stop();
     if (gWirelessCommType)
@@ -1506,12 +1506,12 @@ void sub_800AE1C(void)
     LoadPalette(sWirelessLinkDisplayPal, 0, 0x20);
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(0, 3, 2, 5, sLinkErrorTextColor, 0, gText_CommErrorEllipsis);
-    AddTextPrinterParameterized3(2, 3, 2, 2, sLinkErrorTextColor, 0, gText_MoveCloserToLinkPartner);
+    AddTextPrinterParameterized3(0, FONT_3, 2, 5, sLinkErrorTextColor, 0, gText_CommErrorEllipsis);
+    AddTextPrinterParameterized3(2, FONT_3, 2, 2, sLinkErrorTextColor, 0, gText_MoveCloserToLinkPartner);
     PutWindowTilemap(0);
     PutWindowTilemap(2);
     CopyWindowToVram(0, 0);
-    CopyWindowToVram(2, COPYWIN_BOTH);
+    CopyWindowToVram(2, COPYWIN_FULL);
     ShowBg(0);
     ShowBg(1);
 }
@@ -1520,11 +1520,11 @@ void sub_800AED0(void)
 {
     FillWindowPixelBuffer(1, PIXEL_FILL(0));
     FillWindowPixelBuffer(2, PIXEL_FILL(0));
-    AddTextPrinterParameterized3(1, 3, 2, 0, sLinkErrorTextColor, 0, gText_CommErrorCheckConnections);
+    AddTextPrinterParameterized3(1, FONT_3, 2, 0, sLinkErrorTextColor, 0, gText_CommErrorCheckConnections);
     PutWindowTilemap(1);
     PutWindowTilemap(2);
     CopyWindowToVram(1, 0);
-    CopyWindowToVram(2, COPYWIN_BOTH);
+    CopyWindowToVram(2, COPYWIN_FULL);
     ShowBg(0);
 }
 
@@ -1554,11 +1554,11 @@ static void CB2_PrintErrorMessage(void)
     case 130:
         if (gWirelessCommType == 2)
         {
-            AddTextPrinterParameterized3(0, 3, 2, 20, sLinkErrorTextColor, 0, gText_ABtnTitleScreen);
+            AddTextPrinterParameterized3(0, FONT_3, 2, 20, sLinkErrorTextColor, 0, gText_ABtnTitleScreen);
         }
         else if (gWirelessCommType == 1)
         {
-            AddTextPrinterParameterized3(0, 3, 2, 20, sLinkErrorTextColor, 0, gText_ABtnRegistrationCounter);
+            AddTextPrinterParameterized3(0, FONT_3, 2, 20, sLinkErrorTextColor, 0, gText_ABtnRegistrationCounter);
         }
         break;
     }

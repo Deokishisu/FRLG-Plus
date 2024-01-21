@@ -3,23 +3,20 @@
 .set LOCALID_DODRIO_MASTER, 17
 .set TRAINER, VAR_0x8009
 
-Route15_MapScripts:: @ 81680DB
+Route15_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route15_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route15_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_TANGELA
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route15_MapScript_TangelaMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route15_MapScript_TangelaMasterMovementType
 	setvar TRAINER, MASTER_VENOMOTH
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route15_MapScript_VenomothMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route15_MapScript_VenomothMasterMovementType
 	setvar TRAINER, MASTER_DODRIO
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route15_MapScript_DodrioMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route15_MapScript_DodrioMasterMovementType
 	end
 
 Route15_MapScript_TangelaMasterMovementType::
@@ -35,6 +32,6 @@ Route15_MapScript_DodrioMasterMovementType::
 	return
 
 
-Route15_EventScript_RouteSign:: @ 81680DC
+Route15_EventScript_RouteSign::
 	msgbox Route15_Text_RouteSign, MSGBOX_SIGN
 	end

@@ -1,4 +1,4 @@
-Route22_Text_EarlyRivalIntro:: @ 8188890
+Route22_Text_EarlyRivalIntro::
 	.string "{RIVAL}: Hey! {PLAYER}!\p"
 	.string "You're off to the POKéMON LEAGUE?\n"
 	.string "Forget about it!\p"
@@ -9,11 +9,11 @@ Route22_Text_EarlyRivalIntro:: @ 8188890
 	.string "By the way, did your POKéMON get\n"
 	.string "any stronger?$"
 
-Route22_Text_EarlyRivalDefeat:: @ 8188959
+Route22_Text_EarlyRivalDefeat::
 	.string "Awww!\n"
 	.string "You just lucked out!$"
 
-Route22_Text_EarlyRivalPostBattle:: @ 8188974
+Route22_Text_EarlyRivalPostBattle::
 	.string "I heard the POKéMON LEAGUE is\n"
 	.string "crawling with tough TRAINERS.\p"
 	.string "I have to figure out how to get\n"
@@ -21,7 +21,7 @@ Route22_Text_EarlyRivalPostBattle:: @ 8188974
 	.string "You should quit dawdling and get a\n"
 	.string "move on!$"
 
-Route22_Text_LateRivalIntro:: @ 8188A3C
+Route22_Text_LateRivalIntro::
 	.string "{RIVAL}: What? {PLAYER}!\n"
 	.string "What a surprise to see you here!\p"
 	.string "So you're going to the POKéMON\n"
@@ -32,18 +32,18 @@ Route22_Text_LateRivalIntro:: @ 8188A3C
 	.string "warm-up for the POKéMON LEAGUE!\p"
 	.string "Come on!$"
 
-Route22_Text_LateRivalDefeat:: @ 8188B08
+Route22_Text_LateRivalDefeat::
 	.string "What!?\p"
 	.string "I was just careless, you!$"
 
-Route22_Text_LateRivalPostBattle:: @ 8188B29
+Route22_Text_LateRivalPostBattle::
 	.string "That loosened me up.\n"
 	.string "I'm ready for the POKéMON LEAGUE!\p"
 	.string "{PLAYER}, you need more practice.\p"
 	.string "But hey, you know that!\n"
 	.string "I'm out of here. Smell ya!$"
 
-Route22_Text_LeagueGateSign:: @ 8188BFF
+Route22_Text_LeagueGateSign::
 	.string "POKéMON LEAGUE\n"
 	.string "Front Gate$"
 

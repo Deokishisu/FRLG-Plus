@@ -139,9 +139,6 @@ static void UpdateTrainerFansAfterLinkBattle(struct TrainerFanClub *);
 static bool8 DidPlayerGetFirstFans(struct TrainerFanClub * );
 static void SetPlayerGotFirstFans(struct TrainerFanClub *);
 static bool8 InQuestLogDisabledLocation(void);
-static bool8 sub_8113778(u16, const u16 *);
-static bool8 sub_81137E4(u16, const u16 *);
-static u16 *sub_8113828(u16, const u16 *);
 static bool8 TrySetLinkQuestLogEvent(u16, const u16 *);
 static bool8 TrySetTrainerBattleQuestLogEvent(u16, const u16 *);
 
@@ -157,7 +154,7 @@ static const u16 sUnknown_8456638[] = INCBIN_U16("graphics/unknown/unknown_84566
 
 static const u8 sQuestLogTextLineYCoords[] = {17, 10, 3};
 
-void SetQuestLogRecordAndPlaybackPointers(void * oldPointer)
+void SetQuestLogRecordAndPlaybackPointers(void *oldPointer)
 {
     ptrdiff_t offset = (void *)gSaveBlock1Ptr - oldPointer;
     if (gUnknown_203AE04)
@@ -205,10 +202,10 @@ void RunQuestLogCB(void)
         sQuestLogCB();
 }
 
-bool8 sub_8110944(const void * a0, size_t cmdSize)
+bool8 sub_8110944(const void *a0, size_t cmdSize)
 {
-    void * r2 = gSaveBlock1Ptr->questLog[sCurrentSceneNum].script;
-    void * r0 = gSaveBlock1Ptr->questLog[sCurrentSceneNum].end;
+    void *r2 = gSaveBlock1Ptr->questLog[sCurrentSceneNum].script;
+    void *r0 = gSaveBlock1Ptr->questLog[sCurrentSceneNum].end;
     r0 -= cmdSize;
     if ((const void *)a0 < r2 || (const void *)a0 > r0)
         return FALSE;
@@ -217,8 +214,8 @@ bool8 sub_8110944(const void * a0, size_t cmdSize)
 
 bool8 WillCommandOfSizeFitInSav1Record(u16 *cursor, size_t size)
 {
-    void * start = gSaveBlock1Ptr->questLog[sCurrentSceneNum].script;
-    void * end = gSaveBlock1Ptr->questLog[sCurrentSceneNum].end;
+    void *start = gSaveBlock1Ptr->questLog[sCurrentSceneNum].script;
+    void *end = gSaveBlock1Ptr->questLog[sCurrentSceneNum].end;
     end -= size;
     if ((void *)cursor < start || (void *)cursor > end)
         return FALSE;
@@ -503,12 +500,12 @@ void DrawPreviouslyOnQuestHeader(u8 sceneNum)
         StringAppend(gStringVar4, gStringVar1);
     }
 
-    AddTextPrinterParameterized4(sQuestLogHeaderWindowIds[0], 2, 2, 2, 1, 2, sTextColors, 0, gStringVar4);
+    AddTextPrinterParameterized4(sQuestLogHeaderWindowIds[0], FONT_2, 2, 2, 1, 2, sTextColors, 0, gStringVar4);
     PutWindowTilemap(sQuestLogHeaderWindowIds[0]);
     PutWindowTilemap(sQuestLogHeaderWindowIds[1]);
     CopyWindowToVram(sQuestLogHeaderWindowIds[0], COPYWIN_GFX);
     CopyWindowToVram(sQuestLogHeaderWindowIds[2], COPYWIN_GFX);
-    CopyWindowToVram(sQuestLogHeaderWindowIds[1], COPYWIN_BOTH);
+    CopyWindowToVram(sQuestLogHeaderWindowIds[1], COPYWIN_FULL);
 }
 
 void CommitQuestLogWindow1(void)
@@ -825,7 +822,7 @@ static void QuestLog_StartFinalScene(void)
     u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
     ResetSpecialVars();
     Save_ResetSaveCounters();
-    Save_LoadGameData(SAVE_NORMAL);
+    LoadGameSave(SAVE_NORMAL);
     gSaveBlock1Ptr->keyFlags.version = KeyVersionBackup;
     gSaveBlock1Ptr->keyFlags.difficulty = KeyDifficultyBackup;
     gSaveBlock1Ptr->keyFlags.nuzlocke = KeyNuzlockeBackup;
@@ -884,7 +881,7 @@ static void Task_RunPlaybackCB(u8 taskId)
     case 0:
         if (++data[0] == 0x7F)
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, 0);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, 0);
             sQuestLogCurrentScene.sceneEndMode = 2;
             data[1]++;
         }
@@ -1023,7 +1020,7 @@ static void DrawQuestLogSceneDescription(void)
 
     PutWindowTilemap(sQuestLogHeaderWindowIds[2]);
     sub_8111D90(sQuestLogHeaderWindowIds[2]);
-    AddTextPrinterParameterized4(sQuestLogHeaderWindowIds[2], 2, 2, sQuestLogTextLineYCoords[numLines], 1, 0, sTextColors, 0, gStringVar4);
+    AddTextPrinterParameterized4(sQuestLogHeaderWindowIds[2], FONT_2, 2, sQuestLogTextLineYCoords[numLines], 1, 0, sTextColors, 0, gStringVar4);
     ScheduleBgCopyTilemapToVram(0);
 }
 
@@ -1689,9 +1686,9 @@ static const struct FlagOrVarRecord sDummyFlagOrVarRecord = {
     0x7FFF
 };
 
-void * QuestLogGetFlagOrVarPtr(bool8 isFlag, u16 idx)
+void *QuestLogGetFlagOrVarPtr(bool8 isFlag, u16 idx)
 {
-    void * response;
+    void *response;
     if (sQuestLogCursor == 0)
         return NULL;
     if (sQuestLogCursor >= sNumEventsInLogEntry)

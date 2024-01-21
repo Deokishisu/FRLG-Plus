@@ -10,8 +10,8 @@
 #include "constants/pokemon.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
+#include "constants/sound.h"
 #include "constants/species.h"
-#include "constants/trainer_classes.h"
 #include "constants/vars.h"
 #include "constants/battle.h"
 #include "constants/heal_locations.h"
@@ -46,7 +46,7 @@
 	.include "data/script_cmd_table.inc"
 
 	.align 2
-gSpecialVars:: @ 815FD0C
+gSpecialVars::
 	.4byte gSpecialVar_0x8000
 	.4byte gSpecialVar_0x8001
 	.4byte gSpecialVar_0x8002
@@ -72,17 +72,17 @@ gSpecialVars:: @ 815FD0C
 	.include "data/specials.inc"
 
 	.align 2
-gStdScripts:: @ 8160450
-	.4byte Std_ObtainItem
-	.4byte Std_FindItem
-	.4byte Std_MsgboxNPC
-	.4byte Std_MsgboxSign
-	.4byte Std_MsgboxDefault
-	.4byte Std_MsgboxYesNo
-	.4byte Std_MsgboxAutoclose
-	.4byte Std_ObtainDecoration
-	.4byte Std_PutItemAway
-	.4byte Std_ReceivedItem
+gStdScripts::
+	.4byte Std_ObtainItem           @ STD_OBTAIN_ITEM
+	.4byte Std_FindItem             @ STD_FIND_ITEM
+	.4byte Std_MsgboxNPC            @ MSGBOX_NPC
+	.4byte Std_MsgboxSign           @ MSGBOX_SIGN
+	.4byte Std_MsgboxDefault        @ MSGBOX_DEFAULT
+	.4byte Std_MsgboxYesNo          @ MSGBOX_YESNO
+	.4byte Std_MsgboxAutoclose      @ MSGBOX_AUTOCLOSE
+	.4byte Std_ObtainDecoration     @ STD_OBTAIN_DECORATION
+	.4byte Std_PutItemAway          @ STD_PUT_ITEM_AWAY
+	.4byte Std_ReceivedItem         @ STD_RECEIVED_ITEM
 gStdScriptsEnd::
 
 	.include "data/maps/BattleColosseum_2P/scripts.inc"
@@ -343,9 +343,9 @@ gStdScriptsEnd::
 	.include "data/maps/PalletTown_PlayersHouse_2F/scripts.inc"
 	.include "data/maps/PalletTown_RivalsHouse/scripts.inc"
 	.include "data/maps/PalletTown_ProfessorOaksLab/scripts.inc"
-	.include "data/maps/ViridianCity_House1/scripts.inc"
+	.include "data/maps/ViridianCity_House/scripts.inc"
 	.include "data/maps/ViridianCity_Gym/scripts.inc"
-	.include "data/maps/ViridianCity_House2/scripts.inc"
+	.include "data/maps/ViridianCity_School/scripts.inc"
 	.include "data/maps/ViridianCity_Mart/scripts.inc"
 	.include "data/maps/ViridianCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/ViridianCity_PokemonCenter_2F/scripts.inc"
@@ -669,9 +669,9 @@ gStdScriptsEnd::
 	.include "data/maps/PalletTown_PlayersHouse_2F/text.inc"
 	.include "data/maps/PalletTown_RivalsHouse/text.inc"
 	.include "data/maps/PalletTown_ProfessorOaksLab/text.inc"
-	.include "data/maps/ViridianCity_House1/text.inc"
+	.include "data/maps/ViridianCity_House/text.inc"
 	.include "data/maps/ViridianCity_Gym/text.inc"
-	.include "data/maps/ViridianCity_House2/text.inc"
+	.include "data/maps/ViridianCity_School/text.inc"
 	.include "data/maps/ViridianCity_Mart/text.inc"
 	.include "data/maps/ViridianCity_PokemonCenter_1F/text.inc"
 	.include "data/maps/PewterCity_Museum_1F/text.inc"
@@ -806,58 +806,58 @@ gStdScriptsEnd::
 	.include "data/scripts/trainer_battle.inc"
 	.include "data/text/pc.inc"
 
-Text_PleaseComeAgain:: @ 81A5190
+Text_PleaseComeAgain::
 	.string "Please come again!$"
 
 	.include "data/text/obtain_item.inc"
 
-Text_WantWhichFloor:: @ 81A535C
+Text_WantWhichFloor::
 	.string "Which floor do you want?$"
 
-Text_BagItemCanBeRegistered:: @ 81A5375
+Text_BagItemCanBeRegistered::
 	.string "An item in the BAG can be\n"
 	.string "registered to SELECT for easy use.$"
 
-Text_PlayerBootedUpPC:: @ 81A5420
+Text_PlayerBootedUpPC::
 	.string "{PLAYER} booted up the PC.$"
 
-gText_PkmnFainted3:: @ 81A5476
+gText_PkmnFainted3::
 	.string "{STR_VAR_1} fainted…\p"
 	.string "$"
 
-Text_WelcomeWantToHealPkmn:: @ 81A5483
+Text_WelcomeWantToHealPkmn::
 	.string "Welcome to our POKéMON CENTER!\p"
 	.string "Would you like me to heal your\n"
 	.string "POKéMON back to perfect health?$"
 
-Text_TakeYourPkmnForFewSeconds:: @ 81A54E1
+Text_TakeYourPkmnForFewSeconds::
 	.string "Okay, I'll take your POKéMON for a\n"
 	.string "few seconds.$"
 
-Text_WeHopeToSeeYouAgain:: @ 81A5511
+Text_WeHopeToSeeYouAgain::
 	.string "We hope to see you again!$"
 
-Text_RestoredPkmnToFullHealth:: @ 81A552B
+Text_RestoredPkmnToFullHealth::
 	.string "Thank you for waiting.\n"
 	.string "We've restored your POKéMON to\l"
 	.string "full health.$"
 
 	.include "data/text/surf.inc"
 
-Text_WirelessClubUndergoingAdjustments:: @ 81A561A
+Text_WirelessClubUndergoingAdjustments::
 	.string "I'm terribly sorry.\n"
 	.string "The POKéMON WIRELESS CLUB is\l"
 	.string "undergoing adjustments now.$"
 
-Text_AppearsToBeUndergoingAdjustments:: @ 81A5667
+Text_AppearsToBeUndergoingAdjustments::
 	.string "It appears to be undergoing\n"
 	.string "adjustments…$"
 
-Text_HandedOverItem:: @ 81A5690
+Text_HandedOverItem::
 	.string "{PLAYER} handed over the\n"
 	.string "{STR_VAR_1}.$"
 
-Text_GiveNicknameToThisMon:: @ 81A56A7
+Text_GiveNicknameToThisMon::
 	.string "Do you want to give a nickname to\n"
 	.string "this {STR_VAR_1}?$"
 
@@ -866,56 +866,55 @@ Text_GiveNicknameToThisMon:: @ 81A56A7
 	.include "data/text/aide.inc"
 	.include "data/text/ingame_trade.inc"
 
-Text_CardKeyOpenedDoor:: @ 81A5B88
+Text_CardKeyOpenedDoor::
 	.string "Bingo!\n"
 	.string "The CARD KEY opened the door!$"
 
-Text_ItNeedsCardKey:: @ 81A5BAD
+Text_ItNeedsCardKey::
 	.string "No!\n"
 	.string "It needs a CARD KEY!$"
 
-Text_AccessedProfOaksPC:: @ 81A5BC6
+Text_AccessedProfOaksPC::
 	.string "Accessed PROF. OAK's PC…\p"
 	.string "Accessed the POKéDEX Rating\n"
 	.string "System…$"
 
-Text_HavePokedexRated:: @ 81A5C03
+Text_HavePokedexRated::
 	.string "Would you like to have your\n"
 	.string "POKéDEX rated?$"
 
-Text_ClosedLinkToProfOaksPC:: @ 81A5C2E
+Text_ClosedLinkToProfOaksPC::
 	.string "Closed link to PROF. OAK's PC.$"
 
-Text_VoiceRangOutDontRunAway:: @ 81A5C4D
+Text_VoiceRangOutDontRunAway::
 	.string "Someone's voice rang out,\n"
 	.string "“Don't run away!”$"
 
-Text_TheDoorIsOpen:: @ 81A5CDF
+Text_TheDoorIsOpen::
 	.string "The door is open…$"
 
 	.include "data/text/pc_transfer.inc"
 	.include "data/text/white_out.inc"
 	.include "data/text/poke_mart.inc"
 
-Text_MonFlewAway:: @ 81A63C4
+Text_MonFlewAway::
 	.string "The {STR_VAR_1} flew away!$"
 
-
-Text_FoundTMHMContainsMove:: @ 81A63E8
+Text_FoundTMHMContainsMove::
 	.string "{PLAYER} found a {STR_VAR_2}!\n"
 	.string "It contains {STR_VAR_1}.$"
 
 	.include "data/text/seagallop.inc"
 
 @ Call for legendary bird trio
-Text_Gyaoo:: @ 81A6448
+Text_Gyaoo::
 	.string "Gyaoo!$"
 
-Text_MoveCanOnlyBeLearnedOnce:: @ 81A644F
+Text_MoveCanOnlyBeLearnedOnce::
 	.string "This move can only be learned\n"
 	.string "once for free. Is that okay?$"
 
-EventScript_ResetAllMapFlags:: @ 81A6481
+EventScript_ResetAllMapFlags::
 	setflag FLAG_HIDE_OAK_IN_HIS_LAB
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
@@ -981,7 +980,7 @@ EventScript_ResetAllMapFlags:: @ 81A6481
 	.include "data/scripts/obtain_item.inc"
 	.include "data/scripts/pc.inc"
 
-Common_ShowEasyChatScreen:: @ 81A6AC0
+Common_ShowEasyChatScreen::
 	fadescreen FADE_TO_BLACK
 	special ShowEasyChatScreen
 	fadescreen FADE_FROM_BLACK
@@ -991,7 +990,7 @@ Common_ShowEasyChatScreen:: @ 81A6AC0
 	.include "data/scripts/set_gym_trainers.inc"
 	.include "data/scripts/bag_full.inc"
 
-EventScript_OutOfCenterPartyHeal:: @ 81A6C26
+EventScript_OutOfCenterPartyHeal::
 	fadescreen FADE_TO_BLACK
 	playfanfare MUS_RS_HEAL
 	waitfanfare
@@ -999,7 +998,7 @@ EventScript_OutOfCenterPartyHeal:: @ 81A6C26
 	fadescreen FADE_FROM_BLACK
 	return
 
-EventScript_WallTownMap:: @ 81A6C32
+EventScript_WallTownMap::
 	lockall
 	msgbox Text_ATownMap
 	goto_if_questlog EventScript_ReleaseEnd
@@ -1013,7 +1012,7 @@ EventScript_WallTownMap:: @ 81A6C32
 	.include "data/scripts/pokedex_rating.inc"
 	.include "data/scripts/cave_of_origin.inc"
 
-EventScript_ChangePokemonNickname:: @ 81A74EB
+EventScript_ChangePokemonNickname::
 	fadescreen FADE_TO_BLACK
 	special ChangePokemonNickname
 	waitstate
@@ -1024,29 +1023,29 @@ EventScript_ChangePokemonNickname:: @ 81A74EB
 	.include "data/scripts/flavor_text.inc"
 	.include "data/scripts/questionnaire.inc"
 
-EventScript_BagItemCanBeRegistered:: @ 81A77A0
+EventScript_BagItemCanBeRegistered::
 	msgbox Text_BagItemCanBeRegistered, MSGBOX_SIGN
 	end
 
-EventScript_Return:: @ 81A77A9
+EventScript_Return::
 	return
 
-EventScript_SetResultTrue:: @ 81A77AA
+EventScript_SetResultTrue::
 	setvar VAR_RESULT, TRUE
 	return
 
-EventScript_SetResultFalse:: @ 81A77B0
+EventScript_SetResultFalse::
 	setvar VAR_RESULT, FALSE
 	return
 
-EventScript_SetExitingCyclingRoad:: @ 81A77B6
+EventScript_SetExitingCyclingRoad::
 	lockall
 	clearflag FLAG_SYS_ON_CYCLING_ROAD
 	setvar VAR_MAP_SCENE_ROUTE16, 0
 	releaseall
 	end
 
-EventScript_SetEnteringCyclingRoad:: @ 81A77C1
+EventScript_SetEnteringCyclingRoad::
 	lockall
 	setvar VAR_MAP_SCENE_ROUTE16, 1
 	releaseall
@@ -1054,18 +1053,18 @@ EventScript_SetEnteringCyclingRoad:: @ 81A77C1
 
 	.include "data/scripts/route23.inc"
 
-EventScript_GetElevatorFloor:: @ 81A7AB9
+EventScript_GetElevatorFloor::
 	special GetElevatorFloor
 	return
 
 	.include "data/scripts/aide.inc"
 
-EventScript_CancelMessageBox:: @ 81A7ADB
+EventScript_CancelMessageBox::
 	special DoPicboxCancel
 	release
 	end
 
-EventScript_ReleaseEnd:: @ 81A7AE0
+EventScript_ReleaseEnd::
 	release
 	end
 
@@ -1073,13 +1072,13 @@ EventScript_ReleaseEnd:: @ 81A7AE0
 	.include "data/scripts/silphco_doors.inc"
 	.include "data/scripts/pc_transfer.inc"
 
-EventScript_GetInGameTradeSpeciesInfo:: @ 81A8CAD
+EventScript_GetInGameTradeSpeciesInfo::
 	copyvar VAR_0x8004, VAR_0x8008
 	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
 	copyvar VAR_0x8009, VAR_RESULT
 	return
 
-EventScript_ChooseMonForInGameTrade:: @ 81A8CBD
+EventScript_ChooseMonForInGameTrade::
 	special ChoosePartyMon
 	waitstate
 	lock
@@ -1087,13 +1086,13 @@ EventScript_ChooseMonForInGameTrade:: @ 81A8CBD
 	copyvar VAR_0x800A, VAR_0x8004
 	return
 
-EventScript_GetInGameTradeSpecies:: @ 81A8CC9
+EventScript_GetInGameTradeSpecies::
 	copyvar VAR_0x8005, VAR_0x800A
 	specialvar VAR_RESULT, GetTradeSpecies
 	copyvar VAR_0x800B, VAR_RESULT
 	return
 
-EventScript_DoInGameTrade:: @ 81A8CD9
+EventScript_DoInGameTrade::
 	copyvar VAR_0x8004, VAR_0x8008
 	copyvar VAR_0x8005, VAR_0x800A
 	special CreateInGameTradePokemon
@@ -1103,39 +1102,38 @@ EventScript_DoInGameTrade:: @ 81A8CD9
 	faceplayer
 	return
 
-EventScript_VsSeekerChargingDone:: @ 81A8CED
+EventScript_VsSeekerChargingDone::
 	special VsSeekerFreezeObjectsAfterChargeComplete
 	waitstate
 	special VsSeekerResetObjectMovementAfterChargeComplete
 	releaseall
 	end
 
-Common_EventScript_UnionRoomAttendant:: @ 81A8CF6
+Common_EventScript_UnionRoomAttendant::
 	call CableClub_EventScript_UnionRoomAttendant
 	end
 
-Common_EventScript_WirelessClubAttendant:: @ 81A8CFC
+Common_EventScript_WirelessClubAttendant::
 	call CableClub_EventScript_WirelessClubAttendant
 	end
 
-Common_EventScript_DirectCornerAttendant:: @ 81A8D02
+Common_EventScript_DirectCornerAttendant::
 	call CableClub_EventScript_DirectCornerAttendant
 	end
 
-VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman:: @ 81A8D08
+VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_VS_SEEKER, VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker
 	msgbox VermilionCity_PokemonCenter_1F_Text_UrgeToBattleSomeoneAgain
 	setflag FLAG_GOT_VS_SEEKER
 	giveitem ITEM_VS_SEEKER
-	compare VAR_RESULT, FALSE
-	goto_if_eq EventScript_BagIsFull
+	goto_if_eq VAR_RESULT, FALSE, EventScript_BagIsFull
 	msgbox VermilionCity_PokemonCenter_1F_Text_UseDeviceForRematches
 	release
 	end
 
-VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker:: @ 81A8D3F
+VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker::
 	msgbox VermilionCity_PokemonCenter_1F_Text_ExplainVSSeeker
 	release
 	end
@@ -1143,14 +1141,14 @@ VermilionCity_PokemonCenter_1F_EventScript_ExplainVSSeeker:: @ 81A8D3F
 	.include "data/scripts/itemfinder.inc"
 	.include "data/scripts/white_out.inc"
 
-Std_PutItemAway:: @ 81A8E58
-	bufferitemnameplural 1, VAR_0x8000, VAR_0x8001
+Std_PutItemAway::
+	bufferitemnameplural STR_VAR_2, VAR_0x8000, VAR_0x8001
 	checkitemtype VAR_0x8000
 	call EventScript_BufferPutAwayPocketName
 	msgbox Text_PutItemAway
 	return
 
-EventScript_BufferPutAwayPocketName:: @ 81A8E6F
+EventScript_BufferPutAwayPocketName::
 	switch VAR_RESULT
 	case POCKET_ITEMS,       EventScript_BufferPutAwayPocketItems
 	case POCKET_KEY_ITEMS,   EventScript_BufferPutAwayPocketKeyItems
@@ -1161,44 +1159,44 @@ EventScript_BufferPutAwayPocketName:: @ 81A8E6F
 	case POCKET_HELD_ITEMS,  EventScript_BufferPutAwayPocketHeldItems
 	end
 
-EventScript_BufferPutAwayPocketItems:: @ 81A8EAC
-	getstdstring 2, STDSTRING_ITEMS_POCKET
+EventScript_BufferPutAwayPocketItems::
+	bufferstdstring STR_VAR_3, STDSTRING_ITEMS_POCKET
 	return
 
 EventScript_BufferPutAwayPocketMedicine::
-	getstdstring 2, STDSTRING_MEDICINE_POCKET
+	bufferstdstring STR_VAR_3, STDSTRING_MEDICINE_POCKET
 	return
 
-EventScript_BufferPutAwayPocketKeyItems:: @ 81A8EB1
-	getstdstring 2, STDSTRING_KEY_ITEMS_POCKET
+EventScript_BufferPutAwayPocketKeyItems::
+	bufferstdstring STR_VAR_3, STDSTRING_KEY_ITEMS_POCKET
 	return
 
 EventScript_BufferPutAwayPocketHeldItems::
-	getstdstring 2, STDSTRING_HELD_ITEMS_POCKET
+	bufferstdstring STR_VAR_3, STDSTRING_HELD_ITEMS_POCKET
 	return
 
-EventScript_BufferPutAwayPocketPokeBalls:: @ 81A8EB6
-	getstdstring 2, STDSTRING_POKEBALLS_POCKET
+EventScript_BufferPutAwayPocketPokeBalls::
+	bufferstdstring STR_VAR_3, STDSTRING_POKEBALLS_POCKET
 	return
 
-EventScript_BufferPutAwayPocketTMCase:: @ 81A8EBB
-	getstdstring 2, STDSTRING_TM_CASE
+EventScript_BufferPutAwayPocketTMCase::
+	bufferstdstring STR_VAR_3, STDSTRING_TM_CASE
 	return
 
-EventScript_BufferPutAwayPocketBerryPouch:: @ 81A8EC0
-	getstdstring 2, STDSTRING_BERRY_POUCH
+EventScript_BufferPutAwayPocketBerryPouch::
+	bufferstdstring STR_VAR_3, STDSTRING_BERRY_POUCH
 	return
 
 	.include "data/scripts/seagallop.inc"
 	.include "data/scripts/static_pokemon.inc"
 
-EventScript_TryDarkenRuins:: @ 81A925E
+EventScript_TryDarkenRuins::
 	goto_if_set FLAG_SYS_UNLOCKED_TANOBY_RUINS, EventScript_Return
 	setweather WEATHER_SHADE
 	doweather
 	return
 
-EventScript_BrailleCursorWaitButton:: @ 81A926C
+EventScript_BrailleCursorWaitButton::
 	special BrailleCursorToggle
 	waitbuttonpress
 	playse SE_SELECT
@@ -1206,8 +1204,8 @@ EventScript_BrailleCursorWaitButton:: @ 81A926C
 	special BrailleCursorToggle
 	return
 
-EventScript_NoMoreRoomForPokemon:: @ 81A927C
-	textcolor 3
+EventScript_NoMoreRoomForPokemon::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	msgbox Text_NoMoreRoomForPokemon
 	release
 	end

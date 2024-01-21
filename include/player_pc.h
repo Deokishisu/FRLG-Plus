@@ -8,8 +8,8 @@
 
 struct PlayerPCItemPageStruct
 {
-    u16 cursorPos;
     u16 itemsAbove;
+    u16 cursorPos;
     u8 pageItems;
     u8 count;
     u8 filler_6[3];
@@ -23,7 +23,6 @@ extern struct PlayerPCItemPageStruct gPlayerPcMenuManager;
 
 // Exported ROM declarations
 
-void sub_816B060(u8 taskId);
 void NewGameInitPCItems(void);
 void Mailbox_ReturnToMailListAfterDeposit(void);
 

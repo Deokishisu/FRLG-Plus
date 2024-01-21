@@ -1,30 +1,29 @@
 .set LOCALID_PINSIR_MASTER, 2
 .set TRAINER, VAR_0x8009
 
-Route18_EastEntrance_2F_MapScripts:: @ 817046B
+Route18_EastEntrance_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route18_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route18_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_PINSIR
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route18_EastEntrance_2F_MapScript_PinsirMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route18_EastEntrance_2F_MapScript_PinsirMasterMovementType
 	end
 
 Route18_EastEntrance_2F_MapScript_PinsirMasterMovementType::
 	setobjectmovementtype LOCALID_PINSIR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route18_EastEntrance_2F_EventScript_LeftBinoculars:: @ 817046C
+Route18_EastEntrance_2F_EventScript_LeftBinoculars::
 	msgbox Route18_EastEntrance_2F_Text_PalletTownInWest, MSGBOX_SIGN
 	end
 
-Route18_EastEntrance_2F_EventScript_RightBinoculars:: @ 8170475
+Route18_EastEntrance_2F_EventScript_RightBinoculars::
 	msgbox Route18_EastEntrance_2F_Text_PeopleSwimming, MSGBOX_SIGN
 	end
 
-Route18_EastEntrance_2F_EventScript_Haden:: @ 817047E
+Route18_EastEntrance_2F_EventScript_Haden::
 	lock
 	faceplayer
 	setvar VAR_0x8008, INGAME_TRADE_LICKITUNG
@@ -37,14 +36,11 @@ Route18_EastEntrance_2F_EventScript_Haden:: @ 817047E
 	call_if_eq Route18_EastEntrance_2F_EventScript_Haden_SetLGRequestedSpecies
 	goto_if_set FLAG_DID_MARC_TRADE, Route18_EastEntrance_2F_EventScript_AlreadyTraded
 	msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq Route18_EastEntrance_2F_EventScript_DeclineTrade
+	goto_if_eq VAR_RESULT, NO, Route18_EastEntrance_2F_EventScript_DeclineTrade
 	call EventScript_ChooseMonForInGameTrade
-	compare VAR_0x8004, PARTY_SIZE
-	goto_if_ge Route18_EastEntrance_2F_EventScript_DeclineTrade
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Route18_EastEntrance_2F_EventScript_DeclineTrade
 	call EventScript_GetInGameTradeSpecies
-	compare VAR_RESULT, VAR_0x8009
-	goto_if_ne Route18_EastEntrance_2F_EventScript_NotRequestedMon
+	goto_if_ne VAR_RESULT, VAR_0x8009, Route18_EastEntrance_2F_EventScript_NotRequestedMon
 	call EventScript_DoInGameTrade
 	msgbox Trade_Text_HeyThanks
 	setflag FLAG_DID_MARC_TRADE
@@ -59,18 +55,18 @@ Route18_EastEntrance_2F_EventScript_Haden_SetLGRequestedSpecies::
 	setvar 0x8009, SPECIES_SLOWBRO
 	return
 
-Route18_EastEntrance_2F_EventScript_DeclineTrade:: @ 81704D8
+Route18_EastEntrance_2F_EventScript_DeclineTrade::
 	msgbox Trade_Text_AwwOhWell
 	release
 	end
 
-Route18_EastEntrance_2F_EventScript_NotRequestedMon:: @ 81704E2
-	getspeciesname 0, VAR_0x8009
+Route18_EastEntrance_2F_EventScript_NotRequestedMon::
+	bufferspeciesname STR_VAR_1, VAR_0x8009
 	msgbox Trade_Text_WhatThatsNoMon
 	release
 	end
 
-Route18_EastEntrance_2F_EventScript_AlreadyTraded:: @ 81704F0
+Route18_EastEntrance_2F_EventScript_AlreadyTraded::
 	msgbox Trade_Text_IsntMyOldMonGreat
 	release
 	end

@@ -1,39 +1,36 @@
 .set LOCALID_MAROWAK_MASTER, 7
 .set TRAINER, VAR_0x8009
 
-LavenderTown_VolunteerPokemonHouse_MapScripts:: @ 816B149
+LavenderTown_VolunteerPokemonHouse_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, LavenderTown_VolunteerPokemonHouse_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 LavenderTown_VolunteerPokemonHouse_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MAROWAK
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq LavenderTown_VolunteerPokemonHouse_MapScript_MarowakMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, LavenderTown_VolunteerPokemonHouse_MapScript_MarowakMasterMovementType
 	end
 
 LavenderTown_VolunteerPokemonHouse_MapScript_MarowakMasterMovementType::
 	setobjectmovementtype LOCALID_MAROWAK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji:: @ 816B14A
+LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_POKE_FLUTE, LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_IdLikeYouToHaveThis
-	checkitemspace ITEM_POKE_FLUTE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute
+	checkitemspace ITEM_POKE_FLUTE
+	goto_if_eq VAR_RESULT, FALSE, LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute
 	setflag FLAG_GOT_POKE_FLUTE
 	giveitem_msg LavenderTown_VolunteerPokemonHouse_Text_ReceivedPokeFluteFromMrFuji, ITEM_POKE_FLUTE, 1, MUS_OBTAIN_KEY_ITEM
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_ExplainPokeFlute
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute:: @ 816B196
+LavenderTown_VolunteerPokemonHouse_EventScript_AlreadyHavePokeFlute::
 	checkitem ITEM_OLD_SEA_MAP, 1
-	compare VAR_RESULT, TRUE
-	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_HaveOldSeaMap
+	goto_if_eq VAR_RESULT, TRUE, LavenderTown_VolunteerPokemonHouse_EventScript_HaveOldSeaMap
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_HasPokeFluteHelpedYou
 	release
 	end
@@ -45,24 +42,21 @@ LavenderTown_VolunteerPokemonHouse_EventScript_HaveOldSeaMap::
 	goto_if_set FLAG_MEW_FLEW_AWAY, LavenderTown_VolunteerPokemonHouse_EventScript_MewDefeated
 LavenderTown_VolunteerPokemonHouse_EventScript_MewNotEncountered:
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_FindFarawayIsland, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
+	goto_if_eq VAR_RESULT, NO, LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_NotEncounteredMew
 	release
 	end
 
 LavenderTown_VolunteerPokemonHouse_EventScript_MewDefeated::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_FoundMew, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
+	goto_if_eq VAR_RESULT, NO, LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_DefeatedMew
 	release
 	end
 
 LavenderTown_VolunteerPokemonHouse_EventScript_MewCaught::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_FoundMew, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
+	goto_if_eq VAR_RESULT, NO, LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_CaughtMew
 	setflag FLAG_CAUGHT_MEW
 	release
@@ -78,12 +72,12 @@ LavenderTown_VolunteerPokemonHouse_EventScript_MewFoundNo::
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute:: @ 816B1A0
+LavenderTown_VolunteerPokemonHouse_EventScript_NoRoomForPokeFlute::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MustMakeRoomForThis
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl:: @ 816B1AA
+LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl::
 	lock
 	faceplayer
 	famechecker FAMECHECKER_MRFUJI, 0
@@ -91,11 +85,11 @@ LavenderTown_VolunteerPokemonHouse_EventScript_LittleGirl:: @ 816B1AA
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_LittleBoy:: @ 816B1C3
+LavenderTown_VolunteerPokemonHouse_EventScript_LittleBoy::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MonsNiceToHug, MSGBOX_NPC
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_Youngster:: @ 816B1CC
+LavenderTown_VolunteerPokemonHouse_EventScript_Youngster::
 	lock
 	faceplayer
 	goto_if_set FLAG_RESCUED_MR_FUJI, LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack
@@ -103,38 +97,38 @@ LavenderTown_VolunteerPokemonHouse_EventScript_Youngster:: @ 816B1CC
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack:: @ 816B1E1
+LavenderTown_VolunteerPokemonHouse_EventScript_YoungsterFujiBack::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_MrFujiWasPrayingForCubonesMother
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_Nidorino:: @ 816B1EB
+LavenderTown_VolunteerPokemonHouse_EventScript_Nidorino::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_NIDORINO, 0
+	playmoncry SPECIES_NIDORINO, CRY_MODE_NORMAL
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_Nidorino
 	waitmoncry
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_Psyduck:: @ 816B1FE
+LavenderTown_VolunteerPokemonHouse_EventScript_Psyduck::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_PSYDUCK, 0
+	playmoncry SPECIES_PSYDUCK, CRY_MODE_NORMAL
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_Psyduck
 	waitmoncry
 	release
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_PokemonFanMagazine:: @ 816B211
+LavenderTown_VolunteerPokemonHouse_EventScript_PokemonFanMagazine::
 	lockall
 	famechecker FAMECHECKER_MRFUJI, 2
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_GrandPrizeDrawingClipped
 	releaseall
 	end
 
-LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf:: @ 816B229
+LavenderTown_VolunteerPokemonHouse_EventScript_Bookshelf::
 	msgbox LavenderTown_VolunteerPokemonHouse_Text_PokemonMagazinesLineShelf, MSGBOX_SIGN
 	end

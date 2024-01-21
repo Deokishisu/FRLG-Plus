@@ -1,4 +1,4 @@
-TwoIsland_CapeBrink_MapScripts:: @ 8168775
+TwoIsland_CapeBrink_MapScripts::
 	.byte 0
 
 CapeBrink_EventScript_Helena::

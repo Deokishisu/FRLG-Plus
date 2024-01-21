@@ -79,7 +79,7 @@ u8 MailboxPC_GetWindowId(u8 winIdx)
     return sWindowIds[winIdx];
 }
 
-static void ItemPrintFunc(u8 windowId, s32 itemId, u8 y)
+static void ItemPrintFunc(u8 windowId, u32 itemId, u8 y)
 {
     u8 strbuf[30];
     if (itemId != -2)
@@ -87,7 +87,7 @@ static void ItemPrintFunc(u8 windowId, s32 itemId, u8 y)
         StringCopy(strbuf, gSaveBlock1Ptr->mail[itemId + PARTY_SIZE].playerName);
         if (StringLength(strbuf) <= 5)
             ConvertInternationalString(strbuf, LANGUAGE_JAPANESE);
-        AddTextPrinterParameterized4(windowId, 2, 8, y, 0, 0, sTextColor, -1, strbuf);
+        AddTextPrinterParameterized4(windowId, FONT_2, 8, y, 0, 0, sTextColor, -1, strbuf);
     }
 }
 
@@ -106,12 +106,12 @@ u8 MailboxPC_InitListMenu(struct PlayerPCItemPageStruct * playerPcStruct)
     gMultiuseListMenuTemplate.totalItems = playerPcStruct->count + 1;
     gMultiuseListMenuTemplate.windowId = sWindowIds[1];
     gMultiuseListMenuTemplate.header_X = 0;
-    gMultiuseListMenuTemplate.item_X = GetMenuCursorDimensionByFont(2, 0);
+    gMultiuseListMenuTemplate.item_X = GetMenuCursorDimensionByFont(FONT_2, 0);
     gMultiuseListMenuTemplate.cursor_X = 0;
     gMultiuseListMenuTemplate.lettersSpacing = 0;
     gMultiuseListMenuTemplate.itemVerticalPadding = 2;
     gMultiuseListMenuTemplate.maxShowed = 8;
-    gMultiuseListMenuTemplate.fontId = 2;
+    gMultiuseListMenuTemplate.fontId = FONT_2;
     gMultiuseListMenuTemplate.upText_Y = 10;
     gMultiuseListMenuTemplate.cursorPal = 2;
     gMultiuseListMenuTemplate.fillValue = 1;
@@ -120,7 +120,7 @@ u8 MailboxPC_InitListMenu(struct PlayerPCItemPageStruct * playerPcStruct)
     gMultiuseListMenuTemplate.itemPrintFunc = ItemPrintFunc;
     gMultiuseListMenuTemplate.cursorKind = 0;
     gMultiuseListMenuTemplate.scrollMultiple = 0;
-    return ListMenuInit(&gMultiuseListMenuTemplate, playerPcStruct->itemsAbove, playerPcStruct->cursorPos);
+    return ListMenuInit(&gMultiuseListMenuTemplate, playerPcStruct->cursorPos, playerPcStruct->itemsAbove);
 }
 
 static void MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu * list)
@@ -131,7 +131,7 @@ static void MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu * list)
 
 void MailboxPC_AddScrollIndicatorArrows(struct PlayerPCItemPageStruct * playerPcStruct)
 {
-    playerPcStruct->scrollIndicatorId = AddScrollIndicatorArrowPairParameterized(2, 0xC2, 0xC, 0x94, playerPcStruct->count - playerPcStruct->pageItems + 1, 110, 110, &playerPcStruct->itemsAbove);
+    playerPcStruct->scrollIndicatorId = AddScrollIndicatorArrowPairParameterized(2, 0xC2, 0xC, 0x94, playerPcStruct->count - playerPcStruct->pageItems + 1, 110, 110, &playerPcStruct->cursorPos);
 }
 
 void MailboxPC_DestroyListMenuBuffer(void)

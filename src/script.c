@@ -20,6 +20,7 @@
 #include "constants/map_scripts.h"
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
+#include "constants/maps.h"
 
 #define RAM_SCRIPT_MAGIC 51
 #define SCRIPT_STACK_SIZE 20
@@ -474,7 +475,7 @@ void TryRunOnWarpIntoMapScript(void)
 
 u32 CalculateRamScriptChecksum(void)
 {
-    return CalcCRC16WithTable((u8*)(&gSaveBlock1Ptr->ramScript.data), sizeof(gSaveBlock1Ptr->ramScript.data));
+    return CalcCRC16WithTable((u8 *)(&gSaveBlock1Ptr->ramScript.data), sizeof(gSaveBlock1Ptr->ramScript.data));
 }
 
 void ClearRamScript(void)
@@ -529,9 +530,9 @@ bool32 ValidateRamScript(void)
     struct RamScriptData *scriptData = &gSaveBlock1Ptr->ramScript.data;
     if (scriptData->magic != RAM_SCRIPT_MAGIC)
         return FALSE;
-    if (scriptData->mapGroup != 0xFF)
+    if (scriptData->mapGroup != MAP_GROUP(UNDEFINED))
         return FALSE;
-    if (scriptData->mapNum != 0xFF)
+    if (scriptData->mapNum != MAP_NUM(UNDEFINED))
         return FALSE;
     if (scriptData->objectId != 0xFF)
         return FALSE;
@@ -540,16 +541,16 @@ bool32 ValidateRamScript(void)
     return TRUE;
 }
 
-u8 *sub_8069E48(void)
+u8 *GetSavedRamScriptIfValid(void)
 {
     struct RamScriptData *scriptData = &gSaveBlock1Ptr->ramScript.data;
     if (!ValidateReceivedWonderCard())
         return NULL;
     if (scriptData->magic != RAM_SCRIPT_MAGIC)
         return NULL;
-    if (scriptData->mapGroup != 0xFF)
+    if (scriptData->mapGroup != MAP_GROUP(UNDEFINED))
         return NULL;
-    if (scriptData->mapNum != 0xFF)
+    if (scriptData->mapNum != MAP_NUM(UNDEFINED))
         return NULL;
     if (scriptData->objectId != 0xFF)
         return NULL;
@@ -1546,7 +1547,7 @@ void ResetTintFilter(void)
     gGlobalFieldTintMode = 0;
     SetInitialPlayerAvatarStateWithDirection(DIR_NORTH);
     StopMapMusic();
-    do_load_map_stuff_loop(&val);
+    DoMapLoadLoop(&val);
 }
 
 void SetLastViewedPokedexEntry(void)
@@ -1616,14 +1617,14 @@ void MoveDaycareMan(void)
     }
     if(FlagGet(FLAG_PENDING_DAYCARE_EGG))
     {
-        Overworld_SetMapObjTemplateCoords(1, 16, 14);
+        SetObjEventTemplateCoords(1, 16, 14);
         TryMoveObjectEventToMapCoords(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, 16, 14);
         VarSet(VAR_DAYCARE_MAN_TRIGGERS, 1);
         return;
     }
     /*else
     {
-        Overworld_SetMapObjTemplateCoords(1, 16, 13);
+        SetObjEventTemplateCoords(1, 16, 13);
         TryMoveObjectEventToMapCoords(1, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, 16, 13);
         VarSet(VAR_DAYCARE_MAN_TRIGGERS, 1);
         return;

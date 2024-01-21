@@ -1,15 +1,14 @@
 .set LOCALID_SLOWBRO_MASTER, 7
 .set TRAINER, VAR_0x8009
 
-Route21_North_MapScripts:: @ 8168289
+Route21_North_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route21_North_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route21_North_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_SLOWBRO
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route21_North_MapScript_SlowbroMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route21_North_MapScript_SlowbroMasterMovementType
 	end
 
 Route21_North_MapScript_SlowbroMasterMovementType::

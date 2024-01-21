@@ -79,7 +79,7 @@ enum TradeStatusMsg
 
 static EWRAM_DATA u8 *sSpriteTextTileBuffer = NULL;
 static EWRAM_DATA u8 *sSpriteTextTilePtrs[14] = {};
-EWRAM_DATA struct MailStruct gLinkPartnerMail[6] = {};
+EWRAM_DATA struct Mail gLinkPartnerMail[6] = {};
 EWRAM_DATA u8 gSelectedTradeMonPositions[2] = {0};
 static EWRAM_DATA struct TradeMenuResources * sTradeMenuResourcesPtr = NULL;
 
@@ -119,7 +119,7 @@ static const size_t sSizesAndOffsets[] = {
     sizeof(struct MapLayout),
     0x530, // unk
     0x34, // unk
-    sizeof(struct MailStruct),
+    sizeof(struct Mail),
     sizeof(struct Pokemon),
     0x528 // unk
 };
@@ -878,7 +878,7 @@ static void CB2_ReturnFromLinkTrade2(void)
         break;
     case 12:
         name = gSaveBlock2Ptr->playerName;
-        width = GetStringWidth(1, name, 0);
+        width = GetStringWidth(FONT_1, name, 0);
         xPos = (56 - width) / 2;
         for (i = 0; i < 3; i++)
         {
@@ -888,7 +888,7 @@ static void CB2_ReturnFromLinkTrade2(void)
         }
         id = GetMultiplayerId();
         name = gLinkPlayers[id ^ 1].name;
-        width = GetStringWidth(1, name, 0);
+        width = GetStringWidth(FONT_1, name, 0);
         xPos = (56 - width) / 2;
         for (i = 0; i < 3; i++)
         {
@@ -941,7 +941,7 @@ static void CB2_ReturnFromLinkTrade2(void)
         gMain.state++;
         break;
     case 18:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
     case 19:
@@ -1073,7 +1073,7 @@ void CB2_ReturnToTradeMenuFromSummary(void)
         break;
     case 12:
         name = gSaveBlock2Ptr->playerName;
-        width = GetStringWidth(1, name, 0);
+        width = GetStringWidth(FONT_1, name, 0);
         xPos = (56 - width) / 2;
         for (i = 0; i < 3; i++)
         {
@@ -1083,7 +1083,7 @@ void CB2_ReturnToTradeMenuFromSummary(void)
         }
         id = GetMultiplayerId();
         name = gLinkPlayers[id ^ 1].name;
-        width = GetStringWidth(1, name, 0);
+        width = GetStringWidth(FONT_1, name, 0);
         xPos = (56 - width) / 2;
         for (i = 0; i < 3; i++)
         {
@@ -1129,8 +1129,8 @@ void CB2_ReturnToTradeMenuFromSummary(void)
         break;
     case 18:
         gPaletteFade.bufferTransferDisabled = FALSE;
-        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
     case 19:
@@ -1170,7 +1170,7 @@ static void TradeMenuCB_9(void)
 {
     if (++sTradeMenuResourcesPtr->loadUISpritesState >= 16)
     {
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sTradeMenuResourcesPtr->tradeMenuCBnum = 10;
     }
 }
@@ -1385,7 +1385,7 @@ static bool8 shedinja_maker_maybe(void)
         }
         break;
     case 13:
-        Trade_Memcpy(gBlockSendBuffer, gSaveBlock1Ptr->mail, PARTY_SIZE * sizeof(struct MailStruct) + 4); // why the extra 4 bytes?
+        Trade_Memcpy(gBlockSendBuffer, gSaveBlock1Ptr->mail, PARTY_SIZE * sizeof(struct Mail) + 4); // why the extra 4 bytes?
         sTradeMenuResourcesPtr->state++;
         break;
     case 15:
@@ -1398,7 +1398,7 @@ static bool8 shedinja_maker_maybe(void)
     case 16:
         if (GetBlockReceivedStatus() == 3)
         {
-            Trade_Memcpy(gLinkPartnerMail, gBlockRecvBuffer[id ^ 1], PARTY_SIZE * sizeof(struct MailStruct));
+            Trade_Memcpy(gLinkPartnerMail, gBlockRecvBuffer[id ^ 1], PARTY_SIZE * sizeof(struct Mail));
             ResetBlockReceivedFlags();
             sTradeMenuResourcesPtr->state++;
         }
@@ -1514,7 +1514,7 @@ static void Slave_HandleBlockReceivedStatus(u8 mpId, u8 blockReceivedFlags)
         switch (gBlockRecvBuffer[0][0])
         {
         case 0xEEBB:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             PrintTradeErrorOrStatusMessage(TRADESTATMSG_WAITINGFORFRIEND);
             sTradeMenuResourcesPtr->tradeMenuCBnum = 11;
             break;
@@ -1530,7 +1530,7 @@ static void Slave_HandleBlockReceivedStatus(u8 mpId, u8 blockReceivedFlags)
             sTradeMenuResourcesPtr->tradeMenuCBnum = 7;
             break;
         case 0xCCDD:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             sTradeMenuResourcesPtr->tradeMenuCBnum = 10;
             break;
         case 0xDDEE:
@@ -1581,7 +1581,7 @@ static void Master_HandleCommunication(void)
             sTradeMenuResourcesPtr->linkData[0] = 0xEEBB;
             sTradeMenuResourcesPtr->linkData[1] = 0;
             ScheduleLinkTaskWithDelay(5, 0);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             sTradeMenuResourcesPtr->unk_78 = sTradeMenuResourcesPtr->unk_79 = 0;
             sTradeMenuResourcesPtr->tradeMenuCBnum = 11;
         }
@@ -1652,14 +1652,14 @@ static void TradeMenuMoveCursor(u8 *tradeMenuCursorPosition, u8 direction)
     if (newPosition == 12) // CANCEL
     {
         StartSpriteAnim(&gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx], 1);
-        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].pos1.x = 224;
-        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].pos1.y = 160;
+        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].x = 224;
+        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].y = 160;
     }
     else
     {
         StartSpriteAnim(&gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx], 0);
-        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].pos1.x = sTradeMonSpriteCoords[newPosition][0] * 8 + 32;
-        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].pos1.y = sTradeMonSpriteCoords[newPosition][1] * 8;
+        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].x = sTradeMonSpriteCoords[newPosition][0] * 8 + 32;
+        gSprites[sTradeMenuResourcesPtr->tradeMenuCursorSpriteIdx].y = sTradeMonSpriteCoords[newPosition][1] * 8;
     }
 
     if (*tradeMenuCursorPosition != newPosition)
@@ -1716,20 +1716,20 @@ static void TradeMenuCB_0(void)
         {
             DrawTextBorderOuter(1, 1, 14);
             FillWindowPixelBuffer(1, PIXEL_FILL(1));
-            UnionRoomAndTradeMenuPrintOptions(1, 3, 16, 2, sMenuAction_SummaryTrade);
-            Menu_InitCursor(1, 3, 0, 0, 16, 2, 0);
+            UnionRoomAndTradeMenuPrintOptions(1, FONT_3, 16, 2, sMenuAction_SummaryTrade);
+            Menu_InitCursor(1, FONT_3, 0, 0, 16, 2, 0);
             PutWindowTilemap(1);
-            CopyWindowToVram(1, COPYWIN_BOTH);
+            CopyWindowToVram(1, COPYWIN_FULL);
             sTradeMenuResourcesPtr->tradeMenuCBnum = 1;
         }
         else if (sTradeMenuResourcesPtr->tradeMenuCursorPosition < 12)
         {
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             sTradeMenuResourcesPtr->tradeMenuCBnum = 2;
         }
         else if (sTradeMenuResourcesPtr->tradeMenuCursorPosition == 12)
         {
-            CreateYesNoMenu(&sWindowTemplate_YesNo, 3, 0, 2, 0x001, 14, 0);
+            CreateYesNoMenu(&sWindowTemplate_YesNo, FONT_3, 0, 2, 0x001, 14, 0);
             sTradeMenuResourcesPtr->tradeMenuCBnum = 4;
             RenderTextToVramViaBuffer(sTradeUITextPtrs[TRADEUITEXT_ASKCANCEL], (void *)OBJ_VRAM0 + sTradeMenuResourcesPtr->cursorStartTile * 32, 24);
         }
@@ -1761,7 +1761,7 @@ static void TradeMenuCB_1(void)
     case MENU_NOTHING_CHOSEN:
         break;
     case 0: // SUMMARY
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sTradeMenuResourcesPtr->tradeMenuCBnum = 2;
         break;
     case 1: // Trade
@@ -1943,7 +1943,7 @@ static void TradeMenuCB_14(void)
 
     if (sTradeMenuResourcesPtr->loadUISpritesState > 120)
     {
-        CreateYesNoMenu(&sWindowTemplate_YesNo, 3, 0, 2, 1, 14, 0);
+        CreateYesNoMenu(&sWindowTemplate_YesNo, FONT_3, 0, 2, 1, 14, 0);
         sTradeMenuResourcesPtr->loadUISpritesState = 0;
         sTradeMenuResourcesPtr->tradeMenuCBnum = 3;
     }
@@ -2142,18 +2142,18 @@ static void HandleRedrawTradeMenuOnSide(u8 side)
     case 3:
         CopyToBgTilemapBufferRect_ChangePalette(1, sTradeMovesBoxTilemap, whichParty * 15, 0, 15, 17, 0);
         CopyBgTilemapBufferToVram(1);
-        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].pos1.x = (sTradeMonSpriteCoords[whichParty * PARTY_SIZE][0] + sTradeMonSpriteCoords[whichParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].pos1.y = (sTradeMonSpriteCoords[whichParty * PARTY_SIZE][1] * 8) - 12;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].pos2.x = 0;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].pos2.y = 0;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].x = (sTradeMonSpriteCoords[whichParty * PARTY_SIZE][0] + sTradeMonSpriteCoords[whichParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].y = (sTradeMonSpriteCoords[whichParty * PARTY_SIZE][1] * 8) - 12;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].x2 = 0;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[0][partyIdx + (whichParty * PARTY_SIZE)]].y2 = 0;
         nameStringWidth = GetNicknameStringWidthByPartyAndMonIdx(nickname, whichParty, partyIdx);
-        AddTextPrinterParameterized3((side * 2) + 14, 0, (80 - nameStringWidth) / 2, 4, sTextColor_PartyMonNickname, 0, nickname);
+        AddTextPrinterParameterized3((side * 2) + 14, FONT_0, (80 - nameStringWidth) / 2, 4, sTextColor_PartyMonNickname, 0, nickname);
         BuildMovesString(movesString, whichParty, partyIdx);
-        AddTextPrinterParameterized4((side * 2) + 15, 1, 0, 0, 0, 0, sTextColor_PartyMonNickname, 0, movesString);
+        AddTextPrinterParameterized4((side * 2) + 15, FONT_1, 0, 0, 0, 0, sTextColor_PartyMonNickname, 0, movesString);
         PutWindowTilemap((side * 2) + 14);
-        CopyWindowToVram((side * 2) + 14, COPYWIN_BOTH);
+        CopyWindowToVram((side * 2) + 14, COPYWIN_FULL);
         PutWindowTilemap((side * 2) + 15);
-        CopyWindowToVram((side * 2) + 15, COPYWIN_BOTH);
+        CopyWindowToVram((side * 2) + 15, COPYWIN_FULL);
         sTradeMenuResourcesPtr->menuRedrawState[side]++;
         break;
     case 4:
@@ -2170,8 +2170,8 @@ static u8 GetNicknameStringWidthByPartyAndMonIdx(u8 *dest, u8 whichParty, u8 par
         GetMonData(&gPlayerParty[partyIdx], MON_DATA_NICKNAME, nickname);
     else
         GetMonData(&gEnemyParty[partyIdx], MON_DATA_NICKNAME, nickname);
-    StringCopy10(dest, nickname);
-    return GetStringWidth(0, dest, GetFontAttribute(0, FONTATTR_LETTER_SPACING));
+    StringCopy_Nickname(dest, nickname);
+    return GetStringWidth(FONT_0, dest, GetFontAttribute(FONT_0, FONTATTR_LETTER_SPACING));
 }
 
 static void BuildMovesString(u8 *movesString, u8 whichParty, u8 whichMon)
@@ -2218,10 +2218,10 @@ static void PrintPartyMonNickname(u8 whichParty, u8 windowId, const u8 *str)
     s8 speed;
     windowId += (whichParty * PARTY_SIZE) + 2;
     speed = 0;
-    xPos = (64u - GetStringWidth(0, str, GetFontAttribute(0, FONTATTR_LETTER_SPACING))) / 2;
-    AddTextPrinterParameterized3(windowId, 0, xPos, 4, sTextColor_PartyMonNickname, speed, str);
+    xPos = (64u - GetStringWidth(FONT_0, str, GetFontAttribute(FONT_0, FONTATTR_LETTER_SPACING))) / 2;
+    AddTextPrinterParameterized3(windowId, FONT_0, xPos, 4, sTextColor_PartyMonNickname, speed, str);
     PutWindowTilemap(windowId);
-    CopyWindowToVram(windowId, COPYWIN_BOTH);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
 static void PrintPartyNicknames(u8 whichParty)
@@ -2233,7 +2233,7 @@ static void PrintPartyNicknames(u8 whichParty)
     for (i = 0; i < sTradeMenuResourcesPtr->partyCounts[whichParty]; i++)
     {
         GetMonData(&party[i], MON_DATA_NICKNAME, buff);
-        StringCopy10(nickname, buff);
+        StringCopy_Nickname(nickname, buff);
         PrintPartyMonNickname(whichParty, i, nickname);
     }
 }
@@ -2329,10 +2329,10 @@ static void ShowTradePartyMonIcons(u8 whichParty)
     for (i = 0; i < sTradeMenuResourcesPtr->partyCounts[whichParty]; i++)
     {
         gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].invisible = FALSE;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].pos1.x = sTradeMonSpriteCoords[(whichParty * PARTY_SIZE) + i][0] * 8 + 14;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].pos1.y = sTradeMonSpriteCoords[(whichParty * PARTY_SIZE) + i][1] * 8 - 12;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].pos2.x = 0;
-        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].pos2.y = 0;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].x = sTradeMonSpriteCoords[(whichParty * PARTY_SIZE) + i][0] * 8 + 14;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].y = sTradeMonSpriteCoords[(whichParty * PARTY_SIZE) + i][1] * 8 - 12;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].x2 = 0;
+        gSprites[sTradeMenuResourcesPtr->partyIcons[whichParty][i]].y2 = 0;
     }
 }
 
@@ -2429,10 +2429,10 @@ static void RunScheduledLinkTasks(void)
 static void PrintTradeErrorOrStatusMessage(u8 idx)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, 3, sTradeErrorOrStatusMessagePtrs[idx], 0, 2, 0xFF, NULL);
+    AddTextPrinterParameterized(0, FONT_3, sTradeErrorOrStatusMessagePtrs[idx], 0, 2, 0xFF, NULL);
     DrawTextBorderOuter(0, 0x014, 12);
     PutWindowTilemap(0);
-    CopyWindowToVram(0, COPYWIN_BOTH);
+    CopyWindowToVram(0, COPYWIN_FULL);
 }
 
 static bool8 LoadUISprites(void)

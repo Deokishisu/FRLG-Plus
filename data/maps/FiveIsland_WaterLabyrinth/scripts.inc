@@ -1,7 +1,7 @@
-FiveIsland_WaterLabyrinth_MapScripts:: @ 816884D
+FiveIsland_WaterLabyrinth_MapScripts::
 	.byte 0
 
-FiveIsland_WaterLabyrinth_EventScript_EggGentleman:: @ 816884E
+FiveIsland_WaterLabyrinth_EventScript_EggGentleman::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lock
@@ -10,30 +10,28 @@ FiveIsland_WaterLabyrinth_EventScript_EggGentleman:: @ 816884E
 	goto_if_set FLAG_NO_ROOM_FOR_TOGEPI_EGG, FiveIsland_WaterLabyrinth_EventScript_ReturnForEgg
 	msgbox FiveIsland_WaterLabyrinth_Text_LetMeTakeLookAtMons
 	specialvar VAR_RESULT, GetLeadMonFriendship
-	compare VAR_RESULT, 6  @ Max friendship
-	goto_if_eq FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship
+	goto_if_eq VAR_RESULT, 6, FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship
 	msgbox FiveIsland_WaterLabyrinth_Text_HmmISeeIsee
 	release
 	end
 
-FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment:: @ 8168895
+FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment::
 	famechecker FAMECHECKER_DAISY, 2
 	msgbox FiveIsland_WaterLabyrinth_Text_CuteMonRemindsMeOfDaisy
 	release
 	end
 
-FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship:: @ 81688AC
+FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship::
 	msgbox FiveIsland_WaterLabyrinth_Text_TreatMonRightHaveThis
 	goto FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg
 	end
 
-FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg:: @ 81688BA
+FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg::
 	getpartysize
-	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg
+	goto_if_eq VAR_RESULT, PARTY_SIZE, FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg
 	setflag FLAG_GOT_TOGEPI_EGG
 	giveegg SPECIES_TOGEPI
-	textcolor 3
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	playfanfare MUS_LEVEL_UP
 	message FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan
 	waitfanfare
@@ -44,27 +42,25 @@ FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg:: @ 81688BA
 
 @ If the player has a Togepi/Togetic from this game (assumed to be the one the man gave you) then comment on it
 @ Otherwise make normal comment
-FiveIsland_WaterLabyrinth_EventScript_PostEggComment:: @ 81688E3
-	getspeciesname 1, SPECIES_TOGEPI
+FiveIsland_WaterLabyrinth_EventScript_PostEggComment::
+	bufferspeciesname STR_VAR_2, SPECIES_TOGEPI
 	setvar VAR_0x8004, SPECIES_TOGEPI
 	specialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID
-	compare VAR_RESULT, TRUE
-	goto_if_eq FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment
-	getspeciesname 1, SPECIES_TOGETIC
+	goto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment
+	bufferspeciesname STR_VAR_2, SPECIES_TOGETIC
 	setvar VAR_0x8004, SPECIES_TOGETIC
 	specialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID
-	compare VAR_RESULT, TRUE
-	goto_if_eq FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment
+	goto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment
 	msgbox FiveIsland_WaterLabyrinth_Text_GladIMetSomeoneLikeYou
 	release
 	end
 
-FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg:: @ 816891F
+FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg::
 	setflag FLAG_NO_ROOM_FOR_TOGEPI_EGG
 	msgbox FiveIsland_WaterLabyrinth_Text_DontHaveSpaceInYourParty
 	release
 	end
 
-FiveIsland_WaterLabyrinth_EventScript_ReturnForEgg:: @ 816892C
+FiveIsland_WaterLabyrinth_EventScript_ReturnForEgg::
 	goto FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg
 	end

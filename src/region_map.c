@@ -117,7 +117,7 @@ struct GpuWindowParams
 struct SwitchMapMenuCursorSubsprite
 {
     u8 tiles[0x400];
-    struct Sprite * sprite;
+    struct Sprite *sprite;
     u16 tileTag;
     u16 palTag;
     s16 x;
@@ -177,7 +177,7 @@ struct DungeonMapPreview
 struct MapEdge
 {
     u16 tiles[0x200];
-    struct Sprite * sprite;
+    struct Sprite *sprite;
     s16 x;
     s16 y;
     u16 tileTag;
@@ -211,7 +211,7 @@ struct MapCursor
     u16 selectedMapsec;
     u16 selectedMapsecType;
     u16 selectedDungeonType;
-    struct Sprite * sprite;
+    struct Sprite *sprite;
     u16 tileTag;
     u16 palTag;
     u16 tiles[0x80];
@@ -221,7 +221,7 @@ struct PlayerIcon
 {
     s16 x;
     s16 y;
-    struct Sprite * sprite;
+    struct Sprite *sprite;
     u16 tileTag;
     u16 palTag;
     u16 tiles[0x40];
@@ -231,7 +231,7 @@ struct MapIconSprite
 {
     u32 unused;
     u8 region;
-    struct Sprite * sprite;
+    struct Sprite *sprite;
     u16 tileTag;
     u16 palTag;
 };
@@ -1745,7 +1745,7 @@ static void InitRegionMap(u8 type)
     }
     else
     {
-        gUnknown_2031DE0 = TRUE;
+        gExitStairsMovementDisabled = TRUE;
         sRegionMap->type = type;
         sRegionMap->mainState = 0;
         sRegionMap->openState = 0;
@@ -1764,7 +1764,7 @@ void InitRegionMapWithExitCB(u8 type, MainCallback cb)
     }
     else
     {
-        gUnknown_2031DE0 = TRUE;
+        gExitStairsMovementDisabled = TRUE;
         sRegionMap->type = type;
         sRegionMap->mainState = 0;
         sRegionMap->openState = 0;
@@ -1875,7 +1875,7 @@ static void CB2_OpenRegionMap(void)
             SetBg0andBg3Hidden(TRUE);
         break;
     default:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         CreateMainMapTask();
         SetRegionMapVBlankCB();
         break;
@@ -2080,7 +2080,7 @@ static void Task_RegionMap(u8 taskId)
         }
         break;
     case 5:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
     _080C0798:
         sRegionMap->mainState++;
         break;
@@ -2239,7 +2239,7 @@ static void DisplayCurrentMapName(void)
     else
     {
         GetMapName(sRegionMap->mapName, GetMapsecUnderCursor(), 0);
-        AddTextPrinterParameterized3(WIN_MAP_NAME, 2, 2, 2, sTextColor_White, 0, sRegionMap->mapName);
+        AddTextPrinterParameterized3(WIN_MAP_NAME, FONT_2, 2, 2, sTextColor_White, 0, sRegionMap->mapName);
         PutWindowTilemap(WIN_MAP_NAME);
         CopyWindowToVram(WIN_MAP_NAME, COPYWIN_GFX);
         SetGpuWindowDims(WIN_MAP_NAME, &sMapsecNameWindowDims[WIN_MAP_NAME]);
@@ -2271,18 +2271,18 @@ static void DisplayCurrentDungeonName(void)
          sRegionMap->dungeonWinBottom = 48;
          FillWindowPixelBuffer(WIN_DUNGEON_NAME, PIXEL_FILL(0));
          StringCopy(sRegionMap->dungeonName, sMapNames[descOffset]);
-         AddTextPrinterParameterized3(WIN_DUNGEON_NAME, 2, 12, 2, sTextColorTable[GetSelectedMapsecType(LAYER_DUNGEON) - 2], 0, sRegionMap->dungeonName);
+         AddTextPrinterParameterized3(WIN_DUNGEON_NAME, FONT_2, 12, 2, sTextColorTable[GetSelectedMapsecType(LAYER_DUNGEON) - 2], 0, sRegionMap->dungeonName);
          PutWindowTilemap(WIN_DUNGEON_NAME);
-         CopyWindowToVram(WIN_DUNGEON_NAME, COPYWIN_BOTH);
+         CopyWindowToVram(WIN_DUNGEON_NAME, COPYWIN_FULL);
     }
 }
 
 static void ClearMapsecNameText(void)
 {
     FillWindowPixelBuffer(WIN_MAP_NAME, PIXEL_FILL(0));
-    CopyWindowToVram(WIN_MAP_NAME, COPYWIN_BOTH);
+    CopyWindowToVram(WIN_MAP_NAME, COPYWIN_FULL);
     FillWindowPixelBuffer(WIN_DUNGEON_NAME, PIXEL_FILL(0));
-    CopyWindowToVram(WIN_DUNGEON_NAME, COPYWIN_BOTH);
+    CopyWindowToVram(WIN_DUNGEON_NAME, COPYWIN_FULL);
 }
 
 static void BufferRegionMapBg(u8 bg, u16 *map)
@@ -2630,9 +2630,9 @@ static bool8 HandleSwitchMapInput(void)
     return FALSE;
 }
 
-static void SpriteCB_SwitchMapCursor(struct Sprite * sprite)
+static void SpriteCB_SwitchMapCursor(struct Sprite *sprite)
 {
-    sprite->pos1.y = sSwitchMapMenu->highlight.top + 16;
+    sprite->y = sSwitchMapMenu->highlight.top + 16;
 }
 
 static bool8 CreateSwitchMapCursor(void)
@@ -2845,7 +2845,7 @@ static void Task_DrawDungeonMapPreviewFlavorText(u8 taskId)
         break;
     case 2:
         FillWindowPixelBuffer(WIN_MAP_PREVIEW, PIXEL_FILL(0));
-        CopyWindowToVram(WIN_MAP_PREVIEW, COPYWIN_BOTH);
+        CopyWindowToVram(WIN_MAP_PREVIEW, COPYWIN_FULL);
         PutWindowTilemap(WIN_MAP_PREVIEW);
         sDungeonMapPreview->drawState++;
         break;
@@ -2853,9 +2853,9 @@ static void Task_DrawDungeonMapPreviewFlavorText(u8 taskId)
         // Draw text
         if (sDungeonMapPreview->timer > 25)
         {
-            AddTextPrinterParameterized3(WIN_MAP_PREVIEW, 2, 4, 0, sTextColor_Green, -1, GetDungeonName(GetDungeonMapsecUnderCursor()));
-            AddTextPrinterParameterized3(WIN_MAP_PREVIEW, 2, 2, 14, sTextColor_White, -1, GetDungeonFlavorText(GetDungeonMapsecUnderCursor()));
-            CopyWindowToVram(WIN_MAP_PREVIEW, COPYWIN_BOTH);
+            AddTextPrinterParameterized3(WIN_MAP_PREVIEW, FONT_2, 4, 0, sTextColor_Green, -1, GetDungeonName(GetDungeonMapsecUnderCursor()));
+            AddTextPrinterParameterized3(WIN_MAP_PREVIEW, FONT_2, 2, 14, sTextColor_White, -1, GetDungeonFlavorText(GetDungeonMapsecUnderCursor()));
+            CopyWindowToVram(WIN_MAP_PREVIEW, COPYWIN_FULL);
             sDungeonMapPreview->drawState++;
         }
         // Tint image
@@ -2874,7 +2874,7 @@ static void Task_DrawDungeonMapPreviewFlavorText(u8 taskId)
         if (JOY_NEW(B_BUTTON) || JOY_NEW(A_BUTTON))
         {
             FillWindowPixelBuffer(WIN_MAP_PREVIEW, PIXEL_FILL(0));
-            CopyWindowToVram(WIN_MAP_PREVIEW, COPYWIN_BOTH);
+            CopyWindowToVram(WIN_MAP_PREVIEW, COPYWIN_FULL);
             sDungeonMapPreview->mainState++;
             sDungeonMapPreview->drawState++;
         }
@@ -2972,7 +2972,7 @@ static bool8 UpdateDungeonMapPreview(bool8 a0)
     return FALSE;
 }
 
-static void SpriteCB_MapEdge(struct Sprite * sprite)
+static void SpriteCB_MapEdge(struct Sprite *sprite)
 {
 
 }
@@ -3134,8 +3134,8 @@ static void FreeMapEdgeSprites(void)
     u32 i;
     for (i = 0; i < NELEMS(sMapOpenCloseAnim->mapEdges); i++)
     {
-        sMapOpenCloseAnim->mapEdges[i]->x = sMapOpenCloseAnim->mapEdges[i]->sprite->pos1.x;
-        sMapOpenCloseAnim->mapEdges[i]->y = sMapOpenCloseAnim->mapEdges[i]->sprite->pos1.y;
+        sMapOpenCloseAnim->mapEdges[i]->x = sMapOpenCloseAnim->mapEdges[i]->sprite->x;
+        sMapOpenCloseAnim->mapEdges[i]->y = sMapOpenCloseAnim->mapEdges[i]->sprite->y;
         if (sMapOpenCloseAnim->mapEdges[i]->sprite != NULL)
         {
             DestroySprite(sMapOpenCloseAnim->mapEdges[i]->sprite);
@@ -3163,8 +3163,8 @@ static void Task_MapOpenAnim(u8 taskId)
         break;
     case 3:
         CopyBgTilemapBufferToVram(1);
-        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         SetRegionMapVBlankCB();
         sMapOpenCloseAnim->openState++;
         break;
@@ -3256,54 +3256,54 @@ static void Task_MapOpenAnim(u8 taskId)
 static bool8 MoveMapEdgesOutward(void)
 {
     sub_80C2B48();
-    if (sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x == 0)
+    if (sMapOpenCloseAnim->mapEdges[0]->sprite->x == 0)
     {
         return TRUE;
     }
     else if (sMapOpenCloseAnim->moveState > 17)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x -= 1;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x -= 1;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x -= 1;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x += 1;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x += 1;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x += 1;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x -= 1;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x -= 1;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x -= 1;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x += 1;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x += 1;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x += 1;
     }
     else if (sMapOpenCloseAnim->moveState > 14)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x -= 2;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x -= 2;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x -= 2;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x += 2;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x += 2;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x += 2;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x -= 2;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x -= 2;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x -= 2;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x += 2;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x += 2;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x += 2;
     }
     else if (sMapOpenCloseAnim->moveState > 10)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x -= 3;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x -= 3;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x -= 3;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x += 3;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x += 3;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x += 3;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x -= 3;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x -= 3;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x -= 3;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x += 3;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x += 3;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x += 3;
     }
     else if (sMapOpenCloseAnim->moveState > 6)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x -= 5;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x -= 5;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x -= 5;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x += 5;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x += 5;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x += 5;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x -= 5;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x -= 5;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x -= 5;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x += 5;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x += 5;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x += 5;
     }
     else
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x -= 8;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x -= 8;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x -= 8;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x += 8;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x += 8;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x += 8;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x -= 8;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x -= 8;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x -= 8;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x += 8;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x += 8;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x += 8;
     }
     sMapOpenCloseAnim->moveState++;
     return FALSE;
@@ -3312,9 +3312,9 @@ static bool8 MoveMapEdgesOutward(void)
 static void sub_80C2B48(void)
 {
     struct GpuWindowParams data;
-    data.left = sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x;
+    data.left = sMapOpenCloseAnim->mapEdges[0]->sprite->x;
     data.top = 16;
-    data.right = sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x;
+    data.right = sMapOpenCloseAnim->mapEdges[3]->sprite->x;
     data.bottom = 160;
     SetGpuWindowDims(0, &data);
 }
@@ -3354,8 +3354,8 @@ static void Task_MapCloseAnim(u8 taskId)
     {
     case 0:
         ClearOrDrawTopBar(TRUE);
-        CopyWindowToVram(WIN_TOPBAR_LEFT, COPYWIN_BOTH);
-        CopyWindowToVram(WIN_TOPBAR_RIGHT, COPYWIN_BOTH);
+        CopyWindowToVram(WIN_TOPBAR_LEFT, COPYWIN_FULL);
+        CopyWindowToVram(WIN_TOPBAR_RIGHT, COPYWIN_FULL);
         sMapOpenCloseAnim->closeState++;
         break;
     case 1:
@@ -3412,71 +3412,71 @@ static void Task_MapCloseAnim(u8 taskId)
 static bool8 MoveMapEdgesInward(void)
 {
     sub_80C2B48();
-    if (sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x == 104)
+    if (sMapOpenCloseAnim->mapEdges[0]->sprite->x == 104)
     {
         return TRUE;
     }
     else if (sMapOpenCloseAnim->moveState > 17)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x += 1;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x += 1;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x += 1;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x -= 1;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x -= 1;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x -= 1;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x += 1;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x += 1;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x += 1;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x -= 1;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x -= 1;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x -= 1;
     }
     else if (sMapOpenCloseAnim->moveState > 14)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x += 2;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x += 2;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x += 2;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x -= 2;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x -= 2;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x -= 2;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x += 2;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x += 2;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x += 2;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x -= 2;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x -= 2;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x -= 2;
     }
     else if (sMapOpenCloseAnim->moveState > 10)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x += 3;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x += 3;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x += 3;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x -= 3;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x -= 3;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x -= 3;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x += 3;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x += 3;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x += 3;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x -= 3;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x -= 3;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x -= 3;
     }
     else if (sMapOpenCloseAnim->moveState > 6)
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x += 5;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x += 5;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x += 5;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x -= 5;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x -= 5;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x -= 5;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x += 5;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x += 5;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x += 5;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x -= 5;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x -= 5;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x -= 5;
     }
     else
     {
-        sMapOpenCloseAnim->mapEdges[0]->sprite->pos1.x += 8;
-        sMapOpenCloseAnim->mapEdges[1]->sprite->pos1.x += 8;
-        sMapOpenCloseAnim->mapEdges[2]->sprite->pos1.x += 8;
-        sMapOpenCloseAnim->mapEdges[3]->sprite->pos1.x -= 8;
-        sMapOpenCloseAnim->mapEdges[4]->sprite->pos1.x -= 8;
-        sMapOpenCloseAnim->mapEdges[5]->sprite->pos1.x -= 8;
+        sMapOpenCloseAnim->mapEdges[0]->sprite->x += 8;
+        sMapOpenCloseAnim->mapEdges[1]->sprite->x += 8;
+        sMapOpenCloseAnim->mapEdges[2]->sprite->x += 8;
+        sMapOpenCloseAnim->mapEdges[3]->sprite->x -= 8;
+        sMapOpenCloseAnim->mapEdges[4]->sprite->x -= 8;
+        sMapOpenCloseAnim->mapEdges[5]->sprite->x -= 8;
     }
     sMapOpenCloseAnim->moveState++;
     return FALSE;
 }
 
-static void SpriteCB_MapCursor(struct Sprite * sprite)
+static void SpriteCB_MapCursor(struct Sprite *sprite)
 {
     if (sMapCursor->moveCounter != 0)
     {
-        sprite->pos1.x += sMapCursor->horizontalMove;
-        sprite->pos1.y += sMapCursor->verticalMove;
+        sprite->x += sMapCursor->horizontalMove;
+        sprite->y += sMapCursor->verticalMove;
         sMapCursor->moveCounter--;
     }
     else
     {
-        sMapCursor->sprite->pos1.x = 8 * sMapCursor->x + 36;
-        sMapCursor->sprite->pos1.y = 8 * sMapCursor->y + 36;
+        sMapCursor->sprite->x = 8 * sMapCursor->x + 36;
+        sMapCursor->sprite->y = 8 * sMapCursor->y + 36;
     }
 }
 
@@ -3698,8 +3698,8 @@ static void SnapToIconOrButton(void)
             break;
         }
     }
-    sMapCursor->sprite->pos1.x = 8 * sMapCursor->x + 36;
-    sMapCursor->sprite->pos1.y = 8 * sMapCursor->y + 36;
+    sMapCursor->sprite->x = 8 * sMapCursor->x + 36;
+    sMapCursor->sprite->y = 8 * sMapCursor->y + 36;
     sMapCursor->selectedMapsec = GetSelectedMapSection(GetSelectedRegionMap(), LAYER_MAP, sMapCursor->y, sMapCursor->x);
 }
 
@@ -4273,8 +4273,8 @@ static void LoadMapIcons(u8 taskId)
         sMapIcons->state++;
         break;
     case 3:
-        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         sMapIcons->state++;
         break;
     case 4:
@@ -4648,7 +4648,7 @@ static void PrintTopBarTextLeft(const u8 *str)
         FillWindowPixelBuffer(WIN_TOPBAR_LEFT, PIXEL_FILL(0));
     else
         FillWindowPixelBuffer(WIN_TOPBAR_LEFT, PIXEL_FILL(15));
-    AddTextPrinterParameterized3(WIN_TOPBAR_LEFT, 0, 0, 0, sTextColors, 0, str);
+    AddTextPrinterParameterized3(WIN_TOPBAR_LEFT, FONT_0, 0, 0, sTextColors, 0, str);
     CopyWindowToVram(WIN_TOPBAR_LEFT, COPYWIN_GFX);
 }
 
@@ -4658,8 +4658,8 @@ static void PrintTopBarTextRight(const u8 *str)
         FillWindowPixelBuffer(WIN_TOPBAR_RIGHT, PIXEL_FILL(0));
     else
         FillWindowPixelBuffer(WIN_TOPBAR_RIGHT, PIXEL_FILL(15));
-    AddTextPrinterParameterized3(WIN_TOPBAR_RIGHT, 0, 0, 0, sTextColors, 0, str);
-    CopyWindowToVram(WIN_TOPBAR_RIGHT, COPYWIN_BOTH);
+    AddTextPrinterParameterized3(WIN_TOPBAR_RIGHT, FONT_0, 0, 0, sTextColors, 0, str);
+    CopyWindowToVram(WIN_TOPBAR_RIGHT, COPYWIN_FULL);
 }
 
 static void ClearOrDrawTopBar(bool8 clear)
@@ -4687,7 +4687,7 @@ static void Task_FlyMap(u8 taskId)
     switch (sFlyMap->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         InitMapIcons(GetSelectedRegionMap(), taskId, GetMainMapTask());
         CreateMapCursor(0, 0);
         CreatePlayerIcon(1, 1);
@@ -4787,7 +4787,7 @@ static void Task_FlyMap(u8 taskId)
         sFlyMap->state++;
         break;
     case 6:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         sFlyMap->state++;
         break;
     default:

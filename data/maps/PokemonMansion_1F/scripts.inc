@@ -1,16 +1,16 @@
 .set LOCALID_MAGMAR_MASTER, 6
 .set TRAINER, VAR_0x8009
 
-PokemonMansion_1F_MapScripts:: @ 81621F9
+PokemonMansion_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, PokemonMansion_1F_OnLoad
 	map_script MAP_SCRIPT_ON_TRANSITION, PokemonMansion_1F_OnTransition
 	.byte 0
 
-PokemonMansion_1F_OnLoad:: @ 8162204
+PokemonMansion_1F_OnLoad::
 	call_if_set FLAG_POKEMON_MANSION_SWITCH_STATE, PokemonMansion_EventScript_PressSwitch_1F
 	end
 
-PokemonMansion_1F_OnTransition:: @ 816220E
+PokemonMansion_1F_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_POKEMON_MANSION_1F
 	goto PokemonMansion_1F_MapScript_SetMasterTrainerMovementTypes
 	end
@@ -18,15 +18,14 @@ PokemonMansion_1F_OnTransition:: @ 816220E
 PokemonMansion_1F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MAGMAR
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq PokemonMansion_1F_MapScript_MagmarMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, PokemonMansion_1F_MapScript_MagmarMasterMovementType
 	end
 
 PokemonMansion_1F_MapScript_MagmarMasterMovementType::
 	setobjectmovementtype LOCALID_MAGMAR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-PokemonMansion_1F_EventScript_Statue:: @ 8162212
+PokemonMansion_1F_EventScript_Statue::
 	lockall
 	setvar VAR_0x8004, 0
 	call PokemonMansion_EventScript_SecretSwitch
@@ -36,12 +35,12 @@ PokemonMansion_1F_EventScript_Statue:: @ 8162212
 	releaseall
 	end
 
-PokemonMansion_1F_EventScript_Ted:: @ 8162226
+PokemonMansion_1F_EventScript_Ted::
 	trainerbattle_single TRAINER_SCIENTIST_TED, PokemonMansion_1F_Text_TedIntro, PokemonMansion_1F_Text_TedDefeat
 	msgbox PokemonMansion_1F_Text_TedPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-PokemonMansion_1F_EventScript_Johnson:: @ 816223D
+PokemonMansion_1F_EventScript_Johnson::
 	trainerbattle_single TRAINER_YOUNGSTER_JOHNSON, PokemonMansion_1F_Text_JohnsonIntro, PokemonMansion_1F_Text_JohnsonDefeat
 	msgbox PokemonMansion_1F_Text_JohnsonPostBattle, MSGBOX_AUTOCLOSE
 	end

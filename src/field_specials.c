@@ -546,7 +546,7 @@ void NullFieldSpecial(void)
 void DoPicboxCancel(void)
 {
     u8 t = EOS;
-    AddTextPrinterParameterized(0, 2, &t, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, FONT_2, &t, 0, 1, 0, NULL);
     PicboxCancel();
 }
 
@@ -1100,12 +1100,12 @@ void DrawElevatorCurrentFloorWindow(void)
         sElevatorCurrentFloorWindowId = AddWindow(&sElevatorCurrentFloorWindowTemplate);
         TextWindow_SetStdFrame0_WithPal(sElevatorCurrentFloorWindowId, 0x21D, 0xD0);
         DrawStdFrameWithCustomTileAndPalette(sElevatorCurrentFloorWindowId, FALSE, 0x21D, 0xD);
-        AddTextPrinterParameterized(sElevatorCurrentFloorWindowId, 2, gText_NowOn, 0, 2, 0xFF, NULL);
+        AddTextPrinterParameterized(sElevatorCurrentFloorWindowId, FONT_2, gText_NowOn, 0, 2, 0xFF, NULL);
         floorname = sFloorNamePointers[gSpecialVar_0x8005];
-        strwidth = GetStringWidth(2, floorname, 0);
-        AddTextPrinterParameterized(sElevatorCurrentFloorWindowId, 2, floorname, 56 - strwidth, 16, 0xFF, NULL);
+        strwidth = GetStringWidth(FONT_2, floorname, 0);
+        AddTextPrinterParameterized(sElevatorCurrentFloorWindowId, FONT_2, floorname, 56 - strwidth, 16, 0xFF, NULL);
         PutWindowTilemap(sElevatorCurrentFloorWindowId);
-        CopyWindowToVram(sElevatorCurrentFloorWindowId, COPYWIN_BOTH);
+        CopyWindowToVram(sElevatorCurrentFloorWindowId, COPYWIN_FULL);
     }
 }
 
@@ -1167,7 +1167,7 @@ static void Task_AnimateElevatorWindowView(u8 taskId)
 void ListMenu(void)
 {
     u8 taskId;
-    struct Task * task;
+    struct Task *task;
     if (QuestLog_SchedulePlaybackCB(QLPlaybackCB_DestroyScriptMenuMonPicSprites) != TRUE)
     {
         taskId = CreateTask(Task_CreateScriptListMenu, 8);
@@ -1397,7 +1397,7 @@ static void Task_CreateScriptListMenu(u8 taskId)
     u32 j;
     s32 width;
     s32 mwidth;
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
     u8 windowId;
     u32 listSize;
     ScriptContext2_Enable();
@@ -1464,7 +1464,7 @@ static void Task_CreateScriptListMenu(u8 taskId)
         {
             sListMenuItems[i].label = sListMenuLabels[gSpecialVar_0x8004][i];
             sListMenuItems[i].index = i;
-            width = GetStringWidth(2, sListMenuItems[i].label, 0);
+            width = GetStringWidth(FONT_2, sListMenuItems[i].label, 0);
             if (width > mwidth)
                 mwidth = width;
         }
@@ -1481,7 +1481,7 @@ static void Task_CreateScriptListMenu(u8 taskId)
     Task_CreateMenuRemoveScrollIndicatorArrowPair(taskId);
     task->data[14] = ListMenuInit(&sFieldSpecialsListMenuTemplate, task->data[7], task->data[8]);
     PutWindowTilemap(task->data[13]);
-    CopyWindowToVram(task->data[13], COPYWIN_BOTH);
+    CopyWindowToVram(task->data[13], COPYWIN_FULL);
     gTasks[taskId].func = Task_ListMenuHandleInput;
 }
 
@@ -1503,14 +1503,14 @@ static void CreateScriptListMenu(void)
     sFieldSpecialsListMenuTemplate.lettersSpacing = 1;
     sFieldSpecialsListMenuTemplate.itemVerticalPadding = 0;
     sFieldSpecialsListMenuTemplate.scrollMultiple = 0;
-    sFieldSpecialsListMenuTemplate.fontId = 2;
+    sFieldSpecialsListMenuTemplate.fontId = FONT_2;
     sFieldSpecialsListMenuTemplate.cursorKind = 0;
 }
 
 static void ScriptListMenuMoveCursorFunction(s32 nothing, bool8 is, struct ListMenu * used)
 {
     u8 taskId;
-    struct Task * task;
+    struct Task *task;
     PlaySE(SE_SELECT);
     taskId = FindTaskIdByFunc(Task_ListMenuHandleInput);
     if (taskId != 0xFF)
@@ -1524,7 +1524,7 @@ static void ScriptListMenuMoveCursorFunction(s32 nothing, bool8 is, struct ListM
 static void Task_ListMenuHandleInput(u8 taskId)
 {
     s32 input;
-    struct Task * task;
+    struct Task *task;
 
     task = &gTasks[taskId];
     task++;task--;
@@ -1560,7 +1560,7 @@ static void Task_ListMenuHandleInput(u8 taskId)
 
 static void Task_DestroyListMenu(u8 taskId)
 {
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
     Task_ListMenuRemoveScrollIndicatorArrowPair(taskId);
     DestroyListMenuTask(task->data[14], NULL, NULL);
     Free(sListMenuItems);
@@ -1604,7 +1604,7 @@ static void Task_RedrawScrollArrowsAndWaitInput(u8 taskId)
 
 static void Task_CreateMenuRemoveScrollIndicatorArrowPair(u8 taskId)
 {
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
     struct ScrollArrowsTemplate template = {
         .firstArrowType = 2,
         .secondArrowType = 3,
@@ -1625,7 +1625,7 @@ static void Task_CreateMenuRemoveScrollIndicatorArrowPair(u8 taskId)
 
 static void Task_ListMenuRemoveScrollIndicatorArrowPair(u8 taskId)
 {
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
     if (task->data[0] != task->data[1])
         RemoveScrollIndicatorArrowPair(task->data[12]);
 }
@@ -1662,18 +1662,26 @@ void SetSeenMon(void)
 void ResetContextNpcTextColor(void)
 {
     gSelectedObjectEvent = 0;
-    gSpecialVar_TextColor = 0xFF;
+    gSpecialVar_TextColor = NPC_TEXT_COLOR_DEFAULT;
 }
 
 u8 ContextNpcGetTextColor(void)
 {
     u8 gfxId;
-    if (gSpecialVar_TextColor != 0xFF)
+    if (gSpecialVar_TextColor != NPC_TEXT_COLOR_DEFAULT)
+    {
+        // A text color has been specified, use that
         return gSpecialVar_TextColor;
+    }
     else if (gSelectedObjectEvent == 0)
-        return 3;
+    {
+        // No text color specified and no object selected, use neutral
+        return NPC_TEXT_COLOR_NEUTRAL;
+    }
     else
     {
+        // An object is selected and no color has been specified.
+        // Use the text color normally associated with this object's sprite.
         gfxId = gObjectEvents[gSelectedObjectEvent].graphicsId;
         if (gfxId >= OBJ_EVENT_GFX_VAR_0)
             gfxId = VarGetObjectEventGraphicsId(gfxId - OBJ_EVENT_GFX_VAR_0);
@@ -1751,7 +1759,7 @@ void ChangeBoxPokemonNickname(void)
     species = GetBoxMonData(pokemon, MON_DATA_SPECIES, NULL);
     gender = GetBoxMonGender(pokemon);
     personality = GetBoxMonData(pokemon, MON_DATA_PERSONALITY, NULL);
-    DoNamingScreen(NAMING_SCREEN_NAME_RATER, gStringVar2, species, gender, personality, ChangeBoxPokemonNickname_CB);
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar2, species, gender, personality, ChangeBoxPokemonNickname_CB);
 }
 
 static void ChangeBoxPokemonNickname_CB(void)
@@ -1771,7 +1779,7 @@ void ChangePokemonNickname(void)
     species = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES, NULL);
     gender = GetMonGender(&gPlayerParty[gSpecialVar_0x8004]);
     personality = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_PERSONALITY, NULL);
-    DoNamingScreen(NAMING_SCREEN_NAME_RATER, gStringVar2, species, gender, personality, ChangePokemonNickname_CB);
+    DoNamingScreen(NAMING_SCREEN_NICKNAME, gStringVar2, species, gender, personality, ChangePokemonNickname_CB);
 }
 
 static void ChangePokemonNickname_CB(void)
@@ -2533,7 +2541,7 @@ static void MoveDeoxysObject(u8 num)
     else
         gFieldEffectArguments[5] = 5;
     FieldEffectStart(FLDEFF_MOVE_DEOXYS_ROCK);
-    Overworld_SetMapObjTemplateCoords(1, sDeoxysCoords[num][0], sDeoxysCoords[num][1]);
+    SetObjEventTemplateCoords(1, sDeoxysCoords[num][0], sDeoxysCoords[num][1]);
 }
 
 static void Task_WaitDeoxysFieldEffect(u8 taskId)

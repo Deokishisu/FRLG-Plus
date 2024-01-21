@@ -65,14 +65,14 @@ static struct UnkStruct_URoom * sURoom;
 static void Task_TryBecomeLinkLeader(u8 taskId);
 static void Leader_DestroyResources(struct UnkStruct_Leader * leader);
 static bool8 Leader_SetStateIfMemberListChanged(struct UnkStruct_Leader * leader, u32 state1, u32 state2);
-static void ItemPrintFunc_PossibleGroupMembers(u8 windowId, s32 itemId, u8 y);
+static void ItemPrintFunc_PossibleGroupMembers(u8 windowId, u32 itemId, u8 y);
 static u8 LeaderUpdateGroupMembership(struct UnkStruct_Main0 * main0);
 static u8 UnionRoomLeaderField0CompactionAndCount(struct UnkStruct_Main0 * main0);
 static void Task_TryJoinLinkGroup(u8 taskId);
 static u32 IsTryingToTradeWithHoennTooSoon(struct UnkStruct_Group * group, s32 id);
 static void AskToJoinRfuGroup(struct UnkStruct_Group * group, s32 id);
 static void Task_ListenToWireless(u8 taskId);
-static void ListMenuItemPrintFunc_UnionRoomGroups(u8 windowId, s32 itemId, u8 y);
+static void ListMenuItemPrintFunc_UnionRoomGroups(u8 windowId, u32 itemId, u8 y);
 static u8 GetNewLeaderCandidate(void);
 static void CreateTask_RunScriptAndFadeToActivity(void);
 static void CreateTask_StartActivity(void);
@@ -110,8 +110,8 @@ static bool32 PlayerIsTalkingToUnionRoomAide(void);
 static u32 GetResponseIdx_InviteToURoomActivity(s32 activity);
 static u32 ConvPartnerUnameAndGetWhetherMetAlready(struct UnkStruct_x20 * unkX20);
 static s32 UnionRoomGetPlayerInteractionResponse(struct UnkStruct_Main0 * main0, u8 overrideGender, u8 playerIdx, u32 playerGender);
-static void nullsub_92(u8 windowId, s32 itemId, u8 y);
-static void TradeBoardListMenuItemPrintFunc(u8 windowId, s32 itemId, u8 y);
+static void nullsub_92(u8 windowId, u32 itemId, u8 y);
+static void TradeBoardListMenuItemPrintFunc(u8 windowId, u32 itemId, u8 y);
 static s32 GetIndexOfNthTradeBoardOffer(struct UnkStruct_x20 * x20, s32 n);
 static s32 GetUnionRoomPlayerGender(s32 playerIdx, struct UnkStruct_Main0 * main0);
 static s32 IsRequestedTypeAndSpeciesInPlayerParty(u32 type, u32 species);
@@ -225,7 +225,7 @@ static const struct ListMenuTemplate sListMenuTemplate_PossibleGroupMembers = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 2,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 1
 };
 
@@ -285,7 +285,7 @@ static const struct ListMenuTemplate sListMenuTemplate_UnionRoomGroups = {
     .lettersSpacing = 0,
     .itemVerticalPadding = 2,
     .scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 0
 };
 
@@ -323,7 +323,7 @@ static const struct ListMenuTemplate sListMenuTemplate_InviteToActivity = {
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 0
 };
 
@@ -360,7 +360,7 @@ static const struct ListMenuTemplate sListMenuTemplate_TradeBoardRegisterInfoExi
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 0
 };
 
@@ -412,7 +412,7 @@ static const struct ListMenuTemplate sListMenuTemplate_TypeNames = {
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 0
 };
 
@@ -466,7 +466,7 @@ static const struct ListMenuTemplate sTradeBoardListMenuTemplate = {
     .lettersSpacing = 1,
     .itemVerticalPadding = 1,
     .scrollMultiple = LIST_NO_MULTIPLE_SCROLL,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 0
 };
 
@@ -516,7 +516,7 @@ static const struct ListMenuTemplate gUnknown_845701C = {
     .lettersSpacing = 1,
     .itemVerticalPadding = 0,
     .scrollMultiple = LIST_MULTIPLE_SCROLL_DPAD,
-    .fontId = 2,
+    .fontId = FONT_2,
     .cursorKind = 0
 };
 
@@ -726,7 +726,7 @@ void TryBecomeLinkLeader(void)
     struct UnkStruct_Leader * dataPtr;
 
     taskId = CreateTask(Task_TryBecomeLinkLeader, 0);
-    sUnionRoomMain.leader = dataPtr = (void*)(gTasks[taskId].data);
+    sUnionRoomMain.leader = dataPtr = (void *)(gTasks[taskId].data);
     sLeader = dataPtr;
 
     dataPtr->state = 0;
@@ -1163,7 +1163,7 @@ static bool8 Leader_SetStateIfMemberListChanged(struct UnkStruct_Leader * data, 
     return FALSE;
 }
 
-static void ItemPrintFunc_PossibleGroupMembers(u8 windowId, s32 itemId, u8 y)
+static void ItemPrintFunc_PossibleGroupMembers(u8 windowId, u32 itemId, u8 y)
 {
     struct UnkStruct_Leader * data = sUnionRoomMain.leader;
     u8 var = 0;
@@ -1273,7 +1273,7 @@ void TryJoinLinkGroup(void)
     struct UnkStruct_Group * dataPtr;
 
     taskId = CreateTask(Task_TryJoinLinkGroup, 0);
-    sUnionRoomMain.group = dataPtr = (void*)(gTasks[taskId].data);
+    sUnionRoomMain.group = dataPtr = (void *)(gTasks[taskId].data);
     sGroup = dataPtr;
 
     dataPtr->state = 0;
@@ -1573,7 +1573,7 @@ u8 CreateTask_ListenToWireless(void)
     struct UnkStruct_Group * dataPtr;
 
     taskId = CreateTask(Task_ListenToWireless, 0);
-    sUnionRoomMain.group = dataPtr = (void*)(gTasks[taskId].data);
+    sUnionRoomMain.group = dataPtr = (void *)(gTasks[taskId].data);
 
     dataPtr->state = 0;
     dataPtr->textState = 0;
@@ -1631,7 +1631,11 @@ static bool32 IsPartnerActivityAcceptable(u32 activity, u32 group)
     if (group == 0xFF)
         return TRUE;
 
+    #ifndef UBFIX
     if (group <= NELEMS(sAcceptedActivityIds)) // UB: <= may access data outside the array
+    #else
+    if (group < NELEMS(sAcceptedActivityIds))
+    #endif
     {
         const u8 *bytes = sAcceptedActivityIds[group];
 
@@ -1661,7 +1665,7 @@ static u8 URoomGroupListGetTextColor(struct UnkStruct_Group * data, u32 id)
     return UR_COLOR_DKE_WHT_LTE;
 }
 
-static void ListMenuItemPrintFunc_UnionRoomGroups(u8 windowId, s32 itemId, u8 y)
+static void ListMenuItemPrintFunc_UnionRoomGroups(u8 windowId, u32 itemId, u8 y)
 {
     struct UnkStruct_Group * data = sUnionRoomMain.group;
     u8 color_idx = URoomGroupListGetTextColor(data, itemId);
@@ -1760,21 +1764,21 @@ static void Task_StartUnionRoomTrade(u8 taskId)
     case 1:
         if (GetBlockReceivedStatus() == 3)
         {
-            gEnemyParty[0] = *(struct Pokemon*)(gBlockRecvBuffer[GetMultiplayerId() ^ 1]);
+            gEnemyParty[0] = *(struct Pokemon *)(gBlockRecvBuffer[GetMultiplayerId() ^ 1]);
             IncrementGameStat(GAME_STAT_NUM_UNION_ROOM_BATTLES);
             ResetBlockReceivedFlags();
             gTasks[taskId].data[0]++;
         }
         break;
     case 2:
-        memcpy(gBlockSendBuffer, gSaveBlock1Ptr->mail, sizeof(struct MailStruct) * PARTY_SIZE + 4);
-        if (SendBlock(0, gBlockSendBuffer, sizeof(struct MailStruct) * PARTY_SIZE + 4))
+        memcpy(gBlockSendBuffer, gSaveBlock1Ptr->mail, sizeof(struct Mail) * PARTY_SIZE + 4);
+        if (SendBlock(0, gBlockSendBuffer, sizeof(struct Mail) * PARTY_SIZE + 4))
             gTasks[taskId].data[0]++;
         break;
     case 3:
         if (GetBlockReceivedStatus() == 3)
         {
-            memcpy(gLinkPartnerMail, gBlockRecvBuffer[GetMultiplayerId() ^ 1], sizeof(struct MailStruct) * PARTY_SIZE);
+            memcpy(gLinkPartnerMail, gBlockRecvBuffer[GetMultiplayerId() ^ 1], sizeof(struct Mail) * PARTY_SIZE);
             ResetBlockReceivedFlags();
             gSelectedTradeMonPositions[TRADE_PLAYER] = monId;
             gSelectedTradeMonPositions[TRADE_PARTNER] = PARTY_SIZE;
@@ -2008,7 +2012,7 @@ static void Task_StartActivity(u8 taskId)
 static void Task_RunScriptAndFadeToActivity(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    u16 *sendBuff = (u16*)(gBlockSendBuffer);
+    u16 *sendBuff = (u16 *)(gBlockSendBuffer);
 
     switch (data[0])
     {
@@ -2058,7 +2062,7 @@ void MEvent_CreateTask_Leader(u32 activity)
     struct UnkStruct_Leader * dataPtr;
 
     taskId = CreateTask(Task_MEvent_Leader, 0);
-    sUnionRoomMain.leader = dataPtr = (void*)(gTasks[taskId].data);
+    sUnionRoomMain.leader = dataPtr = (void *)(gTasks[taskId].data);
 
     dataPtr->state = 0;
     dataPtr->textState = 0;
@@ -2267,7 +2271,7 @@ void MEvent_CreateTask_CardOrNewsWithFriend(u32 activity)
     struct UnkStruct_Group * dataPtr;
 
     taskId = CreateTask(Task_CardOrNewsWithFriend, 0);
-    sUnionRoomMain.group = dataPtr = (void*)(gTasks[taskId].data);
+    sUnionRoomMain.group = dataPtr = (void *)(gTasks[taskId].data);
     sGroup = dataPtr;
 
     dataPtr->state = 0;
@@ -2433,7 +2437,7 @@ void MEvent_CreateTask_CardOrNewsOverWireless(u32 activity)
     struct UnkStruct_Group * dataPtr;
 
     taskId = CreateTask(Task_CardOrNewsOverWireless, 0);
-    sUnionRoomMain.group = dataPtr = (void*)(gTasks[taskId].data);
+    sUnionRoomMain.group = dataPtr = (void *)(gTasks[taskId].data);
     sGroup = dataPtr;
 
     dataPtr->state = 0;
@@ -3275,7 +3279,7 @@ static void Task_RunUnionRoom(u8 taskId)
         if (!gPaletteFade.active)
         {
             sUnionRoomTrade.field_0 = 1;
-            gFieldCallback = sub_807DCE4;
+            gFieldCallback = FieldCB_ContinueScriptUnionRoom;
             ChooseMonForTradingBoard(PARTY_MENU_TYPE_UNION_ROOM_REGISTER, CB2_ReturnToField);
         }
         break;
@@ -3387,7 +3391,7 @@ static void Task_RunUnionRoom(u8 taskId)
             memcpy(&gPartnerTgtGnameSub, &data->field_0->arr[taskData[1]].gname_uname.gname.unk_00, sizeof(gPartnerTgtGnameSub));
             gUnionRoomRequestedMonType = data->field_0->arr[taskData[1]].gname_uname.gname.type;
             gUnionRoomOfferedSpecies = data->field_0->arr[taskData[1]].gname_uname.gname.species;
-            gFieldCallback = sub_807DCE4;
+            gFieldCallback = FieldCB_ContinueScriptUnionRoom;
             ChooseMonForTradingBoard(PARTY_MENU_TYPE_UNION_ROOM_TRADE, CB2_ReturnToField);
             BackUpURoomField0ToDecompressionBuffer(data);
             sUnionRoomTrade.field_8 = taskData[1];
@@ -3651,7 +3655,7 @@ static void Task_SearchForChildOrParent(u8 taskId)
 {
     s32 i, j;
     struct UnionGnameUnamePair gname_uname;
-    struct UnkStruct_Main4 ** ptr = (void*) gTasks[taskId].data;
+    struct UnkStruct_Main4 ** ptr = (void *) gTasks[taskId].data;
     bool8 parent_child;
 
     for (i = 0; i < RFU_CHILD_MAX; i++)
@@ -3698,7 +3702,7 @@ static u8 CreateTask_SearchForChildOrParent(struct UnkStruct_Main4 * main4_paren
 static void Task_ListenForPartnersWithCompatibleSerialNos(u8 taskId)
 {
     s32 i, j;
-    struct UnkStruct_Main4 ** ptr = (void*) gTasks[taskId].data;
+    struct UnkStruct_Main4 ** ptr = (void *) gTasks[taskId].data;
 
     for (i = 0; i < RFU_CHILD_MAX; i++)
     {
@@ -3751,7 +3755,7 @@ static bool32 GetGnameWonderFlagByLinkGroup(struct GFtgtGname * gname, s16 linkG
 static void Task_ListenForPartnersWithSerial7F7D(u8 taskId)
 {
     s32 i;
-    struct UnkStruct_Main4 ** ptr = (void*) gTasks[taskId].data;
+    struct UnkStruct_Main4 ** ptr = (void *) gTasks[taskId].data;
 
     for (i = 0; i < RFU_CHILD_MAX; i++)
     {
@@ -3766,7 +3770,7 @@ static void Task_ListenForPartnersWithSerial7F7D(u8 taskId)
 static u8 CreateTask_ListenForPartnersWithCompatibleSerialNos(struct UnkStruct_Main4 * main4, u32 linkGroup)
 {
     u8 taskId = CreateTask(Task_ListenForPartnersWithCompatibleSerialNos, 0);
-    struct UnkStruct_Main4 ** ptr = (void*) gTasks[taskId].data;
+    struct UnkStruct_Main4 ** ptr = (void *) gTasks[taskId].data;
     ptr[0] = main4;
     gTasks[taskId].data[2] = linkGroup;
     return taskId;
@@ -3775,7 +3779,7 @@ static u8 CreateTask_ListenForPartnersWithCompatibleSerialNos(struct UnkStruct_M
 static u8 CreateTask_ListenForPartnersWithSerial7F7D(struct UnkStruct_Main4 * main4, u32 linkGroup)
 {
     u8 taskId = CreateTask(Task_ListenForPartnersWithSerial7F7D, 0);
-    struct UnkStruct_Main4 ** ptr = (void*) gTasks[taskId].data;
+    struct UnkStruct_Main4 ** ptr = (void *) gTasks[taskId].data;
     ptr[0] = main4;
     gTasks[taskId].data[2] = linkGroup;
     return taskId;
@@ -4310,9 +4314,8 @@ static s32 UnionRoomGetPlayerInteractionResponse(struct UnkStruct_Main0 * main0,
     }
 }
 
-static void nullsub_92(u8 windowId, s32 itemId, u8 y)
+static void nullsub_92(u8 windowId, u32 itemId, u8 y)
 {
-
 }
 
 static void TradeBoardPrintItemInfo(u8 windowId, u8 y, struct GFtgtGname * gname, const u8 * uname, u8 colorIdx)
@@ -4336,7 +4339,7 @@ static void TradeBoardPrintItemInfo(u8 windowId, u8 y, struct GFtgtGname * gname
     }
 }
 
-static void TradeBoardListMenuItemPrintFunc(u8 windowId, s32 itemId, u8 y)
+static void TradeBoardListMenuItemPrintFunc(u8 windowId, u32 itemId, u8 y)
 {
     struct UnkStruct_Leader * leader = sUnionRoomMain.leader;
     struct GFtgtGname * rfu;
@@ -4657,7 +4660,7 @@ static void HandleCancelTrade(bool32 unlockObjs)
 static void UR_EnableScriptContext2AndFreezeObjectEvents(void)
 {
     ScriptContext2_Enable();
-    ScriptFreezeObjectEvents();
+    FreezeObjects_WaitForPlayer();
 }
 
 static u8 GetSinglePartnerSpriteGenderParam(s32 linkPlayer)

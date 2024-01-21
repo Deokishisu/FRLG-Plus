@@ -6,11 +6,11 @@
 #include "constants/items.h"
 
 static EWRAM_DATA u8 sItemMenuIconSpriteIds[12] = {0};
-static EWRAM_DATA void * sItemIconTilesBuffer = NULL;
-static EWRAM_DATA void * sItemIconTilesBufferPadded = NULL;
+static EWRAM_DATA void *sItemIconTilesBuffer = NULL;
+static EWRAM_DATA void *sItemIconTilesBufferPadded = NULL;
 
-static void sub_8098560(struct Sprite * sprite);
-static void sub_80985BC(struct Sprite * sprite);
+static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite);
+static void SpriteCB_ShakeBagSprite(struct Sprite *sprite);
 
 static const struct OamData sOamData_BagOrSatchel = {
     .affineMode = ST_OAM_AFFINE_NORMAL,
@@ -572,36 +572,36 @@ void ResetItemMenuIconState(void)
 void CreateBagOrSatchelSprite(u8 animNum)
 {
     sItemMenuIconSpriteIds[0] = CreateSprite(&sSpriteTemplate_BagOrSatchel, 40, 68, 0);
-    sub_8098528(animNum);
+    SetBagVisualPocketId(animNum);
 }
 
-void sub_8098528(u8 animNum)
+void SetBagVisualPocketId(u8 animNum)
 {
-    struct Sprite * sprite = &gSprites[sItemMenuIconSpriteIds[0]];
-    sprite->pos2.y = -5;
-    sprite->callback = sub_8098560;
+    struct Sprite *sprite = &gSprites[sItemMenuIconSpriteIds[0]];
+    sprite->y2 = -5;
+    sprite->callback = SpriteCB_BagVisualSwitchingPockets;
     StartSpriteAnim(sprite, animNum);
 }
 
-static void sub_8098560(struct Sprite * sprite)
+static void SpriteCB_BagVisualSwitchingPockets(struct Sprite *sprite)
 {
-    if (sprite->pos2.y != 0)
-        sprite->pos2.y++;
+    if (sprite->y2 != 0)
+        sprite->y2++;
     else
         sprite->callback = SpriteCallbackDummy;
 }
 
-void sub_8098580(void)
+void ShakeBagSprite(void)
 {
-    struct Sprite * sprite = &gSprites[sItemMenuIconSpriteIds[0]];
+    struct Sprite *sprite = &gSprites[sItemMenuIconSpriteIds[0]];
     if (sprite->affineAnimEnded)
     {
         StartSpriteAffineAnim(sprite, 1);
-        sprite->callback = sub_80985BC;
+        sprite->callback = SpriteCB_ShakeBagSprite;
     }
 }
 
-static void sub_80985BC(struct Sprite * sprite)
+static void SpriteCB_ShakeBagSprite(struct Sprite *sprite)
 {
     if (sprite->affineAnimEnded)
     {
@@ -651,8 +651,8 @@ void ItemMenuIcons_MoveInsertIndicatorBar(s16 x, u16 y)
 
     for (i = 0; i < 9; i++)
     {
-        gSprites[ptr[i]].pos2.x = x;
-        gSprites[ptr[i]].pos1.y = y + 7;
+        gSprites[ptr[i]].x2 = x;
+        gSprites[ptr[i]].y = y + 7;
     }
 }
 
@@ -674,7 +674,7 @@ static bool8 TryAllocItemIconTilesBuffers(void)
     return TRUE;
 }
 
-void CopyItemIconPicTo4x4Buffer(const void * src, void * dest)
+void CopyItemIconPicTo4x4Buffer(const void *src, void *dest)
 {
     u32 i;
 
@@ -759,8 +759,8 @@ void CreateItemMenuIcon(u16 itemId, u8 idx)
         if (spriteId != MAX_SPRITES)
         {
             ptr[idx] = spriteId;
-            gSprites[spriteId].pos2.x = 24;
-            gSprites[spriteId].pos2.y = 140;
+            gSprites[spriteId].x2 = 24;
+            gSprites[spriteId].y2 = 140;
         }
     }
 }
@@ -776,7 +776,7 @@ void DestroyItemMenuIcon(u8 idx)
     }
 }
 
-const void * GetItemIconGfxPtr(u16 itemId, u8 attrId)
+const void *GetItemIconGfxPtr(u16 itemId, u8 attrId)
 {
     if (itemId > ITEM_N_A)
         itemId = ITEM_NONE;
@@ -796,8 +796,8 @@ void sub_80989A0(u16 itemId, u8 idx)
         if (spriteId != MAX_SPRITES)
         {
             ptr[idx] = spriteId;
-            gSprites[spriteId].pos2.x = 24;
-            gSprites[spriteId].pos2.y = 147;
+            gSprites[spriteId].x2 = 24;
+            gSprites[spriteId].y2 = 147;
         }
     }
 }

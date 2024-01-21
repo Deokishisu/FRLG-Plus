@@ -1,6 +1,6 @@
-EventScript_AfterWhiteOutHeal:: @ 81A8D97
+EventScript_AfterWhiteOutHeal::
 	lockall
-	textcolor 1
+	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox Text_FirstShouldRestoreMonsHealth
 	call EventScript_PkmnCenterNurse_TakeAndHealPkmn
 	call_if_unset FLAG_DEFEATED_BROCK, EventScript_AfterWhiteOutHealMsgPreBrock
@@ -49,21 +49,21 @@ Text_SwappedForYou_NoPMCOnly::
 	.string "at the POKéMON MART.\p"
 	.string "We hope you excel!$"
 
-EventScript_AfterWhiteOutHealMsgPreBrock:: @ 81A8DC6
+EventScript_AfterWhiteOutHealMsgPreBrock::
 	textcolor 1
 	msgbox Text_MonsHealedShouldBuyPotions
 	return
 
-EventScript_AfterWhiteOutHealMsg:: @ 81A8DCF
+EventScript_AfterWhiteOutHealMsg::
 	textcolor 1
 	msgbox Text_MonsHealed
 	return
 
 @ LOCALID_MOM set by PalletTown_PlayersHouse_1F
 
-EventScript_AfterWhiteOutMomHeal:: @ 81A8DD8
+EventScript_AfterWhiteOutMomHeal::
 	lockall
-	textcolor 1
+	textcolor NPC_TEXT_COLOR_FEMALE
 	applymovement LOCALID_MOM, Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	msgbox Text_HadQuiteAnExperienceTakeRest
@@ -80,19 +80,16 @@ EventScript_NuzlockeGameOver::
 	signmsg
 	msgbox Text_NuzlockeGameOver
 	msgbox EventScript_NuzlockeGameOver_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_1
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_1
 	msgbox EventScript_NuzlockeGameOver_Text_3, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_7
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NuzlockeGameOver_Loop
 	return
 
 EventScript_NuzlockeGameOver_1:
 	msgbox EventScript_NuzlockeGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_4
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NuzlockeGameOver_Loop
 	return
@@ -110,7 +107,6 @@ EventScript_NuzlockeGameOver_7:
 	goto EventScript_AfterWhiteOutHeal
 	return
 
-
 EventScript_NuzlockeGameOver_Loop::
 	switch VAR_TEMP_9
 	case 1, EventScript_NuzlockeGameOver_Loop_2
@@ -119,16 +115,14 @@ EventScript_NuzlockeGameOver_Loop::
 
 EventScript_NuzlockeGameOver_Loop_2:
 	msgbox EventScript_NuzlockeGameOver_Text_3, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Loop_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Loop_4
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NuzlockeGameOver_Loop
 	return
 
 EventScript_NuzlockeGameOver_Loop_3:
 	msgbox EventScript_NuzlockeGameOver_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Loop_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Loop_7
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NuzlockeGameOver_Loop
 	return
@@ -143,8 +137,7 @@ EventScript_NuzlockeGameOver_Loop_4:
 
 EventScript_NuzlockeGameOver_Loop_7:
 	msgbox EventScript_NuzlockeGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Loop_10
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Loop_10
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NuzlockeGameOver_Loop
 	return
@@ -175,19 +168,16 @@ EventScript_NuzlockeGameOver_Mom::
 	signmsg
 	msgbox Text_NuzlockeGameOver
 	msgbox EventScript_NuzlockeGameOver_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Mom_1
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Mom_1
 	msgbox EventScript_NuzlockeGameOver_Text_3, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Mom_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Mom_7
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NuzlockeGameOver_Loop_Mom
 	return
 
 EventScript_NuzlockeGameOver_Mom_1:
 	msgbox EventScript_NuzlockeGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Mom_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Mom_4
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NuzlockeGameOver_Loop_Mom
 	return
@@ -214,16 +204,14 @@ EventScript_NuzlockeGameOver_Loop_Mom::
 
 EventScript_NuzlockeGameOver_Loop_Mom_2:
 	msgbox EventScript_NuzlockeGameOver_Text_3, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Loop_Mom_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Loop_Mom_4
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NuzlockeGameOver_Loop_Mom
 	return
 
 EventScript_NuzlockeGameOver_Loop_Mom_3:
 	msgbox EventScript_NuzlockeGameOver_Text_0, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Loop_Mom_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Loop_Mom_7
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NuzlockeGameOver_Loop_Mom
 	return
@@ -238,8 +226,7 @@ EventScript_NuzlockeGameOver_Loop_Mom_4:
 
 EventScript_NuzlockeGameOver_Loop_Mom_7:
 	msgbox EventScript_NuzlockeGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NuzlockeGameOver_Loop_Mom_10
+	goto_if_eq VAR_RESULT, YES, EventScript_NuzlockeGameOver_Loop_Mom_10
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NuzlockeGameOver_Loop_Mom
 	return
@@ -312,36 +299,33 @@ Text_SwappedForYou_NoPMCOnly_Mom::
 	.string "Make me proud, honey!\p"
 	.string "Take care!$"
 
-EventScript_FieldPoison:: @ 81A8DFD
+EventScript_FieldPoison::
 	lockall
-	textcolor 3
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	special TryFieldPoisonWhiteOut
 	waitstate
-	compare VAR_RESULT, TRUE
-	goto_if_eq EventScript_FieldWhiteOut
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FieldWhiteOut
 	releaseall
 	end
 
-EventScript_FieldWhiteOut:: @ 81A8E11
-	checkmoney 1, 0
-	compare VAR_RESULT, FALSE
-	goto_if_eq EventScript_FieldWhiteOutNoMoney
-	compare VAR_RESULT, TRUE
-	goto_if_eq EventScript_FieldWhiteOutHasMoney
+EventScript_FieldWhiteOut::
+	checkmoney 1
+	goto_if_eq VAR_RESULT, FALSE, EventScript_FieldWhiteOutNoMoney
+	goto_if_eq VAR_RESULT, TRUE, EventScript_FieldWhiteOutHasMoney
 	end
 
-EventScript_FieldWhiteOutNoMoney:: @ 81A8E2E
+EventScript_FieldWhiteOutNoMoney::
 	msgbox Text_WhitedOut
 	goto EventScript_FieldWhiteOutFade
 	end
 
-EventScript_FieldWhiteOutHasMoney:: @ 81A8E3C
+EventScript_FieldWhiteOutHasMoney::
 	special OverworldWhiteOutGetMoneyLoss
 	msgbox Text_WhitedOutLostMoney
 	goto EventScript_FieldWhiteOutFade
 	end
 
-EventScript_FieldWhiteOutFade:: @ 81A8E4D
+EventScript_FieldWhiteOutFade::
 	special Script_FadeOutMapMusic
 	waitstate
 	fadescreen FADE_TO_BLACK
@@ -355,19 +339,16 @@ EventScript_BothGameOver::
 	signmsg
 	msgbox EventScript_BothGameOver_Text_0
 	msgbox EventScript_BothGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_1
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_1
 	msgbox EventScript_BothGameOver_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_7
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_7
 	setvar VAR_TEMP_9, 2
 	goto EventScript_BothGameOver_Loop
 	return
 
 EventScript_BothGameOver_1:
 	msgbox EventScript_BothGameOver_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_4
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_4
 	setvar VAR_TEMP_9, 1
 	goto EventScript_BothGameOver_Loop
 	return
@@ -395,16 +376,14 @@ EventScript_BothGameOver_Loop::
 
 EventScript_BothGameOver_Loop_2:
 	msgbox EventScript_BothGameOver_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Loop_4
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Loop_4
 	setvar VAR_TEMP_9, 2
 	goto EventScript_BothGameOver_Loop
 	return
 
 EventScript_BothGameOver_Loop_3:
 	msgbox EventScript_BothGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Loop_7
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Loop_7
 	setvar VAR_TEMP_9, 1
 	goto EventScript_BothGameOver_Loop
 	return
@@ -420,8 +399,7 @@ EventScript_BothGameOver_Loop_4:
 
 EventScript_BothGameOver_Loop_7:
 	msgbox EventScript_BothGameOver_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Loop_10
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Loop_10
 	setvar VAR_TEMP_9, 1
 	goto EventScript_BothGameOver_Loop
 	return
@@ -455,19 +433,16 @@ EventScript_BothGameOver_Mom::
 	signmsg
 	msgbox EventScript_BothGameOver_Mom_Text_0
 	msgbox EventScript_BothGameOver_Mom_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Mom_1
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Mom_1
 	msgbox EventScript_BothGameOver_Mom_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Mom_7
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Mom_7
 	setvar VAR_TEMP_9, 2
 	goto EventScript_BothGameOver_Loop_Mom
 	return
 
 EventScript_BothGameOver_Mom_1:
 	msgbox EventScript_BothGameOver_Mom_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Mom_4
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Mom_4
 	setvar VAR_TEMP_9, 1
 	goto EventScript_BothGameOver_Loop_Mom
 	return
@@ -495,16 +470,14 @@ EventScript_BothGameOver_Loop_Mom::
 
 EventScript_BothGameOver_Loop_Mom_2:
 	msgbox EventScript_BothGameOver_Mom_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Loop_Mom_4
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Loop_Mom_4
 	setvar VAR_TEMP_9, 2
 	goto EventScript_BothGameOver_Loop_Mom
 	return
 
 EventScript_BothGameOver_Loop_Mom_3:
 	msgbox EventScript_BothGameOver_Mom_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Loop_Mom_7
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Loop_Mom_7
 	setvar VAR_TEMP_9, 1
 	goto EventScript_BothGameOver_Loop_Mom
 	return
@@ -520,8 +493,7 @@ EventScript_BothGameOver_Loop_Mom_4:
 
 EventScript_BothGameOver_Loop_Mom_7:
 	msgbox EventScript_BothGameOver_Mom_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_BothGameOver_Loop_Mom_10
+	goto_if_eq VAR_RESULT, YES, EventScript_BothGameOver_Loop_Mom_10
 	setvar VAR_TEMP_9, 1
 	goto EventScript_BothGameOver_Loop_Mom
 	return
@@ -555,19 +527,16 @@ EventScript_NoPMCGameOver_Mom::
 	signmsg
 	msgbox EventScript_NoPMCGameOver_Mom_Text_0
 	msgbox EventScript_NoPMCGameOver_Mom_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Mom_1
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Mom_1
 	msgbox EventScript_NoPMCGameOver_Mom_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Mom_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Mom_7
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NoPMCGameOver_Loop_Mom
 	return
 
 EventScript_NoPMCGameOver_Mom_1:
 	msgbox EventScript_NoPMCGameOver_Mom_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Mom_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Mom_4
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NoPMCGameOver_Loop_Mom
 	return
@@ -594,16 +563,14 @@ EventScript_NoPMCGameOver_Loop_Mom::
 
 EventScript_NoPMCGameOver_Loop_Mom_2:
 	msgbox EventScript_NoPMCGameOver_Mom_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Loop_Mom_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Loop_Mom_4
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NoPMCGameOver_Loop_Mom
 	return
 
 EventScript_NoPMCGameOver_Loop_Mom_3:
 	msgbox EventScript_NoPMCGameOver_Mom_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Loop_Mom_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Loop_Mom_7
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NoPMCGameOver_Loop_Mom
 	return
@@ -618,8 +585,7 @@ EventScript_NoPMCGameOver_Loop_Mom_4:
 
 EventScript_NoPMCGameOver_Loop_Mom_7:
 	msgbox EventScript_NoPMCGameOver_Mom_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Loop_Mom_10
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Loop_Mom_10
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NoPMCGameOver_Loop_Mom
 	return
@@ -653,19 +619,16 @@ EventScript_NoPMCGameOver::
 	signmsg
 	msgbox EventScript_NoPMCGameOver_Text_0
 	msgbox EventScript_NoPMCGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_1
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_1
 	msgbox EventScript_NoPMCGameOver_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_7
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NoPMCGameOver_Loop
 	return
 
 EventScript_NoPMCGameOver_1:
 	msgbox EventScript_NoPMCGameOver_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_4
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NoPMCGameOver_Loop
 	return
@@ -692,16 +655,14 @@ EventScript_NoPMCGameOver_Loop::
 
 EventScript_NoPMCGameOver_Loop_2:
 	msgbox EventScript_NoPMCGameOver_Text_4, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Loop_4
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Loop_4
 	setvar VAR_TEMP_9, 2
 	goto EventScript_NoPMCGameOver_Loop
 	return
 
 EventScript_NoPMCGameOver_Loop_3:
 	msgbox EventScript_NoPMCGameOver_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Loop_7
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Loop_7
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NoPMCGameOver_Loop
 	return
@@ -716,8 +677,7 @@ EventScript_NoPMCGameOver_Loop_4:
 
 EventScript_NoPMCGameOver_Loop_7:
 	msgbox EventScript_NoPMCGameOver_Text_2, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_NoPMCGameOver_Loop_10
+	goto_if_eq VAR_RESULT, YES, EventScript_NoPMCGameOver_Loop_10
 	setvar VAR_TEMP_9, 1
 	goto EventScript_NoPMCGameOver_Loop
 	return

@@ -545,4 +545,6 @@
 
 #define MUS_NONE                    0xFFFF
 
+#define MUS_NONE                    0xFFFF
+
 #endif  // GUARD_CONSTANTS_SONGS_H

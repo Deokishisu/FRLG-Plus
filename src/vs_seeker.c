@@ -609,7 +609,7 @@ void VsSeekerFreezeObjectsAfterChargeComplete(void)
 
 static void Task_ResetObjectsRematchWantedState(u8 taskId)
 {
-    struct Task * task = &gTasks[taskId];
+    struct Task *task = &gTasks[taskId];
     u32 i;
 
     if (task->data[0] == 0 && walkrun_is_standing_still() == TRUE)
@@ -650,14 +650,11 @@ void VsSeekerResetObjectMovementAfterChargeComplete(void)
 
     for (i = 0; i < gMapHeader.events->objectEventCount; i++)
     {
-        if ((
-                templates[i].trainerType == TRAINER_TYPE_NORMAL
-             || templates[i].trainerType == TRAINER_TYPE_BURIED
-            ) && (
-                templates[i].movementType == MOVEMENT_TYPE_VS_SEEKER_4D
-             || templates[i].movementType == MOVEMENT_TYPE_VS_SEEKER_4E
-             || templates[i].movementType == MOVEMENT_TYPE_VS_SEEKER_4F
-          ))
+        if ((templates[i].trainerType == TRAINER_TYPE_NORMAL
+          || templates[i].trainerType == TRAINER_TYPE_BURIED) 
+         && (templates[i].movementType == MOVEMENT_TYPE_VS_SEEKER_4D
+          || templates[i].movementType == MOVEMENT_TYPE_VS_SEEKER_4E
+          || templates[i].movementType == MOVEMENT_TYPE_VS_SEEKER_4F))
         {
             movementType = GetRandomFaceDirectionMovementType();
             TryGetObjectEventIdByLocalIdAndMap(templates[i].localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, &objEventId);
@@ -732,8 +729,8 @@ static void ResetMovementOfRematchableTrainers(void)
             u8 movementType = GetRandomFaceDirectionMovementType();
             if (objectEvent->active && gSprites[objectEvent->spriteId].data[0] == i)
             {
-                gSprites[objectEvent->spriteId].pos2.x = 0;
-                gSprites[objectEvent->spriteId].pos2.y = 0;
+                gSprites[objectEvent->spriteId].x2 = 0;
+                gSprites[objectEvent->spriteId].y2 = 0;
                 SetTrainerMovementType(objectEvent, movementType);
             }
         }
@@ -776,12 +773,12 @@ void Task_VsSeeker_0(u8 taskId)
     if (respval == VSSEEKER_NOT_CHARGED)
     {
         Free(sVsSeeker);
-        DisplayItemMessageOnField(taskId, 2, VSSeeker_Text_BatteryNotChargedNeedXSteps, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
+        DisplayItemMessageOnField(taskId, FONT_2, VSSeeker_Text_BatteryNotChargedNeedXSteps, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
     }
     else if (respval == VSSEEKER_NO_ONE_IN_RANGE)
     {
         Free(sVsSeeker);
-        DisplayItemMessageOnField(taskId, 2, VSSeeker_Text_NoTrainersWithinRange, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
+        DisplayItemMessageOnField(taskId, FONT_2, VSSeeker_Text_NoTrainersWithinRange, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
     }
     else if (respval == VSSEEKER_CAN_USE)
     {
@@ -832,7 +829,7 @@ static void GatherNearbyTrainerInfo(void)
 
     for (objectEventIdx = 0; objectEventIdx < gMapHeader.events->objectEventCount; objectEventIdx++)
     {
-        if (templates[objectEventIdx].trainerType == 1 || templates[objectEventIdx].trainerType == 3)
+        if (templates[objectEventIdx].trainerType == TRAINER_TYPE_NORMAL || templates[objectEventIdx].trainerType == TRAINER_TYPE_BURIED)
         {
             sVsSeeker->trainerInfo[vsSeekerObjectIdx].script = templates[objectEventIdx].script;
             sVsSeeker->trainerInfo[vsSeekerObjectIdx].trainerIdx = GetTrainerFlagFromScript(templates[objectEventIdx].script);
@@ -854,7 +851,7 @@ static void Task_VsSeeker_3(u8 taskId)
     {
         if (sVsSeeker->responseCode == VSSEEKER_RESPONSE_NO_RESPONSE)
         {
-            DisplayItemMessageOnField(taskId, 2, VSSeeker_Text_TrainersNotReady, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
+            DisplayItemMessageOnField(taskId, FONT_2, VSSeeker_Text_TrainersNotReady, Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker);
         }
         else
         {

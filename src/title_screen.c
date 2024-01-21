@@ -48,7 +48,7 @@ static void UpdateScanlineEffectRegBuffer(s16 a0);
 static void ScheduleStopScanlineEffect(void);
 static void LoadMainTitleScreenPalsAndResetBgs(void);
 static void CB2_FadeOutTransitionToSaveClearScreen(void);
-static void SpriteCallback_TitleScreenFlameOrLeaf(struct Sprite * sprite);
+static void SpriteCallback_TitleScreenFlameOrLeaf(struct Sprite *sprite);
 static void CB2_FadeOutTransitionToBerryFix(void);
 static void LoadSpriteGfxAndPals(void);
 static void Task_FlameOrLeafSpawner(u8 taskId);
@@ -59,7 +59,7 @@ static void SetPalOnOrCreateBlankSprite(bool32 a0);
 static u8 CreateSlashSprite(void);
 static void ScheduleHideSlashSprite(u8 spriteId);
 static bool32 IsSlashSpriteHidden(u8 spriteId);
-static void SpriteCallback_Slash(struct Sprite * sprite);
+static void SpriteCallback_Slash(struct Sprite *sprite);
 static void sub_LG_8079844(void);
 
 // bg3
@@ -656,7 +656,7 @@ static void SetTitleScreenScene_Restart(s16 * data)
         if (!gPaletteFade.active && !IsSlashSpriteHidden(data[6]))
         {
             FadeOutMapMusic(10);
-            BeginNormalPaletteFade(0xFFFFFFFF, 3, 0, 0x10, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 3, 0, 0x10, RGB_BLACK);
             SignalEndTitleScreenPaletteSomethingTask();
             data[1]++;
         }
@@ -693,9 +693,9 @@ static void SetTitleScreenScene_Cry(s16 * data)
         if (!gPaletteFade.active)
         {
             if(gSaveBlock1Ptr->keyFlags.version == 0)
-                PlayCry1(SPECIES_CHARIZARD, 0);
+                PlayCry_Normal(SPECIES_CHARIZARD, 0);
             else
-                PlayCry1(SPECIES_VENUSAUR, 0);
+                PlayCry_Normal(SPECIES_VENUSAUR, 0);
             ScheduleHideSlashSprite(data[6]);
             data[2] = 0;
             data[1]++;
@@ -727,7 +727,7 @@ static void SetTitleScreenScene_Cry(s16 * data)
             SetSaveBlocksPointers();
             ResetMenuAndMonGlobals();
             Save_ResetSaveCounters();
-            Save_LoadGameData(SAVE_NORMAL);
+            LoadGameSave(SAVE_NORMAL);
             if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_INVALID)
                 Sav2_ClearSetDefault();
             gSaveBlock1Ptr->keyFlags.version = KeyVersionBackup;
@@ -980,19 +980,19 @@ static void LoadSpriteGfxAndPals(void)
         LoadSpritePalettes(sSpritePals_LG);
 }
 
-static void SpriteCallback_TitleScreenFlameOrLeaf(struct Sprite * sprite)
+static void SpriteCallback_TitleScreenFlameOrLeaf(struct Sprite *sprite)
 {
     s16 * data = sprite->data;
     sprite->data[0] -= data[1];
-    sprite->pos1.x = sprite->data[0] >> 4;
-    if (sprite->pos1.x < -8)
+    sprite->x = sprite->data[0] >> 4;
+    if (sprite->x < -8)
     {
         DestroySprite(sprite);
         return;
     }
     data[2] += data[3];
-    sprite->pos1.y = data[2] >> 4;
-    if (sprite->pos1.y < 0x10 || sprite->pos1.y > 0xc8)
+    sprite->y = data[2] >> 4;
+    if (sprite->y < 0x10 || sprite->y > 0xc8)
     {
         DestroySprite(sprite);
         return;
@@ -1157,16 +1157,16 @@ static void Task_FlameOrLeafSpawner(u8 taskId)
     }
 }
 
-static void SpriteCallback_LG_8079800(struct Sprite * sprite)
+static void SpriteCallback_LG_8079800(struct Sprite *sprite)
 {
-    sprite->pos1.x -= 7;
-    if (sprite->pos1.x < -16)
+    sprite->x -= 7;
+    if (sprite->x < -16)
     {
-        sprite->pos1.x = 0x100;
+        sprite->x = 0x100;
         sprite->data[7]++;
         if (sprite->data[7] >= NELEMS(gUnknown_LG_83BFA10))
             sprite->data[7] = 0;
-        sprite->pos1.y = gUnknown_LG_83BFA10[sprite->data[7]];
+        sprite->y = gUnknown_LG_83BFA10[sprite->data[7]];
     }
 }
 
@@ -1250,7 +1250,7 @@ static bool32 IsSlashSpriteHidden(u8 spriteId)
         return FALSE;
 }
 
-static void SpriteCallback_Slash(struct Sprite * sprite)
+static void SpriteCallback_Slash(struct Sprite *sprite)
 {
     switch (sprite->data[0])
     {
@@ -1268,23 +1268,23 @@ static void SpriteCallback_Slash(struct Sprite * sprite)
         }
         break;
     case 1:
-        sprite->pos1.x += 9;
-        if (sprite->pos1.x == 67)
+        sprite->x += 9;
+        if (sprite->x == 67)
         {
-            sprite->pos1.y -= 7;
+            sprite->y -= 7;
         }
-        if (sprite->pos1.x == 148)
+        if (sprite->x == 148)
         {
-            sprite->pos1.y += 7;
+            sprite->y += 7;
         }
-        if (sprite->pos1.x > 272)
+        if (sprite->x > 272)
         {
             sprite->invisible = TRUE;
             if (sprite->data[2])
                 sprite->data[0] = 2;
             else
             {
-                sprite->pos1.x = -0x20;
+                sprite->x = -0x20;
                 sprite->data[1] = 540;
                 sprite->data[0] = 0;
             }

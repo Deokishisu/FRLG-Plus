@@ -94,7 +94,7 @@ static u8 ChooseWildMonIndex_Land(void)
         return 8;
     else if (rand >= ENCOUNTER_CHANCE_LAND_MONS_SLOT_8 && rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_9)
         return 9;
-    else if (rand == ENCOUNTER_CHANCE_LAND_MONS_SLOT_9)
+    else if (rand >= ENCOUNTER_CHANCE_LAND_MONS_SLOT_9 && rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_10)
         return 10;
     else
         return 11;
@@ -154,7 +154,7 @@ static u8 ChooseWildMonIndex_Fishing(u8 rod)
             wildMonIndex = 7;
         if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_7 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8)
             wildMonIndex = 8;
-        if (rand == ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8)
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_9)
             wildMonIndex = 9;
         break;
     }
@@ -204,7 +204,7 @@ static u16 GetCurrentMapWildMonHeaderId(void)
     for (i = 0; ; i++)
     {
         const struct WildPokemonHeader * wildHeader = &gWildMonHeaders[i];
-        if (wildHeader->mapGroup == 0xFF)
+        if (wildHeader->mapGroup == MAP_GROUP(UNDEFINED))
             break;
 
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
@@ -450,11 +450,11 @@ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetatileBehavior)
 
     if (headerId != 0xFFFF)
     {
-        if (GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_LAND)
+        if (ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_LAND)
         {
             if (currentLandTable == NULL)
                 return FALSE;
-            else if (previousMetatileBehavior != GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR) && !DoGlobalWildEncounterDiceRoll())
+            else if (previousMetatileBehavior != ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR) && !DoGlobalWildEncounterDiceRoll())
                 return FALSE;
             if (DoWildEncounterRateTest(currentLandTable->encounterRate, FALSE) != TRUE)
             {
@@ -488,12 +488,12 @@ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetatileBehavior)
                 }
             }
         }
-        else if (GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_WATER
-                 || (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && MetatileBehavior_IsBridge(GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR)) == TRUE))
+        else if (ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_WATER
+                 || (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) && MetatileBehavior_IsBridge(ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR)) == TRUE))
         {
             if (currentWaterTable == NULL)
                 return FALSE;
-            else if (previousMetatileBehavior != GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR) && !DoGlobalWildEncounterDiceRoll())
+            else if (previousMetatileBehavior != ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR) && !DoGlobalWildEncounterDiceRoll())
                 return FALSE;
             else if (DoWildEncounterRateTest(currentWaterTable->encounterRate, FALSE) != TRUE)
             {
@@ -871,7 +871,7 @@ void ResetEncounterRateModifiers(void)
 
 static bool8 HandleWildEncounterCooldown(u32 currMetatileAttrs)
 {
-    u8 encounterType = GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_ENCOUNTER_TYPE);
+    u8 encounterType = ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_ENCOUNTER_TYPE);
     u32 minSteps;
     u32 encRate;
     if (encounterType == TILE_ENCOUNTER_NONE)
@@ -923,19 +923,19 @@ bool8 TryStandardWildEncounter(u32 currMetatileAttrs)
 {
     if (!HandleWildEncounterCooldown(currMetatileAttrs))
     {
-        sWildEncounterData.prevMetatileBehavior = GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
+        sWildEncounterData.prevMetatileBehavior = ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
         return FALSE;
     }
     else if (StandardWildEncounter(currMetatileAttrs, sWildEncounterData.prevMetatileBehavior) == TRUE)
     {
         sWildEncounterData.encounterRateBuff = 0;
         sWildEncounterData.stepsSinceLastEncounter = 0;
-        sWildEncounterData.prevMetatileBehavior = GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
+        sWildEncounterData.prevMetatileBehavior = ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
         return TRUE;
     }
     else
     {
-        sWildEncounterData.prevMetatileBehavior = GetMetatileAttributeFromRawMetatileBehavior(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
+        sWildEncounterData.prevMetatileBehavior = ExtractMetatileAttribute(currMetatileAttrs, METATILE_ATTRIBUTE_BEHAVIOR);
         return FALSE;
     }
 }

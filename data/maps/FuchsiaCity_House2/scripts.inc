@@ -1,49 +1,46 @@
 .set LOCALID_MACHOKE_MASTER, 2
 .set TRAINER, VAR_0x8009
 
-FuchsiaCity_House2_MapScripts:: @ 816D816
+FuchsiaCity_House2_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_House2_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 FuchsiaCity_House2_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MACHOKE
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq FuchsiaCity_House2_MapScript_MachokeMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, FuchsiaCity_House2_MapScript_MachokeMasterMovementType
 	end
 
 FuchsiaCity_House2_MapScript_MachokeMasterMovementType::
 	setobjectmovementtype LOCALID_MACHOKE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-FuchsiaCity_House2_EventScript_FishingGurusBrother:: @ 816D817
+FuchsiaCity_House2_EventScript_FishingGurusBrother::
 	lock
 	faceplayer
 	goto_if_set FLAG_GOT_GOOD_ROD, FuchsiaCity_House2_EventScript_AlreadyGotGoodRod
 	msgbox FuchsiaCity_House2_Text_DoYouLikeToFish, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq FuchsiaCity_House2_EventScript_GiveGoodRod
+	goto_if_eq VAR_RESULT, YES, FuchsiaCity_House2_EventScript_GiveGoodRod
 	msgbox FuchsiaCity_House2_Text_OhThatsDisappointing
 	release
 	end
 
-FuchsiaCity_House2_EventScript_AlreadyGotGoodRod:: @ 816D83F
+FuchsiaCity_House2_EventScript_AlreadyGotGoodRod::
 	msgbox FuchsiaCity_House2_Text_HowAreTheFishBiting
 	release
 	end
 
-FuchsiaCity_House2_EventScript_GiveGoodRod:: @ 816D849
+FuchsiaCity_House2_EventScript_GiveGoodRod::
 	msgbox FuchsiaCity_House2_Text_LikeYourStyleTakeThis
-	checkitemspace ITEM_GOOD_ROD, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq FuchsiaCity_House2_EventScript_NoRoomForGoodRod
+	checkitemspace ITEM_GOOD_ROD
+	goto_if_eq VAR_RESULT, FALSE, FuchsiaCity_House2_EventScript_NoRoomForGoodRod
 	giveitem_msg FuchsiaCity_House2_Text_ReceivedGoodRod, ITEM_GOOD_ROD
 	msgbox FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons
 	setflag FLAG_GOT_GOOD_ROD
 	release
 	end
 
-FuchsiaCity_House2_EventScript_NoRoomForGoodRod:: @ 816D88A
+FuchsiaCity_House2_EventScript_NoRoomForGoodRod::
 	msgbox FuchsiaCity_House2_Text_YouHaveNoRoomForGift
 	release
 	end

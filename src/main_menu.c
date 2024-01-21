@@ -335,7 +335,7 @@ static void PrintSaveErrorStatus(u8 taskId, const u8 *str)
 {
     PrintMessageOnWindow4(str);
     gTasks[taskId].func = Task_SaveErrorStatus_RunPrinterThenWaitButton;
-    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0xFFFF);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, 0xFFFF);
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
     SetGpuReg(REG_OFFSET_WIN0V, ((0x0 << 8) + (2 << 8)) | ((0xA0) - 2));
     ShowBg(0);
@@ -418,22 +418,22 @@ static void Task_PrintMainMenuText(u8 taskId)
     default:
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_NEWGAME_ONLY, PIXEL_FILL(10));
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY, PIXEL_FILL(10));
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_NEWGAME_ONLY, 2, 2, 2, sTextColor1, -1, gText_NewGame);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY, 2, 2, 2, sTextColor1, -1, gText_KeySystemSettings);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_NEWGAME_ONLY, FONT_2, 2, 2, sTextColor1, -1, gText_NewGame);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY, FONT_2, 2, 2, sTextColor1, -1, gText_KeySystemSettings);
         MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_NEWGAME_ONLY]);
         MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY]);
         PutWindowTilemap(MAIN_MENU_WINDOW_NEWGAME_ONLY);
         PutWindowTilemap(MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY);
         CopyWindowToVram(MAIN_MENU_WINDOW_NEWGAME_ONLY, COPYWIN_GFX);
-        CopyWindowToVram(MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY, COPYWIN_BOTH);
+        CopyWindowToVram(MAIN_MENU_WINDOW_KEYSYSTEM_NEWGAME_ONLY, COPYWIN_FULL);
         break;
     case MAIN_MENU_CONTINUE:
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_CONTINUE, PIXEL_FILL(10));
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_NEWGAME, PIXEL_FILL(10));
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_KEYSYSTEM, PIXEL_FILL(10));
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 2, 2, sTextColor1, -1, gText_Continue);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_NEWGAME, 2, 2, 2, sTextColor1, -1, gText_NewGame);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_KEYSYSTEM, 2, 2, 2, sTextColor1, -1, gText_KeySystemSettings);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 2, 2, sTextColor1, -1, gText_Continue);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_NEWGAME, FONT_2, 2, 2, sTextColor1, -1, gText_NewGame);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_KEYSYSTEM, FONT_2, 2, 2, sTextColor1, -1, gText_KeySystemSettings);
         PrintContinueStats();
         MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_CONTINUE]);
         MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_NEWGAME]);
@@ -443,18 +443,18 @@ static void Task_PrintMainMenuText(u8 taskId)
         PutWindowTilemap(MAIN_MENU_WINDOW_KEYSYSTEM);
         CopyWindowToVram(MAIN_MENU_WINDOW_CONTINUE, COPYWIN_GFX);
         CopyWindowToVram(MAIN_MENU_WINDOW_NEWGAME, COPYWIN_GFX);
-        CopyWindowToVram(MAIN_MENU_WINDOW_KEYSYSTEM, COPYWIN_BOTH);
+        CopyWindowToVram(MAIN_MENU_WINDOW_KEYSYSTEM, COPYWIN_FULL);
         break;
     case MAIN_MENU_MYSTERYGIFT:
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_CONTINUE, PIXEL_FILL(10));
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_NEWGAME, PIXEL_FILL(10));
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_MYSTERYGIFT, PIXEL_FILL(10));
         FillWindowPixelBuffer(MAIN_MENU_WINDOW_KEYSYSTEM_MYSTERYGIFT_ENABLED, PIXEL_FILL(10));
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 2, 2, sTextColor1, -1, gText_Continue);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_NEWGAME, 2, 2, 2, sTextColor1, -1, gText_NewGame);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 2, 2, sTextColor1, -1, gText_Continue);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_NEWGAME, FONT_2, 2, 2, sTextColor1, -1, gText_NewGame);
         gTasks[taskId].tMGErrorType = 1;
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_MYSTERYGIFT, 2, 2, 2, sTextColor1, -1, gText_MysteryGift);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_KEYSYSTEM_MYSTERYGIFT_ENABLED, 2, 2, 2, sTextColor1, -1, gText_KeySystemSettings);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_MYSTERYGIFT, FONT_2, 2, 2, sTextColor1, -1, gText_MysteryGift);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_KEYSYSTEM_MYSTERYGIFT_ENABLED, FONT_2, 2, 2, sTextColor1, -1, gText_KeySystemSettings);
         PrintContinueStats();
         MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_CONTINUE]);
         MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_NEWGAME]);
@@ -467,7 +467,7 @@ static void Task_PrintMainMenuText(u8 taskId)
         CopyWindowToVram(MAIN_MENU_WINDOW_CONTINUE, COPYWIN_GFX);
         CopyWindowToVram(MAIN_MENU_WINDOW_NEWGAME, COPYWIN_GFX);
         CopyWindowToVram(MAIN_MENU_WINDOW_MYSTERYGIFT, COPYWIN_GFX);
-        CopyWindowToVram(MAIN_MENU_WINDOW_KEYSYSTEM_MYSTERYGIFT_ENABLED, COPYWIN_BOTH);
+        CopyWindowToVram(MAIN_MENU_WINDOW_KEYSYSTEM_MYSTERYGIFT_ENABLED, COPYWIN_FULL);
         break;
     }
     gTasks[taskId].func = Task_WaitDma3AndFadeIn;
@@ -478,7 +478,7 @@ static void Task_WaitDma3AndFadeIn(u8 taskId)
     if (WaitDma3Request(-1) != -1)
     {
         gTasks[taskId].func = Task_UpdateVisualSelection;
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, 0xFFFF);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, 0xFFFF);
         ShowBg(0);
         SetVBlankCallback(VBlankCB_MainMenu);
     }
@@ -548,7 +548,7 @@ static void Task_ExecuteMainMenuSelection(u8 taskId)
                 {
                     SetStdFrame0OnBg(0);
                     gTasks[taskId].func = Task_MysteryGiftError;
-                    BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+                    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
                     return;
                 }
                 else
@@ -568,12 +568,12 @@ static void Task_ExecuteMainMenuSelection(u8 taskId)
         case MAIN_MENU_NEWGAME:
             SetStdFrame0OnBg(0);
             gTasks[taskId].func = Task_ChooseVersionOnNewGame;
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
             return;
         case MAIN_MENU_CONTINUE:
             gPlttBufferUnfaded[0] = RGB_BLACK;
             gPlttBufferFaded[0] = RGB_BLACK;
-            gUnknown_2031DE0 = 0;
+            gExitStairsMovementDisabled = FALSE;
             FreeAllWindowBuffers();
             TrySetUpQuestLogScenes_ElseContinueFromSave(taskId);
             break;
@@ -695,7 +695,7 @@ static void DrawFRLGChoiceFrame(u8 windowId, bool8 copyToVram, u16 baseTileNum, 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
     if (copyToVram == TRUE)
-        CopyWindowToVram(windowId, COPYWIN_BOTH);
+        CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
 static void Task_ChooseVersionOnNewGame(u8 taskId)
@@ -763,7 +763,7 @@ static void Task_MysteryGiftError(u8 taskId)
         if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
             PlaySE(SE_SELECT);
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             gTasks[taskId].func = Task_ReturnToTileScreen;
         }
         break;
@@ -848,13 +848,13 @@ static bool8 HandleMenuInput(u8 taskId)
     {
         PlaySE(SE_SELECT);
         IsWirelessAdapterConnected(); // called for its side effects only
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_ExecuteMainMenuSelection;
     }
     else if (JOY_NEW(B_BUTTON))
     {
         PlaySE(SE_SELECT);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
         SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, 160));
         gTasks[taskId].func = Task_ReturnToTileScreen;
@@ -877,7 +877,7 @@ static void PrintMessageOnWindow4(const u8 *str)
 {
     FillWindowPixelBuffer(MAIN_MENU_WINDOW_ERROR, PIXEL_FILL(10));
     MainMenu_DrawWindow(&sWindowTemplate[MAIN_MENU_WINDOW_ERROR]);
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_ERROR, 2, 0, 2, sTextColor1, 2, str);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_ERROR, FONT_2, 0, 2, sTextColor1, 2, str);
     PutWindowTilemap(MAIN_MENU_WINDOW_ERROR);
     CopyWindowToVram(MAIN_MENU_WINDOW_ERROR, COPYWIN_GFX);
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE( 19, 221));
@@ -895,14 +895,14 @@ static void PrintContinueStats(void)
 static void PrintPlayerName(void)
 {
     s32 i;
-    u8 name[OT_NAME_LENGTH + 1];
+    u8 name[PLAYER_NAME_LENGTH + 1];
     u8 *ptr;
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 2, 18, sTextColor2, -1, gText_Player);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 2, 18, sTextColor2, -1, gText_Player);
     ptr = name;
-    for (i = 0; i < OT_NAME_LENGTH; i++)
+    for (i = 0; i < PLAYER_NAME_LENGTH; i++)
         *ptr++ = gSaveBlock2Ptr->playerName[i];
     *ptr = EOS;
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 52, 18, sTextColor2, -1, name);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 52, 18, sTextColor2, -1, name);
 }
 
 static void PrintPlayTime(void)
@@ -910,11 +910,11 @@ static void PrintPlayTime(void)
     u8 strbuf[30];
     u8 *ptr;
 
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 2, 34, sTextColor2, -1, gText_Time);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 2, 34, sTextColor2, -1, gText_Time);
     ptr = ConvertIntToDecimalStringN(strbuf, gSaveBlock2Ptr->playTimeHours, STR_CONV_MODE_LEFT_ALIGN, 3);
     *ptr++ = CHAR_COLON;
     ConvertIntToDecimalStringN(ptr, gSaveBlock2Ptr->playTimeMinutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 52, 34, sTextColor2, -1, strbuf);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 52, 34, sTextColor2, -1, strbuf);
 }
 
 static void PrintDexCount(void)
@@ -930,10 +930,10 @@ static void PrintDexCount(void)
             dexcount = GetExtendedPokedexCount(FLAG_GET_CAUGHT);
         else
             dexcount = GetKantoPokedexCount(FLAG_GET_CAUGHT);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 112, 18, sTextColor2, -1, gText_Pokedex);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 112, 18, sTextColor2, -1, gText_Pokedex);
         ptr = ConvertIntToDecimalStringN(strbuf, dexcount, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringAppend(ptr, gTextJPDummy_Hiki);
-        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 162, 18, sTextColor2, -1, strbuf);
+        AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 162, 18, sTextColor2, -1, strbuf);
     }
 }
 
@@ -948,16 +948,16 @@ static void PrintBadgeCount(void)
         if (FlagGet(flagId))
             nbadges++;
     }
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 112, 34, sTextColor2, -1, gText_Badges);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 112, 34, sTextColor2, -1, gText_Badges);
     ptr = ConvertIntToDecimalStringN(strbuf, nbadges, STR_CONV_MODE_LEADING_ZEROS, 1);
     StringAppend(ptr, gTextJPDummy_Ko);
-    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, 2, 162, 34, sTextColor2, -1, strbuf);
+    AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_2, 162, 34, sTextColor2, -1, strbuf);
 }
 
 static void LoadUserFrameToBg(u8 bgId)
 {
-    LoadBgTiles(bgId, GetUserFrameGraphicsInfo(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1B1);
-    LoadPalette(GetUserFrameGraphicsInfo(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
+    LoadBgTiles(bgId, GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1B1);
+    LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
     MainMenu_EraseWindow(&sWindowTemplate[MAIN_MENU_WINDOW_ERROR]);
 }
 

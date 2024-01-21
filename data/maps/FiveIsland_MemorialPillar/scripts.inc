@@ -1,9 +1,9 @@
 .set LOCALID_MEMORIAL_MAN, 1
 
-FiveIsland_MemorialPillar_MapScripts:: @ 81689D2
+FiveIsland_MemorialPillar_MapScripts::
 	.byte 0
 
-FiveIsland_MemorialPillar_EventScript_MemorialMan:: @ 81689D3
+FiveIsland_MemorialPillar_EventScript_MemorialMan::
 	lock
 	goto_if_set FLAG_GOT_TM42_AT_MEMORIAL_PILLAR, FiveIsland_MemorialPillar_EventScript_AlreadyGotTM42
 	goto_if_set FLAG_NO_ROOM_FOR_TM42_AT_MEMORIAL_PILLAR, FiveIsland_MemorialPillar_EventScript_ReturnedForTM42
@@ -19,42 +19,39 @@ FiveIsland_MemorialPillar_EventScript_MemorialMan:: @ 81689D3
 	release
 	end
 
-FiveIsland_MemorialPillar_EventScript_AlreadyGotTM42:: @ 8168A18
+FiveIsland_MemorialPillar_EventScript_AlreadyGotTM42::
 	msgbox FiveIsland_MemorialPillar_Text_ScrubScrubTectonix
 	release
 	end
 
-FiveIsland_MemorialPillar_EventScript_ReturnedForTM42:: @ 8168A22
+FiveIsland_MemorialPillar_EventScript_ReturnedForTM42::
 	msgbox FiveIsland_MemorialPillar_Text_StillHaveThingAsMyThanks
 	giveitem ITEM_TM42
-	compare VAR_RESULT, FALSE
-	goto_if_eq FiveIsland_MemorialPillar_EventScript_NoRoomForTM42
+	goto_if_eq VAR_RESULT, FALSE, FiveIsland_MemorialPillar_EventScript_NoRoomForTM42
 	call FiveIsland_MemorialPillar_EventScript_ReceivedTM42
 	release
 	end
 
-FiveIsland_MemorialPillar_EventScript_Memorial:: @ 8168A48
+FiveIsland_MemorialPillar_EventScript_Memorial::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lockall
 	goto_if_set FLAG_GOT_TM42_AT_MEMORIAL_PILLAR, FiveIsland_MemorialPillar_EventScript_MemorialLemonadeAlreadyPlaced
 	goto_if_set FLAG_NO_ROOM_FOR_TM42_AT_MEMORIAL_PILLAR, FiveIsland_MemorialPillar_EventScript_MemorialLemonadeAlreadyPlaced
 	msgbox FiveIsland_MemorialPillar_Text_HereLiesTectonixLemonadeOffering
-	checkitem ITEM_LEMONADE, 1
-	compare VAR_RESULT, TRUE
-	goto_if_eq FiveIsland_MemorialPillar_EventScript_AskPlaceLemonade
+	checkitem ITEM_LEMONADE
+	goto_if_eq VAR_RESULT, TRUE, FiveIsland_MemorialPillar_EventScript_AskPlaceLemonade
 	releaseall
 	end
 
-FiveIsland_MemorialPillar_EventScript_AskPlaceLemonade:: @ 8168A86
+FiveIsland_MemorialPillar_EventScript_AskPlaceLemonade::
 	msgbox FiveIsland_MemorialPillar_Text_LeaveAnotherLemonadeOffering, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq FiveIsland_MemorialPillar_EventScript_PlaceLemonade
+	goto_if_eq VAR_RESULT, YES, FiveIsland_MemorialPillar_EventScript_PlaceLemonade
 	releaseall
 	end
 
-FiveIsland_MemorialPillar_EventScript_PlaceLemonade:: @ 8168A9B
-	removeitem ITEM_LEMONADE, 1
+FiveIsland_MemorialPillar_EventScript_PlaceLemonade::
+	removeitem ITEM_LEMONADE
 	msgbox FiveIsland_MemorialPillar_Text_PlacedCanOfLemonade
 	closemessage
 	applymovement LOCALID_MEMORIAL_MAN, Movement_WalkInPlaceFastestRight
@@ -62,29 +59,28 @@ FiveIsland_MemorialPillar_EventScript_PlaceLemonade:: @ 8168A9B
 	delay 45
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestLeft
 	waitmovement 0
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	msgbox FiveIsland_MemorialPillar_Text_ThankYouPleaseTakeThis
 	giveitem ITEM_TM42
-	compare VAR_RESULT, FALSE
-	goto_if_eq FiveIsland_MemorialPillar_EventScript_NoRoomForTM42
+	goto_if_eq VAR_RESULT, FALSE, FiveIsland_MemorialPillar_EventScript_NoRoomForTM42
 	call FiveIsland_MemorialPillar_EventScript_ReceivedTM42
 	releaseall
 	end
 
-FiveIsland_MemorialPillar_EventScript_ReceivedTM42:: @ 8168AE8
+FiveIsland_MemorialPillar_EventScript_ReceivedTM42::
 	msgbox FiveIsland_MemorialPillar_Text_BeGoodToYourMonsToo
 	applymovement LOCALID_MEMORIAL_MAN, Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	setflag FLAG_GOT_TM42_AT_MEMORIAL_PILLAR
 	return
 
-FiveIsland_MemorialPillar_EventScript_NoRoomForTM42:: @ 8168AFE
+FiveIsland_MemorialPillar_EventScript_NoRoomForTM42::
 	setflag FLAG_NO_ROOM_FOR_TM42_AT_MEMORIAL_PILLAR
 	msgbox FiveIsland_MemorialPillar_Text_DontHaveRoomForIt
 	releaseall
 	end
 
-FiveIsland_MemorialPillar_EventScript_MemorialLemonadeAlreadyPlaced:: @ 8168B0B
+FiveIsland_MemorialPillar_EventScript_MemorialLemonadeAlreadyPlaced::
 	msgbox FiveIsland_MemorialPillar_Text_HereLiesTectonix
 	releaseall
 	end

@@ -2,19 +2,17 @@
 .set LOCALID_IVYSAUR_MASTER, 17
 .set TRAINER, VAR_0x8009
 
-Route14_MapScripts:: @ 81680D1
+Route14_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route14_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route14_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_VILEPLUME
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route14_MapScript_VileplumeMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route14_MapScript_VileplumeMasterMovementType
 	setvar TRAINER, MASTER_IVYSAUR
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route14_MapScript_IvysaurMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route14_MapScript_IvysaurMasterMovementType
 	end
 
 Route14_MapScript_VileplumeMasterMovementType::
@@ -25,6 +23,6 @@ Route14_MapScript_IvysaurMasterMovementType::
 	setobjectmovementtype LOCALID_IVYSAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route14_EventScript_RouteSign:: @ 81680D2
+Route14_EventScript_RouteSign::
 	msgbox Route14_Text_RouteSign, MSGBOX_SIGN
 	end

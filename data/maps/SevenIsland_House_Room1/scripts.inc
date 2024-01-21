@@ -19,27 +19,24 @@
 .equ ARGUMENT, VAR_0x8004
 .equ LEADER_READY, VAR_0x8006
 
-SevenIsland_House_Room1_MapScripts:: @ 817088A
+SevenIsland_House_Room1_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_House_Room1_OnTransition
 	.byte 0
 
-SevenIsland_House_Room1_OnTransition:: @ 8170895
+SevenIsland_House_Room1_OnTransition::
 	setvar LEADER_READY, 0
 	setvar TYPE, CHECK_BOXES_MOVED
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 1
-	call_if_eq SevenIsland_House_Room1_EventScript_SetTrainerVisitingLayout
+	call_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_SetTrainerVisitingLayout
 	setvar TYPE, CHECK_SPEAROW_STATE
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 1
-	call_if_eq SevenIsland_House_Room1_EventScript_HideSpearow
+	call_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_HideSpearow
 	setvar TYPE, CHECK_ALL_TOLD
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 7
-	call_if_eq SevenIsland_House_Room1_EventScript_WalkSpearow
+	call_if_eq VAR_RESULT, 7, SevenIsland_House_Room1_EventScript_WalkSpearow
 	end
 
-SevenIsland_House_Room1_EventScript_SetTrainerVisitingLayout:: @ 81708AF
+SevenIsland_House_Room1_EventScript_SetTrainerVisitingLayout::
 	setmaplayoutindex LAYOUT_SEVEN_ISLAND_HOUSE_ROOM1_DOOR_OPEN
 	return
 
@@ -51,25 +48,22 @@ SevenIsland_House_Room1_EventScript_WalkSpearow::
 	setobjectmovementtype LOCALID_SPEAROW, MOVEMENT_TYPE_WANDER_AROUND
 	return
 
-SevenIsland_House_Room1_EventScript_OldWoman:: @ 8170958
-	@ getnumberstring 0, VAR_BATTLE_HOUSE2
-	@ getnumberstring 1, VAR_BATTLE_HOUSE2
+SevenIsland_House_Room1_EventScript_OldWoman::
+	@ buffernumberstring STR_VAR_1, VAR_BATTLE_HOUSE2
+	@ buffernumberstring STR_VAR_2, VAR_BATTLE_HOUSE2
 	@ msgbox TESTTESTTEST
 	lock
 	faceplayer
 	setvar TYPE, CHECK_SPEAROW_STATE
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 1
-	goto_if_eq SevenIsland_House_Room1_EventScript_SpearowGone
+	goto_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_SpearowGone
 	setvar TYPE, CHECK_BOXES_MOVED
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 1
-	goto_if_eq SevenIsland_House_Room1_EventScript_OldWomanBasementOpen
+	goto_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_OldWomanBasementOpen
 	msgbox SevenIsland_House_Room1_Text_OnlyEnjoymentWatchingBattles
 	textcolor 3
 	msgbox SevenIsland_House_Room1_Text_ShowFameChecker, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq SevenIsland_House_Room1_EventScript_ShowingFameChecker
+	goto_if_eq VAR_RESULT, YES, SevenIsland_House_Room1_EventScript_ShowingFameChecker
 	textcolor 1
 	msgbox SevenIsland_House_Room1_Text_NoShowFameChecker
 	release
@@ -100,8 +94,7 @@ SevenIsland_House_Room1_EventScript_Brock::
 	getstring 1, SevenIsland_House_Room1_Text_HeString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Brock0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Misty::
@@ -110,8 +103,7 @@ SevenIsland_House_Room1_EventScript_Misty::
 	getstring 1, SevenIsland_House_Room1_Text_SheString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Misty0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_LtSurge::
@@ -120,8 +112,7 @@ SevenIsland_House_Room1_EventScript_LtSurge::
 	getstring 1, SevenIsland_House_Room1_Text_HeString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_LtSurge0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Erika::
@@ -130,8 +121,7 @@ SevenIsland_House_Room1_EventScript_Erika::
 	getstring 1, SevenIsland_House_Room1_Text_SheString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Erika0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Koga::
@@ -140,8 +130,7 @@ SevenIsland_House_Room1_EventScript_Koga::
 	getstring 1, SevenIsland_House_Room1_Text_HeString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Koga0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Sabrina::
@@ -150,8 +139,7 @@ SevenIsland_House_Room1_EventScript_Sabrina::
 	getstring 1, SevenIsland_House_Room1_Text_SheString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Sabrina0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Blaine::
@@ -160,8 +148,7 @@ SevenIsland_House_Room1_EventScript_Blaine::
 	getstring 1, SevenIsland_House_Room1_Text_HeString
 	getstring 2, gFameCheckerFlavorTextOriginLocation_Blaine0
 	callnative CheckFilledFameCheckerFor0x8004
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_RefuseToSelectLeader::
@@ -173,11 +160,9 @@ SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson::
 	setvar TYPE, CHECK_TOLD_FAMECHECKER
 	@ ARGUMENT already set
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 1
-	goto_if_eq SevenIsland_House_Room1_EventScript_AlreadyShownPerson
+	goto_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_AlreadyShownPerson
 	msgbox SevenIsland_House_Room1_Text_FullFamecheckerForPerson
-	compare VAR_BATTLE_HOUSE, 1
-	goto_if_ge SevenIsland_House_Room1_EventScript_AlreadyUnlockedBasement
+	goto_if_ge VAR_BATTLE_HOUSE, 1, SevenIsland_House_Room1_EventScript_AlreadyUnlockedBasement
 	msgbox SevenIsland_House_Room1_Text_FirstFullFamecheckerPerson
 SevenIsland_House_Room1_SendOutSpearow::
 	turnobject LOCALID_OLD_WOMAN, DIR_EAST
@@ -207,8 +192,7 @@ SevenIsland_House_Room1_SendOutSpearow::
 	playse SE_EXIT
 	removeobject LOCALID_SPEAROW
 	faceplayer
-	compare VAR_BATTLE_HOUSE, 1
-	goto_if_ge SevenIsland_House_Room1_EventScript_SpearowLeftAlreadyUnlockedBasement
+	goto_if_ge VAR_BATTLE_HOUSE, 1, SevenIsland_House_Room1_EventScript_SpearowLeftAlreadyUnlockedBasement
 	setvar TYPE, SET_SPEAROW_STATE
 	callnative UseBattleHouseVar
 	setvar TYPE, SET_TOLD_FAMECHECKER
@@ -282,12 +266,9 @@ SevenIsland_House_Room1_EventScript_OldWomanBasementOpen::
 	copyvar VAR_0x8000, VAR_RESULT
 	setvar TYPE, CHECK_ANY_VISITORS
 	callnative UseBattleHouseVar
-	compare VAR_0x8000, 7
-	goto_if_ge SevenIsland_House_Room1_EventScript_OldWomanToldAll
-	compare VAR_RESULT, 0
-	goto_if_eq SevenIsland_House_Room1_EventScript_OldWomanNoVisitors
-	compare VAR_RESULT, 1
-	goto_if_eq SevenIsland_House_Room1_EventScript_OldWomanOneVisitor
+	goto_if_ge VAR_0x8000, 7, SevenIsland_House_Room1_EventScript_OldWomanToldAll
+	goto_if_eq VAR_RESULT, 0, SevenIsland_House_Room1_EventScript_OldWomanNoVisitors
+	goto_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_OldWomanOneVisitor
 	switch VAR_RESULT
 	case 2, SevenIsland_House_Room1_EventScript_Buffer2
 	case 3, SevenIsland_House_Room1_EventScript_Buffer3
@@ -315,18 +296,15 @@ SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors::
 SevenIsland_House_Room1_EventScript_ShowFameCheckerQuestion::
 	textcolor 3
 	msgbox SevenIsland_House_Room1_Text_ShowFameChecker, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq SevenIsland_House_Room1_EventScript_ShowingFameChecker
+	goto_if_eq VAR_RESULT, YES, SevenIsland_House_Room1_EventScript_ShowingFameChecker
 	textcolor 1
 	msgbox SevenIsland_House_Room1_Text_NoShowFameChecker2
 	release
 	end
 
 SevenIsland_House_Room1_EventScript_OldWomanToldAll::
-	compare VAR_RESULT, 0
-	goto_if_eq SevenIsland_House_Room1_EventScript_OldWomanToldAllNoVisitors
-	compare VAR_RESULT, 1
-	goto_if_eq SevenIsland_House_Room1_EventScript_OldWomanToldAllOneVisitor
+	goto_if_eq VAR_RESULT, 0, SevenIsland_House_Room1_EventScript_OldWomanToldAllNoVisitors
+	goto_if_eq VAR_RESULT, 1, SevenIsland_House_Room1_EventScript_OldWomanToldAllOneVisitor
 	switch VAR_RESULT
 	case 2, SevenIsland_House_Room1_EventScript_Buffer2All
 	case 3, SevenIsland_House_Room1_EventScript_Buffer3All
@@ -399,6 +377,6 @@ SevenIsland_House_Room1_EventScript_Buffer7All::
 	getstring 1, SevenIsland_House_Room1_Text_Seven
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
-SevenIsland_House_Room1_EventScript_Box:: @ 8170A75
+SevenIsland_House_Room1_EventScript_Box::
 	msgbox SevenIsland_House_Room1_Text_SlightBreezeAroundBox, MSGBOX_SIGN
 	end

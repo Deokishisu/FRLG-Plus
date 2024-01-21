@@ -13,31 +13,26 @@
 .set LOCALID_VENUSAUR_MASTER, 12
 .set TRAINER, VAR_0x8009
 
-Route23_MapScripts:: @ 81684EB
+Route23_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route23_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route23_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_DRATINI
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route23_MapScript_DratiniMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route23_MapScript_DratiniMasterMovementType
 	setvar TRAINER, MASTER_NIDOQUEEN
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route23_MapScript_NidoqueenMMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route23_MapScript_NidoqueenMMasterMovementType
 	setvar TRAINER, MASTER_NIDOKING
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route23_MapScript_NidokingMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route23_MapScript_NidokingMasterMovementType
 	setvar TRAINER, MASTER_CHARIZARD
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route23_MapScript_CharizardMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route23_MapScript_CharizardMasterMovementType
 	setvar TRAINER, MASTER_VENUSAUR
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route23_MapScript_VenusaurMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route23_MapScript_VenusaurMasterMovementType
 	end
 
 Route23_MapScript_DratiniMasterMovementType::
@@ -60,118 +55,118 @@ Route23_MapScript_VenusaurMasterMovementType::
 	setobjectmovementtype LOCALID_VENUSAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route23_EventScript_CascadeBadgeGuard:: @ 816850C
+Route23_EventScript_CascadeBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 2
-	getstdstring 0, STDSTRING_CASCADE_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_ThunderBadgeGuard:: @ 816851D
+Route23_EventScript_ThunderBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 3
-	getstdstring 0, STDSTRING_THUNDER_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_RainbowBadgeGuard:: @ 816852E
+Route23_EventScript_RainbowBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 4
-	getstdstring 0, STDSTRING_RAINBOW_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_SoulBadgeGuard:: @ 816853F
+Route23_EventScript_SoulBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 5
-	getstdstring 0, STDSTRING_SOUL_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_MarshBadgeGuard:: @ 8168550
+Route23_EventScript_MarshBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 6
-	getstdstring 0, STDSTRING_MARSH_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_VolcanoBadgeGuard:: @ 8168561
+Route23_EventScript_VolcanoBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 7
-	getstdstring 0, STDSTRING_VOLCANO_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_EarthBadgeGuard:: @ 8168572
+Route23_EventScript_EarthBadgeGuard::
 	lock
 	faceplayer
 	setvar VAR_TEMP_1, 8
-	getstdstring 0, STDSTRING_EARTH_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
 	goto Route23_EventScript_BadgeGuard
 	end
 
-Route23_EventScript_CascadeBadgeGuardTrigger:: @ 8168583
+Route23_EventScript_CascadeBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 2
 	setvar VAR_0x8009, LOCALID_CASCADE_BADGE_GUARD
-	getstdstring 0, STDSTRING_CASCADE_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_CASCADE_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_ThunderBadgeGuardTrigger:: @ 8168598
+Route23_EventScript_ThunderBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 3
 	setvar VAR_0x8009, LOCALID_THUNDER_BADGE_GUARD
-	getstdstring 0, STDSTRING_THUNDER_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_THUNDER_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_RainbowBadgeGuardTrigger:: @ 81685AD
+Route23_EventScript_RainbowBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 4
 	setvar VAR_0x8009, LOCALID_RAINBOW_BADGE_GUARD
-	getstdstring 0, STDSTRING_RAINBOW_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_RAINBOW_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_SoulBadgeGuardTrigger:: @ 81685C2
+Route23_EventScript_SoulBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 5
 	setvar VAR_0x8009, LOCALID_SOUL_BADGE_GUARD
-	getstdstring 0, STDSTRING_SOUL_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_SOUL_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_MarshBadgeGuardTrigger:: @ 81685D7
+Route23_EventScript_MarshBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 6
 	setvar VAR_0x8009, LOCALID_MARSH_BADGE_GUARD
-	getstdstring 0, STDSTRING_MARSH_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_MARSH_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_VolcanoBadgeGuardTrigger:: @ 81685EC
+Route23_EventScript_VolcanoBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 7
 	setvar VAR_0x8009, LOCALID_VOLCANO_BADGE_GUARD
-	getstdstring 0, STDSTRING_VOLCANO_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_VOLCANO_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_EarthBadgeGuardTrigger:: @ 8168601
+Route23_EventScript_EarthBadgeGuardTrigger::
 	lockall
 	setvar VAR_TEMP_1, 8
 	setvar VAR_0x8009, LOCALID_EARTH_BADGE_GUARD
-	getstdstring 0, STDSTRING_EARTH_BADGE
+	bufferstdstring STR_VAR_1, STDSTRING_EARTH_BADGE
 	goto Route23_EventScript_BadgeGuardTrigger
 	end
 
-Route23_EventScript_VictoryRoadGateSign:: @ 8168616
+Route23_EventScript_VictoryRoadGateSign::
 	msgbox Route23_Text_VictoryRoadGateSign, MSGBOX_SIGN
 	end

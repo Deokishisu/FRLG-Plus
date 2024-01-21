@@ -4,27 +4,23 @@
 .set LOCALID_GOLDUCK_MASTER, 11
 .set TRAINER, VAR_0x8009
 
-Route4_MapScripts:: @ 8167F8A
+Route4_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route4_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route4_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_BULBASAUR
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route4_MapScript_BulbasaurMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route4_MapScript_BulbasaurMasterMovementType
 	setvar TRAINER, MASTER_NIDORAN_M
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route4_MapScript_NidoranMMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route4_MapScript_NidoranMMasterMovementType
 	setvar TRAINER, MASTER_EKANS
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route4_MapScript_EkansMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route4_MapScript_EkansMasterMovementType
 	setvar TRAINER, MASTER_GOLDUCK
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route4_MapScript_GolduckMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route4_MapScript_GolduckMasterMovementType
 	end
 
 Route4_MapScript_BulbasaurMasterMovementType::
@@ -43,14 +39,14 @@ Route4_MapScript_GolduckMasterMovementType::
 	setobjectmovementtype LOCALID_GOLDUCK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route4_EventScript_Woman:: @ 8167F8C
+Route4_EventScript_Woman::
 	msgbox Route4_Text_TrippedOverGeodude, MSGBOX_NPC
 	end
 
-Route4_EventScript_MtMoonSign:: @ 8167F95
+Route4_EventScript_MtMoonSign::
 	msgbox Route4_Text_MtMoonEntrance, MSGBOX_SIGN
 	end
 
-Route4_EventScript_RouteSign:: @ 8167F9E
+Route4_EventScript_RouteSign::
 	msgbox Route4_Text_RouteSign, MSGBOX_SIGN
 	end

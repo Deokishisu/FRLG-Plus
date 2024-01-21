@@ -127,7 +127,7 @@ static bool8 sub_8095138(void)
         sub_80956A4(sMoveMonsPtr->fromRow, sMoveMonsPtr->fromColumn);
         SetBgAttribute(0, BG_ATTR_PALETTEMODE, 1);
         PutWindowTilemap(gPSSData->field_2200);
-        CopyWindowToVram8Bit(gPSSData->field_2200, COPYWIN_BOTH);
+        CopyWindowToVram8Bit(gPSSData->field_2200, COPYWIN_FULL);
         BlendPalettes(0x3F00, 8, RGB_WHITE);
         sub_8094D14(2);
         SetGpuRegBits(REG_OFFSET_BG0CNT, BGCNT_256COLOR);
@@ -476,8 +476,13 @@ static void sub_80957C8(void)
         for (j = sMoveMonsPtr->minRow; j < rowCount; j++)
         {
             struct BoxPokemon *boxMon = GetBoxedMonPtr(boxId, boxPosition);
-
+            // UB: possible null dereference
+#ifdef UBFIX
+            if (boxMon != NULL)
+                sMoveMonsPtr->boxMons[monArrayId] = *boxMon;
+#else
             sMoveMonsPtr->boxMons[monArrayId] = *boxMon;
+#endif
             monArrayId++;
             boxPosition++;
         }

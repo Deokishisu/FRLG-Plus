@@ -251,7 +251,7 @@ static const u16 sDiscouragedPowerfulMoveEffects[] =
     EFFECT_SKY_ATTACK,
     EFFECT_RECHARGE,
     EFFECT_SKULL_BASH,
-    EFFECT_SOLARBEAM,
+    EFFECT_SOLAR_BEAM,
     EFFECT_SPIT_UP,
     EFFECT_FOCUS_PUNCH,
     EFFECT_SUPERPOWER,
@@ -1414,7 +1414,12 @@ static void Cmd_if_status_not_in_party(void)
 
         // everytime the status is found, the AI's logic jumps further and further past its intended destination. this results in a broken AI macro and is probably why it is unused.
         if (species != SPECIES_NONE && species != SPECIES_EGG && hp != 0 && status == statusToCompareTo)
+        {
             sAIScriptPtr += 10; // doesnt return?
+            #ifdef UBFIX
+            return;
+            #endif
+        }
     }
     sAIScriptPtr = T1_READ_PTR(sAIScriptPtr + 6);
 }
@@ -1431,13 +1436,13 @@ extern u16 gBattleWeather;
 
 static void Cmd_get_weather(void)
 {
-    if (gBattleWeather & WEATHER_RAIN_ANY)
+    if (gBattleWeather & B_WEATHER_RAIN)
         AI_THINKING_STRUCT->funcResult = WEATHER_TYPE_RAIN;
-    if (gBattleWeather & WEATHER_SANDSTORM_ANY)
+    if (gBattleWeather & B_WEATHER_SANDSTORM)
         AI_THINKING_STRUCT->funcResult = WEATHER_TYPE_SANDSTORM;
-    if (gBattleWeather & WEATHER_SUN_ANY)
+    if (gBattleWeather & B_WEATHER_SUN)
         AI_THINKING_STRUCT->funcResult = WEATHER_TYPE_SUNNY;
-    if (gBattleWeather & WEATHER_HAIL)
+    if (gBattleWeather & B_WEATHER_HAIL_TEMPORARY)
         AI_THINKING_STRUCT->funcResult = WEATHER_TYPE_HAIL;
 
     sAIScriptPtr += 1;

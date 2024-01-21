@@ -1,49 +1,47 @@
 .set LOCALID_DOOR_GUARD, 4
 
-IndigoPlateau_PokemonCenter_1F_MapScripts:: @ 816EA5A
+IndigoPlateau_PokemonCenter_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, IndigoPlateau_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, PokemonCenter_1F_OnLoad
 	//map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
 	.byte 0
 
-IndigoPlateau_PokemonCenter_1F_OnTransition:: @ 816EA65
+IndigoPlateau_PokemonCenter_1F_OnTransition::
 	setrespawn SPAWN_INDIGO_PLATEAU
 	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	compare VAR_RESULT, TRUE
-	call_if_eq IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor
+	call_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor:: @ 816EA79
+IndigoPlateau_PokemonCenter_1F_EventScript_CheckBlockDoor::
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, EventScript_Return
 	setobjectxyperm LOCALID_DOOR_GUARD, 4, 2
 	return
 
-IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard:: @ 816EA8A
+IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard::
 	lock
 	faceplayer
 	specialvar VAR_RESULT, IsNationalPokedexEnabled
-	compare VAR_RESULT, TRUE
-	goto_if_eq IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete
+	goto_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 	release
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete:: @ 816EAA6
+IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete::
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_LoreleiIsAbsentClosedForTimeBeing
 	release
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete:: @ 816EAB9
+IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 	release
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_GymGuy:: @ 816EAC3
+IndigoPlateau_PokemonCenter_1F_EventScript_GymGuy::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_GymGuyAdvice, MSGBOX_NPC
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_Clerk:: @ 816EACC
+IndigoPlateau_PokemonCenter_1F_EventScript_Clerk::
 	goto_if_questlog EventScript_ReleaseEnd
 	lock
 	faceplayer
@@ -55,7 +53,7 @@ IndigoPlateau_PokemonCenter_1F_EventScript_Clerk:: @ 816EACC
 	end
 
 	.align 2
-IndigoPlateau_PokemonCenter_1F_Items:: @ 816EAF4
+IndigoPlateau_PokemonCenter_1F_Items::
 	.2byte ITEM_ULTRA_BALL
 	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_FULL_RESTORE
@@ -67,7 +65,7 @@ IndigoPlateau_PokemonCenter_1F_Items:: @ 816EAF4
 	release
 	end
 
-IndigoPlateau_PokemonCenter_1F_EventScript_Nurse:: @ 816EB06
+IndigoPlateau_PokemonCenter_1F_EventScript_Nurse::
 	lock
 	faceplayer
 	call EventScript_PkmnCenterNurse

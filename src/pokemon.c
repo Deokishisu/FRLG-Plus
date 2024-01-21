@@ -34,8 +34,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/item_effects.h"
-#include "constants/trainer_classes.h"
-#include "constants/facility_trainer_classes.h"
+#include "constants/trainers.h"
 #include "constants/hold_effects.h"
 #include "constants/battle_move_effects.h"
 
@@ -2540,7 +2539,7 @@ static const u8 sHoldEffectToType[][2] =
 const struct SpriteTemplate gSpriteTemplates_Battlers[] = 
 {
     [B_POSITION_PLAYER_LEFT] = {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2549,7 +2548,7 @@ const struct SpriteTemplate gSpriteTemplates_Battlers[] =
         .callback = SpriteCB_AllyMon,
     },
     [B_POSITION_OPPONENT_LEFT] = {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerOpponent,
         .anims = NULL, 
@@ -2558,7 +2557,7 @@ const struct SpriteTemplate gSpriteTemplates_Battlers[] =
         .callback = SpriteCB_EnemyMon,
     },
     [B_POSITION_PLAYER_RIGHT] = {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2567,7 +2566,7 @@ const struct SpriteTemplate gSpriteTemplates_Battlers[] =
         .callback = SpriteCB_AllyMon,
     },
     [B_POSITION_OPPONENT_RIGHT] = {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerOpponent,
         .anims = NULL, 
@@ -2580,7 +2579,7 @@ const struct SpriteTemplate gSpriteTemplates_Battlers[] =
 const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] = 
 {
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2589,7 +2588,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2598,7 +2597,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2607,7 +2606,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2616,7 +2615,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2625,7 +2624,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2653,10 +2652,23 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
     },
 };
 
+// Classes dummied out
 static const u8 sSecretBaseFacilityClasses[][5] = 
 {
-    { FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2 },
-    { FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_YOUNGSTER_2 },
+    [MALE] = {
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER
+    },
+    [FEMALE] = {
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER,
+        FACILITY_CLASS_YOUNGSTER
+    },
 };
 
 static const u8 sGetMonDataEVConstants[] = 
@@ -2802,10 +2814,24 @@ static const u16 sDeoxysLevelUpLearnsets[][15] = {
 
 const u16 gLinkPlayerFacilityClasses[] = 
 {
-    FACILITY_CLASS_COOLTRAINER_3, FACILITY_CLASS_BLACK_BELT_2, FACILITY_CLASS_CAMPER_2, FACILITY_CLASS_YOUNGSTER_2, FACILITY_CLASS_PSYCHIC_3,
-    FACILITY_CLASS_BUG_CATCHER_2, FACILITY_CLASS_TAMER, FACILITY_CLASS_JUGGLER, FACILITY_CLASS_COOLTRAINER_4, FACILITY_CLASS_CHANNELER,
-    FACILITY_CLASS_PICNICKER_2, FACILITY_CLASS_LASS_2, FACILITY_CLASS_PSYCHIC_4, FACILITY_CLASS_CRUSH_GIRL, FACILITY_CLASS_PKMN_BREEDER_3,
-    FACILITY_CLASS_BEAUTY_2, FACILITY_CLASS_AQUA_LEADER,
+    // Male
+    FACILITY_CLASS_COOLTRAINER_M,
+    FACILITY_CLASS_BLACK_BELT,
+    FACILITY_CLASS_CAMPER,
+    FACILITY_CLASS_YOUNGSTER,
+    FACILITY_CLASS_PSYCHIC_M,
+    FACILITY_CLASS_BUG_CATCHER,
+    FACILITY_CLASS_TAMER,
+    FACILITY_CLASS_JUGGLER,
+    // Female
+    FACILITY_CLASS_COOLTRAINER_F,
+    FACILITY_CLASS_CHANNELER,
+    FACILITY_CLASS_PICNICKER,
+    FACILITY_CLASS_LASS,
+    FACILITY_CLASS_PSYCHIC_F,
+    FACILITY_CLASS_CRUSH_GIRL,
+    FACILITY_CLASS_PKMN_BREEDER,
+    FACILITY_CLASS_BEAUTY,
 };
 
 static const struct OamData sOakSpeechNidoranFDummyOamData = 
@@ -2813,7 +2839,7 @@ static const struct OamData sOakSpeechNidoranFDummyOamData =
     .y = 0,
     .affineMode = 0,
     .objMode = 0,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = 0,
     .shape = 0,
     .x = 0,
@@ -2826,8 +2852,8 @@ static const struct OamData sOakSpeechNidoranFDummyOamData =
 
 static const struct SpriteTemplate sOakSpeechNidoranFDummyTemplate = 
 {
-    .tileTag = SPRITE_INVALID_TAG,
-    .paletteTag = SPRITE_INVALID_TAG,
+    .tileTag = TAG_NONE,
+    .paletteTag = TAG_NONE,
     .oam = &sOakSpeechNidoranFDummyOamData,
     .anims = gDummySpriteAnimTable, 
     .images = NULL,
@@ -2912,7 +2938,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         {
             value = Random32();
             shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
-        } while (shinyValue < 8);
+        } while (shinyValue < SHINY_ODDS);
     }
     else if (otIdType == OT_ID_PRESET) //Pokemon has a preset OT ID
     {
@@ -2931,7 +2957,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     checksum = CalculateBoxMonChecksum(boxMon);
     SetBoxMonData(boxMon, MON_DATA_CHECKSUM, &checksum);
     EncryptBoxMon(boxMon);
-    GetSpeciesName(speciesName, species);
+    bufferspeciesname(speciesName, species);
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
     SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
     SetBoxMonData(boxMon, MON_DATA_OT_NAME, gSaveBlock2Ptr->playerName);
@@ -3438,10 +3464,9 @@ void CalculateMonStats(struct Pokemon *mon, bool8 calcOverride)
     {
         if (currentHP == 0 && oldMaxHP == 0)
             currentHP = newMaxHP;
-        else if (currentHP != 0)
-        {
+        else if (currentHP != 0) {
             currentHP += newMaxHP - oldMaxHP;
-            if(currentHP <= 0)
+            if (currentHP <= 0)
                 currentHP = 1;
             if(currentHP > newMaxHP)
                 currentHP = newMaxHP;
@@ -3880,9 +3905,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         attack = (150 * attack) / 100;
     if (defender->ability == ABILITY_MARVEL_SCALE && defender->status1)
         defense = (150 * defense) / 100;
-    if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFD, 0))
+    if (type == TYPE_ELECTRIC && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, ABILITYEFFECT_MUD_SPORT, 0))
         gBattleMovePower /= 2;
-    if (type == TYPE_FIRE && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, 0xFE, 0))
+    if (type == TYPE_FIRE && AbilityBattleEffects(ABILITYEFFECT_FIELD_SPORT, 0, 0, ABILITYEFFECT_WATER_SPORT, 0))
         gBattleMovePower /= 2;
     if (type == TYPE_GRASS && attacker->ability == ABILITY_OVERGROW && attacker->hp <= (attacker->maxHP / 3))
         gBattleMovePower = (150 * gBattleMovePower) / 100;
@@ -3987,7 +4012,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         // are effects of weather negated with cloud nine or air lock
         if (WEATHER_HAS_EFFECT2)
         {
-            if (gBattleWeather & WEATHER_RAIN_TEMPORARY)
+            if (gBattleWeather & B_WEATHER_RAIN_TEMPORARY)
             {
                 switch (type)
                 {
@@ -4001,11 +4026,11 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
             }
 
             // any weather except sun weakens solar beam
-            if ((gBattleWeather & (WEATHER_RAIN_ANY | WEATHER_SANDSTORM_ANY | WEATHER_HAIL)) && gCurrentMove == MOVE_SOLAR_BEAM)
+            if ((gBattleWeather & (B_WEATHER_RAIN | B_WEATHER_SANDSTORM | B_WEATHER_HAIL_TEMPORARY)) && gCurrentMove == MOVE_SOLAR_BEAM)
                 damage /= 2;
 
             // sunny
-            if (gBattleWeather & WEATHER_SUN_ANY)
+            if (gBattleWeather & B_WEATHER_SUN)
             {
                 switch (type)
                 {
@@ -4274,7 +4299,7 @@ static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 perso
     return substruct;
 }
 
-u32 GetMonData(struct Pokemon *mon, s32 field, u8* data)
+u32 GetMonData(struct Pokemon *mon, s32 field, u8 *data)
 {
     u32 ret;
 
@@ -4606,8 +4631,8 @@ u32 GetBoxMonData(struct BoxPokemon *boxMon, s32 field, u8 *data)
     case MON_DATA_WORLD_RIBBON:
         retVal = substruct3->worldRibbon;
         break;
-    case MON_DATA_FILLER:
-        retVal = substruct3->filler;
+    case MON_DATA_UNUSED_RIBBONS:
+        retVal = substruct3->unusedRibbons;
         break;
     case MON_DATA_EVENT_LEGAL:
         retVal = substruct3->eventLegal;
@@ -4764,7 +4789,7 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
     case MON_DATA_NATIONAL_RIBBON:
     case MON_DATA_EARTH_RIBBON:
     case MON_DATA_WORLD_RIBBON:
-    case MON_DATA_FILLER:
+    case MON_DATA_UNUSED_RIBBONS:
     case MON_DATA_EVENT_LEGAL:
     case MON_DATA_KNOWN_MOVES:
     case MON_DATA_RIBBON_COUNT:
@@ -5018,8 +5043,8 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
     case MON_DATA_WORLD_RIBBON:
         SET8(substruct3->worldRibbon);
         break;
-    case MON_DATA_FILLER:
-        SET8(substruct3->filler);
+    case MON_DATA_UNUSED_RIBBONS:
+        SET8(substruct3->unusedRibbons);
         break;
     case MON_DATA_EVENT_LEGAL:
         SET8(substruct3->eventLegal);
@@ -5132,7 +5157,7 @@ u8 CalculatePlayerPartyCount(void)
 {
     gPlayerPartyCount = 0;
 
-    while (gPlayerPartyCount < 6
+    while (gPlayerPartyCount < PARTY_SIZE
         && GetMonData(&gPlayerParty[gPlayerPartyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
     {
         gPlayerPartyCount++;
@@ -5146,7 +5171,7 @@ u8 CalculateEnemyPartyCount(void)
 {
     gEnemyPartyCount = 0;
 
-    while (gEnemyPartyCount < 6
+    while (gEnemyPartyCount < PARTY_SIZE
         && GetMonData(&gEnemyParty[gEnemyPartyCount], MON_DATA_SPECIES, NULL) != SPECIES_NONE)
     {
         gEnemyPartyCount++;
@@ -5265,7 +5290,7 @@ static bool8 IsPokemonStorageFull(void)
     return TRUE;
 }
 
-void GetSpeciesName(u8 *name, u16 species)
+void bufferspeciesname(u8 *name, u16 species)
 {
     s32 i;
 
@@ -5304,7 +5329,7 @@ void RemoveBattleMonPPBonus(struct BattlePokemon *mon, u8 moveIndex)
 
 static void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
 {
-    u16* hpSwitchout;
+    u16 *hpSwitchout;
     s32 i;
     u8 nickname[POKEMON_NAME_LENGTH * 2]; // Why is the nickname array here longer in FR/LG?
 
@@ -5343,7 +5368,7 @@ static void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
     gBattleMons[battlerId].type2 = gBaseStats[gBattleMons[battlerId].species].type2;
     gBattleMons[battlerId].ability = GetAbilityBySpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].abilityNum);
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);
-    StringCopy10(gBattleMons[battlerId].nickname, nickname);
+    StringCopy_Nickname(gBattleMons[battlerId].nickname, nickname);
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_NAME, gBattleMons[battlerId].otName);
 
     hpSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(battlerId)];
@@ -5362,7 +5387,7 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, 
     return PokemonUseItemEffects(mon, item, partyIndex, moveIndex, 0);
 }
 
-bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, u8 e)
+bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, bool8 usedByAI)
 {
     u32 data;
     s32 dataSigned;
@@ -5652,7 +5677,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         }
                         if (GetMonData(mon, MON_DATA_MAX_HP, NULL) != GetMonData(mon, MON_DATA_HP, NULL))
                         {
-                            if (e == 0)
+                            if (!usedByAI)
                             {
                                 data = GetMonData(mon, MON_DATA_HP, NULL) + data;
                                 if (data > GetMonData(mon, MON_DATA_MAX_HP, NULL))
@@ -5668,7 +5693,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                                         // I have to re-use this variable to match.
                                         r5 = gActiveBattler;
                                         gActiveBattler = battleMonId;
-                                        BtlController_EmitGetMonData(0, 0, 0);
+                                        BtlController_EmitGetMonData(BUFFER_A, 0, 0);
                                         MarkBattlerForControllerExec(gActiveBattler);
                                         gActiveBattler = r5;
                                     }
@@ -6317,7 +6342,7 @@ static void BufferStatRoseMessage(int stat)
     gBattlerTarget = gBattlerInMenuId;
     StringCopy(gBattleTextBuff1, gStatNamesTable[sStatsToRaise[stat]]);
     StringCopy(gBattleTextBuff2, gBattleText_Rose);
-    BattleStringExpandPlaceholdersToDisplayedString(gText_PkmnsStatChanged2);
+    BattleStringExpandPlaceholdersToDisplayedString(gText_DefendersStatRose);
 }
 
 const u8 *Battle_PrintStatBoosterEffectMessage(u16 itemId)
@@ -6843,9 +6868,9 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
             // Only if it's a trainer battle with league progression significance
             if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
                 return;
-            if (!(sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER_2
-                || sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2
-                || sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2))
+            if (!(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER
+                || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR
+                || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION))
                 return;
         }
 
@@ -7500,19 +7525,19 @@ static u16 GetBattleBGM(void)
     {
         switch (sTrainers[gTrainerBattleOpponent_A].trainerClass)
         {
-            case CLASS_PKMN_PROF:
-            case CLASS_CHAMPION_2:
-                return MUS_VS_CHAMPION;
-            case CLASS_LEADER_2:
-            case CLASS_ELITE_FOUR_2:
-                return MUS_VS_GYM_LEADER;
-            case CLASS_BOSS:
-            case CLASS_TEAM_ROCKET:
-            case CLASS_COOLTRAINER_2:
-            case CLASS_GENTLEMAN_2:
-            case CLASS_RIVAL_2:
-            default:
-                return MUS_VS_TRAINER;
+        case TRAINER_CLASS_PKMN_PROF:
+        case TRAINER_CLASS_CHAMPION:
+            return MUS_VS_CHAMPION;
+        case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_ELITE_FOUR:
+            return MUS_VS_GYM_LEADER;
+        case TRAINER_CLASS_BOSS:
+        case TRAINER_CLASS_TEAM_ROCKET:
+        case TRAINER_CLASS_COOLTRAINER:
+        case TRAINER_CLASS_GENTLEMAN:
+        case TRAINER_CLASS_RIVAL_LATE:
+        default:
+            return MUS_VS_TRAINER;
         }
     }
     if ((gMapHeader.regionMapSectionId == MAPSEC_ARTISAN_CAVE || gMapHeader.regionMapSectionId == MAPSEC_BATTLE_FRONTIER) && !(gBattleTypeFlags & BATTLE_TYPE_POKEDUDE))
@@ -7554,7 +7579,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
 
     if (species >= 65530 && species <= 65533) //Deoxys
     {
-        if(shinyValue < 8)
+        if(shinyValue < SHINY_ODDS)
             return gMonShinyPaletteTable[SPECIES_DEOXYS].data;
         else
             return gMonPaletteTable[SPECIES_DEOXYS].data;
@@ -7563,7 +7588,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
     if (species > SPECIES_EGG)
         return gMonPaletteTable[0].data;
 
-    if (shinyValue < 8)
+    if (shinyValue < SHINY_ODDS)
         return gMonShinyPaletteTable[species].data;
     else
         return gMonPaletteTable[species].data;
@@ -7584,12 +7609,12 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
     shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
     if (species >= 65530 && species <= 65533) //Deoxys
     {
-        if(shinyValue < 8)
+        if(shinyValue < SHINY_ODDS)
             return &gMonShinyPaletteTable[SPECIES_DEOXYS];
         else
             return &gMonPaletteTable[SPECIES_DEOXYS];
     }
-    if (shinyValue < 8)
+    if (shinyValue < SHINY_ODDS)
         return &gMonShinyPaletteTable[species];
     else
         return &gMonPaletteTable[species];
@@ -7762,7 +7787,7 @@ static bool8 IsShinyOtIdPersonality(u32 otId, u32 personality)
 {
     bool8 retVal = FALSE;
     u32 shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(personality) ^ LOHALF(personality);
-    if (shinyValue < 8)
+    if (shinyValue < SHINY_ODDS)
         retVal = TRUE;
     return retVal;
 }
@@ -7862,7 +7887,7 @@ static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId)
     u8 ivCalcMode = gSaveBlock1Ptr->keyFlags.ivCalcMode;
     u8 evCalcMode = gSaveBlock1Ptr->keyFlags.evCalcMode;
 
-    if (gBattleTypeFlags & BATTLE_TYPE_LINK_ESTABLISHED || GetMonData(mon, MON_DATA_SPECIES, NULL) != SPECIES_DEOXYS)
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK_IN_BATTLE || GetMonData(mon, MON_DATA_SPECIES, NULL) != SPECIES_DEOXYS)
     {
         return statValue = 0;
     }

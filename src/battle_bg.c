@@ -13,7 +13,7 @@
 #include "trig.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
-#include "constants/trainer_classes.h"
+#include "constants/trainers.h"
 
 #define TAG_VS_LETTERS 10000
 
@@ -613,13 +613,13 @@ static u8 GetBattleTerrainByMapScene(u8 mapBattleScene)
         if (mapBattleScene == sMapBattleSceneMapping[i].mapScene)
             return sMapBattleSceneMapping[i].battleTerrain;
     }
-    return 9;
+    return BATTLE_TERRAIN_PLAIN;
 }
 
 static void LoadBattleTerrainGfx(u16 terrain)
 {
     if (terrain >= NELEMS(sBattleTerrainTable))
-        terrain = 9;
+        terrain = BATTLE_TERRAIN_PLAIN;
     // Copy to bg3
     LZDecompressVram(sBattleTerrainTable[terrain].tileset, (void *)BG_CHAR_ADDR(2));
     LZDecompressVram(sBattleTerrainTable[terrain].tilemap, (void *)BG_SCREEN_ADDR(26));
@@ -632,7 +632,7 @@ static void LoadBattleTerrainEntryGfx(u16 terrain)
         return;
 
     if (terrain >= NELEMS(sBattleTerrainTable))
-        terrain = 9;
+        terrain = BATTLE_TERRAIN_PLAIN;
     // Copy to bg1
     LZDecompressVram(sBattleTerrainTable[terrain].entryTileset, (void *)BG_CHAR_ADDR(1));
     LZDecompressVram(sBattleTerrainTable[terrain].entryTilemap, (void *)BG_SCREEN_ADDR(28));
@@ -640,14 +640,14 @@ static void LoadBattleTerrainEntryGfx(u16 terrain)
 
 UNUSED void GetBattleTerrainGfxPtrs(u8 terrain, const u32 **tilesPtr, const u32 **mapPtr, const u32 **palPtr)
 {
-    if (terrain > 9)
-        terrain = 9;
+    if (terrain > BATTLE_TERRAIN_PLAIN)
+        terrain = BATTLE_TERRAIN_PLAIN;
     *tilesPtr = sBattleTerrainTable[terrain].tileset;
     *mapPtr = sBattleTerrainTable[terrain].tilemap;
     *palPtr = sBattleTerrainTable[terrain].palette;
 }
 
-void sub_800F324(void)
+void BattleInitBgsAndWindows(void)
 {
     ResetBgsAndClearDma3BusyFlags(FALSE);
     InitBgsFromTemplates(0, gBattleBgTemplates, NELEMS(gBattleBgTemplates));
@@ -658,7 +658,7 @@ void sub_800F324(void)
 void InitBattleBgsVideo(void)
 {
     EnableInterrupts(INTR_FLAG_VBLANK | INTR_FLAG_VCOUNT | INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
-    sub_800F324();
+    BattleInitBgsAndWindows();
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
     SetGpuReg(REG_OFFSET_BLDALPHA, 0);
     SetGpuReg(REG_OFFSET_BLDY, 0);
@@ -768,7 +768,7 @@ static void DrawLinkBattleVsScreenOutcomeText(void)
 {
     if (gBattleOutcome == B_OUTCOME_DREW)
     {
-        BattlePutTextOnWindow(gText_Draw, 0x15);
+        BattlePutTextOnWindow(gText_Draw, B_WIN_VS_OUTCOME_DRAW);
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
@@ -777,20 +777,20 @@ static void DrawLinkBattleVsScreenOutcomeText(void)
             switch (gLinkPlayers[gBattleStruct->multiplayerId].id)
             {
             case 0:
-                BattlePutTextOnWindow(gText_Win, 0x16);
-                BattlePutTextOnWindow(gText_Loss, 0x17);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_LEFT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_RIGHT);
                 break;
             case 1:
-                BattlePutTextOnWindow(gText_Win, 0x17);
-                BattlePutTextOnWindow(gText_Loss, 0x16);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_RIGHT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_LEFT);
                 break;
             case 2:
-                BattlePutTextOnWindow(gText_Win, 0x16);
-                BattlePutTextOnWindow(gText_Loss, 0x17);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_LEFT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_RIGHT);
                 break;
             case 3:
-                BattlePutTextOnWindow(gText_Win, 0x17);
-                BattlePutTextOnWindow(gText_Loss, 0x16);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_RIGHT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_LEFT);
                 break;
             }
         }
@@ -799,20 +799,20 @@ static void DrawLinkBattleVsScreenOutcomeText(void)
             switch (gLinkPlayers[gBattleStruct->multiplayerId].id)
             {
             case 0:
-                BattlePutTextOnWindow(gText_Win, 0x17);
-                BattlePutTextOnWindow(gText_Loss, 0x16);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_RIGHT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_LEFT);
                 break;
             case 1:
-                BattlePutTextOnWindow(gText_Win, 0x16);
-                BattlePutTextOnWindow(gText_Loss, 0x17);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_LEFT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_RIGHT);
                 break;
             case 2:
-                BattlePutTextOnWindow(gText_Win, 0x17);
-                BattlePutTextOnWindow(gText_Loss, 0x16);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_RIGHT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_LEFT);
                 break;
             case 3:
-                BattlePutTextOnWindow(gText_Win, 0x16);
-                BattlePutTextOnWindow(gText_Loss, 0x17);
+                BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_LEFT);
+                BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_RIGHT);
                 break;
             }
         }
@@ -821,26 +821,26 @@ static void DrawLinkBattleVsScreenOutcomeText(void)
     {
         if (gLinkPlayers[gBattleStruct->multiplayerId].id != 0)
         {
-            BattlePutTextOnWindow(gText_Win, 0x17);
-            BattlePutTextOnWindow(gText_Loss, 0x16);
+            BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_RIGHT);
+            BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_LEFT);
         }
         else
         {
-            BattlePutTextOnWindow(gText_Win, 0x16);
-            BattlePutTextOnWindow(gText_Loss, 0x17);
+            BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_LEFT);
+            BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_RIGHT);
         }
     }
     else
     {
         if (gLinkPlayers[gBattleStruct->multiplayerId].id != 0)
         {
-            BattlePutTextOnWindow(gText_Win, 0x16);
-            BattlePutTextOnWindow(gText_Loss, 0x17);
+            BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_LEFT);
+            BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_RIGHT);
         }
         else
         {
-            BattlePutTextOnWindow(gText_Win, 0x17);
-            BattlePutTextOnWindow(gText_Loss, 0x16);
+            BattlePutTextOnWindow(gText_Win, B_WIN_VS_OUTCOME_RIGHT);
+            BattlePutTextOnWindow(gText_Loss, B_WIN_VS_OUTCOME_LEFT);
         }
     }
 }
@@ -864,19 +864,19 @@ void InitLinkBattleVsScreen(u8 taskId)
                 switch (linkPlayer->id)
                 {
                 case 0:
-                    BattlePutTextOnWindow(name, 0x11);
+                    BattlePutTextOnWindow(name, B_WIN_VS_MULTI_PLAYER_1);
                     DrawLinkBattleParticipantPokeballs(taskId, linkPlayer->id, 1, 2, 4);
                     break;
                 case 1:
-                    BattlePutTextOnWindow(name, 0x12);
+                    BattlePutTextOnWindow(name, B_WIN_VS_MULTI_PLAYER_2);
                     DrawLinkBattleParticipantPokeballs(taskId, linkPlayer->id, 2, 2, 4);
                     break;
                 case 2:
-                    BattlePutTextOnWindow(name, 0x13);
+                    BattlePutTextOnWindow(name, B_WIN_VS_MULTI_PLAYER_3);
                     DrawLinkBattleParticipantPokeballs(taskId, linkPlayer->id, 1, 2, 8);
                     break;
                 case 3:
-                    BattlePutTextOnWindow(name, 0x14);
+                    BattlePutTextOnWindow(name, B_WIN_VS_MULTI_PLAYER_4);
                     DrawLinkBattleParticipantPokeballs(taskId, linkPlayer->id, 2, 2, 8);
                     break;
                 }
@@ -892,10 +892,10 @@ void InitLinkBattleVsScreen(u8 taskId)
                 opponentId = playerId, playerId = opponentId_copy;
 
             name = gLinkPlayers[playerId].name;
-            BattlePutTextOnWindow(name, 0xF);
+            BattlePutTextOnWindow(name, B_WIN_VS_PLAYER);
 
             name = gLinkPlayers[opponentId].name;
-            BattlePutTextOnWindow(name, 0x10);
+            BattlePutTextOnWindow(name, B_WIN_VS_OPPONENT);
 
             DrawLinkBattleParticipantPokeballs(taskId, playerId, 1, 2, 7);
             DrawLinkBattleParticipantPokeballs(taskId, opponentId, 2, 2, 7);
@@ -944,8 +944,8 @@ void InitLinkBattleVsScreen(u8 taskId)
             gSprites[gBattleStruct->linkBattleVsSpriteId_S].oam.tileNum += 0x40;
             gSprites[gBattleStruct->linkBattleVsSpriteId_V].data[0] = 0;
             gSprites[gBattleStruct->linkBattleVsSpriteId_S].data[0] = 1;
-            gSprites[gBattleStruct->linkBattleVsSpriteId_V].data[1] = gSprites[gBattleStruct->linkBattleVsSpriteId_V].pos1.x;
-            gSprites[gBattleStruct->linkBattleVsSpriteId_S].data[1] = gSprites[gBattleStruct->linkBattleVsSpriteId_S].pos1.x;
+            gSprites[gBattleStruct->linkBattleVsSpriteId_V].data[1] = gSprites[gBattleStruct->linkBattleVsSpriteId_V].x;
+            gSprites[gBattleStruct->linkBattleVsSpriteId_S].data[1] = gSprites[gBattleStruct->linkBattleVsSpriteId_S].x;
             gSprites[gBattleStruct->linkBattleVsSpriteId_V].data[2] = 0;
             gSprites[gBattleStruct->linkBattleVsSpriteId_S].data[2] = 0;
         }
@@ -964,8 +964,8 @@ void DrawBattleEntryBackground(void)
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
     {
-        LZDecompressVram(gFile_graphics_battle_transitions_vs_frame_sheet, (void*)(BG_CHAR_ADDR(1)));
-        LZDecompressVram(gVsLettersGfx, (void*)(VRAM + 0x10000));
+        LZDecompressVram(gFile_graphics_battle_transitions_vs_frame_sheet, (void *)(BG_CHAR_ADDR(1)));
+        LZDecompressVram(gVsLettersGfx, (void *)(VRAM + 0x10000));
         LoadCompressedPalette(gFile_graphics_battle_transitions_vs_frame_palette, 0x60, 0x20);
         SetBgAttribute(1, BG_ATTR_SCREENSIZE, 1);
         SetGpuReg(REG_OFFSET_BG1CNT, BGCNT_PRIORITY(0) | BGCNT_CHARBASE(1) | BGCNT_16COLOR | BGCNT_SCREENBASE(28) | BGCNT_TXT512x256);
@@ -1002,13 +1002,13 @@ void DrawBattleEntryBackground(void)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            u8 trainerClass = sTrainers[gTrainerBattleOpponent_A].trainerClass;
-            if (trainerClass == CLASS_LEADER_2)
+            u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            if (trainerClass == TRAINER_CLASS_LEADER)
             {
                 LoadBattleTerrainEntryGfx(BATTLE_TERRAIN_BUILDING);
                 return;
             }
-            else if (trainerClass == CLASS_CHAMPION_2)
+            else if (trainerClass == TRAINER_CLASS_CHAMPION)
             {
                 LoadBattleTerrainEntryGfx(BATTLE_TERRAIN_BUILDING);
                 return;
@@ -1047,14 +1047,10 @@ static u8 GetBattleTerrainOverride(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_LEADER_2)
-        {
+        if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER)
             return BATTLE_TERRAIN_LEADER;
-        }
-        else if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
-        {
+        else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
             return BATTLE_TERRAIN_CHAMPION;
-        }
     }
     battleScene = GetCurrentMapBattleScene();
     if (battleScene == MAP_BATTLE_SCENE_NORMAL)

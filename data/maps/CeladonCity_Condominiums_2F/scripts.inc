@@ -1,21 +1,20 @@
 .set LOCALID_MR_MIME_MASTER, 3
 .set TRAINER, VAR_0x8009
 
-CeladonCity_Condominiums_2F_MapScripts:: @ 816C3D0
+CeladonCity_Condominiums_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_Condominiums_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 CeladonCity_Condominiums_2F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MR_MIME
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq CeladonCity_Condominiums_2F_MapScript_MrMimeMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, CeladonCity_Condominiums_2F_MapScript_MrMimeMasterMovementType
 	end
 
 CeladonCity_Condominiums_2F_MapScript_MrMimeMasterMovementType::
 	setobjectmovementtype LOCALID_MR_MIME_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-CeladonCity_Condominiums_2F_EventScript_MeetingRoomSign:: @ 816C3D1
+CeladonCity_Condominiums_2F_EventScript_MeetingRoomSign::
 	msgbox CeladonCity_Condominiums_2F_Text_GameFreakMeetingRoom, MSGBOX_SIGN
 	end

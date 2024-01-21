@@ -1,4 +1,4 @@
-CeladonCity_Condominiums_3F_MapScripts:: @ 816C3DA
+CeladonCity_Condominiums_3F_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, CeladonCity_Condominiums_3F_OnFrame
 	.byte 0
 
@@ -6,33 +6,32 @@ CeladonCity_Condominiums_3F_OnFrame::
 	map_script_2 VAR_TEMP_0, 2, CeladonCity_Condominiums_3F_EventScript_CheckMysticTicket
 	.2byte 0
 
-CeladonCity_Condominiums_3F_EventScript_Programmer:: @ 816C3DB
+CeladonCity_Condominiums_3F_EventScript_Programmer::
 	msgbox CeladonCity_Condominiums_3F_Text_ImTheProgrammer, MSGBOX_NPC
 	end
 
-CeladonCity_Condominiums_3F_EventScript_GraphicArtist:: @ 816C3E4
+CeladonCity_Condominiums_3F_EventScript_GraphicArtist::
 	msgbox CeladonCity_Condominiums_3F_Text_ImTheGraphicArtist, MSGBOX_NPC
 	end
 
-CeladonCity_Condominiums_3F_EventScript_Writer:: @ 816C3ED
+CeladonCity_Condominiums_3F_EventScript_Writer::
 	msgbox CeladonCity_Condominiums_3F_Text_IWroteTheStory, MSGBOX_NPC
 	end
 
-CeladonCity_Condominiums_3F_EventScript_Designer:: @ 816C3F6
+CeladonCity_Condominiums_3F_EventScript_Designer::
 	lock
 	faceplayer
 	specialvar VAR_RESULT, HasAllKantoMons
-	compare VAR_RESULT, TRUE
-	goto_if_eq CeladonCity_Condominiums_3F_EventScript_CompletedPokedex
+	goto_if_eq VAR_RESULT, TRUE, CeladonCity_Condominiums_3F_EventScript_CompletedPokedex
 	msgbox CeladonCity_Condominiums_3F_Text_ImGameDesignerShowMeFinishedPokedex
 	release
 	end
 
-CeladonCity_Condominiums_3F_EventScript_CompletedPokedex:: @ 816C412
+CeladonCity_Condominiums_3F_EventScript_CompletedPokedex::
 	goto CeladonCity_Condominiums_3F_EventScript_ShowDiploma
 	end
 
-CeladonCity_Condominiums_3F_EventScript_ShowDiploma:: @ 816C418
+CeladonCity_Condominiums_3F_EventScript_ShowDiploma::
 	message CeladonCity_Condominiums_3F_Text_CompletedPokedexCongratulations
 	waitmessage
 	delay 60
@@ -87,19 +86,19 @@ CeladonCity_Condominiums_3F_Text_ExplainMysticTicket:
 	.string "you'll want to see what's there.\p"
 	.string "Good luck!$"
 
-CeladonCity_Condominiums_3F_EventScript_DevelopmentRoomSign:: @ 816C435
+CeladonCity_Condominiums_3F_EventScript_DevelopmentRoomSign::
 	msgbox CeladonCity_Condominiums_3F_Text_GameFreakDevelopmentRoom, MSGBOX_SIGN
 	end
 
-CeladonCity_Condominiums_3F_EventScript_Computer1:: @ 816C43E
+CeladonCity_Condominiums_3F_EventScript_Computer1::
 	msgbox CeladonCity_Condominiums_3F_Text_ItsTheGameProgram, MSGBOX_SIGN
 	end
 
-CeladonCity_Condominiums_3F_EventScript_Computer2:: @ 816C447
+CeladonCity_Condominiums_3F_EventScript_Computer2::
 	msgbox CeladonCity_Condominiums_3F_Text_SomeonesPlayingGame, MSGBOX_SIGN
 	end
 
-CeladonCity_Condominiums_3F_EventScript_Computer3:: @ 816C450
+CeladonCity_Condominiums_3F_EventScript_Computer3::
 	msgbox CeladonCity_Condominiums_3F_Text_ItsScriptBetterNotLookAtEnding, MSGBOX_SIGN
 	end
 
@@ -123,7 +122,7 @@ CeladonCity_Condominiums_3F_EventScript_TitleGiver::
 	case 153, CeladonCity_Condominiums_3F_EventScript_TitleGiver_PressedB
 	// chose an actual mon
 	callnative SetCurrentMasterTitle
-	getspeciesname 1, VAR_RESULT
+	bufferspeciesname STR_VAR_2, VAR_RESULT
 	msgbox CeladonCity_Condominiums_3F_Text_TitleGiver_ChoseMonMaster, MSGBOX_NPC
 	end
 
@@ -148,7 +147,7 @@ CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferGrand:
 	return
 
 CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferSpecies:
-	getspeciesname 1, VAR_RESULT
+	bufferspeciesname STR_VAR_2, VAR_RESULT
 	return
 
 CeladonCity_Condominiums_3F_EventScript_TitleGiver_ChoseNoTitle:

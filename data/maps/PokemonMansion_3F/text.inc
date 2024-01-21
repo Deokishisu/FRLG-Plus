@@ -1,24 +1,24 @@
-PokemonMansion_1F_Text_SimonIntro:: @ 81775E7
+PokemonMansion_1F_Text_SimonIntro::
     .string "This place is, like, huge!$"
 
-PokemonMansion_1F_Text_SimonDefeat:: @ 8177602
+PokemonMansion_1F_Text_SimonDefeat::
     .string "Ayah!$"
 
-PokemonMansion_1F_Text_SimonPostBattle:: @ 8177608
+PokemonMansion_1F_Text_SimonPostBattle::
     .string "I wonder where my partner went.$"
 
-PokemonMansion_1F_Text_BraydonIntro:: @ 8177628
+PokemonMansion_1F_Text_BraydonIntro::
     .string "My mentor once lived here.$"
 
-PokemonMansion_1F_Text_BraydonDefeat:: @ 8177643
+PokemonMansion_1F_Text_BraydonDefeat::
     .string "Whew!\n"
     .string "Overwhelming!$"
 
-PokemonMansion_1F_Text_BraydonPostBattle:: @ 8177657
+PokemonMansion_1F_Text_BraydonPostBattle::
     .string "So, you're stuck?\n"
     .string "Try jumping off over there!$"
 
-PokemonMansion_1F_Text_MewGaveBirthToMewtwo:: @ 8177685
+PokemonMansion_1F_Text_MewGaveBirthToMewtwo::
     .string "Diary: Feb. 6\n"
     .string "MEW gave birth.\p"
     .string "We named the newborn MEWTWO.$"

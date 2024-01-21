@@ -1,4 +1,4 @@
-SafariZone_North_MapScripts:: @ 8162398
+SafariZone_North_MapScripts::
 	map_script MAP_SCRIPT_ON_LOAD, SafariZone_North_EventScript_MakeExtension
 	.byte 0
 
@@ -29,27 +29,27 @@ SafariZone_North_EventScript_MakeExtension::
 	setmetatile 15, 5, 0x30B, 1
 	end
 
-SafariZone_North_EventScript_RestHouseSign:: @ 8162399
+SafariZone_North_EventScript_RestHouseSign::
 	msgbox SafariZone_North_Text_RestHouse, MSGBOX_SIGN
 	end
 
-SafariZone_North_EventScript_TrainerTips1:: @ 81623A2
+SafariZone_North_EventScript_TrainerTips1::
 	msgbox SafariZone_North_Text_SecretHouseStillAhead, MSGBOX_SIGN
 	end
 
-SafariZone_North_EventScript_AreaSign:: @ 81623AB
+SafariZone_North_EventScript_AreaSign::
 	msgbox SafariZone_North_Text_Area2, MSGBOX_SIGN
 	end
 
-SafariZone_North_EventScript_TrainerTips2:: @ 81623B4
+SafariZone_North_EventScript_TrainerTips2::
 	msgbox SafariZone_North_Text_ZigzagThroughTallGrass, MSGBOX_SIGN
 	end
 
-SafariZone_North_EventScript_TrainerTips3:: @ 81623BD
+SafariZone_North_EventScript_TrainerTips3::
 	msgbox SafariZone_North_Text_WinFreeHMFindSecretHouse, MSGBOX_SIGN
 	end
 
-SafariZone_North_EventScript_Worker1:: @ 81623BD
+SafariZone_North_EventScript_Worker1::
 	msgbox SafariZone_North_Text_Worker1, MSGBOX_NPC
 	turnobject 5, DIR_NORTH
 	end
@@ -59,7 +59,7 @@ SafariZone_North_Text_Worker1::
 	.string "We're working, so please go on with\n"
 	.string "your excursion and leave us be.$"
 
-SafariZone_North_EventScript_Worker2:: @ 81623BD
+SafariZone_North_EventScript_Worker2::
 	msgbox SafariZone_North_Text_Worker2, MSGBOX_DEFAULT
 	release
 	end

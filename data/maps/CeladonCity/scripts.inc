@@ -4,11 +4,11 @@
 .set LOCALID_VICTREEBEL_MASTER, 17
 .set TRAINER, VAR_0x8009
 
-CeladonCity_MapScripts:: @ 8166C8F
+CeladonCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_OnTransition
 	.byte 0
 
-CeladonCity_OnTransition:: @ 8166C95
+CeladonCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_CELADON_CITY
 	goto CeladonCity_MapScript_SetMasterTrainerMovementTypes
 	end
@@ -16,12 +16,10 @@ CeladonCity_OnTransition:: @ 8166C95
 CeladonCity_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_GRIMER
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq CeladonCity_MapScript_GrimerMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, CeladonCity_MapScript_GrimerMasterMovementType
 	setvar TRAINER, MASTER_VICTREEBEL
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq CeladonCity_MapScript_VictreebelMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, CeladonCity_MapScript_VictreebelMasterMovementType
 	end
 
 CeladonCity_MapScript_GrimerMasterMovementType::
@@ -32,29 +30,29 @@ CeladonCity_MapScript_VictreebelMasterMovementType::
 	setobjectmovementtype LOCALID_VICTREEBEL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-CeladonCity_EventScript_LittleGirl:: @ 8166C99
+CeladonCity_EventScript_LittleGirl::
 	msgbox CeladonCity_Text_GotMyKoffingInCinnabar, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_OldMan1:: @ 8166CA2
+CeladonCity_EventScript_OldMan1::
 	lock
 	msgbox CeladonCity_Text_GymIsGreatFullOfWomen
 	release
 	end
 
-CeladonCity_EventScript_Woman:: @ 8166CAD
+CeladonCity_EventScript_Woman::
 	msgbox CeladonCity_Text_GameCornerIsBadForCitysImage, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_OldMan2:: @ 8166CB6
+CeladonCity_EventScript_OldMan2::
 	msgbox CeladonCity_Text_BlewItAllAtSlots, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_SoftboiledTutor:: @ 8166CBF
+CeladonCity_EventScript_SoftboiledTutor::
 	goto EventScript_SoftboiledTutor
 	end
 
-CeladonCity_EventScript_FatMan:: @ 8166CC5
+CeladonCity_EventScript_FatMan::
 	lock
 	faceplayer
 	msgbox CeladonCity_Text_MyTrustedPalPoliwrath
@@ -64,11 +62,11 @@ CeladonCity_EventScript_FatMan:: @ 8166CC5
 	release
 	end
 
-CeladonCity_EventScript_Poliwrath:: @ 8166CDC
+CeladonCity_EventScript_Poliwrath::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_POLIWRATH, 0
+	playmoncry SPECIES_POLIWRATH, CRY_MODE_NORMAL
 	msgbox CeladonCity_Text_Poliwrath
 	closemessage
 	waitmoncry
@@ -77,53 +75,53 @@ CeladonCity_EventScript_Poliwrath:: @ 8166CDC
 	release
 	end
 
-CeladonCity_EventScript_RocketGrunt1:: @ 8166CFA
+CeladonCity_EventScript_RocketGrunt1::
 	msgbox CeladonCity_Text_KeepOutOfTeamRocketsWay, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_RocketGrunt2:: @ 8166D03
+CeladonCity_EventScript_RocketGrunt2::
 	msgbox CeladonCity_Text_GetLostOrIllPunchYou, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_Boy:: @ 8166D0C
+CeladonCity_EventScript_Boy::
 	msgbox CeladonCity_Text_ScaldedTongueOnTea, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_SilphCoScientist:: @ 8166D15
+CeladonCity_EventScript_SilphCoScientist::
 	msgbox CeladonCity_Text_SomeoneStoleSilphScope, MSGBOX_NPC
 	end
 
-CeladonCity_EventScript_TrainerTips1:: @ 8166D1E
+CeladonCity_EventScript_TrainerTips1::
 	msgbox CeladonCity_Text_ExplainXAccuracyDireHit, MSGBOX_SIGN
 	end
 
-CeladonCity_EventScript_CitySign:: @ 8166D27
+CeladonCity_EventScript_CitySign::
 	msgbox CeladonCity_Text_CitySign, MSGBOX_SIGN
 	end
 
-CeladonCity_EventScript_GymSign:: @ 8166D30
+CeladonCity_EventScript_GymSign::
 	lockall
 	famechecker FAMECHECKER_ERIKA, 0
 	msgbox CeladonCity_Text_GymSign
 	releaseall
 	end
 
-CeladonCity_EventScript_MansionSign:: @ 8166D48
+CeladonCity_EventScript_MansionSign::
 	msgbox CeladonCity_Text_MansionSign, MSGBOX_SIGN
 	end
 
-CeladonCity_EventScript_DeptStoreSign:: @ 8166D51
+CeladonCity_EventScript_DeptStoreSign::
 	msgbox CeladonCity_Text_DeptStoreSign, MSGBOX_SIGN
 	end
 
-CeladonCity_EventScript_TrainerTips2:: @ 8166D5A
+CeladonCity_EventScript_TrainerTips2::
 	msgbox CeladonCity_Text_GuardSpecProtectsFromStatus, MSGBOX_SIGN
 	end
 
-CeladonCity_EventScript_PrizeExchangeSign:: @ 8166D63
+CeladonCity_EventScript_PrizeExchangeSign::
 	msgbox CeladonCity_Text_PrizeExchangeSign, MSGBOX_SIGN
 	end
 
-CeladonCity_EventScript_GameCornerSign:: @ 8166D6C
+CeladonCity_EventScript_GameCornerSign::
 	msgbox CeladonCity_Text_GameCornerSign, MSGBOX_SIGN
 	end

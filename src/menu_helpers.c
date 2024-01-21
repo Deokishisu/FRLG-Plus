@@ -10,6 +10,7 @@
 #include "field_specials.h"
 #include "constants/songs.h"
 #include "constants/items.h"
+#include "constants/maps.h"
 
 static EWRAM_DATA const struct YesNoFuncTable *gUnknown_20399C8 = NULL;
 static EWRAM_DATA TaskFunc gUnknown_20399CC = NULL;
@@ -26,7 +27,7 @@ void DisplayMessageAndContinueTask(u8 taskId, u8 windowId, u16 tileNum, u8 palet
         StringExpandPlaceholders(gStringVar4, string);
 
     gTextFlags.canABSpeedUpPrint = 1;
-    AddTextPrinterParameterized2(windowId, fontId, gStringVar4, textSpeed, NULL, 2, 1, 3);
+    AddTextPrinterParameterized2(windowId, fontId, gStringVar4, textSpeed, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
     gUnknown_20399CC = taskFunc;
     gTasks[taskId].func = Task_ContinueTaskAfterMessagePrints;
 }
@@ -94,7 +95,8 @@ bool8 itemid_link_can_give_berry(u16 itemId)
 {
     if (itemId != ITEM_ENIGMA_BERRY)
         return TRUE;
-    else if (!gSaveBlock1Ptr->location.mapGroup && gSaveBlock1Ptr->location.mapNum == 1)
+    else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(TRADE_CENTER)
+              && gSaveBlock1Ptr->location.mapNum == MAP_NUM(TRADE_CENTER))
         return FALSE;
     else if (InUnionRoom() != TRUE)
         return TRUE;
@@ -147,9 +149,9 @@ void SetVBlankHBlankCallbacksToNull(void)
 void ResetVramOamAndBgCntRegs(void)
 {
     ResetAllBgsCoordinatesAndBgCntRegs();
-    CpuFill16(0, (void*) VRAM, VRAM_SIZE);
-    CpuFill32(0, (void*) OAM, OAM_SIZE);
-    CpuFill16(0, (void*) PLTT, PLTT_SIZE);
+    CpuFill16(0, (void *) VRAM, VRAM_SIZE);
+    CpuFill32(0, (void *) OAM, OAM_SIZE);
+    CpuFill16(0, (void *) PLTT, PLTT_SIZE);
 }
 
 void ResetAllBgsCoordinatesAndBgCntRegs(void)
@@ -239,8 +241,8 @@ bool8 AdjustQuantityAccordingToDPadInput(s16 *quantity_p, u16 qmax)
 
 u8 GetDialogBoxFontId(void)
 {
-    if (!ContextNpcGetTextColor())
-        return 4;
+    if (ContextNpcGetTextColor() == NPC_TEXT_COLOR_MALE)
+        return FONT_4;
     else
-        return 5;
+        return FONT_5;
 }

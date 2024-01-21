@@ -1,15 +1,15 @@
-SSAnne_2F_Room1_MapScripts:: @ 8160C96
+SSAnne_2F_Room1_MapScripts::
 	.byte 0
 
-SSAnne_2F_Room1_EventScript_Gentleman:: @ 8160C97
+SSAnne_2F_Room1_EventScript_Gentleman::
 	lock
 	faceplayer
 	message SSAnne_2F_Room1_Text_SleepingMonLookedLikeThis
 	waitmessage
 	setvar VAR_0x8004, SPECIES_SNORLAX
 	special SetSeenMon
-	drawmonpic SPECIES_SNORLAX, 10, 3
+	showmonpic SPECIES_SNORLAX, 10, 3
 	waitbuttonpress
-	erasemonpic
+	hidemonpic
 	release
 	end

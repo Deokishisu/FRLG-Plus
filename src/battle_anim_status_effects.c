@@ -248,7 +248,7 @@ static u8 sub_8078178(u8 battlerId, bool8 b)
         gTasks[taskId].data[1] = RGB_RED;
         for (i = 0; i < 10; i++)
         {
-            spriteId2 = CreateSprite(&sUnknown_83BF574, gSprites[battlerSpriteId].pos1.x, gSprites[battlerSpriteId].pos1.y + 32, 0);
+            spriteId2 = CreateSprite(&sUnknown_83BF574, gSprites[battlerSpriteId].x, gSprites[battlerSpriteId].y + 32, 0);
             gSprites[spriteId2].data[0] = i * 51;
             gSprites[spriteId2].data[1] = -256;
             gSprites[spriteId2].invisible = TRUE;
@@ -261,7 +261,7 @@ static u8 sub_8078178(u8 battlerId, bool8 b)
         gTasks[taskId].data[1] = RGB_BLUE;
         for (i = 0; i < 10; i++)
         {
-            spriteId2 = CreateSprite(&sUnknown_83BF574, gSprites[battlerSpriteId].pos1.x, gSprites[battlerSpriteId].pos1.y - 32, 0);
+            spriteId2 = CreateSprite(&sUnknown_83BF574, gSprites[battlerSpriteId].x, gSprites[battlerSpriteId].y - 32, 0);
             gSprites[spriteId2].data[0] = i * 51;
             gSprites[spriteId2].data[1] = 256;
             gSprites[spriteId2].invisible = TRUE;
@@ -322,15 +322,15 @@ static void sub_807834C(struct Sprite *sprite)
 
 static void sub_8078380(struct Sprite *sprite)
 {
-    sprite->pos2.x = Cos(sprite->data[0], 32);
-    sprite->pos2.y = Sin(sprite->data[0], 8);
+    sprite->x2 = Cos(sprite->data[0], 32);
+    sprite->y2 = Sin(sprite->data[0], 8);
     if (sprite->data[0] < 128)
         sprite->subpriority = 29;
     else
         sprite->subpriority = 31;
     sprite->data[0] = (sprite->data[0] + 8) & 0xFF;
     sprite->data[5] += sprite->data[1];
-    sprite->pos2.y += sprite->data[5] >> 8;
+    sprite->y2 += sprite->data[5] >> 8;
     sprite->data[2]++;
     if (sprite->data[2] == 52)
     {
@@ -353,7 +353,7 @@ void AnimTask_FrozenIceCube(u8 taskId)
     SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
     SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(0, 16));
     spriteId = CreateSprite(&sUnknown_83BF55C, x, y, 4);
-    if (GetSpriteTileStartByTag(ANIM_TAG_ICE_CUBE) == SPRITE_INVALID_TAG)
+    if (GetSpriteTileStartByTag(ANIM_TAG_ICE_CUBE) == TAG_NONE)
         gSprites[spriteId].invisible = TRUE;
     
     SetSubspriteTables(&gSprites[spriteId], sUnknown_83BF554);
@@ -501,8 +501,8 @@ void AnimTask_StatsChange(u8 taskId)
     gBattleAnimArgs[2] = 0;
     gBattleAnimArgs[3] = 0;
     gBattleAnimArgs[4] = sharply;
-    gTasks[taskId].func = sub_80BB088;
-    sub_80BB088(taskId);
+    gTasks[taskId].func = InitStatsChangeAnimation;
+    InitStatsChangeAnimation(taskId);
 }
 
 #undef CASE

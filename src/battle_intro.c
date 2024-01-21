@@ -118,7 +118,7 @@ void HandleIntroSlide(u8 terrain)
     gTasks[taskId].data[6] = 0;
 }
 
-void sub_80BC41C(u8 taskId)
+void BattleIntroSlideEnd(u8 taskId)
 {
     DestroyTask(taskId);
     gBattle_BG1_X = 0;
@@ -224,7 +224,7 @@ static void BattleIntroSlide1(u8 taskId)
         }
         break;
     case 4:
-        sub_80BC41C(taskId);
+        BattleIntroSlideEnd(taskId);
         break;
     }
 }
@@ -341,7 +341,7 @@ static void BattleIntroSlide2(u8 taskId)
         }
         break;
     case 4:
-        sub_80BC41C(taskId);
+        BattleIntroSlideEnd(taskId);
         break;
     }
     if (gTasks[taskId].data[0] != 4)
@@ -438,7 +438,7 @@ static void BattleIntroSlide3(u8 taskId)
         }
         break;
     case 4:
-        sub_80BC41C(taskId);
+        BattleIntroSlideEnd(taskId);
         break;
     }
     if (gTasks[taskId].data[0] != 4)
@@ -522,7 +522,7 @@ static void BattleIntroSlideLink(u8 taskId)
         }
         break;
     case 4:
-        sub_80BC41C(taskId);
+        BattleIntroSlideEnd(taskId);
         break;
     }
 }

@@ -10,6 +10,7 @@
 *.exe
 *.fwjpnfont
 *.gba
+!data/*.gba
 *.sgm
 *.sa1
 *.sg1
@@ -57,3 +58,5 @@ porymap.project.cfg
 *.ss1
 *.ss2
 my_script.js
+*.js
+*.sym

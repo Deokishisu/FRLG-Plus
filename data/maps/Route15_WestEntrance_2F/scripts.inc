@@ -2,67 +2,63 @@
 .set LOCALID_SCYTHER_MASTER, 16
 .set TRAINER, VAR_0x8009
 
-Route15_WestEntrance_2F_MapScripts:: @ 8170092
+Route15_WestEntrance_2F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route15_WestEntrance_2F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route15_WestEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_SCYTHER
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route15_WestEntrance_2F_MapScript_ScytherMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route15_WestEntrance_2F_MapScript_ScytherMasterMovementType
 	end
 
 Route15_WestEntrance_2F_MapScript_ScytherMasterMovementType::
 	setobjectmovementtype LOCALID_SCYTHER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route15_WestEntrance_2F_EventScript_LeftBinoculars:: @ 8170093
+Route15_WestEntrance_2F_EventScript_LeftBinoculars::
 	lockall
 	msgbox Route15_WestEntrance_2F_Text_LargeShiningBird
-	drawmonpic SPECIES_ARTICUNO, 10, 3
+	showmonpic SPECIES_ARTICUNO, 10, 3
 	delay 20
 	waitbuttonpress
-	erasemonpic
+	hidemonpic
 	setvar VAR_0x8004, SPECIES_ARTICUNO
 	special SetSeenMon
 	releaseall
 	end
 
-Route15_WestEntrance_2F_EventScript_RightBinoculars:: @ 81700B0
+Route15_WestEntrance_2F_EventScript_RightBinoculars::
 	msgbox Route15_WestEntrance_2F_Text_SmallIslandOnHorizon, MSGBOX_SIGN
 	end
 
-Route15_WestEntrance_2F_EventScript_Aide:: @ 81700B9
+Route15_WestEntrance_2F_EventScript_Aide::
 	lock
 	faceplayer
 	call Route15_WestEntrance_2F_EventScript_GetAideRequestInfo
 	goto_if_set FLAG_GOT_EXP_SHARE_FROM_OAKS_AIDE, Route15_WestEntrance_2F_EventScript_AlreadyGotExpShare
 	msgbox Route15_WestEntrance_2F_Text_GiveItemIfCaughtEnough, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq Aide_EventScript_DeclineCheckMons
+	goto_if_eq VAR_RESULT, NO, Aide_EventScript_DeclineCheckMons
 	setvar VAR_0x8004, 0
 	specialvar VAR_RESULT, GetPokedexCount
-	getnumberstring 2, VAR_0x8006
+	buffernumberstring STR_VAR_3, VAR_0x8006
 	call Route15_WestEntrance_2F_EventScript_GetAideRequestInfo
-	compare VAR_0x8006, REQUIRED_CAUGHT_MONS
-	goto_if_lt Aide_EventScript_HaventCaughtEnough
+	goto_if_lt VAR_0x8006, REQUIRED_CAUGHT_MONS, Aide_EventScript_HaventCaughtEnough
 	msgbox Route15_WestEntrance_2F_Text_GreatHereYouGo
-	checkitemspace ITEM_EXP_SHARE, 1
-	compare VAR_RESULT, FALSE
-	goto_if_eq Aide_EventScript_NoRoomForItem
+	checkitemspace ITEM_EXP_SHARE
+	goto_if_eq VAR_RESULT, FALSE, Aide_EventScript_NoRoomForItem
 	giveitem_msg Route15_WestEntrance_2F_Text_ReceivedItemFromAide, ITEM_EXP_SHARE
 	setflag FLAG_GOT_EXP_SHARE_FROM_OAKS_AIDE
 	msgbox Route15_WestEntrance_2F_Text_ExplainExpShare
 	release
 	end
 
-Route15_WestEntrance_2F_EventScript_AlreadyGotExpShare:: @ 817013B
+Route15_WestEntrance_2F_EventScript_AlreadyGotExpShare::
 	msgbox Route15_WestEntrance_2F_Text_ExplainExpShare
 	release
 	end
 
-Route15_WestEntrance_2F_EventScript_GetAideRequestInfo:: @ 8170145
-	getnumberstring 0, REQUIRED_CAUGHT_MONS
-	getitemname 1, ITEM_EXP_SHARE
+Route15_WestEntrance_2F_EventScript_GetAideRequestInfo::
+	buffernumberstring STR_VAR_1, REQUIRED_CAUGHT_MONS
+	bufferitemname STR_VAR_2, ITEM_EXP_SHARE
 	return

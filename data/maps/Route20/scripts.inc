@@ -5,11 +5,11 @@
 .set LOCALID_TENTACRUEL_MASTER, 16
 .set TRAINER, VAR_0x8009
 
-Route20_MapScripts:: @ 816823B
+Route20_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route20_OnTransition
 	.byte 0
 
-Route20_OnTransition:: @ 8168241
+Route20_OnTransition::
 	call_if_unset FLAG_STOPPED_SEAFOAM_B3F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB3F
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB4F
 	goto Route20_MapScript_SetMasterTrainerMovementTypes
@@ -18,24 +18,19 @@ Route20_OnTransition:: @ 8168241
 Route20_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_BLASTOISE
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route20_MapScript_BlastoiseMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route20_MapScript_BlastoiseMasterMovementType
 	setvar TRAINER, MASTER_TENTACOOL
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route20_MapScript_TentacoolMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route20_MapScript_TentacoolMasterMovementType
 	setvar TRAINER, MASTER_CLOYSTER
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route20_MapScript_CloysterMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route20_MapScript_CloysterMasterMovementType
 	setvar TRAINER, MASTER_WARTORTLE
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route20_MapScript_WartortleMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route20_MapScript_WartortleMasterMovementType
 	setvar TRAINER, MASTER_TENTACRUEL
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route20_MapScript_TentacruelMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route20_MapScript_TentacruelMasterMovementType
 	end
 
 Route20_MapScript_BlastoiseMasterMovementType::
@@ -59,7 +54,7 @@ Route20_MapScript_TentacruelMasterMovementType::
 	setobjectmovementtype LOCALID_TENTACRUEL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route20_EventScript_ResetSeafoamBouldersForB3F:: @ 8168254
+Route20_EventScript_ResetSeafoamBouldersForB3F::
 	clearflag FLAG_HIDE_SEAFOAM_1F_BOULDER_1
 	clearflag FLAG_HIDE_SEAFOAM_1F_BOULDER_2
 	setflag FLAG_HIDE_SEAFOAM_B1F_BOULDER_1
@@ -70,7 +65,7 @@ Route20_EventScript_ResetSeafoamBouldersForB3F:: @ 8168254
 	setflag FLAG_HIDE_SEAFOAM_B3F_BOULDER_2
 	return
 
-Route20_EventScript_ResetSeafoamBouldersForB4F:: @ 816826D
+Route20_EventScript_ResetSeafoamBouldersForB4F::
 	clearflag FLAG_HIDE_SEAFOAM_B3F_BOULDER_3
 	clearflag FLAG_HIDE_SEAFOAM_B3F_BOULDER_4
 	clearflag FLAG_HIDE_SEAFOAM_B3F_BOULDER_5
@@ -79,6 +74,6 @@ Route20_EventScript_ResetSeafoamBouldersForB4F:: @ 816826D
 	setflag FLAG_HIDE_SEAFOAM_B4F_BOULDER_2
 	return
 
-Route20_EventScript_SeafoamIslandsSign:: @ 8168280
+Route20_EventScript_SeafoamIslandsSign::
 	msgbox Route20_Text_SeafoamIslands, MSGBOX_SIGN
 	end

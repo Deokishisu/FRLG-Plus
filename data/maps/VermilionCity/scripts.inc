@@ -25,16 +25,16 @@
 .equ SBN, 14
 .equ SBNF, 15
 
-VermilionCity_MapScripts:: @ 81668DC
+VermilionCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VermilionCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VermilionCity_OnFrame
 	.byte 0
 
-VermilionCity_OnFrame:: @ 81668E7
+VermilionCity_OnFrame::
 	map_script_2 VAR_MAP_SCENE_VERMILION_CITY, 2, VermilionCity_EventScript_ExitSSAnne
 	.2byte 0
 
-VermilionCity_EventScript_ExitSSAnne:: @ 81668F1
+VermilionCity_EventScript_ExitSSAnne::
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, VermilionCity_Movement_ExitSSAnne
 	waitmovement 0
@@ -42,12 +42,12 @@ VermilionCity_EventScript_ExitSSAnne:: @ 81668F1
 	releaseall
 	end
 
-VermilionCity_Movement_ExitSSAnne:: @ 8166903
+VermilionCity_Movement_ExitSSAnne::
 	walk_up
 	walk_up
 	step_end
 
-VermilionCity_OnTransition:: @ 8166906
+VermilionCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VERMILION_CITY
 	call_if_set FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION, VermilionCity_EventScript_HideOaksAide
 	goto VermilionCity_MapScript_SetMasterTrainerMovementTypes
@@ -56,12 +56,10 @@ VermilionCity_OnTransition:: @ 8166906
 VermilionCity_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MACHAMP
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq VermilionCity_MapScript_MachampMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, VermilionCity_MapScript_MachampMasterMovementType
 	setvar TRAINER, MASTER_FARFETCHD
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq VermilionCity_MapScript_FarfetchdMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, VermilionCity_MapScript_FarfetchdMasterMovementType
 	end
 
 VermilionCity_MapScript_MachampMasterMovementType::
@@ -72,43 +70,39 @@ VermilionCity_MapScript_FarfetchdMasterMovementType::
 	setobjectmovementtype LOCALID_FARFETCHD_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-VermilionCity_EventScript_HideOaksAide:: @ 8166913
+VermilionCity_EventScript_HideOaksAide::
 	setflag FLAG_HIDE_VERMILION_CITY_OAKS_AIDE
 	return
 
-VermilionCity_EventScript_Woman:: @ 8166917
+VermilionCity_EventScript_Woman::
 	msgbox VermilionCity_Text_GrimerMultipliesInSludge, MSGBOX_NPC
 	end
 
-VermilionCity_EventScript_OldMan1:: @ 8166920
+VermilionCity_EventScript_OldMan1::
 	lock
 	faceplayer
-	compare VAR_MAP_SCENE_VERMILION_CITY, 3
-	goto_if_eq VermilionCity_EventScript_OldMan1SSAnneLeft
+	goto_if_eq VAR_MAP_SCENE_VERMILION_CITY, 3, VermilionCity_EventScript_OldMan1SSAnneLeft
 	msgbox VermilionCity_Text_DidYouSeeSSAnneInHarbor
 	release
 	end
 
-VermilionCity_EventScript_OldMan1SSAnneLeft:: @ 8166937
+VermilionCity_EventScript_OldMan1SSAnneLeft::
 	msgbox VermilionCity_Text_SSAnneHasDepartedForYear
 	release
 	end
 
-VermilionCity_EventScript_FerrySailor:: @ 8166941
+VermilionCity_EventScript_FerrySailor::
 	lock
 	faceplayer
-	compare VAR_MAP_SCENE_VERMILION_CITY, 3
-	goto_if_eq VermilionCity_EventScript_CheckSeagallopPresent
+	goto_if_eq VAR_MAP_SCENE_VERMILION_CITY, 3, VermilionCity_EventScript_CheckSeagallopPresent
 	msgbox VermilionCity_Text_WelcomeToTheSSAnne
 	release
 	end
 
-VermilionCity_EventScript_CheckSeagallopPresent:: @ 8166996
+VermilionCity_EventScript_CheckSeagallopPresent::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
-	compare VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5
-	goto_if_ge VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
-	compare VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1
-	goto_if_ge VermilionCity_EventScript_ChooseSeagallopDestTriPass
+	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
+	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
 	msgbox VermilionCity_Text_TheShipSetSail
 	release
 	end
@@ -134,7 +128,7 @@ VermilionCity_EventScript_SetSailToFarawayIsland::
 	goto EventScript_SetSail
 	end
 
-VermilionCity_EventScript_ChooseSeagallopDestRainbowPass:: @ 81669BB
+VermilionCity_EventScript_ChooseSeagallopDestRainbowPass::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	setvar VAR_RESULT, 0
@@ -174,31 +168,31 @@ VermilionCity_EventScript_ShowOldSeaMap::
 	msgbox VermilionCity_Text_OldSeaMapTakeYouToFarawayIsland
 	goto VermilionCity_EventScript_CheckSeagallopPresentTrigger
 
-VermilionCity_EventScript_ShowMysticTicket:: @ 8166A53
+VermilionCity_EventScript_ShowMysticTicket::
 	setflag FLAG_SHOWN_MYSTIC_TICKET
 	msgbox VermilionCity_Text_OhMysticTicketTakeYouToNavelRock
 	goto VermilionCity_EventScript_CheckSeagallopPresentTrigger
 
-VermilionCity_EventScript_ShowAuroraTicket:: @ 8166AA5
+VermilionCity_EventScript_ShowAuroraTicket::
 	setflag FLAG_SHOWN_AURORA_TICKET
 	msgbox VermilionCity_Text_OhAuroraTicketTakeYouToBirthIsland
 	goto VermilionCity_EventScript_CheckSeagallopPresentTrigger
 
-EventScript_SailToNavelRock:: @ 8166B0B
+EventScript_SailToNavelRock::
 	msgbox VermilionCity_Text_Seagallop10Departing
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	setvar VAR_0x8006, SEAGALLOP_NAVEL_ROCK
 	goto EventScript_SetSail
 	end
 
-EventScript_SailToBirthIsland:: @ 8166B23
+EventScript_SailToBirthIsland::
 	msgbox VermilionCity_Text_Seagallop12Departing
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	setvar VAR_0x8006, SEAGALLOP_BIRTH_ISLAND
 	goto EventScript_SetSail
 	end
 
-VermilionCity_EventScript_ChooseSeagallopDestTriPass:: @ 8166B3B
+VermilionCity_EventScript_ChooseSeagallopDestTriPass::
 	setvar VAR_RESULT, 0
 	callnative CheckEventTickets
 	switch VAR_RESULT
@@ -240,7 +234,7 @@ VermilionCity_EventScript_HasTicketsTriPass::
 VermilionCity_EventScript_EventIslandsMultichoice::
 	setvar VAR_RESULT, 1
 	callnative CheckEventTickets
-	getnumberstring 0, VAR_RESULT
+	buffernumberstring STR_VAR_1, VAR_RESULT
 	switch VAR_RESULT
 	case F, VermilionCity_EventScript_Faraway
 	case N, VermilionCity_EventScript_Navel
@@ -396,29 +390,28 @@ VermilionCity_EventScript_SouthernBirthNavelFaraway::
 	case 127, EventScript_CancelSail 
 	end
 
-VermilionCity_EventScript_CheckTicketLeft:: @ 8166B8A
+VermilionCity_EventScript_CheckTicketLeft::
 	lockall
 	goto VermilionCity_EventScript_CheckTicket
 	end
 
-VermilionCity_EventScript_CheckTicketRight:: @ 8166B91
+VermilionCity_EventScript_CheckTicketRight::
 	lockall
 	goto VermilionCity_EventScript_CheckTicket
 	end
 
-VermilionCity_EventScript_ExitedTicketCheck:: @ 8166B98
+VermilionCity_EventScript_ExitedTicketCheck::
 	lockall
 	setvar VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER, 0
 	releaseall
 	end
 
-VermilionCity_EventScript_CheckTicket:: @ 8166BA0
-	textcolor 0
+VermilionCity_EventScript_CheckTicket::
+	textcolor NPC_TEXT_COLOR_MALE
 	applymovement LOCALID_FERRY_SAILOR, Movement_WalkInPlaceFastestLeft
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
 	waitmovement 0
-	compare VAR_MAP_SCENE_VERMILION_CITY, 3
-	goto_if_eq VermilionCity_EventScript_CheckSeagallopPresentTrigger
+	goto_if_eq VAR_MAP_SCENE_VERMILION_CITY, 3, VermilionCity_EventScript_CheckSeagallopPresentTrigger
 	msgbox VermilionCity_Text_DoYouHaveATicket
 	goto_if_unset FLAG_GOT_SS_TICKET, VermilionCity_EventScript_DontHaveSSTicket
 	msgbox VermilionCity_Text_FlashedSSTicket
@@ -426,28 +419,26 @@ VermilionCity_EventScript_CheckTicket:: @ 8166BA0
 	releaseall
 	end
 
-VermilionCity_EventScript_DontHaveSSTicket:: @ 8166BDE
+VermilionCity_EventScript_DontHaveSSTicket::
 	msgbox VermilionCity_Text_DontHaveNeededSSTicket
 	closemessage
 	goto VermilionCity_EventScript_WalkUpPier
 	end
 
-VermilionCity_EventScript_CheckSeagallopPresentTrigger:: @ 8166BED
+VermilionCity_EventScript_CheckSeagallopPresentTrigger::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
-	compare VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5
-	goto_if_ge VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
-	compare VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1
-	goto_if_ge VermilionCity_EventScript_ChooseSeagallopDestTriPass
+	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
+	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
 	msgbox VermilionCity_Text_TheShipSetSail
 	closemessage
 	goto VermilionCity_EventScript_WalkUpPier
 	end
 
-VermilionCity_EventScript_Sailor:: @ 8166C17
+VermilionCity_EventScript_Sailor::
 	msgbox VermilionCity_Text_SSAnneVisitsOnceAYear, MSGBOX_NPC
 	end
 
-VermilionCity_EventScript_OaksAide:: @ 8166C20
+VermilionCity_EventScript_OaksAide::
 	lock
 	faceplayer
 	setflag FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION
@@ -455,40 +446,40 @@ VermilionCity_EventScript_OaksAide:: @ 8166C20
 	release
 	end
 
-VermilionCity_EventScript_OldMan2:: @ 8166C2F
+VermilionCity_EventScript_OldMan2::
 	msgbox VermilionCity_Text_BuildingOnThisLand, MSGBOX_NPC
 	end
 
-VermilionCity_EventScript_Machop:: @ 8166C38
+VermilionCity_EventScript_Machop::
 	lock
 	faceplayer
 	waitse
-	playmoncry SPECIES_MACHOP, 0
+	playmoncry SPECIES_MACHOP, CRY_MODE_NORMAL
 	msgbox VermilionCity_Text_Machop
 	waitmoncry
 	msgbox VermilionCity_Text_MachopStompingLandFlat
 	release
 	end
 
-VermilionCity_EventScript_CitySign:: @ 8166C53
+VermilionCity_EventScript_CitySign::
 	msgbox VermilionCity_Text_CitySign, MSGBOX_SIGN
 	end
 
-VermilionCity_EventScript_SnorlaxNotice:: @ 8166C5C
+VermilionCity_EventScript_SnorlaxNotice::
 	msgbox VermilionCity_Text_SnorlaxBlockingRoute12, MSGBOX_SIGN
 	end
 
-VermilionCity_EventScript_PokemonFanClubSign:: @ 8166C65
+VermilionCity_EventScript_PokemonFanClubSign::
 	msgbox VermilionCity_Text_PokemonFanClubSign, MSGBOX_SIGN
 	end
 
-VermilionCity_EventScript_GymSign:: @ 8166C6E
+VermilionCity_EventScript_GymSign::
 	lockall
 	famechecker FAMECHECKER_LTSURGE, 0
 	msgbox VermilionCity_Text_GymSign
 	releaseall
 	end
 
-VermilionCity_EventScript_HarborSign:: @ 8166C86
+VermilionCity_EventScript_HarborSign::
 	msgbox VermilionCity_Text_VermilionHarbor, MSGBOX_SIGN
 	end

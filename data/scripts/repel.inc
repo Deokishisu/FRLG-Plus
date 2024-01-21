@@ -1,7 +1,6 @@
-EventScript_RepelWoreOff:: @ 81BFB65
+EventScript_RepelWoreOff::
 	checkitem VAR_LAST_REPEL_USED, 1
-	compare VAR_RESULT, TRUE
-	goto_if_eq EventScript_UseAnother
+	goto_if_eq VAR_RESULT, TRUE, EventScript_UseAnother
 	lock
 	msgbox Text_RepelWoreOff, MSGBOX_SIGN
 	release
@@ -10,13 +9,12 @@ EventScript_RepelWoreOff:: @ 81BFB65
 EventScript_UseAnother:
 	lock
 	msgbox Text_UseAnother, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq EventScript_UsedRepel
+	goto_if_eq VAR_RESULT, YES, EventScript_UsedRepel
 	release
 	end
 
 EventScript_UsedRepel:
-	getitemname 0, VAR_LAST_REPEL_USED
+	bufferitemname STR_VAR_1, VAR_LAST_REPEL_USED
 	playse SE_REPEL
 	lock
 	msgbox Text_UsedNewRepel, MSGBOX_SIGN
@@ -26,7 +24,7 @@ EventScript_UsedRepel:
 	release
 	end
 
-Text_RepelWoreOff:: @ 81BFB6E
+Text_RepelWoreOff::
 	.string "REPEL's effect wore off…$"
 
 Text_UseAnother::

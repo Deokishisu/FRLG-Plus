@@ -10,28 +10,22 @@
 #define LINK_KEY_CODE_DPAD_UP 0x13
 #define LINK_KEY_CODE_DPAD_LEFT 0x14
 #define LINK_KEY_CODE_DPAD_RIGHT 0x15
-#define LINK_KEY_CODE_UNK_2 0x16
+#define LINK_KEY_CODE_READY 0x16
 #define LINK_KEY_CODE_EXIT_ROOM 0x17
 #define LINK_KEY_CODE_START_BUTTON 0x18
 #define LINK_KEY_CODE_A_BUTTON 0x19
-#define LINK_KEY_CODE_UNK_4 0x1A // I'd guess this is the B button?
+#define LINK_KEY_CODE_IDLE 0x1A
 
 // These two are a hack to stop user input until link stuff can be
 // resolved.
 #define LINK_KEY_CODE_HANDLE_RECV_QUEUE 0x1B
 #define LINK_KEY_CODE_HANDLE_SEND_QUEUE 0x1C
-#define LINK_KEY_CODE_UNK_7 0x1D
-#define LINK_KEY_CODE_UNK_8 0x1E
+
+#define LINK_KEY_CODE_EXIT_SEAT 0x1D
 
 #define MOVEMENT_MODE_FREE 0
 #define MOVEMENT_MODE_FROZEN 1
 #define MOVEMENT_MODE_SCRIPTED 2
-
-struct UnkPlayerStruct
-{
-    u8 player_field_0;
-    u8 player_field_1;
-};
 
 struct LinkPlayerObjectEvent
 {
@@ -53,22 +47,21 @@ struct CreditsOverworldCmd
 #define MUSIC_DISABLE_STOP 1
 #define MUSIC_DISABLE_KEEP 2
 
-extern const struct UCoords32 gDirectionToVectors[];
+extern const struct Coords32 gDirectionToVectors[];
 
 extern struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4];
 extern MainCallback gFieldCallback;
 
 extern struct WarpData gLastUsedWarp;
 
-extern u8 gUnknown_2031DE0;
+extern u8 gExitStairsMovementDisabled;
 extern u8 gFieldLinkPlayerCount;
 extern u8 gLocalLinkPlayerId;
 
 void IncrementGameStat(u8 index);
 
-void Overworld_SetMapObjTemplateCoords(u8, s16, s16);
-void Overworld_SetObjEventTemplateMovementType(u8, u8);
-void Overworld_ResetObjEventTemplateMovementType(u8 localId);
+void SetObjEventTemplateCoords(u8, s16, s16);
+void SetObjEventTemplateMovementType(u8, u8);
 
 void SetWarpDestination(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
 
@@ -84,9 +77,7 @@ u8 IsMapTypeOutdoors(u8 mapType);
 void Overworld_ClearSavedMusic(void);
 bool32 Overworld_MusicCanOverrideMapMusic(u16 song);
 
-void player_avatar_init_params_reset(void);
-
-void Overworld_SetFlashLevel(s32 a1);
+void SetFlashLevel(s32 a1);
 u8 Overworld_GetFlashLevel(void);
 
 void Overworld_SetSavedMusic(u16);
@@ -103,9 +94,7 @@ void CB2_ReturnToFieldContinueScriptPlayMapMusic(void);
 void WarpIntoMap(void);
 u8 GetMapTypeByGroupAndId(s8 mapGroup, s8 mapNum);
 void SetWarpDestinationToMapWarp(s8 mapGroup, s8 mapNum, s8 warpNum);
-void c2_load_new_map(void);
 void SetWarpDestinationToDynamicWarp(u8 unused);
-void mapldr_default(void);
 
 u32 GetGameStat(u8 statId);
 void SetGameStat(u8 statId, u32 value);
@@ -123,7 +112,6 @@ void SetCurrentMapLayout(u16 mapLayoutId);
 void SetWarpDestinationToFixedHoleWarp(s16 x, s16 y);
 
 void ResetInitialPlayerAvatarState(void);
-void sub_8055D40(u16 mapLayoutId);
 void CleanupOverworldWindowsAndTilemaps(void);
 u32 ComputeWhiteOutMoneyLoss(void);
 
@@ -176,13 +164,13 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void);
 void OverworldWhiteOutGetMoneyLoss(void);
 u8 GetCurrentMapBattleScene(void);
 void Overworld_ResetStateAfterFly(void);
-bool8 MetatileBehavior_IsSurfableWaterOrUnderwater(u16 metatileBehavior);
+bool8 MetatileBehavior_IsSurfableInSeafoamIslands(u16 metatileBehavior);
 void Overworld_ResetMapMusic(void);
 u16 QueueExitLinkRoomKey(void);
-u16 sub_8057F34(void);
-u32 sub_8057EC0(void);
-u16 sub_8057F70(void);
-u16 sub_8057F48(void);
+u16 SetInCableClubSeat(void);
+u32 GetCableClubPartnersReady(void);
+u16 SetStartedCableClubActivity(void);
+u16 SetLinkWaitingForScript(void);
 void SetMainCallback1(MainCallback cb);
 void CB1_Overworld(void);
 void CB2_ReturnToFieldContinueScript(void);
@@ -191,7 +179,7 @@ void StoreInitialPlayerAvatarState(void);
 void UpdateEscapeWarp(s16 x, s16 y);
 bool8 SetDiveWarpEmerge(u16 x, u16 y);
 bool8 SetDiveWarpDive(u16 x, u16 y);
-void do_load_map_stuff_loop(u8 *state);
+void DoMapLoadLoop(u8 *state);
 void SetInitialPlayerAvatarStateWithDirection(u8 dirn);
 bool8 CheckNationalDexEligibilityOnSaveLoad(void);
 bool8 DoCoordsMatchPMCExitMat(void);

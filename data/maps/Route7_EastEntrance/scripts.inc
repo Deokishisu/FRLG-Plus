@@ -1,45 +1,44 @@
 .set LOCALID_SANDSLASH_MASTER, 2
 .set TRAINER, VAR_0x8009
 
-Route7_EastEntrance_MapScripts:: @ 816FA8D
+Route7_EastEntrance_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route7_EastEntrance_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 Route7_EastEntrance_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_SANDSLASH
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route7_EastEntrance_MapScript_SandslashMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route7_EastEntrance_MapScript_SandslashMasterMovementType
 	end
 
 Route7_EastEntrance_MapScript_SandslashMasterMovementType::
 	setobjectmovementtype LOCALID_SANDSLASH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route7_EastEntrance_EventScript_Guard:: @ 816FA8E
+Route7_EastEntrance_EventScript_Guard::
 	msgbox Route7_EastEntrance_Text_HiHowsItGoing, MSGBOX_NPC
 	end
 
-Route7_EastEntrance_EventScript_GuardTriggerTop:: @ 816FA97
+Route7_EastEntrance_EventScript_GuardTriggerTop::
 	lockall
 	setvar VAR_TEMP_1, 0
 	goto Route7_EastEntrance_EventScript_GuardTrigger
 	end
 
-Route7_EastEntrance_EventScript_GuardTriggerMid:: @ 816FAA3
+Route7_EastEntrance_EventScript_GuardTriggerMid::
 	lockall
 	setvar VAR_TEMP_1, 1
 	goto Route7_EastEntrance_EventScript_GuardTrigger
 	end
 
-Route7_EastEntrance_EventScript_GuardTriggerBottom:: @ 816FAAF
+Route7_EastEntrance_EventScript_GuardTriggerBottom::
 	lockall
 	setvar VAR_TEMP_1, 2
 	goto Route7_EastEntrance_EventScript_GuardTrigger
 	end
 
-Route7_EastEntrance_EventScript_GuardTrigger:: @ 816FABB
-	textcolor 0
+Route7_EastEntrance_EventScript_GuardTrigger::
+	textcolor NPC_TEXT_COLOR_MALE
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	goto_if_set FLAG_GOT_TEA, Route7_EastEntrance_EventScript_GiveTea
@@ -50,53 +49,50 @@ Route7_EastEntrance_EventScript_GuardTrigger:: @ 816FABB
 	releaseall
 	end
 
-Route7_EastEntrance_EventScript_GiveTea:: @ 816FAE5
-	removeitem ITEM_TEA, 1
+Route7_EastEntrance_EventScript_GiveTea::
+	removeitem ITEM_TEA
 	goto Route7_EastEntrance_EventScript_GuardDrinkTea
 	end
 
-Route7_EastEntrance_EventScript_GuardDrinkTea:: @ 816FAF0
+Route7_EastEntrance_EventScript_GuardDrinkTea::
 	msgbox Route7_EastEntrance_Text_ThatTeaLooksTasty
 	closemessage
-	compare VAR_TEMP_1, 0
-	call_if_eq Route7_EastEntrance_WalkToGuardTop
-	compare VAR_TEMP_1, 1
-	call_if_eq Route7_EastEntrance_WalkToGuardMid
-	compare VAR_TEMP_1, 2
-	call_if_eq Route7_EastEntrance_WalkToGuardBottom
+	call_if_eq VAR_TEMP_1, 0, Route7_EastEntrance_WalkToGuardTop
+	call_if_eq VAR_TEMP_1, 1, Route7_EastEntrance_WalkToGuardMid
+	call_if_eq VAR_TEMP_1, 2, Route7_EastEntrance_WalkToGuardBottom
 	msgbox Route7_EastEntrance_Text_ThanksIllShareTeaWithGuards
 	setvar VAR_MAP_SCENE_ROUTE5_ROUTE6_ROUTE7_ROUTE8_GATES, 1
 	releaseall
 	end
 
-Route7_EastEntrance_WalkToGuardTop:: @ 816FB29
+Route7_EastEntrance_WalkToGuardTop::
 	applymovement OBJ_EVENT_ID_PLAYER, Route7_EastEntrance_Movement_WalkToGuardTop
 	waitmovement 0
 	return
 
-Route7_EastEntrance_WalkToGuardMid:: @ 816FB34
+Route7_EastEntrance_WalkToGuardMid::
 	applymovement OBJ_EVENT_ID_PLAYER, Route7_EastEntrance_Movement_WalkToGuardMid
 	waitmovement 0
 	return
 
-Route7_EastEntrance_WalkToGuardBottom:: @ 816FB3F
+Route7_EastEntrance_WalkToGuardBottom::
 	applymovement OBJ_EVENT_ID_PLAYER, Route7_EastEntrance_Movement_WalkToGuardBottom
 	waitmovement 0
 	return
 
-Route7_EastEntrance_Movement_WalkToGuardMid:: @ 816FB4A
+Route7_EastEntrance_Movement_WalkToGuardMid::
 	walk_up
 	step_end
 
-Route7_EastEntrance_Movement_WalkToGuardBottom:: @ 816FB4C
+Route7_EastEntrance_Movement_WalkToGuardBottom::
 	walk_up
 	walk_up
 	step_end
 
-Route7_EastEntrance_Movement_WalkToGuardTop:: @ 816FB4F
+Route7_EastEntrance_Movement_WalkToGuardTop::
 	walk_in_place_up
 	step_end
 
-Route7_EastEntrance_Movement_BlockPlayerEntry:: @ 816FB51
+Route7_EastEntrance_Movement_BlockPlayerEntry::
 	walk_left
 	step_end

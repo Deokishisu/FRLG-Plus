@@ -28,11 +28,11 @@ static void Task_ItemfinderUnderfootDigUpItem(u8 taskId);
 static void DestroyArrowAndStarTiles(void);
 static void LoadArrowAndStarTiles(void);
 static void CreateArrowSprite(u8 animNum, u8 direction);
-static void SpriteCallback_Arrow(struct Sprite * sprite);
-static void SpriteCallback_DestroyArrow(struct Sprite * sprite);
+static void SpriteCallback_Arrow(struct Sprite *sprite);
+static void SpriteCallback_DestroyArrow(struct Sprite *sprite);
 static u8 CreateStarSprite(void);
-static void SpriteCallback_Star(struct Sprite * sprite);
-static void SpriteCallback_DestroyStar(struct Sprite * sprite);
+static void SpriteCallback_Star(struct Sprite *sprite);
+static void SpriteCallback_DestroyStar(struct Sprite *sprite);
 
 #define ARROW_TILE_TAG 2000
 
@@ -143,7 +143,7 @@ void ItemUseOnFieldCB_Itemfinder(u8 taskId)
     }
     else
     {
-        DisplayItemMessageOnField(taskId, 2, gText_NopeTheresNoResponse, Task_NoResponse_CleanUp);
+        DisplayItemMessageOnField(taskId, FONT_2, gText_NopeTheresNoResponse, Task_NoResponse_CleanUp);
     }
 }
 
@@ -316,30 +316,30 @@ static bool8 HiddenItemInConnectedMapAtPos(struct MapConnection * connection, s3
     u32 localOffset;
     s32 localLength;
 
-    mapHeader = mapconnection_get_mapheader(connection);
+    mapHeader = GetMapHeaderFromConnection(connection);
 
     switch (connection->direction)
     {
     // same weird temp variable behavior seen in HiddenItemAtPos
-    case 2:
+    case CONNECTION_NORTH:
         localOffset = connection->offset + 7;
         localX = x - localOffset;
         localLength = mapHeader->mapLayout->height - 7;
         localY = localLength + y; // additions are reversed for some reason
         break;
-    case 1:
+    case CONNECTION_SOUTH:
         localOffset = connection->offset + 7;
         localX = x - localOffset;
         localLength = gMapHeader.mapLayout->height + 7;
         localY = y - localLength;
         break;
-    case 3:
+    case CONNECTION_WEST:
         localLength = mapHeader->mapLayout->width - 7;
         localX = localLength + x; // additions are reversed for some reason
         localOffset = connection->offset + 7;
         localY = y - localOffset;
         break;
-    case 4:
+    case CONNECTION_EAST:
         localLength = gMapHeader.mapLayout->width + 7;
         localX = x - localLength;
         localOffset = connection->offset + 7;
@@ -479,7 +479,7 @@ static u8 GetPlayerDirectionTowardsHiddenItem(s16 itemX, s16 itemY)
 
 static void Task_ItemfinderResponsePrintMessage(u8 taskId)
 {
-    DisplayItemMessageOnField(taskId, 2, gText_ItemfinderResponding, Task_ItemfinderResponseCleanUp);
+    DisplayItemMessageOnField(taskId, FONT_2, gText_ItemfinderResponding, Task_ItemfinderResponseCleanUp);
 }
 
 static void Task_ItemfinderResponseCleanUp(u8 taskId)
@@ -493,7 +493,7 @@ static void Task_ItemfinderResponseCleanUp(u8 taskId)
 
 static void Task_ItemfinderUnderfootPrintMessage(u8 taskId)
 {
-    DisplayItemMessageOnField(taskId, 2, gText_ItemfinderShakingWildly, Task_ItemfinderUnderfootDigUpItem);
+    DisplayItemMessageOnField(taskId, FONT_2, gText_ItemfinderShakingWildly, Task_ItemfinderUnderfootDigUpItem);
 }
 
 static void Task_ItemfinderUnderfootDigUpItem(u8 taskId)
@@ -592,21 +592,21 @@ static void CreateArrowSprite(u8 animNum, u8 direction)
     }
 }
 
-static void SpriteCallback_Arrow(struct Sprite * sprite)
+static void SpriteCallback_Arrow(struct Sprite *sprite)
 {
     s16 x, y;
     sprite->spCurX += sprite->spDeltaX;
     sprite->spCurY += sprite->spDeltaY;
-    sprite->pos1.x = sprite->spCenterX + (sprite->spCurX >> 8);
-    sprite->pos1.y = sprite->spCenterY + (sprite->spCurY >> 8);
-    if (sprite->pos1.x <= 104
-     || sprite->pos1.x > 132
-     || sprite->pos1.y <= 60
-     || sprite->pos1.y > 88)
+    sprite->x = sprite->spCenterX + (sprite->spCurX >> 8);
+    sprite->y = sprite->spCenterY + (sprite->spCurY >> 8);
+    if (sprite->x <= 104
+     || sprite->x > 132
+     || sprite->y <= 60
+     || sprite->y > 88)
         sprite->callback = SpriteCallback_DestroyArrow;
 }
 
-static void SpriteCallback_DestroyArrow(struct Sprite * sprite)
+static void SpriteCallback_DestroyArrow(struct Sprite *sprite)
 {
     FreeSpriteOamMatrix(sprite);
     DestroySprite(sprite);
@@ -629,21 +629,21 @@ static u8 CreateStarSprite(void)
     return spriteId;
 }
 
-static void SpriteCallback_Star(struct Sprite * sprite)
+static void SpriteCallback_Star(struct Sprite *sprite)
 {
     s16 x, y;
     sprite->spCurX += sprite->spDeltaX;
     sprite->spCurY += sprite->spDeltaY;
-    sprite->pos1.x = sprite->spCenterX + (sprite->spCurX >> 8);
-    sprite->pos1.y = sprite->spCenterY + (sprite->spCurY >> 8);
-    if (sprite->pos1.x <= 104
-        || sprite->pos1.x > 132
-        || sprite->pos1.y <= 60
-        || sprite->pos1.y > 88)
+    sprite->x = sprite->spCenterX + (sprite->spCurX >> 8);
+    sprite->y = sprite->spCenterY + (sprite->spCurY >> 8);
+    if (sprite->x <= 104
+        || sprite->x > 132
+        || sprite->y <= 60
+        || sprite->y > 88)
         sprite->callback = SpriteCallback_DestroyStar;
 }
 
-static void SpriteCallback_DestroyStar(struct Sprite * sprite)
+static void SpriteCallback_DestroyStar(struct Sprite *sprite)
 {
     DestroySprite(sprite);
 }

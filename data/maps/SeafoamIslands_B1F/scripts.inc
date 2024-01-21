@@ -1,15 +1,14 @@
 .set LOCALID_DEWGONG_MASTER, 5
 .set TRAINER, VAR_0x8009
 
-SeafoamIslands_B1F_MapScripts:: @ 8162F4D
+SeafoamIslands_B1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B1F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 SeafoamIslands_B1F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_DEWGONG
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq SeafoamIslands_B1F_MapScript_DewgongMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, SeafoamIslands_B1F_MapScript_DewgongMasterMovementType
 	end
 
 SeafoamIslands_B1F_MapScript_DewgongMasterMovementType::

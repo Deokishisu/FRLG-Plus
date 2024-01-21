@@ -1,65 +1,64 @@
 .set LOCALID_JOLTEON_MASTER, 6
 .set TRAINER, VAR_0x8009
 
-CeladonCity_DepartmentStore_3F_MapScripts:: @ 816BB84
+CeladonCity_DepartmentStore_3F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, CeladonCity_DepartmentStore_3F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 CeladonCity_DepartmentStore_3F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_JOLTEON
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq CeladonCity_DepartmentStore_3F_MapScript_JolteonMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, CeladonCity_DepartmentStore_3F_MapScript_JolteonMasterMovementType
 	end
 
 CeladonCity_DepartmentStore_3F_MapScript_JolteonMasterMovementType::
 	setobjectmovementtype LOCALID_JOLTEON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-CeladonCity_DepartmentStore_3F_EventScript_CounterTutor:: @ 816BB85
+CeladonCity_DepartmentStore_3F_EventScript_CounterTutor::
 	goto EventScript_CounterTutor
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_GBAKid1:: @ 816BB8B
+CeladonCity_DepartmentStore_3F_EventScript_GBAKid1::
 	msgbox CeladonCity_DepartmentStore_3F_Text_OTStandsForOriginalTrainer, MSGBOX_NPC
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_GBAKid2:: @ 816BB94
+CeladonCity_DepartmentStore_3F_EventScript_GBAKid2::
 	msgbox CeladonCity_DepartmentStore_3F_Text_BuddyTradingKangaskhanForHaunter, MSGBOX_NPC
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_GBAKid3:: @ 816BB9D
+CeladonCity_DepartmentStore_3F_EventScript_GBAKid3::
 	msgbox CeladonCity_DepartmentStore_3F_Text_HaunterEvolvedOnTrade, MSGBOX_NPC
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_LittleGirl:: @ 816BBA6
+CeladonCity_DepartmentStore_3F_EventScript_LittleGirl::
 	msgbox CeladonCity_DepartmentStore_3F_Text_CanIdentifyTradeMonsByID, MSGBOX_NPC
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_SuperNES:: @ 816BBAF
+CeladonCity_DepartmentStore_3F_EventScript_SuperNES::
 	msgbox CeladonCity_DepartmentStore_3F_Text_ItsSuperNES, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_TV1:: @ 816BBB8
+CeladonCity_DepartmentStore_3F_EventScript_TV1::
 	msgbox CeladonCity_DepartmentStore_3F_Text_AnRPG, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_TV2:: @ 816BBC1
+CeladonCity_DepartmentStore_3F_EventScript_TV2::
 	msgbox CeladonCity_DepartmentStore_3F_Text_SportsGame, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_TV3:: @ 816BBCA
+CeladonCity_DepartmentStore_3F_EventScript_TV3::
 	msgbox CeladonCity_DepartmentStore_3F_Text_PuzzleGame, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_TV4:: @ 816BBD3
+CeladonCity_DepartmentStore_3F_EventScript_TV4::
 	msgbox CeladonCity_DepartmentStore_3F_Text_FightingGame, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_FloorSign:: @ 816BBDC
+CeladonCity_DepartmentStore_3F_EventScript_FloorSign::
 	msgbox CeladonCity_DepartmentStore_3F_Text_TVGameShop, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_3F_EventScript_Poster:: @ 816BBE5
+CeladonCity_DepartmentStore_3F_EventScript_Poster::
 	msgbox CeladonCity_DepartmentStore_3F_Text_RedGreenBothArePokemon, MSGBOX_SIGN
 	end

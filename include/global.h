@@ -8,6 +8,7 @@
 #include "constants/flags.h"
 #include "constants/vars.h"
 #include "constants/species.h"
+#include "constants/easy_chat.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -16,22 +17,24 @@
 #define asm_comment(x) asm volatile("@ -- " x " -- ")
 #define asm_unified(x) asm(".syntax unified\n" x "\n.syntax divided")
 
-#if defined (__APPLE__) || defined (__CYGWIN__) || defined(__CLION_IDE__)
-// Get the IDE to stfu
-
-// We define it this way to fool preproc.
+// IDE support
+#if defined(__APPLE__) || defined(__CYGWIN__) || defined(__INTELLISENSE__)
+// We define these when using certain IDEs to fool preproc
+#define _(x)        (x)
+#define __(x)       (x)
 #define INCBIN(...) {0}
-#define INCBIN_U8  INCBIN
-#define INCBIN_U16 INCBIN
-#define INCBIN_U32 INCBIN
-#define INCBIN_S8  INCBIN
-#define INCBIN_S16 INCBIN
-#define INCBIN_S32 INCBIN
-#define _(x) (x)
-#define __(x) (x)
-#endif // __APPLE__
+#define INCBIN_U8   INCBIN
+#define INCBIN_U16  INCBIN
+#define INCBIN_U32  INCBIN
+#define INCBIN_S8   INCBIN
+#define INCBIN_S16  INCBIN
+#define INCBIN_S32  INCBIN
+#endif // IDE support
 
-#define NELEMS(array) (sizeof(array) / sizeof((array)[0]))
+#define ARRAY_COUNT(array) (sizeof(array) / sizeof((array)[0]))
+
+// Alias of ARRAY_COUNT using GameFreak's name from AgbAssert calls.
+#define NELEMS(array) ARRAY_COUNT(array)
 
 #define SWAP(a, b, temp)    \
 {                           \
@@ -73,6 +76,20 @@
 #define abs(x) (((x) < 0) ? -(x) : (x))
 #endif
 
+// Used in cases where division by 0 can occur in the retail version.
+// Avoids invalid opcodes on some emulators, and the otherwise UB.
+#ifdef UBFIX
+#define SAFE_DIV(a, b) ((b) ? (a) / (b) : 0)
+#else
+#define SAFE_DIV(a, b) ((a) / (b))
+#endif
+
+// Extracts the upper 16 bits of a 32-bit number
+#define HIHALF(n) (((n) & 0xFFFF0000) >> 16)
+
+// Extracts the lower 16 bits of a 32-bit number
+#define LOHALF(n) ((n) & 0xFFFF)
+
 // There are many quirks in the source code which have overarching behavioral differences from
 // a number of other files. For example, diploma.c seems to declare rodata before each use while
 // other files declare out of order and must be at the beginning. There are also a number of
@@ -83,23 +100,21 @@
 #define T1_READ_8(ptr)  ((ptr)[0])
 #define T1_READ_16(ptr) ((ptr)[0] | ((ptr)[1] << 8))
 #define T1_READ_32(ptr) ((ptr)[0] | ((ptr)[1] << 8) | ((ptr)[2] << 16) | ((ptr)[3] << 24))
-#define T1_READ_PTR(ptr) (u8*) T1_READ_32(ptr)
+#define T1_READ_PTR(ptr) (u8 *) T1_READ_32(ptr)
 
 // T2_READ_8 is a duplicate to remain consistent with each group.
 #define T2_READ_8(ptr)  ((ptr)[0])
 #define T2_READ_16(ptr) ((ptr)[0] + ((ptr)[1] << 8))
 #define T2_READ_32(ptr) ((ptr)[0] + ((ptr)[1] << 8) + ((ptr)[2] << 16) + ((ptr)[3] << 24))
-#define T2_READ_PTR(ptr) (void*) T2_READ_32(ptr)
+#define T2_READ_PTR(ptr) (void *) T2_READ_32(ptr)
 
 // This macro is required to prevent the compiler from optimizing
 // a dpad up/down check in sub_812CAD8 (fame_checker.c).
-// We suspect it was used globally.
-// GameFreak never ceases to amaze.
-// TODO: Propagate use of this macro
 #define TEST_BUTTON(field, button) ({(field) & (button);})
-#define JOY_NEW(button)  TEST_BUTTON(gMain.newKeys,  button)
-#define JOY_HELD(button) TEST_BUTTON(gMain.heldKeys, button)
-#define JOY_REPT(button) TEST_BUTTON(gMain.newAndRepeatedKeys, button)
+#define JOY_NEW(button)      TEST_BUTTON(gMain.newKeys,  button)
+#define JOY_HELD(button)     TEST_BUTTON(gMain.heldKeys, button)
+#define JOY_HELD_RAW(button) TEST_BUTTON(gMain.heldKeysRaw, button)
+#define JOY_REPT(button)     TEST_BUTTON(gMain.newAndRepeatedKeys, button)
 
 #define S16TOPOSFLOAT(val)   \
 ({                           \
@@ -114,10 +129,17 @@ extern u8 gStringVar2[];
 extern u8 gStringVar3[];
 extern u8 gStringVar4[];
 
-#define ROUND_BITS_TO_BYTES(numBits)(((numBits) / 8) + (((numBits) % 8) ? 1 : 0))
+#define DIV_ROUND_UP(val, roundBy)(((val) / (roundBy)) + (((val) % (roundBy)) ? 1 : 0))
 
-#define DEX_FLAGS_NO (ROUND_BITS_TO_BYTES(NUM_SPECIES))
-#define NUM_FLAG_BYTES (ROUND_BITS_TO_BYTES(FLAGS_COUNT))
+#define ROUND_BITS_TO_BYTES(numBits) DIV_ROUND_UP(numBits, 8)
+
+#define DEX_FLAGS_NO ROUND_BITS_TO_BYTES(NUM_SPECIES)
+#define NUM_FLAG_BYTES ROUND_BITS_TO_BYTES(FLAGS_COUNT)
+#define NUM_ADDITIONAL_PHRASE_BYTES ROUND_BITS_TO_BYTES(NUM_ADDITIONAL_PHRASES)
+
+// This produces an error at compile-time if expr is zero.
+// It looks like file.c:line: size of array `id' is negative
+#define STATIC_ASSERT(expr, id) typedef char id[(expr) ? 1 : -1];
 
 #define TOTAL_BOXES_COUNT       14
 #define IN_BOX_COUNT            30
@@ -169,7 +191,7 @@ struct Time
 struct Pokedex
 {
     /*0x00*/ u8 order;
-    /*0x01*/ u8 unknown1;
+    /*0x01*/ u8 mode;
     /*0x02*/ u8 nationalMagic; // must equal 0xDA in order to have National mode
     /*0x03*/ u8 unknown2; // set to 0xB9 when national dex is first enabled
     /*0x04*/ u32 unownPersonality; // set when you first see Unown
@@ -179,13 +201,13 @@ struct Pokedex
     /*0x44*/ u8 seen[DEX_FLAGS_NO];
 };
 
-struct PokemonJumpResults // possibly used in the game itself?
+struct PokemonJumpRecords
 {
     u16 jumpsInRow;
-    u16 field2;
+    u16 unused1; // Set to 0, never read
     u16 excellentsInRow;
-    u16 field6;
-    u32 field8;
+    u16 gamesWithMaxPlayers;
+    u32 unused2; // Set to 0, never read
     u32 bestJumpScore;
 };
 
@@ -206,12 +228,10 @@ struct BerryPickingResults // possibly used in the game itself? Size may be wron
 
 struct BerryCrush
 {
-    u16 berryCrushResults[4];
+    u16 pressingSpeeds[4]; // For the record with each possible group size, 2-5 players
     u32 berryPowderAmount;
     u32 unk;
 };
-
-#define PLAYER_NAME_LENGTH   7
 
 #define LINK_B_RECORDS_COUNT 5
 
@@ -230,6 +250,20 @@ struct LinkBattleRecords
     u8 languages[LINK_B_RECORDS_COUNT];
 };
 
+struct RecordMixingGiftData
+{
+    u8 unk0;
+    u8 quantity;
+    u16 itemId;
+    u8 filler4[8];
+};
+
+struct RecordMixingGift
+{
+    int checksum;
+    struct RecordMixingGiftData data;
+};
+
 #include "constants/game_stat.h"
 #include "global.fieldmap.h"
 #include "global.berry.h"
@@ -240,9 +274,9 @@ struct BattleTowerRecord // record mixing
     /*0x00*/ u8 battleTowerLevelType; // 0 = level 50, 1 = level 100
     /*0x01*/ u8 trainerClass;
     /*0x02*/ u16 winStreak;
-    /*0x04*/ u8 name[8];
-    /*0x0C*/ u8 trainerId[4];
-    /*0x10*/ u16 greeting[6];
+    /*0x04*/ u8 name[PLAYER_NAME_LENGTH + 1];
+    /*0x0C*/ u8 trainerId[TRAINER_ID_LENGTH];
+    /*0x10*/ u16 greeting[EASY_CHAT_BATTLE_WORDS_COUNT];
     /*0x1C*/ struct BattleTowerPokemon party[3];
     /*0xA0*/ u32 checksum;
 };
@@ -293,7 +327,7 @@ struct SaveBlock2
     /*0x000*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
     /*0x008*/ u8 playerGender; // MALE, FEMALE
     /*0x009*/ u8 specialSaveWarpFlags;
-    /*0x00A*/ u8 playerTrainerId[4];
+    /*0x00A*/ u8 playerTrainerId[TRAINER_ID_LENGTH];
     /*0x00E*/ u16 playTimeHours;
     /*0x010*/ u8 playTimeMinutes;
     /*0x011*/ u8 playTimeSeconds;
@@ -314,13 +348,13 @@ struct SaveBlock2
     /*0x098*/ struct Time localTimeOffset;
     /*0x0A0*/ struct Time lastBerryTreeUpdate;
     /*0x0A8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
-    /*0x0AC*/ u8 field_AC;
-    /*0x0AD*/ u8 field_AD;
+    /*0x0AC*/ bool8 unkFlag1; // Set TRUE, never read
+    /*0x0AD*/ bool8 unkFlag2; // Set FALSE, never read
     /*0x0B0*/ struct BattleTowerData battleTower;
     /*0x898*/ u16 mapView[0x100];
     /*0xA98*/ struct LinkBattleRecords linkBattleRecords;
     /*0xAF0*/ struct BerryCrush berryCrush;
-    /*0xB00*/ struct PokemonJumpResults pokeJump;
+    /*0xB00*/ struct PokemonJumpRecords pokeJump;
     /*0xB10*/ struct BerryPickingResults berryPick;
     /*0xB20*/ u8 filler_B20[0x400];
     /*0xF20*/ u32 encryptionKey;
@@ -331,28 +365,29 @@ extern struct SaveBlock2 *gSaveBlock2Ptr;
 struct SecretBaseParty
 {
     u32 personality[PARTY_SIZE];
-    u16 moves[PARTY_SIZE * 4];
+    u16 moves[PARTY_SIZE * MAX_MON_MOVES];
     u16 species[PARTY_SIZE];
     u16 heldItems[PARTY_SIZE];
     u8 levels[PARTY_SIZE];
     u8 EVs[PARTY_SIZE];
 };
 
+// Leftover from R/S, still referenced in the unused function CreateSecretBaseEnemyParty
 struct SecretBaseRecord
 {
     /*0x1A9C*/ u8 secretBaseId;
-    /*0x1A9D*/ u8 sbr_field_1_0:4;
+    /*0x1A9D*/ u8 toRegister:4;
     /*0x1A9D*/ u8 gender:1;
-    /*0x1A9D*/ u8 sbr_field_1_5:1;
-    /*0x1A9D*/ u8 sbr_field_1_6:2;
+    /*0x1A9D*/ u8 battledOwnerToday:1;
+    /*0x1A9D*/ u8 registryStatus:2;
     /*0x1A9E*/ u8 trainerName[PLAYER_NAME_LENGTH];
-    /*0x1AA5*/ u8 trainerId[4]; // byte 0 is used for determining trainer class
+    /*0x1AA5*/ u8 trainerId[TRAINER_ID_LENGTH]; // byte 0 is used for determining trainer class
     /*0x1AA9*/ u8 language;
-    /*0x1AAA*/ u16 sbr_field_e;
-    /*0x1AAC*/ u8 sbr_field_10;
-    /*0x1AAD*/ u8 sbr_field_11;
-    /*0x1AAE*/ u8 decorations[16];
-    /*0x1ABE*/ u8 decorationPos[16];
+    /*0x1AAA*/ u16 numSecretBasesReceived;
+    /*0x1AAC*/ u8 numTimesEntered;
+    /*0x1AAD*/ u8 unused;
+    /*0x1AAE*/ u8 decorations[DECOR_MAX_SECRET_BASE];
+    /*0x1ABE*/ u8 decorationPos[DECOR_MAX_SECRET_BASE];
     /*0x1AD0*/ struct SecretBaseParty party;
 };
 
@@ -413,23 +448,15 @@ struct RamScript
     struct RamScriptData data;
 };
 
-struct EasyChatPair
+// Leftover from R/S
+struct DewfordTrend
 {
-    u16 unk0_0:7;
-    u16 unk0_7:7;
-    u16 unk1_6:1;
-    u16 unk2;
+    u16 trendiness:7;
+    u16 maxTrendiness:7;
+    u16 gainingTrendiness:1;
+    u16 rand;
     u16 words[2];
 }; /*size = 0x8*/
-
-struct MailStruct
-{
-    /*0x00*/ u16 words[9];
-    /*0x12*/ u8 playerName[8];
-    /*0x1A*/ u8 trainerId[4];
-    /*0x1E*/ u16 species;
-    /*0x20*/ u16 itemId;
-};
 
 struct MauvilleManCommon
 {
@@ -464,8 +491,8 @@ struct MauvilleManGiddy
     /*0x00*/ u8 id;
     /*0x01*/ u8 taleCounter;
     /*0x02*/ u8 questionNum;
-    /*0x04*/ u16 randomWords[10];
-    /*0x18*/ u8 questionList[8];
+    /*0x04*/ u16 randomWords[GIDDY_MAX_TALES];
+    /*0x18*/ u8 questionList[GIDDY_MAX_QUESTIONS];
     /*0x20*/ u8 language;
 }; /*size = 0x2C*/
 
@@ -496,49 +523,19 @@ typedef union OldMan
     u8 filler[0x40];
 } OldMan;
 
-struct RecordMixing_UnknownStructSub
+struct Mail
 {
-    u32 unk0;
-    u8 data[0x34];
-    //u8 data[0x38];
-};
-
-struct RecordMixing_UnknownStruct
-{
-    struct RecordMixing_UnknownStructSub data[2];
-    u32 unk70;
-    u16 unk74[0x2];
-};
-
-struct RecordMixingGiftData
-{
-    u8 unk0;
-    u8 quantity;
-    u16 itemId;
-    u8 filler4[8];
-};
-
-struct RecordMixingGift
-{
-    int checksum;
-    struct RecordMixingGiftData data;
-};
-
-struct ContestWinner
-{
-    u32 personality;
-    u32 trainerId;
-    u16 species;
-    u8 contestCategory;
-    u8 monName[11];
-    u8 trainerName[8];
-    u8 contestRank;
+    /*0x00*/ u16 words[MAIL_WORDS_COUNT];
+    /*0x12*/ u8 playerName[PLAYER_NAME_LENGTH + 1];
+    /*0x1A*/ u8 trainerId[TRAINER_ID_LENGTH];
+    /*0x1E*/ u16 species;
+    /*0x20*/ u16 itemId;
 };
 
 struct DayCareMail
 {
-    struct MailStruct message;
-    u8 OT_name[OT_NAME_LENGTH + 1];
+    struct Mail message;
+    u8 OT_name[PLAYER_NAME_LENGTH + 1];
     u8 monName[POKEMON_NAME_LENGTH + 1];
     u8 gameLanguage:4;
     u8 monLanguage:4;
@@ -551,8 +548,6 @@ struct DaycareMon
     u32 steps;
 };
 
-#define DAYCARE_MON_COUNT   2
-
 struct DayCare
 {
     struct DaycareMon mons[DAYCARE_MON_COUNT];
@@ -560,19 +555,12 @@ struct DayCare
     u8 stepCounter;
 };
 
+// Leftover from R/S, referenced in unused function InitDaycareMailRecordMixing
 struct RecordMixingDayCareMail
 {
     struct DayCareMail mail[DAYCARE_MON_COUNT];
     u32 numDaycareMons;
     bool16 holdsItem[DAYCARE_MON_COUNT];
-};
-
-struct MENewsJisanStruct
-{
-    u8 unk_0_0:2;
-    u8 unk_0_2:3;
-    u8 unk_0_5:3;
-    u8 berry;
 };
 
 struct QuestLogNPCData
@@ -584,10 +572,6 @@ struct QuestLogNPCData
     u32 elevation:6;
     u32 movementType:8;
 };
-
-#define BERRY_TREES_COUNT  128
-#define MAIL_COUNT         (PARTY_SIZE + 10)
-#define PC_MAIL_NUM(i)     (PARTY_SIZE + (i))
 
 struct QuestLogObjectEvent
 {
@@ -654,70 +638,59 @@ struct FameCheckerSaveData
     u16 unk_0_E:2;
 };
 
-#define NUM_EASY_CHAT_EXTRA_PHRASES 33
-#define EASY_CHAT_EXTRA_PHRASES_SIZE ((NUM_EASY_CHAT_EXTRA_PHRASES >> 3) + (NUM_EASY_CHAT_EXTRA_PHRASES % 8 ? 1 : 0))
+struct WonderNewsMetadata
+{
+    u8 unk_0_0:2;
+    u8 unk_0_2:3;
+    u8 unk_0_5:3;
+    u8 berry;
+};
 
-struct MEWonderNewsData
+struct WonderNews
 {
     u16 newsId;
-    u8 shareState;
-    u8 unk_03;
-    u8 unk_04[40];
-    u8 unk_2C[10][40];
+    u8 sendType; // SEND_TYPE_*
+    u8 bgType;
+    u8 titleText[WONDER_NEWS_TEXT_LENGTH];
+    u8 bodyText[WONDER_NEWS_BODY_TEXT_LINES][WONDER_NEWS_TEXT_LENGTH];
 };
 
-struct MEWonderNewsStruct
+struct WonderCard
 {
-    u32 crc;
-    struct MEWonderNewsData data;
+    u16 flagId; // Event flag (sReceivedGiftFlags) + WONDER_CARD_FLAG_OFFSET
+    u16 iconSpecies;
+    u32 idNumber;
+    u8 type:2; // CARD_TYPE_*
+    u8 bgType:4;
+    u8 sendType:2; // SEND_TYPE_*
+    u8 maxStamps;
+    u8 titleText[WONDER_CARD_TEXT_LENGTH];
+    u8 subtitleText[WONDER_CARD_TEXT_LENGTH];
+    u8 bodyText[WONDER_CARD_BODY_TEXT_LINES][WONDER_CARD_TEXT_LENGTH];
+    u8 footerLine1Text[WONDER_CARD_TEXT_LENGTH];
+    u8 footerLine2Text[WONDER_CARD_TEXT_LENGTH];
 };
 
-struct MEWonderCardData
+struct WonderCardMetadata
 {
-    u16 cardId;
-    u16 unk_02;
-    u32 unk_04;
-    u8 unk_08_0:2;
-    u8 unk_08_2:4;
-    u8 shareState:2;
-    u8 recvMonCapacity;
-    u8 unk_0A[40];
-    u8 unk_32[40];
-    u8 unk_5A[4][40];
-    u8 unk_FA[40];
-    u8 unk_122[40];
+    u16 battlesWon;
+    u16 battlesLost;
+    u16 numTrades;
+    u16 iconSpecies;
+    u16 stampData[2][MAX_STAMP_CARD_STAMPS]; // First element is STAMP_SPECIES, second is STAMP_ID
 };
 
-struct MEWonderCardStruct
+struct MysteryGiftSave
 {
-    u32 crc;
-    struct MEWonderCardData data;
-};
-
-struct MEventBuffer_3430_Sub
-{
-    u16 linkWins;
-    u16 linkLosses;
-    u16 linkTrades;
-    u16 unk_06;
-    u16 distributedMons[2][7]; // [0][x] = species
-                               // [1][x] = ???
-};
-
-struct MEventBuffer_3430
-{
-    u32 crc;
-    struct MEventBuffer_3430_Sub data;
-};
-
-struct MEventBuffers
-{
-    /*0x000 0x3120*/ struct MEWonderNewsStruct menews;
-    /*0x1c0 0x32e0*/ struct MEWonderCardStruct mecard;
-    /*0x310 0x3430*/ struct MEventBuffer_3430 buffer_310;
-    /*0x338 0x3458*/ u16 ec_profile_maybe[4];
-    /*0x340 0x3460*/ struct MENewsJisanStruct me_jisan;
-    /*0x344 0x3464*/ u32 unk_344[2][5];
+    u32 newsCrc;
+    struct WonderNews news;
+    u32 cardCrc;
+    struct WonderCard card;
+    u32 cardMetadataCrc;
+    struct WonderCardMetadata cardMetadata;
+    u16 questionnaireWords[NUM_QUESTIONNAIRE_WORDS];
+    struct WonderNewsMetadata newsMetadata;
+    u32 trainerIds[2][5]; // Saved ids for 10 trainers, 5 each for battles and trades 
 }; // 0x36C 0x348C
 
 struct TrainerTower
@@ -732,12 +705,6 @@ struct TrainerTower
     bool8 hasLost:1;
     bool8 unkA_4:1;
     bool8 validated:1;
-};
-
-struct TrainerRematchState
-{
-    u16 stepCounter;
-    u8 rematches[100];
 };
 
 struct TrainerNameRecord
@@ -807,8 +774,6 @@ struct ExternalEventFlags
 
 } __attribute__((packed));/*size = 0x15*/
 
-#define UNION_ROOM_KB_ROW_COUNT 10
-
 struct SaveBlock1
 {
     /*0x0000*/ struct Coords16 pos;
@@ -841,44 +806,44 @@ struct SaveBlock1
     /*0x0632*/ u16 lastViewedPokedexEntry; // For easier viewing of roamers
                struct KeySystemFlags keyFlags; //Key System flags
     /*0x0638*/ u16 trainerRematchStepCounter;
-    /*0x063A*/ u8 ALIGNED(2) trainerRematches[100];
+    /*0x063A*/ u8 ALIGNED(2) trainerRematches[MAX_REMATCH_ENTRIES];
     /*0x06A0*/ struct ObjectEvent objectEvents[OBJECT_EVENTS_COUNT];
-    /*0x08E0*/ struct ObjectEventTemplate objectEventTemplates[64];
+    /*0x08E0*/ struct ObjectEventTemplate objectEventTemplates[OBJECT_EVENT_TEMPLATES_COUNT];
     /*0x0EE0*/ u8 flags[NUM_FLAG_BYTES];
     /*0x1000*/ u16 vars[VARS_COUNT];
     /*0x1200*/ u32 gameStats[NUM_GAME_STATS];
     /*0x1300*/ struct QuestLog questLog[QUEST_LOG_SCENE_COUNT];
-    /*0x2CA0*/ u16 easyChatProfile[6];
-    /*0x2CAC*/ u16 easyChatBattleStart[6]; //referred to, but functionally unused
-    /*0x2CB8*/ u16 easyChatBattleWon[6]; //referred to, but functionally unused
-    /*0x2CC4*/ u16 easyChatBattleLost[6]; //referred to, but functionally unused
-    /*0x2CD0*/ struct MailStruct mail[MAIL_COUNT];
-    /*0x2F10*/ u8 additionalPhrases[EASY_CHAT_EXTRA_PHRASES_SIZE];
+    /*0x2CA0*/ u16 easyChatProfile[EASY_CHAT_BATTLE_WORDS_COUNT];
+    /*0x2CAC*/ u16 easyChatBattleStart[EASY_CHAT_BATTLE_WORDS_COUNT]; //referred to, but functionally unused
+    /*0x2CB8*/ u16 easyChatBattleWon[EASY_CHAT_BATTLE_WORDS_COUNT]; //referred to, but functionally unused
+    /*0x2CC4*/ u16 easyChatBattleLost[EASY_CHAT_BATTLE_WORDS_COUNT]; //referred to, but functionally unused
+    /*0x2CD0*/ struct Mail mail[MAIL_COUNT];
+    /*0x2F10*/ u8 additionalPhrases[NUM_ADDITIONAL_PHRASE_BYTES];
     /*0x2F18*/ u8 filler_oldMan[64]; // unused, was struct OldMan oldMan
-    /*0x2F54*/ u8 filler_EasyChatPairs[36]; // unused, was struct EasyChatPair easyChatPairs[5], which was 40 bytes, but I had to add 2 bytes to the Daycare struct (which got padded to 4).
+    /*0x2F54*/ u8 filler_EasyChatPairs[36]; // unused, was struct DewfordTrend dewfordTrends[5], which was 40 bytes, but I had to add 2 bytes to the Daycare struct (which got padded to 4).
     /*0x2F80*/ struct DayCare daycare;
-    /*0x309C*/ u8 giftRibbons[11];
+    /*0x309C*/ u8 giftRibbons[GIFT_RIBBONS_COUNT];
     /*0x30A7*/ struct ExternalEventData externalEventData;
     /*0x30BB*/ struct ExternalEventFlags externalEventFlags;
     /*0x30D0*/ struct Roamer roamer;
     /*0x30EC*/ struct EnigmaBerry enigmaBerry;
-    /*0x3120*/ struct MEventBuffers mysteryEventBuffers; //0x36C in length
-    /*0x348C*/ u8 filler_348C[176];
+    /*0x3120*/ struct MysteryGiftSave mysteryGift; //0x36C in length
+    /*0x348C*/ u8 unused_348C[176];
     //^^^this & the mysteryEventBuffers field are labeled "FreeWork" & combined in the source, though 0x36C of FreeWork is set aside for MEventBuffers in mevent.c,
     //^^^which is likely where the above field was documented from. The rest of FreeWork is unreferenced in the source, so this field is likely unused.
                u8 nuzlockeDupeFlags[52]; //taken from filler_348c field, which was originally 400 bytes. Used to prevent hijacking the dupe clause in Nuzlocke by catching fainted Pokemon.
                struct ItemSlot bagPocket_Berries[BAG_BERRIES_COUNT]; //taken from filler_348C field, which was originally 400 bytes
     /*0x361C*/ struct RamScript ramScript;
-    /*0x3A08*/ u8 filler3A08[16]; //Record Mixing gift. Unused.
+    /*0x3A08*/ u8 filler3A08[16]; //RecordMixingGift recordMixingGift. Unused.
     /*0x3A18*/ u8 seen2[52]; //made unreferenced & can be gotten rid of, though PKHeX presumably will still set this
     /*0x3A4C*/ u8 rivalName[PLAYER_NAME_LENGTH + 1];
     /*0x3A54*/ struct FameCheckerSaveData fameChecker[NUM_FAMECHECKER_PERSONS];
-    /*0x3A94*/ u8 filler3A94[44]; //max fame checker people is actually 32, so this is the unused 16 entries
-               u8 masterTrainerFlags[20]; //taken from above filler3A94 field, which was originally 64 bytes long. 1 byte longer than necessary for alignment.
+    /*0x3A94*/ u8 unused_3A94[44]; //max fame checker people is actually 32, so this is the unused 16 entries
+               u8 masterTrainerFlags[20]; //taken from above unused_3A94 field, which was originally 64 bytes long. 1 byte longer than necessary for alignment.
     /*0x3AD4*/ u8 registeredTexts[UNION_ROOM_KB_ROW_COUNT][21];
     /*0x3BA8*/ struct TrainerNameRecord trainerNameRecords[20];
     /*0x3C98*/ struct DaycareMon route5DayCareMon;
-    /*0x3D24*/ u8 filler3D24[16]; //some sort of win/loss/draw records that are never referred to. An RFU thing. Mystery Event?
+    /*0x3D24*/ u8 unused_3D24[16]; //some sort of win/loss/draw records that are never referred to. An RFU thing. Mystery Event?
     /*0x3D34*/ u32 towerChallengeId;
     /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
 }; // size: 0x3D68

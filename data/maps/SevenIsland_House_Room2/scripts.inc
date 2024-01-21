@@ -23,40 +23,33 @@
 .equ X_COORD, VAR_0x8007
 .equ Y_COORD, VAR_0x8008
 
-SevenIsland_House_Room2_MapScripts:: @ 8170A7E
+SevenIsland_House_Room2_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_House_Room2_OnTransition
 	.byte 0
 
-SevenIsland_House_Room2_OnTransition:: @ 8170A89
+SevenIsland_House_Room2_OnTransition::
 	setvar TYPE, CHECK_VISITOR_STATE
 	setvar ARGUMENT, FAMECHECKER_BROCK
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideBrock
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideBrock
 	setvar ARGUMENT, FAMECHECKER_MISTY
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideMisty
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideMisty
 	setvar ARGUMENT, FAMECHECKER_LTSURGE
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideLtSurge
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideLtSurge
 	setvar ARGUMENT, FAMECHECKER_ERIKA
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideErika
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideErika
 	setvar ARGUMENT, FAMECHECKER_KOGA
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideKoga
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideKoga
 	setvar ARGUMENT, FAMECHECKER_SABRINA
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideSabrina
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideSabrina
 	setvar ARGUMENT, FAMECHECKER_BLAINE
 	callnative UseBattleHouseVar
-	compare VAR_RESULT, 0
-	call_if_eq SevenIsland_House_Room2_HideBlaine
+	call_if_eq VAR_RESULT, 0, SevenIsland_House_Room2_HideBlaine
 	end
 
 SevenIsland_House_Room2_HideBrock::
@@ -105,12 +98,9 @@ SevenIsland_House_Room2_Text_MiddlePainting::
 	.string "A SPEAROW perches on her arm.$"
 
 SevenIsland_House_Room2_EventScript_RightPainting::
-	compare VAR_STARTER_MON, 0
-	call_if_eq SevenIsland_House_Room2_EventScript_BufferBulbasaur
-	compare VAR_STARTER_MON, 1
-	call_if_eq SevenIsland_House_Room2_EventScript_BufferSquirtle
-	compare VAR_STARTER_MON, 2
-	call_if_ge SevenIsland_House_Room2_EventScript_BufferCharmander
+	call_if_eq VAR_STARTER_MON, 0, SevenIsland_House_Room2_EventScript_BufferBulbasaur
+	call_if_eq VAR_STARTER_MON, 1, SevenIsland_House_Room2_EventScript_BufferSquirtle
+	call_if_ge VAR_STARTER_MON, 2, SevenIsland_House_Room2_EventScript_BufferCharmander
 	msgbox SevenIsland_House_Room2_Text_RightPainting, MSGBOX_SIGN
 	end
 
@@ -123,24 +113,23 @@ SevenIsland_House_Room2_Text_RightPainting::
 	.string "watching intently.$"
 
 SevenIsland_House_Room2_EventScript_BufferBulbasaur::
-	getspeciesname 0, SPECIES_VENUSAUR
-	getspeciesname 1, SPECIES_CHARIZARD
+	bufferspeciesname STR_VAR_1, SPECIES_VENUSAUR
+	bufferspeciesname STR_VAR_2, SPECIES_CHARIZARD
 	return
 
 SevenIsland_House_Room2_EventScript_BufferSquirtle::
-	getspeciesname 0, SPECIES_BLASTOISE
-	getspeciesname 1, SPECIES_VENUSAUR
+	bufferspeciesname STR_VAR_1, SPECIES_BLASTOISE
+	bufferspeciesname STR_VAR_2, SPECIES_VENUSAUR
 	return
 
 SevenIsland_House_Room2_EventScript_BufferCharmander::
-	getspeciesname 0, SPECIES_CHARIZARD
-	getspeciesname 1, SPECIES_BLASTOISE
+	bufferspeciesname STR_VAR_1, SPECIES_CHARIZARD
+	bufferspeciesname STR_VAR_2, SPECIES_BLASTOISE
 	return
 
 SevenIsland_House_Room2_EventScript_HealingMachine::
 	msgbox SevenIsland_House_Room2_Text_HealPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, YES
-	goto_if_eq SevenIsland_House_Room2_EventScript_HealPokemon
+	goto_if_eq VAR_RESULT, YES, SevenIsland_House_Room2_EventScript_HealPokemon
 	release
 	end
 
@@ -160,8 +149,7 @@ SevenIsland_House_Room2_EventScript_HealPokemon::
 	end
 
 SevenIsland_House_Room2_Eventscript_Trigger::
-	compare LEADER_READY, 0
-	goto_if_eq EventScript_ReleaseEnd
+	goto_if_eq LEADER_READY, 0, EventScript_ReleaseEnd
 	applymovement OBJ_EVENT_ID_PLAYER, SevenIsland_House_Room2_Movement_StepFastestRight
 	waitmovement 0
 	switch LEADER_READY
@@ -179,19 +167,14 @@ SevenIsland_House_Room2_Eventscript_Trigger::
 SevenIsland_House_Room2_Eventscript_Brock::
 	lock
 	faceplayer
-	compare LEADER_READY, 1
-	goto_if_eq SevenIsland_House_Room2_Eventscript_BrockReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_BrockOtherLeaderReady
+	goto_if_eq LEADER_READY, 1, SevenIsland_House_Room2_Eventscript_BrockReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_BrockOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_Brock_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_BrockDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_BrockDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveBrockDown
-	compare Y_COORD, 6
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveBrockLeft
+	call_if_eq Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveBrockDown
+	call_if_ne Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveBrockLeft
 	applymovement LOCALID_BROCK, SevenIsland_House_Room2_Movement_BrockToMat
 	waitmovement 0
 	setobjectmovementtypeinstant LOCALID_BROCK, MOVEMENT_TYPE_FACE_LEFT
@@ -220,8 +203,7 @@ SevenIsland_House_Room2_Eventscript_BrockReady:
 	msgbox SevenIsland_House_Room2_Text_BrockSquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -289,8 +271,7 @@ SevenIsland_House_Room2_Eventscript_BrockBattle:
 	msgbox SevenIsland_House_Room2_Text_BrockBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeBrockBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeBrockBattle
 	trainerbattle_no_intro TRAINER_BROCK_REMATCH, SevenIsland_House_Room2_Text_BrockLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -344,19 +325,14 @@ SevenIsland_House_Room2_Text_BrockExit:
 SevenIsland_House_Room2_Eventscript_Misty::
 	lock
 	faceplayer
-	compare LEADER_READY, 2
-	goto_if_eq SevenIsland_House_Room2_Eventscript_MistyReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_MistyOtherLeaderReady
+	goto_if_eq LEADER_READY, 2, SevenIsland_House_Room2_Eventscript_MistyReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_MistyOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_Misty_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_MistyDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_MistyDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 3
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveMistyRight
-	compare Y_COORD, 3
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveMistyDown
+	call_if_eq Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveMistyRight
+	call_if_ne Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveMistyDown
 	setobjectmovementtypeinstant LOCALID_MISTY, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_MISTY
 	msgbox SevenIsland_House_Room2_Text_MistySquareUp, MSGBOX_DEFAULT 
@@ -384,8 +360,7 @@ SevenIsland_House_Room2_Eventscript_MistyReady:
 	msgbox SevenIsland_House_Room2_Text_MistySquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -453,8 +428,7 @@ SevenIsland_House_Room2_Eventscript_MistyBattle:
 	msgbox SevenIsland_House_Room2_Text_MistyBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeMistyBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeMistyBattle
 	trainerbattle_no_intro TRAINER_MISTY_REMATCH, SevenIsland_House_Room2_Text_MistyLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -504,19 +478,14 @@ SevenIsland_House_Room2_Text_MistyExit:
 SevenIsland_House_Room2_Eventscript_LtSurge::
 	lock
 	faceplayer
-	compare LEADER_READY, 3
-	goto_if_eq SevenIsland_House_Room2_Eventscript_LtSurgeReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_LtSurgeOtherLeaderReady
+	goto_if_eq LEADER_READY, 3, SevenIsland_House_Room2_Eventscript_LtSurgeReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_LtSurgeOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_LtSurge_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_LtSurgeDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_LtSurgeDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 5
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveLtSurgeLeft
-	compare Y_COORD, 5
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveLtSurgeDown
+	call_if_eq Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveLtSurgeLeft
+	call_if_ne Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveLtSurgeDown
 	setobjectmovementtypeinstant LOCALID_LT_SURGE, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_LT_SURGE
 	msgbox SevenIsland_House_Room2_Text_LtSurgeSquareUp, MSGBOX_DEFAULT 
@@ -541,8 +510,7 @@ SevenIsland_House_Room2_Eventscript_LtSurgeReady:
 	msgbox SevenIsland_House_Room2_Text_LtSurgeSquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -601,8 +569,7 @@ SevenIsland_House_Room2_Eventscript_LtSurgeBattle:
 	msgbox SevenIsland_House_Room2_Text_LtSurgeBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeLtSurgeBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeLtSurgeBattle
 	trainerbattle_no_intro TRAINER_LT_SURGE_REMATCH, SevenIsland_House_Room2_Text_LtSurgeLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -654,19 +621,14 @@ SevenIsland_House_Room2_Text_LtSurgeExit:
 SevenIsland_House_Room2_Eventscript_Erika::
 	lock
 	faceplayer
-	compare LEADER_READY, 4
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ErikaReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_ErikaOtherLeaderReady
+	goto_if_eq LEADER_READY, 4, SevenIsland_House_Room2_Eventscript_ErikaReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_ErikaOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_Erika_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ErikaDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_ErikaDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 3
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveErikaRight
-	compare Y_COORD, 3
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveErikaDown
+	call_if_eq Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveErikaRight
+	call_if_ne Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveErikaDown
 	setobjectmovementtypeinstant LOCALID_ERIKA, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_ERIKA
 	msgbox SevenIsland_House_Room2_Text_ErikaSquareUp, MSGBOX_DEFAULT 
@@ -692,8 +654,7 @@ SevenIsland_House_Room2_Eventscript_ErikaReady:
 	msgbox SevenIsland_House_Room2_Text_ErikaSquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -762,8 +723,7 @@ SevenIsland_House_Room2_Eventscript_ErikaBattle:
 	msgbox SevenIsland_House_Room2_Text_ErikaBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeErikaBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeErikaBattle
 	trainerbattle_no_intro TRAINER_ERIKA_REMATCH, SevenIsland_House_Room2_Text_ErikaLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -814,19 +774,14 @@ SevenIsland_House_Room2_Text_ErikaExit:
 SevenIsland_House_Room2_Eventscript_Koga::
 	lock
 	faceplayer
-	compare LEADER_READY, 5
-	goto_if_eq SevenIsland_House_Room2_Eventscript_KogaReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_KogaOtherLeaderReady
+	goto_if_eq LEADER_READY, 5, SevenIsland_House_Room2_Eventscript_KogaReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_KogaOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_Koga_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_KogaDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_KogaDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 7
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveKogaRight
-	compare Y_COORD, 7
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveKogaUp
+	call_if_eq Y_COORD, 7, SevenIsland_House_Room2_Eventscript_MoveKogaRight
+	call_if_ne Y_COORD, 7, SevenIsland_House_Room2_Eventscript_MoveKogaUp
 	setobjectmovementtypeinstant LOCALID_KOGA, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_KOGA
 	msgbox SevenIsland_House_Room2_Text_KogaSquareUp, MSGBOX_DEFAULT 
@@ -853,8 +808,7 @@ SevenIsland_House_Room2_Eventscript_KogaReady:
 	msgbox SevenIsland_House_Room2_Text_KogaSquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -916,8 +870,7 @@ SevenIsland_House_Room2_Eventscript_KogaBattle:
 	msgbox SevenIsland_House_Room2_Text_KogaBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeKogaBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeKogaBattle
 	trainerbattle_no_intro TRAINER_KOGA_REMATCH, SevenIsland_House_Room2_Text_KogaLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -976,19 +929,14 @@ SevenIsland_House_Room2_Text_KogaExit:
 SevenIsland_House_Room2_Eventscript_Sabrina::
 	lock
 	faceplayer
-	compare LEADER_READY, 6
-	goto_if_eq SevenIsland_House_Room2_Eventscript_SabrinaReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_SabrinaOtherLeaderReady
+	goto_if_eq LEADER_READY, 6, SevenIsland_House_Room2_Eventscript_SabrinaReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_SabrinaOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_Sabrina_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_SabrinaDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_SabrinaDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveSabrinaRight
-	compare Y_COORD, 6
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveSabrinaUp
+	call_if_eq Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveSabrinaRight
+	call_if_ne Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveSabrinaUp
 	setobjectmovementtypeinstant LOCALID_SABRINA, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_SABRINA
 	msgbox SevenIsland_House_Room2_Text_SabrinaSquareUp, MSGBOX_DEFAULT 
@@ -1015,8 +963,7 @@ SevenIsland_House_Room2_Eventscript_SabrinaReady:
 	msgbox SevenIsland_House_Room2_Text_SabrinaSquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -1081,8 +1028,7 @@ SevenIsland_House_Room2_Eventscript_SabrinaBattle:
 	msgbox SevenIsland_House_Room2_Text_SabrinaBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeSabrinaBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeSabrinaBattle
 	trainerbattle_no_intro TRAINER_SABRINA_REMATCH, SevenIsland_House_Room2_Text_SabrinaLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -1141,19 +1087,14 @@ SevenIsland_House_Room2_Text_SabrinaExit:
 SevenIsland_House_Room2_Eventscript_Blaine::
 	lock
 	faceplayer
-	compare LEADER_READY, 7
-	goto_if_eq SevenIsland_House_Room2_Eventscript_BlaineReady
-	compare LEADER_READY, 0
-	goto_if_ne SevenIsland_House_Room2_Eventscript_BlaineOtherLeaderReady
+	goto_if_eq LEADER_READY, 7, SevenIsland_House_Room2_Eventscript_BlaineReady
+	goto_if_ne LEADER_READY, 0, SevenIsland_House_Room2_Eventscript_BlaineOtherLeaderReady
 	msgbox SevenIsland_House_Room2_Text_Blaine_Intro, MSGBOX_YESNO
-	compare VAR_RESULT, FALSE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_BlaineDeclined
+	goto_if_eq VAR_RESULT, FALSE, SevenIsland_House_Room2_Eventscript_BlaineDeclined
 	closemessage
 	getplayerxy X_COORD, Y_COORD
-	compare Y_COORD, 5
-	call_if_eq SevenIsland_House_Room2_Eventscript_MoveBlaineLeft
-	compare Y_COORD, 5
-	call_if_ne SevenIsland_House_Room2_Eventscript_MoveBlaineUp
+	call_if_eq Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveBlaineLeft
+	call_if_ne Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveBlaineUp
 	setobjectmovementtypeinstant LOCALID_BLAINE, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_BLAINE
 	msgbox SevenIsland_House_Room2_Text_BlaineSquareUp, MSGBOX_DEFAULT 
@@ -1179,8 +1120,7 @@ SevenIsland_House_Room2_Eventscript_BlaineReady:
 	msgbox SevenIsland_House_Room2_Text_BlaineSquareUp, MSGBOX_DEFAULT
 	release
 	getplayerxy X_COORD, Y_COORD
-	compare X_COORD, 6
-	call_if_eq SevenIsland_House_Room2_Eventscript_CheckInFront
+	call_if_eq X_COORD, 6, SevenIsland_House_Room2_Eventscript_CheckInFront
 	applymovement VAR_LAST_TALKED, SevenIsland_House_Room2_Movement_StepFastestLeft
 	waitmovement 0
 	release
@@ -1242,8 +1182,7 @@ SevenIsland_House_Room2_Eventscript_BlaineBattle:
 	msgbox SevenIsland_House_Room2_Text_BlaineBeforeBattle, MSGBOX_DEFAULT
 	release
 	callnative IsChallengeModeToVarResult
-	compare VAR_RESULT, TRUE
-	goto_if_eq SevenIsland_House_Room2_Eventscript_ChallengeBlaineBattle
+	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room2_Eventscript_ChallengeBlaineBattle
 	trainerbattle_no_intro TRAINER_BLAINE_REMATCH, SevenIsland_House_Room2_Text_BlaineLoss
 	setvar TYPE, SET_LEVEL_GROWTH
 	callnative UseBattleHouseVar
@@ -1292,8 +1231,7 @@ SevenIsland_House_Room2_Text_BlaineExit:
 	.string "eye on it.$"
 
 SevenIsland_House_Room2_Eventscript_CheckInFront:
-	compare Y_COORD, 5
-	goto_if_eq EventScript_ReleaseEnd
+	goto_if_eq Y_COORD, 5, EventScript_ReleaseEnd
 	return
 
 SevenIsland_House_Room2_Movement_LeaderExits:

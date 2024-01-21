@@ -1,25 +1,25 @@
 .set LOCALID_PROF_OAK, 1
 
-PokemonLeague_HallOfFame_MapScripts:: @ 8162D4C
+PokemonLeague_HallOfFame_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_HallOfFame_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_HallOfFame_OnWarp
 	.byte 0
 
-PokemonLeague_HallOfFame_OnWarp:: @ 8162D57
+PokemonLeague_HallOfFame_OnWarp::
 	map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth
 	.2byte 0
 
-PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth:: @ 8162D61
+PokemonLeague_HallOfFame_EventScript_TurnPlayerNorth::
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
 
-PokemonLeague_HallOfFame_OnFrame:: @ 8162D66
+PokemonLeague_HallOfFame_OnFrame::
 	map_script_2 VAR_TEMP_1, 0, PokemonLeague_HallOfFame_EventScript_EnterRoom
 	.2byte 0
 
-PokemonLeague_HallOfFame_EventScript_EnterRoom:: @ 8162D70
+PokemonLeague_HallOfFame_EventScript_EnterRoom::
 	lockall
-	textcolor 0
+	textcolor NPC_TEXT_COLOR_MALE
 	applymovement OBJ_EVENT_ID_PLAYER, PokemonLeague_HallOfFame_Movement_EnterRoom
 	waitmovement 0
 	applymovement LOCALID_PROF_OAK, Movement_WalkInPlaceFastestLeft
@@ -40,8 +40,7 @@ PokemonLeague_HallOfFame_EventScript_EnterRoom:: @ 8162D70
 	setrespawn SPAWN_PALLET_TOWN
 	fadescreenspeed FADE_TO_BLACK, 24
 	checkitem ITEM_OLD_SEA_MAP, 1
-	compare VAR_RESULT, TRUE
-	call_if_ne PokemonLeague_HallOfFame_EventScript_ActivateOldSeaMapEvent
+	call_if_ne VAR_RESULT, TRUE, PokemonLeague_HallOfFame_EventScript_ActivateOldSeaMapEvent
 	special EnterHallOfFame
 	waitstate
 	releaseall
@@ -52,7 +51,7 @@ PokemonLeague_HallOfFame_EventScript_ActivateOldSeaMapEvent::
 	setflag FLAG_HIDE_POKEHOUSE_FUJI
 	return
 
-PokemonLeague_HallOfFame_Movement_EnterRoom:: @ 8162DCD
+PokemonLeague_HallOfFame_Movement_EnterRoom::
 	walk_up
 	walk_up
 	walk_up

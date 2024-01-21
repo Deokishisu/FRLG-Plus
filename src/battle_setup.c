@@ -33,7 +33,7 @@
 #include "constants/region_map_sections.h"
 #include "constants/songs.h"
 #include "constants/pokemon.h"
-#include "constants/trainer_classes.h"
+#include "constants/trainers.h"
 
 enum
 {
@@ -272,7 +272,7 @@ static void Task_BattleStart(u8 taskId)
     case 0:
         if (!FldEffPoison_IsActive())
         {
-        	HelpSystem_Disable();
+            HelpSystem_Disable();
             BT_StartOnField(tTransition);
             ++tState;
         }
@@ -280,7 +280,7 @@ static void Task_BattleStart(u8 taskId)
     case 1:
         if (BT_IsDone() == TRUE)
         {
-        	HelpSystem_Enable();
+            HelpSystem_Enable();
             CleanupOverworldWindowsAndTilemaps();
             SetMainCallback2(CB2_InitBattle);
             RestartWildEncounterImmunitySteps();
@@ -302,7 +302,13 @@ static void CreateBattleStartTask(u8 transition, u16 song) // song == 0 means de
 static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
 {
     if (mapGroup == MAP_GROUP(POKEMON_TOWER_1F)
-     && ((u16)(mapNum - MAP_NUM(POKEMON_TOWER_1F)) <= 6)
+     && (mapNum == MAP_NUM(POKEMON_TOWER_1F)
+      || mapNum == MAP_NUM(POKEMON_TOWER_2F)
+      || mapNum == MAP_NUM(POKEMON_TOWER_3F)
+      || mapNum == MAP_NUM(POKEMON_TOWER_4F)
+      || mapNum == MAP_NUM(POKEMON_TOWER_5F)
+      || mapNum == MAP_NUM(POKEMON_TOWER_6F)
+      || mapNum == MAP_NUM(POKEMON_TOWER_7F))
      && !(CheckBagHasItem(ITEM_SILPH_SCOPE, 1)))
         return TRUE;
     else
@@ -591,7 +597,7 @@ u8 BattleSetup_GetTerrainId(void)
 
     PlayerGetDestCoords(&x, &y);
     tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
-    if (MetatileBehavior_IsTallGrass_2(tileBehavior))
+    if (MetatileBehavior_IsTallGrass(tileBehavior))
         return BATTLE_TERRAIN_GRASS;
     if (MetatileBehavior_IsLongGrass(tileBehavior))
         return BATTLE_TERRAIN_LONG_GRASS;
@@ -769,7 +775,7 @@ static u8 GetTrainerBattleTransition(void)
 
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         return B_TRANSITION_BLUE;
-    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_ELITE_FOUR_2)
+    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR)
     {
         if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE_2)
             return B_TRANSITION_LORELEI;
@@ -781,9 +787,9 @@ static u8 GetTrainerBattleTransition(void)
             return B_TRANSITION_LANCE;
         return B_TRANSITION_BLUE;
     }
-    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_CHAMPION_2)
+    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
         return B_TRANSITION_BLUE;
-    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == CLASS_PKMN_PROF)
+    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_PKMN_PROF)
         return B_TRANSITION_OAK;
     if (sTrainers[gTrainerBattleOpponent_A].doubleBattle == TRUE)
         minPartyCount = 2; // double battles always at least have 2 pokemon.

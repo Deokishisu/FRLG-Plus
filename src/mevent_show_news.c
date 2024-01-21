@@ -9,7 +9,7 @@
 
 struct UnkStruct_203F3CC
 {
-    /*0000*/ struct MEWonderNewsData wonderNews;
+    /*0000*/ struct WonderNews wonderNews;
     /*01bc*/ const struct UnkStruct_8467FB8 * bgSpec;
     /*01c0*/ u8 verticalScrollDisabled:1;
     u8 state:7;
@@ -72,7 +72,7 @@ static const struct UnkStruct_8467FB8 sBgSpecs[] = {
     {1, 0, 0, 0, sNews7Gfx, sNews7Map, sNews7Pal}
 };
 
-bool32 InitWonderNewsResources(const struct MEWonderNewsData * news)
+bool32 InitWonderNewsResources(const struct WonderNews * news)
 {
     if (news == NULL)
         return FALSE;
@@ -80,9 +80,9 @@ bool32 InitWonderNewsResources(const struct MEWonderNewsData * news)
     if (sWork == NULL)
         return FALSE;
     sWork->wonderNews = *news;
-    if (sWork->wonderNews.unk_03 >= NELEMS(sBgSpecs))
-        sWork->wonderNews.unk_03 = 0;
-    sWork->bgSpec = &sBgSpecs[sWork->wonderNews.unk_03];
+    if (sWork->wonderNews.bgType >= NELEMS(sBgSpecs))
+        sWork->wonderNews.bgType = 0;
+    sWork->bgSpec = &sBgSpecs[sWork->wonderNews.bgType];
     sWork->menuIndicatorsId = 0xFF;
     return TRUE;
 }
@@ -105,7 +105,7 @@ s32 FadeToWonderNewsMenu(void)
     switch (sWork->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         break;
     case 1:
         if (UpdatePaletteFade())
@@ -158,7 +158,7 @@ s32 FadeToWonderNewsMenu(void)
         ShowBg(3);
         gPaletteFade.bufferTransferDisabled = FALSE;
         sWork->menuIndicatorsId = AddScrollIndicatorArrowPair(&sWork->scrollArrowsTemplate, &sWork->scrollOffset);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         UpdatePaletteFade();
         break;
     default:
@@ -179,7 +179,7 @@ s32 FadeOutFromWonderNews(bool32 flag)
     switch (sWork->state)
     {
     case 0:
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         break;
     case 1:
         if (UpdatePaletteFade())
@@ -223,7 +223,7 @@ s32 FadeOutFromWonderNews(bool32 flag)
         MG_DrawCheckerboardPattern();
         CopyBgTilemapBufferToVram(0);
         CopyBgTilemapBufferToVram(3);
-        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
         break;
     default:
         if (UpdatePaletteFade())
@@ -297,11 +297,11 @@ u32 MENews_GetInput(u16 input)
 static void sub_8146980(void)
 {
     u8 i = 0;
-    memcpy(sWork->title, sWork->wonderNews.unk_04, 40);
+    memcpy(sWork->title, sWork->wonderNews.titleText, 40);
     sWork->title[40] = EOS;
     for (; i < 10; ++i)
     {
-        memcpy(sWork->messages[i], sWork->wonderNews.unk_2C[i], 40);
+        memcpy(sWork->messages[i], sWork->wonderNews.bodyText[i], 40);
         sWork->messages[i][40] = EOS;
         if (i > 7 && sWork->messages[i][0] != EOS)
             ++sWork->numMails;
@@ -318,16 +318,16 @@ static void sub_8146A30(void)
     PutWindowTilemap(sWork->windowIds[1]);
     FillWindowPixelBuffer(sWork->windowIds[0], 0);
     FillWindowPixelBuffer(sWork->windowIds[1], 0);
-    x = (0xe0 - GetStringWidth(3, sWork->title, GetFontAttribute(3, 2))) / 2;
+    x = (0xe0 - GetStringWidth(FONT_3, sWork->title, GetFontAttribute(FONT_3, FONTATTR_LETTER_SPACING))) / 2;
     if (x < 0)
         x = 0;
-    AddTextPrinterParameterized3(sWork->windowIds[0], 3, x, 6, sTextPals[sWork->bgSpec->textPal1], 0, sWork->title);
+    AddTextPrinterParameterized3(sWork->windowIds[0], FONT_3, x, 6, sTextPals[sWork->bgSpec->textPal1], 0, sWork->title);
     for (; i < 10; ++i)
     {
-        AddTextPrinterParameterized3(sWork->windowIds[1], 3, 0, 16 * i + 2, sTextPals[sWork->bgSpec->textPal2], 0, sWork->messages[i]);
+        AddTextPrinterParameterized3(sWork->windowIds[1], FONT_3, 0, 16 * i + 2, sTextPals[sWork->bgSpec->textPal2], 0, sWork->messages[i]);
     }
-    CopyWindowToVram(sWork->windowIds[0], COPYWIN_BOTH);
-    CopyWindowToVram(sWork->windowIds[1], COPYWIN_BOTH);
+    CopyWindowToVram(sWork->windowIds[0], COPYWIN_FULL);
+    CopyWindowToVram(sWork->windowIds[1], COPYWIN_FULL);
 }
 
 static void sub_8146B58(void)

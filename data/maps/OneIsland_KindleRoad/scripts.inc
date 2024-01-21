@@ -1,4 +1,4 @@
-OneIsland_KindleRoad_MapScripts:: @ 8168758
+OneIsland_KindleRoad_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, OneIsland_KindleRoad_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, OneIsland_KindleRoad_AshWeatherLoad
 	.byte 0
@@ -9,8 +9,7 @@ OneIsland_KindleRoad_OnResume:
 
 OneIsland_KindleRoad_AshWeatherLoad:
 	getplayerxy VAR_TEMP_1, VAR_RESULT
-	compare VAR_RESULT, 60
-	goto_if_le OneIsland_KindleRoad_AshWeatherTrigger
+	goto_if_le VAR_RESULT, 60, OneIsland_KindleRoad_AshWeatherTrigger
 	release
 	end
 
@@ -26,11 +25,11 @@ OneIsland_KindleRoad_DefaultWeatherTrigger::
 	release
 	end
 
-OneIsland_KindleRoad_EventScript_RouteSign:: @ 8168759
+OneIsland_KindleRoad_EventScript_RouteSign::
 	msgbox OneIsland_KindleRoad_Text_RouteSign, MSGBOX_SIGN
 	end
 
-OneIsland_KindleRoad_EventScript_EmberSpaSign:: @ 8168762
+OneIsland_KindleRoad_EventScript_EmberSpaSign::
 	msgbox OneIsland_KindleRoad_Text_EmberSpaSign, MSGBOX_SIGN
 	end
 

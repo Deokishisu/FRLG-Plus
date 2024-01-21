@@ -199,7 +199,7 @@ static const u8 sWireless_RSEtoASCIITable[] = {
     0x20, 0x20, 0x2b, 0x5b, 0x5c, 0x5d, 0x5e, 0x5f,
     [CHAR_DYNAMIC_PLACEHOLDER] = ' ',
     [CHAR_KEYPAD_ICON] = ' ',
-    [CHAR_EXTRA_EMOJI] = ' ',
+    [CHAR_EXTRA_SYMBOL] = ' ',
     [CHAR_PROMPT_SCROLL] = ' ',
     [CHAR_PROMPT_CLEAR] = ' ',
     [EXT_CTRL_CODE_BEGIN] = ' ',
@@ -899,8 +899,8 @@ void UpdateWirelessStatusIndicatorSprite(void)
             sprite->sFrameDelay++;
         }
         gMain.oamBuffer[125] = sWirelessStatusIndicatorOamData;
-        gMain.oamBuffer[125].x = sprite->pos1.x + sprite->centerToCornerVecX;
-        gMain.oamBuffer[125].y = sprite->pos1.y + sprite->centerToCornerVecY;
+        gMain.oamBuffer[125].x = sprite->x + sprite->centerToCornerVecX;
+        gMain.oamBuffer[125].y = sprite->y + sprite->centerToCornerVecY;
         gMain.oamBuffer[125].paletteNum = sprite->oam.paletteNum;
         gMain.oamBuffer[125].tileNum = sprite->sTileStart + sprite->anims[sprite->sCurrAnimNum][sprite->sFrameIdx].frame.imageValue;
         CpuCopy16(gMain.oamBuffer + 125, (struct OamData *)OAM + 125, sizeof(struct OamData));

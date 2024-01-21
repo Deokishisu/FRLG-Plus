@@ -1,11 +1,11 @@
 .set LOCALID_KOFFING_MASTER, 2
 .set TRAINER, VAR_0x8009
 
-Route18_EastEntrance_1F_MapScripts:: @ 8170378
+Route18_EastEntrance_1F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, Route18_EastEntrance_1F_OnTransition
 	.byte 0
 
-Route18_EastEntrance_1F_OnTransition:: @ 817037E
+Route18_EastEntrance_1F_OnTransition::
 	clearflag FLAG_SYS_ON_CYCLING_ROAD
 	call_if_set FLAG_GOT_BICYCLE, Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger
 	goto Route18_EastEntrance_1F_MapScript_SetMasterTrainerMovementTypes
@@ -14,67 +14,62 @@ Route18_EastEntrance_1F_OnTransition:: @ 817037E
 Route18_EastEntrance_1F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_KOFFING
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq Route18_EastEntrance_1F_MapScript_KoffingMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, Route18_EastEntrance_1F_MapScript_KoffingMasterMovementType
 	end
 
 Route18_EastEntrance_1F_MapScript_KoffingMasterMovementType::
 	setobjectmovementtype LOCALID_KOFFING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger:: @ 817038B
+Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger::
 	setvar VAR_TEMP_1, 1
 	return
 
-Route18_EastEntrance_1F_EventScript_Guard:: @ 8170391
+Route18_EastEntrance_1F_EventScript_Guard::
 	msgbox Route18_EastEntrance_1F_Text_CyclingRoadAllUphillFromHere, MSGBOX_NPC
 	end
 
-Route18_EastEntrance_1F_EventScript_NeedBikeTriggerTop:: @ 817039A
+Route18_EastEntrance_1F_EventScript_NeedBikeTriggerTop::
 	lockall
 	setvar VAR_0x8008, 0
 	goto Route18_EastEntrance_1F_EventScript_NeedBikeTrigger
 	end
 
-Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidTop:: @ 81703A6
+Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidTop::
 	lockall
 	setvar VAR_0x8008, 1
 	goto Route18_EastEntrance_1F_EventScript_NeedBikeTrigger
 	end
 
-Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMid:: @ 81703B2
+Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMid::
 	lockall
 	setvar VAR_0x8008, 2
 	goto Route18_EastEntrance_1F_EventScript_NeedBikeTrigger
 	end
 
-Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidBottom:: @ 81703BE
+Route18_EastEntrance_1F_EventScript_NeedBikeTriggerMidBottom::
 	lockall
 	setvar VAR_0x8008, 3
 	goto Route18_EastEntrance_1F_EventScript_NeedBikeTrigger
 	end
 
-Route18_EastEntrance_1F_EventScript_NeedBikeTriggerBottom:: @ 81703CA
+Route18_EastEntrance_1F_EventScript_NeedBikeTriggerBottom::
 	lockall
 	setvar VAR_0x8008, 4
 	goto Route18_EastEntrance_1F_EventScript_NeedBikeTrigger
 	end
 
-Route18_EastEntrance_1F_EventScript_NeedBikeTrigger:: @ 81703D6
-	textcolor 0
+Route18_EastEntrance_1F_EventScript_NeedBikeTrigger::
+	textcolor NPC_TEXT_COLOR_MALE
 	msgbox Route18_EastEntrance_1F_Text_ExcuseMe
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	delay 20
-	compare VAR_0x8008, 1
-	call_if_eq Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidTop
-	compare VAR_0x8008, 2
-	call_if_eq Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMid
-	compare VAR_0x8008, 3
-	call_if_eq Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidBottom
-	compare VAR_0x8008, 4
-	call_if_eq Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterBottom
+	call_if_eq VAR_0x8008, 1, Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidTop
+	call_if_eq VAR_0x8008, 2, Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMid
+	call_if_eq VAR_0x8008, 3, Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidBottom
+	call_if_eq VAR_0x8008, 4, Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterBottom
 	msgbox Route18_EastEntrance_1F_Text_NeedBicycleForCyclingRoad
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, Route18_EastEntrance_1F_Movement_WalkRight
@@ -82,48 +77,48 @@ Route18_EastEntrance_1F_EventScript_NeedBikeTrigger:: @ 81703D6
 	releaseall
 	end
 
-Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidTop:: @ 817042F
+Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidTop::
 	applymovement OBJ_EVENT_ID_PLAYER, Route18_EastEntrance_1F_Movement_WalkUp
 	waitmovement 0
 	return
 
-Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMid:: @ 817043A
+Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMid::
 	applymovement OBJ_EVENT_ID_PLAYER, Route18_EastEntrance_1F_Movement_WalkUp2
 	waitmovement 0
 	return
 
-Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidBottom:: @ 8170445
+Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterMidBottom::
 	applymovement OBJ_EVENT_ID_PLAYER, Route18_EastEntrance_1F_Movement_WalkUp3
 	waitmovement 0
 	return
 
-Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterBottom:: @ 8170450
+Route18_EastEntrance_1F_EventScript_PlayerWalkToCounterBottom::
 	applymovement OBJ_EVENT_ID_PLAYER, Route18_EastEntrance_1F_Movement_WalkUp4
 	waitmovement 0
 	return
 
-Route18_EastEntrance_1F_Movement_WalkUp:: @ 817045B
+Route18_EastEntrance_1F_Movement_WalkUp::
 	walk_up
 	step_end
 
-Route18_EastEntrance_1F_Movement_WalkUp2:: @ 817045D
-	walk_up
-	walk_up
-	step_end
-
-Route18_EastEntrance_1F_Movement_WalkUp3:: @ 8170460
-	walk_up
+Route18_EastEntrance_1F_Movement_WalkUp2::
 	walk_up
 	walk_up
 	step_end
 
-Route18_EastEntrance_1F_Movement_WalkUp4:: @ 8170464
-	walk_up
+Route18_EastEntrance_1F_Movement_WalkUp3::
 	walk_up
 	walk_up
 	walk_up
 	step_end
 
-Route18_EastEntrance_1F_Movement_WalkRight:: @ 8170469
+Route18_EastEntrance_1F_Movement_WalkUp4::
+	walk_up
+	walk_up
+	walk_up
+	walk_up
+	step_end
+
+Route18_EastEntrance_1F_Movement_WalkRight::
 	walk_right
 	step_end

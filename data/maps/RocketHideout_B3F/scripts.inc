@@ -1,27 +1,26 @@
 .set LOCALID_WEEZING_MASTER, 6
 .set TRAINER, VAR_0x8009
 
-RocketHideout_B3F_MapScripts:: @ 81612B9
+RocketHideout_B3F_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RocketHideout_B3F_MapScript_SetMasterTrainerMovementTypes
 	.byte 0
 
 RocketHideout_B3F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_WEEZING
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq RocketHideout_B3F_MapScript_WeezingMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, RocketHideout_B3F_MapScript_WeezingMasterMovementType
 	end
 
 RocketHideout_B3F_MapScript_WeezingMasterMovementType::
 	setobjectmovementtype LOCALID_WEEZING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
 	return
 
-RocketHideout_B3F_EventScript_Grunt1:: @ 81612BA
+RocketHideout_B3F_EventScript_Grunt1::
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_14, RocketHideout_B3F_Text_Grunt1Intro, RocketHideout_B3F_Text_Grunt1Defeat
 	msgbox RocketHideout_B3F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
 	end
 
-RocketHideout_B3F_EventScript_Grunt2:: @ 81612D1
+RocketHideout_B3F_EventScript_Grunt2::
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_15, RocketHideout_B3F_Text_Grunt2Intro, RocketHideout_B3F_Text_Grunt2Defeat
 	msgbox RocketHideout_B3F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end

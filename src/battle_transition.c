@@ -403,7 +403,7 @@ static const TransitionStateFunc sBT_Phase2WhiteFadeInStripesFuncs[] =
 };
 
 static const u16 sWhiteStripeDelay[] = { 0, 9, 15, 6, 12, 3 };
-    
+
 static const TransitionStateFunc sBT_Phase2GridSquaresFuncs[] =
 {
     BT_Phase2GridSquares_LoadGfx,
@@ -475,7 +475,7 @@ static const union AffineAnimCmd *const sSpriteAffineAnimTable_SlidingPokeball[]
 
 static const struct SpriteTemplate sSpriteTemplate_SlidingPokeball =
 {
-    .tileTag = SPRITE_INVALID_TAG,
+    .tileTag = TAG_NONE,
     .paletteTag = 0x1009,
     .oam = &gObjectEventBaseOam_32x32,
     .anims = sSpriteAnimTable_SlidingPokeball,
@@ -489,7 +489,7 @@ static const struct OamData sOamData_Unused =
     .y = 0,
     .affineMode = 0,
     .objMode = 0,
-    .mosaic = 0,
+    .mosaic = FALSE,
     .bpp = 0,
     .shape = SPRITE_SHAPE(64x64),
     .x = 0,
@@ -528,7 +528,7 @@ static const union AnimCmd *const sSpriteAnimTable_Unused[] = { sSpriteAnim_Unus
 static const struct SpriteTemplate sSpriteTemplateTable_Unused[] =
 {
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0x100A,
         .oam = &sOamData_Unused,
         .anims = sSpriteAnimTable_Unused,
@@ -537,7 +537,7 @@ static const struct SpriteTemplate sSpriteTemplateTable_Unused[] =
         .callback = SpriteCB_BT_Phase2Mugshots,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0x100A,
         .oam = &sOamData_Unused,
         .anims = sSpriteAnimTable_Unused,
@@ -728,7 +728,7 @@ static bool8 BT_Phase2Blur_Anim(struct Task *task)
     {
         task->tInterval = 2;
         if (++task->tMosaicSize == 10)
-            BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 0x10, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 0x10, RGB_BLACK);
         // The mosaic size argument is shared by HSIZE and VSIZE
         SetGpuReg(REG_OFFSET_MOSAIC, (task->tMosaicSize & 0xF) + ((task->tMosaicSize & 0xF) << 4));
         if (task->tMosaicSize > 14)
@@ -759,7 +759,7 @@ static bool8 BT_Phase2DistortedWave_InitWave(struct Task *task)
 {
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
-    BeginNormalPaletteFade(0xFFFFFFFF, 4, 0, 0x10, RGB_BLACK);
+    BeginNormalPaletteFade(PALETTES_ALL, 4, 0, 0x10, RGB_BLACK);
     BT_LoadWaveIntoBuffer(gScanlineEffectRegBuffers[1], sTransitionStructPtr->bg123HOfs, 0, 2, 0, 160);
     SetVBlankCallback(VBCB_BT_Phase2DistortedWave);
     SetHBlankCallback(HBCB_BT_Phase2DistortedWave);
@@ -805,7 +805,7 @@ static bool8 BT_Phase2HorizontalCorrugate_Init(struct Task *task)
 {
     BT_InitCtrlBlk();
     ScanlineEffect_Clear();
-    BeginNormalPaletteFade(0xFFFFFFFF, 4, 0, 0x10, RGB_BLACK);
+    BeginNormalPaletteFade(PALETTES_ALL, 4, 0, 0x10, RGB_BLACK);
     memset(gScanlineEffectRegBuffers[1], sTransitionStructPtr->bg123VOfs, 320);
     SetVBlankCallback(VBCB_BT_Phase2HorizontalCorrugate);
     SetHBlankCallback(HBCB_BT_Phase2HorizontalCorrugate);
@@ -1039,7 +1039,7 @@ static void VBCB_BT_Phase2BigPokeball2(void)
 #undef tTheta
 #undef tAmplitude
 
-// TODO: Document this effect after knowing more about field effects. 
+// TODO: Document this effect after knowing more about field effects.
 static void BT_Phase2SlidingPokeballs(u8 taskId)
 {
     while (sBT_Phase2SlidingPokeballsFuncs[gTasks[taskId].tState](&gTasks[taskId]));
@@ -1119,10 +1119,10 @@ static void SpriteCB_BT_Phase2SlidingPokeballs(struct Sprite *sprite)
     }
     else
     {
-        if ((u16)sprite->pos1.x <= 240)
+        if ((u16)sprite->x <= 240)
         {
-            s16 posX = sprite->pos1.x >> 3;
-            s16 posY = sprite->pos1.y >> 3;
+            s16 posX = sprite->x >> 3;
+            s16 posY = sprite->y >> 3;
 
             if (posX != sprite->data[2])
             {
@@ -1136,8 +1136,8 @@ static void SpriteCB_BT_Phase2SlidingPokeballs(struct Sprite *sprite)
                 SOME_VRAM_STORE(ptr, posY + 1, posX, 0xF001);
             }
         }
-        sprite->pos1.x += arr0[sprite->data[0]];
-        if (sprite->pos1.x < -15 || sprite->pos1.x > 255)
+        sprite->x += arr0[sprite->data[0]];
+        if (sprite->x < -15 || sprite->x > 255)
             FieldEffectStop(sprite, FLDEFF_POKEBALL);
     }
 }
@@ -1399,7 +1399,7 @@ static bool8 BT_Phase2FullScreenWave_UpdateWave(struct Task *task)
     if (++task->tDelayForFade == 41)
     {
         ++task->tStartFade;
-        BeginNormalPaletteFade(0xFFFFFFFF, -8, 0, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(PALETTES_ALL, -8, 0, 0x10, RGB_BLACK);
     }
     if (task->tStartFade && !gPaletteFade.active)
         DestroyTask(FindTaskIdByFunc(BT_Phase2FullScreenWave));
@@ -2005,7 +2005,7 @@ static bool8 BT_Phase2Mugshot_ExpandWhiteBand(struct Task *task)
 static bool8 BT_Phase2Mugshot_StartBlackFade(struct Task *task)
 {
     sTransitionStructPtr->vblankDma = FALSE;
-    BlendPalettes(0xFFFFFFFF, 0x10, RGB_WHITE);
+    BlendPalettes(PALETTES_ALL, 0x10, RGB_WHITE);
     sTransitionStructPtr->bldCnt = BLDCNT_TGT1_BG0 | BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_TGT1_BD | BLDCNT_EFFECT_DARKEN;
     task->tCounter = 0;
     ++task->tState;
@@ -2116,10 +2116,10 @@ static bool8 BT_Phase2MugshotsSpriteFuncs_InitParams(struct Sprite *sprite)
 
 static bool8 BT_Phase2MugshotsSpriteFuncs_SlideSpriteIn(struct Sprite *sprite)
 {
-    sprite->pos1.x += sprite->spSpeed;
-    if (sprite->spOpponentOrPlayer && sprite->pos1.x < 133)
+    sprite->x += sprite->spSpeed;
+    if (sprite->spOpponentOrPlayer && sprite->x < 133)
         ++sprite->spState;
-    else if (!sprite->spOpponentOrPlayer && sprite->pos1.x > 103)
+    else if (!sprite->spOpponentOrPlayer && sprite->x > 103)
         ++sprite->spState;
     return FALSE;
 }
@@ -2127,7 +2127,7 @@ static bool8 BT_Phase2MugshotsSpriteFuncs_SlideSpriteIn(struct Sprite *sprite)
 static bool8 BT_Phase2MugshotsSpriteFuncs_DecelerateSprite(struct Sprite *sprite)
 {
     sprite->spSpeed += sprite->spAbsAcc;
-    sprite->pos1.x += sprite->spSpeed;
+    sprite->x += sprite->spSpeed;
     if (sprite->spSpeed == 0)
     {
         ++sprite->spState;
@@ -2141,8 +2141,8 @@ static bool8 BT_Phase2MugshotsSpriteFuncs_DecelerateSprite(struct Sprite *sprite
 static bool8 BT_Phase2MugshotsSpriteFuncs_DecelerateSprite2(struct Sprite *sprite)
 {
     sprite->spSpeed += sprite->spAbsAcc;
-    sprite->pos1.x += sprite->spSpeed;
-    if (sprite->pos1.x < -31 || sprite->pos1.x > 271)
+    sprite->x += sprite->spSpeed;
+    if (sprite->x < -31 || sprite->x > 271)
         ++sprite->spState;
     return FALSE;
 }
@@ -2319,8 +2319,8 @@ static bool8 BT_Phase2WhiteFadeInStripes_SetupSprites(struct Task *task)
     for (i = 0, posY = 0; i < 6; ++i, posY += 0x1B)
     {
         sprite = &gSprites[CreateInvisibleSprite(SpriteCB_BT_Phase2WhiteFadeInStripes)];
-        sprite->pos1.x = 0xF0;
-        sprite->pos1.y = posY;
+        sprite->x = 0xF0;
+        sprite->y = posY;
         sprite->spDelay = buffer[i];
     }
     ++sprite->spLastSprite;
@@ -2333,7 +2333,7 @@ static bool8 BT_Phase2WhiteFadeInStripes_IsWhiteFadeDone(struct Task *task)
     sTransitionStructPtr->vblankDma = FALSE;
     if (sTransitionStructPtr->counter > 5)
     {
-        BlendPalettes(0xFFFFFFFF, 0x10, RGB_WHITE);
+        BlendPalettes(PALETTES_ALL, 0x10, RGB_WHITE);
         ++task->tState;
     }
     return FALSE;
@@ -2412,21 +2412,21 @@ static void SpriteCB_BT_Phase2WhiteFadeInStripes(struct Sprite *sprite)
     else
     {
         u32 i;
-        u16 *bldY = &gScanlineEffectRegBuffers[0][sprite->pos1.y];
-        u16 *win0H = &gScanlineEffectRegBuffers[0][sprite->pos1.y + 160];
+        u16 *bldY = &gScanlineEffectRegBuffers[0][sprite->y];
+        u16 *win0H = &gScanlineEffectRegBuffers[0][sprite->y + 160];
         u32 stripeWidth = sprite->spLastSprite ? 0x19 : 0x1B;
         
         for (i = 0; i < stripeWidth; ++i)
         {
             bldY[i] = sprite->spBldyCounter >> 8;
-            win0H[i] = (u8)(sprite->pos1.x);
+            win0H[i] = (u8)(sprite->x);
         }
-        if (sprite->pos1.x == 0 && sprite->spBldyCounter == 0x1000)
+        if (sprite->x == 0 && sprite->spBldyCounter == 0x1000)
             sprite->spFinished = 1;
-        sprite->pos1.x -= 24;
+        sprite->x -= 24;
         sprite->spBldyCounter += 192;
-        if (sprite->pos1.x < 0)
-            sprite->pos1.x = 0;
+        if (sprite->x < 0)
+            sprite->x = 0;
         if (sprite->spBldyCounter > 0x1000)
             sprite->spBldyCounter = 0x1000;
         if (sprite->spLastSprite)
@@ -2681,7 +2681,7 @@ static bool8 BT_Phase1_FadeIn(struct Task *task)
         task->tCoeff -= task->tFadeInSpeed;
         if (task->tCoeff < 0)
             task->tCoeff = 0;
-        BlendPalettes(0xFFFFFFFF, task->tCoeff, RGB(11, 11, 11));
+        BlendPalettes(PALETTES_ALL, task->tCoeff, RGB(11, 11, 11));
     }
     if (task->tCoeff == 0)
     {
@@ -2742,7 +2742,7 @@ static void BT_GetBg0TilemapAndTilesetBase(u16 **tilemapPtr, u16 **tilesetPtr)
 
 static void BT_BlendPalettesToBlack(void)
 {
-    BlendPalettes(0xFFFFFFFF, 0x10, RGB_BLACK);
+    BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
 }
 
 static void BT_LoadWaveIntoBuffer(s16 *buffer, s16 offset, s16 theta, s16 frequency, s16 amplitude, s16 bufSize)
