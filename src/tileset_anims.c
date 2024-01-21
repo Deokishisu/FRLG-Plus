@@ -504,7 +504,7 @@ void InitTilesetAnim_SeviiIslands67(void)
 
 static void QueueAnimTiles_SeviiIslands5_ShortGrassFlower(u16 timer)
 {
-    AppendTilesetAnimToBuffer(gUnknown_83A7660[timer % NELEMS(gUnknown_83A7660)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x324)), 0x80);
+    AppendTilesetAnimToBuffer(sTilesetAnims_General_Flower[timer % NELEMS(sTilesetAnims_General_Flower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x324)), 0x80);
 }
 
 static void TilesetAnim_SeviiIslands5(u16 timer)

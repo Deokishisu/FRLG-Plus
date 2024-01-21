@@ -143,7 +143,7 @@ CeladonCity_Condominiums_3F_EventScript_TitleGiver_TitleSelected:
 	return
 
 CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferGrand:
-	getstring 1, CeladonCity_Condominiums_3F_EventScript_TitleGiver_Grand
+	bufferstring 1, CeladonCity_Condominiums_3F_EventScript_TitleGiver_Grand
 	return
 
 CeladonCity_Condominiums_3F_EventScript_TitleGiver_BufferSpecies:

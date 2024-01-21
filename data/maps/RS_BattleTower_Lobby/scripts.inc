@@ -1,14 +1,14 @@
-RS_BattleTower_Lobby_MapScripts:: @ 816027E
+RS_BattleTower_Lobby_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, BattleTower_Lobby_MapScript1_160293
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleTower_Lobby_MapScript2_160302
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleTower_Lobby_MapScript2_1602EE
 	.byte 0
 
-BattleTower_Lobby_MapScript1_160293:: @ 8160293
+BattleTower_Lobby_MapScript1_160293::
 	call BattleTower_Lobby_EventScript_16029C
 	end
 
-BattleTower_Lobby_EventScript_16029C:: @ 816029C
+BattleTower_Lobby_EventScript_16029C::
 	setvar VAR_0x8004, 10
 	special SetBattleTowerProperty
 	goto_if_set FLAG_TEMP_1, BattleTower_Lobby_EventScript_160662
@@ -37,16 +37,16 @@ BattleTower_Lobby_EventScript_HideScott::
 	setflag FLAG_HIDE_AWARD_SCOTT_BATTLE_TOWER
 	return
 
-BattleTower_Lobby_MapScript2_1602EE:: @ 81602EE
+BattleTower_Lobby_MapScript2_1602EE::
 	map_script_2 VAR_TEMP_1, 0, BattleTower_Lobby_EventScript_1602F8
 	.2byte 0
 
-BattleTower_Lobby_EventScript_1602F8:: @ 81602F8
+BattleTower_Lobby_EventScript_1602F8::
 	setvar VAR_TEMP_1, 1
 	turnobject OBJ_EVENT_ID_PLAYER, 2
 	end
 
-BattleTower_Lobby_MapScript2_160302:: @ 8160302
+BattleTower_Lobby_MapScript2_160302::
 	map_script_2 VAR_TEMP_0, 0, BattleTower_Lobby_EventScript_16032C
 	map_script_2 VAR_TEMP_0, 1, BattleTower_Lobby_EventScript_160330
 	map_script_2 VAR_TEMP_0, 2, BattleTower_Lobby_EventScript_160342
@@ -54,11 +54,11 @@ BattleTower_Lobby_MapScript2_160302:: @ 8160302
 	map_script_2 VAR_TEMP_0, 4, BattleTower_Lobby_EventScript_16044B
 	.2byte 0
 
-BattleTower_Lobby_EventScript_16032C:: @ 816032C
+BattleTower_Lobby_EventScript_16032C::
 	special BattleTowerMapScript2
 	end
 
-BattleTower_Lobby_EventScript_160330:: @ 8160330
+BattleTower_Lobby_EventScript_160330::
 	lock
 	faceplayer
 	textcolor 0x1
@@ -69,7 +69,7 @@ BattleTower_Lobby_EventScript_160330:: @ 8160330
 	release
 	end
 
-BattleTower_Lobby_EventScript_160342:: @ 8160342
+BattleTower_Lobby_EventScript_160342::
 	lock
 	faceplayer
 	clearflag FLAG_SYS_IS_LINKING
@@ -89,7 +89,7 @@ BattleTower_Lobby_EventScript_160342:: @ 8160342
 	waitfanfare
 	msgbox BattleTower_Lobby_Text_19A719, MSGBOX_DEFAULT
 
-BattleTower_Lobby_EventScript_16037D:: @ 816037D
+BattleTower_Lobby_EventScript_16037D::
 	setvar VAR_0x8004, 8
 	special BattleTowerUtil
 	compare VAR_RESULT, 1
@@ -104,7 +104,7 @@ BattleTower_Lobby_EventScript_16037D:: @ 816037D
 	playse SE_SAVE
 	waitse
 
-BattleTower_Lobby_EventScript_1603AD:: @ 81603AD
+BattleTower_Lobby_EventScript_1603AD::
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 3
 	special SetBattleTowerProperty
@@ -125,14 +125,14 @@ BattleTower_Lobby_EventScript_1603AD:: @ 81603AD
 	goto_if_ne BattleTower_Lobby_EventScript_1603F8
 	msgbox BattleTower_Lobby_Text_19A617, MSGBOX_DEFAULT
 
-BattleTower_Lobby_EventScript_1603F8:: @ 81603F8
+BattleTower_Lobby_EventScript_1603F8::
 	msgbox BattleTower_Lobby_Text_199FA9, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_TEMP_0, 5
 	release
 	end
 
-BattleTower_Lobby_EventScript_160408:: @ 8160408
+BattleTower_Lobby_EventScript_160408::
 	msgbox BattleTower_Lobby_Text_19A520, MSGBOX_DEFAULT
 	waitmessage
 	closemessage
@@ -140,7 +140,7 @@ BattleTower_Lobby_EventScript_160408:: @ 8160408
 	release
 	end
 
-BattleTower_Lobby_EventScript_160419:: @ 8160419
+BattleTower_Lobby_EventScript_160419::
 	lock
 	faceplayer
 	textcolor 0x1
@@ -161,7 +161,7 @@ BattleTower_Lobby_EventScript_160419:: @ 8160419
 	release
 	end
 
-BattleTower_Lobby_EventScript_16044B:: @ 816044B
+BattleTower_Lobby_EventScript_16044B::
 	lock
 	faceplayer
 	textcolor 0x1
@@ -188,7 +188,7 @@ BattleTower_Lobby_EventScript_16044B:: @ 816044B
 	setvar VAR_TEMP_0, 0
 	waitstate
 
-BattleTower_Lobby_EventScript_16049E:: @ 816049E
+BattleTower_Lobby_EventScript_16049E::
 	lock
 	faceplayer
 	setvar VAR_0x8004, 0
@@ -198,7 +198,7 @@ BattleTower_Lobby_EventScript_16049E:: @ 816049E
 	special SavePlayerParty
 	msgbox BattleTower_Lobby_Text_199F2C, MSGBOX_DEFAULT
 
-BattleTower_Lobby_EventScript_1604BE:: @ 81604BE
+BattleTower_Lobby_EventScript_1604BE::
 	message BattleTower_Lobby_Text_199F79
 	waitmessage
 	multichoice 18, 6, MULTICHOICE_CHALLENGE_INFO_EXIT, 0
@@ -208,7 +208,7 @@ BattleTower_Lobby_EventScript_1604BE:: @ 81604BE
 	case 2, BattleTower_Lobby_EventScript_160652
 	case 127, BattleTower_Lobby_EventScript_160652
 
-BattleTower_Lobby_EventScript_1604FA:: @ 81604FA
+BattleTower_Lobby_EventScript_1604FA::
 	message BattleTower_Lobby_Text_19A024
 	waitmessage
 	multichoice 18, 6, MULTICHOICE_BATTLE_TOWER_LEVELS, 0
@@ -236,7 +236,7 @@ BattleTower_Lobby_EventScript_1604FA:: @ 81604FA
 	case YES, BattleTower_Lobby_EventScript_160587
 	case 127, BattleTower_Lobby_EventScript_16064F
 
-BattleTower_Lobby_EventScript_160587:: @ 8160587
+BattleTower_Lobby_EventScript_160587::
 	setvar VAR_0x8004, 5
 	special SetBattleTowerProperty
 	setvar VAR_TEMP_0, 0
@@ -269,42 +269,42 @@ BattleTower_Lobby_EventScript_160587:: @ 8160587
 	setvar VAR_TEMP_0, 0
 	waitstate
 
-BattleTower_Lobby_EventScript_160600:: @ 8160600
+BattleTower_Lobby_EventScript_160600::
 	msgbox BattleTower_Lobby_Text_19A0D1, MSGBOX_DEFAULT
 	goto BattleTower_Lobby_EventScript_1604BE
 
-BattleTower_Lobby_EventScript_16060D:: @ 816060D
+BattleTower_Lobby_EventScript_16060D::
 	switch VAR_RESULT
 	case 0, BattleTower_Lobby_EventScript_160628
 	case 1, BattleTower_Lobby_EventScript_160635
 
-BattleTower_Lobby_EventScript_160628:: @ 8160628
+BattleTower_Lobby_EventScript_160628::
 	textcolor 0x1
 	msgbox BattleTower_Lobby_Text_19A249, MSGBOX_DEFAULT
 	goto BattleTower_Lobby_EventScript_160662
 
-BattleTower_Lobby_EventScript_160635:: @ 8160635
+BattleTower_Lobby_EventScript_160635::
 	msgbox BattleTower_Lobby_Text_19A32D, MSGBOX_DEFAULT
 	goto BattleTower_Lobby_EventScript_160662
 
-BattleTower_Lobby_EventScript_160642:: @ 8160642
+BattleTower_Lobby_EventScript_160642::
 	setvar VAR_0x8004, 12
 	special SetBattleTowerProperty
 	goto BattleTower_Lobby_EventScript_160652
 
-BattleTower_Lobby_EventScript_16064F:: @ 816064F
+BattleTower_Lobby_EventScript_16064F::
 	special LoadPlayerParty
 
-BattleTower_Lobby_EventScript_160652:: @ 8160652
+BattleTower_Lobby_EventScript_160652::
 	msgbox BattleTower_Lobby_Text_199FA9, MSGBOX_DEFAULT
 	setvar VAR_0x8004, 11
 	special SetBattleTowerProperty
 
-BattleTower_Lobby_EventScript_160662:: @ 8160662
+BattleTower_Lobby_EventScript_160662::
 	release
 	end
 
-BattleTower_Lobby_EventScript_160664:: @ 8160664
+BattleTower_Lobby_EventScript_160664::
 	applymovement 1, BattleTower_Lobby_Movement_160693
 	applymovement OBJ_EVENT_ID_PLAYER, BattleTower_Lobby_Movement_160693
 	waitmovement 0
@@ -317,18 +317,18 @@ BattleTower_Lobby_EventScript_160664:: @ 8160664
 	waitdooranim
 	return
 
-BattleTower_Lobby_Movement_160693:: @ 8160693
+BattleTower_Lobby_Movement_160693::
 	walk_up
 	walk_up
 	walk_up
 	step_end
 
-BattleTower_Lobby_Movement_160697:: @ 8160697
+BattleTower_Lobby_Movement_160697::
 	walk_up
 	set_invisible
 	step_end
 
-BattleTower_Lobby_Movement_16069A:: @ 816069A
+BattleTower_Lobby_Movement_16069A::
 	walk_up
 	walk_up
 	set_invisible
@@ -343,19 +343,19 @@ BattleTower_Lobby_Movement_16069A:: @ 816069A
 	set_invisible
 	step_end
 
-BattleTower_Lobby_EventScript_1606A5:: @ 81606A5
+BattleTower_Lobby_EventScript_1606A5::
 	msgbox BattleTower_Lobby_Text_19A747, MSGBOX_NPC
 	end
 
-BattleTower_Lobby_EventScript_160715:: @ 8160715
+BattleTower_Lobby_EventScript_160715::
 	msgbox BattleTower_Lobby_Text_19A8AE, MSGBOX_NPC
 	end
 
-BattleTower_Lobby_EventScript_16071E:: @ 816071E
+BattleTower_Lobby_EventScript_16071E::
 	msgbox BattleTower_Lobby_Text_19A946, MSGBOX_NPC
 	end
 
-BattleTower_Lobby_EventScript_160727:: @ 8160727
+BattleTower_Lobby_EventScript_160727::
 	lockall
 	callnative ShowBattleTowerRecords
 	waitbuttonpress

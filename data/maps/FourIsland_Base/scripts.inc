@@ -5,20 +5,20 @@ FourIsland_Base_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, FourIsland_Base_OnFrame
 	.byte 0
 
-FourIsland_Base_OnTransition:: @ 8167CB9
+FourIsland_Base_OnTransition::
 	compare VAR_MAP_SCENE_FOUR_ISLAND, 0
 	call_if_eq FourIsland_Base_EventScript_ShowRival
 	end
 
-FourIsland_Base_EventScript_ShowRival:: @ 8167CCD
+FourIsland_Base_EventScript_ShowRival::
 	clearflag FLAG_HIDE_FOUR_ISLAND_RIVAL
 	return
 
-FourIsland_Base_OnFrame:: @ 8167CE2
+FourIsland_Base_OnFrame::
 	map_script_2 VAR_MAP_SCENE_FOUR_ISLAND, 0, FourIsland_Base_EventScript_RivalScene
 	.2byte 0
 
-FourIsland_Base_EventScript_RivalScene:: @ 8167CEC
+FourIsland_Base_EventScript_RivalScene::
 	lockall
 	textcolor 0
 	applymovement LOCALID_RIVAL, Movement_WalkInPlaceFastestDown
@@ -44,20 +44,20 @@ FourIsland_Base_EventScript_RivalScene:: @ 8167CEC
 	releaseall
 	end
 
-FourIsland_Base_Movement_RivalApproach:: @ 8167D49
+FourIsland_Base_Movement_RivalApproach::
 	walk_right
 	walk_right
 	walk_down
 	walk_down
 	step_end
 
-FourIsland_Base_Movement_RivalExit:: @ 8167D4E
+FourIsland_Base_Movement_RivalExit::
 	delay_16
 	delay_4
 	walk_down
 	step_end
 
-FourIsland_Base_Movement_PlayerWatchRivalExit:: @ 8167D52
+FourIsland_Base_Movement_PlayerWatchRivalExit::
 	walk_left
 	walk_in_place_fastest_right
 	step_end

@@ -1,17 +1,17 @@
-RS_BattleTower_BattleRoom_MapScripts:: @ 81608DB
+RS_BattleTower_BattleRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleTower_BattleRoom_MapScript2_1608E1
 	.byte 0
 
-BattleTower_BattleRoom_MapScript2_1608E1:: @ 81608E1
+BattleTower_BattleRoom_MapScript2_1608E1::
 	map_script_2 VAR_TEMP_0, 0, BattleTower_BattleRoom_EventScript_1608EB
 	.2byte 0
 
-BattleTower_BattleRoom_EventScript_1608EB:: @ 81608EB
+BattleTower_BattleRoom_EventScript_1608EB::
 	setvar VAR_TEMP_0, 1
 	applymovement OBJ_EVENT_ID_PLAYER, BattleTower_BattleRoom_Movement_160AB7
 	waitmovement 0
 
-BattleTower_BattleRoom_EventScript_1608FA:: @ 81608FA
+BattleTower_BattleRoom_EventScript_1608FA::
 	special ChooseNextBattleTowerTrainer
 	addobject 1
 	applymovement 1, BattleTower_BattleRoom_Movement_160AC0
@@ -42,7 +42,7 @@ BattleTower_BattleRoom_EventScript_1608FA:: @ 81608FA
 	warp MAP_RS_BATTLE_TOWER_LOBBY, 255, 6, 6
 	waitstate
 
-BattleTower_BattleRoom_EventScript_160961:: @ 8160961
+BattleTower_BattleRoom_EventScript_160961::
 	setvar VAR_0x8004, 6
 	special SetBattleTowerProperty
 	switch VAR_RESULT
@@ -63,7 +63,7 @@ BattleTower_BattleRoom_EventScript_160961:: @ 8160961
 	waitfanfare
 	callnative HealPlayerPartyOak
 
-BattleTower_BattleRoom_EventScript_1609B2:: @ 81609B2
+BattleTower_BattleRoom_EventScript_1609B2::
 	textcolor 0x1
 	msgbox BattleTower_BattleRoom_Text_19AD09, MSGBOX_YESNO
 	switch VAR_RESULT
@@ -71,7 +71,7 @@ BattleTower_BattleRoom_EventScript_1609B2:: @ 81609B2
 	case YES, BattleTower_BattleRoom_EventScript_160A3C
 	case 127, BattleTower_BattleRoom_EventScript_1609E0
 
-BattleTower_BattleRoom_EventScript_1609E0:: @ 81609E0
+BattleTower_BattleRoom_EventScript_1609E0::
 	textcolor 0x1
 	msgbox BattleTower_BattleRoom_Text_19AD3C, MSGBOX_YESNO
 	switch VAR_RESULT
@@ -79,7 +79,7 @@ BattleTower_BattleRoom_EventScript_1609E0:: @ 81609E0
 	case YES, BattleTower_BattleRoom_EventScript_160A94
 	case 127, BattleTower_BattleRoom_EventScript_160A0E
 
-BattleTower_BattleRoom_EventScript_160A0E:: @ 8160A0E
+BattleTower_BattleRoom_EventScript_160A0E::
 	textcolor 0x1
 	msgbox BattleTower_BattleRoom_Text_19AD66, MSGBOX_YESNO
 	switch VAR_RESULT
@@ -87,7 +87,7 @@ BattleTower_BattleRoom_EventScript_160A0E:: @ 8160A0E
 	case YES, BattleTower_BattleRoom_EventScript_160AB1
 	case 127, BattleTower_BattleRoom_EventScript_1609B2
 
-BattleTower_BattleRoom_EventScript_160A3C:: @ 8160A3C
+BattleTower_BattleRoom_EventScript_160A3C::
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, BattleTower_BattleRoom_Movement_160ABE
 	waitmovement 0
@@ -95,7 +95,7 @@ BattleTower_BattleRoom_EventScript_160A3C:: @ 8160A3C
 	waitmovement 0
 	goto BattleTower_BattleRoom_EventScript_1608FA
 
-BattleTower_BattleRoom_EventScript_160A56:: @ 8160A56
+BattleTower_BattleRoom_EventScript_160A56::
 	special LoadPlayerParty
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 4
@@ -112,7 +112,7 @@ BattleTower_BattleRoom_EventScript_160A56:: @ 8160A56
 	warp MAP_RS_BATTLE_TOWER_LOBBY, 255, 6, 6
 	waitstate
 
-BattleTower_BattleRoom_EventScript_160A94:: @ 8160A94
+BattleTower_BattleRoom_EventScript_160A94::
 	setvar VAR_0x8004, 2
 	special SaveBattleTowerProgress
 	textcolor 0x3
@@ -123,7 +123,7 @@ BattleTower_BattleRoom_EventScript_160A94:: @ 8160A94
 	waitse
 	msgbox BattleTower_BattleRoom_Text_1C6D05, MSGBOX_DEFAULT
 
-BattleTower_BattleRoom_EventScript_160AB1:: @ 8160AB1
+BattleTower_BattleRoom_EventScript_160AB1::
 	fadescreen FADE_TO_BLACK
 	special BattleTower_SoftReset
 	end
@@ -136,22 +136,22 @@ BattleTower_BattleRoom_EventScript_TextcolorFemale::
 	textcolor 0x1
 	return
 
-BattleTower_BattleRoom_Movement_160AB7:: @ 8160AB7
+BattleTower_BattleRoom_Movement_160AB7::
 	walk_up
 	walk_up
 	walk_up
 	face_right
 	step_end
 
-BattleTower_BattleRoom_Movement_160ABC:: @ 8160ABC
+BattleTower_BattleRoom_Movement_160ABC::
 	face_down
 	step_end
 
-BattleTower_BattleRoom_Movement_160ABE:: @ 8160ABE
+BattleTower_BattleRoom_Movement_160ABE::
 	face_right
 	step_end
 
-BattleTower_BattleRoom_Movement_160AC0:: @ 8160AC0
+BattleTower_BattleRoom_Movement_160AC0::
 	walk_down
 	walk_down
 	walk_down
@@ -159,21 +159,21 @@ BattleTower_BattleRoom_Movement_160AC0:: @ 8160AC0
 	face_left
 	step_end
 
-BattleTower_BattleRoom_Movement_160AC6:: @ 8160AC6
+BattleTower_BattleRoom_Movement_160AC6::
 	walk_up
 	walk_up
 	walk_up
 	walk_up
 	step_end
 
-BattleTower_BattleRoom_Movement_160ACB:: @ 8160ACB
+BattleTower_BattleRoom_Movement_160ACB::
 	walk_right
 	walk_right
 	walk_right
 	walk_up
 	step_end
 
-BattleTower_BattleRoom_Movement_160AD0:: @ 8160AD0
+BattleTower_BattleRoom_Movement_160AD0::
 	walk_down
 	walk_left
 	walk_left

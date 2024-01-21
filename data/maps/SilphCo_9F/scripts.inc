@@ -44,7 +44,7 @@ SilphCo_9F_EventScript_Grunt2::
 	msgbox SilphCo_9F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
 
-SilphCo_9F_EventScript_Woman:: @ 8161770
+SilphCo_9F_EventScript_Woman::
 	msgbox SilphCo_9F_Text_Woman, MSGBOX_NPC
 	end
 
@@ -56,7 +56,7 @@ SilphCo_9F_Text_Woman:
 	.string "Fortunately, we were out on\n"
 	.string "a trip when the ROCKETS came.$"
 
-SilphCo_9F_EventScript_GBAKid:: @ 8161770
+SilphCo_9F_EventScript_GBAKid::
 	msgbox SilphCo_9F_Text_GBAKid, MSGBOX_NPC
 	end
 
@@ -67,7 +67,7 @@ SilphCo_9F_Text_GBAKid:
 	.string "Did you miss some of the stuff\n"
 	.string "the ROCKETS dropped?$"
 
-SilphCo_9F_EventScript_LittleGirl:: @ 8161770
+SilphCo_9F_EventScript_LittleGirl::
 	msgbox SilphCo_9F_Text_LittleGirl, MSGBOX_NPC
 	end
 
@@ -78,7 +78,7 @@ SilphCo_9F_Text_LittleGirl:
 	.string "be really loud!\l"
 	.string "He'd have to listen after that!$"
 
-SilphCo_9F_EventScript_LittleBoy:: @ 8161770
+SilphCo_9F_EventScript_LittleBoy::
 	msgbox SilphCo_9F_Text_LittleBoy, MSGBOX_NPC
 	end
 
@@ -89,7 +89,7 @@ SilphCo_9F_Text_LittleBoy:
 	.string "…\n"
 	.string "It's SEEL…$"
 
-SilphCo_9F_EventScript_SeelGirl:: @ 8161770
+SilphCo_9F_EventScript_SeelGirl::
 	msgbox SilphCo_9F_Text_SeelGirl, MSGBOX_NPC
 	end
 
@@ -100,7 +100,7 @@ SilphCo_9F_Text_SeelGirl:
 	.string "time with SEEL.\p"
 	.string "I just can't win!$"
 
-SilphCo_9F_EventScript_Newbie:: @ 8161770
+SilphCo_9F_EventScript_Newbie::
 	msgbox SilphCo_9F_Text_Newbie, MSGBOX_NPC
 	end
 
@@ -113,7 +113,7 @@ SilphCo_9F_Text_Newbie:
 	.string "and suddenly I'm four floors up\l"
 	.string "and totally lost.$"
 
-SilphCo_9F_EventScript_WorkerF:: @ 8161770
+SilphCo_9F_EventScript_WorkerF::
 	msgbox SilphCo_9F_Text_WorkerF
 	release
 	end
@@ -123,7 +123,7 @@ SilphCo_9F_Text_WorkerF:
 	.string "all those ROCKETS.\p"
 	.string "You're so brave!$"
 
-SilphCo_9F_EventScript_BragWorkerM:: @ 8161770
+SilphCo_9F_EventScript_BragWorkerM::
 	msgbox SilphCo_9F_Text_BragWorkerM
 	release
 	end
@@ -138,7 +138,7 @@ SilphCo_9F_Text_BragWorkerM:
 	.string "I doubt they'll be back any time\n"
 	.string "soon after the thrashing they got.$"
 
-SilphCo_9F_EventScript_Scientist:: @ 8161770
+SilphCo_9F_EventScript_Scientist::
 	msgbox SilphCo_9F_Text_Scientist, MSGBOX_NPC
 	end
 

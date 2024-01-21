@@ -38,12 +38,12 @@ void MENewsJisanReset(void)
     r5->unk_0_2 = 0;
     r5->unk_0_5 = 0;
     r5->berry = 0;
-    VarSet(VAR_MENEWS_JISAN_STEP_COUNTER, 0);
+    VarSet(VAR_WONDER_NEWS_COUNTER, 0);
 }
 
 void MENewsJisanStepCounter(void)
 {
-    u16 *r4 = GetVarPointer(VAR_MENEWS_JISAN_STEP_COUNTER);
+    u16 *r4 = GetVarPointer(VAR_WONDER_NEWS_COUNTER);
     struct WonderNewsMetadata *r2 = GetMENewsJisanStructPtr();
     struct WonderNewsMetadata r0 = *r2;
 

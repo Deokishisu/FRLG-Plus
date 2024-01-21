@@ -90,7 +90,7 @@ SilphCo_6F_EventScript_Grunt2::
 	msgbox SilphCo_6F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
 
-SilphCo_6F_EventScript_SuperNerd:: @ 8161770
+SilphCo_6F_EventScript_SuperNerd::
 	msgbox SilphCo_6F_Text_SuperNerd, MSGBOX_NPC
 	end
 

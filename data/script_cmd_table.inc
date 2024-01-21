@@ -214,10 +214,9 @@ gScriptCmdTable::
 	.4byte ScrCmd_setmonmetlocation         @ 0xd2
 	.4byte ScrCmd_getbraillestringwidth     @ 0xd3
 	.4byte ScrCmd_bufferitemnameplural      @ 0xd4
-	.4byte ScrCmd_copyobjectxytoperm        @ 0xd5
-	.4byte ScrCmd_fadescreenswapbuffers     @ 0xd6
-	.4byte ScrCmd_setobjectmovementtypeinstant @0x67
-	.4byte ScrCmd_resetobjectmovementtype   @0xd8
+	.4byte ScrCmd_fadescreenswapbuffers     @ 0xd5
+	.4byte ScrCmd_setobjectmovementtypeinstant @0xd6
+	.4byte ScrCmd_resetobjectmovementtype   @0xd7
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

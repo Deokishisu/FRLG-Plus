@@ -532,7 +532,7 @@ void SetObjEventTemplateMovementType(u8 localId, u8 movementType)
     }
 }
 
-void Overworld_ResetObjEventTemplateMovementType(u8 localId)
+void ResetObjEventTemplateMovementType(u8 localId)
 {
     s32 i;
     struct ObjectEventTemplate *savObjTemplates = gSaveBlock1Ptr->objectEventTemplates;
@@ -2142,7 +2142,7 @@ static bool32 ReturnToFieldLink(u8 *state)
     return FALSE;
 }
 
-static void DoMapLoadLoop(u8 *state)
+void DoMapLoadLoop(u8 *state)
 {
     while (!LoadMapInStepsLocal(state, FALSE)) ;
 }

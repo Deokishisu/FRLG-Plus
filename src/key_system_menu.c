@@ -391,7 +391,7 @@ static void KeySystemMenu_PickSwitchCancel(void)
         AddTextPrinterParameterized3(2, 0, x, 0, sKeySystemMenuPickSwitchCancelTextColor, 0, gText_PickSwitchBack);
     }
     PutWindowTilemap(2);
-    CopyWindowToVram(2, COPYWIN_BOTH);
+    CopyWindowToVram(2, COPYWIN_FULL);
 }
 
 static void KeySystemMenu_ResetSpriteData(void)
@@ -408,10 +408,10 @@ static bool8 LoadKeySystemMenuPalette(void)
     switch (sKeySystemMenuPtr->loadPaletteState)
     {
     case 0:
-        LoadBgTiles(1, GetUserFrameGraphicsInfo(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1AA);
+        LoadBgTiles(1, GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1AA);
         break;
     case 1:
-        LoadPalette(GetUserFrameGraphicsInfo(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
+        LoadPalette(GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
         break;
     case 2:
         LoadPalette(sKeySystemMenuPalette, 0x10, 0x20);
@@ -452,8 +452,8 @@ static void Task_KeySystemMenu(u8 taskId)
             sKeySystemMenuPtr->loadState++;
             break;
         case 2:
-            LoadBgTiles(1, GetUserFrameGraphicsInfo(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1AA);
-            LoadPalette(GetUserFrameGraphicsInfo(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
+            LoadBgTiles(1, GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1AA);
+            LoadPalette(GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
             BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
             break;
         case 3:
@@ -667,7 +667,7 @@ static void BufferKeySystemMenuString(u8 selection)
         }
     }
     PutWindowTilemap(1);
-    CopyWindowToVram(1, COPYWIN_BOTH);
+    CopyWindowToVram(1, COPYWIN_FULL);
 }
 
 static void CloseAndSaveKeySystemMenu(u8 taskId)
@@ -695,11 +695,11 @@ static void PrintKeySystemMenuHeader(void)
 {
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
     if(!sKeySystemMenuPtr->inSubMenu)
-        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_KeySystemSettings, 8, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_KeySystemSettings, 8, 1, TEXT_SKIP_DRAW, NULL);
     else
-        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_Advanced, 8, 1, TEXT_SPEED_FF, NULL);
+        AddTextPrinterParameterized(WIN_TEXT_KEY, 2, gText_Advanced, 8, 1, TEXT_SKIP_DRAW, NULL);
     PutWindowTilemap(0);
-    CopyWindowToVram(0, COPYWIN_BOTH);
+    CopyWindowToVram(0, COPYWIN_FULL);
 }
 
 static void DrawKeySystemMenuBg(void)
@@ -735,14 +735,14 @@ static void LoadKeySystemMenuItemNames(void)
     {
         for (i = 0; i < MENUITEM_COUNT; i++)
         {
-            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SKIP_DRAW, NULL);    
         }
     }
     else
     {
         for (i = 0; i < MENUITEM_COUNT2; i++)
         {
-            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i + MENUITEM_COUNT], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SPEED_FF, NULL);    
+            AddTextPrinterParameterized(WIN_KEYS, 2, sKeySystemMenuItemsNames[i + MENUITEM_COUNT], 8, (u8)((i * (GetFontAttribute(2, FONTATTR_MAX_LETTER_HEIGHT))) + 2) - i, TEXT_SKIP_DRAW, NULL);    
         }
     }
 }

@@ -82,7 +82,7 @@
 // Bits 12-15 are the same for the player's party.
 // Used by Quest Log.
 #define VAR_QUEST_LOG_MON_COUNTS           0x4027
-#define VAR_MENEWS_JISAN_STEP_COUNTER      0x4028
+#define VAR_WONDER_NEWS_COUNTER            0x4028
 #define VAR_LAST_REPEL_USED                0x4029
 #define VAR_BATTLE_HOUSE                   0x402A //usage overflows into next var
 #define VAR_BATTLE_HOUSE2                  0x402B 

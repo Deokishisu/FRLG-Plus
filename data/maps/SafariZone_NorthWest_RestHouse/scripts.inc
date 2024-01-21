@@ -83,38 +83,35 @@ SafariZone_NorthWest_RestHouse_Text_Clipboard::
 	.string "- WARDEN BAOBA$"
 
 SafariZone_NorthWest_RestHouse_EventScript_Stepmonger::
-	callnative(SafariZoneCheckSteps)
-	compare VAR_RESULT, 600
-	goto_if_eq SafariZone_NorthWest_RestHouse_EventScript_StepmongerFull
+	callnative SafariZoneCheckSteps
+	goto_if_eq VAR_RESULT, 600, SafariZone_NorthWest_RestHouse_EventScript_StepmongerFull
 	msgbox SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_Text_0
-	showmoneybox 0, 0, 0
+	showmoneybox 0, 0
 	msgbox SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_Text_1, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_2
-	checkmoney 750, 0
-	compare VAR_RESULT, FALSE
-	goto_if_eq SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_5
-	removemoney 750, 0
-	updatemoneybox 0, 0, 0
+	goto_if_eq VAR_RESULT, NO, SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_2
+	checkmoney 750
+	goto_if_eq VAR_RESULT, FALSE, SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_5
+	removemoney 750
+	updatemoneybox
 	textcolor 3
 	playfanfare MUS_LEVEL_UP
 	msgbox SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_Text_3
 	waitfanfare
 	call EventScript_RestorePrevTextColor
 	msgbox SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_Text_4, MSGBOX_NPC
-	hidemoneybox 0, 0
+	hidemoneybox
 	callnative SafariZoneRefillSteps
 	release
 	end
 
 SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_2:
 	msgbox SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_Text_2, MSGBOX_NPC
-	hidemoneybox 0, 0
+	hidemoneybox
 	end
 
 SafariZone_NorthWest_RestHouse_EventScript_Stepmonger_5:
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_OopsNotEnoughMoney
-	hidemoneybox 0, 0
+	hidemoneybox
 	release
 	end
 

@@ -90,7 +90,7 @@ EventScript_PkmnCenterNurseTrainerCardFirst::
 	case SCR_MENU_CANCEL, EventScript_PkmnCenterNurse_Goodbye
 	end
 
-EventScript_PkmnCenterNurse_HealPkmnTrainerCard:: @ 81A65B8
+EventScript_PkmnCenterNurse_HealPkmnTrainerCard::
 	incrementgamestat GAME_STAT_USED_POKECENTER
 	message Text_TakeYourPkmnForFewSecondsTrainerCard
 	waitmessage
@@ -99,7 +99,7 @@ EventScript_PkmnCenterNurse_HealPkmnTrainerCard:: @ 81A65B8
 	goto EventScript_PkmnCenterNurse_ReturnPkmnTrainerCard
 	end
 
-EventScript_PkmnCenterNurse_ReturnPkmnTrainerCard:: @ 81A661D
+EventScript_PkmnCenterNurse_ReturnPkmnTrainerCard::
 	applymovement VAR_LAST_TALKED, Movement_Bow
 	waitmovement 0
 	msgbox Text_WeHopeToSeeYouAgain
@@ -118,7 +118,7 @@ Text_WelcomeTrainerCardFirst::
 	.string "Please, {PLAYER}, may I have the\n"
 	.string "honor of healing your POKéMON?$"
 
-Text_TakeYourPkmnForFewSecondsTrainerCard:: @ 81A54E1
+Text_TakeYourPkmnForFewSecondsTrainerCard::
 	.string "I will be pleased to take your\n"
 	.string "POKéMON for a few seconds.$"
 

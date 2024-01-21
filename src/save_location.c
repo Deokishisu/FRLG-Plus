@@ -98,13 +98,13 @@ void TrySetMapSaveWarpStatus(void)
 void SetUnlockedPokedexFlags(void)
 {
     // National Dex enable stuff minus the actual flag
-    u16 *ptr = GetVarPointer(VAR_0x404E);
-    gSaveBlock2Ptr->pokedex.unknown2 = 0xB9;
-    *ptr = 0x6258;
+    u16 *nationalDexVar = GetVarPointer(VAR_NATIONAL_DEX);
+    gSaveBlock2Ptr->pokedex.nationalMagic = 0xB9;
+    *nationalDexVar = 0x6258;
 
-    gSaveBlock2Ptr->gcnLinkFlags |= 0x1;
-    gSaveBlock2Ptr->gcnLinkFlags |= 0x10;
-    gSaveBlock2Ptr->gcnLinkFlags |= 0x20;
+    gSaveBlock2Ptr->gcnLinkFlags |= (1 << 0);
+    gSaveBlock2Ptr->gcnLinkFlags |= (1 << 4);
+    gSaveBlock2Ptr->gcnLinkFlags |= (1 << 5);
 
     //Allows for trading with all
     SetPostgameFlags();

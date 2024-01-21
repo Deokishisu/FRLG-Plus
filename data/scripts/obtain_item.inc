@@ -61,12 +61,12 @@ EventScript_BufferBerryPouch::
 	return
 
 EventScript_BufferMedicinePocket::
-	getstdstring 2, STDSTRING_MEDICINE_POCKET
+	bufferstdstring 2, STDSTRING_MEDICINE_POCKET
 	call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem
 	return
 
 EventScript_BufferHeldItemsPocket::
-	getstdstring 2, STDSTRING_HELD_ITEMS_POCKET
+	bufferstdstring 2, STDSTRING_HELD_ITEMS_POCKET
 	call_if_eq VAR_0x8007, TRUE, EventScript_PlayFanfareObtainedItem
 	return
 

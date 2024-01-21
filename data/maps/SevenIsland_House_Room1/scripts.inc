@@ -90,63 +90,63 @@ SevenIsland_House_Room1_EventScript_ShowingFameChecker::
 
 SevenIsland_House_Room1_EventScript_Brock::
 	setvar 0x8004, FAMECHECKER_BROCK
-	getstring 0, gText_Brock
-	getstring 1, SevenIsland_House_Room1_Text_HeString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_Brock0
+	bufferstring 0, gText_Brock
+	bufferstring 1, SevenIsland_House_Room1_Text_HeString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_Brock0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Misty::
 	setvar 0x8004, FAMECHECKER_MISTY
-	getstring 0, gText_Misty
-	getstring 1, SevenIsland_House_Room1_Text_SheString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_Misty0
+	bufferstring 0, gText_Misty
+	bufferstring 1, SevenIsland_House_Room1_Text_SheString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_Misty0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_LtSurge::
 	setvar 0x8004, FAMECHECKER_LTSURGE
-	getstring 0, gText_LtSurge
-	getstring 1, SevenIsland_House_Room1_Text_HeString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_LtSurge0
+	bufferstring 0, gText_LtSurge
+	bufferstring 1, SevenIsland_House_Room1_Text_HeString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_LtSurge0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Erika::
 	setvar 0x8004, FAMECHECKER_ERIKA
-	getstring 0, gText_Erika
-	getstring 1, SevenIsland_House_Room1_Text_SheString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_Erika0
+	bufferstring 0, gText_Erika
+	bufferstring 1, SevenIsland_House_Room1_Text_SheString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_Erika0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Koga::
 	setvar 0x8004, FAMECHECKER_KOGA
-	getstring 0, gText_Koga
-	getstring 1, SevenIsland_House_Room1_Text_HeString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_Koga0
+	bufferstring 0, gText_Koga
+	bufferstring 1, SevenIsland_House_Room1_Text_HeString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_Koga0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Sabrina::
 	setvar 0x8004, FAMECHECKER_SABRINA
-	getstring 0, gText_Sabrina
-	getstring 1, SevenIsland_House_Room1_Text_SheString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_Sabrina0
+	bufferstring 0, gText_Sabrina
+	bufferstring 1, SevenIsland_House_Room1_Text_SheString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_Sabrina0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
 
 SevenIsland_House_Room1_EventScript_Blaine::
 	setvar 0x8004, FAMECHECKER_BLAINE
-	getstring 0, gText_Blaine
-	getstring 1, SevenIsland_House_Room1_Text_HeString
-	getstring 2, gFameCheckerFlavorTextOriginLocation_Blaine0
+	bufferstring 0, gText_Blaine
+	bufferstring 1, SevenIsland_House_Room1_Text_HeString
+	bufferstring 2, gFameCheckerFlavorTextOriginLocation_Blaine0
 	callnative CheckFilledFameCheckerFor0x8004
 	goto_if_eq VAR_RESULT, TRUE, SevenIsland_House_Room1_EventScript_FullFamecheckerForPerson
 	goto SevenIsland_House_Room1_EventScript_NotFullFamecheckerForPerson
@@ -330,51 +330,51 @@ SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors::
 	end
 
 SevenIsland_House_Room1_EventScript_Buffer2::
-	getstring 1, SevenIsland_House_Room1_Text_Two
+	bufferstring 1, SevenIsland_House_Room1_Text_Two
 	goto SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer3::
-	getstring 1, SevenIsland_House_Room1_Text_Three
+	bufferstring 1, SevenIsland_House_Room1_Text_Three
 	goto SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer4::
-	getstring 1, SevenIsland_House_Room1_Text_Four
+	bufferstring 1, SevenIsland_House_Room1_Text_Four
 	goto SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer5::
-	getstring 1, SevenIsland_House_Room1_Text_Five
+	bufferstring 1, SevenIsland_House_Room1_Text_Five
 	goto SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer6::
-	getstring 1, SevenIsland_House_Room1_Text_Six
+	bufferstring 1, SevenIsland_House_Room1_Text_Six
 	goto SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer7::
-	getstring 1, SevenIsland_House_Room1_Text_Seven
+	bufferstring 1, SevenIsland_House_Room1_Text_Seven
 	goto SevenIsland_House_Room1_EventScript_OldWomanMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer2All::
-	getstring 1, SevenIsland_House_Room1_Text_Two
+	bufferstring 1, SevenIsland_House_Room1_Text_Two
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer3All::
-	getstring 1, SevenIsland_House_Room1_Text_Three
+	bufferstring 1, SevenIsland_House_Room1_Text_Three
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer4All::
-	getstring 1, SevenIsland_House_Room1_Text_Four
+	bufferstring 1, SevenIsland_House_Room1_Text_Four
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer5All::
-	getstring 1, SevenIsland_House_Room1_Text_Five
+	bufferstring 1, SevenIsland_House_Room1_Text_Five
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer6All::
-	getstring 1, SevenIsland_House_Room1_Text_Six
+	bufferstring 1, SevenIsland_House_Room1_Text_Six
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Buffer7All::
-	getstring 1, SevenIsland_House_Room1_Text_Seven
+	bufferstring 1, SevenIsland_House_Room1_Text_Seven
 	goto SevenIsland_House_Room1_EventScript_OldWomanToldAllMultiVisitors
 
 SevenIsland_House_Room1_EventScript_Box::

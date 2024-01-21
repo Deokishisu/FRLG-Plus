@@ -515,12 +515,12 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
                 // speed 2 is fast, same speed as running
                 PlayerGoSpeed2(direction);
             else
-                sub_805C164(direction);
+                PlayerGoSpeed4(direction);
         }
         else
         {
             if(heldKeys & B_BUTTON)
-                sub_805C164(direction);
+                PlayerGoSpeed4(direction);
             else
                 // speed 2 is fast, same speed as running
                 PlayerGoSpeed2(direction);
@@ -788,7 +788,7 @@ static void PlayerAvatarTransition_Underwater(struct ObjectEvent * playerObjEven
     //ObjectEventSetGraphicsId(playerObjEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_UNDERWATER));
     //ObjectEventTurn(playerObjEvent, playerObjEvent->movementDirection);
     SetPlayerAvatarStateMask(PLAYER_AVATAR_FLAG_UNDERWATER);
-    gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId = CreateDiveBobbingSprite(gPlayerAvatar.spriteId);
+    gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId = StartUnderwaterSurfBlobBobbing(gPlayerAvatar.spriteId);
 }
 
 static void PlayerAvatarTransition_ReturnToField(struct ObjectEvent * playerObjEvent)

@@ -17,16 +17,13 @@ SaffronCity_OnTransition::
 SaffronCity_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_PONYTA
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq SaffronCity_MapScript_PonytaMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, SaffronCity_MapScript_PonytaMasterMovementType
 	setvar TRAINER, MASTER_RAPIDASH
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq SaffronCity_MapScript_RapidashMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, SaffronCity_MapScript_RapidashMasterMovementType
 	setvar TRAINER, MASTER_CLEFAIRY
 	callnative ShouldChangeMasterTrainerMovementType
-	compare VAR_RESULT, FALSE
-	call_if_eq SaffronCity_MapScript_ClefairyMasterMovementType
+	call_if_eq VAR_RESULT, FALSE, SaffronCity_MapScript_ClefairyMasterMovementType
 	end
 
 SaffronCity_MapScript_PonytaMasterMovementType::

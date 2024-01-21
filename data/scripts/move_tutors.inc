@@ -946,7 +946,7 @@ CapeBrinkTutor_EventScript_MoveJustTaught::
 
 CapeBrinkTutor_EventScript_TaughtAllMoves::
 	msgbox Text_FeelRejuvenated
-	getfirstpartymonname 0
+	bufferleadmonspeciesname 0
 	specialvar VAR_RESULT, CapeBrinkGetMoveToTeachLeadPokemon
 	goto_if_eq VAR_RESULT, FALSE, CapeBrinkTutor_EventScript_NoLeadStarter2
 	copyvar VAR_0x8009, VAR_0x8005

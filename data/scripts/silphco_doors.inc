@@ -58,7 +58,7 @@ EventScript_Close4FDoor2::
 	setmetatile 15, 13, METATILE_SilphCo_Floor_ShadeFull, 0
 	return
 
-EventScript_Close5FDoor1:: @ 81AMETATILE_SilphCo_Floor_WallRightCornerF
+EventScript_Close5FDoor1::
 	setmetatile 7, 8, METATILE_SilphCo_VerticalBarrier_TopLeft, 1
 	setmetatile 8, 8, METATILE_SilphCo_VerticalBarrier_TopRight, 1
 	setmetatile 7, 9, METATILE_SilphCo_VerticalBarrier_MidLeft, 1

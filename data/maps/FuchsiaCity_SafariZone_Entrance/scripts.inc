@@ -211,7 +211,7 @@ FuchsiaCity_SafariZone_Entrance_Movement_EnterSafariZoneLeft::
 FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendant::
 	lock
 	faceplayer
-	getstring 0, FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantFour
+	bufferstring 0, FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantFour
 	call_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendantBufferSix
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_FirstTimeAtSafariZone, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, FuchsiaCity_SafariZone_Entrance_EventScript_ExplainSafariZone
@@ -220,7 +220,7 @@ FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendant::
 	end
 
 FuchsiaCity_SafariZone_Entrance_EventScript_InfoAttendantBufferSix::
-	getstring 0, FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantSix
+	bufferstring 0, FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantSix
 	return
 
 FuchsiaCity_SafariZone_Entrance_Text_InfoAttendantFour::

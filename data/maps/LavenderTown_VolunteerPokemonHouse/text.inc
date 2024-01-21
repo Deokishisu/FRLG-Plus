@@ -107,7 +107,7 @@ LavenderTown_VolunteerPokemonHouse_Text_NotEncounteredMew::
     .string "If I remember correctly, it\n"
     .string "enjoys playing in the long grass.$"
 
-LavenderTown_VolunteerPokemonHouse_Text_HowAreYouAndMew:: @ 8193878
+LavenderTown_VolunteerPokemonHouse_Text_HowAreYouAndMew::
     .string "MR. FUJI: {PLAYER}! Welcome!\n"
     .string "How are you and MEW doing?$"
 

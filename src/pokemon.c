@@ -2633,7 +2633,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
@@ -2642,7 +2642,7 @@ const struct SpriteTemplate gSpriteTemplates_TrainerBackpics[] =
         .callback = SpriteCB_AllyMon,
     },
     {
-        .tileTag = SPRITE_INVALID_TAG,
+        .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 

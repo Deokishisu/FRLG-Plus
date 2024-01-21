@@ -1322,10 +1322,10 @@ static void SetCursorMonData(void *pokemon, u8 mode)
 
         txtPtr = gPSSData->displayMonTexts[1];
         *(txtPtr)++ = CHAR_SLASH;
-        if(gPSSData->cursorMonSpecies >= 65530 && gPSSData->cursorMonSpecies <= 65533)
+        if(gPSSData->displayMonSpecies >= 65530 && gPSSData->displayMonSpecies <= 65533)
             StringCopyPadded(txtPtr, gSpeciesNames[SPECIES_DEOXYS], CHAR_SPACE, 5);
         else
-            StringCopyPadded(txtPtr, gSpeciesNames[gPSSData->cursorMonSpecies], CHAR_SPACE, 5);
+            StringCopyPadded(txtPtr, gSpeciesNames[gPSSData->displayMonSpecies], CHAR_SPACE, 5);
 
         txtPtr = gPSSData->displayMonTexts[2];
         *(txtPtr)++ = EXT_CTRL_CODE_BEGIN;

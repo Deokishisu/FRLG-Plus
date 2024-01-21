@@ -1,7 +1,7 @@
 const struct Trainer gMasterTrainers[] = {
     [TRAINER_NONE] = {
         .partyFlags = 0,
-        .trainerClass = CLASS_PKMN_TRAINER,
+        .trainerClass = TRAINER_CLASS_PKMN_TRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_AQUA_LEADER_ARCHIE,
         .trainerName = _(""),
@@ -13,1747 +13,1747 @@ const struct Trainer gMasterTrainers[] = {
     },
     [MASTER_BULBASAUR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("RENA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterBulbasaur),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterBulbasaur}
+        .partySize = NELEMS(sParty_MasterBulbasaur),
+        .party = {.ItemCustomMovesEVs = sParty_MasterBulbasaur}
     },
     [MASTER_IVYSAUR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("KATRINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterIvysaur),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterIvysaur}
+        .partySize = NELEMS(sParty_MasterIvysaur),
+        .party = {.ItemCustomMovesEVs = sParty_MasterIvysaur}
     },
     [MASTER_VENUSAUR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("SAL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVenusaur),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVenusaur}
+        .partySize = NELEMS(sParty_MasterVenusaur),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVenusaur}
     },
     [MASTER_CHARMANDER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("TIM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterCharmander),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterCharmander}
+        .partySize = NELEMS(sParty_MasterCharmander),
+        .party = {.ItemCustomMovesEVs = sParty_MasterCharmander}
     },
     [MASTER_CHARMELEON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("CHRISTOPHER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterCharmeleon),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterCharmeleon}
+        .partySize = NELEMS(sParty_MasterCharmeleon),
+        .party = {.ItemCustomMovesEVs = sParty_MasterCharmeleon}
     },
     [MASTER_CHARIZARD] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("EDMUND"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterCharizard),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterCharizard}
+        .partySize = NELEMS(sParty_MasterCharizard),
+        .party = {.ItemCustomMovesEVs = sParty_MasterCharizard}
     },
     [MASTER_SQUIRTLE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BEAUTY_2,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_BEAUTY,
         .trainerName = _("SUZY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSquirtle),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSquirtle}
+        .partySize = NELEMS(sParty_MasterSquirtle),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSquirtle}
     },
     [MASTER_WARTORTLE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("PRITA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterWartortle),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterWartortle}
+        .partySize = NELEMS(sParty_MasterWartortle),
+        .party = {.ItemCustomMovesEVs = sParty_MasterWartortle}
     },
     [MASTER_BLASTOISE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("TESSA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterBlastoise),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterBlastoise}
+        .partySize = NELEMS(sParty_MasterBlastoise),
+        .party = {.ItemCustomMovesEVs = sParty_MasterBlastoise}
     },
     [MASTER_CATERPIE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("JAKE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterCaterpie),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterCaterpie}
+        .partySize = NELEMS(sParty_MasterCaterpie),
+        .party = {.ItemCustomMovesEVs = sParty_MasterCaterpie}
     },
     [MASTER_METAPOD] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("BRYSON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMetapod),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMetapod}
+        .partySize = NELEMS(sParty_MasterMetapod),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMetapod}
     },
     [MASTER_BUTTERFREE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("BOBBY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterButterfree),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterButterfree}
+        .partySize = NELEMS(sParty_MasterButterfree),
+        .party = {.ItemCustomMovesEVs = sParty_MasterButterfree}
     },
     [MASTER_WEEDLE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("SCOTT"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterWeedle),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterWeedle}
+        .partySize = NELEMS(sParty_MasterWeedle),
+        .party = {.ItemCustomMovesEVs = sParty_MasterWeedle}
     },
     [MASTER_KAKUNA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("KENNY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKakuna),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKakuna}
+        .partySize = NELEMS(sParty_MasterKakuna),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKakuna}
     },
     [MASTER_BEEDRILL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("TERRY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterBeedrill),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterBeedrill}
+        .partySize = NELEMS(sParty_MasterBeedrill),
+        .party = {.ItemCustomMovesEVs = sParty_MasterBeedrill}
     },
     [MASTER_PIDGEY] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("LOUEY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPidgey),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPidgey}
+        .partySize = NELEMS(sParty_MasterPidgey),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPidgey}
     },
     [MASTER_PIDGEOTTO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("HOWIE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPidgeotto),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPidgeotto}
+        .partySize = NELEMS(sParty_MasterPidgeotto),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPidgeotto}
     },
     [MASTER_PIDGEOT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("WYATT"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPidgeot),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPidgeot}
+        .partySize = NELEMS(sParty_MasterPidgeot),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPidgeot}
     },
     [MASTER_RATTATA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_YOUNGSTER_2,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_YOUNGSTER,
         .trainerName = _("BRET"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterRattata),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterRattata}
+        .partySize = NELEMS(sParty_MasterRattata),
+        .party = {.ItemCustomMovesEVs = sParty_MasterRattata}
     },
     [MASTER_RATICATE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_YOUNGSTER_2,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_YOUNGSTER,
         .trainerName = _("DENIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterRaticate),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterRaticate}
+        .partySize = NELEMS(sParty_MasterRaticate),
+        .party = {.ItemCustomMovesEVs = sParty_MasterRaticate}
     },
     [MASTER_SPEAROW] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("RALPH"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSpearow),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSpearow}
+        .partySize = NELEMS(sParty_MasterSpearow),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSpearow}
     },
     [MASTER_FEAROW] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("THEO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterFearow),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterFearow}
+        .partySize = NELEMS(sParty_MasterFearow),
+        .party = {.ItemCustomMovesEVs = sParty_MasterFearow}
     },
     [MASTER_EKANS] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("HERBERT"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterEkans),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterEkans}
+        .partySize = NELEMS(sParty_MasterEkans),
+        .party = {.ItemCustomMovesEVs = sParty_MasterEkans}
     },
     [MASTER_ARBOK] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("ADAM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterArbok),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterArbok}
+        .partySize = NELEMS(sParty_MasterArbok),
+        .party = {.ItemCustomMovesEVs = sParty_MasterArbok}
     },
     [MASTER_PIKACHU] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("IKUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPikachu),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPikachu}
+        .partySize = NELEMS(sParty_MasterPikachu),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPikachu}
     },
     [MASTER_RAICHU] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("CHARLOTTE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterRaichu),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterRaichu}
+        .partySize = NELEMS(sParty_MasterRaichu),
+        .party = {.ItemCustomMovesEVs = sParty_MasterRaichu}
     },
     [MASTER_SANDSHREW] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("PAUL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSandshrew),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSandshrew}
+        .partySize = NELEMS(sParty_MasterSandshrew),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSandshrew}
     },
     [MASTER_SANDSLASH] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("BENJAMIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSandslash),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSandslash}
+        .partySize = NELEMS(sParty_MasterSandslash),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSandslash}
     },
     [MASTER_NIDORAN_F] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("RONNIE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNidoranF),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNidoranF}
+        .partySize = NELEMS(sParty_MasterNidoranF),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNidoranF}
     },
     [MASTER_NIDORINA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("FRED"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNidorina),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNidorina}
+        .partySize = NELEMS(sParty_MasterNidorina),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNidorina}
     },
     [MASTER_NIDOQUEEN] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("PERCY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNidoqueen),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNidoqueen}
+        .partySize = NELEMS(sParty_MasterNidoqueen),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNidoqueen}
     },
     [MASTER_NIDORAN_M] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("ALVIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNidoranM),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNidoranM}
+        .partySize = NELEMS(sParty_MasterNidoranM),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNidoranM}
     },
     [MASTER_NIDORINO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("DAVE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNidorino),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNidorino}
+        .partySize = NELEMS(sParty_MasterNidorino),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNidorino}
     },
     [MASTER_NIDOKING] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("CARLTON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNidoking),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNidoking}
+        .partySize = NELEMS(sParty_MasterNidoking),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNidoking}
     },
     [MASTER_CLEFAIRY] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("CHEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterClefairy),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterClefairy}
+        .partySize = NELEMS(sParty_MasterClefairy),
+        .party = {.ItemCustomMovesEVs = sParty_MasterClefairy}
     },
     [MASTER_CLEFABLE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("ALEXANDRA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterClefable),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterClefable}
+        .partySize = NELEMS(sParty_MasterClefable),
+        .party = {.ItemCustomMovesEVs = sParty_MasterClefable}
     },
     [MASTER_VULPIX] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("FINN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVulpix),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVulpix}
+        .partySize = NELEMS(sParty_MasterVulpix),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVulpix}
     },
     [MASTER_NINETALES] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("ARNOLD"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterNinetales),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterNinetales}
+        .partySize = NELEMS(sParty_MasterNinetales),
+        .party = {.ItemCustomMovesEVs = sParty_MasterNinetales}
     },
     [MASTER_JIGGLYPUFF] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("MARGE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterJigglypuff),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterJigglypuff}
+        .partySize = NELEMS(sParty_MasterJigglypuff),
+        .party = {.ItemCustomMovesEVs = sParty_MasterJigglypuff}
     },
     [MASTER_WIGGLYTUFF] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("YUMI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterWigglytuff),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterWigglytuff}
+        .partySize = NELEMS(sParty_MasterWigglytuff),
+        .party = {.ItemCustomMovesEVs = sParty_MasterWigglytuff}
     },
     [MASTER_ZUBAT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("WEST"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterZubat),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterZubat}
+        .partySize = NELEMS(sParty_MasterZubat),
+        .party = {.ItemCustomMovesEVs = sParty_MasterZubat}
     },
     [MASTER_GOLBAT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("KEATON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGolbat),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGolbat}
+        .partySize = NELEMS(sParty_MasterGolbat),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGolbat}
     },
     [MASTER_ODDISH] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("AMY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterOddish),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOddish}
+        .partySize = NELEMS(sParty_MasterOddish),
+        .party = {.ItemCustomMovesEVs = sParty_MasterOddish}
     },
     [MASTER_GLOOM] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("EMMA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGloom),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGloom}
+        .partySize = NELEMS(sParty_MasterGloom),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGloom}
     },
     [MASTER_VILEPLUME] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("SATOKO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVileplume),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVileplume}
+        .partySize = NELEMS(sParty_MasterVileplume),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVileplume}
     },
     [MASTER_PARAS] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("EVAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterParas),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterParas}
+        .partySize = NELEMS(sParty_MasterParas),
+        .party = {.ItemCustomMovesEVs = sParty_MasterParas}
     },
     [MASTER_PARASECT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("HANS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterParasect),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterParasect}
+        .partySize = NELEMS(sParty_MasterParasect),
+        .party = {.ItemCustomMovesEVs = sParty_MasterParasect}
     },
     [MASTER_VENONAT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("OLLY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVenonat),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVenonat}
+        .partySize = NELEMS(sParty_MasterVenonat),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVenonat}
     },
     [MASTER_VENOMOTH] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("LAJOS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVenomoth),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVenomoth}
+        .partySize = NELEMS(sParty_MasterVenomoth),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVenomoth}
     },
     [MASTER_DIGLETT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("COLIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDiglett),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDiglett}
+        .partySize = NELEMS(sParty_MasterDiglett),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDiglett}
     },
     [MASTER_DUGTRIO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("DEXTER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDugtrio),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDugtrio}
+        .partySize = NELEMS(sParty_MasterDugtrio),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDugtrio}
     },
     [MASTER_MEOWTH] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_YOUNGSTER_2,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_YOUNGSTER,
         .trainerName = _("KEN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMeowth),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMeowth}
+        .partySize = NELEMS(sParty_MasterMeowth),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMeowth}
     },
     [MASTER_PERSIAN] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_YOUNGSTER_2,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_YOUNGSTER,
         .trainerName = _("SHAWN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPersian),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPersian}
+        .partySize = NELEMS(sParty_MasterPersian),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPersian}
     },
     [MASTER_PSYDUCK] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("NICOLE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPsyduck),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPsyduck}
+        .partySize = NELEMS(sParty_MasterPsyduck),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPsyduck}
     },
     [MASTER_GOLDUCK] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("CAMILLE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGolduck),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGolduck}
+        .partySize = NELEMS(sParty_MasterGolduck),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGolduck}
     },
     [MASTER_MANKEY] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("TADASHI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMankey),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMankey}
+        .partySize = NELEMS(sParty_MasterMankey),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMankey}
     },
     [MASTER_PRIMEAPE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("KANO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPrimeape),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPrimeape}
+        .partySize = NELEMS(sParty_MasterPrimeape),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPrimeape}
     },
     [MASTER_GROWLITHE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("AUSTIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGrowlithe),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGrowlithe}
+        .partySize = NELEMS(sParty_MasterGrowlithe),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGrowlithe}
     },
     [MASTER_ARCANINE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("SATCH"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterArcanine),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterArcanine}
+        .partySize = NELEMS(sParty_MasterArcanine),
+        .party = {.ItemCustomMovesEVs = sParty_MasterArcanine}
     },
     [MASTER_POLIWAG] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("VICKY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPoliwag),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPoliwag}
+        .partySize = NELEMS(sParty_MasterPoliwag),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPoliwag}
     },
     [MASTER_POLIWHIRL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("KIMBERLY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPoliwhirl),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPoliwhirl}
+        .partySize = NELEMS(sParty_MasterPoliwhirl),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPoliwhirl}
     },
     [MASTER_POLIWRATH] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("YUEN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPoliwrath),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPoliwrath}
+        .partySize = NELEMS(sParty_MasterPoliwrath),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPoliwrath}
     },
     [MASTER_ABRA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("ANGELO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterAbra),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterAbra}
+        .partySize = NELEMS(sParty_MasterAbra),
+        .party = {.ItemCustomMovesEVs = sParty_MasterAbra}
     },
     [MASTER_KADABRA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("JAIME"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKadabra),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKadabra}
+        .partySize = NELEMS(sParty_MasterKadabra),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKadabra}
     },
     [MASTER_ALAKAZAM] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("FRASIER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterAlakazam),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterAlakazam}
+        .partySize = NELEMS(sParty_MasterAlakazam),
+        .party = {.ItemCustomMovesEVs = sParty_MasterAlakazam}
     },
     [MASTER_MACHOP] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("MASAHIRO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMachop),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMachop}
+        .partySize = NELEMS(sParty_MasterMachop),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMachop}
     },
     [MASTER_MACHOKE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("RYUJI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMachoke),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMachoke}
+        .partySize = NELEMS(sParty_MasterMachoke),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMachoke}
     },
     [MASTER_MACHAMP] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("RANDY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMachamp),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMachamp}
+        .partySize = NELEMS(sParty_MasterMachamp),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMachamp}
     },
     [MASTER_BELLSPROUT] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("HANA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterBellsprout),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterBellsprout}
+        .partySize = NELEMS(sParty_MasterBellsprout),
+        .party = {.ItemCustomMovesEVs = sParty_MasterBellsprout}
     },
     [MASTER_WEEPINBELL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("EMILY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterWeepinbell),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterWeepinbell}
+        .partySize = NELEMS(sParty_MasterWeepinbell),
+        .party = {.ItemCustomMovesEVs = sParty_MasterWeepinbell}
     },
     [MASTER_VICTREEBEL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("DIANNE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVictreebel),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVictreebel}
+        .partySize = NELEMS(sParty_MasterVictreebel),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVictreebel}
     },
     [MASTER_TENTACOOL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("FRANCIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterTentacool),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterTentacool}
+        .partySize = NELEMS(sParty_MasterTentacool),
+        .party = {.ItemCustomMovesEVs = sParty_MasterTentacool}
     },
     [MASTER_TENTACRUEL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("MELVIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterTentacruel),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterTentacruel}
+        .partySize = NELEMS(sParty_MasterTentacruel),
+        .party = {.ItemCustomMovesEVs = sParty_MasterTentacruel}
     },
     [MASTER_GEODUDE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("IRWIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGeodude),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGeodude}
+        .partySize = NELEMS(sParty_MasterGeodude),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGeodude}
     },
     [MASTER_GRAVELER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("DILLAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGraveler),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGraveler}
+        .partySize = NELEMS(sParty_MasterGraveler),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGraveler}
     },
     [MASTER_GOLEM] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("VALENTINO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGolem),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGolem}
+        .partySize = NELEMS(sParty_MasterGolem),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGolem}
     },
     [MASTER_PONYTA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("GARRET"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPonyta),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPonyta}
+        .partySize = NELEMS(sParty_MasterPonyta),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPonyta}
     },
     [MASTER_RAPIDASH] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("RAYMOND"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterRapidash),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterRapidash}
+        .partySize = NELEMS(sParty_MasterRapidash),
+        .party = {.ItemCustomMovesEVs = sParty_MasterRapidash}
     },
     [MASTER_SLOWPOKE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BEAUTY_2,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_BEAUTY,
         .trainerName = _("JILL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSlowpoke),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSlowpoke}
+        .partySize = NELEMS(sParty_MasterSlowpoke),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSlowpoke}
     },
     [MASTER_SLOWBRO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BEAUTY_2,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_BEAUTY,
         .trainerName = _("HARUKA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSlowbro),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSlowbro}
+        .partySize = NELEMS(sParty_MasterSlowbro),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSlowbro}
     },
     [MASTER_MAGNEMITE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("MURRAY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMagnemite),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMagnemite}
+        .partySize = NELEMS(sParty_MasterMagnemite),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMagnemite}
     },
     [MASTER_MAGNETON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("JULIAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMagneton),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMagneton}
+        .partySize = NELEMS(sParty_MasterMagneton),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMagneton}
     },
     [MASTER_FARFETCHD] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("MOE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterFarfetchd),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterFarfetchd}
+        .partySize = NELEMS(sParty_MasterFarfetchd),
+        .party = {.ItemCustomMovesEVs = sParty_MasterFarfetchd}
     },
     [MASTER_DODUO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("BARNEY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDoduo),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDoduo}
+        .partySize = NELEMS(sParty_MasterDoduo),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDoduo}
     },
     [MASTER_DODRIO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BIRD_KEEPER_2,
+        .trainerClass = TRAINER_CLASS_BIRD_KEEPER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_BIRD_KEEPER,
         .trainerName = _("SEYMOUR"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDodrio),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDodrio}
+        .partySize = NELEMS(sParty_MasterDodrio),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDodrio}
     },
     [MASTER_SEEL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BEAUTY_2,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_BEAUTY,
         .trainerName = _("AINA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSeel),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSeel}
+        .partySize = NELEMS(sParty_MasterSeel),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSeel}
     },
     [MASTER_DEWGONG] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BEAUTY_2,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_BEAUTY,
         .trainerName = _("LOIS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDewgong),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDewgong}
+        .partySize = NELEMS(sParty_MasterDewgong),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDewgong}
     },
     [MASTER_GRIMER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("CORY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGrimer),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGrimer}
+        .partySize = NELEMS(sParty_MasterGrimer),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGrimer}
     },
     [MASTER_MUK] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("GORDON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMuk),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMuk}
+        .partySize = NELEMS(sParty_MasterMuk),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMuk}
     },
     [MASTER_SHELLDER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("SHELLY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterShellder),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterShellder}
+        .partySize = NELEMS(sParty_MasterShellder),
+        .party = {.ItemCustomMovesEVs = sParty_MasterShellder}
     },
     [MASTER_CLOYSTER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("ROSE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterCloyster),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterCloyster}
+        .partySize = NELEMS(sParty_MasterCloyster),
+        .party = {.ItemCustomMovesEVs = sParty_MasterCloyster}
     },
     [MASTER_GASTLY] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("ARIN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGastly),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGastly}
+        .partySize = NELEMS(sParty_MasterGastly),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGastly}
     },
     [MASTER_HAUNTER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("DANNY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterHaunter),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterHaunter}
+        .partySize = NELEMS(sParty_MasterHaunter),
+        .party = {.ItemCustomMovesEVs = sParty_MasterHaunter}
     },
     [MASTER_GENGAR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("ROSS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGengar),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGengar}
+        .partySize = NELEMS(sParty_MasterGengar),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGengar}
     },
     [MASTER_ONIX] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("JIM"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterOnix),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOnix}
+        .partySize = NELEMS(sParty_MasterOnix),
+        .party = {.ItemCustomMovesEVs = sParty_MasterOnix}
     },
     [MASTER_DROWZEE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("ANTON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDrowzee),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDrowzee}
+        .partySize = NELEMS(sParty_MasterDrowzee),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDrowzee}
     },
     [MASTER_HYPNO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("VLAD"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterHypno),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterHypno}
+        .partySize = NELEMS(sParty_MasterHypno),
+        .party = {.ItemCustomMovesEVs = sParty_MasterHypno}
     },
     [MASTER_KRABBY] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("CARL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKrabby),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKrabby}
+        .partySize = NELEMS(sParty_MasterKrabby),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKrabby}
     },
     [MASTER_KINGLER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("LEOPOLD"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKingler),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKingler}
+        .partySize = NELEMS(sParty_MasterKingler),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKingler}
     },
     [MASTER_VOLTORB] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("HUMPHREY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVoltorb),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVoltorb}
+        .partySize = NELEMS(sParty_MasterVoltorb),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVoltorb}
     },
     [MASTER_ELECTRODE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("ELTON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterElectrode),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterElectrode}
+        .partySize = NELEMS(sParty_MasterElectrode),
+        .party = {.ItemCustomMovesEVs = sParty_MasterElectrode}
     },
     [MASTER_EXEGGCUTE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("SUMMER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterExeggcute),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterExeggcute}
+        .partySize = NELEMS(sParty_MasterExeggcute),
+        .party = {.ItemCustomMovesEVs = sParty_MasterExeggcute}
     },
     [MASTER_EXEGGUTOR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("CINDY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterExeggutor),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterExeggutor}
+        .partySize = NELEMS(sParty_MasterExeggutor),
+        .party = {.ItemCustomMovesEVs = sParty_MasterExeggutor}
     },
     [MASTER_CUBONE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("RICHTER"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterCubone),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterCubone}
+        .partySize = NELEMS(sParty_MasterCubone),
+        .party = {.ItemCustomMovesEVs = sParty_MasterCubone}
     },
     [MASTER_MAROWAK] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("JULIUS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMarowak),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMarowak}
+        .partySize = NELEMS(sParty_MasterMarowak),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMarowak}
     },
     [MASTER_HITMONLEE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("CHENG"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterHitmonlee),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterHitmonlee}
+        .partySize = NELEMS(sParty_MasterHitmonlee),
+        .party = {.ItemCustomMovesEVs = sParty_MasterHitmonlee}
     },
     [MASTER_HITMONCHAN] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BLACK_BELT_2,
+        .trainerClass = TRAINER_CLASS_BLACK_BELT,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_BLACK_BELT,
         .trainerName = _("WONG"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterHitmonchan),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterHitmonchan}
+        .partySize = NELEMS(sParty_MasterHitmonchan),
+        .party = {.ItemCustomMovesEVs = sParty_MasterHitmonchan}
     },
     [MASTER_LICKITUNG] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_YOUNGSTER_2,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_YOUNGSTER,
         .trainerName = _("CID"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterLickitung),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterLickitung}
+        .partySize = NELEMS(sParty_MasterLickitung),
+        .party = {.ItemCustomMovesEVs = sParty_MasterLickitung}
     },
     [MASTER_KOFFING] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("ALBERT"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKoffing),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKoffing}
+        .partySize = NELEMS(sParty_MasterKoffing),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKoffing}
     },
     [MASTER_WEEZING] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("DONNIE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterWeezing),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterWeezing}
+        .partySize = NELEMS(sParty_MasterWeezing),
+        .party = {.ItemCustomMovesEVs = sParty_MasterWeezing}
     },
     [MASTER_RHYHORN] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("FARKAS"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterRhyhorn),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterRhyhorn}
+        .partySize = NELEMS(sParty_MasterRhyhorn),
+        .party = {.ItemCustomMovesEVs = sParty_MasterRhyhorn}
     },
     [MASTER_RHYDON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("EUGGINE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterRhydon),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterRhydon}
+        .partySize = NELEMS(sParty_MasterRhydon),
+        .party = {.ItemCustomMovesEVs = sParty_MasterRhydon}
     },
     [MASTER_CHANSEY] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("MIZUKI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterChansey),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterChansey}
+        .partySize = NELEMS(sParty_MasterChansey),
+        .party = {.ItemCustomMovesEVs = sParty_MasterChansey}
     },
     [MASTER_TANGELA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("HARLEEN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterTangela),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterTangela}
+        .partySize = NELEMS(sParty_MasterTangela),
+        .party = {.ItemCustomMovesEVs = sParty_MasterTangela}
     },
     [MASTER_KANGASKHAN] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("MAC"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKangaskhan),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKangaskhan}
+        .partySize = NELEMS(sParty_MasterKangaskhan),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKangaskhan}
     },
     [MASTER_HORSEA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("BEVERLY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterHorsea),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterHorsea}
+        .partySize = NELEMS(sParty_MasterHorsea),
+        .party = {.ItemCustomMovesEVs = sParty_MasterHorsea}
     },
     [MASTER_SEADRA] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("LUCY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSeadra),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSeadra}
+        .partySize = NELEMS(sParty_MasterSeadra),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSeadra}
     },
     [MASTER_GOLDEEN] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("EVETTE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGoldeen),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGoldeen}
+        .partySize = NELEMS(sParty_MasterGoldeen),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGoldeen}
     },
     [MASTER_SEAKING] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SWIMMER_FEMALE_2,
+        .trainerClass = TRAINER_CLASS_SWIMMER_F,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_SWIMMER,
         .trainerName = _("ARIANNA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSeaking),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSeaking}
+        .partySize = NELEMS(sParty_MasterSeaking),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSeaking}
     },
     [MASTER_STARYU] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BEAUTY_2,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_BEAUTY,
         .trainerName = _("JO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterStaryu),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterStaryu}
+        .partySize = NELEMS(sParty_MasterStaryu),
+        .party = {.ItemCustomMovesEVs = sParty_MasterStaryu}
     },
     [MASTER_STARMIE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("HARRISON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterStarmie),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterStarmie}
+        .partySize = NELEMS(sParty_MasterStarmie),
+        .party = {.ItemCustomMovesEVs = sParty_MasterStarmie}
     },
     [MASTER_MR_MIME] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("RUI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMrMime),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMrMime}
+        .partySize = NELEMS(sParty_MasterMrMime),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMrMime}
     },
     [MASTER_SCYTHER] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("LOUIE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterScyther),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterScyther}
+        .partySize = NELEMS(sParty_MasterScyther),
+        .party = {.ItemCustomMovesEVs = sParty_MasterScyther}
     },
     [MASTER_JYNX] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_PSYCHIC_2,
+        .trainerClass = TRAINER_CLASS_PSYCHIC,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
         .trainerPic = TRAINER_PIC_MASTER_PSYCHIC_M,
         .trainerName = _("AVERY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterJynx),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterJynx}
+        .partySize = NELEMS(sParty_MasterJynx),
+        .party = {.ItemCustomMovesEVs = sParty_MasterJynx}
     },
     [MASTER_ELECTABUZZ] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("LEVI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterElectabuzz),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterElectabuzz}
+        .partySize = NELEMS(sParty_MasterElectabuzz),
+        .party = {.ItemCustomMovesEVs = sParty_MasterElectabuzz}
     },
     [MASTER_MAGMAR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("JACE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMagmar),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMagmar}
+        .partySize = NELEMS(sParty_MasterMagmar),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMagmar}
     },
     [MASTER_PINSIR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_BUG_CATCHER_2,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_BUG_CATCHER,
         .trainerName = _("RYOUTA"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPinsir),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPinsir}
+        .partySize = NELEMS(sParty_MasterPinsir),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPinsir}
     },
     [MASTER_TAUROS] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("JAXSON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterTauros),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterTauros}
+        .partySize = NELEMS(sParty_MasterTauros),
+        .party = {.ItemCustomMovesEVs = sParty_MasterTauros}
     },
     [MASTER_MAGIKARP] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_YOUNGSTER_2,
+        .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_MASTER_YOUNGSTER,
         .trainerName = _("EASTON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterMagikarp),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterMagikarp}
+        .partySize = NELEMS(sParty_MasterMagikarp),
+        .party = {.ItemCustomMovesEVs = sParty_MasterMagikarp}
     },
     [MASTER_GYARADOS] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("DOMINIC"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterGyarados),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterGyarados}
+        .partySize = NELEMS(sParty_MasterGyarados),
+        .party = {.ItemCustomMovesEVs = sParty_MasterGyarados}
     },
     [MASTER_LAPRAS] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("HAZEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterLapras),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterLapras}
+        .partySize = NELEMS(sParty_MasterLapras),
+        .party = {.ItemCustomMovesEVs = sParty_MasterLapras}
     },
     //DITTO
     [MASTER_EEVEE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("AOI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterEevee),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterEevee}
+        .partySize = NELEMS(sParty_MasterEevee),
+        .party = {.ItemCustomMovesEVs = sParty_MasterEevee}
     },
     [MASTER_VAPOREON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_LASS_2,
+        .trainerClass = TRAINER_CLASS_LASS,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_MASTER_LASS,
         .trainerName = _("YUE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterVaporeon),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterVaporeon}
+        .partySize = NELEMS(sParty_MasterVaporeon),
+        .party = {.ItemCustomMovesEVs = sParty_MasterVaporeon}
     },
     [MASTER_JOLTEON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("ALPHONSE"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterJolteon),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterJolteon}
+        .partySize = NELEMS(sParty_MasterJolteon),
+        .party = {.ItemCustomMovesEVs = sParty_MasterJolteon}
     },
     [MASTER_FLAREON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("DAX"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterFlareon),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterFlareon}
+        .partySize = NELEMS(sParty_MasterFlareon),
+        .party = {.ItemCustomMovesEVs = sParty_MasterFlareon}
     },
     [MASTER_PORYGON] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_SCIENTIST,
+        .trainerClass = TRAINER_CLASS_SCIENTIST,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_SUSPICIOUS,
         .trainerPic = TRAINER_PIC_MASTER_SCIENTIST,
         .trainerName = _("JORDAN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterPorygon),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterPorygon}
+        .partySize = NELEMS(sParty_MasterPorygon),
+        .party = {.ItemCustomMovesEVs = sParty_MasterPorygon}
     },
     [MASTER_OMANYTE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("COLSON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterOmanyte),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOmanyte}
+        .partySize = NELEMS(sParty_MasterOmanyte),
+        .party = {.ItemCustomMovesEVs = sParty_MasterOmanyte}
     },
     [MASTER_OMASTAR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("LIONEL"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterOmastar),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterOmastar}
+        .partySize = NELEMS(sParty_MasterOmastar),
+        .party = {.ItemCustomMovesEVs = sParty_MasterOmastar}
     },
     [MASTER_KABUTO] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("BARNABY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKabuto),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKabuto}
+        .partySize = NELEMS(sParty_MasterKabuto),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKabuto}
     },
     [MASTER_KABUTOPS] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("KENJI"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterKabutops),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterKabutops}
+        .partySize = NELEMS(sParty_MasterKabutops),
+        .party = {.ItemCustomMovesEVs = sParty_MasterKabutops}
     },
     [MASTER_AERODACTYL] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_HIKER_2,
+        .trainerClass = TRAINER_CLASS_HIKER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
         .trainerPic = TRAINER_PIC_MASTER_HIKER,
         .trainerName = _("HISATO"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterAerodactyl),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterAerodactyl}
+        .partySize = NELEMS(sParty_MasterAerodactyl),
+        .party = {.ItemCustomMovesEVs = sParty_MasterAerodactyl}
     },
     [MASTER_SNORLAX] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("JAY"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterSnorlax),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterSnorlax}
+        .partySize = NELEMS(sParty_MasterSnorlax),
+        .party = {.ItemCustomMovesEVs = sParty_MasterSnorlax}
     },
     //ARTICUNO
     //ZAPDOS
     //MOLTRES
     [MASTER_DRATINI] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("JIRARD"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDratini),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDratini}
+        .partySize = NELEMS(sParty_MasterDratini),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDratini}
     },
     [MASTER_DRAGONAIR] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("ARJUN"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDragonair),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDragonair}
+        .partySize = NELEMS(sParty_MasterDragonair),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDragonair}
     },
     [MASTER_DRAGONITE] = {
         .partyFlags = F_TRAINER_PARTY_EVS,
-        .trainerClass = CLASS_COOLTRAINER_2,
+        .trainerClass = TRAINER_CLASS_COOLTRAINER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL,
         .trainerPic = TRAINER_PIC_MASTER_COOLTRAINER_M,
         .trainerName = _("GRAYSON"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = NELEMS(sTrainerMons_MasterDragonite),
-        .party = {.ItemCustomMovesEVs = sTrainerMons_MasterDragonite}
+        .partySize = NELEMS(sParty_MasterDragonite),
+        .party = {.ItemCustomMovesEVs = sParty_MasterDragonite}
     },
     //MEWTWO
     //MEW

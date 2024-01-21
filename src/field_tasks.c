@@ -208,7 +208,7 @@ static void IcefallCaveIcePerStepCallback(u8 taskId)
             }
             break;
         case 3:
-            ScriptFreezeObjectEvents();
+            FreezeObjects_WaitForPlayer();
             if (data[6] != 0)
             {
                 data[6]--;

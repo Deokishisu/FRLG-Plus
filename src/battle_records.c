@@ -594,7 +594,7 @@ static void PrintHyphens(s32 y, u8 gRecordsWindowId)
     text[i] = EOS;
 
     y = (y * 8) + 1;
-    AddTextPrinterParameterized(gRecordsWindowId, 1, text, 4, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, text, 4, y, TEXT_SKIP_DRAW, NULL);
 }
 
 // Battle Tower records.
@@ -623,12 +623,12 @@ static bool32 sub_8110494(u8 level)
 
 static void TowerPrintStreak(const u8 *str, u16 num, u8 x1, u8 x2, u8 y, u8 gRecordsWindowId)
 {
-    AddTextPrinterParameterized(gRecordsWindowId, 1, str, x1, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, str, x1, y, TEXT_SKIP_DRAW, NULL);
     if (num > 9999)
         num = 9999;
     ConvertIntToDecimalStringN(gStringVar1, num, STR_CONV_MODE_RIGHT_ALIGN, 4);
     StringExpandPlaceholders(gStringVar4, gOtherText_WinStreak);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar4, x2, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gStringVar4, x2, y, TEXT_SKIP_DRAW, NULL);
 }
 
 static void TowerPrintRecordStreak(u8 battleMode, u8 lvlMode, u8 x1, u8 x2, u8 y, u8 gRecordsWindowId)
@@ -664,7 +664,7 @@ static void PrintAligned(const u8 *str, s32 y, u8 gRecordsWindowId)
 {
     s32 x = GetStringCenterAlignXOffset(1, str, 224);
     y = (y * 8) + 1;
-    AddTextPrinterParameterized(gRecordsWindowId, 1, str, x, y, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, str, x, y, TEXT_SKIP_DRAW, NULL);
 }
 
 void ShowBattleTowerRecords(void)
@@ -677,8 +677,8 @@ void ShowBattleTowerRecords(void)
     StringExpandPlaceholders(gStringVar4, gOtherText_BattleTowerResults);
 
     PrintAligned(gStringVar4, 2, gRecordsWindowId);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_Lv50, 8, 49, TEXT_SPEED_FF, NULL);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_OpenLv, 8, 97, TEXT_SPEED_FF, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_Lv50, 8, 49, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_OpenLv, 8, 97, TEXT_SKIP_DRAW, NULL);
     PrintHyphens(10, gRecordsWindowId);
     TowerPrintPrevOrCurrentStreak(battleMode, 0, 72, 121, 49, gRecordsWindowId);
     TowerPrintRecordStreak(battleMode, 0, 72, 121, 65, gRecordsWindowId);

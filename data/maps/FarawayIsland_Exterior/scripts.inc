@@ -1,7 +1,7 @@
 FarawayIsland_Exterior_MapScripts::
 	.byte 0
 
-FarawayIsland_Exterior_EventScript_Sailor:: @ 8267CA2
+FarawayIsland_Exterior_EventScript_Sailor::
 	lock
 	faceplayer
 	msgbox FarawayIsland_Exterior_Text_SailorReturn, MSGBOX_YESNO
@@ -12,23 +12,23 @@ FarawayIsland_Exterior_EventScript_Sailor:: @ 8267CA2
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
-	hideobject 1, MAP_FARAWAY_ISLAND_EXTERIOR
+	hideobjectat 1, MAP_FARAWAY_ISLAND_EXTERIOR
 	setvar VAR_0x8004, 2
 	call EventScript_SailToVermilionCity
 	waitstate
 	release
 	end
 
-FarawayIsland_Exterior_EventScript_AsYouLike:: @ 8267CE7
+FarawayIsland_Exterior_EventScript_AsYouLike::
 	msgbox EventTicket_Text_AsYouLike, MSGBOX_DEFAULT
 	release
 	end
 
-FarawayIsland_Exterior_EventScript_Sign:: @ 8267CF1
+FarawayIsland_Exterior_EventScript_Sign::
 	msgbox FarawayIsland_Exterior_Text_Sign, MSGBOX_SIGN
 	end
 	
-FarawayIsland_Exterior_Text_Sign: @ 82C6D5A
+FarawayIsland_Exterior_Text_Sign:
     .string "The writing is fading as if it was\n"
     .string "written a long time ago…\p"
     .string "“…ber, 6th day\n"
@@ -36,14 +36,14 @@ FarawayIsland_Exterior_Text_Sign: @ 82C6D5A
     .string "again…et it be a kindhearted pers…\l"
     .string "…ith that hope, I depar…”$"
 	
-EventTicket_Text_SailHome: @ 82A6A5D
+EventTicket_Text_SailHome:
 	.string "Aye, right, then!\n"
 	.string "Sail home we will!$"
 
-EventTicket_Text_AsYouLike: @ 82A6A82
+EventTicket_Text_AsYouLike:
 	.string "Aye, right, as you like, then.$"
 	
-FarawayIsland_Exterior_Text_SailorReturn: @ 82C6B42
+FarawayIsland_Exterior_Text_SailorReturn:
     .string "Do you want to return to VERMILION?$"
 	
 Common_Movement_WalkInPlaceFastestDown:

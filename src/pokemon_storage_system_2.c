@@ -20,7 +20,7 @@ static EWRAM_DATA struct ChooseBoxMenu *sBoxSelectionPopupSpriteManager = NULL;
 
 static void PSS_CreatePCMenu(u8 whichMenu, s16 *windowIdPtr);
 static void ChooseBoxMenu_CreateSprites(u8 curBox);
-static void sub_808CBA4(void);
+static void ChooseBoxMenu_DestroySprites(void);
 static void UpdateBoxNameAndCountSprite_WraparoundRight(void);
 static void UpdateBoxNameAndCountSprite_WraparoundLeft(void);
 static void PrintBoxNameAndCountToSprite(void);
@@ -486,7 +486,7 @@ void sub_808C940(u8 curBox)
 
 void sub_808C950(void)
 {
-    sub_808CBA4();
+    ChooseBoxMenu_DestroySprites();
 }
 
 u8 HandleBoxChooseSelectionInput(void)
@@ -609,10 +609,10 @@ static void ChooseBoxMenu_CreateSprites(u8 curBox)
     }
 }
 
-static void sub_808CBA4(void)
+static void ChooseBoxMenu_DestroySprites(void)
 {
     u32 i;
-    if (sBoxSelectionPopupSpriteManager->unk_0000)
+    if (sBoxSelectionPopupSpriteManager->menuSprite)
     {
         DestroySprite(sBoxSelectionPopupSpriteManager->menuSprite);
         sBoxSelectionPopupSpriteManager->menuSprite = NULL;

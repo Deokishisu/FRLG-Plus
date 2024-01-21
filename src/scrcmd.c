@@ -2252,14 +2252,6 @@ bool8 ScrCmd_setmonmetlocation(struct ScriptContext * ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_copyobjectxytoperm(struct ScriptContext *ctx)
-{
-    u16 localId = VarGet(ScriptReadHalfword(ctx));
-
-    TryOverrideObjectEventTemplateCoords(localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
-    return FALSE;
-}
-
 bool8 ScrCmd_fadescreenswapbuffers(struct ScriptContext *ctx)
 {
     u8 mode = ScriptReadByte(ctx);
@@ -2296,6 +2288,6 @@ bool8 ScrCmd_resetobjectmovementtype(struct ScriptContext * ctx)
 {
     u16 localId = VarGet(ScriptReadHalfword(ctx));
 
-    Overworld_ResetObjEventTemplateMovementType(localId);
+    ResetObjEventTemplateMovementType(localId);
     return FALSE;
 }

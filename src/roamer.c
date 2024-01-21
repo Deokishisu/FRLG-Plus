@@ -158,7 +158,7 @@ void CreateInitialRoamerMon(void)
 
 void InitRoamer(void)
 {
-    if (saveRoamer.active)
+    if (ROAMER->active)
         return;
     if(FlagGet(FLAG_CAUGHT_RAIKOU) && FlagGet(FLAG_CAUGHT_ENTEI) && FlagGet(FLAG_CAUGHT_SUICUNE))
         return;

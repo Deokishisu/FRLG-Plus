@@ -34,7 +34,7 @@ SilphCo_3F_EventScript_Grunt::
 	msgbox SilphCo_3F_Text_GruntPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-SilphCo_3F_EventScript_WorkerMWalking:: @ 81616F5
+SilphCo_3F_EventScript_WorkerMWalking::
 	msgbox SilphCo_3F_Text_WorkerMWalking, MSGBOX_NPC
 	end
 
@@ -45,7 +45,7 @@ SilphCo_3F_Text_WorkerMWalking:
 	.string "walk fast, people think you're\l"
 	.string "doing something important!$"
 
-SilphCo_3F_EventScript_WorkerF:: @ 81616F5
+SilphCo_3F_EventScript_WorkerF::
 	msgbox SilphCo_3F_Text_WorkerF, MSGBOX_NPC
 	end
 

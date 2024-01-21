@@ -48,11 +48,13 @@
 #define GIFT_RIBBONS_COUNT 11
 
 #define POCKET_ITEMS        1
-#define POCKET_KEY_ITEMS    2
-#define POCKET_POKE_BALLS   3
-#define POCKET_TM_CASE      4
-#define POCKET_BERRY_POUCH  5
-#define NUM_BAG_POCKETS 5
+#define POCKET_MEDICINE     2
+#define POCKET_KEY_ITEMS    3
+#define POCKET_HELD_ITEMS   4
+#define POCKET_POKE_BALLS   5
+#define POCKET_TM_CASE      6
+#define POCKET_BERRY_POUCH  7
+#define NUM_BAG_POCKETS 7
 
 // Contests
 #define CONTEST_CATEGORIES_COUNT  5

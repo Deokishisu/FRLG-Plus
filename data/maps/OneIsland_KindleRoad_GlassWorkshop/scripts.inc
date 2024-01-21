@@ -1,4 +1,4 @@
-OneIsland_KindleRoad_GlassWorkshop_MapScripts:: @ 826ED03
+OneIsland_KindleRoad_GlassWorkshop_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, OneIsland_KindleRoad_GlassWorkshop_OnTransition
 	.byte 0
 
@@ -9,16 +9,16 @@ OneIsland_KindleRoad_GlassWorkshop_MapScripts:: @ 826ED03
 	.set BLACK_FLUTE_PRICE,  1000
 	.set LOWEST_ASH_PRICE,   BLUE_FLUTE_PRICE
 
-OneIsland_KindleRoad_GlassWorkshop_OnTransition: @ 826ED09
+OneIsland_KindleRoad_GlassWorkshop_OnTransition:
 	compare VAR_GLASS_WORKSHOP_STATE, 1
 	call_if_eq OneIsland_KindleRoad_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack:: @ 826ED18
+OneIsland_KindleRoad_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack::
 	setvar VAR_GLASS_WORKSHOP_STATE, 2
 	return
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GlassWorker:: @ 826ED1E
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GlassWorker::
 	lock
 	faceplayer
 	compare VAR_GLASS_WORKSHOP_STATE, 10
@@ -34,12 +34,12 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_GlassWorker:: @ 826ED1E
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_ExplainSootSack:: @ 826ED64
+OneIsland_KindleRoad_GlassWorkshop_EventScript_ExplainSootSack::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_ExplainSootSack, MSGBOX_DEFAULT
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_CheckCollectedAsh:: @ 826ED6E
+OneIsland_KindleRoad_GlassWorkshop_EventScript_CheckCollectedAsh::
 	checkitem ITEM_SOOT_SACK, 1
 	compare VAR_RESULT, FALSE
 	goto_if_eq OneIsland_KindleRoad_GlassWorkshop_EventScript_SootSackNotInBag
@@ -51,12 +51,12 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_CheckCollectedAsh:: @ 826ED6E
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_SootSackNotInBag:: @ 826ED9D
+OneIsland_KindleRoad_GlassWorkshop_EventScript_SootSackNotInBag::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_HaventGotYourSootSack, MSGBOX_DEFAULT
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem:: @ 826EDA7
+OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem::
 	multichoice 13, 0, MULTICHOICE_GLASS_WORKSHOP_VENDOR, FALSE
 	copyvar VAR_0x8009, VAR_RESULT
 	switch VAR_RESULT
@@ -69,9 +69,9 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem:: @ 826EDA7
 	case 127, OneIsland_KindleRoad_GlassWorkshop_EventScript_CancelGlassItemSelect
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_BlueFlute:: @ 826EE1E
+OneIsland_KindleRoad_GlassWorkshop_EventScript_BlueFlute::
 	setvar VAR_0x8008, ITEM_BLUE_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	setvar VAR_0x800A, BLUE_FLUTE_PRICE
 	compare VAR_ASH_GATHER_COUNT, BLUE_FLUTE_PRICE
 	goto_if_lt OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem
@@ -83,9 +83,9 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_BlueFlute:: @ 826EE1E
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_YellowFlute:: @ 826EE5A
+OneIsland_KindleRoad_GlassWorkshop_EventScript_YellowFlute::
 	setvar VAR_0x8008, ITEM_YELLOW_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	setvar VAR_0x800A, YELLOW_FLUTE_PRICE
 	compare VAR_ASH_GATHER_COUNT, YELLOW_FLUTE_PRICE
 	goto_if_lt OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem
@@ -97,9 +97,9 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_YellowFlute:: @ 826EE5A
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_RedFlute:: @ 826EE96
+OneIsland_KindleRoad_GlassWorkshop_EventScript_RedFlute::
 	setvar VAR_0x8008, ITEM_RED_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	setvar VAR_0x800A, RED_FLUTE_PRICE
 	compare VAR_ASH_GATHER_COUNT, RED_FLUTE_PRICE
 	goto_if_lt OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem
@@ -111,9 +111,9 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_RedFlute:: @ 826EE96
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_WhiteFlute:: @ 826EED2
+OneIsland_KindleRoad_GlassWorkshop_EventScript_WhiteFlute::
 	setvar VAR_0x8008, ITEM_WHITE_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	setvar VAR_0x800A, WHITE_FLUTE_PRICE
 	compare VAR_ASH_GATHER_COUNT, WHITE_FLUTE_PRICE
 	goto_if_lt OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem
@@ -125,9 +125,9 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_WhiteFlute:: @ 826EED2
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_BlackFlute:: @ 826EF0E
+OneIsland_KindleRoad_GlassWorkshop_EventScript_BlackFlute::
 	setvar VAR_0x8008, ITEM_BLACK_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	setvar VAR_0x800A, BLACK_FLUTE_PRICE
 	compare VAR_ASH_GATHER_COUNT, BLACK_FLUTE_PRICE
 	goto_if_lt OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem
@@ -139,34 +139,34 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_BlackFlute:: @ 826EF0E
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_CancelGlassItemSelect:: @ 826EFCC
+OneIsland_KindleRoad_GlassWorkshop_EventScript_CancelGlassItemSelect::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_AllThatAshButDontWantAnything, MSGBOX_DEFAULT
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAsh:: @ 826EFD6
+OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAsh::
 	setvar VAR_0x800A, LOWEST_ASH_PRICE
 	subvar VAR_0x800A, VAR_ASH_GATHER_COUNT
-	getnumberstring 0, VAR_0x800A
+	buffernumberstring STR_VAR_1, VAR_0x800A
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshNeedX, MSGBOX_DEFAULT
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem:: @ 826EFEE
+OneIsland_KindleRoad_GlassWorkshop_EventScript_NotEnoughAshForItem::
 	subvar VAR_0x800A, VAR_ASH_GATHER_COUNT
-	getnumberstring 1, VAR_0x800A
+	buffernumberstring STR_VAR_2, VAR_0x800A
 	message OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshToMakeItem
 	waitmessage
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseDifferentItem:: @ 826F003
+OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseDifferentItem::
 	message OneIsland_KindleRoad_GlassWorkshop_Text_WhichWouldYouLike
 	waitmessage
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem:: @ 826F00F
+OneIsland_KindleRoad_GlassWorkshop_EventScript_MakeGlassItem::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_IllMakeItemForYou, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -218,13 +218,13 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_ActuallyGiveBlackFlute:
 	goto_if_eq OneIsland_KindleRoad_GlassWorkshop_EventScript_NoRoomForFlute
 	return
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_NoRoomForFlute:: @ 826F072
+OneIsland_KindleRoad_GlassWorkshop_EventScript_NoRoomForFlute::
 	call EventScript_BagIsFull
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_NoRoomInBag, MSGBOX_DEFAULT
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveItemAfterNoRoom:: @ 826F090
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveItemAfterNoRoom::
 	switch VAR_GLASS_WORKSHOP_STATE
 	case 10, OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveBlueFlute
 	case 11, OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveYellowFlute
@@ -233,56 +233,56 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveItemAfterNoRoom:: @ 826F090
 	case 14, OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveBlackFlute
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveBlueFlute:: @ 826F0E3
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveBlueFlute::
 	setvar VAR_0x8008, ITEM_BLUE_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveYellowFlute:: @ 826F0F7
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveYellowFlute::
 	setvar VAR_0x8008, ITEM_YELLOW_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveRedFlute:: @ 826F10B
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveRedFlute::
 	setvar VAR_0x8008, ITEM_RED_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveWhiteFlute:: @ 826F11F
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveWhiteFlute::
 	setvar VAR_0x8008, ITEM_WHITE_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveBlackFlute:: @ 826F133
+OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveBlackFlute::
 	setvar VAR_0x8008, ITEM_BLACK_FLUTE
-	getitemname 0, VAR_0x8008
+	bufferitemname STR_VAR_1, VAR_0x8008
 	goto OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain:: @ 826F16F
+OneIsland_KindleRoad_GlassWorkshop_EventScript_TryGiveItemAgain::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_IveFinishedGlassItem, MSGBOX_DEFAULT
 	call_if_eq OneIsland_KindleRoad_GlassWorkshop_EventScript_GiveGlassFlute
 	setvar VAR_GLASS_WORKSHOP_STATE, 2
 	release
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_NinjaBoy:: @ 826F194
+OneIsland_KindleRoad_GlassWorkshop_EventScript_NinjaBoy::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_FunToBlowGlassFlute, MSGBOX_NPC
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_Girl:: @ 826F194
+OneIsland_KindleRoad_GlassWorkshop_EventScript_Girl::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_Girl, MSGBOX_NPC
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_EventScript_Sign:: @ 826F194
+OneIsland_KindleRoad_GlassWorkshop_EventScript_Sign::
 	msgbox OneIsland_KindleRoad_GlassWorkshop_Text_Sign, MSGBOX_SIGN
 	end
 
-OneIsland_KindleRoad_GlassWorkshop_Text_GoCollectAshWithThis: @ 826F19D
+OneIsland_KindleRoad_GlassWorkshop_Text_GoCollectAshWithThis:
 	.string "This area is covered in volcanic ash,\n"
 	.string "huff-puff!\p"
 	.string "I'm specially gifted, huff-puff.\p"
@@ -290,7 +290,7 @@ OneIsland_KindleRoad_GlassWorkshop_Text_GoCollectAshWithThis: @ 826F19D
 	.string "and make items, huff-puff.\p"
 	.string "Go collect ashes with this,\nhuff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_ExplainSootSack: @ 826F252
+OneIsland_KindleRoad_GlassWorkshop_Text_ExplainSootSack:
 	.string "Just take that SOOT SACK and walk\n"
 	.string "through piles of ash, huff-puff.\p"
 	.string "And it will fill up with the\nvolcanic ash,"
@@ -298,11 +298,11 @@ OneIsland_KindleRoad_GlassWorkshop_Text_ExplainSootSack: @ 826F252
 	.string "Once you think you've collected a\ngood"
 	.string " amount, come back, huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_LetsSeeCollectedAshes: @ 826F312
+OneIsland_KindleRoad_GlassWorkshop_Text_LetsSeeCollectedAshes:
 	.string "Have you collected ashes, huff-puff?\n"
 	.string "Let me see, huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshNeedX: @ 826F34E
+OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshNeedX:
 	.string "Hmmm…\n"
 	.string "There's not enough here, huff-puff.\l"
 	.string "I can't craft with this, huff-puff.\p"
@@ -310,25 +310,25 @@ OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshNeedX: @ 826F34E
 	.string " you'll need to walk for me\lto make you"
 	.string " a BLUE FLUTE, huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_WhichGlassItemWoudYouLike: @ 826F40A
+OneIsland_KindleRoad_GlassWorkshop_Text_WhichGlassItemWoudYouLike:
 	.string "Oh! You've got a lot of ashes,\n"
 	.string "huff-puff!\p"
 	.string "I'll make you something, huff-puff!\n"
 	.string "Which one would you like, huff-puff?$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_IsThatTheItemForYou: @ 826F480
+OneIsland_KindleRoad_GlassWorkshop_Text_IsThatTheItemForYou:
 	.string "A {STR_VAR_1}, huff-puff?\n"
 	.string "Is that the one for you, huff-puff?$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_WhichWouldYouLike: @ 826F4B5
+OneIsland_KindleRoad_GlassWorkshop_Text_WhichWouldYouLike:
 	.string "Which one would you like, huff-puff?$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_IllMakeItemForYou: @ 826F4DA
+OneIsland_KindleRoad_GlassWorkshop_Text_IllMakeItemForYou:
 	.string "A {STR_VAR_1} it is, then,\nhuff-puff!\p"
 	.string "Okay! I'll make it now, huff-puff.\n"
 	.string "Just wait a little while, huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshToMakeItem: @ 826F543
+OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshToMakeItem:
 	.string "A {STR_VAR_1}, huff-puff?\p"
 	.string "There's not enough ash here to make\n"
 	.string "that, though, huff-puff.\p"
@@ -338,27 +338,27 @@ OneIsland_KindleRoad_GlassWorkshop_Text_NotEnoughAshToMakeItem: @ 826F543
 	.string "Which item would you rather have\n"
 	.string "me make instead, huff-puff?$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_AllThatAshButDontWantAnything: @ 826F641
+OneIsland_KindleRoad_GlassWorkshop_Text_AllThatAshButDontWantAnything:
 	.string "You've collected all that ash, but\nyou "
 	.string "don't want anything, huff-puff?$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_IveFinishedGlassItem: @ 826F688
+OneIsland_KindleRoad_GlassWorkshop_Text_IveFinishedGlassItem:
 	.string "Ah, I've finished your {STR_VAR_1}.\n"
 	.string "Take it, huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_NoRoomInBag: @ 826F6B7
+OneIsland_KindleRoad_GlassWorkshop_Text_NoRoomInBag:
 	.string "Oh?\n"
 	.string "You've no room in your BAG, huff-puff.\p"
 	.string "I'll hold on to it, so come back later,\n"
 	.string "huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_HaventGotYourSootSack: @ 826F772
+OneIsland_KindleRoad_GlassWorkshop_Text_HaventGotYourSootSack:
 	.string "Hah? You haven't got your SOOT SACK\n"
 	.string "with you, huff-puff.\p"
 	.string "You have to keep it with you to collect\n"
 	.string "volcanic ash, huff-puff.$"
 
-OneIsland_KindleRoad_GlassWorkshop_Text_FunToBlowGlassFlute: @ 826F7EC
+OneIsland_KindleRoad_GlassWorkshop_Text_FunToBlowGlassFlute:
 	.string "I'm an apprentice learning how to\n"
 	.string "make glass items from ash.\p"
 	.string "Did you know that the BLUE FLUTE\n"

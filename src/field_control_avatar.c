@@ -1265,7 +1265,7 @@ static bool32 TrySetupDiveDownScript(void)
 {
     if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS) && TrySetDiveWarp() == 2)
     {
-        ScriptContext1_SetupScript(EventScript_UseDive);
+        ScriptContext1_SetupScript(EventScript_DeepWater);
         return TRUE;
     }
     return FALSE;
@@ -1280,14 +1280,14 @@ static bool32 TrySetupDiveEmergeScript(void)
 
         if(MapGridGetMetatileIdAt(x, y) == 0x296) //if emergable tile
         {
-            ScriptContext1_SetupScript(EventScript_UseDiveUnderwater);
+            ScriptContext1_SetupScript(EventScript_TrySurface);
             return TRUE;
         }
         return FALSE;
     }
     if (FlagGet(FLAG_SYS_CAN_LINK_WITH_RS) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
     {
-        ScriptContext1_SetupScript(EventScript_UseDiveUnderwater);
+        ScriptContext1_SetupScript(EventScript_TrySurface);
         return TRUE;
     }
     return FALSE;

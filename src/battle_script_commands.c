@@ -9352,7 +9352,7 @@ static void Cmd_pickup(void)
     if(pickupSuccess == 1) // only one Pokemon has picked something up, print solo message
     {
         GetMonData(&gPlayerParty[index], MON_DATA_NICKNAME, nickname);
-        StringCopy10(gBattleTextBuff1, nickname);
+        StringCopy_Nickname(gBattleTextBuff1, nickname);
 
         if(GetMonData(&gPlayerParty[index], MON_DATA_HELD_ITEM) == ITEM_ORAN_BERRY || GetMonData(&gPlayerParty[index], MON_DATA_HELD_ITEM) == ITEM_ASPEAR_BERRY)
             StringCopy(gBattleTextBuff2, (u8 *)gText_An);

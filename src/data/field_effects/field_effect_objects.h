@@ -119,7 +119,7 @@ const struct SpriteTemplate gFieldEffectObjectTemplate_TallGrass =
 
 const struct SpriteTemplate gUnknown_TallGrass_OneIsland =
 {
-    .tileTag = SPRITE_INVALID_TAG,
+    .tileTag = TAG_NONE,
     .paletteTag = FLDEFF_PAL_TAG_GENERAL_1,
     .oam = &gObjectEventBaseOam_16x16,
     .anims = sAnimTable_TallGrass,
@@ -130,7 +130,7 @@ const struct SpriteTemplate gUnknown_TallGrass_OneIsland =
 
 const struct SpriteTemplate gUnknown_TallGrass_SevenIsland =
 {
-    .tileTag = SPRITE_INVALID_TAG,
+    .tileTag = TAG_NONE,
     .paletteTag = FLDEFF_PAL_TAG_GENERAL_1,
     .oam = &gObjectEventBaseOam_16x16,
     .anims = sAnimTable_TallGrass,

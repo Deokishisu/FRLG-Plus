@@ -203,7 +203,7 @@ static void BikeTransition_MoveDirection(u8 direction)
                 else if (PlayerIsMovingOnRockStairs(direction))
                     PlayerRideWaterCurrent(direction);
                 else
-                    sub_805C164(direction);
+                    PlayerGoSpeed4(direction);
             }
         }
     }

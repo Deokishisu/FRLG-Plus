@@ -732,7 +732,7 @@ static void Task_ChooseVersionOnNewGame(u8 taskId)
 
 static void Task_StartNewGame(u8 taskId)
 {
-    gUnknown_2031DE0 = 0;
+    gExitStairsMovementDisabled = 0;
     FreeAllWindowBuffers();
     DestroyTask(taskId);
     StartNewGameScene();
@@ -956,8 +956,8 @@ static void PrintBadgeCount(void)
 
 static void LoadUserFrameToBg(u8 bgId)
 {
-    LoadBgTiles(bgId, GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1B1);
-    LoadPalette(GetWindowFrameTilesPal(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
+    LoadBgTiles(bgId, GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1B1);
+    LoadPalette(GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
     MainMenu_EraseWindow(&sWindowTemplate[MAIN_MENU_WINDOW_ERROR]);
 }
 

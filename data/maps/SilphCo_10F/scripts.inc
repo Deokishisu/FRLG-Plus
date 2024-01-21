@@ -33,7 +33,7 @@ SilphCo_10F_EventScript_Grunt::
 	msgbox SilphCo_10F_Text_GruntPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-SilphCo_10F_EventScript_WorkerBro:: @ 8161770
+SilphCo_10F_EventScript_WorkerBro::
 	msgbox SilphCo_10F_Text_WorkerBro, MSGBOX_NPC
 	end
 
@@ -43,7 +43,7 @@ SilphCo_10F_Text_WorkerBro:
 	.string "I'm a janitor!\n"
 	.string "I keep this whole place sparkling!$"
 
-SilphCo_10F_EventScript_WorkerM:: @ 8161770
+SilphCo_10F_EventScript_WorkerM::
 	msgbox SilphCo_10F_Text_WorkerM, MSGBOX_NPC
 	end
 

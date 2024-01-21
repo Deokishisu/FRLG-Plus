@@ -245,7 +245,7 @@ EventScript_TrySurface::
 
 EventScript_CantSurface::
 	lockall
-	msgbox Text_CantSurface, MSGBOX_DEFAULT
+	msgbox Text_MonMaySurface, MSGBOX_DEFAULT
 	goto EventScript_EndSurface
 	end
 

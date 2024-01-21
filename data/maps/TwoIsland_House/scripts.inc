@@ -124,7 +124,7 @@ TwoIsland_House_EventScript_SetHasBothMushrooms::
 TwoIsland_House_EventScript_EffortWoman::
 	lock
 	faceplayer
-	getfirstpartymonname 0
+	bufferleadmonspeciesname 0
 	msgbox TwoIsland_House_Text_OhYourPokemon, MSGBOX_DEFAULT
 	specialvar VAR_RESULT, LeadMonHasEffortRibbon
 	compare VAR_RESULT, TRUE

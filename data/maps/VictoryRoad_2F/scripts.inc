@@ -20,7 +20,7 @@ VictoryRoad_2F_MapScript_MoltresMasterMovementType::
 
 VictoryRoad_2F_OnLoad::
 	call_if_ne VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100, VictoryRoad_2F_EventScript_SetRockBarrier1
-	call_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100. VictoryRoad_2F_EventScript_MoveSwitch1Boulder
+	call_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER1, 100, VictoryRoad_2F_EventScript_MoveSwitch1Boulder
 	call_if_ne VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100, VictoryRoad_2F_EventScript_SetRockBarrier2
 	call_if_eq VAR_MAP_SCENE_VICTORY_ROAD_2F_BOULDER2, 100, VictoryRoad_2F_EventScript_MoveSwitch2Boulder
 	end

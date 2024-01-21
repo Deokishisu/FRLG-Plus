@@ -1633,26 +1633,19 @@
 	.2byte \quantity
 	.endm
 
-	@ Copies a live object event's xy position to its template, so that if the sprite goes off screen, 
-	@ it'll still be there when it comes back on screen.
-	.macro copyobjectxytoperm index:req
-	.byte 0xd5
-	.2byte \index
-	.endm
-
 	.macro fadescreenswapbuffers mode:req
-	.byte 0xd6
+	.byte 0xd5
 	.byte \mode
 	.endm
 
 	.macro setobjectmovementtypeinstant localId:req, movementType:req
-	.byte 0xd7
+	.byte 0xd6
 	.2byte \localId
 	.byte \movementType
 	.endm
 
 	.macro resetobjectmovementtype localId:req
-	.byte 0xd8
+	.byte 0xd7
 	.2byte \localId
 	.endm
 

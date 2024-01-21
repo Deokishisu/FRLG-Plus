@@ -1,47 +1,47 @@
 .set LOCALID_SUDOWOODO, 7
 
-RS_BattleTower_MapScripts:: @ 8160156
+RS_BattleTower_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_OutsideEast_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_OutsideEast_OnTransition
 	.byte 0
 
-BattleFrontier_OutsideEast_OnResume: @ 8242C0F
+BattleFrontier_OutsideEast_OnResume:
 	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, BattleFrontier_OutsideEast_EventScript_TryRemoveSudowoodo
 	end
 
-BattleFrontier_OutsideEast_EventScript_TryRemoveSudowoodo:: @ 8242C19
+BattleFrontier_OutsideEast_EventScript_TryRemoveSudowoodo::
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_ne EventScript_Return
 	removeobject VAR_LAST_TALKED
 	return
 
-BattleFrontier_OutsideEast_OnTransition: @ 8242C2D
+BattleFrontier_OutsideEast_OnTransition:
 	call_if_unset FLAG_DEFEATED_SUDOWOODO, BattleFrontier_OutsideEast_EventScript_ShowSudowoodo
 	end
 
-BattleFrontier_OutsideEast_EventScript_ShowSudowoodo:: @ 8242C3F
+BattleFrontier_OutsideEast_EventScript_ShowSudowoodo::
 	goto_if_set FLAG_CAUGHT_SUDOWOODO, EventScript_Return
 	clearflag FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO
 	return
 
-BattleTower_Outside_EventScript_16025A:: @ 816025A
+BattleTower_Outside_EventScript_16025A::
 	msgbox BattleTower_Outside_Text_199C6F, MSGBOX_SIGN
 	end
 
-BattleTower_Outside_EventScript_160263:: @ 8160263
+BattleTower_Outside_EventScript_160263::
 	msgbox BattleTower_Outside_Text_199CA4, MSGBOX_NPC
 	end
 
-BattleTower_Outside_EventScript_16026C:: @ 816026C
+BattleTower_Outside_EventScript_16026C::
 	msgbox BattleTower_Outside_Text_199E9C, MSGBOX_NPC
 	end
 
-BattleTower_Outside_EventScript_160275:: @ 8160275
+BattleTower_Outside_EventScript_160275::
 	msgbox BattleTower_Outside_Text_199ED4, MSGBOX_NPC
 	end
 
-BattleFrontier_OutsideEast_EventScript_OldWoman:: @ 8242DE9
+BattleFrontier_OutsideEast_EventScript_OldWoman::
 	lock
 	faceplayer
 	goto_if_set FLAG_DEFEATED_SUDOWOODO, BattleFrontier_OutsideEast_EventScript_OldWomanSudowoodoGone
@@ -52,7 +52,7 @@ BattleFrontier_OutsideEast_EventScript_OldWoman:: @ 8242DE9
 	release
 	end
 
-BattleFrontier_OutsideEast_EventScript_OldWomanSudowoodoGone:: @ 8242DFE
+BattleFrontier_OutsideEast_EventScript_OldWomanSudowoodoGone::
 	msgbox BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere, MSGBOX_DEFAULT
 	turnobject 6, DIR_SOUTH //remove later
 	release
@@ -70,7 +70,7 @@ BattleFrontier_OutsideEast_Text_OnceAnOddTreePastHere: //change text to match EM
 	.string "I have this feeling there once was\n"
 	.string "an odd tree here.$"
 
-BattleFrontier_OutsideEast_EventScript_Sudowoodo:: @ 8242CEA
+BattleFrontier_OutsideEast_EventScript_Sudowoodo::
 	lock
 	faceplayer
 	waitse
@@ -94,7 +94,7 @@ BattleFrontier_OutsideEast_Text_UseFreshWater::
 	.string "It's a weird tree.\n"
 	.string "Water it with a FRESH WATER?$"
 
-BattleFrontier_OutsideEast_EventScript_WaterSudowoodo:: @ 8242CFC
+BattleFrontier_OutsideEast_EventScript_WaterSudowoodo::
 	lock
 	faceplayer
 	removeitem ITEM_FRESH_WATER, 1
@@ -127,12 +127,12 @@ BattleFrontier_OutsideEast_EventScript_WaterSudowoodo:: @ 8242CFC
 	release
 	end
 
-gText_Sudowoodo_Attacked:: @ 82731BD
+gText_Sudowoodo_Attacked::
 	.string "The weird tree doesn't like the\n"
 	.string "FRESH WATER!\p"
 	.string "The weird tree attacked!$"
 
-BattleFrontier_OutsideEast_EventScript_DefeatedSudowoodo:: @ 8242D60
+BattleFrontier_OutsideEast_EventScript_DefeatedSudowoodo::
 	setflag FLAG_DEFEATED_SUDOWOODO
 	goto BattleFrontier_OutsideEast_EventScript_RanFromSudowoodo
 	end
@@ -148,7 +148,7 @@ BattleFrontier_OutsideEast_EventScript_RanFromSudowoodo::
 Text_WeirdTreeFledSomewhere::
 	.string "The weird tree fled elsewhere…$"
 
-BattleFrontier_OutsideEast_Movement_SudowoodoShake: @ 8242D69
+BattleFrontier_OutsideEast_Movement_SudowoodoShake:
 	face_right
 	delay_8
 	face_down
@@ -166,7 +166,7 @@ BattleFrontier_OutsideEast_Movement_SudowoodoShake: @ 8242D69
 	face_down
 	step_end
 
-BattleFrontier_OutsideEast_Movement_SudowoodoShakeAngry: @ 8242D69
+BattleFrontier_OutsideEast_Movement_SudowoodoShakeAngry:
 	face_right
 	delay_2
 	face_down
