@@ -27,8 +27,8 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_AROMA_LADY",
-      "in_connection": false,
       "x": 27,
       "y": 30,
       "elevation": 3,
@@ -41,8 +41,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_AROMA_LADY",
-      "in_connection": false,
       "x": 68,
       "y": 30,
       "elevation": 3,
@@ -55,6 +55,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
       "in_connection": false,
       "x": 33,
@@ -69,6 +70,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
       "in_connection": false,
       "x": 50,
@@ -83,8 +85,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 36,
       "y": 24,
       "elevation": 1,
@@ -97,8 +99,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "in_connection": false,
       "x": 77,
       "y": 25,
       "elevation": 3,
@@ -111,8 +113,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "in_connection": false,
       "x": 78,
       "y": 25,
       "elevation": 3,
@@ -125,6 +127,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 72,
@@ -139,6 +142,7 @@
       "flag": "FLAG_BOND_BRIDGE_CUT_TREE_1"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 86,
@@ -166,7 +170,7 @@
       "y": 26,
       "elevation": 3,
       "dest_map": "MAP_THREE_ISLAND_BERRY_FOREST",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 13,
@@ -180,21 +184,21 @@
       "y": 5,
       "elevation": 3,
       "dest_map": "MAP_THREE_ISLAND_BERRY_FOREST",
-      "dest_warp_id": 3
+      "dest_warp_id": "3"
     },
     {
       "x": 28,
       "y": 5,
       "elevation": 3,
       "dest_map": "MAP_THREE_ISLAND_BERRY_FOREST",
-      "dest_warp_id": 4
+      "dest_warp_id": "4"
     },
     {
       "x": 29,
       "y": 5,
       "elevation": 3,
       "dest_map": "MAP_THREE_ISLAND_BERRY_FOREST",
-      "dest_warp_id": 5
+      "dest_warp_id": "5"
     }
   ],
   "coord_events": [
@@ -215,7 +219,7 @@
       "y": 25,
       "elevation": 0,
       "item": "ITEM_MAX_REPEL",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_MAX_REPEL",
+      "flag": "FLAG_HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_MAX_REPEL",
       "quantity": 1,
       "underfoot": false
     },
@@ -225,7 +229,7 @@
       "y": 32,
       "elevation": 3,
       "item": "ITEM_PEARL",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_PEARL",
+      "flag": "FLAG_HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_PEARL",
       "quantity": 1,
       "underfoot": false
     },
@@ -235,7 +239,7 @@
       "y": 27,
       "elevation": 3,
       "item": "ITEM_STARDUST",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_STARDUST",
+      "flag": "FLAG_HIDDEN_ITEM_THREE_ISLAND_BOND_BRIDGE_STARDUST",
       "quantity": 1,
       "underfoot": false
     },

@@ -42,7 +42,7 @@ void QuestLogUpdatePlayerSprite(u8 state)
 
 bool32 QuestLogTryRecordPlayerAvatarGfxTransition(u8 state)
 {
-    if (gQuestLogPlaybackState == 2)
+    if (gQuestLogPlaybackState == QL_PLAYBACK_STATE_RECORDING)
     {
         QuestLogRecordPlayerAvatarGfxTransition(state);
         return TRUE;
@@ -77,10 +77,10 @@ static void QL_GfxTransition_Fish(void)
     struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
     struct Sprite *sprite = &gSprites[objectEvent->spriteId];
 
-    if (gQuestLogPlaybackState == 1 || gQuestLogPlaybackState == 3)
+    if (gQuestLogPlaybackState == QL_PLAYBACK_STATE_RUNNING || gQuestLogPlaybackState == QL_PLAYBACK_STATE_ACTION_END)
     {
         u8 taskId;
-        ScriptContext2_Enable();
+        LockPlayerFieldControls();
         gPlayerAvatar.preventStep = TRUE;
         taskId = CreateTask(Task_QLFishMovement, 0xFF);
         gTasks[taskId].data[0] = 0;
@@ -129,7 +129,7 @@ static void Task_QLFishMovement(u8 taskId)
                 ObjectEventTurn(objectEvent, objectEvent->movementDirection);
                 sprite->x2 = 0;
                 sprite->y2 = 0;
-                ScriptContext2_Disable();
+                UnlockPlayerFieldControls();
                 DestroyTask(taskId);
             }
             break;
@@ -166,7 +166,7 @@ static void Task_QLVSSeekerMovement(u8 taskId)
     if (!FieldEffectActiveListContains(FLDEFF_USE_VS_SEEKER))
     {
         UnfreezeObjectEvents();
-        ScriptContext2_Disable();
+        UnlockPlayerFieldControls();
         DestroyTask(taskId);
     }
 }

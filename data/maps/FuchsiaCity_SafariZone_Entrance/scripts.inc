@@ -100,7 +100,7 @@ FuchsiaCity_SafariZone_Entrance_EventScript_EntryTriggerLeft::
 FuchsiaCity_SafariZone_Entrance_EventScript_AskEnterSafariZone::
 	textcolor NPC_TEXT_COLOR_MALE
 	msgbox FuchsiaCity_SafariZone_Entrance_Text_WelcomeToSafariZone
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	call_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_SafariZone_Entrance_EventScript_TellExpansion1
 	showmoneybox 0, 0

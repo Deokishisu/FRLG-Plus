@@ -20,7 +20,7 @@ ThreeIsland_BerryForest_EventScript_Lostelle::
 	faceplayer
 	msgbox ThreeIsland_BerryForest_Text_HelpScaryPokemon
 	playse SE_PIN
-	applymovement LOCALID_LOSTELLE, Movement_ExclamationMark
+	applymovement LOCALID_LOSTELLE, Common_Movement_ExclamationMark
 	waitmovement 0
 	applymovement LOCALID_LOSTELLE, ThreeIsland_BerryForest_Movement_LostelleLookAround
 	waitmovement 0
@@ -32,7 +32,7 @@ ThreeIsland_BerryForest_EventScript_Lostelle::
 	setwildbattle SPECIES_HYPNO, 30
 	dowildbattle
 	special QuestLog_CutRecording
-	applymovement LOCALID_LOSTELLE, Movement_FacePlayer
+	applymovement LOCALID_LOSTELLE, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox ThreeIsland_BerryForest_Text_ThankYouHaveThis
 	giveitem ITEM_KELPSY_BERRY
@@ -54,11 +54,11 @@ ThreeIsland_BerryForest_EventScript_NoRoomForBerry::
 	return
 
 ThreeIsland_BerryForest_Movement_LostelleLookAround::
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	delay_16
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	delay_8
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 ThreeIsland_BerryForest_EventScript_WelcomeSign::

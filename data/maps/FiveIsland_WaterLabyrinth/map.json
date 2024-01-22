@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
       "in_connection": false,
       "x": 14,
@@ -41,8 +42,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_POKEMON_BREEDER",
-      "in_connection": false,
       "x": 9,
       "y": 7,
       "elevation": 3,

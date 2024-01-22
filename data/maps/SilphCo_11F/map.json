@@ -16,6 +16,7 @@
   "connections": 0,
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2",
       "in_connection": false,
       "x": 9,
@@ -30,6 +31,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 11,
@@ -44,6 +46,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GIOVANNI",
       "in_connection": false,
       "x": 6,
@@ -58,6 +61,7 @@
       "flag": "FLAG_HIDE_SILPH_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "in_connection": false,
       "x": 16,
@@ -72,6 +76,7 @@
       "flag": "FLAG_HIDE_SILPH_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 16,
@@ -86,6 +91,7 @@
       "flag": "FLAG_HIDE_SILPH_CO_11F_ZINC"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "in_connection": false,
       "x": 2,
@@ -148,21 +154,21 @@
       "y": 2,
       "elevation": 3,
       "dest_map": "MAP_SILPH_CO_10F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 2,
       "y": 5,
       "elevation": 3,
       "dest_map": "MAP_SILPH_CO_7F",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 13,
       "y": 3,
       "elevation": 0,
       "dest_map": "MAP_SILPH_CO_ELEVATOR",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -224,7 +230,7 @@
       "y": 18,
       "elevation": 0,
       "item": "ITEM_REVIVE",
-      "flag": "HIDDEN_ITEM_SILPH_CO_11F_REVIVE",
+      "flag": "FLAG_HIDDEN_ITEM_SILPH_CO_11F_REVIVE",
       "quantity": 1,
       "underfoot": false
     },

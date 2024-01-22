@@ -8,6 +8,13 @@
 #define MENU_NOTHING_CHOSEN -2
 #define MENU_B_PRESSED -1
 
+#define MENU_INFO_ICON_CAUGHT    0
+#define MENU_INFO_ICON_TYPE      (NUMBER_OF_MON_TYPES + 1)
+#define MENU_INFO_ICON_POWER     (NUMBER_OF_MON_TYPES + 2)
+#define MENU_INFO_ICON_ACCURACY  (NUMBER_OF_MON_TYPES + 3)
+#define MENU_INFO_ICON_PP        (NUMBER_OF_MON_TYPES + 4)
+#define MENU_INFO_ICON_EFFECT    (NUMBER_OF_MON_TYPES + 5)
+
 struct MenuAction
 {
     const u8 *text;
@@ -31,7 +38,7 @@ s8 Menu2_GetMonSpriteAnchorCoordMinusx20(u16 species, u32 personality, u8 a2);
 void ListMenu_LoadMonIconPalette(u8 palOffset, u16 speciesId);
 void ListMenu_DrawMonIconGraphics(u8 windowId, u16 speciesId, u32 personality, u16 x, u16 y);
 void ListMenuLoadStdPalAt(u8 palOffset, u8 palId);
-void BlitMoveInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y);
+void BlitMenuInfoIcon(u8 windowId, u8 iconId, u16 x, u16 y);
 
 // menu
 s8 Menu_ProcessInputGridLayout(void);
@@ -41,7 +48,7 @@ void DestroyYesNoMenu(void);
 s8 Menu_ProcessInputNoWrapClearOnChoose(void);
 void CreateYesNoMenu(const struct WindowTemplate *window, u8 fontId, u8 left, u8 top, u16 baseTileNum, u8 paletteNum, u8 initialCursorPos);
 void AddItemMenuActionTextPrinters(u8 windowId, u8 fontId, u8 left, u8 top, u8 letterSpacing, u8 lineHeight, u8 itemCount, const struct MenuAction *strs, const u8 *orderArray);
-void UnionRoomAndTradeMenuPrintOptions(u8 windowId, u8 fontId, u8 lineHeight, u8 itemCount, const struct MenuAction *strs);
+void PrintMenuTable(u8 windowId, u8 fontId, u8 lineHeight, u8 itemCount, const struct MenuAction *strs);
 void MultichoiceList_PrintItems(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs, u8 letterSpacing, u8 lineSpacing);
 void PrintTextArray(u8 windowId, u8 fontId, u8 left, u8 top, u8 lineHeight, u8 itemCount, const struct MenuAction *strs);
 s8 Menu_ProcessInputNoWrapAround_other(void);

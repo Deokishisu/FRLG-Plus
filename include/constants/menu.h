@@ -90,6 +90,8 @@
 #define MULTICHOICE_MASTER_YOUNGSTER                           83
 
 
+#define MULTICHOICE_NONE                                      255
+
 #define LISTMENU_BADGES                    0
 #define LISTMENU_SILPHCO_FLOORS            1
 #define LISTMENU_ROCKET_HIDEOUT_FLOORS     2

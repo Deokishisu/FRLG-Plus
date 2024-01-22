@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 7,
@@ -41,6 +42,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 16,
@@ -55,6 +57,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "in_connection": false,
       "x": 12,
@@ -69,8 +72,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 14,
       "y": 35,
       "elevation": 1,
@@ -83,6 +86,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TUBER_M_WATER",
       "in_connection": false,
       "x": 15,
@@ -97,20 +101,15 @@
       "flag": "0"
     },
     {
+      "type": "clone",
       "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
-      "in_connection": true,
       "x": 13,
       "y": -3,
-      "elevation": 2,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "3",
-      "script": "0x0",
-      "flag": "0"
+      "target_local_id": 2,
+      "target_map": "MAP_PALLET_TOWN"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_BEAUTY",
       "in_connection": false,
       "x": 8,
@@ -138,7 +137,7 @@
       "y": 42,
       "elevation": 3,
       "item": "ITEM_PEARL",
-      "flag": "HIDDEN_ITEM_ROUTE21_NORTH_PEARL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE21_NORTH_PEARL",
       "quantity": 1,
       "underfoot": false
     }

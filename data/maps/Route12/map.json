@@ -32,6 +32,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 17,
@@ -46,6 +47,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 9,
@@ -60,6 +62,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 16,
@@ -74,6 +77,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 13,
@@ -88,6 +92,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SNORLAX",
       "in_connection": false,
       "x": 14,
@@ -102,8 +107,8 @@
       "flag": "FLAG_HIDE_ROUTE_12_SNORLAX"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKER_2",
-      "in_connection": false,
       "x": 13,
       "y": 91,
       "elevation": 3,
@@ -116,6 +121,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "in_connection": false,
       "x": 10,
@@ -130,6 +136,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 18,
@@ -144,6 +151,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 11,
@@ -158,6 +166,7 @@
       "flag": "FLAG_ROUTE_12_CUT_TREE_1"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 18,
@@ -172,6 +181,7 @@
       "flag": "FLAG_HIDE_ROUTE12_TM48"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 9,
@@ -186,8 +196,8 @@
       "flag": "FLAG_HIDE_ROUTE12_IRON"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_F",
-      "in_connection": false,
       "x": 19,
       "y": 63,
       "elevation": 3,
@@ -200,8 +210,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_M",
-      "in_connection": false,
       "x": 19,
       "y": 62,
       "elevation": 3,
@@ -214,6 +224,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 12,
@@ -290,28 +301,28 @@
       "y": 85,
       "elevation": 0,
       "dest_map": "MAP_ROUTE12_FISHING_HOUSE",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 14,
       "y": 14,
       "elevation": 3,
       "dest_map": "MAP_ROUTE12_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 15,
       "y": 14,
       "elevation": 3,
       "dest_map": "MAP_ROUTE12_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 14,
       "y": 20,
       "elevation": 3,
       "dest_map": "MAP_ROUTE12_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
@@ -340,7 +351,7 @@
       "y": 56,
       "elevation": 3,
       "item": "ITEM_HYPER_POTION",
-      "flag": "HIDDEN_ITEM_ROUTE12_HYPER_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE12_HYPER_POTION",
       "quantity": 1,
       "underfoot": false
     },
@@ -350,7 +361,7 @@
       "y": 69,
       "elevation": 3,
       "item": "ITEM_LEFTOVERS",
-      "flag": "HIDDEN_ITEM_ROUTE12_LEFTOVERS",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE12_LEFTOVERS",
       "quantity": 1,
       "underfoot": true
     },
@@ -360,7 +371,7 @@
       "y": 115,
       "elevation": 3,
       "item": "ITEM_RARE_CANDY",
-      "flag": "HIDDEN_ITEM_ROUTE12_RARE_CANDY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE12_RARE_CANDY",
       "quantity": 1,
       "underfoot": false
     }

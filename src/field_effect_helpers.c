@@ -83,18 +83,12 @@ static void LoadObjectRegularReflectionPalette(struct ObjectEvent * objectEvent,
     graphicsInfo = GetObjectEventGraphicsInfo(objectEvent->graphicsId);
     if (graphicsInfo->reflectionPaletteTag != OBJ_EVENT_PAL_TAG_NONE)
     {
-        if (graphicsInfo->paletteSlot == 0)
-        {
+        if (graphicsInfo->paletteSlot == PALSLOT_PLAYER)
             LoadPlayerObjectReflectionPalette(graphicsInfo->paletteTag, paletteIndex);
-        }
-        else if (graphicsInfo->paletteSlot == 10)
-        {
+        else if (graphicsInfo->paletteSlot == PALSLOT_NPC_SPECIAL)
             LoadSpecialObjectReflectionPalette(graphicsInfo->paletteTag, paletteIndex);
-        }
         else
-        {
             PatchObjectPalette(GetObjectPaletteTag(paletteIndex), paletteIndex);
-        }
         UpdateSpritePaletteWithWeather(paletteIndex);
     }
 }
@@ -339,7 +333,7 @@ void UpdateTallGrassFieldEffect(struct Sprite *sprite)
         if (sprite->animCmdIndex == 0)
             metatileBehavior = 4;
 
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
         UpdateGrassFieldEffectSubpriority(sprite, sprite->data[0], metatileBehavior);
     }
 }
@@ -395,7 +389,7 @@ u32 FldEff_LongGrass(void)
     {
         sprite = &gSprites[spriteId];
         sprite->coordOffsetEnabled = TRUE;
-        sprite->oam.priority = ZCoordToPriority(gFieldEffectArguments[2]);
+        sprite->oam.priority = ElevationToPriority(gFieldEffectArguments[2]);
         sprite->data[0] = gFieldEffectArguments[2];
         sprite->data[1] = gFieldEffectArguments[0];
         sprite->data[2] = gFieldEffectArguments[1];
@@ -442,7 +436,7 @@ void UpdateLongGrassFieldEffect(struct Sprite *sprite)
         {
             sprite->data[7] = TRUE;
         }
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
         UpdateGrassFieldEffectSubpriority(sprite, sprite->data[0], 0);
     }
 }
@@ -521,7 +515,7 @@ void UpdateShortGrassFieldEffect(struct Sprite *sprite)
         sprite->y2 = (graphicsInfo->height >> 1) - 8;
         sprite->subpriority = linkedSprite->subpriority - 1;
         sprite->oam.priority = linkedSprite->oam.priority;
-        UpdateObjectEventSpriteVisibility(sprite, linkedSprite->invisible);
+        UpdateObjectEventSpriteInvisibility(sprite, linkedSprite->invisible);
     }
 }
 
@@ -595,14 +589,14 @@ static void FadeFootprintsTireTracks_Step0(struct Sprite *sprite)
     if (++sprite->data[1] > 40)
         sprite->data[0] = 1;
 
-    UpdateObjectEventSpriteVisibility(sprite, FALSE);
+    UpdateObjectEventSpriteInvisibility(sprite, FALSE);
 }
 
 static void FadeFootprintsTireTracks_Step1(struct Sprite *sprite)
 {
     sprite->invisible ^= 1;
     sprite->data[1]++;
-    UpdateObjectEventSpriteVisibility(sprite, sprite->invisible);
+    UpdateObjectEventSpriteInvisibility(sprite, sprite->invisible);
     if (sprite->data[1] > 56)
     {
         FieldEffectStop(sprite, sprite->data[7]);
@@ -649,7 +643,7 @@ void UpdateSplashFieldEffect(struct Sprite *sprite)
     {
         sprite->x = gSprites[gObjectEvents[objectEventId].spriteId].x;
         sprite->y = gSprites[gObjectEvents[objectEventId].spriteId].y;
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
     }
 }
 
@@ -735,7 +729,7 @@ static void UpdateFeetInFlowingWaterFieldEffect(struct Sprite *sprite)
         sprite->x = linkedSprite->x;
         sprite->y = linkedSprite->y;
         sprite->subpriority = linkedSprite->subpriority;
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
         if (objectEvent->currentCoords.x != sprite->data[3] || objectEvent->currentCoords.y != sprite->data[4])
         {
             sprite->data[3] = objectEvent->currentCoords.x;
@@ -805,7 +799,7 @@ void UpdateHotSpringsWaterFieldEffect(struct Sprite *sprite)
         sprite->x = linkedSprite->x;
         sprite->y = (graphicsInfo->height >> 1) + linkedSprite->y - 8;
         sprite->subpriority = linkedSprite->subpriority - 1;
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
     }
 }
 
@@ -943,7 +937,7 @@ static void UpdateAshFieldEffect_Step1(struct Sprite *sprite)
 
 static void UpdateAshFieldEffect_Step2(struct Sprite *sprite)
 {
-    UpdateObjectEventSpriteVisibility(sprite, FALSE);
+    UpdateObjectEventSpriteInvisibility(sprite, FALSE);
     if (sprite->animEnded)
         FieldEffectStop(sprite, FLDEFF_ASH);
 }
@@ -1049,7 +1043,7 @@ void SynchroniseSurfPosition(struct ObjectEvent *playerObject, struct Sprite *su
         for (i = DIR_SOUTH; i <= DIR_EAST; i++, x = surfBlobSprite->data[6], y = surfBlobSprite->data[7])
         {
             MoveCoords(i, &x, &y);
-            if (MapGridGetZCoordAt(x, y) == 3)
+            if (MapGridGetElevationAt(x, y) == 3)
             {
                 surfBlobSprite->data[5]++;
                 break;
@@ -1195,7 +1189,7 @@ void UpdateSandPileFieldEffect(struct Sprite *sprite)
         sprite->x = x;
         sprite->y = y;
         sprite->subpriority = gSprites[gObjectEvents[objectEventId].spriteId].subpriority;
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
     }
 }
 
@@ -1220,7 +1214,7 @@ void UpdateBubblesFieldEffect(struct Sprite *sprite)
     sprite->data[0] += 0x80;
     sprite->data[0] &= 0x100;
     sprite->y -= sprite->data[0] >> 8;
-    UpdateObjectEventSpriteVisibility(sprite, FALSE);
+    UpdateObjectEventSpriteInvisibility(sprite, FALSE);
     if (sprite->invisible || sprite->animEnded)
     {
         FieldEffectStop(sprite, FLDEFF_BUBBLES);
@@ -1388,8 +1382,8 @@ void UpdateJumpImpactEffect(struct Sprite *sprite)
     }
     else
     {
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
-        SetObjectSubpriorityByZCoord(sprite->data[0], sprite, 0);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
+        SetObjectSubpriorityByElevation(sprite->data[0], sprite, 0);
     }
 }
 
@@ -1398,7 +1392,7 @@ void WaitFieldEffectSpriteAnim(struct Sprite *sprite)
     if (sprite->animEnded)
         FieldEffectStop(sprite, sprite->data[0]);
     else
-        UpdateObjectEventSpriteVisibility(sprite, FALSE);
+        UpdateObjectEventSpriteInvisibility(sprite, FALSE);
 }
 
 static void UpdateGrassFieldEffectSubpriority(struct Sprite *sprite, u8 z, u8 offset)
@@ -1408,7 +1402,7 @@ static void UpdateGrassFieldEffectSubpriority(struct Sprite *sprite, u8 z, u8 of
     const struct ObjectEventGraphicsInfo * graphicsInfo; // Unused Variable
     struct Sprite *linkedSprite;
 
-    SetObjectSubpriorityByZCoord(z, sprite, offset);
+    SetObjectSubpriorityByElevation(z, sprite, offset);
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         struct ObjectEvent * objectEvent = &gObjectEvents[i];

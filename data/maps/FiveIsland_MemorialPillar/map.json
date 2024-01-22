@@ -22,6 +22,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 8,
@@ -36,8 +37,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 12,
       "y": 6,
       "elevation": 3,
@@ -50,8 +51,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 14,
       "y": 17,
       "elevation": 3,
@@ -64,8 +65,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 18,
       "y": 31,
       "elevation": 3,
@@ -78,6 +79,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 4,
@@ -113,7 +115,7 @@
       "y": 52,
       "elevation": 3,
       "item": "ITEM_BIG_PEARL",
-      "flag": "HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_BIG_PEARL",
+      "flag": "FLAG_HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_BIG_PEARL",
       "quantity": 1,
       "underfoot": false
     },
@@ -123,7 +125,7 @@
       "y": 7,
       "elevation": 3,
       "item": "ITEM_POMEG_BERRY",
-      "flag": "HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_POMEG_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_POMEG_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -133,7 +135,7 @@
       "y": 22,
       "elevation": 3,
       "item": "ITEM_SITRUS_BERRY",
-      "flag": "HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_SITRUS_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_SITRUS_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -143,7 +145,7 @@
       "y": 25,
       "elevation": 3,
       "item": "ITEM_KELPSY_BERRY",
-      "flag": "HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_KELPSY_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_FIVE_ISLAND_MEMORIAL_PILLAR_KELPSY_BERRY",
       "quantity": 1,
       "underfoot": false
     }

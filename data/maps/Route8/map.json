@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 62,
@@ -41,6 +42,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "in_connection": false,
       "x": 55,
@@ -55,8 +57,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 51,
       "y": 6,
       "elevation": 3,
@@ -69,6 +71,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 29,
@@ -83,8 +86,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 29,
       "y": 4,
       "elevation": 3,
@@ -97,6 +100,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 29,
@@ -111,6 +115,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 29,
@@ -125,6 +130,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "in_connection": false,
       "x": 21,
@@ -139,8 +145,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 9,
       "y": 6,
       "elevation": 3,
@@ -153,6 +159,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 33,
@@ -167,6 +174,7 @@
       "flag": "FLAG_ROUTE_8_CUT_TREE_2"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 47,
@@ -181,8 +189,8 @@
       "flag": "FLAG_ROUTE_8_CUT_TREE_1"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "in_connection": false,
       "x": 40,
       "y": 3,
       "elevation": 3,
@@ -195,8 +203,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TWIN",
-      "in_connection": false,
       "x": 41,
       "y": 3,
       "elevation": 3,
@@ -209,6 +217,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 14,
@@ -223,6 +232,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 24,
@@ -257,14 +267,14 @@
       "y": 4,
       "elevation": 0,
       "dest_map": "MAP_UNDERGROUND_PATH_EAST_ENTRANCE",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 7,
       "y": 10,
       "elevation": 3,
       "dest_map": "MAP_ROUTE8_WEST_ENTRANCE",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [
@@ -285,7 +295,7 @@
       "y": 10,
       "elevation": 3,
       "item": "ITEM_RAWST_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE8_RAWST_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE8_RAWST_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -295,7 +305,7 @@
       "y": 11,
       "elevation": 3,
       "item": "ITEM_LUM_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE8_LUM_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE8_LUM_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -305,7 +315,7 @@
       "y": 15,
       "elevation": 3,
       "item": "ITEM_LEPPA_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE8_LEPPA_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE8_LEPPA_BERRY",
       "quantity": 1,
       "underfoot": false
     }

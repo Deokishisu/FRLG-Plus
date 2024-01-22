@@ -9,7 +9,7 @@ If you run into trouble, ask for help on Discord or IRC (see [README.md](README.
 
 ## Windows
 Windows has instructions for building with three possible terminals, providing 3 different options in case the user stumbles upon unexpected errors.
-- [Windows 10 (WSL1)](#windows-10-wsl1) (**Fastest, highly recommended**, Windows 10 only)
+- [Windows 10/11 (WSL1)](#windows-1011-wsl1) (**Fastest, highly recommended**, Windows 10 and 11 only)
 - [Windows (msys2)](#windows-msys2) (Second fastest)
 - [Windows (Cygwin)](#windows-cygwin) (Slowest)
 
@@ -26,7 +26,7 @@ All of the Windows instructions assume that the default drive is C:\\. If this d
 
 **A note of caution**: As Windows 7 is officially unsupported by Microsoft and Windows 8 has very little usage, some maintainers are unwilling to maintain the Windows 7/8 instructions. Thus, these instructions may break in the future with fixes taking longer than fixes to the Windows 10 instructions.
 
-## Windows 10 (WSL1)
+## Windows 10/11 (WSL1)
 WSL1 is the preferred terminal to build **pokefirered**. The following instructions will explain how to install WSL1 (referred to interchangeably as WSL).
 - If WSL (Debian or Ubuntu) is **not installed**, then go to [Installing WSL1](#Installing-WSL1).
 - Otherwise, if WSL is installed, but it **hasn't previously been set up for another decompilation project**, then go to [Setting up WSL1](#Setting-up-WSL1).
@@ -125,18 +125,51 @@ Otherwise, ask for help on Discord or IRC (see [README.md](README.md)), or conti
 
 Note that in msys2, Copy is Ctrl+Insert and Paste is Shift+Insert.
 
-1. Open msys2 at C:\devkitPro\msys2\mingw64.exe or run `C:\devkitPro\msys2\msys2_shell.bat -mingw64`.
+1. Open msys2 at C:\devkitPro\msys2\msys2_shell.bat.
 
 2. Certain packages are required to build pokefirered. Install these by running the following command:
 
     ```bash
-    pacman -S make zlib-devel git mingw-w64-x86_64-gcc mingw-w64-x86_64-libpng
+    pacman -S make gcc zlib-devel git
     ```
     <details>
         <summary><i>Note...</i></summary>
 
    >   This command will ask for confirmation, just enter the yes action when prompted.
     </details>
+
+3. Download [libpng](https://sourceforge.net/projects/libpng/files/libpng16/1.6.37/libpng-1.6.37.tar.xz/download).
+
+4. Change directory to where libpng was downloaded. By default, msys2 will start in the current user's profile folder, located at **C:\Users\\&#8288;_\<user>_**, where *\<user>* is your Windows username. In most cases, libpng should be saved within a subfolder of the profile folder. For example, if libpng was saved to **C:\Users\\_\<user>_\Downloads** (the Downloads location for most users), enter this command:
+
+    ```bash
+    cd Downloads
+    ```
+
+    <details>
+        <summary><i>Notes...</i></summary>
+
+    >   Note 1: While not shown, msys uses forward slashes `/` instead of backwards slashes `\` as the directory separator.  
+    >   Note 2: If the path has spaces, then the path must be wrapped with quotations, e.g. `cd "Downloads/My Downloads"`.  
+    >   Note 3: Windows path names are case-insensitive so adhering to capitalization isn’t needed.   
+    >   Note 4: If libpng was saved elsewhere, you will need to specify the full path to where libpng was downloaded, e.g. `cd c:/devkitpro/msys2` if it was saved there.
+    </details>
+
+5. Run the following commands to uncompress and install libpng.
+
+    ```bash
+    tar xf libpng-1.6.37.tar.xz
+    cd libpng-1.6.37
+    ./configure --prefix=/usr
+    make check
+    make install
+    ```
+
+6. Then finally, run the following command to change back to the user profile folder.
+
+    ```bash
+    cd
+    ```
 
 ### Choosing where to store pokefirered (msys2)
 At this point, you can choose a folder to store pokefirered into. If you're okay with storing pokefirered in the user profile folder, then proceed to [Installation](#installation). Otherwise, you'll need to account for where pokefirered is stored when changing directory to the pokefirered folder.
@@ -236,13 +269,19 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
 
 >   This guide installs libpng via Homebrew as it is the easiest method, however advanced users can install libpng through other means if they so desire.
 </details>
+<details>
+    <summary><i><strong>Note for Apple Silicon (M1) Mac users...</strong></i></summary>
+
+>   Currently, Homebrew and libng must be installed via Rosetta on Apple Silicon Macs. Before continuing, create a [Terminal shell profile with Rosetta](https://www.astroworldcreations.com/blog/apple-silicon-and-legacy-command-line-software). Be sure to run the commands corresponding to Apple Silicon (M1).
+</details>
 
 1. Open the Terminal.
 2. If Homebrew is not installed, then install [Homebrew](https://brew.sh/) by following the instructions on the website.
 3. Run the following command to install libpng.
 
     ```bash
-    brew install libpng
+    brew install libpng # Intel Macs
+    /usr/local/bin/brew install libpng # Apple Silicon (M1) Macs
     ```
    libpng is now installed.
 
@@ -265,11 +304,14 @@ If this works, then proceed to [Installation](#installation). Otherwise, ask for
 
     ```bash
     export DEVKITPRO=/opt/devkitpro
-    echo "export DEVKITPRO=$DEVKITPRO" >> ~/.bashrc
+    echo "export DEVKITPRO=$DEVKITPRO" >> ~/.bashrc # Intel Macs
+    echo "export DEVKITPRO=$DEVKITPRO" >> ~/.zshrc # Apple Silicon (M1) Macs
     export DEVKITARM=$DEVKITPRO/devkitARM
-    echo "export DEVKITARM=$DEVKITARM" >> ~/.bashrc
+    echo "export DEVKITARM=$DEVKITARM" >> ~/.bashrc # Intel Macs
+    echo "export DEVKITARM=$DEVKITARM" >> ~/.zshrc # Apple Silicon (M1) Macs
 
-    echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile
+    echo "if [ -f ~/.bashrc ]; then . ~/.bashrc; fi" >> ~/.bash_profile # Intel Macs
+    echo "if [ -f ~/.zshrc ]; then . ~/.zshrc; fi" >> ~/.zprofile # Apple Silicon (M1) Macs
     ```
 
 ### Choosing where to store pokefirered (macOS)
@@ -404,20 +446,15 @@ If you aren't in the pokefirered directory already, then **change directory** to
 ```bash
 cd pokefirered
 ```
-To build **pokefirered.gba** for the first time and confirm it matches the official ROM image (Note: to speed up builds, see [Parallel builds](#parallel-builds)):
+To build **pokefirered.gba** (Note: to speed up builds, see [Parallel builds](#parallel-builds)):
 ```bash
-make compare
+make
 ```
-If an OK is returned, then the installation went smoothly.
+If it has built successfully you will have the output file **pokefirered.gba** in your project folder.
 <details>
 <summary>Note for Windows...</summary>
 > If you switched terminals since the last build (e.g. from msys2 to WSL1), you must run `make clean-tools` once before any subsequent `make` commands.
 </details>
-
-To build **pokefirered.gba** with your changes:
-```bash
-make
-```
 
 ## Build pokeleafgreen and REV1
 Pokemon FireRed and LeafGreen were both released together. As such, this project is capable of building both ROMs. To do so, simply run
@@ -449,11 +486,20 @@ Replace `<output of nproc>` with the number that the `nproc` command returned.
 
 `nproc` is not available on macOS. The alternative is `sysctl -n hw.ncpu` ([relevant Stack Overflow thread](https://stackoverflow.com/questions/1715580)).
 
-## Debug info
+## Compare ROM to the original
 
-To build **pokefirered.elf** with enhanced debug info:
+For contributing, or if you'd simply like to verify that your ROM is identical to the original game, run:
 ```bash
-make DINFO=1
+make compare  # or compare_leafgreen, compare_firered_rev1, compare_leafgreen_rev1
+```
+If it matches, you will see the following at the end of the output:
+```bash
+pokefirered.gba: OK
+```
+If there are any changes from the original game, you will instead see:
+```bash
+pokefirered.gba: FAILED
+shasum: WARNING: 1 computed checksum did NOT match
 ```
 
 ## devkitARM's C compiler

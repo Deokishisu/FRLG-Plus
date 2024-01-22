@@ -1,13 +1,23 @@
 #ifndef GUARD_GLOBAL_FIELDMAP_H
 #define GUARD_GLOBAL_FIELDMAP_H
 
-#define METATILE_BEHAVIOR_MASK 0x00FF
-#define METATILE_COLLISION_MASK 0x0C00
-#define METATILE_ID_MASK 0x03FF
-#define METATILE_ID_UNDEFINED 0x03FF
-#define METATILE_ELEVATION_SHIFT 12
-#define METATILE_COLLISION_SHIFT 10
-#define METATILE_ELEVATION_MASK 0xF000
+// Masks/shifts for blocks in the map grid
+// Map grid blocks consist of a 10 bit metatile id, a 2 bit collision value, and a 4 bit elevation value
+// This is the data stored in each data/layouts/*/map.bin file
+#define MAPGRID_METATILE_ID_MASK 0x03FF // Bits 0-9
+#define MAPGRID_COLLISION_MASK   0x0C00 // Bits 10-11
+#define MAPGRID_ELEVATION_MASK   0xF000 // Bits 12-15
+#define MAPGRID_COLLISION_SHIFT  10
+#define MAPGRID_ELEVATION_SHIFT  12
+
+// An undefined map grid block has all metatile id bits set and nothing else
+#define MAPGRID_UNDEFINED   MAPGRID_METATILE_ID_MASK
+
+enum {
+    METATILE_LAYER_TYPE_NORMAL,  // Metatile uses middle and top bg layers
+    METATILE_LAYER_TYPE_COVERED, // Metatile uses bottom and middle bg layers
+    METATILE_LAYER_TYPE_SPLIT,   // Metatile uses bottom and top bg layers
+};
 
 #define METATILE_ID(tileset, name) (METATILE_##tileset##_##name)
 
@@ -22,6 +32,7 @@ enum
     METATILE_ATTRIBUTE_LAYER_TYPE,
     METATILE_ATTRIBUTE_7,
     METATILE_ATTRIBUTE_COUNT,
+    METATILE_ATTRIBUTES_ALL = 255  // Special id to get the full attributes value
 };
 
 enum
@@ -39,17 +50,30 @@ enum
     TILE_TERRAIN_WATERFALL,
 };
 
+// Identifiers for the hidden item data stored in BgEvent's u32 hiddenItem
 enum
 {
-    CONNECTION_INVALID = -1,
-    CONNECTION_NONE,
-    CONNECTION_SOUTH,
-    CONNECTION_NORTH,
-    CONNECTION_WEST,
-    CONNECTION_EAST,
-    CONNECTION_DIVE,
-    CONNECTION_EMERGE
+    HIDDEN_ITEM_ITEM,
+    HIDDEN_ITEM_FLAG,
+    HIDDEN_ITEM_QUANTITY,
+    HIDDEN_ITEM_UNDERFOOT
 };
+
+// Masks/shifts to read the data above from the u32 hiddenItem, calculated from size.
+#define HIDDEN_ITEM_ITEM_BITS      16
+#define HIDDEN_ITEM_FLAG_BITS       8
+#define HIDDEN_ITEM_QUANTITY_BITS   7
+#define HIDDEN_ITEM_UNDERFOOT_BITS  1
+
+#define HIDDEN_ITEM_ITEM_SHIFT      0
+#define HIDDEN_ITEM_FLAG_SHIFT      (HIDDEN_ITEM_ITEM_SHIFT + HIDDEN_ITEM_ITEM_BITS)
+#define HIDDEN_ITEM_QUANTITY_SHIFT  (HIDDEN_ITEM_FLAG_SHIFT + HIDDEN_ITEM_FLAG_BITS)
+#define HIDDEN_ITEM_UNDERFOOT_SHIFT (HIDDEN_ITEM_QUANTITY_SHIFT + HIDDEN_ITEM_QUANTITY_BITS)
+
+#define GET_HIDDEN_ITEM_ITEM(raw)     (((raw) >> HIDDEN_ITEM_ITEM_SHIFT)      & ((1 << HIDDEN_ITEM_ITEM_BITS) - 1))
+#define GET_HIDDEN_ITEM_FLAG(raw)     (((raw) >> HIDDEN_ITEM_FLAG_SHIFT)      & ((1 << HIDDEN_ITEM_FLAG_BITS) - 1))
+#define GET_HIDDEN_ITEM_QUANTITY(raw) (((raw) >> HIDDEN_ITEM_QUANTITY_SHIFT)  & ((1 << HIDDEN_ITEM_QUANTITY_BITS) - 1))
+#define GET_HIDDEN_ITEM_UNDERFOOT(raw)(((raw) >> HIDDEN_ITEM_UNDERFOOT_SHIFT) & ((1 << HIDDEN_ITEM_UNDERFOOT_BITS) - 1))
 
 typedef void (*TilesetCB)(void);
 
@@ -57,21 +81,21 @@ struct Tileset
 {
     /*0x00*/ bool8 isCompressed;
     /*0x01*/ bool8 isSecondary;
-    /*0x04*/ void *tiles;
-    /*0x08*/ void *palettes;
-    /*0x0c*/ void *metatiles;
+    /*0x04*/ const u32 *tiles;
+    /*0x08*/ const u16 (*palettes)[16];
+    /*0x0c*/ const u16 *metatiles;
     /*0x10*/ TilesetCB callback;
-    /*0x14*/ u32 *metatileAttributes;
+    /*0x14*/ const u32 *metatileAttributes;
 };
 
 struct MapLayout
 {
     /*0x00*/ s32 width;
     /*0x04*/ s32 height;
-    /*0x08*/ u16 *border;
-    /*0x0c*/ u16 *map;
-    /*0x10*/ struct Tileset *primaryTileset;
-    /*0x14*/ struct Tileset *secondaryTileset;
+    /*0x08*/ const u16 *border;
+    /*0x0c*/ const u16 *map;
+    /*0x10*/ const struct Tileset *primaryTileset;
+    /*0x14*/ const struct Tileset *secondaryTileset;
     /*0x18*/ u8 borderWidth;
     /*0x19*/ u8 borderHeight;
 };
@@ -85,19 +109,28 @@ struct BackupMapLayout
 
 struct ObjectEventTemplate
 {
-    /*0x00*/ u8 localId;
-    /*0x01*/ u8 graphicsId;
-    /*0x02*/ u8 inConnection;
-    /*0x04*/ s16 x;
-    /*0x06*/ s16 y;
-    /*0x08*/ u8 elevation;
-    /*0x09*/ u8 movementType;
-    /*0x0A*/ u16 movementRangeX:4;
-             u16 movementRangeY:4;
-    /*0x0C*/ u16 trainerType;
-    /*0x0E*/ u16 trainerRange_berryTreeId;
-    /*0x10*/ const u8 *script;
-    /*0x14*/ u16 flagId;
+    u8 localId;
+    u8 graphicsId;
+    u8 kind; // The "kind" field determines how to access objUnion union below.
+    s16 x, y;
+    union {
+        struct {
+            u8 elevation;
+            u8 movementType;
+            u16 movementRangeX:4;
+            u16 movementRangeY:4;
+            u16 trainerType;
+            u16 trainerRange_berryTreeId;
+        } normal;
+        struct {
+            u8 targetLocalId;
+            u8 padding[3];
+            u16 targetMapNum;
+            u16 targetMapGroup;
+        } clone;
+    } objUnion;
+    const u8 *script;
+    u16 flagId;
 };  /*size = 0x18*/
 
 struct WarpEvent
@@ -115,7 +148,7 @@ struct CoordEvent
     u8 elevation;
     u16 trigger;
     u16 index;
-    u8 *script;
+    const u8 *script;
 };
 
 struct BgEvent
@@ -124,14 +157,8 @@ struct BgEvent
     u8 elevation;
     u8 kind; // The "kind" field determines how to access bgUnion union below.
     union {
-        u8 *script;
-        struct {
-            u32 itemId:16;
-            u32 hiddenItemId:8; // flag offset to determine flag lookup
-            u32 quantity:7;
-            u32 isUnderfoot:1;
-        } hiddenItemStr;
-        u32 hiddenItem;
+        const u8 *script;
+        u32 hiddenItem; // Contains all the hidden item data. See GET_HIDDEN_ITEM_* defines further up
     } bgUnion;
 };
 
@@ -141,10 +168,10 @@ struct MapEvents
     u8 warpCount;
     u8 coordEventCount;
     u8 bgEventCount;
-    struct ObjectEventTemplate *objectEvents;
-    struct WarpEvent *warps;
-    struct CoordEvent *coordEvents;
-    struct BgEvent *bgEvents;
+    const struct ObjectEventTemplate *objectEvents;
+    const struct WarpEvent *warps;
+    const struct CoordEvent *coordEvents;
+    const struct BgEvent *bgEvents;
 };
 
 struct MapConnection
@@ -158,7 +185,7 @@ struct MapConnection
 struct MapConnections
 {
     s32 count;
-    struct MapConnection *connections;
+    const struct MapConnection *connections;
 };
 
 struct MapHeader

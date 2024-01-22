@@ -127,7 +127,7 @@ bool8 ScrCmd_callnative(struct ScriptContext * ctx)
 
 bool8 ScrCmd_waitstate(struct ScriptContext * ctx)
 {
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -256,7 +256,7 @@ bool8 ScrCmd_callstd_if(struct ScriptContext * ctx)
 
 bool8 ScrCmd_returnram(struct ScriptContext * ctx)
 {
-    ScriptJump(ctx, gRAMScriptPtr);
+    ScriptJump(ctx, gRamScriptRetAddr);
     return FALSE;
 }
 
@@ -278,7 +278,7 @@ bool8 ScrCmd_trywondercardscript(struct ScriptContext * ctx)
     const u8 * script = GetSavedRamScriptIfValid();
     if (script != NULL)
     {
-        gRAMScriptPtr = ctx->scriptPtr;
+        gRamScriptRetAddr = ctx->scriptPtr;
         ScriptJump(ctx, script);
     }
     return FALSE;
@@ -606,7 +606,7 @@ bool8 ScrCmd_setworldmapflag(struct ScriptContext * ctx)
 bool8 ScrCmd_animateflash(struct ScriptContext * ctx)
 {
     AnimateFlash(ScriptReadByte(ctx));
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -1338,7 +1338,7 @@ static bool8 WaitForAorBPress(void)
             }
         }
     }
-    if (sub_8112CAC() == 1 || gQuestLogState == QL_STATE_PLAYBACK)
+    if (QL_GetPlaybackState() == QL_PLAYBACK_STATE_RUNNING || gQuestLogState == QL_STATE_PLAYBACK)
     {
         if (sQuestLogWaitButtonPressTimer == 120)
             return TRUE;
@@ -1403,7 +1403,7 @@ bool8 ScrCmd_waitbuttonpress(struct ScriptContext * ctx)
 {
     sQuestLogScriptContextPtr = ctx;
 
-    if (sub_8112CAC() == 1 || gQuestLogState == QL_STATE_PLAYBACK)
+    if (QL_GetPlaybackState() == QL_PLAYBACK_STATE_RUNNING || gQuestLogState == QL_STATE_PLAYBACK)
         sQuestLogWaitButtonPressTimer = 0;
     SetupNativeScript(ctx, WaitForAorBPress);
     return TRUE;
@@ -1416,7 +1416,7 @@ bool8 ScrCmd_yesnobox(struct ScriptContext * ctx)
 
     if (ScriptMenu_YesNo(left, top) == TRUE)
     {
-        ScriptContext1_Stop();
+        ScriptContext_Stop();
         return TRUE;
     }
     else
@@ -1434,7 +1434,7 @@ bool8 ScrCmd_multichoice(struct ScriptContext * ctx)
 
     if (ScriptMenu_Multichoice(left, top, multichoiceId, ignoreBPress) == TRUE)
     {
-        ScriptContext1_Stop();
+        ScriptContext_Stop();
         return TRUE;
     }
     else
@@ -1453,7 +1453,7 @@ bool8 ScrCmd_multichoicedefault(struct ScriptContext * ctx)
 
     if (ScriptMenu_MultichoiceWithDefault(left, top, multichoiceId, ignoreBPress, defaultChoice) == TRUE)
     {
-        ScriptContext1_Stop();
+        ScriptContext_Stop();
         return TRUE;
     }
     else
@@ -1483,7 +1483,7 @@ bool8 ScrCmd_multichoicegrid(struct ScriptContext * ctx)
 
     if (ScriptMenu_MultichoiceGrid(left, top, multichoiceId, ignoreBPress, numColumns) == TRUE)
     {
-        ScriptContext1_Stop();
+        ScriptContext_Stop();
         return TRUE;
     }
     else
@@ -1512,7 +1512,7 @@ bool8 ScrCmd_drawboxtext(struct ScriptContext * ctx)
 
     /*if (Multichoice(left, top, multichoiceId, ignoreBPress) == TRUE)
     {
-        ScriptContext1_Stop();
+        ScriptContext_Stop();
         return TRUE;
     }*/
     return FALSE;
@@ -1550,7 +1550,7 @@ bool8 ScrCmd_showcontestpainting(struct ScriptContext * ctx)
         SetContestWinnerForPainting(contestWinnerId);
 
     ShowContestPainting();
-    ScriptContext1_Stop()
+    ScriptContext_Stop()
     return TRUE;
     */
     return FALSE;
@@ -1619,7 +1619,7 @@ bool8 ScrCmd_bufferpartymonnick(struct ScriptContext * ctx)
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
 
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, sScriptStringVars[stringVarIndex]);
-    StringGetEnd10(sScriptStringVars[stringVarIndex]);
+    StringGet_Nickname(sScriptStringVars[stringVarIndex]);
     return FALSE;
 }
 
@@ -1820,7 +1820,7 @@ bool8 ScrCmd_showmoneybox(struct ScriptContext * ctx)
     u8 y = ScriptReadByte(ctx);
     u8 ignore = ScriptReadByte(ctx);
 
-    if (!ignore && QuestLog_SchedulePlaybackCB(QLPlaybackCB_DestroyScriptMenuMonPicSprites) != TRUE)
+    if (!ignore && QL_AvoidDisplay(QL_DestroyAbortedDisplay) != TRUE)
         DrawMoneyBox(GetMoney(&gSaveBlock1Ptr->money), x, y);
     return FALSE;
 }
@@ -1850,7 +1850,7 @@ bool8 ScrCmd_showcoinsbox(struct ScriptContext * ctx)
     u8 x = ScriptReadByte(ctx);
     u8 y = ScriptReadByte(ctx);
 
-    if (QuestLog_SchedulePlaybackCB(QLPlaybackCB_DestroyScriptMenuMonPicSprites) != TRUE)
+    if (QL_AvoidDisplay(QL_DestroyAbortedDisplay) != TRUE)
         ShowCoinsWindow(GetCoins(), x, y);
     return FALSE;
 }
@@ -1934,7 +1934,7 @@ bool8 ScrCmd_setwildbattle(struct ScriptContext * ctx)
 bool8 ScrCmd_dowildbattle(struct ScriptContext * ctx)
 {
     StartScriptedWildBattle();
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -1943,7 +1943,7 @@ bool8 ScrCmd_pokemart(struct ScriptContext * ctx)
     const void *ptr = (void *)ScriptReadWord(ctx);
 
     CreatePokemartMenu(ptr);
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -1952,7 +1952,7 @@ bool8 ScrCmd_pokemartdecoration(struct ScriptContext * ctx)
     const void *ptr = (void *)ScriptReadWord(ctx);
 
     CreateDecorationShop1Menu(ptr);
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -1962,7 +1962,7 @@ bool8 ScrCmd_pokemartdecoration2(struct ScriptContext * ctx)
     const void *ptr = (void *)ScriptReadWord(ctx);
 
     CreateDecorationShop2Menu(ptr);
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -1971,7 +1971,7 @@ bool8 ScrCmd_playslotmachine(struct ScriptContext * ctx)
     u8 slotMachineIndex = VarGet(ScriptReadHalfword(ctx));
 
     PlaySlotMachine(slotMachineIndex, CB2_ReturnToFieldContinueScriptPlayMapMusic);
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -1999,7 +1999,7 @@ bool8 ScrCmd_getpokenewsactive(struct ScriptContext * ctx)
 bool8 ScrCmd_choosecontestmon(struct ScriptContext * ctx)
 {
 //    ChooseContestMon();
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;
 }
 
@@ -2007,7 +2007,7 @@ bool8 ScrCmd_choosecontestmon(struct ScriptContext * ctx)
 bool8 ScrCmd_startcontest(struct ScriptContext * ctx)
 {
 //    StartContest();
-//    ScriptContext1_Stop();
+//    ScriptContext_Stop();
 //    return TRUE;
     return FALSE;
 }
@@ -2015,7 +2015,7 @@ bool8 ScrCmd_startcontest(struct ScriptContext * ctx)
 bool8 ScrCmd_showcontestresults(struct ScriptContext * ctx)
 {
 //    ShowContestResults();
-//    ScriptContext1_Stop();
+//    ScriptContext_Stop();
 //    return TRUE;
     return FALSE;
 }
@@ -2023,7 +2023,7 @@ bool8 ScrCmd_showcontestresults(struct ScriptContext * ctx)
 bool8 ScrCmd_contestlinktransfer(struct ScriptContext * ctx)
 {
 //    ContestLinkTransfer(gSpecialVar_ContestCategory);
-//    ScriptContext1_Stop();
+//    ScriptContext_Stop();
 //    return TRUE;
     return FALSE;
 }
@@ -2093,15 +2093,15 @@ bool8 ScrCmd_setmetatile(struct ScriptContext * ctx)
 {
     u16 x = VarGet(ScriptReadHalfword(ctx));
     u16 y = VarGet(ScriptReadHalfword(ctx));
-    u16 tileId = VarGet(ScriptReadHalfword(ctx));
+    u16 metatileId = VarGet(ScriptReadHalfword(ctx));
     bool16 isImpassable = VarGet(ScriptReadHalfword(ctx));
 
     x += MAP_OFFSET;
     y += MAP_OFFSET;
     if (!isImpassable)
-        MapGridSetMetatileIdAt(x, y, tileId);
+        MapGridSetMetatileIdAt(x, y, metatileId);
     else
-        MapGridSetMetatileIdAt(x, y, tileId | METATILE_COLLISION_MASK);
+        MapGridSetMetatileIdAt(x, y, metatileId | MAPGRID_COLLISION_MASK);
     return FALSE;
 }
 
@@ -2178,7 +2178,7 @@ bool8 ScrCmd_addelevmenuitem(struct ScriptContext * ctx)
 bool8 ScrCmd_showelevmenu(struct ScriptContext * ctx)
 {
     /*ScriptShowElevatorMenu();
-    ScriptContext1_Stop();
+    ScriptContext_Stop();
     return TRUE;*/
     return FALSE;
 }
@@ -2214,31 +2214,31 @@ bool8 ScrCmd_removecoins(struct ScriptContext * ctx)
 
 bool8 ScrCmd_signmsg(struct ScriptContext * ctx)
 {
-    MsgSetSignPost();
+    MsgSetSignpost();
     return FALSE;
 }
 
 bool8 ScrCmd_normalmsg(struct ScriptContext * ctx)
 {
-    MsgSetNotSignPost();
+    MsgSetNotSignpost();
     return FALSE;
 }
 
-// This command will set a Pokémon's eventLegal bit; there is no similar command to clear it.
-bool8 ScrCmd_setmoneventlegal(struct ScriptContext * ctx)
+// This command will set a Pokémon's modernFatefulEncounter bit; there is no similar command to clear it.
+bool8 ScrCmd_setmonmodernfatefulencounter(struct ScriptContext * ctx)
 {
-    bool8 isEventLegal = TRUE;
+    bool8 isModernFatefulEncounter = TRUE;
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
 
-    SetMonData(&gPlayerParty[partyIndex], MON_DATA_EVENT_LEGAL, &isEventLegal);
+    SetMonData(&gPlayerParty[partyIndex], MON_DATA_MODERN_FATEFUL_ENCOUNTER, &isModernFatefulEncounter);
     return FALSE;
 }
 
-bool8 ScrCmd_checkmoneventlegal(struct ScriptContext * ctx)
+bool8 ScrCmd_checkmonmodernfatefulencounter(struct ScriptContext * ctx)
 {
     u16 partyIndex = VarGet(ScriptReadHalfword(ctx));
 
-    gSpecialVar_Result = GetMonData(&gPlayerParty[partyIndex], MON_DATA_EVENT_LEGAL, NULL);
+    gSpecialVar_Result = GetMonData(&gPlayerParty[partyIndex], MON_DATA_MODERN_FATEFUL_ENCOUNTER, NULL);
     return FALSE;
 }
 

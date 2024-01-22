@@ -16,6 +16,7 @@
   "connections": 0,
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LORELEI",
       "in_connection": false,
       "x": 7,
@@ -30,6 +31,7 @@
       "flag": "FLAG_HIDE_LORELEI_IN_HER_HOUSE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WIGGLYTUFF",
       "in_connection": false,
       "x": 0,
@@ -44,6 +46,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SEEL",
       "in_connection": false,
       "x": 10,
@@ -58,6 +61,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
       "in_connection": false,
       "x": 9,
@@ -72,6 +76,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SLOWPOKE",
       "in_connection": false,
       "x": 7,
@@ -86,6 +91,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SLOWBRO",
       "in_connection": false,
       "x": 6,
@@ -100,6 +106,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PSYDUCK",
       "in_connection": false,
       "x": 6,
@@ -114,6 +121,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MEOWTH",
       "in_connection": false,
       "x": 9,
@@ -128,6 +136,7 @@
       "flag": "FLAG_HIDE_LORELEI_HOUSE_MEOWTH_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CHANSEY",
       "in_connection": false,
       "x": 10,
@@ -142,6 +151,7 @@
       "flag": "FLAG_HIDE_LORELEI_HOUSE_CHANSEY_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_JIGGLYPUFF",
       "in_connection": false,
       "x": 0,
@@ -156,6 +166,7 @@
       "flag": "FLAG_HIDE_LORELEI_HOUSE_JIGGLYPUFF_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_NIDORAN_F",
       "in_connection": false,
       "x": 0,
@@ -170,6 +181,7 @@
       "flag": "FLAG_HIDE_LORELEIS_HOUSE_NIDORAN_F_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_NIDORAN_M",
       "in_connection": false,
       "x": 1,
@@ -184,6 +196,7 @@
       "flag": "FLAG_HIDE_LORELEIS_HOUSE_NIDORAN_M_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PIDGEOT",
       "in_connection": false,
       "x": 9,
@@ -198,6 +211,7 @@
       "flag": "FLAG_HIDE_LORELEIS_HOUSE_PIDGEOT_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FEAROW",
       "in_connection": false,
       "x": 10,
@@ -212,6 +226,7 @@
       "flag": "FLAG_HIDE_LORELEIS_HOUSE_FEAROW_DOLL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LAPRAS_DOLL",
       "in_connection": false,
       "x": 9,
@@ -232,7 +247,7 @@
       "y": 7,
       "elevation": 3,
       "dest_map": "MAP_FOUR_ISLAND",
-      "dest_warp_id": 4
+      "dest_warp_id": "4"
     }
   ],
   "coord_events": [

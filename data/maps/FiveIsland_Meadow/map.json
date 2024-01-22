@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_F",
       "in_connection": false,
       "x": 18,
@@ -41,6 +42,7 @@
       "flag": "FLAG_HIDE_FIVE_ISLAND_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "in_connection": false,
       "x": 17,
@@ -55,6 +57,7 @@
       "flag": "FLAG_HIDE_FIVE_ISLAND_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "in_connection": false,
       "x": 11,
@@ -69,6 +72,7 @@
       "flag": "FLAG_HIDE_FIVE_ISLAND_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 8,
@@ -83,6 +87,7 @@
       "flag": "FLAG_FIVE_ISLE_MEADOW_CUT_TREE_1"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 19,
@@ -97,6 +102,7 @@
       "flag": "FLAG_FIVE_ISLE_MEADOW_CUT_TREE_2"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 12,
@@ -111,6 +117,7 @@
       "flag": "FLAG_HIDE_FIVE_ISLAND_MEADOW_MAX_POTION"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 3,
@@ -131,7 +138,7 @@
       "y": 21,
       "elevation": 0,
       "dest_map": "MAP_FIVE_ISLAND_ROCKET_WAREHOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

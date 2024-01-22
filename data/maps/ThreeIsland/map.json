@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 7,
@@ -41,6 +42,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_ANTIBIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 8,
@@ -55,8 +57,8 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_ANTIBIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
-      "in_connection": false,
       "x": 8,
       "y": 24,
       "elevation": 3,
@@ -69,6 +71,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_LONE_BIKER"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 9,
@@ -83,6 +86,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_BIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 9,
@@ -97,6 +101,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_BIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 10,
@@ -111,6 +116,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_BIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 10,
@@ -125,6 +131,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_BIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 11,
@@ -139,6 +146,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_BIKERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 20,
@@ -153,6 +161,7 @@
       "flag": "FLAG_THREE_ISLAND_CUT_TREE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 18,
@@ -167,6 +176,7 @@
       "flag": "FLAG_HIDE_THREE_ISLAND_ZINC"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "in_connection": false,
       "x": 15,
@@ -181,6 +191,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
       "in_connection": false,
       "x": 14,
@@ -195,6 +206,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_DODUO",
       "in_connection": false,
       "x": 15,
@@ -209,6 +221,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 15,
@@ -229,49 +242,49 @@
       "y": 31,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_HOUSE1",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 14,
       "y": 27,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_POKEMON_CENTER_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 18,
       "y": 12,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_MART",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 4,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_HOUSE2",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 12,
       "y": 6,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_HOUSE3",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 12,
       "y": 12,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_HOUSE4",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 13,
       "y": 19,
       "elevation": 0,
       "dest_map": "MAP_THREE_ISLAND_HOUSE5",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -381,7 +394,7 @@
       "y": 13,
       "elevation": 3,
       "item": "ITEM_PP_UP",
-      "flag": "HIDDEN_ITEM_THREE_ISLAND_PP_UP",
+      "flag": "FLAG_HIDDEN_ITEM_THREE_ISLAND_PP_UP",
       "quantity": 1,
       "underfoot": false
     }

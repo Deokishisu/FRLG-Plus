@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BILL",
       "in_connection": false,
       "x": 12,
@@ -41,6 +42,7 @@
       "flag": "FLAG_HIDE_ONE_ISLAND_BILL"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_1",
       "in_connection": false,
       "x": 16,
@@ -55,6 +57,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN",
       "in_connection": false,
       "x": 13,
@@ -75,28 +78,28 @@
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 19,
       "y": 9,
       "elevation": 0,
       "dest_map": "MAP_ONE_ISLAND_HOUSE1",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 8,
       "y": 11,
       "elevation": 0,
       "dest_map": "MAP_ONE_ISLAND_HOUSE2",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 12,
       "y": 18,
       "elevation": 3,
       "dest_map": "MAP_ONE_ISLAND_HARBOR",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

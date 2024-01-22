@@ -3,6 +3,7 @@
 #include "gba/flash_internal.h"
 #include "load_save.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "random.h"
 #include "item.h"
 #include "save_location.h"
@@ -82,7 +83,7 @@ void SetSaveBlocksPointers(void)
     gPokemonStoragePtr = (void *)(&gPokemonStorage) + offset;
 
     SetBagPocketsPointers();
-    SetQuestLogRecordAndPlaybackPointers(oldSave);
+    QL_AddASLROffset(oldSave);
 }
 
 void MoveSaveBlocks_ResetHeap(void)

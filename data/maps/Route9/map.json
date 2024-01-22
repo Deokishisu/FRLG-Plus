@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 14,
@@ -41,6 +42,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "in_connection": false,
       "x": 20,
@@ -55,6 +57,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "in_connection": false,
       "x": 61,
@@ -69,6 +72,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "in_connection": false,
       "x": 26,
@@ -83,6 +87,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "in_connection": false,
       "x": 26,
@@ -97,6 +102,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "in_connection": false,
       "x": 49,
@@ -111,6 +117,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
       "in_connection": false,
       "x": 53,
@@ -125,6 +132,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 60,
@@ -139,6 +147,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "in_connection": false,
       "x": 36,
@@ -153,6 +162,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 2,
@@ -167,6 +177,7 @@
       "flag": "FLAG_ROUTE_9_CUT_TREE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 12,
@@ -181,6 +192,7 @@
       "flag": "FLAG_HIDE_ROUTE9_TM40"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 65,
@@ -230,7 +242,7 @@
       "y": 7,
       "elevation": 0,
       "item": "ITEM_ETHER",
-      "flag": "HIDDEN_ITEM_ROUTE9_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE9_ETHER",
       "quantity": 1,
       "underfoot": false
     },
@@ -240,7 +252,7 @@
       "y": 2,
       "elevation": 3,
       "item": "ITEM_RARE_CANDY",
-      "flag": "HIDDEN_ITEM_ROUTE9_RARE_CANDY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE9_RARE_CANDY",
       "quantity": 1,
       "underfoot": false
     },
@@ -250,7 +262,7 @@
       "y": 2,
       "elevation": 3,
       "item": "ITEM_CHESTO_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE9_CHESTO_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE9_CHESTO_BERRY",
       "quantity": 1,
       "underfoot": false
     }

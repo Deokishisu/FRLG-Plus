@@ -7,15 +7,6 @@
 
 #include "global.h"
 
-extern const u8 gUnknown_0823B4E8[];
-extern const u8 gUnknown_0823B5E9[];
-extern const u8 EventScript_275BB7[];
-extern const u8 EventScript_275D0C[];
-extern const u8 EventScript_275D1F[];
-extern const u8 EventScript_275D2E[];
-extern const u8 EventScript_2766A2[];
-extern const u8 EventScript_2766A6[];
-
 extern const u8 gTVBravoTrainerText00[];
 extern const u8 gTVBravoTrainerText01[];
 extern const u8 gTVBravoTrainerText02[];
@@ -364,16 +355,6 @@ extern const u8 gPokeNewsTextLilycove_Ending[];
 extern const u8 gPokeNewsTextBlendMaster_Upcoming[];
 extern const u8 gPokeNewsTextBlendMaster_Ongoing[];
 extern const u8 gPokeNewsTextBlendMaster_Ending[];
-extern const u8 SecretBase_RedCave1_Text_274966[];
-extern const u8 SecretBase_RedCave1_Text_274D13[];
-extern const u8 SecretBase_RedCave1_Text_274FFE[];
-extern const u8 SecretBase_RedCave1_Text_275367[];
-extern const u8 SecretBase_RedCave1_Text_2756C7[];
-extern const u8 SecretBase_RedCave1_Text_274B24[];
-extern const u8 SecretBase_RedCave1_Text_274E75[];
-extern const u8 SecretBase_RedCave1_Text_2751E1[];
-extern const u8 SecretBase_RedCave1_Text_2754F6[];
-extern const u8 SecretBase_RedCave1_Text_2758CC[];
 
 extern const u8 gText_LtSurge[];
 extern const u8 gText_Koga[];
@@ -748,29 +729,29 @@ extern const u8 gNameChoice_Norie[];
 extern const u8 gNameChoice_Sai[];
 extern const u8 gNameChoice_Momo[];
 extern const u8 gNameChoice_Suzi[];
-extern const u8 gNewGame_HelpDocs1[];
-extern const u8 gNewGame_HelpDocs2[];
-extern const u8 gNewGame_HelpDocs3[];
-extern const u8 gNewGame_HelpDocs4[];
-extern const u8 gNewGame_HelpDocs5[];
-extern const u8 gNewGame_HelpDocs6[];
-extern const u8 gNewGame_HelpDocs7[];
-extern const u8 gOakText_AskPlayerGender[];
-extern const u8 gNewGameAdventureIntro1[];
-extern const u8 gNewGameAdventureIntro2[];
-extern const u8 gNewGameAdventureIntro3[];
-extern const u8 gOakText_WelcomeToTheWorld[];
-extern const u8 gOakText_WorldInhabited1[];
-extern const u8 gOakText_WorldInhabited2[];
-extern const u8 gOakText_PetsBattlingStudy[];
-extern const u8 gOakText_TellMeALittleAboutYourself[];
-extern const u8 gOakText_AskPlayerName[];
-extern const u8 gOakText_FinalizePlayerName[];
-extern const u8 gOakText_IntroduceRival[];
-extern const u8 gOakText_AskRivalName[];
-extern const u8 gOakText_ConfirmRivalName[];
-extern const u8 gOakText_RememberRivalName[];
-extern const u8 gOakText_LegendAboutToUnfold[];
+extern const u8 gControlsGuide_Text_Intro[];
+extern const u8 gControlsGuide_Text_DPad[];
+extern const u8 gControlsGuide_Text_AButton[];
+extern const u8 gControlsGuide_Text_BButton[];
+extern const u8 gControlsGuide_Text_StartButton[];
+extern const u8 gControlsGuide_Text_SelectButton[];
+extern const u8 gControlsGuide_Text_LRButtons[];
+extern const u8 gOakSpeech_Text_AskPlayerGender[];
+extern const u8 gPikachuIntro_Text_Page1[];
+extern const u8 gPikachuIntro_Text_Page2[];
+extern const u8 gPikachuIntro_Text_Page3[];
+extern const u8 gOakSpeech_Text_WelcomeToTheWorld[];
+extern const u8 gOakSpeech_Text_ThisWorld[];
+extern const u8 gOakSpeech_Text_IsInhabitedFarAndWide[];
+extern const u8 gOakSpeech_Text_IStudyPokemon[];
+extern const u8 gOakSpeech_Text_TellMeALittleAboutYourself[];
+extern const u8 gOakSpeech_Text_YourNameWhatIsIt[];
+extern const u8 gOakSpeech_Text_SoYourNameIsPlayer[];
+extern const u8 gOakSpeech_Text_WhatWasHisName[];
+extern const u8 gOakSpeech_Text_YourRivalsNameWhatWasIt[];
+extern const u8 gOakSpeech_Text_ConfirmRivalName[];
+extern const u8 gOakSpeech_Text_RememberRivalsName[];
+extern const u8 gOakSpeech_Text_LetsGo[];
 
 // Help System
 extern const u8 Help_Text_WhatShouldIDo[];
@@ -780,7 +761,6 @@ extern const u8 Help_Text_AboutThisGame[];
 extern const u8 Help_Text_TypeMatchupList[];
 extern const u8 Help_Text_Exit[];
 extern const u8 Help_Text_Cancel[];
-extern const u8 gUnknown_81B2E76[];
 extern const u8 Help_Text_DescWhatShouldIDo[];
 extern const u8 Help_Text_DescHowDoIDoThis[];
 extern const u8 Help_Text_DescWhatDoesThisTermMean[];
@@ -1288,7 +1268,7 @@ extern const u8 EventScript_TrySurface[];
 extern const u8 EventScript_VsSeekerChargingDone[];
 extern const u8 EventScript_FieldPoison[];
 extern const u8 EventScript_EggHatch[];
-extern const u8 EventScript_1C1361[];
+extern const u8 EventScript_DoFallWarp[];
 extern const u8 EventScript_SafariZone_ExtensionSign[];
 
 // overworld

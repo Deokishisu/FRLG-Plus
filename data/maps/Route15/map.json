@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 22,
@@ -41,8 +42,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 31,
       "y": 12,
       "elevation": 3,
@@ -55,8 +56,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 37,
       "y": 14,
       "elevation": 3,
@@ -69,6 +70,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 44,
@@ -83,6 +85,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "in_connection": false,
       "x": 50,
@@ -97,6 +100,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 59,
@@ -111,6 +115,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 63,
@@ -125,6 +130,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 52,
@@ -139,6 +145,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "in_connection": false,
       "x": 54,
@@ -153,6 +160,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 28,
@@ -167,6 +175,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 20,
@@ -181,6 +190,7 @@
       "flag": "FLAG_HIDE_ROUTE15_TM18"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACKBELT",
       "in_connection": false,
       "x": 39,
@@ -195,6 +205,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL",
       "in_connection": false,
       "x": 40,
@@ -209,20 +220,15 @@
       "flag": "0"
     },
     {
+      "type": "clone",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
-      "in_connection": true,
       "x": 73,
       "y": 7,
-      "elevation": 13,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "32",
-      "trainer_sight_or_berry_tree_id": "3",
-      "script": "0x0",
-      "flag": "0"
+      "target_local_id": 13,
+      "target_map": "MAP_ROUTE14"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_LASS",
       "in_connection": false,
       "x": 17,
@@ -237,6 +243,7 @@
       "flag": "FLAG_HIDE_MASTER_TRAINERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_BUG_CATCHER",
       "in_connection": false,
       "x": 43,
@@ -251,6 +258,7 @@
       "flag": "FLAG_HIDE_MASTER_TRAINERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_BIRD_KEEPER",
       "in_connection": false,
       "x": 61,
@@ -271,14 +279,14 @@
       "y": 11,
       "elevation": 3,
       "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 16,
       "y": 11,
       "elevation": 3,
       "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [

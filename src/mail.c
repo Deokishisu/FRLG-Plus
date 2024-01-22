@@ -560,16 +560,17 @@ static bool8 DoInitMailView(void)
         CopyBgTilemapBufferToVram(2);
         break;
     case 12:
-        LoadPalette(stdpal_get(0), 0xF0, 0x20);
-        gPlttBufferUnfaded[15 * 16 + 10] = sGfxHeaders[sMailViewResources->mailType].textpals[0];
-        gPlttBufferFaded[15 * 16 + 10] = sGfxHeaders[sMailViewResources->mailType].textpals[0];
-        gPlttBufferUnfaded[15 * 16 + 11] = sGfxHeaders[sMailViewResources->mailType].textpals[1];
-        gPlttBufferFaded[15 * 16 + 11] = sGfxHeaders[sMailViewResources->mailType].textpals[1];
-        LoadPalette(sGfxHeaders[sMailViewResources->mailType].pal, 0x00, 0x20);
-        gPlttBufferUnfaded[0 * 16 + 10] = sGenderPals[gSaveBlock2Ptr->playerGender][0];
-        gPlttBufferFaded[0 * 16 + 10] = sGenderPals[gSaveBlock2Ptr->playerGender][0];
-        gPlttBufferUnfaded[0 * 16 + 11] = sGenderPals[gSaveBlock2Ptr->playerGender][1];
-        gPlttBufferFaded[0 * 16 + 11] = sGenderPals[gSaveBlock2Ptr->playerGender][1];
+        LoadPalette(GetTextWindowPalette(0), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+        gPlttBufferUnfaded[BG_PLTT_ID(15) + 10] = sGfxHeaders[sMailViewResources->mailType].textpals[0];
+        gPlttBufferFaded[BG_PLTT_ID(15) + 10] = sGfxHeaders[sMailViewResources->mailType].textpals[0];
+        gPlttBufferUnfaded[BG_PLTT_ID(15) + 11] = sGfxHeaders[sMailViewResources->mailType].textpals[1];
+        gPlttBufferFaded[BG_PLTT_ID(15) + 11] = sGfxHeaders[sMailViewResources->mailType].textpals[1];
+
+        LoadPalette(sGfxHeaders[sMailViewResources->mailType].pal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+        gPlttBufferUnfaded[BG_PLTT_ID(0) + 10] = sGenderPals[gSaveBlock2Ptr->playerGender][0];
+        gPlttBufferFaded[BG_PLTT_ID(0) + 10] = sGenderPals[gSaveBlock2Ptr->playerGender][0];
+        gPlttBufferUnfaded[BG_PLTT_ID(0) + 11] = sGenderPals[gSaveBlock2Ptr->playerGender][1];
+        gPlttBufferFaded[BG_PLTT_ID(0) + 11] = sGenderPals[gSaveBlock2Ptr->playerGender][1];
         break;
     case 13:
         if (sMailViewResources->messageExists)
@@ -629,7 +630,7 @@ static void CB2_InitMailView(void)
             SetMainCallback2(CB2_RunShowMailCB);
             break;
         }
-    } while (MenuHelpers_LinkSomething() != TRUE);
+    } while (MenuHelpers_IsLinkActive() != TRUE);
 }
 
 static void BufferMailMessage(void)
@@ -669,13 +670,13 @@ static void AddMailMessagePrinters(void)
     {
         if (sMailViewResources->messageLinesBuffer[i][0] != EOS && sMailViewResources->messageLinesBuffer[i][0] != CHAR_SPACE)
         {
-            AddTextPrinterParameterized3(0, FONT_1, sMailViewResources->messageLayout->linesLayout[i].lineXoffset + sMailViewResources->messageLayout->messageLeft, y + sMailViewResources->messageLayout->messageTop, sTextColor, 0, sMailViewResources->messageLinesBuffer[i]);
+            AddTextPrinterParameterized3(0, FONT_NORMAL_COPY_1, sMailViewResources->messageLayout->linesLayout[i].lineXoffset + sMailViewResources->messageLayout->messageLeft, y + sMailViewResources->messageLayout->messageTop, sTextColor, 0, sMailViewResources->messageLinesBuffer[i]);
             y += sMailViewResources->messageLayout->linesLayout[i].lineHeight;
         }
     }
-    width = GetStringWidth(FONT_1, gText_From, 0);
-    AddTextPrinterParameterized3(1, FONT_1, sMailViewResources->nameX, sMailViewResources->messageLayout->nameY, sTextColor, 0, gText_From);
-    AddTextPrinterParameterized3(1, FONT_1, sMailViewResources->nameX + width, sMailViewResources->messageLayout->nameY, sTextColor, 0, sMailViewResources->authorNameBuffer);
+    width = GetStringWidth(FONT_NORMAL_COPY_1, gText_From, 0);
+    AddTextPrinterParameterized3(1, FONT_NORMAL_COPY_1, sMailViewResources->nameX, sMailViewResources->messageLayout->nameY, sTextColor, 0, gText_From);
+    AddTextPrinterParameterized3(1, FONT_NORMAL_COPY_1, sMailViewResources->nameX + width, sMailViewResources->messageLayout->nameY, sTextColor, 0, sMailViewResources->authorNameBuffer);
     CopyWindowToVram(0, COPYWIN_FULL);
     CopyWindowToVram(1, COPYWIN_FULL);
 }

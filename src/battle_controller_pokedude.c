@@ -15,7 +15,6 @@
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_message.h"
-#include "battle_string_ids.h"
 #include "reshow_battle_screen.h"
 #include "teachy_tv.h"
 #include "constants/songs.h"
@@ -35,7 +34,7 @@ struct PokedudeBattlePartyInfo
     u8 side;
     u8 level;
     u16 species;
-    u16 moves[4];
+    u16 moves[MAX_MON_MOVES];
     u8 nature;
     u8 gender;
 };
@@ -122,68 +121,68 @@ static void Task_StartSendOutAnim(u8 taskId);
 static const u8 *GetPokedudeText(void);
 
 static void (*const sPokedudeBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
-    {
-        PokedudeHandleGetMonData,
-        PokedudeHandleGetRawMonData,
-        PokedudeHandleSetMonData,
-        PokedudeHandleSetRawMonData,
-        PokedudeHandleLoadMonSprite,
-        PokedudeHandleSwitchInAnim,
-        PokedudeHandleReturnMonToBall,
-        PokedudeHandleDrawTrainerPic,
-        PokedudeHandleTrainerSlide,
-        PokedudeHandleTrainerSlideBack,
-        PokedudeHandleFaintAnimation,
-        PokedudeHandlePaletteFade,
-        PokedudeHandleSuccessBallThrowAnim,
-        PokedudeHandleBallThrowAnim,
-        PokedudeHandlePause,
-        PokedudeHandleMoveAnimation,
-        PokedudeHandlePrintString,
-        PokedudeHandlePrintSelectionString,
-        PokedudeHandleChooseAction,
-        PokedudeHandleUnknownYesNoBox,
-        PokedudeHandleChooseMove,
-        PokedudeHandleChooseItem,
-        PokedudeHandleChoosePokemon,
-        PokedudeHandleCmd23,
-        PokedudeHandleHealthBarUpdate,
-        PokedudeHandleExpUpdate,
-        PokedudeHandleStatusIconUpdate,
-        PokedudeHandleStatusAnimation,
-        PokedudeHandleStatusXor,
-        PokedudeHandleDataTransfer,
-        PokedudeHandleDMA3Transfer,
-        PokedudeHandlePlayBGM,
-        PokedudeHandleCmd32,
-        PokedudeHandleTwoReturnValues,
-        PokedudeHandleChosenMonReturnValue,
-        PokedudeHandleOneReturnValue,
-        PokedudeHandleOneReturnValue_Duplicate,
-        PokedudeHandleCmd37,
-        PokedudeHandleCmd38,
-        PokedudeHandleCmd39,
-        PokedudeHandleCmd40,
-        PokedudeHandleHitAnimation,
-        PokedudeHandleCmd42,
-        PokedudeHandlePlaySE,
-        PokedudeHandlePlayFanfare,
-        PokedudeHandleFaintingCry,
-        PokedudeHandleIntroSlide,
-        PokedudeHandleIntroTrainerBallThrow,
-        PokedudeHandleDrawPartyStatusSummary,
-        PokedudeHandleHidePartyStatusSummary,
-        PokedudeHandleEndBounceEffect,
-        PokedudeHandleSpriteInvisibility,
-        PokedudeHandleBattleAnimation,
-        PokedudeHandleLinkStandbyMsg,
-        PokedudeHandleResetActionMoveSelection,
-        PokedudeHandleCmd55,
-        PokedudeCmdEnd,
-    };
+{
+    [CONTROLLER_GETMONDATA]               = PokedudeHandleGetMonData,
+    [CONTROLLER_GETRAWMONDATA]            = PokedudeHandleGetRawMonData,
+    [CONTROLLER_SETMONDATA]               = PokedudeHandleSetMonData,
+    [CONTROLLER_SETRAWMONDATA]            = PokedudeHandleSetRawMonData,
+    [CONTROLLER_LOADMONSPRITE]            = PokedudeHandleLoadMonSprite,
+    [CONTROLLER_SWITCHINANIM]             = PokedudeHandleSwitchInAnim,
+    [CONTROLLER_RETURNMONTOBALL]          = PokedudeHandleReturnMonToBall,
+    [CONTROLLER_DRAWTRAINERPIC]           = PokedudeHandleDrawTrainerPic,
+    [CONTROLLER_TRAINERSLIDE]             = PokedudeHandleTrainerSlide,
+    [CONTROLLER_TRAINERSLIDEBACK]         = PokedudeHandleTrainerSlideBack,
+    [CONTROLLER_FAINTANIMATION]           = PokedudeHandleFaintAnimation,
+    [CONTROLLER_PALETTEFADE]              = PokedudeHandlePaletteFade,
+    [CONTROLLER_SUCCESSBALLTHROWANIM]     = PokedudeHandleSuccessBallThrowAnim,
+    [CONTROLLER_BALLTHROWANIM]            = PokedudeHandleBallThrowAnim,
+    [CONTROLLER_PAUSE]                    = PokedudeHandlePause,
+    [CONTROLLER_MOVEANIMATION]            = PokedudeHandleMoveAnimation,
+    [CONTROLLER_PRINTSTRING]              = PokedudeHandlePrintString,
+    [CONTROLLER_PRINTSTRINGPLAYERONLY]    = PokedudeHandlePrintSelectionString,
+    [CONTROLLER_CHOOSEACTION]             = PokedudeHandleChooseAction,
+    [CONTROLLER_UNKNOWNYESNOBOX]          = PokedudeHandleUnknownYesNoBox,
+    [CONTROLLER_CHOOSEMOVE]               = PokedudeHandleChooseMove,
+    [CONTROLLER_OPENBAG]                  = PokedudeHandleChooseItem,
+    [CONTROLLER_CHOOSEPOKEMON]            = PokedudeHandleChoosePokemon,
+    [CONTROLLER_23]                       = PokedudeHandleCmd23,
+    [CONTROLLER_HEALTHBARUPDATE]          = PokedudeHandleHealthBarUpdate,
+    [CONTROLLER_EXPUPDATE]                = PokedudeHandleExpUpdate,
+    [CONTROLLER_STATUSICONUPDATE]         = PokedudeHandleStatusIconUpdate,
+    [CONTROLLER_STATUSANIMATION]          = PokedudeHandleStatusAnimation,
+    [CONTROLLER_STATUSXOR]                = PokedudeHandleStatusXor,
+    [CONTROLLER_DATATRANSFER]             = PokedudeHandleDataTransfer,
+    [CONTROLLER_DMA3TRANSFER]             = PokedudeHandleDMA3Transfer,
+    [CONTROLLER_PLAYBGM]                  = PokedudeHandlePlayBGM,
+    [CONTROLLER_32]                       = PokedudeHandleCmd32,
+    [CONTROLLER_TWORETURNVALUES]          = PokedudeHandleTwoReturnValues,
+    [CONTROLLER_CHOSENMONRETURNVALUE]     = PokedudeHandleChosenMonReturnValue,
+    [CONTROLLER_ONERETURNVALUE]           = PokedudeHandleOneReturnValue,
+    [CONTROLLER_ONERETURNVALUE_DUPLICATE] = PokedudeHandleOneReturnValue_Duplicate,
+    [CONTROLLER_CLEARUNKVAR]              = PokedudeHandleCmd37,
+    [CONTROLLER_SETUNKVAR]                = PokedudeHandleCmd38,
+    [CONTROLLER_CLEARUNKFLAG]             = PokedudeHandleCmd39,
+    [CONTROLLER_TOGGLEUNKFLAG]            = PokedudeHandleCmd40,
+    [CONTROLLER_HITANIMATION]             = PokedudeHandleHitAnimation,
+    [CONTROLLER_CANTSWITCH]               = PokedudeHandleCmd42,
+    [CONTROLLER_PLAYSE]                   = PokedudeHandlePlaySE,
+    [CONTROLLER_PLAYFANFARE]              = PokedudeHandlePlayFanfare,
+    [CONTROLLER_FAINTINGCRY]              = PokedudeHandleFaintingCry,
+    [CONTROLLER_INTROSLIDE]               = PokedudeHandleIntroSlide,
+    [CONTROLLER_INTROTRAINERBALLTHROW]    = PokedudeHandleIntroTrainerBallThrow,
+    [CONTROLLER_DRAWPARTYSTATUSSUMMARY]   = PokedudeHandleDrawPartyStatusSummary,
+    [CONTROLLER_HIDEPARTYSTATUSSUMMARY]   = PokedudeHandleHidePartyStatusSummary,
+    [CONTROLLER_ENDBOUNCE]                = PokedudeHandleEndBounceEffect,
+    [CONTROLLER_SPRITEINVISIBILITY]       = PokedudeHandleSpriteInvisibility,
+    [CONTROLLER_BATTLEANIMATION]          = PokedudeHandleBattleAnimation,
+    [CONTROLLER_LINKSTANDBYMSG]           = PokedudeHandleLinkStandbyMsg,
+    [CONTROLLER_RESETACTIONMOVESELECTION] = PokedudeHandleResetActionMoveSelection,
+    [CONTROLLER_ENDLINKBATTLE]            = PokedudeHandleCmd55,
+    [CONTROLLER_TERMINATOR_NOP]           = PokedudeCmdEnd,
+};
 
-// not used
-static const u8 gUnknown_8479000[] = { 0x48, 0x48, 0x20, 0x5a, 0x50, 0x50, 0x50, 0x58 };
+// unknown unused data
+static const u8 sUnused[] = { 0x48, 0x48, 0x20, 0x5a, 0x50, 0x50, 0x50, 0x58 };
 
 #define pdHealthboxPal1  simulatedInputState[0]
 #define pdHealthboxPal2  simulatedInputState[1]
@@ -239,8 +238,8 @@ static void CompleteOnBattlerSpritePosX_0(void)
         }
         else if (gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim)
         {
-            gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = 0;
-            gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = 0;
+            gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = FALSE;
+            gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = FALSE;
             FreeSpriteTilesByTag(ANIM_TAG_GOLD_STARS);
             FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
             PokedudeBufferExecCompleted();
@@ -279,8 +278,8 @@ static void SwitchIn_CleanShinyAnimShowSubstitute(void)
     if (gSprites[gHealthboxSpriteIds[gActiveBattler]].callback == SpriteCallbackDummy
         && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim)
     {
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = 0;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = FALSE;
         FreeSpriteTilesByTag(ANIM_TAG_GOLD_STARS);
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
         if (gBattleSpritesDataPtr->battlerData[gActiveBattler].behindSubstitute)
@@ -423,10 +422,10 @@ static void Intro_WaitForShinyAnimAndHealthbox(void)
         && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim
         && gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].finishedShinyMonAnim)
     {
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].triedShinyMonAnim = 0;
-        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].finishedShinyMonAnim = 0;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].triedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].finishedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].triedShinyMonAnim = FALSE;
+        gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].finishedShinyMonAnim = FALSE;
         FreeSpriteTilesByTag(ANIM_TAG_GOLD_STARS);
         FreeSpritePaletteByTag(ANIM_TAG_GOLD_STARS);
         CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
@@ -452,7 +451,7 @@ static void Task_GiveExpToMon(u8 taskId)
         u16 species = GetMonData(mon, MON_DATA_SPECIES);
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         u32 currExp = GetMonData(mon, MON_DATA_EXP);
-        u32 nextLvlExp = gExperienceTables[gBaseStats[species].growthRate][level + 1];
+        u32 nextLvlExp = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1];
 
         if (currExp + gainedExp >= nextLvlExp)
         {
@@ -494,11 +493,11 @@ static void Task_PrepareToGiveExpWithExpBar(u8 taskId)
     u8 level = GetMonData(mon, MON_DATA_LEVEL);
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 exp = GetMonData(mon, MON_DATA_EXP);
-    u32 currLvlExp = gExperienceTables[gBaseStats[species].growthRate][level];
+    u32 currLvlExp = gExperienceTables[gSpeciesInfo[species].growthRate][level];
     u32 expToNextLvl;
 
     exp -= currLvlExp;
-    expToNextLvl = gExperienceTables[gBaseStats[species].growthRate][level + 1] - currLvlExp;
+    expToNextLvl = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1] - currLvlExp;
     SetBattleBarStruct(battlerId, gHealthboxSpriteIds[battlerId], expToNextLvl, exp, -gainedExp);
     PlaySE(SE_EXP);
     gTasks[taskId].func = Task_GiveExpWithExpBar;
@@ -530,7 +529,7 @@ static void Task_GiveExpWithExpBar(u8 taskId)
             level = GetMonData(&gPlayerParty[monId], MON_DATA_LEVEL);
             currExp = GetMonData(&gPlayerParty[monId], MON_DATA_EXP);
             species = GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES);
-            expOnNextLvl = gExperienceTables[gBaseStats[species].growthRate][level + 1];
+            expOnNextLvl = gExperienceTables[gSpeciesInfo[species].growthRate][level + 1];
             if (currExp + gainedExp >= expOnNextLvl)
             {
                 u8 savedActiveBattler;
@@ -730,7 +729,7 @@ static void PokedudeHandleGetMonData(void)
             monToCheck >>= 1;
         }
     }
-    BtlController_EmitDataTransfer(1, size, monData);
+    BtlController_EmitDataTransfer(BUFFER_B, size, monData);
     PokedudeBufferExecCompleted();
 }
 
@@ -1307,10 +1306,10 @@ static void PokedudeHandleLoadMonSprite(void)
     y = GetBattlerSpriteDefault_Y(gActiveBattler);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
-                                                     GetBattlerSpriteCoord(gActiveBattler, 2),
+                                                     GetBattlerSpriteCoord(gActiveBattler, BATTLER_COORD_X_2),
                                                      y,
                                                      GetBattlerSpriteSubpriority(gActiveBattler));
-    gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -240;
+    gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -DISPLAY_WIDTH;
     if(gSaveBlock2Ptr->optionsBattleIntroAnim)
         gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 0;
     gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = gActiveBattler;
@@ -1353,13 +1352,13 @@ static void PokedudeHandleDrawTrainerPic(void)
 {
     if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER)
     {
-        DecompressTrainerBackPalette(BACK_PIC_POKEDUDE, gActiveBattler);
-        SetMultiuseSpriteTemplateToTrainerBack(BACK_PIC_POKEDUDE, GetBattlerPosition(gActiveBattler));
+        DecompressTrainerBackPalette(TRAINER_BACK_PIC_POKEDUDE, gActiveBattler);
+        SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_POKEDUDE, GetBattlerPosition(gActiveBattler));
         gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                          80,
-                                                         (8 - gTrainerBackPicCoords[BACK_PIC_POKEDUDE].size) * 4 + 80,
+                                                         (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_POKEDUDE].size) * 4 + 80,
                                                          30);
-        gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = 240;
+        gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = DISPLAY_WIDTH;
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -2;
         if(gSaveBlock2Ptr->optionsBattleIntroAnim)
             gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = -240;
@@ -1375,7 +1374,7 @@ static void PokedudeHandleDrawTrainerPic(void)
                                                          176,
                                                          (8 - gTrainerFrontPicCoords[tranerPicid].size) * 4 + 40,
                                                          GetBattlerSpriteSubpriority(gActiveBattler));
-        gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -240;
+        gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -DISPLAY_WIDTH;
         gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 2;
         if(gSaveBlock2Ptr->optionsBattleIntroAnim)
             gSprites[gBattlerSpriteIds[gActiveBattler]].data[0] = 240;
@@ -1390,11 +1389,11 @@ static void PokedudeHandleDrawTrainerPic(void)
 
 static void PokedudeHandleTrainerSlide(void)
 {
-    DecompressTrainerBackPalette(BACK_PIC_POKEDUDE, gActiveBattler);
-    SetMultiuseSpriteTemplateToTrainerBack(BACK_PIC_POKEDUDE, GetBattlerPosition(gActiveBattler));
+    DecompressTrainerBackPalette(TRAINER_BACK_PIC_POKEDUDE, gActiveBattler);
+    SetMultiuseSpriteTemplateToTrainerBack(TRAINER_BACK_PIC_POKEDUDE, GetBattlerPosition(gActiveBattler));
     gBattlerSpriteIds[gActiveBattler] = CreateSprite(&gMultiuseSpriteTemplate,
                                                      80,
-                                                     (8 - gTrainerBackPicCoords[BACK_PIC_POKEDUDE].size) * 4 + 80,
+                                                     (8 - gTrainerBackPicCoords[TRAINER_BACK_PIC_POKEDUDE].size) * 4 + 80,
                                                      30);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = gActiveBattler;
     gSprites[gBattlerSpriteIds[gActiveBattler]].x2 = -96;
@@ -1503,7 +1502,7 @@ static void PokedudeDoMoveAnimation(void)
     case 1:
         if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].specialAnimActive)
         {
-            SetBattlerSpriteAffineMode(0);
+            SetBattlerSpriteAffineMode(ST_OAM_AFFINE_OFF);
             DoMoveAnim(move);
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 2;
         }
@@ -1512,7 +1511,7 @@ static void PokedudeDoMoveAnimation(void)
         gAnimScriptCallback();
         if (!gAnimScriptActive)
         {
-            SetBattlerSpriteAffineMode(1);
+            SetBattlerSpriteAffineMode(ST_OAM_AFFINE_NORMAL);
             if (gBattleSpritesDataPtr->battlerData[gActiveBattler].behindSubstitute)
                 InitAndLaunchSpecialAnimation(gActiveBattler, gActiveBattler, gActiveBattler, B_ANIM_MON_TO_SUBSTITUTE);
             gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].animationState = 3;
@@ -1865,7 +1864,7 @@ static void PokedudeHandleIntroTrainerBallThrow(void)
     StoreSpriteCallbackInData6(&gSprites[gBattlerSpriteIds[gActiveBattler]], SpriteCB_FreePlayerSpriteLoadMonSprite);
     StartSpriteAnim(&gSprites[gBattlerSpriteIds[gActiveBattler]], 1);
     paletteNum = AllocSpritePalette(0xD6F8);
-    LoadCompressedPalette(gTrainerBackPicPaletteTable[BACK_PIC_POKEDUDE].data, 0x100 + paletteNum * 16, 32);
+    LoadCompressedPalette(gTrainerBackPicPaletteTable[TRAINER_BACK_PIC_POKEDUDE].data, OBJ_PLTT_ID(paletteNum), PLTT_SIZE_4BPP);
     gSprites[gBattlerSpriteIds[gActiveBattler]].oam.paletteNum = paletteNum;
     taskId = CreateTask(Task_StartSendOutAnim, 5);
     gTasks[taskId].data[0] = gActiveBattler;
@@ -1885,7 +1884,7 @@ static void StartSendOutAnim(u8 battlerId)
     gBattleControllerData[battlerId] = CreateInvisibleSpriteWithCallback(SpriteCB_WaitForBattlerBallReleaseAnim);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));
     gBattlerSpriteIds[battlerId] = CreateSprite(&gMultiuseSpriteTemplate,
-                                                GetBattlerSpriteCoord(battlerId, 2),
+                                                GetBattlerSpriteCoord(battlerId, BATTLER_COORD_X_2),
                                                 GetBattlerSpriteDefault_Y(battlerId),
                                                 GetBattlerSpriteSubpriority(battlerId));
     gSprites[gBattleControllerData[battlerId]].data[1] = gBattlerSpriteIds[battlerId];

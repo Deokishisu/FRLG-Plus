@@ -16,6 +16,7 @@
   "connections": 0,
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 7,
@@ -30,6 +31,7 @@
       "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_NUGGET"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 11,
@@ -44,6 +46,7 @@
       "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_FULL_RESTORE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 25,
@@ -58,6 +61,7 @@
       "flag": "FLAG_HIDE_CERULEAN_CAVE_1F_MAX_ELIXIR"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
       "x": 7,
@@ -72,6 +76,7 @@
       "flag": "FLAG_TEMP_12"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
       "x": 13,
@@ -86,6 +91,7 @@
       "flag": "FLAG_TEMP_13"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
       "x": 5,
@@ -100,6 +106,7 @@
       "flag": "FLAG_TEMP_14"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
       "x": 14,
@@ -114,6 +121,7 @@
       "flag": "FLAG_TEMP_15"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
       "x": 11,
@@ -128,6 +136,7 @@
       "flag": "FLAG_TEMP_16"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCK_SMASH_ROCK",
       "in_connection": false,
       "x": 9,
@@ -148,56 +157,56 @@
       "y": 21,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CITY",
-      "dest_warp_id": 7
+      "dest_warp_id": "7"
     },
     {
       "x": 34,
       "y": 2,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_2F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 1,
       "y": 7,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_B1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 10,
       "y": 2,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_2F",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 5,
       "y": 15,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_2F",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     },
     {
       "x": 30,
       "y": 10,
       "elevation": 4,
       "dest_map": "MAP_CERULEAN_CAVE_2F",
-      "dest_warp_id": 3
+      "dest_warp_id": "3"
     },
     {
       "x": 24,
       "y": 11,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_2F",
-      "dest_warp_id": 4
+      "dest_warp_id": "4"
     },
     {
       "x": 2,
       "y": 4,
       "elevation": 3,
       "dest_map": "MAP_CERULEAN_CAVE_2F",
-      "dest_warp_id": 5
+      "dest_warp_id": "5"
     }
   ],
   "coord_events": [
@@ -210,7 +219,7 @@
       "y": 2,
       "elevation": 3,
       "item": "ITEM_ULTRA_BALL",
-      "flag": "HIDDEN_ITEM_CERULEAN_CAVE_1F_ULTRA_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_CERULEAN_CAVE_1F_ULTRA_BALL",
       "quantity": 1,
       "underfoot": false
     }

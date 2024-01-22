@@ -16,6 +16,7 @@
   "connections": 0,
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 6,
@@ -30,8 +31,8 @@
       "flag": "FLAG_HIDE_POKEMON_MANSION_B1F_TM22"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BURGLAR",
-      "in_connection": false,
       "x": 20,
       "y": 25,
       "elevation": 3,
@@ -44,6 +45,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "in_connection": false,
       "x": 34,
@@ -58,6 +60,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 23,
@@ -72,6 +75,7 @@
       "flag": "FLAG_HIDE_POKEMON_MANSION_B1F_TM14"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 2,
@@ -86,6 +90,7 @@
       "flag": "FLAG_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 5,
@@ -134,7 +139,7 @@
       "y": 29,
       "elevation": 3,
       "dest_map": "MAP_POKEMON_MANSION_1F",
-      "dest_warp_id": 4
+      "dest_warp_id": "4"
     }
   ],
   "coord_events": [
@@ -171,7 +176,7 @@
       "y": 5,
       "elevation": 3,
       "item": "ITEM_ELIXIR",
-      "flag": "HIDDEN_ITEM_POKEMON_MANSION_B1F_ELIXIR",
+      "flag": "FLAG_HIDDEN_ITEM_POKEMON_MANSION_B1F_ELIXIR",
       "quantity": 1,
       "underfoot": false
     }

@@ -32,8 +32,8 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 8,
       "y": 11,
       "elevation": 1,
@@ -46,6 +46,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 16,
@@ -60,8 +61,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 34,
       "y": 7,
       "elevation": 1,
@@ -74,8 +75,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 43,
       "y": 9,
       "elevation": 3,
@@ -88,6 +89,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "in_connection": false,
       "x": 23,
@@ -102,6 +104,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 73,
@@ -116,6 +119,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "in_connection": false,
       "x": 111,
@@ -130,6 +134,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "in_connection": false,
       "x": 106,
@@ -144,8 +149,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 93,
       "y": 10,
       "elevation": 1,
@@ -158,8 +163,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 54,
       "y": 11,
       "elevation": 1,
@@ -172,6 +177,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "in_connection": false,
       "x": 69,
@@ -262,14 +268,14 @@
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_SEAFOAM_ISLANDS_1F",
-      "dest_warp_id": 3
+      "dest_warp_id": "3"
     },
     {
       "x": 72,
       "y": 14,
       "elevation": 3,
       "dest_map": "MAP_SEAFOAM_ISLANDS_1F",
-      "dest_warp_id": 4
+      "dest_warp_id": "4"
     }
   ],
   "coord_events": [
@@ -298,7 +304,7 @@
       "y": 6,
       "elevation": 3,
       "item": "ITEM_STARDUST",
-      "flag": "HIDDEN_ITEM_ROUTE20_STARDUST",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE20_STARDUST",
       "quantity": 1,
       "underfoot": false
     }

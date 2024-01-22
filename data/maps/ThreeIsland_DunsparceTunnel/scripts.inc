@@ -26,7 +26,7 @@ ThreeIsland_DunsparceTunnel_EventScript_Prospector::
 	goto_if_set FLAG_SYS_RECEIVED_EXTENDED_DEX, ThreeIsland_DunsparceTunnel_EventScript_ProspectorStruckGold
 	msgbox ThreeIsland_DunsparceTunnel_Text_ProspectingForGold
 	closemessage
-	applymovement LOCALID_PROSPECTOR, Movement_FaceOriginalDirection
+	applymovement LOCALID_PROSPECTOR, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	release
 	end

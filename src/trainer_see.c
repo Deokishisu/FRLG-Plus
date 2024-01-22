@@ -88,7 +88,7 @@ static const TrainerSeeFunc sTrainerSeeFuncList2[] = {
 bool8 CheckForTrainersWantingBattle(void)
 {
     u32 i;
-    if (sub_8111C2C() == TRUE)
+    if (QL_IsTrainerSightDisabled() == TRUE)
         return FALSE;
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
@@ -550,7 +550,7 @@ void EndTrainerApproach(void)
 static void Task_DestroyTrainerApproachTask(u8 taskId)
 {
     DestroyTask(taskId);
-    EnableBothScriptContexts();
+    ScriptContext_Enable();
 }
 
 // Trainer See Excl Mark Field Effect

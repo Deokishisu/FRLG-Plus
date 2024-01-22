@@ -7,6 +7,7 @@
 #include "constants/species.h"
 #include "constants/vars.h"
 #include "constants/items.h"
+#include "constants/region_map_sections.h"
 	.include "asm/macros.inc"
 	.include "asm/macros/event.inc"
 	.include "constants/constants.inc"
@@ -17,9 +18,9 @@
 MysteryEventScript_StampCard::
 	setvaddress MysteryEventScript_StampCard
 	setorcopyvar VAR_RESULT, 1
-	specialvar VAR_0x8008, BattleCardAction
+	specialvar VAR_0x8008, GetMysteryGiftCardStat
 	setorcopyvar VAR_RESULT, 0
-	specialvar VAR_0x8009, BattleCardAction
+	specialvar VAR_0x8009, GetMysteryGiftCardStat
 	subvar VAR_0x8008, VAR_0x8009
 	buffernumberstring STR_VAR_1, VAR_0x8008
 	lock
@@ -67,8 +68,8 @@ SurfPichu_FullParty:
 
 SurfPichu_GiveEgg:
 	giveegg SPECIES_PICHU
-	setmoneventlegal VAR_EVENT_PICHU_SLOT
-	setmonmetlocation VAR_EVENT_PICHU_SLOT, 0xff
+	setmonmodernfatefulencounter VAR_EVENT_PICHU_SLOT
+	setmonmetlocation VAR_EVENT_PICHU_SLOT, METLOC_FATEFUL_ENCOUNTER
 	vgoto_if_eq VAR_EVENT_PICHU_SLOT, 1, SurfPichu_Slot1
 	vgoto_if_eq VAR_EVENT_PICHU_SLOT, 2, SurfPichu_Slot2
 	vgoto_if_eq VAR_EVENT_PICHU_SLOT, 3, SurfPichu_Slot3
@@ -162,7 +163,7 @@ MysteryEventScript_BattleCard::
 	setvaddress MysteryEventScript_BattleCard
 	vgoto_if_set FLAG_MYSTERY_GIFT_DONE, MysteryEventScript_BattleCardInfo
 	setorcopyvar VAR_RESULT, 2
-	specialvar VAR_0x8008, BattleCardAction
+	specialvar VAR_0x8008, GetMysteryGiftCardStat
 	vgoto_if_ne VAR_0x8008, 3, MysteryEventScript_BattleCardInfo
 	lock
 	faceplayer
@@ -208,7 +209,7 @@ MysteryEventScript_AuroraTicket::
 	setvaddress MysteryEventScript_AuroraTicket
 	lock
 	faceplayer
-	vgoto_if_set FLAG_GOT_AURORA_TICKET, AuroraTicket_Obtained
+	vgoto_if_set FLAG_RECEIVED_AURORA_TICKET, AuroraTicket_Obtained
 	vgoto_if_set FLAG_FOUGHT_DEOXYS, AuroraTicket_Obtained
 	checkitem ITEM_AURORA_TICKET, 1
 	vgoto_if_eq VAR_RESULT, TRUE, AuroraTicket_Obtained
@@ -219,7 +220,7 @@ MysteryEventScript_AuroraTicket::
 	vgoto_if_eq VAR_RESULT, FALSE, AuroraTicket_NoBagSpace
 	giveitem ITEM_AURORA_TICKET
 	setflag FLAG_ENABLE_SHIP_BIRTH_ISLAND
-	setflag FLAG_GOT_AURORA_TICKET
+	setflag FLAG_RECEIVED_AURORA_TICKET
 	vmessage sText_AuroraTicket2
 	waitmessage
 	waitbuttonpress
@@ -266,7 +267,7 @@ MysteryEventScript_MysticTicket::
 	setvaddress MysteryEventScript_MysticTicket
 	lock
 	faceplayer
-	vgoto_if_set FLAG_GOT_MYSTIC_TICKET, MysticTicket_Obtained
+	vgoto_if_set FLAG_RECEIVED_MYSTIC_TICKET, MysticTicket_Obtained
 	vgoto_if_set FLAG_FOUGHT_LUGIA, MysticTicket_Obtained
 	vgoto_if_set FLAG_FOUGHT_HO_OH, MysticTicket_Obtained
 	checkitem ITEM_MYSTIC_TICKET, 1
@@ -278,7 +279,7 @@ MysteryEventScript_MysticTicket::
 	vgoto_if_eq VAR_RESULT, FALSE, MysticTicket_NoBagSpace
 	giveitem ITEM_MYSTIC_TICKET
 	setflag FLAG_ENABLE_SHIP_NAVEL_ROCK
-	setflag FLAG_GOT_MYSTIC_TICKET
+	setflag FLAG_RECEIVED_MYSTIC_TICKET
 	vmessage sText_MysticTicket1
 	waitmessage
 	waitbuttonpress

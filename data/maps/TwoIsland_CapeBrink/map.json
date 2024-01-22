@@ -126,7 +126,7 @@
       "y": 7,
       "elevation": 0,
       "dest_map": "MAP_TWO_ISLAND_CAPE_BRINK_HOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -139,7 +139,7 @@
       "y": 19,
       "elevation": 3,
       "item": "ITEM_PP_MAX",
-      "flag": "HIDDEN_ITEM_TWO_ISLAND_CAPE_BRINK_PP_MAX",
+      "flag": "FLAG_HIDDEN_ITEM_TWO_ISLAND_CAPE_BRINK_PP_MAX",
       "quantity": 1,
       "underfoot": true
     },
@@ -149,7 +149,7 @@
       "y": 4,
       "elevation": 3,
       "item": "ITEM_RARE_CANDY",
-      "flag": "HIDDEN_ITEM_TWO_ISLAND_CAPE_BRINK_RARE_CANDY",
+      "flag": "FLAG_HIDDEN_ITEM_TWO_ISLAND_CAPE_BRINK_RARE_CANDY",
       "quantity": 1,
       "underfoot": false
     },

@@ -22,6 +22,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CLERK",
       "in_connection": false,
       "x": 28,
@@ -36,6 +37,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "in_connection": false,
       "x": 31,
@@ -50,6 +52,7 @@
       "flag": "FLAG_HIDE_TWO_ISLAND_WOMAN"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "in_connection": false,
       "x": 30,
@@ -64,6 +67,7 @@
       "flag": "FLAG_HIDE_TWO_ISLAND_BEAUTY"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "in_connection": false,
       "x": 26,
@@ -78,6 +82,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
       "in_connection": false,
       "x": 27,
@@ -92,6 +97,7 @@
       "flag": "FLAG_HIDE_TWO_ISLAND_SUPER_NERD"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 30,
@@ -106,6 +112,7 @@
       "flag": "FLAG_TWO_ISLAND_CUT_TREE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 39,
@@ -120,6 +127,7 @@
       "flag": "FLAG_HIDE_TWO_ISLAND_REVIVE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
       "in_connection": false,
       "x": 37,
@@ -134,6 +142,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BOY",
       "in_connection": false,
       "x": 24,
@@ -154,28 +163,28 @@
       "y": 9,
       "elevation": 0,
       "dest_map": "MAP_TWO_ISLAND_JOYFUL_GAME_CORNER",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 33,
       "y": 9,
       "elevation": 0,
       "dest_map": "MAP_TWO_ISLAND_HOUSE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 21,
       "y": 7,
       "elevation": 0,
       "dest_map": "MAP_TWO_ISLAND_POKEMON_CENTER_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 10,
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_TWO_ISLAND_HARBOR",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

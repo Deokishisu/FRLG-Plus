@@ -181,8 +181,18 @@
 #define TRAINER_PIC_MASTER_YOUNGSTER      159
 #define TRAINER_PIC_MASTER_SWIMMER        160
 
-// Leftover from R/S
-#define TRAINER_SECRET_BASE                 1024
+// The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
+#define TRAINER_BACK_PIC_RED                    0
+#define TRAINER_BACK_PIC_LEAF                   1
+#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  2
+#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      3
+#define TRAINER_BACK_PIC_POKEDUDE               4
+#define TRAINER_BACK_PIC_OLD_MAN                5
+
+// Special Trainer Ids.
+#define TRAINER_UNION_ROOM          0xC00
+#define TRAINER_LINK_OPPONENT       0x800
+#define TRAINER_SECRET_BASE         0x400
 
 #define TRAINER_CLASS_NONE                0
 #define TRAINER_CLASS_PKMN_TRAINER_UNUSED 1

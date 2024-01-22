@@ -29,8 +29,8 @@ static void EvoTask_ShrinkOrExpandEvoSprites(u8 taskId);
 static void PreEvoInvisible_PostEvoVisible_KillTask(u8 taskId);
 static void PreEvoVisible_PostEvoInvisible_KillTask(u8 taskId);
 
-static const u16 sEvolutionSparklesPalData[] = INCBIN_U16("graphics/misc/evolution_sprite_841EEA4.gbapal");
-static const u32 sEvolutionSparklesTileData[] = INCBIN_U32("graphics/misc/evolution_sprite_841EEA4.4bpp.lz");
+static const u16 sEvolutionSparklesPalData[] = INCBIN_U16("graphics/evolution_scene/sparkle.gbapal");
+static const u32 sEvolutionSparklesTileData[] = INCBIN_U32("graphics/evolution_scene/sparkle.4bpp.lz");
 
 static const struct CompressedSpriteSheet sSpriteSheet_EvolutionSparkles[] = {
     { sEvolutionSparklesTileData, 0x20, 1001 },
@@ -79,7 +79,7 @@ static const u16 sEvolutionSparkleMatrixScales[12] = {
     0x100
 };
 
-static const s16 sUnref_841EF28[][2] = {
+static const s16 sUnused[][2] = {
     {-4, 0x10},
     {-3, 0x30},
     {-2, 0x50},
@@ -397,7 +397,7 @@ static void EvoTask_PostEvoSparklesSet2Init(u8 taskId)
     SetEvoSparklesMatrices();
     gTasks[taskId].data[15] = 0;
     IsMovingBackgroundTaskRunning();
-    CpuCopy16(&gPlttBufferFaded[32], &gPlttBufferUnfaded[32], 96);
+    CpuCopy16(&gPlttBufferFaded[BG_PLTT_ID(2)], &gPlttBufferUnfaded[BG_PLTT_ID(2)], 3 * PLTT_SIZE_4BPP);
     BeginNormalPaletteFade(0xFFF90F1C, 0, 0, 16, RGB_WHITE);
     gTasks[taskId].func = EvoTask_CreatePostEvoSparklesSet2;
     PlaySE(SE_M_PETAL_DANCE);
@@ -448,7 +448,7 @@ static void EvoTask_PostEvoSparklesSet2TradeInit(u8 taskId)
     SetEvoSparklesMatrices();
     gTasks[taskId].data[15] = 0;
     IsMovingBackgroundTaskRunning();
-    CpuCopy16(&gPlttBufferFaded[32], &gPlttBufferUnfaded[32], 96);
+    CpuCopy16(&gPlttBufferFaded[BG_PLTT_ID(2)], &gPlttBufferUnfaded[BG_PLTT_ID(2)], 3 * PLTT_SIZE_4BPP);
     BeginNormalPaletteFade(0xFFF90F00, 0, 0, 16, RGB_WHITE);
     gTasks[taskId].func = EvoTask_CreatePostEvoSparklesSet2Trade;
     PlaySE(SE_M_PETAL_DANCE);
@@ -511,12 +511,12 @@ u8 CycleEvolutionMonSprite(u8 preEvoSpriteId, u8 postEvoSpriteId)
     gSprites[preEvoSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
     gSprites[preEvoSpriteId].oam.matrixNum = 30;
     gSprites[preEvoSpriteId].invisible = FALSE;
-    CpuCopy16(palette, &gPlttBufferFaded[256 + 16 * gSprites[preEvoSpriteId].oam.paletteNum], 32);
+    CpuCopy16(palette, &gPlttBufferFaded[OBJ_PLTT_ID(gSprites[preEvoSpriteId].oam.paletteNum)], PLTT_SIZE_4BPP);
     gSprites[postEvoSpriteId].callback = SpriteCallbackDummy_MonSprites;
     gSprites[postEvoSpriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
     gSprites[postEvoSpriteId].oam.matrixNum = 31;
     gSprites[postEvoSpriteId].invisible = FALSE;
-    CpuCopy16(palette, &gPlttBufferFaded[256 + 16 * gSprites[postEvoSpriteId].oam.paletteNum], 32);
+    CpuCopy16(palette, &gPlttBufferFaded[OBJ_PLTT_ID(gSprites[postEvoSpriteId].oam.paletteNum)], PLTT_SIZE_4BPP);
     gTasks[taskId].EvoGraphicsTaskEvoStop = FALSE;
     return taskId;
 }

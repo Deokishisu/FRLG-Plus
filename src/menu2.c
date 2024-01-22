@@ -3,6 +3,11 @@
 #include "task.h"
 #include "wild_encounter.h"
 
+// Not actually "old" given these were introduced in Gen 3,
+// but they're used as equivalents here alongside the other OLD_UNOWN
+#define SPECIES_OLD_UNOWN_EMARK (NUM_SPECIES + 0)
+#define SPECIES_OLD_UNOWN_QMARK (NUM_SPECIES + 1)
+
 static void Task_SmoothBlendLayers(u8 taskId);
 
 static const u8 sMonSpriteAnchorCoords[][5] = {
@@ -491,15 +496,15 @@ void Menu_PrintFormatIntlPlayerName(u8 windowId, const u8 * src, u16 x, u16 y)
     StringExpandPlaceholders(gStringVar4, src);
     if (i != 5)
     {
-        AddTextPrinterParameterized(windowId, FONT_2, gStringVar4, x, y, 0xFF, NULL);
+        AddTextPrinterParameterized(windowId, FONT_NORMAL, gStringVar4, x, y, 0xFF, NULL);
     }
     else
     {
-        AddTextPrinterParameterized5(windowId, FONT_2, gStringVar4, x, y, 0xFF, NULL, 0, 0);
+        AddTextPrinterParameterized5(windowId, FONT_NORMAL, gStringVar4, x, y, 0xFF, NULL, 0, 0);
     }
 }
 
-static void sub_812E768(const struct Bitmap *src, struct Bitmap *dst, u16 srcX, u16 srcY, u16 dstX, u16 dstY, u16 width, u16 height)
+static void UnusedBlitBitmapRect(const struct Bitmap *src, struct Bitmap *dst, u16 srcX, u16 srcY, u16 dstX, u16 dstY, u16 width, u16 height)
 {
     s32 loopSrcY, loopDstY, loopSrcX, loopDstX, xEnd, yEnd, multiplierSrcY, multiplierDstY;
     u16 toOrr;

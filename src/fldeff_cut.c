@@ -192,7 +192,7 @@ static const struct OamData sOamData_FldEff_CutGrass = {
     .size = SPRITE_SIZE(8x8),
     .tileNum = 0x001,
     .priority = 1,
-    .paletteNum = 0x1,
+    .paletteNum = 1,
     .affineParam = 0
 };
 
@@ -206,11 +206,11 @@ static const union AnimCmd *const sSpriteAnimTable_FldEff_CutGrass[] = {
 };
 
 static const struct SpriteFrameImage sSpriteFrameImages_FldEff_CutGrass[] = {
-    {gUnknown_8398648, 0x20}
+    {gFieldEffectObjectPic_CutGrass, 0x20}
 };
 
 const struct SpritePalette gFldEffPalette_CutGrass[] = {
-    gUnknown_8398688, 4096
+    gFieldEffectPal_CutGrass, 4096
 };
 
 static const struct SpriteTemplate sSpriteTemplate_FldEff_CutGrass = {
@@ -258,7 +258,7 @@ bool8 SetUpFieldMove_Cut(void)
             for (j = 0; j < CUT_SIDE; j++)
             {
                 x = gPlayerFacingPosition.x - 1 + j;
-                if (MapGridGetZCoordAt(x, y) == gPlayerFacingPosition.height)
+                if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
                 {
                     if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
                     {
@@ -290,7 +290,7 @@ bool8 FldEff_UseCutOnGrass(void)
 static void FieldCallback_CutTree(void)
 {
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    ScriptContext1_SetupScript(EventScript_FldEffCut);
+    ScriptContext_SetupScript(EventScript_FldEffCut);
 }
 
 bool8 FldEff_UseCutOnTree(void)
@@ -318,8 +318,6 @@ bool8 FldEff_CutGrass(void)
     u8 userAbility;
     u8 TileCountFromPlayer_X;
     u8 TileCountFromPlayer_Y;
-    s32 neg1;
-    struct MapPosition *pos;
 
     i = 0;
     PlaySE(SE_M_CUT);
@@ -338,21 +336,21 @@ bool8 FldEff_CutGrass(void)
         TileCountFromPlayer_Y = 1;
     }
 
-    for (i = 0, pos = &gPlayerFacingPosition, neg1 = 0xFFFF; i < cutRange; i++)
+    for (i = 0; i < cutRange; i++)
     {
-        y = i + neg1 + pos->y;
+        y = gPlayerFacingPosition.y - 1 + i;
         if(userAbility == ABILITY_HYPER_CUTTER)
         {
             y -= 1;
         }
         for (j = 0; j < cutRange; j++)
         {
-            x = j + neg1 + pos->x;
+            x = gPlayerFacingPosition.x - 1 + j;
             if(userAbility == ABILITY_HYPER_CUTTER)
             {
                 x -= 1;
             }
-            if (MapGridGetZCoordAt(x, y) == pos->height)
+            if (MapGridGetElevationAt(x, y) == gPlayerFacingPosition.elevation)
             {
                 if (MetatileAtCoordsIsGrassTile(x, y) == TRUE)
                 {
@@ -545,15 +543,15 @@ static void SpriteCallback_CutGrass_Cleanup(struct Sprite *sprite)
     FieldEffectStop(&gSprites[sCutGrassSpriteArrayPtr[0]], FLDEFF_CUT_GRASS);
     Free(sCutGrassSpriteArrayPtr);
     ClearPlayerHeldMovementAndUnfreezeObjectEvents();
-    ScriptContext2_Disable();
+    UnlockPlayerFieldControls();
 
     if (IsMewPlayingHideAndSeek() == TRUE)
-        ScriptContext1_SetupScript(FarawayIsland_Interior_EventScript_HideMewWhenGrassCut);
+        ScriptContext_SetupScript(FarawayIsland_Interior_EventScript_HideMewWhenGrassCut);
 }
 
 static void FieldMoveCallback_CutTree(void)
 {
     PlaySE(SE_M_CUT);
     FieldEffectActiveListRemove(FLDEFF_USE_CUT_ON_TREE);
-    EnableBothScriptContexts();
+    ScriptContext_Enable();
 }

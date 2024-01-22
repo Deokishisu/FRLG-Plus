@@ -8,6 +8,7 @@
 #include "menu.h"
 #include "new_menu_helpers.h"
 #include "pokemon_special_anim_internal.h"
+#include "random.h"
 #include "strings.h"
 #include "text_window.h"
 #include "trig.h"
@@ -48,16 +49,16 @@ static void Task_LevelUpVerticalSprites(u8 taskId);
 static void CreateLevelUpVerticalSprite(u8 taskId, s16 *data);
 static void SpriteCB_LevelUpVertical(struct Sprite *sprite);
 
-static const u16 sBgPals_PSA_Any[] = INCBIN_U16("graphics/pokemon_special_anim/unk_845963C.gbapal");
-static const u16 sBgPals_PSA_Anim4[] = INCBIN_U16("graphics/pokemon_special_anim/unk_845965C.gbapal");
-static const u32 sBg3Tiles_PSA[] = INCBIN_U32("graphics/pokemon_special_anim/unk_845967C.4bpp.lz");
-static const u32 sBg3Map_PSA[] = INCBIN_U32("graphics/pokemon_special_anim/unk_845973C.bin.lz");
-static const u16 sSpritePals_LevelUpVertical[] = INCBIN_U16("graphics/pokemon_special_anim/unk_8459868.gbapal");
-static const u32 sSpriteTiles_LevelUpVertical[] = INCBIN_U32("graphics/pokemon_special_anim/unk_8459888.4bpp.lz");
-static const u16 sSpritePals_Star[] = INCBIN_U16("graphics/pokemon_special_anim/unk_84598A4.gbapal");
-static const u32 sSpriteTiles_Star[] = INCBIN_U32("graphics/pokemon_special_anim/unk_84598C4.4bpp.lz");
-static const u16 sSpritePals_UseItem_OutwardSpiralDots[] = INCBIN_U16("graphics/pokemon_special_anim/unk_8459940.gbapal");
-static const u32 sSpriteTiles_UseItem_OutwardSpiralDots[] = INCBIN_U32("graphics/pokemon_special_anim/unk_8459960.4bpp.lz");
+static const u16 sBg_Pal[] = INCBIN_U16("graphics/pokemon_special_anim/bg.gbapal");
+static const u16 sBg_TmHm_Pal[] = INCBIN_U16("graphics/pokemon_special_anim/bg_tm_hm.gbapal");
+static const u32 sBg_Gfx[] = INCBIN_U32("graphics/pokemon_special_anim/bg.4bpp.lz");
+static const u32 sBg_Tilemap[] = INCBIN_U32("graphics/pokemon_special_anim/bg.bin.lz");
+static const u16 sLevelUp_Pal[] = INCBIN_U16("graphics/pokemon_special_anim/level_up.gbapal");
+static const u32 sLevelUp_Gfx[] = INCBIN_U32("graphics/pokemon_special_anim/level_up.4bpp.lz");
+static const u16 sStar_Pal[] = INCBIN_U16("graphics/pokemon_special_anim/star.gbapal");
+static const u32 sStar_Gfx[] = INCBIN_U32("graphics/pokemon_special_anim/star.4bpp.lz");
+static const u16 sOutwardSpiralDots_Pal[] = INCBIN_U16("graphics/pokemon_special_anim/outward_spiral_dots.gbapal");
+static const u32 sOutwardSpiralDots_Gfx[] = INCBIN_U32("graphics/pokemon_special_anim/outward_spiral_dots.4bpp.lz");
 
 static const struct BgTemplate sBgTemplates[] = {
     {
@@ -92,12 +93,12 @@ static const struct WindowTemplate sWindowTemplates[] = {
 };
 
 static const u8 *const s1_2_and_Poof_textPtrs[] = {
-    gUnknown_841B2ED, // 1,
-    gUnknown_841B2F1, // 2, and ‥ ‥ ‥
-    gUnknown_841B2FF, // Poof!
+    gText_Counting_1,
+    gText_Counting_2And,
+    gText_Poof,
 };
 
-static const u16 sUnref_84599A4[] = {
+static const u16 sUnusedArray[] = {
     0, 16, 68
 };
 
@@ -115,24 +116,24 @@ static const s8 sStarCoordOffsets[][2] = {
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_Star = {
-    sSpriteTiles_Star,
+    sStar_Gfx,
     0x80,
     2
 };
 
 static const struct SpritePalette sSpritePalette_Star = {
-    sSpritePals_Star,
+    sStar_Pal,
     2
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_UseItem_OutwardSpiralDots = {
-    sSpriteTiles_UseItem_OutwardSpiralDots,
+    sOutwardSpiralDots_Gfx,
     0x60,
     5
 };
 
 static const struct SpritePalette sSpritePalette_UseItem_OutwardSpiralDots = {
-    sSpritePals_UseItem_OutwardSpiralDots,
+    sOutwardSpiralDots_Pal,
     5
 };
 
@@ -152,31 +153,31 @@ static const struct OamData sOamData_MonSprite = {
 };
 
 
-static const union AffineAnimCmd gUnknown_84599E0[] = {
+static const union AffineAnimCmd sAffineAnim_Zoom_0[] = {
     AFFINEANIMCMD_FRAME(0x100, 0x100, 0, 0),
     AFFINEANIMCMD_END
 };
 
-static const union AffineAnimCmd gUnknown_84599F0[] = {
+static const union AffineAnimCmd sAffineAnim_Zoom_1[] = {
     AFFINEANIMCMD_FRAME(0x155, 0x155, 0, 0),
     AFFINEANIMCMD_END
 };
 
-static const union AffineAnimCmd gUnknown_8459A00[] = {
+static const union AffineAnimCmd sAffineAnim_Zoom_2[] = {
     AFFINEANIMCMD_FRAME(0x1AA, 0x1AA, 0, 0),
     AFFINEANIMCMD_END
 };
 
-static const union AffineAnimCmd gUnknown_8459A10[] = {
+static const union AffineAnimCmd sAffineAnim_Zoom_3[] = {
     AFFINEANIMCMD_FRAME(0x200, 0x200, 0, 0),
     AFFINEANIMCMD_END
 };
 
 static const union AffineAnimCmd *const sAffineAnimTable_Zoom[] = {
-    gUnknown_84599E0,
-    gUnknown_84599F0,
-    gUnknown_8459A00,
-    gUnknown_8459A10
+    sAffineAnim_Zoom_0,
+    sAffineAnim_Zoom_1,
+    sAffineAnim_Zoom_2,
+    sAffineAnim_Zoom_3
 };
 
 static const struct SpriteTemplate sSpriteTemplate_MonSprite = {
@@ -235,13 +236,13 @@ static const struct OamData sOamData_LevelUpVertical = {
     .paletteNum = 0
 };
 
-static const union AnimCmd gUnknown_8459AC0[] = {
+static const union AnimCmd sAnim_LevelUpVertical[] = {
     ANIMCMD_FRAME(0, 3),
     ANIMCMD_END
 };
 
 static const union AnimCmd *const sAnimTable_LevelUpVertical[] = {
-    gUnknown_8459AC0
+    sAnim_LevelUpVertical
 };
 
 static const struct SpriteTemplate sSpriteTemplate_LevelUpVertical = {
@@ -294,22 +295,22 @@ static const struct OamData sOamData_UseItem_OutwardSpiralDots = {
     .paletteNum = 0
 };
 
-static const union AnimCmd gUnknown_8459B0C[] = {
+static const union AnimCmd sAnim_UseItem_OutwardSpiralDots_0[] = {
     ANIMCMD_FRAME(0, 16),
     ANIMCMD_FRAME(1,  8),
     ANIMCMD_FRAME(2,  4),
     ANIMCMD_END
 };
 
-static const union AnimCmd gUnknown_8459B1C[] = {
+static const union AnimCmd sAnim_UseItem_OutwardSpiralDots_1[] = {
     ANIMCMD_FRAME(1, 4),
     ANIMCMD_FRAME(0, 4),
     ANIMCMD_END
 };
 
 static const union AnimCmd *const sAnimTable_UseItem_OutwardSpiralDots[] = {
-    gUnknown_8459B0C,
-    gUnknown_8459B1C
+    sAnim_UseItem_OutwardSpiralDots_0,
+    sAnim_UseItem_OutwardSpiralDots_1
 };
 
 static const struct SpriteTemplate sSpriteTemplate_UseItem_OutwardSpiralDots = {
@@ -340,7 +341,7 @@ void InitPokemonSpecialAnimScene(struct PokemonSpecialAnimScene * buffer, u16 an
     FillBgTilemapBufferRect_Palette0(0, 0x000, 0, 0, 32, 32);
     LoadBgGfxByAnimType(animType);
     FillWindowPixelBuffer(0, PIXEL_FILL(0));
-    TextWindow_SetUserSelectedFrame(0, 0x000, 0xe0);
+    LoadUserWindowGfx(0, 0x000, BG_PLTT_ID(14));
     CopyWindowToVram(0, COPYWIN_FULL);
     ShowBg(0);
     ShowBg(3);
@@ -369,7 +370,7 @@ void PSA_ShowMessageWindow(void)
 {
     PutWindowTilemap(0);
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    DrawTextBorderOuter(0, 0x001, 0xE);
+    DrawTextBorderOuter(0, 0x001, 14);
     CopyWindowToVram(0, COPYWIN_FULL);
 }
 
@@ -394,55 +395,55 @@ void PSA_PrintMessage(u8 messageId)
     {
     case 0: // Item was used on Mon
         str = StringCopy(scene->textBuf, ItemId_GetName(itemId));
-        str = StringCopy(str, gUnknown_841B285);
+        str = StringCopy(str, gText_WasUsedOn);
         GetMonData(pokemon, MON_DATA_NICKNAME, str);
-        StringAppend(scene->textBuf, gUnknown_841B293);
+        StringAppend(scene->textBuf, gText_Period);
         break;
     case 1: // Mon's level was elevated to level
         level = GetMonData(pokemon, MON_DATA_LEVEL);
         GetMonData(pokemon, MON_DATA_NICKNAME, scene->textBuf);
-        str = StringAppend(scene->textBuf, gUnknown_841B295);
+        str = StringAppend(scene->textBuf, gText_LevelRoseTo);
         if (level < MAX_LEVEL)
             level++;
         str = ConvertIntToDecimalStringN(str, level, STR_CONV_MODE_LEFT_ALIGN, level < MAX_LEVEL ? 2 : 3);
-        StringAppend(str, gUnknown_841B2A7);
+        StringAppend(str, gText_Period2);
         break;
     case 9: // Mon learned move
         DynamicPlaceholderTextUtil_Reset();
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, PSA_GetMonNickname());
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, PSA_GetNameOfMoveToTeach());
-        DynamicPlaceholderTextUtil_ExpandPlaceholders(scene->textBuf, gUnknown_841B32E);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(scene->textBuf, gText_MonLearnedTMHM);
         break;
-    case 4: //  poof!
-        strWidth += GetStringWidth(FONT_2, gUnknown_841B2F1, -1);
+    case 4:
+        strWidth += GetStringWidth(FONT_NORMAL, gText_Counting_2And, -1);
         // fallthrough
-    case 3: // 2 and...
-        strWidth += GetStringWidth(FONT_2, gUnknown_841B2ED, -1);
+    case 3:
+        strWidth += GetStringWidth(FONT_NORMAL, gText_Counting_1, -1);
         // fallthrough
     case 2: // 1
         StringCopy(scene->textBuf, s1_2_and_Poof_textPtrs[messageId - 2]);
         textSpeed = 1;
         break;
-    case 5: // Mon forgot move
+    case 5:
         DynamicPlaceholderTextUtil_Reset();
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, PSA_GetMonNickname());
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, PSA_GetNameOfMoveForgotten());
-        DynamicPlaceholderTextUtil_ExpandPlaceholders(scene->textBuf, gUnknown_841B306);
+        DynamicPlaceholderTextUtil_ExpandPlaceholders(scene->textBuf, gText_MonForgotMove);
         break;
-    case 6: // And...
-        StringCopy(scene->textBuf, gUnknown_841B315);
+    case 6:
+        StringCopy(scene->textBuf, gText_And);
         break;
-    case 7: // Machine set!
-        StringCopy(scene->textBuf, gUnknown_841B31B);
+    case 7:
+        StringCopy(scene->textBuf, gText_MachineSet);
         break;
-    case 8: // Huh?
-        StringCopy(scene->textBuf, gUnknown_841B329);
+    case 8:
+        StringCopy(scene->textBuf, gText_Huh);
         break;
     default:
         return;
     }
 
-    AddTextPrinterParameterized5(0, FONT_2, scene->textBuf, strWidth, 0, textSpeed, NULL, 0, 4);
+    AddTextPrinterParameterized5(0, FONT_NORMAL, scene->textBuf, strWidth, 0, textSpeed, NULL, 0, 4);
 }
 
 void PSA_AfterPoof_ClearMessageWindow(void)
@@ -597,7 +598,8 @@ bool8 PSA_UseTM_RunMachineSetWobble(void)
 // anim in with using Rare Candy, but they were scrapped
 // at a later stage of development
 
-UNUSED void PSA_CreateLevelUpVerticalSpritesTask(void)
+// Unused
+void PSA_CreateLevelUpVerticalSpritesTask(void)
 {
     CreateLevelUpVerticalSpritesTask(120, 56, 4, 4, 2, 0);
 }
@@ -607,32 +609,36 @@ bool8 PSA_LevelUpVerticalSpritesTaskIsRunning(void)
     return LevelUpVerticalSpritesTaskIsRunning();
 }
 
-UNUSED void PSA_DrawLevelUpWindowPg1(u16 *statsBefore, u16 *statsAfter)
+// Unused
+void PSA_DrawLevelUpWindowPg1(u16 *statsBefore, u16 *statsAfter)
 {
-    DrawTextBorderOuter(1, 0x001, 0xE);
+    DrawTextBorderOuter(1, 0x001, 14);
     DrawLevelUpWindowPg1(1, statsBefore, statsAfter, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
     PutWindowTilemap(1);
     CopyWindowToVram(1, COPYWIN_FULL);
 }
-UNUSED void PSA_DrawLevelUpWindowPg2(u16 *currStats)
+
+// Unused
+void PSA_DrawLevelUpWindowPg2(u16 *currStats)
 {
     DrawLevelUpWindowPg2(1, currStats, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY);
     CopyWindowToVram(1, COPYWIN_GFX);
 }
 
-UNUSED bool8 PSA_IsCopyingLevelUpWindowToVram(void)
+// Unused
+bool8 PSA_IsCopyingLevelUpWindowToVram(void)
 {
     return IsDma3ManagerBusyWithBgCopy();
 }
 
 static void LoadBgGfxByAnimType(u16 animType)
 {
-    CopyToBgTilemapBuffer(3, sBg3Map_PSA, 0, 0x000);
-    DecompressAndCopyTileDataToVram(3, sBg3Tiles_PSA, 0, 0x000, 0);
+    CopyToBgTilemapBuffer(3, sBg_Tilemap, 0, 0x000);
+    DecompressAndCopyTileDataToVram(3, sBg_Gfx, 0, 0x000, 0);
     if (animType != 4)
-        LoadPalette(sBgPals_PSA_Any, 0x00, 0x20);
+        LoadPalette(sBg_Pal, BG_PLTT_ID(0), sizeof(sBg_Pal));
     else
-        LoadPalette(sBgPals_PSA_Anim4, 0x00, 0x20);
+        LoadPalette(sBg_TmHm_Pal, BG_PLTT_ID(0), sizeof(sBg_TmHm_Pal));
 }
 
 void PSA_CreateMonSpriteAtCloseness(u8 closeness)
@@ -1322,7 +1328,7 @@ static void Task_UseItem_OutwardSpiralDots(u8 taskId)
 static u16 PSAScene_RandomFromTask(u8 taskId)
 {
     u32 state = GetWordTaskArg(taskId, tOff_RngState);
-    state = state * 1103515245 + 24691;
+    state = ISO_RANDOMIZE1(state);
     SetWordTaskArg(taskId, tOff_RngState, state);
     return state >> 16;
 }
@@ -1395,9 +1401,9 @@ void CreateLevelUpVerticalSpritesTask(u16 x, u16 y, u16 tileTag, u16 paletteTag,
     static struct SpritePalette spritePalette;
     u8 taskId;
     spriteSheet.tag = tileTag;
-    spriteSheet.data = sSpriteTiles_LevelUpVertical;
-    spriteSheet.size = sSpriteTiles_LevelUpVertical[0] >> 8;
-    spritePalette.data = sSpritePals_LevelUpVertical;
+    spriteSheet.data = sLevelUp_Gfx;
+    spriteSheet.size = sLevelUp_Gfx[0] >> 8;
+    spritePalette.data = sLevelUp_Pal;
     spritePalette.tag = paletteTag;
     LoadCompressedSpriteSheet(&spriteSheet);
     LoadSpritePalette(&spritePalette);
@@ -1460,8 +1466,7 @@ static void CreateLevelUpVerticalSprite(u8 taskId, s16 *data)
     {
         gSprites[spriteId].oam.priority = tPriority;
         gSprites[spriteId].tsYsubpixel = 0;
-        // similar to the LCRNG in random.c, but seeding from data[2]
-        gSprites[spriteId].tsSpeed = ((tMadeSprCt * 1103515245 + 24691) & 0x3F) + 0x20;
+        gSprites[spriteId].tsSpeed = (ISO_RANDOMIZE1(tMadeSprCt) & 0x3F) + 0x20;
         gSprites[spriteId].tsTaskId = taskId;
         tActiveSprCt++;
     }
@@ -1496,12 +1501,12 @@ static void SpriteCB_LevelUpVertical(struct Sprite *sprite)
 // ========================================================
 
 static const u8 *const sLevelUpWindowStatNames[] = {
-    gUnknown_841B2A9,
-    gUnknown_841B2B7,
-    gUnknown_841B2BE,
-    gUnknown_841B2CC,
-    gUnknown_841B2D4,
-    gUnknown_841B2C6
+    gText_LevelUp_MaxHP,
+    gText_LevelUp_Attack,
+    gText_LevelUp_Defense,
+    gText_LevelUp_SpAtk,
+    gText_LevelUp_SpDef,
+    gText_LevelUp_Speed
 };
 
 void DrawLevelUpWindowPg1(u16 windowId, u16 *beforeStats, u16 *afterStats, u8 bgColor, u8 fgColor, u8 shadowColor)
@@ -1527,13 +1532,13 @@ void DrawLevelUpWindowPg1(u16 windowId, u16 *beforeStats, u16 *afterStats, u8 bg
 
     for (i = 0; i < 6; i++)
     {
-        AddTextPrinterParameterized3(windowId, FONT_2, 0, i * 15, textColor, TEXT_SKIP_DRAW, sLevelUpWindowStatNames[i]);
-        StringCopy(textbuf, diffStats[i] >= 0 ? gUnknown_841B2DC : gUnknown_841B2E5);
-        AddTextPrinterParameterized3(windowId, FONT_2, 56, i * 15, textColor, TEXT_SKIP_DRAW, textbuf);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, 0, i * 15, textColor, TEXT_SKIP_DRAW, sLevelUpWindowStatNames[i]);
+        StringCopy(textbuf, diffStats[i] >= 0 ? gText_LevelUp_Plus : gText_LevelUp_Minus);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, 56, i * 15, textColor, TEXT_SKIP_DRAW, textbuf);
         textbuf[0] = CHAR_SPACE;
         x = abs(diffStats[i]) < 10 ? 12 : 6;
         ConvertIntToDecimalStringN(textbuf + 1, abs(diffStats[i]), STR_CONV_MODE_LEFT_ALIGN, 2);
-        AddTextPrinterParameterized3(windowId, FONT_2, x + 56, i * 15, textColor, TEXT_SKIP_DRAW, textbuf);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, x + 56, i * 15, textColor, TEXT_SKIP_DRAW, textbuf);
     }
 }
 
@@ -1569,7 +1574,7 @@ void DrawLevelUpWindowPg2(u16 windowId, u16 *currStats, u8 bgColor, u8 fgColor, 
             ndigits = 1;
         ConvertIntToDecimalStringN(textbuf, statsRearrange[i], STR_CONV_MODE_LEFT_ALIGN, ndigits);
         x = 6 * (4 - ndigits);
-        AddTextPrinterParameterized3(windowId, FONT_2, 0, i * 15, textColor, TEXT_SKIP_DRAW, sLevelUpWindowStatNames[i]);
-        AddTextPrinterParameterized3(windowId, FONT_2, 56 + x, i * 15, textColor, TEXT_SKIP_DRAW, textbuf);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, 0, i * 15, textColor, TEXT_SKIP_DRAW, sLevelUpWindowStatNames[i]);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, 56 + x, i * 15, textColor, TEXT_SKIP_DRAW, textbuf);
     }
 }

@@ -16,6 +16,7 @@
   "connections": 0,
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CLERK",
       "in_connection": false,
       "x": 0,
@@ -30,6 +31,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "in_connection": false,
       "x": 13,
@@ -44,6 +46,7 @@
       "flag": "FLAG_HIDE_NATIONAL_DEX_AIDE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_NURSE",
       "in_connection": false,
       "x": 13,
@@ -58,6 +61,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "in_connection": false,
       "x": 7,
@@ -72,6 +76,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
       "in_connection": false,
       "x": 5,
@@ -86,6 +91,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACKBELT",
       "in_connection": false,
       "x": 23,
@@ -100,6 +106,7 @@
       "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
     },
     {
+      "type": "object",
       "graphics_id": "0",
       "in_connection": false,
       "x": 22,
@@ -114,6 +121,7 @@
       "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
       "in_connection": false,
       "x": 16,
@@ -128,6 +136,7 @@
       "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
     },
     {
+      "type": "object",
       "graphics_id": "0",
       "in_connection": false,
       "x": 23,
@@ -190,21 +199,21 @@
       "y": 16,
       "elevation": 3,
       "dest_map": "MAP_INDIGO_PLATEAU_EXTERIOR",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 4,
       "y": 1,
       "elevation": 3,
       "dest_map": "MAP_POKEMON_LEAGUE_LORELEIS_ROOM",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 1,
       "y": 14,
       "elevation": 4,
       "dest_map": "MAP_INDIGO_PLATEAU_POKEMON_CENTER_2F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

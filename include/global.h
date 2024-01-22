@@ -8,7 +8,9 @@
 #include "constants/flags.h"
 #include "constants/vars.h"
 #include "constants/species.h"
+#include "constants/pokedex.h"
 #include "constants/easy_chat.h"
+#include "constants/rgb.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -192,8 +194,8 @@ struct Pokedex
 {
     /*0x00*/ u8 order;
     /*0x01*/ u8 mode;
-    /*0x02*/ u8 nationalMagic; // must equal 0xDA in order to have National mode
-    /*0x03*/ u8 unknown2; // set to 0xB9 when national dex is first enabled
+    /*0x02*/ u8 unused; // set to 0xDA, never read
+    /*0x03*/ u8 nationalMagic; // set to 0xB9 when national dex is first enabled
     /*0x04*/ u32 unownPersonality; // set when you first see Unown
     /*0x08*/ u32 spindaPersonality; // set when you first see Spinda
     /*0x0C*/ u32 unknown3;
@@ -563,7 +565,7 @@ struct RecordMixingDayCareMail
     bool16 holdsItem[DAYCARE_MON_COUNT];
 };
 
-struct QuestLogNPCData
+struct QuestLogObjectEventTemplate
 {
     u32 x:8;
     u32 negx:1;
@@ -592,12 +594,12 @@ struct QuestLogObjectEvent
     /*0x01*/ u8 spriteAffineAnimPausedBackup:1;
     /*0x01*/ u8 disableJumpLandingGroundEffect:1;
     /*0x02*/ u8 fixedPriority:1;
-    /*0x02*/ u8 mapobj_unk_18:4;
-    /*0x02*/ u8 unused_02_5:3;
-    /*0x03*/ u8 mapobj_unk_0B_0:4;
-    /*0x03*/ u8 elevation:4;
+    /*0x02*/ u8 facingDirection:4;
+    /*0x02*/ u8 unused:3;
+    /*0x03*/ u8 currentElevation:4;
+    /*0x03*/ u8 previousElevation:4;
     /*0x04*/ u8 graphicsId;
-    /*0x05*/ u8 animPattern;
+    /*0x05*/ u8 movementType;
     /*0x06*/ u8 trainerType;
     /*0x07*/ u8 localId;
     /*0x08*/ u8 mapNum;
@@ -610,21 +612,20 @@ struct QuestLogObjectEvent
     /*0x11*/ u8 animId;
 };
 
-struct QuestLog
+// This represents all the data needed to display a single scene for the "Quest Log" when the player resumes playing.
+//
+struct QuestLogScene
 {
-    /*0x0000*/ u8 startType;
+    /*0x0000*/ u8 startType; // QL_START_NORMAL / QL_START_WARP
     /*0x0001*/ u8 mapGroup;
     /*0x0002*/ u8 mapNum;
     /*0x0003*/ u8 warpId;
     /*0x0004*/ s16 x;
     /*0x0006*/ s16 y;
-    /*0x0008*/ struct QuestLogObjectEvent unk_008[OBJECT_EVENTS_COUNT];
-
-    // These arrays hold the game state for
-    // playing back the quest log
+    /*0x0008*/ struct QuestLogObjectEvent objectEvents[OBJECT_EVENTS_COUNT];
     /*0x0148*/ u8 flags[NUM_FLAG_BYTES];
     /*0x02c8*/ u16 vars[VARS_COUNT];
-    /*0x0468*/ struct QuestLogNPCData npcData[64];
+    /*0x0468*/ struct QuestLogObjectEventTemplate objectEventTemplates[OBJECT_EVENT_TEMPLATES_COUNT];
     /*0x0568*/ u16 script[128];
     /*0x0668*/ u16 end[0];
 };
@@ -640,15 +641,15 @@ struct FameCheckerSaveData
 
 struct WonderNewsMetadata
 {
-    u8 unk_0_0:2;
-    u8 unk_0_2:3;
-    u8 unk_0_5:3;
+    u8 newsType:2;
+    u8 sentRewardCounter:3;
+    u8 rewardCounter:3;
     u8 berry;
 };
 
 struct WonderNews
 {
-    u16 newsId;
+    u16 id;
     u8 sendType; // SEND_TYPE_*
     u8 bgType;
     u8 titleText[WONDER_NEWS_TEXT_LENGTH];
@@ -812,7 +813,7 @@ struct SaveBlock1
     /*0x0EE0*/ u8 flags[NUM_FLAG_BYTES];
     /*0x1000*/ u16 vars[VARS_COUNT];
     /*0x1200*/ u32 gameStats[NUM_GAME_STATS];
-    /*0x1300*/ struct QuestLog questLog[QUEST_LOG_SCENE_COUNT];
+    /*0x1300*/ struct QuestLogScene questLog[QUEST_LOG_SCENE_COUNT];
     /*0x2CA0*/ u16 easyChatProfile[EASY_CHAT_BATTLE_WORDS_COUNT];
     /*0x2CAC*/ u16 easyChatBattleStart[EASY_CHAT_BATTLE_WORDS_COUNT]; //referred to, but functionally unused
     /*0x2CB8*/ u16 easyChatBattleWon[EASY_CHAT_BATTLE_WORDS_COUNT]; //referred to, but functionally unused
@@ -852,7 +853,7 @@ struct MapPosition
 {
     s16 x;
     s16 y;
-    s8 height;
+    s8 elevation;
 };
 
 extern struct SaveBlock1* gSaveBlock1Ptr;

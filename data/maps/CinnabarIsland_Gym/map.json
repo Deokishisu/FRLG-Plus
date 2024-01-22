@@ -16,8 +16,8 @@
   "connections": 0,
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BURGLAR",
-      "in_connection": false,
       "x": 25,
       "y": 11,
       "elevation": 3,
@@ -30,8 +30,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 25,
       "y": 4,
       "elevation": 3,
@@ -44,8 +44,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 17,
       "y": 5,
       "elevation": 3,
@@ -58,8 +58,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BURGLAR",
-      "in_connection": false,
       "x": 16,
       "y": 11,
       "elevation": 3,
@@ -72,8 +72,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 16,
       "y": 18,
       "elevation": 3,
@@ -86,8 +86,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BURGLAR",
-      "in_connection": false,
       "x": 4,
       "y": 19,
       "elevation": 3,
@@ -100,8 +100,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
-      "in_connection": false,
       "x": 4,
       "y": 11,
       "elevation": 3,
@@ -114,6 +114,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLAINE",
       "in_connection": false,
       "x": 5,
@@ -128,6 +129,7 @@
       "flag": "FLAG_TEMP_1"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
       "in_connection": false,
       "x": 24,
@@ -148,21 +150,21 @@
       "y": 23,
       "elevation": 3,
       "dest_map": "MAP_CINNABAR_ISLAND",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 25,
       "y": 23,
       "elevation": 3,
       "dest_map": "MAP_CINNABAR_ISLAND",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 26,
       "y": 23,
       "elevation": 3,
       "dest_map": "MAP_CINNABAR_ISLAND",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [

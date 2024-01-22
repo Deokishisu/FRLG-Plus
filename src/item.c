@@ -122,7 +122,7 @@ void CopyItemName(u16 itemId, u8 * dest)
     if (itemId == ITEM_ENIGMA_BERRY)
     {
         StringCopy(dest, GetBerryInfo(ITEM_TO_BERRY(ITEM_ENIGMA_BERRY))->name);
-        StringAppend(dest, gUnknown_84162BD);
+        StringAppend(dest, gText_Berry);
     }
     else
     {
@@ -748,16 +748,8 @@ u16 BagGetQuantityByItemId(u16 itemId)
 
 void TrySetObtainedItemQuestLogEvent(u16 itemId)
 {
-    struct QuestLogStruct_809A824
-    {
-        u16 itemId;
-        u8 mapSectionId;
-    } * ptr;
-
     // Only some key items trigger this event
-    if
-    (
-        itemId == ITEM_OAKS_PARCEL
+    if (itemId == ITEM_OAKS_PARCEL
      || itemId == ITEM_POKE_FLUTE
      || itemId == ITEM_SECRET_KEY
      || itemId == ITEM_BIKE_VOUCHER
@@ -776,23 +768,22 @@ void TrySetObtainedItemQuestLogEvent(u16 itemId)
      || itemId == ITEM_TEA
      || itemId == ITEM_POWDER_JAR
      || itemId == ITEM_RUBY
-     || itemId == ITEM_SAPPHIRE
-    )
+     || itemId == ITEM_SAPPHIRE)
     {
         if (itemId != ITEM_TOWN_MAP || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(PALLET_TOWN_RIVALS_HOUSE) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(PALLET_TOWN_RIVALS_HOUSE)))
         {
-            ptr = malloc(sizeof(*ptr));
-            ptr->itemId = itemId;
-            ptr->mapSectionId = gMapHeader.regionMapSectionId;
-            SetQuestLogEvent(QL_EVENT_OBTAINED_ITEM, (void *)ptr);
-            free(ptr);
+            struct QuestLogEvent_StoryItem * data = malloc(sizeof(*data));
+            data->itemId = itemId;
+            data->mapSec = gMapHeader.regionMapSectionId;
+            SetQuestLogEvent(QL_EVENT_OBTAINED_STORY_ITEM, (const u16 *)data);
+            free(data);
         }
     }
 }
 
 u16 SanitizeItemId(u16 itemId)
 {
-    if (itemId >= ITEM_N_A)
+    if (itemId >= ITEMS_COUNT)
         return ITEM_NONE;
     return itemId;
 }
@@ -802,12 +793,13 @@ const u8 * ItemId_GetName(u16 itemId)
     return gItems[SanitizeItemId(itemId)].name;
 }
 
-u16 itemid_get_number(u16 itemId)
+// Unused
+u16 ItemId_GetId(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].itemId;
 }
 
-u16 itemid_get_market_price(u16 itemId)
+u16 ItemId_GetPrice(u16 itemId)
 {
     return gItems[SanitizeItemId(itemId)].price;
 }
@@ -827,16 +819,17 @@ const u8 * ItemId_GetDescription(u16 itemId)
     return gItems[SanitizeItemId(itemId)].description;
 }
 
-bool8 itemid_is_unique(u16 itemId)
+u8 ItemId_GetImportance(u16 itemId)
 {
     if(SanitizeItemId(itemId) >= ITEM_TM01 && SanitizeItemId(itemId) <= ITEM_TM50)
         return TRUE;
     return gItems[SanitizeItemId(itemId)].importance;
 }
 
-u8 itemid_get_x19(u16 itemId)
+// Unused
+u8 ItemId_GetRegistrability(u16 itemId)
 {
-    return gItems[SanitizeItemId(itemId)].exitsBagOnUse;
+    return gItems[SanitizeItemId(itemId)].registrability;
 }
 
 u8 ItemId_GetPocket(u16 itemId)

@@ -286,6 +286,14 @@
 #define METATILE_SeviiIslands6_ForestTreeTop                 0x2B5
 #define METATILE_SeviiIslands6_ForestTreeTop_Mowed           0x28F
 
+
+// gTileset_ViridianCity
+#define METATILE_ViridianCity_Door  0x299
+
+// gTileset_ViridianForest
+#define METATILE_ViridianForest_HugeTreeTopMiddle_Grass  0x284
+#define METATILE_ViridianForest_HugeTreeTopMiddle_Mowed  0x281
+
 // gTileset_SilphCo
 #define METATILE_SilphCo_Arrow_Down                     0x2A8
 #define METATILE_SilphCo_Arrow_Left                     0x2A1
@@ -334,8 +342,8 @@
 #define METATILE_TrainerTower_RoofElevatorDoor       0x356
 
 // gTileset_VermilionCity
-#define METATILE_VermilionCity_Door                0x29E
-#define METATILE_VermilionCity_PokemonFanClubDoor  0x2E1
+#define METATILE_VermilionCity_Door        0x29E
+#define METATILE_VermilionCity_SSAnneWarp  0x2E1
 
 // gTileset_VermilionGym
 #define METATILE_VermilionGym_Beam_MidBottom                     0x28D
@@ -374,5 +382,13 @@
 // gTileset_ViridianForest
 #define METATILE_ViridianForest_HugeTreeTopMiddle_Grass  0x284
 #define METATILE_ViridianForest_HugeTreeTopMiddle_Mowed  0x281
+
+// Other
+#define METATILE_Fallarbor_AshGrass                      0x20A
+#define METATILE_Fallarbor_NormalGrass                   0x212
+#define METATILE_Lavaridge_NormalGrass                   0x206
+#define METATILE_Pacifidlog_SkyPillar_CrackedFloor_Hole  0x237
+#define METATILE_RSCave_CrackedFloor                     0x22F
+#define METATILE_RSCave_CrackedFloor_Hole                0x206
 
 #endif // GUARD_METATILE_LABELS_H

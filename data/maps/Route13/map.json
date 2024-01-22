@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 62,
@@ -41,8 +42,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 63,
       "y": 12,
       "elevation": 3,
@@ -55,6 +56,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 54,
@@ -69,6 +71,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "in_connection": false,
       "x": 42,
@@ -83,6 +86,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
       "in_connection": false,
       "x": 43,
@@ -97,6 +101,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 35,
@@ -111,6 +116,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "in_connection": false,
       "x": 29,
@@ -125,8 +131,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 9,
       "y": 14,
       "elevation": 3,
@@ -139,8 +145,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIRD_KEEPER",
-      "in_connection": false,
       "x": 16,
       "y": 5,
       "elevation": 3,
@@ -153,6 +159,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 14,
@@ -167,6 +174,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 44,
@@ -246,7 +254,7 @@
       "y": 14,
       "elevation": 3,
       "item": "ITEM_PP_UP",
-      "flag": "HIDDEN_ITEM_ROUTE13_PP_UP",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE13_PP_UP",
       "quantity": 1,
       "underfoot": false
     }

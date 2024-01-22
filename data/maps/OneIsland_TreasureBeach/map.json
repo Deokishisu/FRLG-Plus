@@ -22,8 +22,8 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 8,
       "y": 11,
       "elevation": 1,
@@ -36,6 +36,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BOY",
       "in_connection": false,
       "x": 13,
@@ -63,7 +64,7 @@
       "y": 20,
       "elevation": 3,
       "item": "ITEM_STARDUST",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STARDUST",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STARDUST",
       "quantity": 1,
       "underfoot": false
     },
@@ -73,7 +74,7 @@
       "y": 27,
       "elevation": 3,
       "item": "ITEM_STARDUST",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STARDUST_2",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STARDUST_2",
       "quantity": 1,
       "underfoot": false
     },
@@ -83,7 +84,7 @@
       "y": 31,
       "elevation": 3,
       "item": "ITEM_PEARL",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_PEARL",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_PEARL",
       "quantity": 1,
       "underfoot": false
     },
@@ -93,7 +94,7 @@
       "y": 34,
       "elevation": 3,
       "item": "ITEM_PEARL",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_PEARL_2",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_PEARL_2",
       "quantity": 1,
       "underfoot": false
     },
@@ -103,7 +104,7 @@
       "y": 22,
       "elevation": 3,
       "item": "ITEM_ULTRA_BALL",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_ULTRA_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_ULTRA_BALL",
       "quantity": 1,
       "underfoot": false
     },
@@ -113,7 +114,7 @@
       "y": 33,
       "elevation": 3,
       "item": "ITEM_ULTRA_BALL",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_ULTRA_BALL_2",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_ULTRA_BALL_2",
       "quantity": 1,
       "underfoot": false
     },
@@ -123,7 +124,7 @@
       "y": 29,
       "elevation": 3,
       "item": "ITEM_STAR_PIECE",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STAR_PIECE",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_STAR_PIECE",
       "quantity": 1,
       "underfoot": false
     },
@@ -133,7 +134,7 @@
       "y": 27,
       "elevation": 3,
       "item": "ITEM_BIG_PEARL",
-      "flag": "HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_BIG_PEARL",
+      "flag": "FLAG_HIDDEN_ITEM_ONE_ISLAND_TREASURE_BEACH_BIG_PEARL",
       "quantity": 1,
       "underfoot": false
     }

@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 16,
@@ -41,8 +42,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
-      "in_connection": false,
       "x": 14,
       "y": 14,
       "elevation": 3,
@@ -55,8 +56,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
-      "in_connection": false,
       "x": 12,
       "y": 12,
       "elevation": 3,
@@ -69,6 +70,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 8,
@@ -83,6 +85,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BIKER",
       "in_connection": false,
       "x": 10,
@@ -97,8 +100,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUE_BALL",
-      "in_connection": false,
       "x": 6,
       "y": 14,
       "elevation": 3,
@@ -111,6 +114,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
       "in_connection": false,
       "x": 41,
@@ -125,8 +129,8 @@
       "flag": "FLAG_ROUTE_16_CUT_TREE"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_F",
-      "in_connection": false,
       "x": 30,
       "y": 5,
       "elevation": 3,
@@ -139,8 +143,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_M",
-      "in_connection": false,
       "x": 31,
       "y": 5,
       "elevation": 3,
@@ -153,6 +157,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SNORLAX",
       "in_connection": false,
       "x": 31,
@@ -215,35 +220,35 @@
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_ROUTE16_HOUSE",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 20,
       "y": 6,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     },
     {
       "x": 27,
       "y": 6,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 20,
       "y": 13,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 2
+      "dest_warp_id": "2"
     },
     {
       "x": 27,
       "y": 13,
       "elevation": 3,
       "dest_map": "MAP_ROUTE16_NORTH_ENTRANCE_1F",
-      "dest_warp_id": 3
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [
@@ -272,7 +277,7 @@
       "y": 13,
       "elevation": 3,
       "item": "ITEM_LEFTOVERS",
-      "flag": "HIDDEN_ITEM_ROUTE16_LEFTOVERS",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE16_LEFTOVERS",
       "quantity": 1,
       "underfoot": true
     }

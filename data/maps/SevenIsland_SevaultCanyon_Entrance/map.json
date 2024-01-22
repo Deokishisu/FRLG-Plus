@@ -27,8 +27,8 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_AROMA_LADY",
-      "in_connection": false,
       "x": 12,
       "y": 6,
       "elevation": 3,
@@ -41,8 +41,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_F",
-      "in_connection": false,
       "x": 3,
       "y": 34,
       "elevation": 3,
@@ -55,8 +55,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_YOUNG_COUPLE_M",
-      "in_connection": false,
       "x": 4,
       "y": 34,
       "elevation": 3,
@@ -69,8 +69,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_POKEMON_RANGER_M",
-      "in_connection": false,
       "x": 11,
       "y": 26,
       "elevation": 3,
@@ -83,8 +83,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_POKEMON_RANGER_F",
-      "in_connection": false,
       "x": 10,
       "y": 26,
       "elevation": 3,
@@ -97,8 +97,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_JUGGLER",
-      "in_connection": false,
       "x": 11,
       "y": 17,
       "elevation": 5,
@@ -111,18 +111,12 @@
       "flag": "0"
     },
     {
+      "type": "clone",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
-      "in_connection": true,
       "x": 7,
       "y": -2,
-      "elevation": 1,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "17",
-      "trainer_sight_or_berry_tree_id": "3",
-      "script": "0x0",
-      "flag": "0"
+      "target_local_id": 1,
+      "target_map": "MAP_SEVEN_ISLAND"
     }
   ],
   "warp_events": [
@@ -138,7 +132,7 @@
       "y": 29,
       "elevation": 5,
       "item": "ITEM_RAWST_BERRY",
-      "flag": "HIDDEN_ITEM_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE_RAWST_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE_RAWST_BERRY",
       "quantity": 1,
       "underfoot": false
     },

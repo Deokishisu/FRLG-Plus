@@ -19,18 +19,18 @@ SaffronCity_PokemonTrainerFanClub_OnFrame::
 SaffronCity_PokemonTrainerFanClub_EventScript_MeetFirstFans::
 	lockall
 	textcolor NPC_TEXT_COLOR_FEMALE
-	applymovement LOCALID_BATTLE_GIRL, Movement_WalkInPlaceFastestDown
+	applymovement LOCALID_BATTLE_GIRL, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	playse SE_PIN
-	applymovement LOCALID_BATTLE_GIRL, Movement_ExclamationMark
+	applymovement LOCALID_BATTLE_GIRL, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_BATTLE_GIRL, Movement_Delay48
+	applymovement LOCALID_BATTLE_GIRL, Common_Movement_Delay48
 	waitmovement 0
 	msgbox SaffronCity_PokemonTrainerFanClub_Text_HuhYou
 	closemessage
 	applymovement LOCALID_BATTLE_GIRL, SaffronCity_PokemonTrainerFanClub_Movement_FanApproachPlayer
 	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	msgbox SaffronCity_PokemonTrainerFanClub_Text_YourePlayerWereYourFansNow
 	setvar VAR_MAP_SCENE_SAFFRON_CITY_POKEMON_TRAINER_FAN_CLUB, 2
@@ -50,7 +50,7 @@ SaffronCity_PokemonTrainerFanClub_Movement_FanApproachPlayer::
 @ Unused, leftover from RS
 LilycoveCity_PokemonTrainerFanClub_Movement_FanApproachPlayer::
 	delay_8
-	walk_in_place_fastest_down
+	walk_in_place_faster_down
 	walk_down
 	walk_down
 	walk_down
@@ -71,7 +71,7 @@ LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlWatchPlayer::
 @ Unused, leftover from RS
 LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlMoveCloserToPlayer::
 	walk_down
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
 @ Unused, leftover from RS
@@ -80,7 +80,7 @@ LilycoveCity_PokemonTrainerFanClub_Movement_LittleGirlHideFromPlayer::
 	walk_fast_up
 	walk_fast_up
 	walk_fast_right
-	walk_in_place_fastest_down
+	walk_in_place_faster_down
 	step_end
 
 SaffronCity_PokemonTrainerFanClub_OnTransition::

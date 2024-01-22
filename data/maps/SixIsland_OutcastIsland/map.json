@@ -22,6 +22,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
       "in_connection": false,
       "x": 9,
@@ -36,6 +37,7 @@
       "flag": "FLAG_HIDE_FIVE_ISLAND_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
       "in_connection": false,
       "x": 12,
@@ -50,6 +52,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
       "in_connection": false,
       "x": 13,
@@ -64,8 +67,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 14,
       "y": 61,
       "elevation": 1,
@@ -78,8 +81,8 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER_2",
-      "in_connection": false,
       "x": 10,
       "y": 44,
       "elevation": 1,
@@ -92,6 +95,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TUBER_M_WATER",
       "in_connection": false,
       "x": 11,
@@ -106,6 +110,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 11,
@@ -126,7 +131,7 @@
       "y": 21,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_ALTERING_CAVE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -139,7 +144,7 @@
       "y": 23,
       "elevation": 3,
       "item": "ITEM_STAR_PIECE",
-      "flag": "HIDDEN_ITEM_SIX_ISLAND_OUTCAST_ISLAND_STAR_PIECE",
+      "flag": "FLAG_HIDDEN_ITEM_SIX_ISLAND_OUTCAST_ISLAND_STAR_PIECE",
       "quantity": 1,
       "underfoot": false
     },
@@ -149,7 +154,7 @@
       "y": 24,
       "elevation": 3,
       "item": "ITEM_NET_BALL",
-      "flag": "HIDDEN_ITEM_SIX_ISLAND_OUTCAST_ISLAND_NET_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_SIX_ISLAND_OUTCAST_ISLAND_NET_BALL",
       "quantity": 1,
       "underfoot": false
     }

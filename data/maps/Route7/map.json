@@ -27,20 +27,15 @@
   ],
   "object_events": [
     {
+      "type": "clone",
       "graphics_id": "OBJ_EVENT_GFX_CUT_TREE",
-      "in_connection": true,
       "x": -8,
       "y": 12,
-      "elevation": 10,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "6",
-      "trainer_sight_or_berry_tree_id": "3",
-      "script": "0x0",
-      "flag": "FLAG_CELADON_CITY_NORTH_CUT_TREE"
+      "target_local_id": 10,
+      "target_map": "MAP_CELADON_CITY"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
       "in_connection": false,
       "x": 18,
@@ -61,14 +56,14 @@
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_UNDERGROUND_PATH_WEST_ENTRANCE",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     },
     {
       "x": 15,
       "y": 10,
       "elevation": 3,
       "dest_map": "MAP_ROUTE7_EAST_ENTRANCE",
-      "dest_warp_id": 0
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
@@ -89,7 +84,7 @@
       "y": 15,
       "elevation": 3,
       "item": "ITEM_QUALOT_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE7_QUALOT_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE7_QUALOT_BERRY",
       "quantity": 1,
       "underfoot": false
     }

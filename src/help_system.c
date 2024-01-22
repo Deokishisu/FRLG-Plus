@@ -1764,7 +1764,7 @@ static const u8 *const sHelpSystemSubmenuItemLists[HELPCONTEXT_COUNT * (TOPIC_CO
     NULL,                          sHowTo_KeySystemSubMenu,    sTerms_KeySystemSubMenu,    NULL,                    NULL, // HELPCONTEXT_KEY_SYSTEM_SUBMENU
 };
 
-static const u16 unref_845BCB0[] = INCBIN_U16("graphics/help_system/unused.bin");
+static const u16 sUnused[] = INCBIN_U16("graphics/help_system/unused.bin");
 
 static const u8 sHelpSystemContextTopicOrder[TOPIC_COUNT] = {
     TOPIC_ABOUT_GAME, 

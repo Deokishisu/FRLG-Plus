@@ -27,6 +27,7 @@
   ],
   "object_events": [
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
       "in_connection": false,
       "x": 9,
@@ -41,6 +42,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
       "in_connection": false,
       "x": 75,
@@ -55,6 +57,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "in_connection": false,
       "x": 67,
@@ -69,6 +72,7 @@
       "flag": "FLAG_HIDE_ROUTE4_TM05"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BOY",
       "in_connection": false,
       "x": 15,
@@ -83,6 +87,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACKBELT",
       "in_connection": false,
       "x": 47,
@@ -97,6 +102,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BLACKBELT",
       "in_connection": false,
       "x": 50,
@@ -111,20 +117,15 @@
       "flag": "0"
     },
     {
+      "type": "clone",
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
-      "in_connection": true,
       "x": 109,
       "y": 3,
-      "elevation": 12,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "3",
-      "trainer_sight_or_berry_tree_id": "3",
-      "script": "0x0",
-      "flag": "0"
+      "target_local_id": 12,
+      "target_map": "MAP_CERULEAN_CITY"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_LASS",
       "in_connection": false,
       "x": 58,
@@ -139,6 +140,7 @@
       "flag": "FLAG_HIDE_MASTER_TRAINERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
       "in_connection": false,
       "x": 20,
@@ -153,6 +155,7 @@
       "flag": "FLAG_HIDE_MASTER_TRAINERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_SCIENTIST",
       "in_connection": false,
       "x": 85,
@@ -167,6 +170,7 @@
       "flag": "FLAG_HIDE_MASTER_TRAINERS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F_WATER",
       "in_connection": false,
       "x": 98,
@@ -187,21 +191,21 @@
       "y": 5,
       "elevation": 3,
       "dest_map": "MAP_MT_MOON_1F",
-      "dest_warp_id": 3
+      "dest_warp_id": "3"
     },
     {
       "x": 32,
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_MT_MOON_B1F",
-      "dest_warp_id": 7
+      "dest_warp_id": "7"
     },
     {
       "x": 12,
       "y": 5,
       "elevation": 0,
       "dest_map": "MAP_ROUTE4_POKEMON_CENTER_1F",
-      "dest_warp_id": 1
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
@@ -230,7 +234,7 @@
       "y": 2,
       "elevation": 3,
       "item": "ITEM_GREAT_BALL",
-      "flag": "HIDDEN_ITEM_ROUTE4_GREAT_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE4_GREAT_BALL",
       "quantity": 1,
       "underfoot": false
     },
@@ -240,7 +244,7 @@
       "y": 4,
       "elevation": 3,
       "item": "ITEM_PERSIM_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE4_PERSIM_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE4_PERSIM_BERRY",
       "quantity": 1,
       "underfoot": false
     },
@@ -250,7 +254,7 @@
       "y": 17,
       "elevation": 3,
       "item": "ITEM_HONDEW_BERRY",
-      "flag": "HIDDEN_ITEM_ROUTE4_HONDEW_BERRY",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE4_HONDEW_BERRY",
       "quantity": 1,
       "underfoot": false
     }
