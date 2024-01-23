@@ -46,12 +46,57 @@ static EWRAM_DATA u8 sFieldEffectPaletteGammaTypes[32] = {};
 static EWRAM_DATA const u8 *sPaletteGammaTypes = NULL;
 static EWRAM_DATA u16 sDroughtFrameDelay = 0;
 
+static const u8 sDarkenedContrastColorMaps[19][32] = 
+{
+    {0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29},
+    {0, 0, 1, 2, 3, 4, 5, 6, 7, 7, 8, 9, 10, 11, 12, 13, 14, 14, 15, 16, 17, 18, 19, 20, 21, 21, 22, 23, 24, 25, 26, 27},
+    {0, 0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 11, 12, 13, 13, 14, 15, 16, 17, 17, 18, 19, 20, 21, 21, 22, 23, 24, 25},
+    {0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 11, 11, 12, 13, 14, 14, 15, 16, 17, 17, 18, 19, 20, 20, 21, 22, 23, 24, 24, 25},
+    {1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, 9, 12, 13, 13, 14, 15, 15, 16, 17, 18, 18, 19, 20, 20, 21, 22, 23, 23, 24, 25, 25},
+    {1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10, 13, 14, 15, 15, 16, 17, 17, 18, 19, 19, 20, 20, 21, 22, 22, 23, 24, 24, 25, 26},
+    {1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10, 15, 15, 16, 16, 17, 18, 18, 19, 19, 20, 21, 21, 22, 22, 23, 24, 24, 25, 26, 26},
+    {1, 2, 3, 4, 4, 5, 6, 7, 7, 8, 9, 10, 16, 16, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 23, 23, 24, 24, 25, 25, 26, 27},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 19, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 24, 25, 25, 26, 26, 27, 27},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 20, 20, 21, 21, 22, 22, 22, 23, 23, 24, 24, 24, 25, 25, 26, 26, 26, 27, 27, 28},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 21, 22, 22, 22, 23, 23, 23, 24, 24, 24, 25, 25, 25, 26, 26, 27, 27, 27, 28, 28},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 23, 23, 23, 23, 24, 24, 24, 25, 25, 25, 26, 26, 26, 26, 27, 27, 27, 28, 28, 28},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 24, 24, 24, 25, 25, 25, 25, 26, 26, 26, 26, 27, 27, 27, 27, 28, 28, 28, 28, 29},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 25, 25, 26, 26, 26, 26, 26, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 29, 29, 29},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30},
+    {1, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9, 10, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31}
+};
+
+static const u8 sContrastColorMaps[19][32] =
+{
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31},
+    {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 11, 14, 15, 16, 17, 17, 18, 19, 20, 21, 22, 23, 24, 24, 25, 26, 27, 28, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 18, 19, 20, 21, 22, 22, 23, 24, 25, 26, 26, 27, 28, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 17, 18, 19, 19, 20, 21, 22, 22, 23, 24, 25, 25, 26, 27, 28, 28, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 17, 18, 19, 20, 20, 21, 22, 22, 23, 24, 24, 25, 26, 26, 27, 28, 28, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 19, 19, 20, 21, 21, 22, 22, 23, 24, 24, 25, 26, 26, 27, 27, 28, 29, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20, 20, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 27, 27, 28, 28, 29, 29, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 22, 23, 23, 24, 24, 24, 25, 25, 26, 26, 27, 27, 27, 28, 28, 29, 29, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 23, 24, 24, 25, 25, 25, 26, 26, 26, 27, 27, 28, 28, 28, 29, 29, 29, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 25, 25, 25, 26, 26, 26, 26, 27, 27, 27, 28, 28, 28, 29, 29, 29, 30, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 26, 26, 26, 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 29, 30, 30, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 27, 27, 27, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 29, 29, 29, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 31},
+    {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31}
+};
+
 static void Task_WeatherMain(u8 taskId);
 static void Task_WeatherInit(u8 taskId);
 static void None_Init(void);
 static void None_Main(void);
 static bool8 None_Finish(void);
-static void BuildGammaShiftTables(void);
 static void UpdateWeatherGammaShift(void);
 static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex);
 static void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaIndex, u8 blendCoeff, u16 blendColor);
@@ -158,7 +203,7 @@ void StartWeather(void)
         u8 index = AllocSpritePalette(0x1200);
         CpuCopy32(gDefaultWeatherSpritePalette, &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);
         ApplyGlobalFieldPaletteTint(index);
-        BuildGammaShiftTables();
+        sPaletteGammaTypes = sBasePaletteGammaTypes;
         gWeatherPtr->altGammaSpritePalIndex = index;
         gWeatherPtr->weatherPicSpritePalIndex = index;
         gWeatherPtr->rainSpriteCount = 0;
@@ -264,76 +309,6 @@ static void None_Main(void)
 static u8 None_Finish(void)
 {
     return 0;
-}
-
-// Builds two tables that contain gamma shifts for palette colors.
-// It's unclear why the two tables aren't declared as const arrays, since
-// this function always builds the same two tables.
-static void BuildGammaShiftTables(void)
-{
-    u16 v0;
-    u8 (*gammaTable)[32];
-    u16 v2;
-    u16 v4;
-    u16 v5;
-    u16 gammaIndex;
-    u16 v9;
-    u32 v10;
-    u16 v11;
-    s16 dunno;
-
-    sPaletteGammaTypes = sBasePaletteGammaTypes;
-    for (v0 = 0; v0 <= 1; v0++)
-    {
-        if (v0 == 0)
-            gammaTable = gWeatherPtr->gammaShifts;
-        else
-            gammaTable = gWeatherPtr->altGammaShifts;
-
-        for (v2 = 0; v2 < 32; v2++)
-        {
-            v4 = v2 << 8;
-            if (v0 == 0)
-                v5 = (v2 << 8) / 16;
-            else
-                v5 = 0;
-            for (gammaIndex = 0; gammaIndex <= 2; gammaIndex++)
-            {
-                v4 = (v4 - v5);
-                gammaTable[gammaIndex][v2] = v4 >> 8;
-            }
-            v9 = v4;
-            v10 = 0x1f00 - v4;
-            if ((0x1f00 - v4) < 0)
-            {
-                v10 += 0xf;
-            }
-            v11 = v10 >> 4;
-            if (v2 < 12)
-            {
-                for (; gammaIndex < 19; gammaIndex++)
-                {
-                    v4 += v11;
-                    dunno = v4 - v9;
-                    if (dunno > 0)
-                        v4 -= (dunno + ((u16)dunno >> 15)) >> 1;
-                    gammaTable[gammaIndex][v2] = v4 >> 8;
-                    if (gammaTable[gammaIndex][v2] > 0x1f)
-                        gammaTable[gammaIndex][v2] = 0x1f;
-                }
-            }
-            else
-            {
-                for (; gammaIndex < 19; gammaIndex++)
-                {
-                    v4 += v11;
-                    gammaTable[gammaIndex][v2] = v4 >> 8;
-                    if (gammaTable[gammaIndex][v2] > 0x1f)
-                        gammaTable[gammaIndex][v2] = 0x1f;
-                }
-            }
-        }
-    }
 }
 
 // When the weather is changing, it gradually updates the palettes
@@ -457,7 +432,7 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
 {
     u16 curPalIndex;
     u16 palOffset;
-    u8 *gammaTable;
+    const u8 *gammaTable;
     u32 i;
 
     if (gammaIndex > 0)
@@ -481,9 +456,9 @@ static void ApplyGammaShift(u8 startPalIndex, u8 numPalettes, s8 gammaIndex)
                 u8 r, g, b;
 
                 if (sPaletteGammaTypes[curPalIndex] == GAMMA_ALT || curPalIndex - 16 == gWeatherPtr->altGammaSpritePalIndex)
-                    gammaTable = gWeatherPtr->altGammaShifts[gammaIndex];
+                    gammaTable = sContrastColorMaps[gammaIndex];
                 else
-                    gammaTable = gWeatherPtr->gammaShifts[gammaIndex];
+                    gammaTable = sDarkenedContrastColorMaps[gammaIndex];
 
                 for (i = 0; i < 16; i++)
                 {
@@ -557,12 +532,12 @@ static void ApplyGammaShiftWithBlend(u8 startPalIndex, u8 numPalettes, s8 gammaI
         }
         else
         {
-            u8 *gammaTable;
+            const u8 *gammaTable;
 
             if (sPaletteGammaTypes[curPalIndex] == GAMMA_NORMAL)
-                gammaTable = gWeatherPtr->gammaShifts[gammaIndex];
+                gammaTable = sDarkenedContrastColorMaps[gammaIndex];
             else
-                gammaTable = gWeatherPtr->altGammaShifts[gammaIndex];
+                gammaTable = sContrastColorMaps[gammaIndex];
 
             for (i = 0; i < 16; i++)
             {

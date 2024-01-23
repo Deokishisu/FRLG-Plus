@@ -38,8 +38,6 @@ struct Weather
             struct Sprite *sandstormSprites2[NUM_SWIRL_SANDSTORM_SPRITES];
         } s2;
     } sprites;
-    u8 gammaShifts[19][32];
-    u8 altGammaShifts[19][32];
     s8 gammaIndex;
     s8 gammaTargetIndex;
     u8 gammaStepDelay;
