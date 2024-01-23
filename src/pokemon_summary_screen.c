@@ -2999,6 +2999,30 @@ static void PokeSum_PrintTrainerMemo_Mon(void)
         PokeSum_PrintTrainerMemo_Mon_NotHeldByOT();
 }
 
+static bool32 IsEggFromBoxRS(void)
+{
+    u16 species = GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES);
+    u8 OtName[12];
+
+    GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_NAME, OtName);
+
+
+    switch (species)
+    {
+        case SPECIES_SWABLU:
+        case SPECIES_ZIGZAGOON:
+        case SPECIES_SKITTY:
+        case SPECIES_PICHU:
+        {
+            if(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_GENDER) == 1)
+                if((GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_OT_ID) & 0xFFFF) == 0)
+                    if(!StringCompareWithoutExtCtrlCodes(gText_Azusa, OtName))
+                        return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 static void PokeSum_PrintTrainerMemo_Egg(void)
 {
     u8 metLocation;
@@ -3049,7 +3073,10 @@ static void PokeSum_PrintTrainerMemo_Egg(void)
     if (sMonSummaryScreen->isBadEgg)
         chosenStrIndex = 0;
 
-    AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_NORMAL, 0, 3, 0, 0, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sEggOriginTexts[chosenStrIndex]);
+    if(IsEggFromBoxRS())
+        AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_NORMAL, 0, 3, 0, 0, sLevelNickTextColors[0], TEXT_SKIP_DRAW, gText_PeculiarEggPokemonBox);
+    else
+        AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_NORMAL, 0, 3, 0, 0, sLevelNickTextColors[0], TEXT_SKIP_DRAW, sEggOriginTexts[chosenStrIndex]);
 }
 
 static void PokeSum_PrintExpPoints_NextLv(void)

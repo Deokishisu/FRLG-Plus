@@ -34,4 +34,8 @@ extern const u8 gColosseum_Starter_Met_Location_JP[];
 extern const u8 gDukings_Plusle_JP[];
 extern const u8 gOtherText_MetDistantLand[];
 
+// Pokemon Box Egg string
+extern const u8 gText_PeculiarEggPokemonBox[];
+extern const u8 gText_Azusa[];
+
 #endif // GUARD_ORRE_MET_LOCATION_STRINGS_H

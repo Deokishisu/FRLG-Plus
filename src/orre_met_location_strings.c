@@ -35,3 +35,7 @@ const u8 gColosseum_Starter_Met_Location_JP[] = _("was {JPN}{DYNAMIC 0x03}{ENG}'
 const u8 gDukings_Plusle_JP[] = _("received from {JPN}{DYNAMIC 0x03}{ENG}\n$");
 const u8 gOtherText_MetDistantLand[] = _("a distant land.$");
 
+// Pokemon Box Egg string
+const u8 gText_PeculiarEggPokemonBox[] = _("A wondrously peculiar POKéMON EGG\nobtained from BRIGETTE at a nice place.");
+const u8 gText_Azusa[] = _("AZUSA");
+
