@@ -146,11 +146,54 @@ TrainerTower_Lobby_Mart_Items::
 	release
 	end
 
+TrainerTower_Lobby_EventScript_CantEnterInNuzlockeMode:
+	callnative CheckNoFreeHealsMode
+	goto_if_eq VAR_RESULT, TRUE, TrainerTower_Lobby_EventScript_CantEnterInBothModes
+	signmsg
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgbox TrainerTower_Lobby_Text_CantEnterInNuzlockeMode
+	call EventScript_RestorePrevTextColor
+	normalmsg
+	goto TrainerTower_Lobby_EventScript_DeclineChallenge
+
+TrainerTower_Lobby_Text_CantEnterInNuzlockeMode:
+	.string "The TRAINER TOWER cannot be\n"
+	.string "entered in NUZLOCKE MODE.$"
+
+TrainerTower_Lobby_EventScript_CantEnterInBothModes:
+	signmsg
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgbox TrainerTower_Lobby_Text_CantEnterInBothModes
+	call EventScript_RestorePrevTextColor
+	normalmsg
+	goto TrainerTower_Lobby_EventScript_DeclineChallenge
+
+TrainerTower_Lobby_Text_CantEnterInBothModes:
+	.string "The TRAINER TOWER cannot be\n"
+	.string "entered in the NUZLOCKE or\l"
+	.string "NO FREE HEALS MODES.$"
+
+TrainerTower_Lobby_EventScript_CantEnterInNoFreeHealsMode:
+	signmsg
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	msgbox TrainerTower_Lobby_Text_CantEnterInNoFreeHealsMode
+	call EventScript_RestorePrevTextColor
+	normalmsg
+	goto TrainerTower_Lobby_EventScript_DeclineChallenge
+
+TrainerTower_Lobby_Text_CantEnterInNoFreeHealsMode:
+	.string "The TRAINER TOWER cannot be\n"
+	.string "entered in NO FREE HEALS MODE.$"
+
 TrainerTower_Lobby_EventScript_EntryTrigger::
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, TrainerTower_Lobby_Movement_FaceReceptionist
 	textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox TrainerTower_Lobby_Text_WelcomeToTrainerTower
+	callnative CheckNuzlockeMode
+	goto_if_eq VAR_RESULT, TRUE, TrainerTower_Lobby_EventScript_CantEnterInNuzlockeMode
+	callnative CheckNoFreeHealsMode
+	goto_if_eq VAR_RESULT, TRUE, TrainerTower_Lobby_EventScript_CantEnterInNoFreeHealsMode
 	ttower_getnumfloors
 	goto_if_eq VAR_RESULT, FALSE, TrainerTower_Lobby_EventScript_AllFloorsUsed
 	msgbox TrainerTower_Lobby_Text_TrainersUpToFloorNum
