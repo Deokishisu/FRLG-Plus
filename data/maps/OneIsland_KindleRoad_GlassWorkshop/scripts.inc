@@ -65,7 +65,7 @@ OneIsland_KindleRoad_GlassWorkshop_EventScript_ChooseGlassItem::
 	case 2, OneIsland_KindleRoad_GlassWorkshop_EventScript_RedFlute
 	case 3, OneIsland_KindleRoad_GlassWorkshop_EventScript_WhiteFlute
 	case 4, OneIsland_KindleRoad_GlassWorkshop_EventScript_BlackFlute
-	case 7, OneIsland_KindleRoad_GlassWorkshop_EventScript_CancelGlassItemSelect
+	case 5, OneIsland_KindleRoad_GlassWorkshop_EventScript_CancelGlassItemSelect
 	case 127, OneIsland_KindleRoad_GlassWorkshop_EventScript_CancelGlassItemSelect
 	end
 
