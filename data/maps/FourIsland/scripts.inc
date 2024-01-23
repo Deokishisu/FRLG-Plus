@@ -13,12 +13,12 @@ FourIsland_OnTransition::
 FourIsland_EventScript_TrySetDayCareManPos::
 	goto_if_unset FLAG_GOT_RIVAL_STARTER_EGG, FourIsland_EventScript_SetDayCareManPos
 	goto_if_unset FLAG_PENDING_DAYCARE_EGG, FourIsland_EventScript_EndSetDayCareManPos
-	setobjectxyperm LOCALID_DAYCARE_MAN, 16, 14
+	setobjectmovementtype LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 FourIsland_EventScript_EndSetDayCareManPos::
 	return
 
 FourIsland_EventScript_SetDayCareManPos::
-	setobjectxyperm LOCALID_DAYCARE_MAN, 16, 14
+	setobjectmovementtype LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 FourIsland_OnFrame::
@@ -50,16 +50,9 @@ FourIsland_EventScript_DaycareEggWaiting::
 	special RejectEggFromDayCare
 	setvar VAR_DAYCARE_MAN_TRIGGERS, 0
 	release
-	turnobject LOCALID_DAYCARE_MAN DIR_SOUTH
-	applymovement LOCALID_DAYCARE_MAN FourIsland_Movement_DaycareManReturnToSpot
-	waitmovement 0
+	setobjectmovementtype LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtypeinstant LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_FACE_DOWN
 	end
-
-FourIsland_Movement_DaycareManReturnToSpot::
-	lock_facing_direction
-	walk_up
-	unlock_facing_direction
-	step_end	
 
 FourIsland_EventScript_DaycareAcceptEgg::
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
@@ -80,9 +73,8 @@ FourIsland_EventScript_DaycareReceivedEgg::
 	clearflag FLAG_PENDING_DAYCARE_EGG
 	setvar VAR_DAYCARE_MAN_TRIGGERS, 0
 	release
-	turnobject LOCALID_DAYCARE_MAN DIR_SOUTH
-	applymovement LOCALID_DAYCARE_MAN FourIsland_Movement_DaycareManReturnToSpot
-	waitmovement 0
+	setobjectmovementtype LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtypeinstant LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_FACE_DOWN
 	end
 
 FourIsland_EventScript_CheckOnOneMon::
@@ -159,9 +151,8 @@ FourIsland_EventScript_StarterEggDaycareMan_7:
 	setflag FLAG_GOT_RIVAL_STARTER_EGG
 	setvar VAR_DAYCARE_MAN_TRIGGERS, 0
 	release
-	turnobject LOCALID_DAYCARE_MAN DIR_SOUTH
-	applymovement LOCALID_DAYCARE_MAN FourIsland_Movement_DaycareManReturnToSpot
-	waitmovement 0
+	setobjectmovementtype LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtypeinstant LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_FACE_DOWN
 	end
 
 FourIsland_EventScript_StarterEggDaycareMan_5:
@@ -176,61 +167,13 @@ FourIsland_EventScript_StarterEggDaycareMan_Text_1:
 	.string "I guess I'll keep this EGG until a\nTRAINER comes along who wants it.$"
 
 FourIsland_EventScript_RepositionDaycareMan::
-	goto_if_unset FLAG_GOT_RIVAL_STARTER_EGG, FourIsland_EventScript_RepositionDaycareMan_4
-	goto_if_unset FLAG_PENDING_DAYCARE_EGG, FourIsland_EventScript_RepositionDaycareMan_2
-	getplayerxy VAR_TEMP_1, VAR_RESULT
-	compare VAR_TEMP_1, 9
-	goto_if_ge FourIsland_EventScript_RepositionDaycareMan_7
-FourIsland_EventScript_RepositionDaycareMan_4:
-	callnative MoveDaycareMan
-	return
-
+	goto_if_unset FLAG_GOT_RIVAL_STARTER_EGG, FourIsland_EventScript_RepositionDaycareMan_2
+	goto_if_unset FLAG_PENDING_DAYCARE_EGG, FourIsland_EventScript_RepositionDaycareMan_3
 FourIsland_EventScript_RepositionDaycareMan_2:
-	setobjectxyperm LOCALID_DAYCARE_MAN, 16, 13
+	setobjectmovementtype LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtypeinstant LOCALID_DAYCARE_MAN, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+FourIsland_EventScript_RepositionDaycareMan_3:
 	setvar VAR_DAYCARE_MAN_TRIGGERS, 1
-	release
 	end
+	
 
-FourIsland_EventScript_RepositionDaycareMan_5:
-	compare VAR_TEMP_1, 16
-	goto_if_eq FourIsland_EventScript_RepositionDaycareMan_15
-FourIsland_EventScript_RepositionDaycareMan_13:
-	applymovement LOCALID_DAYCARE_MAN, FourIsland_Movement_DaycareManWalkDown
-	waitmovement 0
-	callnative MoveDaycareMan
-	setvar VAR_DAYCARE_MAN_TRIGGERS, 1
-	release
-	end
-
-FourIsland_EventScript_RepositionDaycareMan_6:
-	compare VAR_RESULT, 12
-	goto_if_ge FourIsland_EventScript_RepositionDaycareMan_10
-	goto FourIsland_EventScript_RepositionDaycareMan_4
-
-FourIsland_EventScript_RepositionDaycareMan_7:
-	compare VAR_TEMP_1, 24
-	goto_if_le FourIsland_EventScript_RepositionDaycareMan_6
-	goto FourIsland_EventScript_RepositionDaycareMan_4
-
-FourIsland_EventScript_RepositionDaycareMan_10:
-	compare VAR_RESULT, 20
-	goto_if_le FourIsland_EventScript_RepositionDaycareMan_5
-	goto FourIsland_EventScript_RepositionDaycareMan_4
-
-FourIsland_EventScript_RepositionDaycareMan_14:
-	applymovement OBJ_EVENT_ID_PLAYER, FourIsland_Base_Movement_PlayerWatchRivalExit
-	applymovement LOCALID_DAYCARE_MAN, FourIsland_Movement_DaycareManWalkDown
-	callnative MoveDaycareMan
-	waitmovement 0
-	setvar VAR_DAYCARE_MAN_TRIGGERS, 1
-	release
-	end
-
-FourIsland_EventScript_RepositionDaycareMan_15:
-	compare VAR_RESULT, 14
-	goto_if_eq FourIsland_EventScript_RepositionDaycareMan_14
-	goto FourIsland_EventScript_RepositionDaycareMan_13
-
-FourIsland_Movement_DaycareManWalkDown:
-	walk_down
-	step_end

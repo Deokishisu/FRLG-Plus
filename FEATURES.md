@@ -51,6 +51,7 @@
 - The two boulders that block access to Mt. Ember's exterior will no longer block the way once the player moves past them.
 - Steps taken aren't counted while inside Safari Zone Rest Houses.
 - The player travels at running speed while diving.
+- The map fades in significantly faster after most warps, which makes entering and exiting doors faster.
 
 ##### Inventory and Item-related:
 - Expanded item pockets. The player can hold one stack of every legally obtainable item at once.
@@ -59,6 +60,8 @@
 - The bag pockets wrap around when switching between them.
 - Left and Right in the TM Case and Berry Pouch scrolls faster.
 - Infinite TM usage. TM prices have been modified to reflect this. TMs do not restore PP when learned, like in BW/B2W2.
+	* The missable TM44 Rest from the S.S. Anne has been added to the Celadon Dept. Store inventory.
+	* TM10 is no longer available through Pickup and is instead available in the Celadon Dept. Store.
 - EV-reducing berries ported from Emerald (the Pomeg glitch was fixed during the port). Otherwise worthless berries obtainable as hidden items or through Pickup have been changed to these.
 - When a repel expires, the player will be asked whether they want to use another immediately, like in Black 2 and White 2.
 - The Generation III Poké Ball varieties can be purchased in Silph Co. after it has been liberated from Team Rocket.
@@ -110,7 +113,7 @@
 - A woman in the Move Reminder's House on Two Island can check if a Pokémon is fully EV trained. If it is, she'll give it the Effort Ribbon.
 
 ##### Day Care-related:
-- The Day-Care Man will adjust his position immediately if a Pokémon Egg is ready without having to transition to another map.
+- The Day-Care Man will raise his hand immediately if a Pokémon Egg is ready without having to transition to another map. He no longer steps forward to indicate an Egg is available.
 - The Day Care will send a retrieved Pokémon to a box as long as it's not holding mail if the player's party is full.
 - Eggs have a 50% chance of inheriting the nature of their mother or Ditto parent if that parent holds an Everstone, ported from Emerald.
 - The Route 5 Day-Care Man tells the player what level a Pokémon was when it was first deposited.
