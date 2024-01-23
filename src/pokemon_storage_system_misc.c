@@ -403,6 +403,9 @@ static void MultiMove_SetIconToBg(u8 x, u8 y)
     u16 species = GetCurrentBoxMonData(position, MON_DATA_SPECIES_OR_EGG);
     u32 personality = GetCurrentBoxMonData(position, MON_DATA_PERSONALITY);
 
+    if(species == SPECIES_DEOXYS)
+        species = GetDeoxysSpeciesFromForme(GetCurrentBoxMonData(position, MON_DATA_FORME));
+
     if (species != SPECIES_NONE)
     {
         const u8 *iconGfx = GetMonIconPtr(species, personality, 1);

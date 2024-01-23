@@ -240,6 +240,21 @@ void SwapFirstAliveBoxPokemon(void)
     }
 }
 
+u16 GetDeoxysSpeciesFromForme(u32 forme)
+{
+    switch(forme)
+    {
+        case 1: // Attack Forme
+            return 65531;
+        case 2: // Defense Forme
+            return 65532;
+        case 3: // Speed Forme
+            return 65533;
+        default: // Normal Forme
+            return 65530;
+    }
+}
+
 void InitCursor(void)
 {
     if (gStorage->boxOption != OPTION_DEPOSIT)
@@ -1219,6 +1234,8 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             StringGet_Nickname(gStorage->displayMonNickname);
             gStorage->displayMonLevel = GetMonData(mon, MON_DATA_LEVEL);
             gStorage->displayMonMarkings = GetMonData(mon, MON_DATA_MARKINGS);
+            if(gStorage->displayMonSpecies == SPECIES_DEOXYS)
+                gStorage->displayMonSpecies = GetDeoxysSpeciesFromForme(GetMonData(mon, MON_DATA_FORME));
             gStorage->displayMonPersonality = GetMonData(mon, MON_DATA_PERSONALITY);
             gStorage->displayMonPalette = GetMonFrontSpritePal(mon);
             gender = GetMonGender(mon);
@@ -1243,6 +1260,8 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
             StringGet_Nickname(gStorage->displayMonNickname);
             gStorage->displayMonLevel = GetLevelFromBoxMonExp(boxMon);
             gStorage->displayMonMarkings = GetBoxMonData(boxMon, MON_DATA_MARKINGS);
+            if(gStorage->displayMonSpecies == SPECIES_DEOXYS)
+                gStorage->displayMonSpecies = GetDeoxysSpeciesFromForme(GetBoxMonData(boxMon, MON_DATA_FORME));
             gStorage->displayMonPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY);
             gStorage->displayMonPalette = GetMonSpritePalFromSpeciesAndPersonality(gStorage->displayMonSpecies, otId, gStorage->displayMonPersonality);
             gender = GetGenderFromSpeciesAndPersonality(gStorage->displayMonSpecies, gStorage->displayMonPersonality);
@@ -1285,7 +1304,10 @@ static void SetDisplayMonData(void *pokemon, u8 mode)
         // Buffer species name
         txtPtr = gStorage->displayMonSpeciesNameText;
         *(txtPtr)++ = CHAR_SLASH;
-        StringCopyPadded(txtPtr, gSpeciesNames[gStorage->displayMonSpecies], CHAR_SPACE, 5);
+        if(gStorage->displayMonSpecies >= 65530 && gStorage->displayMonSpecies <= 65533)
+            StringCopyPadded(txtPtr, gSpeciesNames[SPECIES_DEOXYS], CHAR_SPACE, 5);
+        else
+            StringCopyPadded(txtPtr, gSpeciesNames[gStorage->displayMonSpecies], CHAR_SPACE, 5);
 
         // Buffer gender and level
         txtPtr = gStorage->displayMonGenderAndLevelText;
