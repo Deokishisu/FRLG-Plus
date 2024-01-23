@@ -17,11 +17,11 @@
 .equ SET_BOXES_MOVED, 8
 .equ CHECK_BOXES_MOVED, 9
 
-.equ TYPE, VAR_0x8003
-.equ ARGUMENT, VAR_0x8004
-.equ LEADER_READY, VAR_0x8006
-.equ X_COORD, VAR_0x8007
-.equ Y_COORD, VAR_0x8008
+.equ TYPE, VAR_TEMP_3
+.equ ARGUMENT, VAR_TEMP_4
+.equ LEADER_READY, VAR_TEMP_6
+.equ X_COORD, VAR_TEMP_7
+.equ Y_COORD, VAR_TEMP_8
 
 SevenIsland_House_Room2_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_House_Room2_OnTransition
@@ -177,6 +177,7 @@ SevenIsland_House_Room2_Eventscript_Brock::
 	call_if_ne Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveBrockLeft
 	applymovement LOCALID_BROCK, SevenIsland_House_Room2_Movement_BrockToMat
 	waitmovement 0
+	setobjectxyperm LOCALID_BROCK, 7, 5
 	setobjectmovementtypeinstant LOCALID_BROCK, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_BROCK
 	msgbox SevenIsland_House_Room2_Text_BrockSquareUp, MSGBOX_DEFAULT 
@@ -333,6 +334,7 @@ SevenIsland_House_Room2_Eventscript_Misty::
 	getplayerxy X_COORD, Y_COORD
 	call_if_eq Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveMistyRight
 	call_if_ne Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveMistyDown
+	setobjectxyperm LOCALID_MISTY, 7, 5
 	setobjectmovementtypeinstant LOCALID_MISTY, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_MISTY
 	msgbox SevenIsland_House_Room2_Text_MistySquareUp, MSGBOX_DEFAULT 
@@ -486,6 +488,7 @@ SevenIsland_House_Room2_Eventscript_LtSurge::
 	getplayerxy X_COORD, Y_COORD
 	call_if_eq Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveLtSurgeLeft
 	call_if_ne Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveLtSurgeDown
+	setobjectxyperm LOCALID_LT_SURGE, 7, 5
 	setobjectmovementtypeinstant LOCALID_LT_SURGE, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_LT_SURGE
 	msgbox SevenIsland_House_Room2_Text_LtSurgeSquareUp, MSGBOX_DEFAULT 
@@ -629,6 +632,7 @@ SevenIsland_House_Room2_Eventscript_Erika::
 	getplayerxy X_COORD, Y_COORD
 	call_if_eq Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveErikaRight
 	call_if_ne Y_COORD, 3, SevenIsland_House_Room2_Eventscript_MoveErikaDown
+	setobjectxyperm LOCALID_ERIKA, 7, 5
 	setobjectmovementtypeinstant LOCALID_ERIKA, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_ERIKA
 	msgbox SevenIsland_House_Room2_Text_ErikaSquareUp, MSGBOX_DEFAULT 
@@ -782,6 +786,7 @@ SevenIsland_House_Room2_Eventscript_Koga::
 	getplayerxy X_COORD, Y_COORD
 	call_if_eq Y_COORD, 7, SevenIsland_House_Room2_Eventscript_MoveKogaRight
 	call_if_ne Y_COORD, 7, SevenIsland_House_Room2_Eventscript_MoveKogaUp
+	setobjectxyperm LOCALID_KOGA, 7, 5
 	setobjectmovementtypeinstant LOCALID_KOGA, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_KOGA
 	msgbox SevenIsland_House_Room2_Text_KogaSquareUp, MSGBOX_DEFAULT 
@@ -937,6 +942,7 @@ SevenIsland_House_Room2_Eventscript_Sabrina::
 	getplayerxy X_COORD, Y_COORD
 	call_if_eq Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveSabrinaRight
 	call_if_ne Y_COORD, 6, SevenIsland_House_Room2_Eventscript_MoveSabrinaUp
+	setobjectxyperm LOCALID_SABRINA, 7, 5
 	setobjectmovementtypeinstant LOCALID_SABRINA, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_SABRINA
 	msgbox SevenIsland_House_Room2_Text_SabrinaSquareUp, MSGBOX_DEFAULT 
@@ -1095,6 +1101,7 @@ SevenIsland_House_Room2_Eventscript_Blaine::
 	getplayerxy X_COORD, Y_COORD
 	call_if_eq Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveBlaineLeft
 	call_if_ne Y_COORD, 5, SevenIsland_House_Room2_Eventscript_MoveBlaineUp
+	setobjectxyperm LOCALID_BLAINE, 7, 5
 	setobjectmovementtypeinstant LOCALID_BLAINE, MOVEMENT_TYPE_FACE_LEFT
 	setvar LEADER_READY, LOCALID_BLAINE
 	msgbox SevenIsland_House_Room2_Text_BlaineSquareUp, MSGBOX_DEFAULT 
