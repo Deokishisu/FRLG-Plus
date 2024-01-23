@@ -803,9 +803,15 @@ void DoTrySetDisplayMonData(void)
 static void SetMovedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
+    {
+        StoreHPAndStatusInBoxMon(&gPlayerParty[sCursorPosition]);
         gStorage->movingMon = gPlayerParty[sCursorPosition];
+    }
     else
+    {
         BoxMonAtToMon(boxId, position, &gStorage->movingMon);
+        PopulateBoxHpAndStatusToPartyMon(&gStorage->movingMon);
+    }
 
     PurgeMonOrBoxMon(boxId, position);
     sMovingMonOrigBoxId = boxId;
@@ -815,10 +821,15 @@ static void SetMovedMonData(u8 boxId, u8 position)
 static void SetPlacedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
+    {
+        PopulateBoxHpAndStatusToPartyMon(&gStorage->movingMon); // issue is here
         gPlayerParty[position] = gStorage->movingMon;
+    }
     else
     {
-        BoxMonRestorePP(&gStorage->movingMon.box);
+        if(gSaveBlock1Ptr->keyFlags.noPMC != 1)
+            BoxMonRestorePP(&gStorage->movingMon.box);
+        StoreHPAndStatusInBoxMon(&gStorage->movingMon);
         SetBoxMonAt(boxId, position, &gStorage->movingMon.box);
     }
 }
@@ -834,9 +845,14 @@ static void PurgeMonOrBoxMon(u8 boxId, u8 position)
 static void SetShiftedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
+    {
+        StoreHPAndStatusInBoxMon(&gPlayerParty[position]);
         gStorage->tempMon = gPlayerParty[position];
+    }
     else
+    {
         BoxMonAtToMon(boxId, position, &gStorage->tempMon);
+    }
 
     SetPlacedMonData(boxId, position);
     gStorage->movingMon = gStorage->tempMon;
