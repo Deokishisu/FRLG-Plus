@@ -7018,9 +7018,9 @@ void AdjustFriendship(struct Pokemon *mon, u8 event)
             // Only if it's a trainer battle with league progression significance
             if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER))
                 return;
-            if (!(gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER
-                || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR
-                || gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION))
+            if (!(sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER
+                || sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR
+                || sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION))
                 return;
         }
 

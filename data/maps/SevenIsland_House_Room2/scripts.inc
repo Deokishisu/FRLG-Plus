@@ -1233,7 +1233,7 @@ SevenIsland_House_Room2_Text_BlaineExit:
 	.string "I feel a fire burning within me,\n"
 	.string "the need to keep getting stronger!\p"
 	.string "CINNABAR ISLAND's volcano is getting\n"
-	.string "more and more active everyday…\p"
+	.string "more and more active every day…\p"
 	.string "I should head back and keep an\n"
 	.string "eye on it.$"
 

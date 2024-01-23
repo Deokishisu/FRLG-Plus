@@ -1032,7 +1032,7 @@ void DrawBattleEntryBackground(void)
     {
         if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
         {
-            u8 trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
+            u8 trainerClass = sTrainers[gTrainerBattleOpponent_A].trainerClass;
             if (trainerClass == TRAINER_CLASS_LEADER)
             {
                 LoadBattleTerrainEntryGfx(BATTLE_TERRAIN_BUILDING);
@@ -1077,9 +1077,9 @@ static u8 GetBattleTerrainOverride(void)
     }
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
-        if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER)
+        if (sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_LEADER)
             return BATTLE_TERRAIN_LEADER;
-        else if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
+        else if (sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
             return BATTLE_TERRAIN_CHAMPION;
     }
     battleScene = GetCurrentMapBattleScene();

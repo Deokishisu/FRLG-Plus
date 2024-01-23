@@ -540,7 +540,7 @@ static const struct TrainerMonItemCustomMovesEVs sParty_MasterGolbat[] = {
         .species = SPECIES_GOLBAT,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_SCREECH, MOVE_HIDDEN_POWER, MOVE_CONFUSE_RAY, MOVE_WISH},
+        .moves = {MOVE_SCREECH, MOVE_HIDDEN_POWER, MOVE_CONFUSE_RAY, MOVE_AERIAL_ACE},
     },
 };
 
@@ -1586,7 +1586,7 @@ static const struct TrainerMonItemCustomMovesEVs sParty_MasterMrMime[] = {
 
 static const struct TrainerMonItemCustomMovesEVs sParty_MasterScyther[] = {
     {
-        .iv = 6, //rock
+        .iv = 3, //flying
         .lvl = 60,
         .evs = { 4, 252, 0, 252, 0, 0},
         .nature = NATURE_ADAMANT,
@@ -1876,9 +1876,9 @@ static const struct TrainerMonItemCustomMovesEVs sParty_MasterDragonite[] = {
         .lvl = 60,
         .evs = { 4, 0, 0, 0, 252, 252},
         .nature = NATURE_MODEST,
-        .species = SPECIES_DRAGONAIR,
+        .species = SPECIES_DRAGONITE,
         .heldItem = ITEM_LEFTOVERS,
         .abilityNum = 0,
-        .moves = {MOVE_ICE_BEAM, MOVE_LIGHT_SCREEN, MOVE_TOXIC, MOVE_PROTECT},
+        .moves = {MOVE_ICE_PUNCH, MOVE_LIGHT_SCREEN, MOVE_TOXIC, MOVE_PROTECT},
     },
 };

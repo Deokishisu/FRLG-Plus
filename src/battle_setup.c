@@ -785,7 +785,7 @@ static u8 GetTrainerBattleTransition(void)
 
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
         return B_TRANSITION_BLUE;
-    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR)
+    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_ELITE_FOUR)
     {
         if (gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_2 || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE || gTrainerBattleOpponent_A == TRAINER_ELITE_FOUR_LORELEI_CHALLENGE_2)
             return B_TRANSITION_LORELEI;
@@ -797,7 +797,7 @@ static u8 GetTrainerBattleTransition(void)
             return B_TRANSITION_LANCE;
         return B_TRANSITION_BLUE;
     }
-    if (gTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
+    if (sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_CHAMPION)
         return B_TRANSITION_BLUE;
     if (sTrainers[gTrainerBattleOpponent_A].trainerClass == TRAINER_CLASS_PKMN_PROF)
         return B_TRANSITION_OAK;

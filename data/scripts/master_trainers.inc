@@ -1928,6 +1928,8 @@ MasterTrainer_EventScript_BeautyLassContinue:
     specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_LOST
     goto_if_eq MasterTrainer_EventScript_BeautyLass_LostBattle
+    compare VAR_RESULT, B_OUTCOME_DREW
+    goto_if_eq MasterTrainer_EventScript_BeautyLass_LostBattle
     compare HAVE_TITLE, TRUE
     goto_if_ne MasterTrainer_EventScript_BeautyLass_ConferTitle
     msgbox Text_BeautyLass_AfterBattleWon, MSGBOX_DEFAULT
@@ -1939,6 +1941,8 @@ MasterTrainer_EventScript_BirdKeeperCooltrainerContinue:
     special LoadPlayerParty
     specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_LOST
+    goto_if_eq MasterTrainer_EventScript_BirdKeeperCooltrainer_LostBattle
+    compare VAR_RESULT, B_OUTCOME_DREW
     goto_if_eq MasterTrainer_EventScript_BirdKeeperCooltrainer_LostBattle
     compare HAVE_TITLE, TRUE
     goto_if_ne MasterTrainer_EventScript_BirdKeeperCooltrainer_ConferTitle
@@ -1952,6 +1956,8 @@ MasterTrainer_EventScript_BugCatcherYoungsterContinue:
     specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_LOST
     goto_if_eq MasterTrainer_EventScript_BugCatcherYoungster_LostBattle
+    compare VAR_RESULT, B_OUTCOME_DREW
+    goto_if_eq MasterTrainer_EventScript_BugCatcherYoungster_LostBattle
     compare HAVE_TITLE, TRUE
     goto_if_ne MasterTrainer_EventScript_BugCatcherYoungster_ConferTitle
     msgbox Text_BugCatcherYoungster_AfterBattleWon, MSGBOX_DEFAULT
@@ -1964,6 +1970,8 @@ MasterTrainer_EventScript_PsychicScientistContinue:
     specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_LOST
     goto_if_eq MasterTrainer_EventScript_PsychicScientist_LostBattle
+    compare VAR_RESULT, B_OUTCOME_DREW
+    goto_if_eq MasterTrainer_EventScript_PsychicScientist_LostBattle
     compare HAVE_TITLE, TRUE
     goto_if_ne MasterTrainer_EventScript_PsychicScientist_ConferTitle
     msgbox Text_PsychicScientist_AfterBattleWon, MSGBOX_DEFAULT
@@ -1975,6 +1983,8 @@ MasterTrainer_EventScript_BlackBeltHikerContinue:
     special LoadPlayerParty
     specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_LOST
+    goto_if_eq MasterTrainer_EventScript_BlackBeltHiker_LostBattle
+    compare VAR_RESULT, B_OUTCOME_DREW
     goto_if_eq MasterTrainer_EventScript_BlackBeltHiker_LostBattle
     compare HAVE_TITLE, TRUE
     goto_if_ne MasterTrainer_EventScript_BlackBeltHiker_ConferTitle

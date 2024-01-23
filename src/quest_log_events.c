@@ -643,7 +643,7 @@ static bool8 ShouldRegisterEvent_HandleBeatStoryTrainer(u16 eventId, const u16 *
     if (eventId == QL_EVENT_DEFEATED_TRAINER)
     {
         const struct QuestLogEvent_TrainerBattle * data = (struct QuestLogEvent_TrainerBattle *)genericData;
-        u8 trainerClass = gTrainers[data->trainerId].trainerClass;
+        u8 trainerClass = sTrainers[data->trainerId].trainerClass;
         if (trainerClass == TRAINER_CLASS_RIVAL_EARLY
          || trainerClass == TRAINER_CLASS_RIVAL_LATE
          || trainerClass == TRAINER_CLASS_CHAMPION
@@ -1959,9 +1959,9 @@ static const u16 *LoadEvent_DefeatedTrainer(const u16 *eventData)
     GetMapNameGeneric(gStringVar1, r6[0]);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
 
-    if (gTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_EARLY
-     || gTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_LATE
-     || gTrainers[r5[2]].trainerClass == TRAINER_CLASS_CHAMPION)
+    if (sTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_EARLY
+     || sTrainers[r5[2]].trainerClass == TRAINER_CLASS_RIVAL_LATE
+     || sTrainers[r5[2]].trainerClass == TRAINER_CLASS_CHAMPION)
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, GetExpandedPlaceholder(PLACEHOLDER_ID_RIVAL));
     else
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, sTrainers[r5[2]].trainerName);

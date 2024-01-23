@@ -1584,18 +1584,18 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
      && !(gBattleTypeFlags & (BATTLE_TYPE_BATTLE_TOWER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER)))
     {
         ZeroEnemyPartyMons();
-        for (i = 0; i < gTrainers[trainerNum].partySize; i++)
+        for (i = 0; i < sTrainers[trainerNum].partySize; i++)
         {
 
             if (sTrainers[trainerNum].doubleBattle == TRUE)
                 personalityValue = 0x80;
-            else if (gTrainers[trainerNum].encounterMusic_gender & F_TRAINER_FEMALE)
+            else if (sTrainers[trainerNum].encounterMusic_gender & F_TRAINER_FEMALE)
                 personalityValue = 0x78; // Use personality more likely to result in a female Pokémon
             else
                 personalityValue = 0x88; // Use personality more likely to result in a male Pokémon
-            for (j = 0; gTrainers[trainerNum].trainerName[j] != EOS; j++)
-                nameHash += gTrainers[trainerNum].trainerName[j];
-            switch (gTrainers[trainerNum].partyFlags)
+            for (j = 0; sTrainers[trainerNum].trainerName[j] != EOS; j++)
+                nameHash += sTrainers[trainerNum].trainerName[j];
+            switch (sTrainers[trainerNum].partyFlags)
             {
                 case 0:
                 {
@@ -1734,10 +1734,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 }
             }
         }
-        gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
+        gBattleTypeFlags |= sTrainers[trainerNum].doubleBattle;
     }
 
-    return gTrainers[trainerNum].partySize;
+    return sTrainers[trainerNum].partySize;
 }
 
 // Unused
