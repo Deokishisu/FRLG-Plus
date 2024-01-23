@@ -1392,7 +1392,7 @@
 #define FLAG_SYS_ON_CYCLING_ROAD                                    (SYS_FLAGS + 0x30)
 #define FLAG_SYS_RECEIVED_EXTENDED_DEX                              (SYS_FLAGS + 0x31)
 #define FLAG_SYS_EXTENDED_DEX_TOGGLE                                (SYS_FLAGS + 0x32)
-#define FLAG_0x833                                                  (SYS_FLAGS + 0x33)
+#define FLAG_SYS_ON_RESUME                                          (SYS_FLAGS + 0x33) // Cleared when an OnResume map script could fire
 #define FLAG_SYS_NOT_SOMEONES_PC                                    (SYS_FLAGS + 0x34)
 #define FLAG_0x835                                                  (SYS_FLAGS + 0x35)
 #define FLAG_0x836                                                  (SYS_FLAGS + 0x36)

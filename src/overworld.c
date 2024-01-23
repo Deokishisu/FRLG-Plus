@@ -704,7 +704,7 @@ static void Overworld_SetWhiteoutRespawnPoint(void)
     SetWhiteoutRespawnWarpAndHealerNpc(&sWarpDestination);
 }
 
-void SetLastHealLocationWarp(u8 healLocationId)
+void SetLastHealLocationWarp(u32 healLocationId)
 {
     const struct HealLocation *healLocation = GetHealLocation(healLocationId);
     if (healLocation)
@@ -1185,6 +1185,7 @@ void Overworld_ChangeMusicTo(u16 newMusic)
         FadeOutAndPlayNewMapMusic(newMusic, 8);
 }
 
+// rendered unused as a QoL feature. Warps are almost instant without the artificial music delay.
 static u8 GetMapMusicFadeoutSpeed(void)
 {
     const struct MapHeader *mapHeader = GetDestinationWarpMapHeader();
@@ -1199,7 +1200,7 @@ void TryFadeOutOldMapMusic(void)
     u16 warpMusic = GetWarpDestinationMusic();
     if (FlagGet(FLAG_DONT_TRANSITION_MUSIC) != TRUE && warpMusic != GetCurrentMapMusic())
     {
-        FadeOutMapMusic(GetMapMusicFadeoutSpeed());
+        FadeOutMapMusic(1);
     }
 }
 

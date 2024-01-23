@@ -465,6 +465,7 @@ void RunOnTransitionMapScript(void)
 
 void RunOnResumeMapScript(void)
 {
+    FlagClear(FLAG_SYS_ON_RESUME);
     MapHeaderRunScriptType(MAP_SCRIPT_ON_RESUME);
 }
 

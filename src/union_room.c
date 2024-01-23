@@ -4336,3 +4336,16 @@ static void ViewURoomPartnerTrainerCard(u8 *unused, struct WirelessLink_URoom * 
         StringAppend(gStringVar4, uroom->trainerCardMsgStrBuffer);
     }
 }
+
+void CableClub_OnResumeFunc(void)
+{
+    if(FlagGet(FLAG_SYS_ON_RESUME))
+        return;
+    FlagSet(FLAG_SYS_ON_RESUME);
+    if(!IsWirelessAdapterConnected())
+    {
+        FlagSet(FLAG_SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER);
+        return;
+    }
+    InitUnionRoom();
+}

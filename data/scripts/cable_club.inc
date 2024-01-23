@@ -1131,10 +1131,6 @@ CableClub_EventScript_CloseGameCornerBarrier::
 	setmetatile 5, 3, METATILE_GameCorner_CounterBarrier, 1
 	return
 
-CableClub_OnResume::
-	special InitUnionRoom
-	end
-
 JoyfulGameCorner_EventScript_InfoMan2::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
