@@ -12,7 +12,7 @@ Route18_EastEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route18_EastEntrance_2F_MapScript_PinsirMasterMovementType::
-	setobjectmovementtype LOCALID_PINSIR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PINSIR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route18_EastEntrance_2F_EventScript_LeftBinoculars::

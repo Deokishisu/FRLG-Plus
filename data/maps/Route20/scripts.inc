@@ -34,24 +34,24 @@ Route20_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route20_MapScript_BlastoiseMasterMovementType::
-	setobjectmovementtype LOCALID_BLASTOISE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_BLASTOISE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route20_MapScript_TentacoolMasterMovementType::
-	setobjectmovementtype LOCALID_TENTACOOL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_TENTACOOL_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route20_MapScript_CloysterMasterMovementType::
-	setobjectmovementtype LOCALID_CLOYSTER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CLOYSTER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route20_MapScript_WartortleMasterMovementType::
-	setobjectmovementtype LOCALID_WARTORTLE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_WARTORTLE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 
 Route20_MapScript_TentacruelMasterMovementType::
-	setobjectmovementtype LOCALID_TENTACRUEL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_TENTACRUEL_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route20_EventScript_ResetSeafoamBouldersForB3F::

@@ -15,7 +15,7 @@ VictoryRoad_3F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 VictoryRoad_3F_MapScript_GolbatMasterMovementType::
-	setobjectmovementtype LOCALID_GOLBAT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GOLBAT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 VictoryRoad_3F_OnLoad::

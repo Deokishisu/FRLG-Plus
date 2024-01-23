@@ -12,7 +12,7 @@ Route7_EastEntrance_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route7_EastEntrance_MapScript_SandslashMasterMovementType::
-	setobjectmovementtype LOCALID_SANDSLASH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SANDSLASH_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route7_EastEntrance_EventScript_Guard::

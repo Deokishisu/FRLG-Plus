@@ -126,7 +126,7 @@ static const u32 *const sItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_NUGGET]         = {gItemIcon_Nugget, gItemIconPalette_Nugget},
     [ITEM_HEART_SCALE]    = {gItemIcon_HeartScale, gItemIconPalette_HeartScale},
     // ????????
-    [ITEM_070]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
+    [ITEM_LINK_BRACELET]  = {gItemIcon_LinkBracelet, gItemIconPalette_LinkBracelet},
     [ITEM_071]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_072]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
     [ITEM_073]            = {gItemIcon_QuestionMark, gItemIconPalette_QuestionMark},
@@ -398,6 +398,8 @@ static const u32 *const sItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_POWDER_JAR]     = {gItemIcon_PowderJar, gItemIconPalette_PowderJar},
     [ITEM_RUBY]           = {gItemIcon_Gem, gItemIconPalette_Ruby},
     [ITEM_SAPPHIRE]       = {gItemIcon_Gem, gItemIconPalette_Sapphire},
+    [ITEM_MAGMA_EMBLEM]   = {gItemIcon_MagmaEmblem, gItemIconPalette_MagmaEmblem},
+    [ITEM_OLD_SEA_MAP]    = {gItemIcon_OldSeaMap, gItemIconPalette_OldSeaMap},
     // Return to field arrow
     [ITEMS_COUNT]         = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

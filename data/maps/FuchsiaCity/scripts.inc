@@ -23,11 +23,11 @@ FuchsiaCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 FuchsiaCity_MapScript_KangaskhanMasterMovementType::
-	setobjectmovementtype LOCALID_KANGASKHAN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KANGASKHAN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 FuchsiaCity_MapScript_TaurosMasterMovementType::
-	setobjectmovementtype LOCALID_TAUROS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_TAUROS_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 FuchsiaCity_EventScript_SetOmanyteGfx::

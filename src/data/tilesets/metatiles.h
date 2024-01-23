@@ -201,3 +201,24 @@ const u32 gMetatileAttributes_PokemonLeague[] = INCBIN_U32("data/tilesets/second
 
 const u16 gMetatiles_HallOfFame[] = INCBIN_U16("data/tilesets/secondary/hall_of_fame/metatiles.bin");
 const u32 gMetatileAttributes_HallOfFame[] = INCBIN_U32("data/tilesets/secondary/hall_of_fame/metatile_attributes.bin");
+
+const u16 gMetatiles_Underwater[] = INCBIN_U16("data/tilesets/secondary/underwater/metatiles.bin");
+const u32 gMetatileAttributes_Underwater[] = INCBIN_U32("data/tilesets/secondary/underwater/metatile_attributes.bin");
+
+const u16 gMetatiles_BattleFrontierOutsideWest[] = INCBIN_U16("data/tilesets/secondary/battlefrontieroutsidewest/metatiles.bin");
+const u32 gMetatileAttributes_BattleFrontierOutsideWest[] = INCBIN_U32("data/tilesets/secondary/battlefrontieroutsidewest/metatile_attributes.bin");
+
+const u16 gMetatiles_BattleFrontierOutsideEast[] = INCBIN_U16("data/tilesets/secondary/battlefrontieroutsideeast/metatiles.bin");
+const u32 gMetatileAttributes_BattleFrontierOutsideEast[] = INCBIN_U32("data/tilesets/secondary/battlefrontieroutsideeast/metatile_attributes.bin");
+
+const u16 gMetatiles_BattleFrontier[] = INCBIN_U16("data/tilesets/secondary/battlefrontier/metatiles.bin");
+const u32 gMetatileAttributes_BattleFrontier[] = INCBIN_U32("data/tilesets/secondary/battlefrontier/metatile_attributes.bin");
+
+const u16 gMetatiles_SeviiIslands5[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/metatiles.bin");
+const u32 gMetatileAttributes_SeviiIslands5[] = INCBIN_U32("data/tilesets/secondary/seviiislands5/metatile_attributes.bin");
+
+const u16 gMetatiles_SeviiIslands6[] = INCBIN_U16("data/tilesets/secondary/seviiislands6/metatiles.bin");
+const u32 gMetatileAttributes_SeviiIslands6[] = INCBIN_U32("data/tilesets/secondary/seviiislands6/metatile_attributes.bin");
+
+const u16 gMetatiles_BattleFrontierRankingHall[] = INCBIN_U16("data/tilesets/secondary/battlefrontierrankinghall/metatiles.bin");
+const u32 gMetatileAttributes_BattleFrontierRankingHall[] = INCBIN_U32("data/tilesets/secondary/battlefrontierrankinghall/metatile_attributes.bin");

@@ -86,14 +86,14 @@ SilphCo_7F_EventScript_RivalCharmander::
 SilphCo_7F_EventScript_RivalExitTop::
 	applymovement LOCALID_RIVAL, SilphCo_7F_Movement_RivalExitTop
 	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestRight
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
 	return
 
 SilphCo_7F_EventScript_RivalExitBottom::
 	applymovement LOCALID_RIVAL, SilphCo_7F_Movement_RivalExitBottom
 	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestUp
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
     waitmovement 0
 	return
 

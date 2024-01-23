@@ -91,6 +91,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "in_connection": false,
       "x": 19,
@@ -105,6 +106,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 18,
@@ -119,6 +121,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "in_connection": false,
       "x": 24,
@@ -133,6 +136,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 5,
@@ -147,6 +151,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 32,

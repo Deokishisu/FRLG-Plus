@@ -24,11 +24,11 @@ MtMoon_B2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 MtMoon_B2F_MapScript_OmanyteMasterMovementType::
-	setobjectmovementtype LOCALID_OMANYTE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_OMANYTE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 MtMoon_B2F_MapScript_KabutoMasterMovementType::
-	setobjectmovementtype LOCALID_KABUTO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KABUTO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 MtMoon_B2F_EventScript_ShowFossils::

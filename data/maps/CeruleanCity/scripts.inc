@@ -28,11 +28,11 @@ CeruleanCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeruleanCity_MapScript_PoliwrathMasterMovementType::
-	setobjectmovementtype LOCALID_POLIWRATH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_POLIWRATH_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 CeruleanCity_MapScript_JynxMasterMovementType::
-	setobjectmovementtype LOCALID_JYNX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_JYNX_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeruleanCity_EventScript_BlockExits::

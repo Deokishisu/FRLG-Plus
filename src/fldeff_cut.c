@@ -116,16 +116,16 @@ static const u16 sCutGrassMetatileMapping[][2] = {
         METATILE_ID(FuchsiaCity, SafariMountainTopRight_Mowed)
     }, {
         METATILE_ID(FuchsiaCity, LongGrassBottom_MountainLeft),
-        METATILE_ID(General, MountainCornerTopLeft | METATILE_COLLISION_MASK)
+        METATILE_ID(General, MountainCornerTopLeft | MAPGRID_COLLISION_MASK)
     }, {
         METATILE_ID(FuchsiaCity, LongGrassBottom_MountainRight),
-        METATILE_ID(General, MountainCornerTopRight | METATILE_COLLISION_MASK)
+        METATILE_ID(General, MountainCornerTopRight | MAPGRID_COLLISION_MASK)
     }, {
         METATILE_ID(SeviiIslands6, ForestTreeCorner_Left),
-        METATILE_ID(SeviiIslands6, ForestTreeCorner_Left_Mowed | METATILE_COLLISION_MASK) // for some reason this calls the wrong tile
+        METATILE_ID(SeviiIslands6, ForestTreeCorner_Left_Mowed | MAPGRID_COLLISION_MASK) // for some reason this calls the wrong tile
     }, {
         METATILE_ID(SeviiIslands6, ForestTreeCorner_Right),
-        METATILE_ID(SeviiIslands6, ForestTreeCorner_Right_Mowed | METATILE_COLLISION_MASK)
+        METATILE_ID(SeviiIslands6, ForestTreeCorner_Right_Mowed | MAPGRID_COLLISION_MASK)
     }, {
         METATILE_ID(SeviiIslands6, ForestTreeTop),
         METATILE_ID(SeviiIslands6, ForestTreeTop_Mowed)

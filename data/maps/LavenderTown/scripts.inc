@@ -27,15 +27,15 @@ LavenderTown_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 LavenderTown_MapScript_GastlyMasterMovementType::
-	setobjectmovementtype LOCALID_GASTLY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GASTLY_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 LavenderTown_MapScript_HaunterMasterMovementType::
-	setobjectmovementtype LOCALID_HAUNTER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_HAUNTER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 LavenderTown_MapScript_GengarMasterMovementType::
-	setobjectmovementtype LOCALID_GENGAR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GENGAR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 LavenderTown_EventScript_LittleGirl::

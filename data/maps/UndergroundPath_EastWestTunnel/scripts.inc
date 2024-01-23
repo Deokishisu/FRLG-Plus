@@ -25,13 +25,13 @@ UndergroundPath_EastWestTunnel_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 UndergroundPath_EastWestTunnel_MapScript_NidorinoMasterMovementType::
-	setobjectmovementtype LOCALID_NIDORINO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NIDORINO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 UndergroundPath_EastWestTunnel_MapScript_NidorinaMasterMovementType::
-	setobjectmovementtype LOCALID_NIDORINA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NIDORINA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 UndergroundPath_EastWestTunnel_MapScript_OnixMasterMovementType::
-	setobjectmovementtype LOCALID_ONIX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ONIX_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return

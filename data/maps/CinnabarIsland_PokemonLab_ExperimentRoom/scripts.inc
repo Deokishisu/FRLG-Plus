@@ -15,7 +15,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_MapScript_SetMasterTrainerMovementTypes
 	end
 
 CinnabarIsland_PokemonLab_ExperimentRoom_MapScript_OmastarMasterMovementType::
-	setobjectmovementtype LOCALID_OMASTAR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_OMASTAR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_Garett::

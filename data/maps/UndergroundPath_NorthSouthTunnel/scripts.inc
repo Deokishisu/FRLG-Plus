@@ -21,9 +21,9 @@ UndergroundPath_NorthSouthTunnel_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 UndergroundPath_NorthSouthTunnel_MapScript_MagnemiteMasterMovementType::
-	setobjectmovementtype LOCALID_MAGNEMITE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MAGNEMITE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 UndergroundPath_NorthSouthTunnel_MapScript_MagnetonMasterMovementType::
-	setobjectmovementtype LOCALID_MAGNETON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MAGNETON_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return

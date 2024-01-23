@@ -16,7 +16,7 @@ VermilionCity_PokemonFanClub_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 VermilionCity_PokemonFanClub_MapScript_KrabbyMasterMovementType::
-	setobjectmovementtype LOCALID_KRABBY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KRABBY_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 VermilionCity_PokemonFanClub_EventScript_Chairman::

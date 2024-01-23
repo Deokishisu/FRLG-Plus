@@ -24,19 +24,19 @@ Route10_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route10_MapScript_RattataMasterMovementType::
-	setobjectmovementtype LOCALID_RATTATA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_RATTATA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route10_MapScript_ElectabuzzMasterMovementType::
-	setobjectmovementtype LOCALID_ELECTABUZZ_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ELECTABUZZ_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route10_MapScript_CharmeleonMasterMovementType::
-	setobjectmovementtype LOCALID_CHARMELEON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CHARMELEON_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route10_MapScript_AlakazamMasterMovementType::
-	setobjectmovementtype LOCALID_ALAKAZAM_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ALAKAZAM_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route10_EventScript_NorthRockTunnelSign::

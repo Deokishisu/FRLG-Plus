@@ -12,5 +12,5 @@ Route21_North_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route21_North_MapScript_SlowbroMasterMovementType::
-	setobjectmovementtype LOCALID_SLOWBRO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SLOWBRO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return

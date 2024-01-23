@@ -153,14 +153,14 @@ SouthernIsland_Interior_EventScript_SetLatiosBattleVars::
 	setvar VAR_0x8004, SPECIES_LATIOS
 	setvar VAR_0x8005, 50 @ level
 	setvar VAR_0x8006, ITEM_SOUL_DEW
-	special CreateEventLegalEnemyMon
+	special CreateEnemyEventMon
 	return
 
 SouthernIsland_Interior_EventScript_SetLatiasBattleVars::
 	setvar VAR_0x8004, SPECIES_LATIAS
 	setvar VAR_0x8005, 50 @ level
 	setvar VAR_0x8006, ITEM_SOUL_DEW
-	special CreateEventLegalEnemyMon
+	special CreateEnemyEventMon
 	return
 
 SouthernIsland_Interior_Movement_CameraPanUp:
@@ -180,7 +180,7 @@ SouthernIsland_Interior_Movement_CameraPanDown:
 	walk_down
 	walk_down
 	walk_down
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	step_end
 
 SouthernIsland_Interior_Movement_LatiApproach:

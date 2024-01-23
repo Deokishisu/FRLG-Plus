@@ -20,7 +20,7 @@ SeafoamIslands_B3F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SeafoamIslands_B3F_MapScript_DragonairMasterMovementType::
-	setobjectmovementtype LOCALID_DRAGONAIR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DRAGONAIR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SeafoamIslands_B3F_EventScript_CheckStoppedCurrent::

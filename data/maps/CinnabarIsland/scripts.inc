@@ -24,7 +24,7 @@ CinnabarIsland_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CinnabarIsland_MapScript_ExeggutorMasterMovementType::
-	setobjectmovementtype LOCALID_EXEGGUTOR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_EXEGGUTOR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CinnabarIsland_EventScript_ReadyObjectsSailToOneIslandFromPokeCenter::

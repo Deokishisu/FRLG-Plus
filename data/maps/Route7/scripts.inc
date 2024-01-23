@@ -12,7 +12,7 @@ Route7_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route7_MapScript_GrowlitheMasterMovementType::
-	setobjectmovementtype LOCALID_GROWLITHE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GROWLITHE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route7_EventScript_UndergroundPathSign::

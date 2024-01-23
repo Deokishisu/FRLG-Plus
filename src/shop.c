@@ -911,13 +911,13 @@ static void Task_BuyMenu(u8 taskId)
                 CopyItemName(itemId, gStringVar1);
                 if(itemId >= ITEM_TM01 && itemId <= ITEM_HM08) //if TM, skip to confirm without choosing quantity
                 {
-                    gShopData.itemPrice = itemid_get_market_price(itemId);
+                    sShopData.itemPrice = ItemId_GetPrice(itemId);
                     tItemCount = 1;
                     PlaySE(SE_SELECT);
                     PutWindowTilemap(4);
                     CopyItemName(tItemId, gStringVar1);
                     ConvertIntToDecimalStringN(gStringVar2, 1, STR_CONV_MODE_LEFT_ALIGN, 2);
-                    ConvertIntToDecimalStringN(gStringVar3, gShopData.itemPrice, STR_CONV_MODE_LEFT_ALIGN, 8);
+                    ConvertIntToDecimalStringN(gStringVar3, sShopData.itemPrice, STR_CONV_MODE_LEFT_ALIGN, 8);
                     BuyMenuDisplayMessage(taskId, gText_Var1AndYouWantedVar2, CreateBuyMenuConfirmPurchaseWindow);
                 }
                 else

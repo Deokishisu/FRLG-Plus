@@ -18,7 +18,7 @@ Route16_NorthEntrance_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route16_NorthEntrance_1F_MapScript_ElectrodeMasterMovementType::
-	setobjectmovementtype LOCALID_ELECTRODE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ELECTRODE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route16_NorthEntrance_1F_EventScript_DisableNeedBikeTrigger::

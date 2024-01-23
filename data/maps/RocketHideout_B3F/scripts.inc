@@ -12,7 +12,7 @@ RocketHideout_B3F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 RocketHideout_B3F_MapScript_WeezingMasterMovementType::
-	setobjectmovementtype LOCALID_WEEZING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_WEEZING_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 RocketHideout_B3F_EventScript_Grunt1::

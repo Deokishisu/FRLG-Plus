@@ -17,7 +17,7 @@ MtMoon_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 MtMoon_1F_MapScript_ParasMasterMovementType::
-	setobjectmovementtype LOCALID_PARAS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PARAS_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 MtMoon_1F_EventScript_ZubatSign::

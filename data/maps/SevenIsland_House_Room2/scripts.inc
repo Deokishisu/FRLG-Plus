@@ -139,7 +139,7 @@ SevenIsland_House_Room2_Text_HealPokemon::
 
 SevenIsland_House_Room2_EventScript_HealPokemon::
 	release
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestLeft
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
 	delay 24
 	dofieldeffect FLDEFF_POKECENTER_HEAL
@@ -258,7 +258,7 @@ SevenIsland_House_Room2_Movement_BrockToMat:
 	walk_right
 	walk_right
 	walk_up
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_BrockBattle:
@@ -406,7 +406,7 @@ SevenIsland_House_Room2_Movement_MistyAroundPlayer:
 	walk_down
 	walk_down
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_MistyDownToMat:
@@ -415,7 +415,7 @@ SevenIsland_House_Room2_Movement_MistyDownToMat:
 	walk_down
 	walk_right
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_MistyBattle:
@@ -550,13 +550,13 @@ SevenIsland_House_Room2_Eventscript_MoveLtSurgeDown:
 SevenIsland_House_Room2_Movement_LtSurgeAroundPlayer:
 	walk_left
 	walk_down
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_LtSurgeToMat:
 	walk_down
 	walk_left
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_LtSurgeBattle:
@@ -697,7 +697,7 @@ SevenIsland_House_Room2_Movement_ErikaAroundPlayer:
 	walk_right
 	walk_right
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_ErikaDownToMat:
@@ -710,7 +710,7 @@ SevenIsland_House_Room2_Movement_ErikaDownToMat:
 	walk_right
 	walk_right
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_ErikaBattle:
@@ -850,14 +850,14 @@ SevenIsland_House_Room2_Movement_KogaAroundPlayer:
 	walk_up
 	walk_up
 	walk_left
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_KogaToMat:
 	walk_up
 	walk_up
 	walk_up
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_KogaBattle:
@@ -1005,7 +1005,7 @@ SevenIsland_House_Room2_Movement_SabrinaAroundPlayer:
 	walk_right
 	walk_right
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_SabrinaUpToMat:
@@ -1015,7 +1015,7 @@ SevenIsland_House_Room2_Movement_SabrinaUpToMat:
 	walk_right
 	walk_right
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_SabrinaBattle:
@@ -1161,7 +1161,7 @@ SevenIsland_House_Room2_Movement_BlaineAroundPlayer:
 	walk_up
 	walk_left
 	walk_left
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_BlaineUpToMat:
@@ -1169,7 +1169,7 @@ SevenIsland_House_Room2_Movement_BlaineUpToMat:
 	walk_left
 	walk_left
 	walk_left
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Eventscript_BlaineBattle:
@@ -1248,9 +1248,9 @@ SevenIsland_House_Room2_Movement_LeaderExits:
 	step_end
 
 SevenIsland_House_Room2_Movement_StepFastestLeft:
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 SevenIsland_House_Room2_Movement_StepFastestRight:
-	walk_in_place_fastest_Right
+	walk_in_place_faster_right
 	step_end

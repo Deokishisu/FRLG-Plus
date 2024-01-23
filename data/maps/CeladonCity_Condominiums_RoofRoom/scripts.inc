@@ -13,7 +13,7 @@ CeladonCity_Condominiums_RoofRoom_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeladonCity_Condominiums_RoofRoom_MapScript_CharmanderMasterMovementType::
-	setobjectmovementtype LOCALID_CHARMANDER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CHARMANDER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_Condominiums_RoofRoom_EventScript_BlackBelt::

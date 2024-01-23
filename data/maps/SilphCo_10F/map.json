@@ -106,6 +106,7 @@
       "flag": "FLAG_HIDE_SILPH_CO_10F_RARE_CANDY"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
       "in_connection": false,
       "x": 3,
@@ -120,6 +121,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 11,

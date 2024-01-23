@@ -344,9 +344,9 @@ OneIsland_PokemonCenter_1F_EventScript_ExplainRainbowPassScott::
 	closemessage
 	turnobject LOCALID_SCOTT, DIR_NORTH
 	playse SE_PIN
-	applymovement LOCALID_SCOTT, Movement_ExclamationMark
+	applymovement LOCALID_SCOTT, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_SCOTT, Movement_Delay48
+	applymovement LOCALID_SCOTT, Common_Movement_Delay48
 	waitmovement 0
 	msgbox OneIsland_PokemonCenter_1F_Text_YoureTheChamp
 	closemessage

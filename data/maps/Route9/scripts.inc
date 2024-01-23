@@ -12,7 +12,7 @@ Route9_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route9_MapScript_NinetalesMasterMovementType::
-	setobjectmovementtype LOCALID_NINETALES_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NINETALES_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route9_EventScript_RouteSign::

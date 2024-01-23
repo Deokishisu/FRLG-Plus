@@ -13,7 +13,7 @@ Route15_WestEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route15_WestEntrance_2F_MapScript_ScytherMasterMovementType::
-	setobjectmovementtype LOCALID_SCYTHER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SCYTHER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route15_WestEntrance_2F_EventScript_LeftBinoculars::

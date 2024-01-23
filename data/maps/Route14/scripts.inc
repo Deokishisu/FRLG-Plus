@@ -16,11 +16,11 @@ Route14_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route14_MapScript_VileplumeMasterMovementType::
-	setobjectmovementtype LOCALID_VILEPLUME_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VILEPLUME_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route14_MapScript_IvysaurMasterMovementType::
-	setobjectmovementtype LOCALID_IVYSAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_IVYSAUR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route14_EventScript_RouteSign::

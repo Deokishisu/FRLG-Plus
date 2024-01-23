@@ -12,5 +12,10 @@ void InitTilesetAnim_VermilionGym(void);
 void InitTilesetAnim_CeladonGym(void);
 void InitTilesetAnim_SilphCo(void);
 void InitTilesetAnim_MtEmber(void);
+void InitTilesetAnim_Underwater(void);
+void InitTilesetAnim_BattleFrontierOutsideWest(void);
+void InitTilesetAnim_BattleFrontierOutsideEast(void);
+void InitTilesetAnim_SeviiIslands67(void);
+void InitTilesetAnim_SeviiIslands5(void);
 
 #endif // GUARD_TILESET_ANIMS_H

@@ -12,7 +12,7 @@ CeruleanCity_BikeShop_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeruleanCity_BikeShop_MapScript_DoduoMasterMovementType::
-	setobjectmovementtype LOCALID_DODUO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DODUO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeruleanCity_BikeShop_EventScript_Clerk::

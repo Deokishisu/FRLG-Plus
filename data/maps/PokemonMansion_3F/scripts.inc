@@ -13,7 +13,7 @@ PokemonMansion_3F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PokemonMansion_3F_MapScript_DittoMasterMovementType::
-	setobjectmovementtype LOCALID_DITTO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DITTO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PokemonMansion_3F_OnLoad::

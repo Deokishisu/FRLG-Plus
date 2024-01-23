@@ -12,7 +12,7 @@ SaffronCity_MrPsychicsHouse_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SaffronCity_MrPsychicsHouse_MapScript_KadabraMasterMovementType::
-	setobjectmovementtype LOCALID_KADABRA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KADABRA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SaffronCity_MrPsychicsHouse_EventScript_MrPsychic::

@@ -12,7 +12,7 @@ PewterCity_House2_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PewterCity_House2_MapScript_KabutopsMasterMovementType::
-	setobjectmovementtype LOCALID_KABUTOPS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KABUTOPS_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PewterCity_House2_EventScript_OldMan::

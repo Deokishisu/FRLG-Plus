@@ -27,15 +27,15 @@ Route18_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route18_MapScript_CaterpieMasterMovementType::
-	setobjectmovementtype LOCALID_CATERPIE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CATERPIE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 Route18_MapScript_FearowMasterMovementType::
-	setobjectmovementtype LOCALID_FEAROW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_FEAROW_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route18_MapScript_RhyhornMasterMovementType::
-	setobjectmovementtype LOCALID_RHYHORN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_RHYHORN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route18_OnTransitionCyclingRoad::

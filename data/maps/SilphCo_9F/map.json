@@ -76,6 +76,7 @@
       "flag": "FLAG_HIDE_SILPH_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 10,
@@ -90,6 +91,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 10,
@@ -104,6 +106,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "in_connection": false,
       "x": 6,
@@ -118,6 +121,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_PIDGEY",
       "in_connection": false,
       "x": 9,
@@ -132,6 +136,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 19,
@@ -146,6 +151,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "in_connection": false,
       "x": 20,
@@ -160,6 +166,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
       "in_connection": false,
       "x": 26,
@@ -174,6 +181,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
       "in_connection": false,
       "x": 26,
@@ -188,6 +196,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GBA_KID",
       "in_connection": false,
       "x": 23,
@@ -202,6 +211,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LITTLE_GIRL",
       "in_connection": false,
       "x": 20,
@@ -216,6 +226,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SEEL",
       "in_connection": false,
       "x": 19,
@@ -230,6 +241,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 1,
@@ -244,6 +256,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
       "in_connection": false,
       "x": 3,

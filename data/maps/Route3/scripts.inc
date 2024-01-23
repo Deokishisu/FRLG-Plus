@@ -12,7 +12,7 @@ Route3_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route3_MapScript_NidoranFMasterMovementType::
-	setobjectmovementtype LOCALID_NIDORAN_F_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NIDORAN_F_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route3_EventScript_Youngster::

@@ -36,11 +36,11 @@ PowerPlant_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PowerPlant_MapScript_VoltorbMasterMovementType::
-	setobjectmovementtype LOCALID_VOLTORB_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VOLTORB_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PowerPlant_MapScript_ZapdosMasterMovementType::
-	setobjectmovementtype LOCALID_ZAPDOS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ZAPDOS_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PowerPlant_EventScript_TryShowZapdos::

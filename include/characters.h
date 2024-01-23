@@ -79,6 +79,7 @@
 #define CHAR_DOWN_ARROW        0x7A
 #define CHAR_LEFT_ARROW        0x7B
 #define CHAR_RIGHT_ARROW       0x7C
+#define CHAR_FONT_A_BUTTON     0x7D
 //
 #define CHAR_SUPER_E           0x84
 #define CHAR_LESS_THAN         0x85

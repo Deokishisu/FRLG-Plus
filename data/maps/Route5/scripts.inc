@@ -12,7 +12,7 @@ Route5_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route5_MapScript_MankeyMasterMovementType::
-	setobjectmovementtype LOCALID_MANKEY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MANKEY_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route5_EventScript_UndergroundPathSign::

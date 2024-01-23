@@ -15,7 +15,7 @@ static const u16 sUserFrame_Type8_Gfx[] = INCBIN_U16("graphics/text_window/type8
 static const u16 sUserFrame_Empty2[16] = {0};
 static const u16 sUserFrame_Type9_Gfx[] = INCBIN_U16("graphics/text_window/type9.4bpp");
 static const u16 sUserFrame_Type10_Gfx[] = INCBIN_U16("graphics/text_window/type10.4bpp");
-tatic const u16 sUserFrame_Type11_Gfx[]  = INCBIN_U16("graphics/text_window/frame11.4bpp"); //RBY
+static const u16 sUserFrame_Type11_Gfx[]  = INCBIN_U16("graphics/text_window/frame11.4bpp"); //RBY
 static const u16 sUserFrame_Empty3[16] = {0};
 
 static const u16 sUserFrame_Type1_Pal[] = INCBIN_U16("graphics/text_window/type1.gbapal");

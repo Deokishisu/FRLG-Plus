@@ -16,5 +16,5 @@ DiglettsCave_SouthEntrance_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 DiglettsCave_SouthEntrance_MapScript_DiglettMasterMovementType::
-	setobjectmovementtype LOCALID_DIGLETT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DIGLETT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return

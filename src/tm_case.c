@@ -722,7 +722,7 @@ static void List_ItemPrintFunc(u8 windowId, u32 itemIndex, u8 y)
 {
     if (itemIndex != LIST_CANCEL)
     {
-        if (BagGetItemIdByPocketPosition(POCKET_TM_CASE, itemId) >= ITEM_HM01)
+        if (BagGetItemIdByPocketPosition(POCKET_TM_CASE, itemIndex) >= ITEM_HM01)
         {
             PlaceHMTileInWindow(windowId, 8, y);
         }
@@ -1155,7 +1155,7 @@ static void Task_SelectedTMHM_Sell(u8 taskId)
 {
     s16 * data = gTasks[taskId].data;
 
-    if (ItemId_GetPrice(gSpecialVar_ItemId) == 0) || ItemId_GetPocket(gSpecialVar_ItemId) == POCKET_TM_CASE)
+    if ((ItemId_GetPrice(gSpecialVar_ItemId) == 0) || ItemId_GetPocket(gSpecialVar_ItemId) == POCKET_TM_CASE)
     {
         // Can't sell TM/HMs with no price (by default this is just the HMs)
         CopyItemName(gSpecialVar_ItemId, gStringVar1);
@@ -1330,11 +1330,11 @@ static void ClearTMHMSlots(void)
 void Pokedude_InitTMCase(void)
 {
     FlagSet(FLAG_DONT_ADD_TMS);
-    sPokedudePackBackup = AllocZeroed(sizeof(*sPokedudePackBackup));
-    memcpy(sPokedudePackBackup->bagPocket_TMHM, gTmHmItemSlots, sizeof(gTmHmItemSlots));
-    memcpy(sPokedudePackBackup->bagPocket_KeyItems, gKeyItemSlots, sizeof(gKeyItemSlots));
-    sPokedudePackBackup->unk_160 = sTMCaseStaticResources.selectedRow;
-    sPokedudePackBackup->unk_162 = sTMCaseStaticResources.scrollOffset;
+    sPokedudeBagBackup = AllocZeroed(sizeof(*sPokedudeBagBackup));
+    memcpy(sPokedudeBagBackup->bagPocket_TMHM, gTmHmItemSlots, sizeof(gTmHmItemSlots));
+    memcpy(sPokedudeBagBackup->bagPocket_KeyItems, gKeyItemSlots, sizeof(gKeyItemSlots));
+    sPokedudeBagBackup->selectedRow = sTMCaseStaticResources.selectedRow;
+    sPokedudeBagBackup->scrollOffset = sTMCaseStaticResources.scrollOffset;
     ClearTMHMSlots();
     ClearItemSlots(gKeyItemSlots, BAG_KEYITEMS_COUNT);
     ResetTMCaseCursorPos();

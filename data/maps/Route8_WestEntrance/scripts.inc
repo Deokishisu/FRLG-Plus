@@ -12,7 +12,7 @@ Route8_WestEntrance_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route8_WestEntrance_MapScript_CuboneMasterMovementType::
-	setobjectmovementtype LOCALID_CUBONE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CUBONE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route8_WestEntrance_EventScript_Guard::

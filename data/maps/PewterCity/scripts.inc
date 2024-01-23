@@ -31,11 +31,11 @@ PewterCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PewterCity_MapScript_SpearowMasterMovementType::
-	setobjectmovementtype LOCALID_SPEAROW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SPEAROW_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PewterCity_MapScript_GloomMasterMovementType::
-	setobjectmovementtype LOCALID_GLOOM_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GLOOM_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 @ Impossible to speak to this NPC from a facing dir != DIR_EAST normally, so they arent checked

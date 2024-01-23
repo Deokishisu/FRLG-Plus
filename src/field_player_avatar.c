@@ -513,17 +513,17 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         {
             if(heldKeys & B_BUTTON)
                 // speed 2 is fast, same speed as running
-                PlayerGoSpeed2(direction);
+                PlayerWalkFast(direction);
             else
-                PlayerGoSpeed4(direction);
+                PlayerWalkFaster(direction);
         }
         else
         {
             if(heldKeys & B_BUTTON)
-                PlayerGoSpeed4(direction);
+                PlayerWalkFaster(direction);
             else
                 // speed 2 is fast, same speed as running
-                PlayerGoSpeed2(direction);
+                PlayerWalkFast(direction);
         }
         return;
     }
@@ -544,7 +544,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
             if(heldKeys & B_BUTTON && FlagGet(FLAG_AUTO_RUN_TOGGLED))
             {
                 //autorun toggled but B pressed, walk
-                PlayerGoSlow(direction);
+                PlayerWalkSlow(direction);
             }
             else
             {
@@ -557,7 +557,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
             if(heldKeys & B_BUTTON && FlagGet(FLAG_AUTO_RUN_TOGGLED))
             {
                 //autorun toggled but B pressed, walk
-                PlayerGoSpeed1(direction);
+                PlayerWalkNormal(direction);
             }
             else
             {
@@ -1394,12 +1394,12 @@ void InitDivingPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender)
     playerObjEventTemplate.graphicsId = GetPlayerAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_GFX_UNDERWATER, gender);
     playerObjEventTemplate.x = x - 7;
     playerObjEventTemplate.y = y - 7;
-    playerObjEventTemplate.elevation = 0;
-    playerObjEventTemplate.movementType = MOVEMENT_TYPE_PLAYER;
-    playerObjEventTemplate.movementRangeX = 0;
-    playerObjEventTemplate.movementRangeY = 0;
-    playerObjEventTemplate.trainerType = 0;
-    playerObjEventTemplate.trainerRange_berryTreeId = 0;
+    playerObjEventTemplate.objUnion.normal.elevation = 0;
+    playerObjEventTemplate.objUnion.normal.movementType = MOVEMENT_TYPE_PLAYER;
+    playerObjEventTemplate.objUnion.normal.movementRangeX = 0;
+    playerObjEventTemplate.objUnion.normal.movementRangeY = 0;
+    playerObjEventTemplate.objUnion.normal.trainerType = 0;
+    playerObjEventTemplate.objUnion.normal.trainerRange_berryTreeId = 0;
     playerObjEventTemplate.script = NULL;
     playerObjEventTemplate.flagId = 0;
     objectEventId = SpawnSpecialObjectEvent(&playerObjEventTemplate);

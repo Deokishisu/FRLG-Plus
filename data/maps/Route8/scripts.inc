@@ -12,7 +12,7 @@ Route8_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route8_MapScript_BeedrillMasterMovementType::
-	setobjectmovementtype LOCALID_BEEDRILL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_BEEDRILL_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route8_EventScript_UndergroundPathSign::

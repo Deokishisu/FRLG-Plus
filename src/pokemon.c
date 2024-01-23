@@ -2646,22 +2646,22 @@ static const struct SpriteTemplate sTrainerBackSpriteTemplates[] =
         .affineAnims = gAffineAnims_BattleSpritePlayerSide,
         .callback = SpriteCB_AllyMon,
     },
-    {
+    [TRAINER_BACK_PIC_EMERALD_BRENDAN] = {
         .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
         .images = gTrainerBackPicTable_EmBrendan,
-        .affineAnims = gSpriteAffineAnimTable_BattlerPlayer,
+        .affineAnims = gAffineAnims_BattleSpritePlayerSide,
         .callback = SpriteCB_AllyMon,
     },
-    {
+    [TRAINER_BACK_PIC_EMERALD_MAY] = {
         .tileTag = TAG_NONE,
         .paletteTag = 0,
         .oam = &gOamData_BattlerPlayer,
         .anims = NULL, 
         .images = gTrainerBackPicTable_EmMay,
-        .affineAnims = gSpriteAffineAnimTable_BattlerPlayer,
+        .affineAnims = gAffineAnims_BattleSpritePlayerSide,
         .callback = SpriteCB_AllyMon,
     },
 };
@@ -3088,9 +3088,9 @@ void CreateMonWithGenderNatureAbility(struct Pokemon *mon, u16 species, u8 level
 {
     u32 personality;
 
-    if(gBaseStats[species].genderRatio == MON_GENDERLESS
-    || gBaseStats[species].genderRatio == MON_FEMALE
-    || gBaseStats[species].genderRatio == MON_MALE) //don't get stuck on forcing gender if set gender
+    if(gSpeciesInfo[species].genderRatio == MON_GENDERLESS
+    || gSpeciesInfo[species].genderRatio == MON_FEMALE
+    || gSpeciesInfo[species].genderRatio == MON_MALE) //don't get stuck on forcing gender if set gender
     {
         do
         {
@@ -5418,7 +5418,7 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, 
 {                                                                                                       \
     if ((retVal == 0 || friendshipOnly) && !ShouldSkipFriendshipChange() && friendshipChange == 0)      \
     {                                                                                                   \
-        friendshipChange = itemEffect[itemEffectParam];                                                 \
+        friendshipChange = itemEffect[idx];                                                 \
         friendship = GetMonData(mon, MON_DATA_FRIENDSHIP, NULL);                                        \
         if (friendshipChange > 0 && holdEffect == HOLD_EFFECT_FRIENDSHIP_UP)                            \
             friendship += 150 * friendshipChange / 100;                                                 \
@@ -7911,7 +7911,7 @@ void SetWildMonHeldItem(void)
                 SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);
 
                 // Only underwater Gyarados can hold the DeepSeaTooth
-                if(gSpeciesInfo[species].item2 == ITEM_DEEP_SEA_TOOTH)
+                if(gSpeciesInfo[species].itemRare == ITEM_DEEP_SEA_TOOTH)
                 {
                     if(gMapHeader.mapType != MAP_TYPE_UNDERWATER)
                     {

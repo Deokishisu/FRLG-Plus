@@ -865,7 +865,7 @@ static bool8 Shuffle_Init(struct Task *task)
 static bool8 Shuffle_End(struct Task *task)
 {
     u32 i;
-    u16 theta, amplitude;
+    u16 sinVal, amplitude;
 
     sTransitionData->vblankDma = FALSE;
     sinVal = task->tSinVal;

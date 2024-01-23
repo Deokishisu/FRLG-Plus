@@ -12,7 +12,7 @@ Route25_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route25_MapScript_StarmieMasterMovementType::
-	setobjectmovementtype LOCALID_STARMIE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_STARMIE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route25_EventScript_SeaCottageSign::

@@ -409,13 +409,13 @@ static const u32 sDigits_Tiles[]      = INCBIN_U32("graphics/slot_machine/digits
 static const struct CompressedSpriteSheet sSpriteSheets_FR[] = {
     {.data = sReelIcons_Tiles_FR, .size = 0xe00, .tag = GFXTAG_REEL_ICONS},
     {.data = sClefairy_Tiles_FR,  .size = 0xc00, .tag = GFXTAG_CLEFAIRY},
-    {.data = sDigits_Tiles_FR,    .size = 0x280, .tag = GFXTAG_DIGITS},
+    {.data = sDigits_Tiles,    .size = 0x280, .tag = GFXTAG_DIGITS},
 };
 
 static const struct CompressedSpriteSheet sSpriteSheets_LG[] = {
     {.data = sReelIcons_Tiles_LG, .size = 0xe00, .tag = GFXTAG_REEL_ICONS},
     {.data = sClefairy_Tiles_LG,  .size = 0xc00, .tag = GFXTAG_CLEFAIRY},
-    {.data = sDigits_Tiles_LG,    .size = 0x280, .tag = GFXTAG_DIGITS},
+    {.data = sDigits_Tiles,    .size = 0x280, .tag = GFXTAG_DIGITS},
 };
 
 static const struct SpritePalette sSpritePalettes_FR[] = {
@@ -1802,9 +1802,9 @@ static bool32 LoadSpriteGraphicsAndAllocateManager(void)
     }
     else
     {
-        for (i = 0; i < ARRAY_COUNT(sSpriteSheets); i++)
-            LoadCompressedSpriteSheet(&sSpriteSheets[i]);
-        LoadSpritePalettes(sSpritePalettes);
+        for (i = 0; i < ARRAY_COUNT(sSpriteSheets_LG); i++)
+            LoadCompressedSpriteSheet(&sSpriteSheets_LG[i]);
+        LoadSpritePalettes(sSpritePalettes_LG);
     }
     sSlotMachineGfxManager = Alloc(sizeof(*sSlotMachineGfxManager));
     if (sSlotMachineGfxManager == NULL)

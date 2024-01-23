@@ -20,15 +20,15 @@ Route15_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route15_MapScript_TangelaMasterMovementType::
-	setobjectmovementtype LOCALID_TANGELA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_TANGELA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 Route15_MapScript_VenomothMasterMovementType::
-	setobjectmovementtype LOCALID_VENOMOTH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VENOMOTH_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route15_MapScript_DodrioMasterMovementType::
-	setobjectmovementtype LOCALID_DODRIO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DODRIO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 

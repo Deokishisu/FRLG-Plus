@@ -17,11 +17,11 @@ Route24_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route24_MapScript_VenonatMasterMovementType::
-	setobjectmovementtype LOCALID_VENONAT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VENONAT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 Route24_MapScript_ExeggcuteMasterMovementType::
-	setobjectmovementtype LOCALID_EXEGGCUTE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_EXEGGCUTE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route24_EventScript_Rocket::

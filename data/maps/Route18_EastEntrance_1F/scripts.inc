@@ -18,7 +18,7 @@ Route18_EastEntrance_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route18_EastEntrance_1F_MapScript_KoffingMasterMovementType::
-	setobjectmovementtype LOCALID_KOFFING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KOFFING_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route18_EastEntrance_1F_EventScript_DisableNeedBikeTrigger::

@@ -188,6 +188,8 @@
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      3
 #define TRAINER_BACK_PIC_POKEDUDE               4
 #define TRAINER_BACK_PIC_OLD_MAN                5
+#define TRAINER_BACK_PIC_EMERALD_BRENDAN        6
+#define TRAINER_BACK_PIC_EMERALD_MAY            7
 
 // Special Trainer Ids.
 #define TRAINER_UNION_ROOM          0xC00

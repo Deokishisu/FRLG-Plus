@@ -35,7 +35,7 @@ SeafoamIslands_B4F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SeafoamIslands_B4F_MapScript_ArticunoMasterMovementType::
-	setobjectmovementtype LOCALID_ARTICUNO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ARTICUNO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SeafoamIslands_B4F_EventScript_CheckStoppedCurrent::

@@ -17,11 +17,11 @@ SaffronCity_Dojo_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SaffronCity_Dojo_MapScript_HitmonleeMasterMovementType::
-	setobjectmovementtype LOCALID_HITMONLEE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_HITMONLEE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SaffronCity_Dojo_MapScript_HitmonchanMasterMovementType::
-	setobjectmovementtype LOCALID_HITMONCHAN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_HITMONCHAN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft::

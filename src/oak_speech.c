@@ -2167,7 +2167,7 @@ static void PrintNameChoiceOptions(u8 taskId, u8 hasPlayerBeenNamed)
         else
             textPtrs = sRivalNameChoices_LG;
     }
-    for (i = 0; i < ARRAY_COUNT(sRivalNameChoices); i++)
+    for (i = 0; i < ARRAY_COUNT(sRivalNameChoices_FR); i++)
         AddTextPrinterParameterized(tMenuWindowId, FONT_NORMAL, textPtrs[i], 8, 16 * (i + 1) + 1, 0, NULL);
     Menu_InitCursor(tMenuWindowId, FONT_NORMAL, 0, 1, 16, 5, 0);
     CopyWindowToVram(tMenuWindowId, COPYWIN_FULL);
@@ -2183,16 +2183,16 @@ static void GetDefaultName(u8 hasPlayerBeenNamed, u8 rivalNameChoice)
         if (gSaveBlock2Ptr->playerGender == MALE)
         {
             if(gSaveBlock1Ptr->keyFlags.version == 0)
-                src = sMaleNameChoices_FR[Random() % ARRAY_COUNT(sMaleNameChoices)];
+                src = sMaleNameChoices_FR[Random() % ARRAY_COUNT(sMaleNameChoices_FR)];
             else
-                src = sMaleNameChoices_LG[Random() % ARRAY_COUNT(sMaleNameChoices)];
+                src = sMaleNameChoices_LG[Random() % ARRAY_COUNT(sMaleNameChoices_LG)];
         }
         else
         {
             if(gSaveBlock1Ptr->keyFlags.version == 0)
-                src = sFemaleNameChoices_FR[Random() % ARRAY_COUNT(sMaleNameChoices)];
+                src = sFemaleNameChoices_FR[Random() % ARRAY_COUNT(sFemaleNameChoices_FR)];
             else
-                src = sFemaleNameChoices_LG[Random() % ARRAY_COUNT(sMaleNameChoices)];
+                src = sFemaleNameChoices_LG[Random() % ARRAY_COUNT(sFemaleNameChoices_LG)];
         }
         dest = gSaveBlock2Ptr->playerName;
     }

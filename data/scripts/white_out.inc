@@ -246,7 +246,7 @@ Text_NuzlockeGameOver::
 EventScript_NuzlockeHaveMons_Mom::
 	lockall
 	textcolor 1
-	applymovement 1, Movement_WalkInPlaceFastestDown
+	applymovement 1, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox Text_SwappedForYou_NuzlockeOnly_Mom
 	fadedefaultbgm
@@ -256,7 +256,7 @@ EventScript_NuzlockeHaveMons_Mom::
 EventScript_NoPMCHaveMons_Mom::
 	lockall
 	textcolor 1
-	applymovement 1, Movement_WalkInPlaceFastestDown
+	applymovement 1, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox Text_SwappedForYou_NoPMCOnly_Mom
 	fadedefaultbgm

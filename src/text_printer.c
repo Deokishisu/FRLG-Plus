@@ -119,15 +119,13 @@ void RunTextPrinters(void)
     do
     {
         int numEmpty = 0;
-        if (!gDisableTextPrinters)
+        for (i = 0; i < NUM_TEXT_PRINTERS; ++i)
         {
-            for (i = 0; i < NUM_TEXT_PRINTERS; ++i)
+            if (sTextPrinters[i].active)
             {
-                if (sTextPrinters[i].active)
+                u16 renderCmd = RenderFont(&sTextPrinters[i]);
+                switch (renderCmd)
                 {
-                    u16 renderCmd = RenderFont(&sTextPrinters[i]);
-                    switch (renderCmd)
-                    {
                     case RENDER_PRINT:
                         CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
                         if (sTextPrinters[i].callback != 0)
@@ -140,16 +138,15 @@ void RunTextPrinters(void)
                     case RENDER_FINISH:
                         sTextPrinters[i].active = FALSE;
                         return;
-                    }
-                }
-                else
-                {
-                    numEmpty++;
                 }
             }
-            if(numEmpty == 0x20)
-                return;
+            else
+            {
+                numEmpty++;
+            }
         }
+        if(numEmpty == 0x20)
+            return;
     }while(gSaveBlock2Ptr->optionsTextSpeed == OPTIONS_TEXT_SPEED_INSTANT);
 }
 

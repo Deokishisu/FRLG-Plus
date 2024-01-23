@@ -33,7 +33,7 @@ VictoryRoad_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 VictoryRoad_1F_MapScript_GravelerMasterMovementType::
-	setobjectmovementtype LOCALID_GRAVELER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GRAVELER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 VictoryRoad_1F_EventScript_FloorSwitch::

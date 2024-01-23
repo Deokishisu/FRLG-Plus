@@ -14,7 +14,7 @@ CeladonCity_GameCorner_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeladonCity_GameCorner_MapScript_PorygonMasterMovementType::
-	setobjectmovementtype LOCALID_PORYGON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PORYGON_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_GameCorner_OnLoad::

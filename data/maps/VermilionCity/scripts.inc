@@ -63,11 +63,11 @@ VermilionCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 VermilionCity_MapScript_MachampMasterMovementType::
-	setobjectmovementtype LOCALID_MACHAMP_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MACHAMP_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 VermilionCity_MapScript_FarfetchdMasterMovementType::
-	setobjectmovementtype LOCALID_FARFETCHD_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_FARFETCHD_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 VermilionCity_EventScript_HideOaksAide::

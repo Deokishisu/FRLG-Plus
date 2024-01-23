@@ -22,7 +22,7 @@ RocketHideout_B1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 RocketHideout_B1F_MapScript_ArbokMasterMovementType::
-	setobjectmovementtype LOCALID_ARBOK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ARBOK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 RocketHideout_B1F_EventScript_Grunt1::

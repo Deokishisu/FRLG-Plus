@@ -143,9 +143,6 @@ extern u8 gStringVar4[];
 // It looks like file.c:line: size of array `id' is negative
 #define STATIC_ASSERT(expr, id) typedef char id[(expr) ? 1 : -1];
 
-#define TOTAL_BOXES_COUNT       14
-#define IN_BOX_COUNT            30
-
 struct Coords8
 {
     s8 x;

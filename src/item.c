@@ -878,7 +878,7 @@ bool8 CheckAssetsForSoftlock(void)
             continue;
         for(i = 0; i < gBagPockets[pocket].capacity && gBagPockets[pocket].itemSlots[i].itemId != ITEM_NONE; i++)
         {
-            itemWorth = ((itemid_get_market_price(gBagPockets[pocket].itemSlots[i].itemId) / 2) * GetBagItemQuantity(&gBagPockets[pocket].itemSlots[i].quantity));
+            itemWorth = ((ItemId_GetPrice(gBagPockets[pocket].itemSlots[i].itemId) / 2) * GetBagItemQuantity(&gBagPockets[pocket].itemSlots[i].quantity));
             if(money > 0)
             {
                 if(itemWorth > (maxU32 - money)) //checking for overflow

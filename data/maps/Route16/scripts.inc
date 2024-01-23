@@ -43,15 +43,15 @@ Route16_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route16_MapScript_PidgeottoMasterMovementType::
-	setobjectmovementtype LOCALID_PIDGEOTTO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PIDGEOTTO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 Route16_MapScript_SnorlaxMasterMovementType::
-	setobjectmovementtype LOCALID_SNORLAX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SNORLAX_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route16_MapScript_EeveeMasterMovementType::
-	setobjectmovementtype LOCALID_EEVEE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_EEVEE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route16_EventScript_HideSnorlax::

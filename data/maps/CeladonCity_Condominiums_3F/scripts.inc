@@ -53,7 +53,7 @@ CeladonCity_Condominiums_3F_EventScript_GiveMysticTicket::
 	msgbox CeladonCity_Condominiums_3F_Text_GiveMysticTicket
 	textcolor 3
 	giveitem ITEM_MYSTIC_TICKET, 1
-	setflag FLAG_GOT_MYSTIC_TICKET
+	setflag FLAG_RECEIVED_MYSTIC_TICKET
 	setflag FLAG_ENABLE_SHIP_NAVEL_ROCK
 	textcolor 0
 	msgbox CeladonCity_Condominiums_3F_Text_ExplainMysticTicket

@@ -23,11 +23,11 @@ CeladonCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeladonCity_MapScript_GrimerMasterMovementType::
-	setobjectmovementtype LOCALID_GRIMER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GRIMER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_MapScript_VictreebelMasterMovementType::
-	setobjectmovementtype LOCALID_VICTREEBEL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VICTREEBEL_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_EventScript_LittleGirl::

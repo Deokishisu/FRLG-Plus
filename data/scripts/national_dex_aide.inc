@@ -54,10 +54,10 @@ NationalDexAideEvent::
 	goto_if_unset FLAG_SYS_RECEIVED_EXTENDED_DEX, NationalDexAideEvent_5
 	callnative HideWarpArrowSprite
 	lockall
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	playse SE_PIN
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_ExclamationMark
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
 	waitmovement 0
 	delay 60
 	applymovement OBJ_EVENT_ID_PLAYER, NationalDexAideEvent_Movement_BackStep
@@ -67,25 +67,25 @@ NationalDexAideEvent::
 	addvar VAR_0x8009, 1
 	setobjectxyperm 2, VAR_0x8008, VAR_0x8009
 	addobject 2
-	applymovement 2, Movement_WalkInPlaceFastestUp
+	applymovement 2, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	textcolor 0
 	msgbox NationalDexAideEvent_Text_0
 	closemessage
 	textcolor 3
-	applymovement OBJ_EVENT_ID_PLAYER, Movement_WalkInPlaceFastestDown
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	msgbox NationalDexAideEvent_Text_1
 	closemessage
-	applymovement 2, Movement_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	textcolor 0
 	msgbox NationalDexAideEvent_Text_2
-	applymovement 2, Movement_WalkInPlaceFastestUp
+	applymovement 2, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	msgbox NationalDexAideEvent_Text_3
 	closemessage
-	applymovement 2, Movement_WalkInPlaceFastestUp
+	applymovement 2, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	textcolor 3
@@ -99,7 +99,7 @@ NationalDexAideEvent::
 	closemessage
 	delay 20
 	playse SE_EXIT
-	applymovement 2, Movement_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	delay 5
 	removeobject 2

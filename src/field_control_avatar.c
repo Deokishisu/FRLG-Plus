@@ -591,7 +591,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         return EventScript_NeatlyLinedUpTools;
     if (MetatileBehavior_IsSafariExtensionSign(metatileBehavior, direction) == TRUE)
     {
-        MsgSetSignPost();
+        MsgSetSignpost();
         return EventScript_SafariZone_ExtensionSign;
     }
     if (MetatileBehavior_IsPlayerFacingCableClubWirelessMonitor(metatileBehavior, direction) == TRUE)

@@ -548,8 +548,7 @@ static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
         ClearDaycareMonMail(&daycareMon->mail);
     }
 
-    GetMonData(&pokemon, MON_DATA_NICKNAME, gStringVar2);
-    StringGetEnd10(gStringVar2);
+    DayCare_GetBoxMonNickname(&daycareMon->mon, gStringVar2);
 
     ZeroBoxMonData(&daycareMon->mon);
     daycareMon->steps = 0;
@@ -1193,7 +1192,7 @@ void GiveRivalStarterEgg(void)
     language = LANGUAGE_JAPANESE;
     SetMonData(&egg, MON_DATA_POKEBALL, &ball);
     SetMonData(&egg, MON_DATA_NICKNAME, sJapaneseEggNickname);
-    SetMonData(&egg, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
+    SetMonData(&egg, MON_DATA_FRIENDSHIP, &gSpeciesInfo[species].eggCycles);
     SetMonData(&egg, MON_DATA_MET_LEVEL, &metLevel);
     SetMonData(&egg, MON_DATA_LANGUAGE, &language);
 
@@ -1228,7 +1227,7 @@ void GiveSelphyCorsolaEgg(void)
     language = LANGUAGE_JAPANESE;
     SetMonData(&egg, MON_DATA_POKEBALL, &ball);
     SetMonData(&egg, MON_DATA_NICKNAME, sJapaneseEggNickname);
-    SetMonData(&egg, MON_DATA_FRIENDSHIP, &gBaseStats[species].eggCycles);
+    SetMonData(&egg, MON_DATA_FRIENDSHIP, &gSpeciesInfo[species].eggCycles);
     SetMonData(&egg, MON_DATA_MET_LEVEL, &metLevel);
     SetMonData(&egg, MON_DATA_LANGUAGE, &language);
 
@@ -1858,7 +1857,7 @@ static void AddHatchedMonToParty(u8 id)
                         mapsecid = MAPSEC_RESORT_GORGEOUS;
                     }
                 }
-                StringCopy7(gStringVar1, gTrainers[TRAINER_BIRD_KEEPER_SEBASTIAN].trainerName);
+                StringCopy_PlayerName(gStringVar1, gTrainers[TRAINER_BIRD_KEEPER_SEBASTIAN].trainerName);
                 if(StringCompare(gStringVar1, otName) == 0)
                 {   // Egg's OT Name is SEBASTI
                     StringCopy(gStringVar2, gSaveBlock2Ptr->playerName);

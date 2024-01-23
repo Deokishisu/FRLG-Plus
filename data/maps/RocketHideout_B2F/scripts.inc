@@ -12,7 +12,7 @@ RocketHideout_B2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 RocketHideout_B2F_MapScript_RhydonMasterMovementType::
-	setobjectmovementtype LOCALID_RHYDON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_RHYDON_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 RocketHideout_B2F_EventScript_Grunt::

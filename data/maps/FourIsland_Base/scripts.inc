@@ -21,12 +21,12 @@ FourIsland_Base_OnFrame::
 FourIsland_Base_EventScript_RivalScene::
 	lockall
 	textcolor 0
-	applymovement LOCALID_RIVAL, Movement_WalkInPlaceFastestDown
+	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	playbgm MUS_ENCOUNTER_RIVAL, 0
-	applymovement LOCALID_RIVAL, Movement_ExclamationMark
+	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_RIVAL, Movement_Delay48
+	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
 	delay 25
 	applymovement LOCALID_RIVAL, FourIsland_Base_Movement_RivalApproach
@@ -59,7 +59,7 @@ FourIsland_Base_Movement_RivalExit::
 
 FourIsland_Base_Movement_PlayerWatchRivalExit::
 	walk_left
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
 FourIsland_Base_EventScript_CableCarStationSign::

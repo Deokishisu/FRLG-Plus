@@ -62,6 +62,7 @@ static void DeactivateSlashSprite(u8 spriteId);
 static bool32 IsSlashSpriteDeactivated(u8 spriteId);
 static void SpriteCallback_Slash(struct Sprite *sprite);
 static void sub_LG_8079844(void);
+static void CreateStreakSprites(void);
 
 static const u8 sBorderBgTiles[] = INCBIN_U8("graphics/title_screen/border_bg.4bpp.lz");
 
@@ -991,7 +992,7 @@ static void LoadSpriteGfxAndPals(void)
 #define sPosY      data[2]
 #define sSpeedY    data[3]
 
-static void SpriteCallback_TitleScreenFlameorLeaf(struct Sprite *sprite)
+static void SpriteCallback_TitleScreenFlameOrLeaf(struct Sprite *sprite)
 {
     s16 *data = sprite->data;
     sPosX -= sSpeedX;
@@ -1045,7 +1046,7 @@ static bool32 CreateFlameOrLeafSprite(s32 x, s32 y, s32 xspeed, s32 yspeed, bool
     if(gSaveBlock1Ptr->keyFlags.version == 0)
     {
         if (createFlame)
-            spriteId = CreateSprite(&sSpriteTemplate_FlameOrLeaf, x, y, 0);
+            spriteId = CreateSprite(&sSpriteTemplate_FlameOrLeaf_FR, x, y, 0);
         else
             spriteId = CreateSprite(&sSpriteTemplate_BlankFlame, x, y, 0);
 
@@ -1065,15 +1066,15 @@ static bool32 CreateFlameOrLeafSprite(s32 x, s32 y, s32 xspeed, s32 yspeed, bool
     }
     else
     {   //(s32 y0, s32 x1, s32 y1) original params, y0 = x, x1 = y, y1 = xspeed
-        u8 spriteId = CreateSprite(&sSpriteTemplate_FlameOrLeaf, DISPLAY_WIDTH, y, 0);
-    if (spriteId != MAX_SPRITES)
-    {
-        gSprites[spriteId].sPosX = DISPLAY_WIDTH * 16;
-        gSprites[spriteId].sSpeedX = xspeed;
-        gSprites[spriteId].sPosY = y * 16;
-        gSprites[spriteId].sSpeedY = yspeed;
-        gSprites[spriteId].callback = SpriteCallback_TitleScreenFlameOrLeaf;
-    }
+        u8 spriteId = CreateSprite(&sSpriteTemplate_FlameOrLeaf_LG, DISPLAY_WIDTH, x, 0);
+        if (spriteId != MAX_SPRITES)
+        {
+            gSprites[spriteId].sPosX = DISPLAY_WIDTH * 16;
+            gSprites[spriteId].sSpeedX = y;
+            gSprites[spriteId].sPosY = x * 16;
+            gSprites[spriteId].sSpeedY = xspeed;
+            gSprites[spriteId].callback = SpriteCallback_TitleScreenFlameOrLeaf;
+        }
     }
 }
 
@@ -1169,7 +1170,7 @@ static void Task_FlameOrLeafSpawner(u8 taskId)
                 }
                 yspeed = (TitleScreen_rand(taskId, tOff_Seed) % 4) - 2;
                 y = (TitleScreen_rand(taskId, tOff_Seed) % 88) + 32;
-                CreateFlameOrLeafSprite(y, xspeed, yspeed);
+                CreateFlameOrLeafSprite(y, xspeed, yspeed, 0, FALSE);
             }
             break;
         }
@@ -1200,10 +1201,7 @@ static void CreateStreakSprites(void)
     u8 spriteId;
     for (i = 0; i < 4; i++)
     {
-        if(gSaveBlock1Ptr->keyFlags.version == 0)
-            spriteId = CreateSprite(&sSpriteTemplate_Streak_FR, DISPLAY_WIDTH + 16 + 40 * i, sStreakYPositions[i], 0xFF);
-        else
-            spriteId = CreateSprite(&sSpriteTemplate_Streak_LG, DISPLAY_WIDTH + 16 + 40 * i, sStreakYPositions[i], 0xFF);
+        spriteId = CreateSprite(&sSpriteTemplate_Streak, DISPLAY_WIDTH + 16 + 40 * i, sStreakYPositions[i], 0xFF);
         if (spriteId != MAX_SPRITES)
         {
             gSprites[spriteId].data[7] = i;

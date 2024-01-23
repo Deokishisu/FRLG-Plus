@@ -65,7 +65,7 @@ FourIsland_CableCarStation_Movement_LeadPlayerToCableCar:
 	walk_down
 	walk_down
 	walk_left
-	walk_in_place_fastest_right
+	walk_in_place_faster_right
 	step_end
 
 FourIsland_CableCarStation_Movement_FollowPlayerOutFromCableCar:

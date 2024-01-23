@@ -24,19 +24,19 @@ Route4_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route4_MapScript_BulbasaurMasterMovementType::
-	setobjectmovementtype LOCALID_BULBASAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_BULBASAUR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route4_MapScript_NidoranMMasterMovementType::
-	setobjectmovementtype LOCALID_NIDORAN_M_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NIDORAN_M_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route4_MapScript_EkansMasterMovementType::
-	setobjectmovementtype LOCALID_EKANS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_EKANS_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route4_MapScript_GolduckMasterMovementType::
-	setobjectmovementtype LOCALID_GOLDUCK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GOLDUCK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route4_EventScript_Woman::

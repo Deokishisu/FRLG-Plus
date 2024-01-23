@@ -64,7 +64,7 @@ FourIsland_Base_CableCarStation_Movement_LeadPlayerToCableCar:
 	walk_up
 	walk_up
 	walk_right
-	walk_in_place_fastest_left
+	walk_in_place_faster_left
 	step_end
 
 FourIsland_Base_CableCarStation_Movement_FollowPlayerOutFromCableCar:

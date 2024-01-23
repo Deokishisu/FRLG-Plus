@@ -31,19 +31,19 @@ Route12_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route12_MapScript_SquirtleMasterMovementType::
-	setobjectmovementtype LOCALID_SQUIRTLE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SQUIRTLE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route12_MapScript_SeadraMasterMovementType::
-	setobjectmovementtype LOCALID_SEADRA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SEADRA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route12_MapScript_GoldeenMasterMovementType::
-	setobjectmovementtype LOCALID_GOLDEEN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GOLDEEN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route12_MapScript_PoliwagMasterMovementType::
-	setobjectmovementtype LOCALID_POLIWAG_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_POLIWAG_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route12_EventScript_HideSnorlax::

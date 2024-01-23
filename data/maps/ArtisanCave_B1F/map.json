@@ -56,7 +56,7 @@
       "y": 29,
       "elevation": 3,
       "item": "ITEM_ZINC",
-      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_ZINC",
+      "flag": "FLAG_HIDDEN_ITEM_ARTISAN_CAVE_ZINC",
       "quantity": 1,
       "underfoot": false
     },
@@ -66,7 +66,7 @@
       "y": 8,
       "elevation": 4,
       "item": "ITEM_CALCIUM",
-      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_CALCIUM",
+      "flag": "FLAG_HIDDEN_ITEM_ARTISAN_CAVE_CALCIUM",
       "quantity": 1,
       "underfoot": false
     },
@@ -76,7 +76,7 @@
       "y": 5,
       "elevation": 3,
       "item": "ITEM_PROTEIN",
-      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_PROTEIN",
+      "flag": "FLAG_HIDDEN_ITEM_ARTISAN_CAVE_PROTEIN",
       "quantity": 1,
       "underfoot": false
     },
@@ -86,7 +86,7 @@
       "y": 43,
       "elevation": 3,
       "item": "ITEM_IRON",
-      "flag": "HIDDEN_ITEM_ARTISAN_CAVE_IRON",
+      "flag": "FLAG_HIDDEN_ITEM_ARTISAN_CAVE_IRON",
       "quantity": 1,
       "underfoot": false
     }

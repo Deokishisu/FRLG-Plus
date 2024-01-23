@@ -12,7 +12,7 @@ PokemonTower_6F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PokemonTower_6F_MapScript_RaichuMasterMovementType::
-	setobjectmovementtype LOCALID_RAICHU_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_RAICHU_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PokemonTower_6F_EventScript_MarowakGhost::

@@ -15,7 +15,7 @@ script EventScript_FujiOutside{
         end
     }
     giveitem_msg("{PLAYER} received an OLD SEA MAP\nfrom MR. FUJI.$", ITEM_OLD_SEA_MAP, 1, MUS_OBTAIN_KEY_ITEM)
-    setflag(FLAG_GOT_OLD_SEA_MAP)
+    setflag(FLAG_RECEIVED_OLD_SEA_MAP)
     msgbox("MR. FUJI: I know you will treat that\nPOKéMON with love and kindness.\pThank you, {PLAYER}.", MSGBOX_NPC)
     getplayerxy(VAR_RESULT, VAR_0x8003)
     if(var(VAR_RESULT) != 9)

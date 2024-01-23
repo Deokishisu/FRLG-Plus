@@ -21,11 +21,11 @@ ViridianForest_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 ViridianForest_MapScript_PikachuMasterMovementType::
-	setobjectmovementtype LOCALID_PIKACHU_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PIKACHU_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianForest_MapScript_WeedleMasterMovementType::
-	setobjectmovementtype LOCALID_WEEDLE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_WEEDLE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianForest_EventScript_Youngster::

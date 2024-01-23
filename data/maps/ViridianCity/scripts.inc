@@ -19,11 +19,11 @@ ViridianCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 ViridianCity_MapScript_AbraMasterMovementType::
-	setobjectmovementtype LOCALID_ABRA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ABRA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianCity_MapScript_OddishMasterMovementType::
-	setobjectmovementtype LOCALID_ODDISH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ODDISH_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianCity_OnTransition::

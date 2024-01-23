@@ -13,7 +13,7 @@ PokemonMansion_2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PokemonMansion_2F_MapScript_MukMasterMovementType::
-	setobjectmovementtype LOCALID_MUK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MUK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PokemonMansion_2F_OnLoad::

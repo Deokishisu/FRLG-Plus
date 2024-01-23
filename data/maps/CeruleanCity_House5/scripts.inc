@@ -12,7 +12,7 @@ CeruleanCity_House5_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeruleanCity_House5_MapScript_DragoniteMasterMovementType::
-	setobjectmovementtype LOCALID_DRAGONITE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DRAGONITE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeruleanCity_House5_EventScript_BerryPowderMan::

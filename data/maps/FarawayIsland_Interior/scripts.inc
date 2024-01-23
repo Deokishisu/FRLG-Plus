@@ -88,7 +88,7 @@ FarawayIsland_Interior_Movement_MewMoveAndHide:
 	walk_up
 	walk_up
 	walk_up
-	walk_in_place_fastest_down
+	walk_in_place_faster_down
 	set_invisible
 	step_end
 
@@ -157,7 +157,7 @@ FarawayIsland_Interior_EventScript_Mew::
 	setvar VAR_0x8004, SPECIES_MEW
 	setvar VAR_0x8005, 30 @ level
 	setvar VAR_0x8006, ITEM_NONE
-	special CreateEventLegalEnemyMon
+	special CreateEnemyEventMon
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	special StartLegendaryBattle
 	waitstate

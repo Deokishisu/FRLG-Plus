@@ -6440,7 +6440,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
         }
 
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, item, 0xFFFF);
-        sub_8124DC0(taskId);
+        Task_DoUseItemAnim(taskId);
         gItemUseCB = ItemUseCB_ReduceEV2;
     }
 }
@@ -6515,22 +6515,22 @@ static void ItemEffectToStatString(u8 effectType, u8 *dest)
     switch (effectType)
     {
     case ITEM_EFFECT_HP_EV:
-        StringCopy(dest, gText_HP3);
+        StringCopy(dest, gText_ItemEffect_HP);
         break;
     case ITEM_EFFECT_ATK_EV:
-        StringCopy(dest, gText_Attack3);
+        StringCopy(dest, gText_ItemEffect_Attack);
         break;
     case ITEM_EFFECT_DEF_EV:
-        StringCopy(dest, gText_Defense3);
+        StringCopy(dest, gText_ItemEffect_Defense);
         break;
     case ITEM_EFFECT_SPEED_EV:
-        StringCopy(dest, gText_Speed2);
+        StringCopy(dest, gText_ItemEffect_Speed);
         break;
     case ITEM_EFFECT_SPATK_EV:
-        StringCopy(dest, gText_SpAtk3);
+        StringCopy(dest, gText_ItemEffect_SpAtk);
         break;
     case ITEM_EFFECT_SPDEF_EV:
-        StringCopy(dest, gText_SpDef3);
+        StringCopy(dest, gText_ItemEffect_SpDef);
         break;
     }
 }

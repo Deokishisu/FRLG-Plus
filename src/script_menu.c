@@ -616,6 +616,10 @@ static const struct MenuAction sMultichoiceList_MasterYoungster[] = {
     { gText_Nothing }
 };
 
+static const struct MenuAction sMultichoiceList_Exit[] = {
+    { gOtherText_Exit }
+};
+
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),

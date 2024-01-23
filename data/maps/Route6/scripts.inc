@@ -12,7 +12,7 @@ Route6_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route6_MapScript_VulpixMasterMovementType::
-	setobjectmovementtype LOCALID_VULPIX_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VULPIX_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route6_EventScript_UndergroundPathSign::

@@ -17,11 +17,11 @@ PokemonMansion_B1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PokemonMansion_B1F_MapScript_MewtwoMasterMovementType::
-	setobjectmovementtype LOCALID_MEWTWO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MEWTWO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PokemonMansion_B1F_MapScript_MewMasterMovementType::
-	setobjectmovementtype LOCALID_MEW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MEW_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PokemonMansion_B1F_OnLoad::

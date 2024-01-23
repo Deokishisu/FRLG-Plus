@@ -12,7 +12,7 @@ Route12_NorthEntrance_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route12_NorthEntrance_MapScript_PidgeotMasterMovementType::
-	setobjectmovementtype LOCALID_PIDGEOT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PIDGEOT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route12_NorthEntrance_2F_EventScript_LeftBinoculars::

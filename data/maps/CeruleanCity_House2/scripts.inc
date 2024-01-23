@@ -12,7 +12,7 @@ CeruleanCity_House2_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeruleanCity_House2_MapScript_RaticateMasterMovementType::
-	setobjectmovementtype LOCALID_RATICATE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_RATICATE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeruleanCity_House2_EventScript_Hiker::

@@ -12,7 +12,7 @@ SilphCo_4F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SilphCo_4F_MapScript_MachopMasterMovementType::
-	setobjectmovementtype LOCALID_MACHOP_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MACHOP_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SilphCo_4F_OnLoad::

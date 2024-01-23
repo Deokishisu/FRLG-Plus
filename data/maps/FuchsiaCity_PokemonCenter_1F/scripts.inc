@@ -20,7 +20,7 @@ FuchsiaCity_PokemonCenter_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 FuchsiaCity_PokemonCenter_1F_MapScript_ChanseyMasterMovementType::
-	setobjectmovementtype LOCALID_CHANSEY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CHANSEY_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 FuchsiaCity_PokemonCenter_1F_EventScript_Nurse::

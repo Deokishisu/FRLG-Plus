@@ -9,7 +9,7 @@ FarawayIsland_Exterior_EventScript_Sailor::
 	goto_if_eq FarawayIsland_Exterior_EventScript_AsYouLike
 	msgbox EventTicket_Text_SailHome, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
+	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
 	delay 30
 	hideobjectat 1, MAP_FARAWAY_ISLAND_EXTERIOR
@@ -45,7 +45,3 @@ EventTicket_Text_AsYouLike:
 	
 FarawayIsland_Exterior_Text_SailorReturn:
     .string "Do you want to return to VERMILION?$"
-	
-Common_Movement_WalkInPlaceFastestDown:
-	walk_in_place_fastest_down
-	step_end

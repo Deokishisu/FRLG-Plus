@@ -12,5 +12,5 @@ SeafoamIslands_B1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SeafoamIslands_B1F_MapScript_DewgongMasterMovementType::
-	setobjectmovementtype LOCALID_DEWGONG_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DEWGONG_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return

@@ -12,7 +12,7 @@ RockTunnel_B1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 RockTunnel_B1F_MapScript_ZubatMasterMovementType::
-	setobjectmovementtype LOCALID_ZUBAT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ZUBAT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 RockTunnel_B1F_EventScript_Sofia::

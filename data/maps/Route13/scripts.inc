@@ -16,11 +16,11 @@ Route13_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route13_MapScript_SeakingMasterMovementType::
-	setobjectmovementtype LOCALID_SEAKING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SEAKING_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route13_MapScript_KakunaMasterMovementType::
-	setobjectmovementtype LOCALID_KAKUNA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KAKUNA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route13_EventScript_TrainerTips1::

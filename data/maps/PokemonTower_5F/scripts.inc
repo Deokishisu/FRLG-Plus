@@ -12,7 +12,7 @@ PokemonTower_5F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PokemonTower_5F_MapScript_HypnoMasterMovementType::
-	setobjectmovementtype LOCALID_HYPNO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_HYPNO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PokemonTower_5F_EventScript_Channeler::

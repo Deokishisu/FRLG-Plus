@@ -17,7 +17,7 @@ SilphCo_11F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SilphCo_11F_MapScript_WigglytuffMasterMovementType::
-	setobjectmovementtype LOCALID_WIGGLYTUFF_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_WIGGLYTUFF_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SilphCo_11F_OnLoad::
@@ -170,9 +170,9 @@ SilphCo_11F_EventScript_DevonSpy::
 	release
 	faceplayer
 	playse SE_PIN
-	applymovement 8, Movement_ExclamationMark
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 8, Movement_Delay48
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	lock
 	message SilphCo_11F_Text_DevonSpyYoureBack
@@ -188,9 +188,9 @@ SilphCo_11F_EventScript_DevonSpyFirstTime::
 	release
 	faceplayer
 	playse SE_PIN
-	applymovement 8, Movement_ExclamationMark
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement 8, Movement_Delay48
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	msgbox SilphCo_11F_Text_Explain, MSGBOX_YESNO
 	compare VAR_RESULT, NO

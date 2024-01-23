@@ -12,7 +12,7 @@ CeladonCity_Condominiums_2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeladonCity_Condominiums_2F_MapScript_MrMimeMasterMovementType::
-	setobjectmovementtype LOCALID_MR_MIME_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MR_MIME_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_Condominiums_2F_EventScript_MeetingRoomSign::

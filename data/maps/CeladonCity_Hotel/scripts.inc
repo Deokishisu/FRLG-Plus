@@ -16,11 +16,11 @@ CeladonCity_Hotel_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeladonCity_Hotel_MapScript_GyaradosMasterMovementType::
-	setobjectmovementtype LOCALID_GYARADOS_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GYARADOS_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_Hotel_MapScript_ArcanineMasterMovementType::
-	setobjectmovementtype LOCALID_ARCANINE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_ARCANINE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_Hotel_EventScript_Receptionist::

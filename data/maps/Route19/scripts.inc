@@ -20,15 +20,15 @@ Route19_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route19_MapScript_StaryuMasterMovementType::
-	setobjectmovementtype LOCALID_STARYU_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_STARYU_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 Route19_MapScript_HorseaMasterMovementType::
-	setobjectmovementtype LOCALID_HORSEA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_HORSEA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route19_MapScript_ShellderMasterMovementType::
-	setobjectmovementtype LOCALID_SHELLDER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SHELLDER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route19_EventScript_RouteSign::

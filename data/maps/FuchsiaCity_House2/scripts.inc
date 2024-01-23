@@ -12,7 +12,7 @@ FuchsiaCity_House2_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 FuchsiaCity_House2_MapScript_MachokeMasterMovementType::
-	setobjectmovementtype LOCALID_MACHOKE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MACHOKE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 FuchsiaCity_House2_EventScript_FishingGurusBrother::

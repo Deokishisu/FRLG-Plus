@@ -18,7 +18,7 @@ RocketHideout_B4F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 RocketHideout_B4F_MapScript_PersianMasterMovementType::
-	setobjectmovementtype LOCALID_PERSIAN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PERSIAN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 RocketHideout_B4F_OnLoad::

@@ -17,5 +17,5 @@ DiglettsCave_B1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 DiglettsCave_B1F_MapScript_DugtrioMasterMovementType::
-	setobjectmovementtype LOCALID_DUGTRIO_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DUGTRIO_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return

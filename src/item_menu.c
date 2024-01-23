@@ -2565,7 +2565,7 @@ enum ItemSortType
 	ITEM_TYPE_SELLABLE,
 	ITEM_TYPE_SHARD,
 	ITEM_TYPE_FOSSIL,
-	ITEM_TYPE_MAIL,
+	ITEM_TYPE_MAIL_SORT,
 };
 static const u8 sText_SortItemsHow[] = _("Sort items how?");
 static const u8 sText_Name[] = _("name");
@@ -2754,18 +2754,18 @@ static const u16 sItemsByType[ITEMS_COUNT] =
     [ITEM_DOME_FOSSIL] = ITEM_TYPE_FOSSIL,
     [ITEM_OLD_AMBER] = ITEM_TYPE_FOSSIL,
 
-    [ITEM_ORANGE_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_HARBOR_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_GLITTER_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_MECH_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_WOOD_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_WAVE_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_BEAD_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_SHADOW_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_TROPIC_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_DREAM_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_FAB_MAIL] = ITEM_TYPE_MAIL,
-    [ITEM_RETRO_MAIL] = ITEM_TYPE_MAIL,
+    [ITEM_ORANGE_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_HARBOR_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_GLITTER_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_MECH_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_WOOD_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_WAVE_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_BEAD_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_SHADOW_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_TROPIC_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_DREAM_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_FAB_MAIL] = ITEM_TYPE_MAIL_SORT,
+    [ITEM_RETRO_MAIL] = ITEM_TYPE_MAIL_SORT,
 };
 
 static const u8 sFontColorTable[][3] =
@@ -2823,7 +2823,7 @@ static void AddBagSortSubMenu(void)
 static void Task_FieldItemSortMenuHandleInput(u8 taskId)
 {
     s16 input;
-    if (MenuHelpers_CallLinkSomething() != TRUE)
+    if (IsActiveOverworldLinkBusy() != TRUE)
     {
         input = Menu_ProcessInputNoWrapAround2();
         switch (input)

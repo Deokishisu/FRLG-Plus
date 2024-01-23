@@ -36,23 +36,23 @@ Route23_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route23_MapScript_DratiniMasterMovementType::
-	setobjectmovementtype LOCALID_DRATINI_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DRATINI_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route23_MapScript_NidoqueenMMasterMovementType::
-	setobjectmovementtype LOCALID_NIDOQUEEN_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NIDOQUEEN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route23_MapScript_NidokingMasterMovementType::
-	setobjectmovementtype LOCALID_NIDOKING_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_NIDOKING_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route23_MapScript_CharizardMasterMovementType::
-	setobjectmovementtype LOCALID_CHARIZARD_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CHARIZARD_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route23_MapScript_VenusaurMasterMovementType::
-	setobjectmovementtype LOCALID_VENUSAUR_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_VENUSAUR_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route23_EventScript_CascadeBadgeGuard::

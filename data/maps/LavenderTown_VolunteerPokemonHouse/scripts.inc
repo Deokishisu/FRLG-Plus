@@ -12,7 +12,7 @@ LavenderTown_VolunteerPokemonHouse_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 LavenderTown_VolunteerPokemonHouse_MapScript_MarowakMasterMovementType::
-	setobjectmovementtype LOCALID_MAROWAK_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MAROWAK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji::

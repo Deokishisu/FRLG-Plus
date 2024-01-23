@@ -31,6 +31,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 5,
@@ -45,6 +46,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 6,
@@ -59,6 +61,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_F",
       "in_connection": false,
       "x": 14,
@@ -73,6 +76,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 30,
@@ -87,6 +91,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
       "in_connection": false,
       "x": 18,
@@ -101,6 +106,7 @@
       "flag": "FLAG_HIDE_SAFFRON_CIVILIANS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_COOLTRAINER_M",
       "in_connection": false,
       "x": 9,

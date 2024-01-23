@@ -1585,7 +1585,7 @@ void TryAddPokeballIconToHealthbox(u8 healthboxSpriteId, bool8 noStatus)
                 if(!IsWildMonNuzlockeDupe(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES)) && 
                     NuzlockeFlagGet(GetCurrentRegionMapSectionId()) == FALSE)
                 {   //not dupe && first encounter
-                    healthBarSpriteId = gSprites[healthboxSpriteId].hMain_HealthBarSpriteId;
+                    healthBarSpriteId = gSprites[healthboxSpriteId].sHealthBarSpriteId;
 
                     if (noStatus)
                         CpuCopy32(gNuzlockeFirstEncounterIndicator, (void*)(OBJ_VRAM0 + (gSprites[healthBarSpriteId].oam.tileNum + 8) * TILE_SIZE_4BPP), 32);

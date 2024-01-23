@@ -12,7 +12,7 @@ CeruleanCity_House3_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeruleanCity_House3_MapScript_PoliwhirlMasterMovementType::
-	setobjectmovementtype LOCALID_POLIWHIRL_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_POLIWHIRL_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeruleanCity_House3_EventScript_OldWoman::

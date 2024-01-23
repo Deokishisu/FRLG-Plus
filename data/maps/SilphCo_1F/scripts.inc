@@ -17,7 +17,7 @@ SilphCo_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SilphCo_1F_MapScript_KinglerMasterMovementType::
-	setobjectmovementtype LOCALID_KINGLER_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_KINGLER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SilphCo_1F_EventScript_Receptionist::

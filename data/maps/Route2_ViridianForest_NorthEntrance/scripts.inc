@@ -12,7 +12,7 @@ Route2_ViridianForest_NorthEntrance_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route2_ViridianForest_NorthEntrance_MapScript_ButterfreeMasterMovementType::
-	setobjectmovementtype LOCALID_BUTTERFREE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_BUTTERFREE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route2_ViridianForest_NorthEntrance_EventScript_Youngster::

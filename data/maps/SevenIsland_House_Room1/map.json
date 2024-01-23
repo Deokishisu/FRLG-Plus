@@ -31,6 +31,7 @@
       "flag": "0"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SPEAROW",
       "in_connection": false,
       "x": 9,

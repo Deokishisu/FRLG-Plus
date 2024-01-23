@@ -13,7 +13,7 @@ Route16_NorthEntrance_2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route16_NorthEntrance_2F_MapScript_LickitungMasterMovementType::
-	setobjectmovementtype LOCALID_LICKITUNG_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_LICKITUNG_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route16_NorthEntrance_2F_EventScript_LittleBoy::

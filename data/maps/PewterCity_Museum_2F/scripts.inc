@@ -12,7 +12,7 @@ PewterCity_Museum_2F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 PewterCity_Museum_2F_MapScript_GolemMasterMovementType::
-	setobjectmovementtype LOCALID_GOLEM_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GOLEM_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 PewterCity_Museum_2F_EventScript_Man::

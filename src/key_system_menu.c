@@ -13,7 +13,7 @@
 #include "gba/m4a_internal.h"
 
 // can't include the one in menu_helpers.h since Task_KeySystemMenu needs bool32 for matching
-bool32 MenuHelpers_CallLinkSomething(void);
+bool32 IsActiveOverworldLinkBusy(void);
 
 // Menu items
 enum
@@ -142,7 +142,7 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
    },
 };
 
-static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/unk_83cc2e4.gbapal");
+static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
 static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 0};
 static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
 
@@ -415,10 +415,10 @@ static bool8 LoadKeySystemMenuPalette(void)
         break;
     case 2:
         LoadPalette(sKeySystemMenuPalette, 0x10, 0x20);
-        LoadPalette(stdpal_get(2), 0xF0, 0x20);
+        LoadPalette(GetTextWindowPalette(2), BG_PLTT_ID(15), PLTT_SIZE_4BPP);
         break;
     case 3:
-        DrawWindowBorderWithStdpal3(1, 0x1B3, 0x30);
+        LoadStdWindowGfxOnBg(1, 0x1B3, BG_PLTT_ID(3));
         break;
     default:
         return TRUE;
@@ -442,7 +442,7 @@ static void Task_KeySystemMenu(u8 taskId)
         sKeySystemMenuPtr->loadState++;
         break;
     case 2:
-        if (((bool32)MenuHelpers_CallLinkSomething()) == TRUE)
+        if (((bool32)IsActiveOverworldLinkBusy()) == TRUE)
             break;
         switch (KeySystemMenu_ProcessInput())
         {

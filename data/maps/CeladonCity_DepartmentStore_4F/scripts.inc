@@ -12,7 +12,7 @@ CeladonCity_DepartmentStore_4F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 CeladonCity_DepartmentStore_4F_MapScript_FlareonMasterMovementType::
-	setobjectmovementtype LOCALID_FLAREON_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_FLAREON_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 CeladonCity_DepartmentStore_4F_EventScript_Man::

@@ -330,9 +330,9 @@ PalletTown_RivalsHouse_EventScript_GiveFinalStarter_16:
 
 
 PalletTown_RivalsHouse_Movement_FaceUp:
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	delay_16
-	walk_in_place_fastest_up
+	walk_in_place_faster_up
 	step_end
 
 PalletTown_RivalsHouse_EventScript_GiveFinalStarter_Text_0:

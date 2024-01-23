@@ -166,6 +166,7 @@
       "flag": "FLAG_HIDE_SILPH_ROCKETS"
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
       "in_connection": false,
       "x": 3,

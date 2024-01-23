@@ -8,7 +8,7 @@ ViridianCity_PokemonCenter_1F_MapScripts::
 	.byte 0
 
 ViridianCity_PokemonCenter_1F_MapScript_DrowzeeMasterMovementType:
-	setobjectmovementtype LOCALID_DROWZEE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_DROWZEE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianCity_PokemonCenter_1F_OnTransition::

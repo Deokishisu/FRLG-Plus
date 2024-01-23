@@ -27,15 +27,15 @@ SaffronCity_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 SaffronCity_MapScript_PonytaMasterMovementType::
-	setobjectmovementtype LOCALID_PONYTA_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PONYTA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 	
 SaffronCity_MapScript_RapidashMasterMovementType::
-	setobjectmovementtype LOCALID_RAPIDASH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_RAPIDASH_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SaffronCity_MapScript_ClefairyMasterMovementType::
-	setobjectmovementtype LOCALID_CLEFAIRY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_CLEFAIRY_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 SaffronCity_EventScript_MoveDoorGuardGrunt::

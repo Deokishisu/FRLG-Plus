@@ -17,7 +17,7 @@ RockTunnel_1F_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 RockTunnel_1F_MapScript_GeodudeMasterMovementType::
-	setobjectmovementtype LOCALID_GEODUDE_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_GEODUDE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 RockTunnel_1F_EventScript_RouteSign::

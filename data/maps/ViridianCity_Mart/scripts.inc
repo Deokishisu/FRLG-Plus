@@ -19,7 +19,7 @@ ViridianCity_Mart_MapScript_SetMasterTrainerMovementTypes:
 	end
 
 ViridianCity_Mart_MapScript_MeowthMasterMovementType::
-	setobjectmovementtype LOCALID_MEOWTH_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_MEOWTH_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianCity_Mart_EventScript_HideQuestionnaire::

@@ -16,11 +16,11 @@ Route11_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route11_MapScript_SandshrewMasterMovementType::
-	setobjectmovementtype LOCALID_SANDSHREW_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_SANDSHREW_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route11_MapScript_MetapodMasterMovementType::
-	setobjectmovementtype LOCALID_METAPOD_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_METAPOD_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route11_EventScript_DiglettsCaveSign::

@@ -14,7 +14,7 @@ ViridianCity_School_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 ViridianCity_School_MapScript_BellsproutMasterMovementType::
-	setobjectmovementtype LOCALID_BELLSPROUT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_BELLSPROUT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 ViridianCity_School_EventScript_Lass::

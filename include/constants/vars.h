@@ -88,7 +88,7 @@
 #define VAR_LAST_REPEL_USED                0x4029
 #define VAR_BATTLE_HOUSE                   0x402A //usage overflows into next var
 #define VAR_BATTLE_HOUSE2                  0x402B 
-#define VAR_RESET_RTC_ENABLE               0x402C
+#define VAR_0x402C                         0x402C
 #define VAR_DAYCARE_MAN_TRIGGERS           0x402D
 
 #define VAR_GLASS_WORKSHOP_STATE           0x402E

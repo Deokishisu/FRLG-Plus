@@ -5,12 +5,14 @@
 #include "mail_data.h"
 #include "menu.h"
 #include "new_menu_helpers.h"
+#include "party_menu.h"
 #include "pokemon_storage_system_internal.h"
 #include "pokemon_summary_screen.h"
 #include "strings.h"
 #include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/songs.h"
+#include "constants/party_menu.h"
 
 static EWRAM_DATA struct Pokemon sMonBeingCarried = {};
 static EWRAM_DATA s8 sCursorArea = 0;
@@ -64,6 +66,179 @@ enum
     MOVE_MODE_MULTIPLE_SELECTING,
     MOVE_MODE_MULTIPLE_MOVING,
 };
+
+extern void CopyBoxMonAt(u8 boxId, u8 boxPosition, struct BoxPokemon * dst);
+
+void StoreHPAndStatusInBoxMon(struct Pokemon *mon)
+{
+    u16 currentHP;
+    u32 statusField;
+    u8 actualStatus;
+    u8 boxStatusCondition = 0;
+
+    currentHP = GetMonData(mon, MON_DATA_HP);
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1)
+    {   //save status and HP to boxmon if noPMC
+        actualStatus = GetMonAilment(mon);
+        statusField = GetMonData(mon, MON_DATA_STATUS);
+        switch(actualStatus)
+        {
+            case AILMENT_SLP:
+                boxStatusCondition = statusField & STATUS1_SLEEP; //0b0XXX where X is the sleep turns
+                break;
+            case AILMENT_PSN:
+                boxStatusCondition = 8; //0b1000
+                break;
+            case AILMENT_BRN:
+                boxStatusCondition = 9; //0b1001
+                break;
+            case AILMENT_FRZ:
+                boxStatusCondition = 10; //0b1010
+                break;
+            case AILMENT_PRZ:
+                boxStatusCondition = 11; //0b1011
+                break;
+            case AILMENT_FNT:
+                boxStatusCondition = 0; //No status condition; fainted
+                break;
+        }
+        currentHP = GetMonData(mon, MON_DATA_HP);
+        if(currentHP > 714)
+        {
+            currentHP = 714; //Highest legal HP value
+        }
+        SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        SetMonData(mon, MON_DATA_BOX_STATUS, &boxStatusCondition);
+    }
+    else if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   //keep fainted when deposited in Nuzlocke Mode
+        if(currentHP == 0)
+        {
+            SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        }
+        else
+        {
+            if(currentHP > 714)
+            {
+                currentHP = 714; //Highest legal HP value
+            }
+            currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+            SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        }
+        boxStatusCondition = 0;
+        SetMonData(mon, MON_DATA_BOX_STATUS, &boxStatusCondition);
+    }
+    else
+    {   //neither key active, store max HP and 0 status
+        currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+        boxStatusCondition = 0;
+        SetMonData(mon, MON_DATA_BOX_HP, &currentHP);
+        SetMonData(mon, MON_DATA_BOX_STATUS, &boxStatusCondition);
+    }
+}
+
+void PopulateBoxHpAndStatusToPartyMon(struct Pokemon *mon)
+{
+    u16 currentHP;
+    u32 statusField;
+    u8 boxStatus;
+
+    currentHP = GetMonData(mon, MON_DATA_BOX_HP);
+    boxStatus = GetMonData(mon, MON_DATA_BOX_STATUS);
+
+    if(gSaveBlock1Ptr->keyFlags.noPMC == 1)
+    {   //PC no longer heals mons in noPMC
+        currentHP = GetMonData(mon, MON_DATA_BOX_HP);
+        SetMonData(mon, MON_DATA_HP, &currentHP);
+        statusField = 0;
+
+        if(boxStatus < 8) //Sleep
+        {
+            statusField = boxStatus; //preserves sleep turns?
+        }
+        else
+        {
+            switch(boxStatus)
+            {
+                case 8: //PSN
+                    statusField = STATUS1_POISON;
+                    break;
+                case 9: //BRN
+                    statusField = STATUS1_BURN;
+                    break;
+                case 10: //FRZ
+                    statusField = STATUS1_FREEZE;
+                    break;
+                case 11: //PRZ
+                    statusField = STATUS1_PARALYSIS;
+                    break;
+                default: //FNT, none, or invalid
+                    statusField = 0;
+                    break;
+            }
+        }
+        SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+    else if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1)
+    {   //keep fainted when withdrawn in Nuzlocke Mode
+        if(currentHP == 0)
+        {
+            SetMonData(mon, MON_DATA_HP, &currentHP);
+        }
+        else
+        {
+            currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+            SetMonData(mon, MON_DATA_HP, &currentHP);
+        }
+        statusField = 0;
+        SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+    else
+    {   //neither key active, populate max HP and 0 status
+        currentHP = GetMonData(mon, MON_DATA_MAX_HP);
+        statusField = 0;
+        SetMonData(mon, MON_DATA_HP, &currentHP);
+        SetMonData(mon, MON_DATA_STATUS, &statusField);
+    }
+}
+
+u16 GetFirstAliveBoxMon(void)
+{
+    u32 i;
+    u32 j;
+
+    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT; j++)
+        {
+            if (GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_SPECIES) != SPECIES_NONE &&
+            !GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_IS_EGG))
+            {
+                if(GetBoxMonData(&gPokemonStoragePtr->boxes[i][j], MON_DATA_BOX_HP) != 0)
+                    return (i * IN_BOX_COUNT) + j;
+            }
+        }
+    }
+    return IN_BOX_COUNT * TOTAL_BOXES_COUNT; // none found
+}
+
+void SwapFirstAliveBoxPokemon(void)
+{
+    u16 position = GetFirstAliveBoxMon();
+    if (position != IN_BOX_COUNT * TOTAL_BOXES_COUNT)
+    {
+        struct BoxPokemon tempMon;
+        u16 boxNum = position / IN_BOX_COUNT;
+        u16 boxIndex = position - (boxNum * IN_BOX_COUNT);
+
+        CopyBoxMonAt(boxNum, boxIndex, &tempMon); //backing up first alive box mon
+        StoreHPAndStatusInBoxMon(&gPlayerParty[0]); //storing box info in party mon
+        SetBoxMonAt(boxNum, boxIndex, &gPlayerParty[0].box); //copying first Pokemon to box
+        ZeroMonData(&gPlayerParty[0]); //purging first party slot
+        BoxMonToMon(&tempMon, &gPlayerParty[0]); //copying saved box mon to first spot in party
+        PopulateBoxHpAndStatusToPartyMon(&gPlayerParty[0]); //getting box stuff to party stuff in saved box mon
+    }
+}
 
 void InitCursor(void)
 {

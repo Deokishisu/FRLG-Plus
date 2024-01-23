@@ -374,7 +374,7 @@ BattleTower_Lobby_EventScript_Scott::
 	goto_if_eq BattleTower_Lobby_EventScript_Scott_TryGiveEonTicket
 	msgbox BattleTower_Lobby_Text_Scott28Wins, MSGBOX_DEFAULT
 	giveitem ITEM_AURORA_TICKET, 1
-	setflag FLAG_GOT_AURORA_TICKET
+	setflag FLAG_RECEIVED_AURORA_TICKET
 	setflag FLAG_ENABLE_SHIP_BIRTH_ISLAND
 	msgbox BattleTower_Lobby_Text_ScottExplainAuroraTicket, MSGBOX_DEFAULT
 	release

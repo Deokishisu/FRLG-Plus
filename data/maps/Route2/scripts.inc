@@ -22,11 +22,11 @@ Route2_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route2_MapScript_PidgeyMasterMovementType::
-	setobjectmovementtype LOCALID_PIDGEY_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PIDGEY_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route2_MapScript_ParasectMasterMovementType::
-	setobjectmovementtype LOCALID_PARASECT_MASTER, MOVEMENT_TYPE_VS_SEEKER_4D
+	setobjectmovementtype LOCALID_PARASECT_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
 	return
 
 Route2_EventScript_RouteSign::

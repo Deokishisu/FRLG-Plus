@@ -541,11 +541,11 @@ void ResetObjEventTemplateMovementType(u8 localId)
     for (i = 0; i < OBJECT_EVENT_TEMPLATES_COUNT; i++)
     {
         struct ObjectEventTemplate *objectEventTemplate = &savObjTemplates[i];
-        struct ObjectEventTemplate *headerObjectEventTemplate = &gMapHeader.events->objectEvents[i];
+        const struct ObjectEventTemplate * headerObjectEventTemplate = &gMapHeader.events->objectEvents[i];
         if (objectEventTemplate->localId == localId)
         {
-            objectEventTemplate->movementType = headerObjectEventTemplate->movementType;
-            SetObjectMovementType(localId, headerObjectEventTemplate->movementType);
+            objectEventTemplate->objUnion.normal.movementType = headerObjectEventTemplate->objUnion.normal.movementType;
+            SetObjectMovementType(localId, headerObjectEventTemplate->objUnion.normal.movementType);
             return;
         }
     }
@@ -3637,8 +3637,8 @@ static void CreateLinkPlayerSprite(u8 linkPlayerId, u8 gameVersion)
                 SpriteCB_LinkPlayer, 0, 0, 0);
         }
         else if (gameVersion == VERSION_EMERALD)
-        {   // same as RS for now
-            objEvent->spriteId = AddPseudoObjectEvent(GetEMAvatarGraphicsIdByGender(objEvent->singleMovementActive), SpriteCB_LinkPlayer, 0, 0, 0);
+        {
+            objEvent->spriteId = CreateObjectGraphicsSprite(GetEMAvatarGraphicsIdByGender(linkGender(objEvent)), SpriteCB_LinkPlayer, 0, 0, 0);
         }
         else
         {
