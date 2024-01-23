@@ -38,6 +38,7 @@
   * [Can I use FRLG+ as a ROM Base?](#can-i-use-frlg-as-a-rom-base)
   * [How did you implement *x* feature? Can I use *y* feature for my hack?](#how-did-you-implement-x-feature-can-i-use-y-feature-for-my-hack)
 * Miscellaneous:
+  * [Where do I get TM10 for Hidden Power? Pickup doesn't give me TM10 for Hidden Power!](#where-do-i-get-tm10-for-hidden-power-pickup-doesnt-give-me-tm10-for-hidden-power)
   * [Will text be decapitalized?](#will-text-be-decapitalized)
   * [How do I link to other games? When is the earliest I can link?](#how-do-i-link-to-other-games-when-is-the-earliest-i-can-link)
 
@@ -172,16 +173,24 @@ Giovanni is canonically on the run after he flees his Gym and is not seen again 
 Brock: 15<br>
 Misty: 22<br>
 Lt. Surge: 26<br>
+Rocket Hideout Giovanni: 31<br>
 Erika: 31<br>
 Koga: 46<br>
+Silph Co. Giovanni: 44<br>
 Sabrina: 46<br>
 Blaine: 51<br>
-Giovanni: 54<br>
+Leader Giovanni: 54<br>
 Lorelei: 58<br>
 Bruno: 60<br>
 Agatha: 62<br>
 Lance: 64<br>
 Champion: 67<br>
+
+Rematch Lorelei: 71<br>
+Rematch Bruno: 73<br>
+Rematch Agatha: 75<br>
+Rematch Lance: 77<br>
+Rematch Champion: 80<br>
 </details>
 
 ### Where are the new Move Tutors and what moves do they teach?
@@ -229,6 +238,16 @@ My official stance is that all mods of FRLG+ are unauthorized and unsupported. I
 My commits are descriptively labeled. If you want to grab something from FRLG+, go back through my commits and find where I implemented it. I don't offer support or answer questions for lifting things from FRLG+, but since the project is open source anyone can take from it.
 
 ## Miscellaneous:
+
+### Where do I get TM10 for Hidden Power? Pickup doesn't give me TM10 for Hidden Power!
+
+The TM for Hidden Power has been removed from the pickup table and is now sold in the Celadon Dept. Store.
+
+The Pickup table has been changed to the following:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;15% - Oran Berry<br>
+&nbsp;&nbsp;&nbsp;&nbsp;10% - Cheri Berry, Chesto Berry, Pecha Berry, Rawst Berry, Aspear Berry, Persim Berry<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5% - PP Up, Rare Candy, Nugget, Pomeg Berry<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1% - Kelpsy Berry, Qualot Berry, Hondew Berry, Grepa Berry, Tamato Berry<br>
 
 ### Will text be decapitalized?
 No.
