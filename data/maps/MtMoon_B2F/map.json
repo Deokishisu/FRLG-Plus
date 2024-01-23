@@ -18,7 +18,6 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FOSSIL",
-      "in_connection": false,
       "x": 13,
       "y": 7,
       "elevation": 3,
@@ -28,12 +27,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_DomeFossil",
-      "flag": "FLAG_HIDE_DOME_FOSSIL"
+      "flag": "FLAG_HIDE_DOME_FOSSIL",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FOSSIL",
-      "in_connection": false,
       "x": 14,
       "y": 7,
       "elevation": 3,
@@ -43,12 +42,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_HelixFossil",
-      "flag": "FLAG_HIDE_HELIX_FOSSIL"
+      "flag": "FLAG_HIDE_HELIX_FOSSIL",
+      "in_connection": false
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
-      "in_connection": false,
+      "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD",
       "x": 13,
       "y": 11,
       "elevation": 3,
@@ -58,12 +57,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_Miguel",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
-      "in_connection": false,
       "x": 37,
       "y": 21,
       "elevation": 3,
@@ -73,12 +72,12 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MtMoon_B2F_EventScript_Grunt4",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
-      "in_connection": false,
       "x": 12,
       "y": 20,
       "elevation": 3,
@@ -88,12 +87,12 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "MtMoon_B2F_EventScript_Grunt1",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
-      "in_connection": false,
       "x": 35,
       "y": 12,
       "elevation": 3,
@@ -103,12 +102,12 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "MtMoon_B2F_EventScript_Grunt3",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ROCKET_M",
-      "in_connection": false,
       "x": 18,
       "y": 27,
       "elevation": 3,
@@ -118,12 +117,12 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "MtMoon_B2F_EventScript_Grunt2",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "in_connection": false,
       "x": 30,
       "y": 26,
       "elevation": 3,
@@ -133,12 +132,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemStarPiece",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_STAR_PIECE"
+      "flag": "FLAG_HIDE_MT_MOON_B2F_STAR_PIECE",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "in_connection": false,
       "x": 35,
       "y": 5,
       "elevation": 3,
@@ -148,12 +147,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemTM46",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_TM46"
+      "flag": "FLAG_HIDE_MT_MOON_B2F_TM46",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "in_connection": false,
       "x": 24,
       "y": 6,
       "elevation": 3,
@@ -163,12 +162,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemRevive",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_REVIVE"
+      "flag": "FLAG_HIDE_MT_MOON_B2F_REVIVE",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "in_connection": false,
       "x": 3,
       "y": 11,
       "elevation": 3,
@@ -178,11 +177,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemAntidote",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_ANTIDOTE"
+      "flag": "FLAG_HIDE_MT_MOON_B2F_ANTIDOTE",
+      "in_connection": false
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
-      "in_connection": false,
       "x": 40,
       "y": 6,
       "elevation": 3,
@@ -192,11 +192,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MasterTrainer_EventScript_Omanyte",
-      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+      "flag": "FLAG_HIDE_MASTER_TRAINERS",
+      "in_connection": false
     },
     {
+      "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_HIKER",
-      "in_connection": false,
       "x": 33,
       "y": 27,
       "elevation": 3,
@@ -206,7 +207,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MasterTrainer_EventScript_Kabuto",
-      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+      "flag": "FLAG_HIDE_MASTER_TRAINERS",
+      "in_connection": false
     }
   ],
   "warp_events": [
