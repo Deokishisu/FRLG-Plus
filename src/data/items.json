@@ -5358,7 +5358,7 @@
     {
       "english": "TM44",
       "itemId": "ITEM_TM44",
-      "price": 3000,
+      "price": 10000,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A move that makes the user fall\\nasleep over two turns to restore HP\\nand heal any status problems.",
