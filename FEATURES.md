@@ -144,6 +144,7 @@
 - Fixed bug where the AI would incorrectly decide to try to stall with semi-invulnerable moves while a weather effect is damaging them.
 - Fixed bug where the AI would decide to use Facade based on the target's status instead of its own.
 - Fixed an oversight where Icefall Cave's cracked ice tiles could spawn wild encounters. If a wild encounter is generated on one, it does not crack, allowing the player to cheat the puzzle.
+- Fixed the [evolution move-learning glitch](https://glitchcity.wiki/wiki/Evolution_move-learning_glitch).
 - Many vanilla tile errors have been fixed. Too many.
 
 #### Miscellaneous Changes:

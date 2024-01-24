@@ -952,8 +952,6 @@ static void Task_EvolutionScene(u8 taskId)
                 {
                     // YES
                     gTasks[taskId].tLearnMoveState = gTasks[taskId].tLearnMoveYesState;
-                    if (gTasks[taskId].tLearnMoveState == MVSTATE_SHOW_MOVE_SELECT)
-                        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
                 }
             }
             if (JOY_NEW(B_BUTTON))
