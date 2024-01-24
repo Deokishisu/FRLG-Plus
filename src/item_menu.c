@@ -334,8 +334,8 @@ static const struct ScrollArrowsTemplate sPocketSwitchArrowPairTemplate = {
     .secondArrowType = SCROLL_ARROW_RIGHT,
     .secondX = 72,
     .secondY = 72,
-    .fullyUpThreshold = 0,
-    .fullyDownThreshold = 4,
+    .fullyUpThreshold = -1,
+    .fullyDownThreshold = -1,
     .tileTag = 111,
     .palTag = 111,
     .palNum = 0,
@@ -1114,6 +1114,8 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             if (cursorPos + itemsAbove != sBagMenuDisplay->nItems[gBagMenuState.pocket])
             {
                 PlaySE(SE_SELECT);
+                BagDestroyPocketScrollArrowPair();
+                CreatePocketScrollArrowPair();
                 BeginMovingItemInPocket(taskId, cursorPos + itemsAbove);
                 return;
             }
@@ -1123,6 +1125,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
             if ((sBagMenuDisplay->nItems[gBagMenuState.pocket]) <= 1)
             {
                 PlaySE(SE_FAILURE);
+                BagDestroyPocketScrollArrowPair();
                 DisplayItemMessageInBag(taskId, 2, sText_NothingToSort, Task_WaitAButtonAndCloseContextMenu);
                 break;
             }
