@@ -99,6 +99,9 @@
 - Press the select button in the party menu to switch Pokémon without having to use the menu option.
 - Press the select button on the initial Pokédex screen to open the last viewed entry.
 - Hidden Power's true type and power are shown on the summary screen, and its type is shown in battle.
+- Return and Frustration's true power is shown on the summary screen.
+- Weather Ball's type and power are updated with the weather in both the summary screen and in battle.
+- Nature Power now displays the type, power, and accuracy of the move it will call in both the summary screen and in battle.
 - The summary screen now wraps around when cycling through the party Pokémon instead of stopping at the first and last.
 - Game Corner coins can be bought in increments of 1000 in addition to the other two options.
 
