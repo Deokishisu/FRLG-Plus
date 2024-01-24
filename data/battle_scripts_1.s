@@ -3844,7 +3844,7 @@ BattleScript_GhostGetOutGetOut::
 	goto BattleScript_MoveEnd
 
 BattleScript_SilphScopeUnveiled::
-	pause B_WAIT_TIME_SHORT
+	pause B_WAIT_TIME_SHORT_UNSKIPPABLE
 	printstring STRINGID_SILPHSCOPEUNVEILED
 	waitstate
 	playanimation BS_OPPONENT1, B_ANIM_SILPH_SCOPED

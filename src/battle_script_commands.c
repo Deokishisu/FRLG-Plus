@@ -3811,8 +3811,15 @@ static void Cmd_pause(void)
     if (gBattleControllerExecFlags == 0)
     {
         u16 value = T2_READ_16(gBattlescriptCurrInstr + 1);
+        bool32 isGhostPause = FALSE;
 
-        if (++gPauseCounterBattle >= value || (gSaveBlock2Ptr->optionsBattleSceneOff && (JOY_NEW(A_BUTTON | B_BUTTON))))
+        if(value == B_WAIT_TIME_SHORT_UNSKIPPABLE)
+        {
+            isGhostPause = TRUE;
+            value = B_WAIT_TIME_SHORT;
+        }
+                                                                                         // can't skip Ghost revealed pause
+        if (++gPauseCounterBattle >= value || (gSaveBlock2Ptr->optionsBattleSceneOff  && !isGhostPause && (JOY_NEW(A_BUTTON | B_BUTTON))))
         {
             gPauseCounterBattle = 0;
             gBattlescriptCurrInstr += 3;
