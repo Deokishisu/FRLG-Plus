@@ -419,7 +419,7 @@ static const u8 sText_FoePkmnPrefix4[] = _("Foe");
 static const u8 sText_AllyPkmnPrefix3[] = _("Ally");
 static const u8 sText_AttackerUsedX[] = _("{B_ATK_NAME_WITH_PREFIX} used\n{B_BUFF2}!");
 static const u8 sText_MonPickedUpItem[] = _("Your POKéMON picked\nup some items!");
-static const u8 sText_MonPickedUpItemSolo[] = _("{B_BUFF1} picked up {B_BUFF2} {B_TRAINER2_LOSE_TEXT}!");
+static const u8 sText_MonPickedUpItemSolo[] = _("{B_BUFF1} picked up {B_BUFF2} {B_BUFF3}!");
 
 //link title strings
 static const u8 sText_LinkTrainerSentOutPkmnTitle[] = _("{B_LINK_OPPONENT1_NAME}\nsent out {B_OPPONENT_MON1_NAME}!");
