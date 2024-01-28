@@ -9,6 +9,7 @@ SilphCo_4F_MapScripts::
 SilphCo_4F_MapScript_SetMasterTrainerMovementTypes::
 	setvar TRAINER, MASTER_MACHOP
 	callnative ShouldChangeMasterTrainerMovementType
+	call_if_eq VAR_RESULT, FALSE, SilphCo_4F_MapScript_MachopMasterMovementType
 	end
 
 SilphCo_4F_MapScript_MachopMasterMovementType::
@@ -17,6 +18,9 @@ SilphCo_4F_MapScript_MachopMasterMovementType::
 
 SilphCo_4F_OnLoad::
 	call_if_unset FLAG_SILPH_4F_DOOR_1, EventScript_Close4FDoor1
+	call_if_unset FLAG_SILPH_4F_DOOR_2, EventScript_Close4FDoor2
+	end
+
 SilphCo_4F_EventScript_WorkerM::
 	lock
 	faceplayer
