@@ -997,7 +997,7 @@ static void PokeballGlowEffect_TryPlaySe(struct Sprite *sprite)
         sprite->sCounter = 0;
         sprite->sNumFlashed = 0;
         if (sprite->sPlayHealSe)
-            PlayFanfare(MUS_HEAL);
+            PlayFanfare(MUS_RS_HEAL);
     }
 }
 
