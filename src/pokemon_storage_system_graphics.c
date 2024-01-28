@@ -627,7 +627,7 @@ void CreatePartyMonsSprites(bool8 visible)
     {
         species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
         if(species == SPECIES_DEOXYS)
-            species = GetDeoxysSpeciesFromForme(GetMonData(&gPlayerParty[0], MON_DATA_FORME));
+            species = GetDeoxysSpeciesFromForme(GetMonData(&gPlayerParty[i], MON_DATA_FORME));
         if (species != SPECIES_NONE)
         {
             personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
