@@ -54,7 +54,7 @@
 - The map fades in significantly faster after most warps, which makes entering and exiting doors faster.
 
 ##### Inventory and Item-related:
-- Expanded item pockets. The player can hold one stack of every legally obtainable item at once.
+- Expanded item pockets. The player can hold one stack of every legally-obtainable item at once.
 - Two new pockets, the Medicine and Held Items pockets, have been introduced to ease bag navigation.
 - Press Start in the bag to sort items by several criteria.
 - The bag pockets wrap around when switching between them.

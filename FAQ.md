@@ -21,6 +21,7 @@
   * [How do I evolve Eevee into Espeon and Umbreon?](#how-do-i-evolve-eevee-into-espeon-and-umbreon)
   * [Can I evolve trade evolutions without trading?](#can-i-evolve-trade-evolutions-without-trading)
   * [Are trade evolution items available before the postgame?](#are-trade-evolution-items-available-before-the-postgame)
+  * [How do I get the other legendary beasts?](#how-do-i-get-the-other-legendary-beasts)
   * [Where do I get the event tickets so I can obtain Mew, Lugia and Ho-oh, Deoxys, and Latias and Latias?](#where-do-i-get-the-event-tickets-so-i-can-obtain-mew-lugia-and-ho-oh-deoxys-and-latias-and-latias)
   * [How do I get Sudowoodo to battle me?](#how-do-i-get-sudowoodo-to-battle-me)
 * Gameplay:
@@ -121,6 +122,9 @@ Yes. Most are available as wild held items. Items like the Up-grade have been mo
   
   • Deep Sea Teeth can be found rarely on wild Gyarados underwater.
 </details>
+
+### How do I get the other legendary beasts?
+Every time you enter the Hall of Fame, an uncaught legendary beast will begin to roam Kanto if there are no legendary beasts currently roaming.
 
 ### Where do I get the event tickets so I can obtain Mew, Lugia and Ho-oh, Deoxys, and Latias and Latias?
 <details>
