@@ -35,11 +35,11 @@ Route12_MapScript_SquirtleMasterMovementType::
 	return
 
 Route12_MapScript_SeadraMasterMovementType::
-	setobjectmovementtype LOCALID_SEADRA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_SEADRA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route12_MapScript_GoldeenMasterMovementType::
-	setobjectmovementtype LOCALID_GOLDEEN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_GOLDEEN_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route12_MapScript_PoliwagMasterMovementType::

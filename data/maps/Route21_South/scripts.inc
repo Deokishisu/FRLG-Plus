@@ -20,5 +20,5 @@ Route21_South_MapScript_SlowpokeMasterMovementType::
 	return
 
 Route21_South_MapScript_PsyduckMasterMovementType::
-	setobjectmovementtype LOCALID_PSYDUCK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_PSYDUCK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return

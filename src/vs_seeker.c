@@ -1181,10 +1181,29 @@ static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId)
         case OBJ_EVENT_GFX_BLACKBELT:
         case OBJ_EVENT_GFX_HIKER:
         case OBJ_EVENT_GFX_SAILOR:
+        case OBJ_EVENT_GFX_PAINTER:
+        case OBJ_EVENT_GFX_BIRD_KEEPER:
+        case OBJ_EVENT_GFX_POKEMON_RANGER_M:
+        case OBJ_EVENT_GFX_POKEMON_RANGER_F:
+        case OBJ_EVENT_GFX_MASTER_BEAUTY:
+        case OBJ_EVENT_GFX_RUIN_MANIAC:
+        case OBJ_EVENT_GFX_PSYCHIC_M:
+        case OBJ_EVENT_GFX_PSYCHIC_F:
+        case OBJ_EVENT_GFX_AROMA_LADY:
+        case OBJ_EVENT_GFX_TWIN:
+        case OBJ_EVENT_GFX_YOUNG_COUPLE_M:
+        case OBJ_EVENT_GFX_YOUNG_COUPLE_F:
+        case OBJ_EVENT_GFX_ENGINEER:
+        case OBJ_EVENT_GFX_JUGGLER:
+        case OBJ_EVENT_GFX_TAMER:
+        case OBJ_EVENT_GFX_POKEMON_BREEDER:
+        case OBJ_EVENT_GFX_LADY:
+        case OBJ_EVENT_GFX_ROCKER_2:
             return MOVEMENT_TYPE_RAISE_HAND_AND_JUMP;
         case OBJ_EVENT_GFX_TUBER_M_WATER:
         case OBJ_EVENT_GFX_SWIMMER_M_WATER:
         case OBJ_EVENT_GFX_SWIMMER_F_WATER:
+        case OBJ_EVENT_GFX_SWIMMER_F_WATER_2:
             return MOVEMENT_TYPE_RAISE_HAND_AND_SWIM;
         default:
             return MOVEMENT_TYPE_RAISE_HAND_AND_STOP;

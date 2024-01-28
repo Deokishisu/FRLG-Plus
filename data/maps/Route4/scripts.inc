@@ -36,7 +36,7 @@ Route4_MapScript_EkansMasterMovementType::
 	return
 
 Route4_MapScript_GolduckMasterMovementType::
-	setobjectmovementtype LOCALID_GOLDUCK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_GOLDUCK_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route4_EventScript_Woman::

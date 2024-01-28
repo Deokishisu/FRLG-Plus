@@ -24,11 +24,11 @@ Route19_MapScript_StaryuMasterMovementType::
 	return
 	
 Route19_MapScript_HorseaMasterMovementType::
-	setobjectmovementtype LOCALID_HORSEA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_HORSEA_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route19_MapScript_ShellderMasterMovementType::
-	setobjectmovementtype LOCALID_SHELLDER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_SHELLDER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route19_EventScript_RouteSign::

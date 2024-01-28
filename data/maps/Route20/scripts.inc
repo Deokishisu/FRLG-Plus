@@ -34,7 +34,7 @@ Route20_MapScript_SetMasterTrainerMovementTypes::
 	end
 
 Route20_MapScript_BlastoiseMasterMovementType::
-	setobjectmovementtype LOCALID_BLASTOISE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_BLASTOISE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route20_MapScript_TentacoolMasterMovementType::
@@ -42,11 +42,11 @@ Route20_MapScript_TentacoolMasterMovementType::
 	return
 
 Route20_MapScript_CloysterMasterMovementType::
-	setobjectmovementtype LOCALID_CLOYSTER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_CLOYSTER_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 Route20_MapScript_WartortleMasterMovementType::
-	setobjectmovementtype LOCALID_WARTORTLE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_STOP
+	setobjectmovementtype LOCALID_WARTORTLE_MASTER, MOVEMENT_TYPE_RAISE_HAND_AND_SWIM
 	return
 
 
