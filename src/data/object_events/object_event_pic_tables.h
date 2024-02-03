@@ -2394,3 +2394,16 @@ static const struct SpriteFrameImage sPicTable_Brandon[] = {
     overworld_frame(gObjectEventPic_Brandon, 2, 4, 8),
     overworld_frame(gObjectEventPic_Brandon, 2, 4, 9),
 };
+
+static const struct SpriteFrameImage sPicTable_ContestJudge[] = {
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 0),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 1),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 2),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 3),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 4),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 5),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 6),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 7),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 8),
+    overworld_frame(gObjectEventPic_ContestJudge, 2, 4, 9),
+};

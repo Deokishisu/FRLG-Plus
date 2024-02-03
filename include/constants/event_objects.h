@@ -204,8 +204,9 @@
 #define OBJ_EVENT_GFX_NOLAND 200
 #define OBJ_EVENT_GFX_LUCY 201
 #define OBJ_EVENT_GFX_BRANDON 202
+#define OBJ_EVENT_GFX_CONTEST_JUDGE 203
 
-#define NUM_OBJ_EVENT_GFX     203
+#define NUM_OBJ_EVENT_GFX     204
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
