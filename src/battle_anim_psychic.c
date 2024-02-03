@@ -12,6 +12,7 @@ static void AnimQuestionMark(struct Sprite *sprite);
 static void AnimRedX(struct Sprite *sprite);
 static void AnimSkillSwapOrb(struct Sprite *sprite);
 static void AnimPsychoBoost(struct Sprite *sprite);
+static void AnimDefensiveWall_Step1(struct Sprite *sprite);
 static void AnimDefensiveWall_Step2(struct Sprite *sprite);
 static void AnimDefensiveWall_Step3(struct Sprite *sprite);
 static void AnimDefensiveWall_Step4(struct Sprite *sprite);
@@ -418,12 +419,14 @@ const struct SpriteTemplate gPsychoBoostOrbSpriteTemplate =
 // For the rectangular wall sprite used by Reflect, Mirror Coat, etc
 static void AnimDefensiveWall(struct Sprite *sprite)
 {
-    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER || IsContest())
+    bool32 isContest = IsContest();
+
+    if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER || isContest)
     {
         sprite->oam.priority = 2;
         sprite->subpriority = 200;
     }
-    if (!IsContest())
+    if (!isContest)
     {
         u8 battlerCopy;
         u8 battler = battlerCopy = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
@@ -433,11 +436,13 @@ static void AnimDefensiveWall(struct Sprite *sprite)
 
         if (IsBattlerSpriteVisible(battler))
             MoveBattlerSpriteToBG(battler, toBG2);
+
         battler = BATTLE_PARTNER(battlerCopy);
         if (IsBattlerSpriteVisible(battler))
             MoveBattlerSpriteToBG(battler, toBG2 ^ var0);
     }
-    if (!IsContest() && IsDoubleBattle())
+
+    if (!isContest && IsDoubleBattle())
     {
         if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
         {
@@ -454,17 +459,45 @@ static void AnimDefensiveWall(struct Sprite *sprite)
     {
         if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
             gBattleAnimArgs[0] = -gBattleAnimArgs[0];
+
         sprite->x = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_X) + gBattleAnimArgs[0];
         sprite->y = GetBattlerSpriteCoord(gBattleAnimAttacker, BATTLER_COORD_Y) + gBattleAnimArgs[1];
     }
-    if (IsContest())
-        sprite->y += 9;
+
     sprite->data[0] = OBJ_PLTT_ID(IndexOfSpritePaletteTag(gBattleAnimArgs[2]));
-    sprite->callback = AnimDefensiveWall_Step2;
-    sprite->callback(sprite);
+
+    if (isContest)
+    {
+        sprite->y += 9;
+        sprite->callback = AnimDefensiveWall_Step2;
+        sprite->callback(sprite);
+    }
+    else
+    {
+        sprite->callback = AnimDefensiveWall_Step1;
+    }
 }
 
 // AnimDefensiveWall_Step1 is removed in FRLG from the removal of Contest handling
+static void AnimDefensiveWall_Step1(struct Sprite *sprite)
+{
+    u8 battler = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+    if (!sprite->data[7])
+    {
+        sprite->data[7] = 1;
+        return;
+    }
+
+    if (IsBattlerSpriteVisible(battler))
+        gSprites[gBattlerSpriteIds[battler]].invisible = TRUE;
+
+    battler = BATTLE_PARTNER(battler);
+    if (IsBattlerSpriteVisible(battler))
+        gSprites[gBattlerSpriteIds[battler]].invisible = TRUE;
+
+    sprite->callback = AnimDefensiveWall_Step2;
+    sprite->callback(sprite);
+}
 
 static void AnimDefensiveWall_Step2(struct Sprite *sprite)
 {
@@ -543,6 +576,7 @@ static void AnimWallSparkle(struct Sprite *sprite)
         bool8 respectMonPicOffsets = FALSE;
         if (!ignoreOffsets)
             respectMonPicOffsets = TRUE;
+
         if (!IsContest() && IsDoubleBattle())
         {
             if (GetBattlerSide(gBattleAnimAttacker) == B_SIDE_PLAYER)
@@ -558,7 +592,7 @@ static void AnimWallSparkle(struct Sprite *sprite)
         }
         else
         {
-            if (gBattleAnimArgs[2] == 0)
+            if (gBattleAnimArgs[2] == ANIM_ATTACKER)
                 InitSpritePosToAnimAttacker(sprite, respectMonPicOffsets);
             else
                 InitSpritePosToAnimTarget(sprite, respectMonPicOffsets);

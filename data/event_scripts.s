@@ -70,7 +70,8 @@ gSpecialVars::
 	.4byte gSpecialVar_MonBoxPos
 	.4byte gSpecialVar_TextColor
 	.4byte gSpecialVar_PrevTextColor
-	.4byte gSpecialVar_0x8014
+	.4byte gSpecialVar_ContestRank
+	.4byte gSpecialVar_ContestCategory
 
 	.include "data/specials.inc"
 

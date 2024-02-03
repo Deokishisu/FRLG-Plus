@@ -1,4 +1,5 @@
 #include "global.h"
+#include "contest.h"
 #include "event_data.h"
 #include "item_menu.h"
 #include "quest_log.h"
@@ -35,7 +36,6 @@ EWRAM_DATA u16 gSpecialVar_MonBoxId = 0;
 EWRAM_DATA u16 gSpecialVar_MonBoxPos = 0;
 EWRAM_DATA u16 gSpecialVar_TextColor = 0;
 EWRAM_DATA u16 gSpecialVar_PrevTextColor = 0;
-EWRAM_DATA u16 gSpecialVar_0x8014 = 0;
 EWRAM_DATA u8 sSpecialFlags[SPECIAL_FLAGS_SIZE] = {};
 
 u16 gLastQuestLogStoredFlagOrVarIdx;
@@ -334,7 +334,8 @@ void ResetSpecialVars(void)
     gSpecialVar_MonBoxPos = 0;
     gSpecialVar_TextColor = 0;
     gSpecialVar_PrevTextColor = 0;
-    gSpecialVar_0x8014 = 0;
+    gSpecialVar_ContestRank = 0;
+    gSpecialVar_ContestCategory = 0;
 }
 
 u8 NuzlockeFlagSet(u8 mapsec)

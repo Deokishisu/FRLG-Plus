@@ -190,12 +190,12 @@
 #define VAR_MAP_SCENE_CINNABAR_ISLAND_2                                        0x408A
 #define VAR_MAP_SCENE_MT_MOON_B2F                                              0x408B
 
-
 #define VAR_FARAWAY_ISLAND_STEP_COUNTER  0x408C
-#define VAR_CONTEST_RANK                 0x408D
-#define VAR_CONTEST_CATEGORY             0x408E
-#define VAR_CONTEST_TYPE                 0x408F
-#define VAR_CONTEST_PRIZE_PICKUP         0x4090
+#define VAR_CONTEST_TYPE                 0x408D
+#define VAR_CONTEST_PRIZE_PICKUP         0x408E
+
+#define VAR_0x408F                 0x408F
+#define VAR_0x4090                 0x4090
 #define VAR_0x4091                 0x4091
 #define VAR_0x4092                 0x4092
 #define VAR_0x4093                 0x4093
@@ -332,9 +332,10 @@
 #define VAR_MON_BOX_POS            0x8011
 #define VAR_TEXT_COLOR             0x8012
 #define VAR_PREV_TEXT_COLOR        0x8013
-#define VAR_0x8014                 0x8014 // Unknown/unused
+#define VAR_CONTEST_RANK           0x8014
+#define VAR_CONTEST_CATEGORY       0x8015
 
-#define SPECIAL_VARS_END           0x8014
+#define SPECIAL_VARS_END           0x8015
 
 // Text color ids for VAR_TEXT_COLOR / VAR_PREV_TEXT_COLOR
 #define NPC_TEXT_COLOR_MALE      0 // Blue, for male NPCs

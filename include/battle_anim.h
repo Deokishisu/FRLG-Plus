@@ -305,6 +305,7 @@ void DestroySpriteAndFreeResources_(struct Sprite *sprite);
 s16 GetBattlerSpriteCoordAttr(u8 battlerId, u8 attr);
 void SetAverageBattlerPositions(u8 battlerId, bool8 respectMonPicOffsets, s16 *x, s16 *y);
 u8 CreateInvisibleSpriteCopy(s32 battlerId, u8 spriteId, s32 species);
+void AnimLoadCompressedBgTilemapHandleContest(struct BattleAnimBgData *, const void *, bool32);
 void AnimTranslateLinearAndFlicker_Flipped(struct Sprite *sprite);
 void AnimTranslateLinearAndFlicker(struct Sprite *sprite);
 void AnimSpinningSparkle(struct Sprite *sprite);

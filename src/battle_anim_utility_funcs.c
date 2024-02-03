@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
+#include "contest.h"
 #include "graphics.h"
 #include "task.h"
 #include "util.h"
@@ -327,18 +328,25 @@ void AnimTask_DrawFallingWhiteLinesOnAttacker(u8 taskId)
             }
         }
     }
-    if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
-        species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
+
+    if (IsContest())
+    {
+        species = gContestResources->moveAnim->species;
+    }
     else
-        species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
+    {
+        if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER)
+            species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
+        else
+            species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_SPECIES);
+    }
     spriteId = GetAnimBattlerSpriteId(ANIM_ATTACKER);
     newSpriteId = CreateInvisibleSpriteCopy(gBattleAnimAttacker, spriteId, species);
     GetBattleAnimBg1Data(&animBgData);
-    AnimLoadCompressedBgTilemap(animBgData.bgId, gFile_graphics_battle_anims_masks_curse_tilemap);
-    if (IsContest())
-        RelocateBattleBgPal(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
+    AnimLoadCompressedBgTilemapHandleContest(&animBgData, gFile_graphics_battle_anims_masks_curse_tilemap, FALSE);
     AnimLoadCompressedBgGfx(animBgData.bgId, gFile_graphics_battle_anims_masks_curse_sheet, animBgData.tilesOffset);
     LoadPalette(sRgbWhite, BG_PLTT_ID(animBgData.paletteId) + 1, PLTT_SIZEOF(1));
+
     gBattle_BG1_X = -gSprites[spriteId].x + 32;
     gBattle_BG1_Y = -gSprites[spriteId].y + 32;
     gTasks[taskId].data[0] = newSpriteId;
@@ -434,10 +442,18 @@ static void StatsChangeAnimation_Step1(u8 taskId)
             }
         }
     }
-    if (GetBattlerSide(sAnimStatsChangeData->battler1) != B_SIDE_PLAYER)
-        sAnimStatsChangeData->species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[sAnimStatsChangeData->battler1]], MON_DATA_SPECIES);
+    if (IsContest())
+    {
+        sAnimStatsChangeData->species = gContestResources->moveAnim->species;
+    }
     else
-        sAnimStatsChangeData->species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[sAnimStatsChangeData->battler1]], MON_DATA_SPECIES);
+    {
+        if (GetBattlerSide(sAnimStatsChangeData->battler1) != B_SIDE_PLAYER)
+            sAnimStatsChangeData->species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[sAnimStatsChangeData->battler1]], MON_DATA_SPECIES);
+        else
+            sAnimStatsChangeData->species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[sAnimStatsChangeData->battler1]], MON_DATA_SPECIES);
+    }
+
     gTasks[taskId].func = StatsChangeAnimation_Step2;
 }
 
@@ -456,11 +472,10 @@ static void StatsChangeAnimation_Step2(u8 taskId)
     }
     GetBattleAnimBg1Data(&animBgData);
     if (sAnimStatsChangeData->data[0] == 0)
-        AnimLoadCompressedBgTilemap(animBgData.bgId, gBattleStatMask1_Tilemap);
+        AnimLoadCompressedBgTilemapHandleContest(&animBgData, gBattleStatMask1_Tilemap, FALSE);
     else
-        AnimLoadCompressedBgTilemap(animBgData.bgId, gBattleStatMask2_Tilemap);
-    if (IsContest())
-        RelocateBattleBgPal(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
+        AnimLoadCompressedBgTilemapHandleContest(&animBgData, gBattleStatMask2_Tilemap, FALSE);
+
     AnimLoadCompressedBgGfx(animBgData.bgId, gBattleStatMask_Gfx, animBgData.tilesOffset);
     switch (sAnimStatsChangeData->data[1])
     {
@@ -736,6 +751,7 @@ void StartMonScrollingBgMask(u8 taskId, s32 unused, u16 scrollSpeed, u8 battler1
 
     if (IsContest() || (includePartner && !IsBattlerSpriteVisible(battler2)))
         includePartner = FALSE;
+    
     gBattle_WIN0H = 0;
     gBattle_WIN0V = 0;
     SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR
@@ -751,20 +767,30 @@ void StartMonScrollingBgMask(u8 taskId, s32 unused, u16 scrollSpeed, u8 battler1
     ((vBgCnt *)&bg1Cnt)->areaOverflowMode = 1;
     if (!IsContest())
         ((vBgCnt *)&bg1Cnt)->charBaseBlock = 1;
+    
     SetGpuReg(REG_OFFSET_BG1CNT, bg1Cnt);
-    if (GetBattlerSide(battler1) != B_SIDE_PLAYER)
-        species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler1]], MON_DATA_SPECIES);
+
+    if (IsContest())
+    {
+        species = gContestResources->moveAnim->species;
+    }
     else
-        species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler1]], MON_DATA_SPECIES);
+    {
+        if (GetBattlerSide(battler1) != B_SIDE_PLAYER)
+            species = GetMonData(&gEnemyParty[gBattlerPartyIndexes[battler1]], MON_DATA_SPECIES);
+        else
+            species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battler1]], MON_DATA_SPECIES);
+    }
+
     spriteId = CreateInvisibleSpriteCopy(battler1, gBattlerSpriteIds[battler1], species);
     if (includePartner)
         newSpriteId = CreateInvisibleSpriteCopy(battler2, gBattlerSpriteIds[battler2], species);
+    
     GetBattleAnimBg1Data(&animBgData);
-    AnimLoadCompressedBgTilemap(animBgData.bgId, tilemap);
-    if (IsContest())
-        RelocateBattleBgPal(animBgData.paletteId, animBgData.bgTilemap, 0, 0);
+    AnimLoadCompressedBgTilemapHandleContest(&animBgData, tilemap, FALSE);
     AnimLoadCompressedBgGfx(animBgData.bgId, gfx, animBgData.tilesOffset);
     LoadCompressedPalette(palette, BG_PLTT_ID(animBgData.paletteId), PLTT_SIZE_4BPP);
+
     gBattle_BG1_X = 0;
     gBattle_BG1_Y = 0;
     gTasks[taskId].data[1] = scrollSpeed;
