@@ -865,7 +865,7 @@ static bool8 AllPossibleGymLeadersPresent(void)
 {
     struct BattleHouse* BattleHouseVar;
     u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
-    (void*) BattleHouseVar = varPtr;
+    BattleHouseVar = (struct BattleHouse*) varPtr;
 
     if(BattleHouseVar->toldBrock && !BattleHouseVar->visitorBrock)
     {
@@ -903,7 +903,7 @@ u8 ReturnBattleHouseLevel(void)
     struct BattleHouse* BattleHouseVar;
     u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
     u8 levelGrowth;
-    (void*) BattleHouseVar = varPtr;
+    BattleHouseVar = (struct BattleHouse*) varPtr;
 
     levelGrowth = BattleHouseVar->levelGrowth;
 
@@ -915,7 +915,7 @@ void UpdateBattleHouseStepCounter(void)
     struct BattleHouse* BattleHouseVar;
     u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
     u8 chanceOfVisit = 46;
-    (void*) BattleHouseVar = varPtr;
+    BattleHouseVar = (struct BattleHouse*) varPtr;
 
     if(VarGet(VAR_BATTLE_HOUSE) && gMapHeader.regionMapSectionId != MAPSEC_SEVEN_ISLAND)
     {
@@ -1039,7 +1039,7 @@ void UseBattleHouseVar(void)
     u16 *varPtr = GetVarPointer(VAR_BATTLE_HOUSE);
     u8 totalCount = 0;
     u8 runningCount = 0;
-    (void*) BattleHouseVar = varPtr;
+    BattleHouseVar = (struct BattleHouse*) varPtr;
 
     switch(type)
     {

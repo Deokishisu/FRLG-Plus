@@ -1311,3 +1311,19 @@ const u8 gText_WhoAreThey[] = _("Who are they?");
 const u8 gText_HowDoIBattleThem[] = _("How do I battle them?");
 const u8 gText_AboutTitles[] = _("About titles");
 const u8 gText_Nothing[] = _("Exit");
+
+// Contests
+const u8 gText_ColorLightShadowDarkGray[] = _("{COLOR LIGHT_GRAY}{SHADOW DARK_GRAY}");
+const u8 gText_ColorBlue[] = _("{COLOR BLUE}");
+const u8 gText_ColorTransparent[] = _("{HIGHLIGHT TRANSPARENT}{COLOR TRANSPARENT}");
+const u8 gText_AnnouncingResults[] = _("Announcing the results!");
+const u8 gText_PreliminaryResults[] = _("The preliminary results!");
+const u8 gText_Round2Results[] = _("Round 2 results!");
+const u8 gText_ContestantsMonWon[] = _("{STR_VAR_1}'s {STR_VAR_2} won!");
+const u8 gText_CommunicationStandby[] = _("Communication standby…");
+const u8 gText_ColorDarkGray[] = _("{COLOR DARK_GRAY}");
+const u8 gText_CoolnessContest[] = _("COOLNESS CONTEST");
+const u8 gText_BeautyContest[] = _("BEAUTY CONTEST");
+const u8 gText_CutenessContest[] = _("CUTENESS CONTEST");
+const u8 gText_SmartnessContest[] = _("SMARTNESS CONTEST");
+const u8 gText_ToughnessContest[] = _("TOUGHNESS CONTEST");

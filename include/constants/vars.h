@@ -110,7 +110,7 @@
 #define VAR_0x403C                         0x403C // Set to 0x0302, never read
 #define VAR_HERACROSS_SIZE_RECORD          0x403D
 #define VAR_DEOXYS_INTERACTION_NUM         0x403E
-#define VAR_0x403F                         0x403F
+#define VAR_CONTEST_HALL_STATE             0x403F
 #define VAR_MAGIKARP_SIZE_RECORD           0x4040
 #define VAR_0x4041                         0x4041
 #define VAR_TRAINER_CARD_MON_ICON_TINT_IDX 0x4042

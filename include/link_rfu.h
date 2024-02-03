@@ -232,6 +232,7 @@ struct RfuManager
 extern struct RfuGameData gHostRfuGameData;
 extern u8 gHostRfuUsername[];
 extern struct RfuManager gRfu;
+extern u8 gWirelessStatusIndicatorSpriteId;
 
 void LinkRfu_FatalError(void);
 void MG_DrawCheckerboardPattern(void);

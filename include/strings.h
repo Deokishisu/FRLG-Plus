@@ -1642,4 +1642,20 @@ extern const u8 gText_HowDoIBattleThem[];
 extern const u8 gText_AboutTitles[];
 extern const u8 gText_Nothing[];
 
+// Contests
+extern const u8 gText_ColorLightShadowDarkGray[];
+extern const u8 gText_ColorBlue[];
+extern const u8 gText_ColorTransparent[];
+extern const u8 gText_AnnouncingResults[];
+extern const u8 gText_PreliminaryResults[];
+extern const u8 gText_Round2Results[];
+extern const u8 gText_ContestantsMonWon[];
+extern const u8 gText_CommunicationStandby[];
+extern const u8 gText_ColorDarkGray[];
+extern const u8 gText_CoolnessContest[];
+extern const u8 gText_BeautyContest[];
+extern const u8 gText_CutenessContest[];
+extern const u8 gText_SmartnessContest[];
+extern const u8 gText_ToughnessContest[];
+
 #endif //GUARD_STRINGS_H

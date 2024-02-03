@@ -139,3 +139,5 @@
 	.include "src/key_system_menu.o"
 	.align 2
 	.include "src/cable_car.o"
+	.include "src/contest.o"
+	.include "src/contest_util.o"

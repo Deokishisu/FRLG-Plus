@@ -12,6 +12,8 @@ bool8 ScriptMenu_MultichoiceGrid(u8 left, u8 top, u8 multichoiceId, u8 a4, u8 co
 bool8 ScriptMenu_ShowPokemonPic(u16 var1, u8 var2, u8 var3);
 bool8 CreatePCMenu(void);
 void ScriptMenu_DisplayPCStartupPrompt(void);
+u8 CreateWindowFromRect(u8 left, u8 top, u8 width, u8 height);
+void ClearToTransparentAndRemoveWindow(u8 windowId);
 
 bool8 (*ScriptMenu_HidePokemonPic(void))(void);
 void QL_DestroyAbortedDisplay(void);

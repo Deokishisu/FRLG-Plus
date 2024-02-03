@@ -313,6 +313,7 @@ void AnimWeatherBallDown(struct Sprite *sprite);
 void AnimParticleBurst(struct Sprite *);
 void AnimMoveTwisterParticle(struct Sprite *);
 u32 UnpackSelectedBattlePalettes(s16 selector);
+u8 GetBattlerSpriteFinal_Y(u8 battlerId, u16 species, bool8 a3);
 void AnimTask_HorizontalShake(u8 taskId);
 void DestroyAnimSpriteAfterTimer(struct Sprite *sprite);
 void AnimWaterPulseRing(struct Sprite *sprite);

@@ -1240,6 +1240,10 @@ EventScript_NoMoreRoomForPokemon::
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
 
+	.include "data/text/contest_strings.inc"
+	.include "data/text/contest_link.inc"
+	.include "data/text/contest_painting.inc"
+
 	.include "data/maps/FarawayIsland_Exterior/scripts.inc"
 	.include "data/maps/FarawayIsland_Exterior/text.inc"
 	.include "data/maps/FarawayIsland_Interior/scripts.inc"

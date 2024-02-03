@@ -146,12 +146,15 @@ SECTIONS {
         src/item_menu_icons.o(.text);
         src/battle_anim_mon_movement.o(.text);
         src/item.o(.text);
+        src/contest.o(.text);
         src/shop.o(.text);
         src/special_field_anim.o(.text);
         src/berry.o(.text);
         src/script_menu.o(.text);
         src/naming_screen.o(.text);
         src/money.o(.text);
+        src/contest_effect.o(.text);
+        src/contest_util.o(.text);
         src/script_pokemon_util.o(.text);
         src/field_poison.o(.text);
         src/pokemon_size_record.o(.text);
@@ -160,6 +163,7 @@ SECTIONS {
         src/fldeff_berrytree.o(.text);
         src/field_special_scene.o(.text);
         src/safari_zone.o(.text);
+        src/contest_link.o(.text);
         src/item_use.o(.text);
         src/battle_anim_effects_1.o(.text);
         src/battle_anim_effects_2.o(.text);
@@ -189,6 +193,7 @@ SECTIONS {
         src/heal_location.o(.text);
         src/region_map.o(.text);
         src/image_processing_effects.o(.text);
+        src/contest_painting.o(.text);
         src/battle_ai_script_commands.o(.text);
         src/fldeff_rocksmash.o(.text);
         src/fldeff_dig.o(.text);
@@ -206,10 +211,12 @@ SECTIONS {
         src/battle_message.o(.text);
         src/math_util.o(.text);
         src/palette_util.o(.text);
+        src/confetti_util.o(.text);
         src/cable_car_util.o(.text);
         src/save.o(.text);
         src/mystery_event_script.o(.text);
         src/field_effect_helpers.o(.text);
+        src/contest_ai.o(.text);
         src/battle_anim_sound_tasks.o(.text);
         src/battle_controller_safari.o(.text);
         src/fldeff_sweetscent.o(.text);
@@ -308,6 +315,7 @@ SECTIONS {
         src/minigame_countdown.o(.text);
         src/berry_fix_program.o(.text);
         src/cable_car.o(.text);
+        src/contest_link_util.o(.text);
     } =0
 
     script_data :
@@ -319,6 +327,7 @@ SECTIONS {
         data/field_effect_scripts.o(script_data);
         data/battle_scripts_2.o(script_data);
         data/battle_ai_scripts.o(script_data);
+        data/contest_ai_scripts.o(script_data);
         data/mystery_event_script_cmd_table.o(script_data);
     } =0
 
@@ -466,11 +475,13 @@ SECTIONS {
         src/item_menu_icons.o(.rodata);
         src/battle_anim_mon_movement.o(.rodata);
         src/item.o(.rodata);
+        src/contest.o(.rodata);
         src/shop.o(.rodata);
         src/special_field_anim.o(.rodata);
         src/berry.o(.rodata);
         src/script_menu.o(.rodata);
         src/naming_screen.o(.rodata);
+        src/contest_util.o(.rodata);
         src/pokemon_size_record.o(.rodata);
         src/item_use.o(.rodata);
         src/battle_anim_effects_1.o(.rodata);
@@ -604,6 +615,9 @@ SECTIONS {
         src/trainer_tower_sets.o(.rodata);
         src/move_descriptions.o(.rodata);
         src/cable_car.o(.rodata);
+        src/contest_link.o(.rodata);
+        src/contest_painting.o(.rodata);
+        src/contest_ai.o(.rodata);
 
         /* These should not be moved to C files */
         src/mystery_event_msg.o(.rodata);

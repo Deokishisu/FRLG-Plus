@@ -4600,4 +4600,42 @@ extern const u32 gCableCarDoor_Gfx[];
 extern const u32 gCableCarCable_Gfx[];
 extern const u16 gCableCar_Pal[];
 
+// Contests
+extern const u32 gContestInterfaceGfx[];
+extern const u32 gContestAudienceGfx[];
+extern const u8 gContestApplauseMeterGfx[];
+extern const u8 gContestNextTurnNumbersGfx[];
+extern const u8 gContestNextTurnRandomGfx[];
+extern const u32 gContestAudienceTilemap[];
+extern const u32 gContestInterfaceAudiencePalette[];
+extern const u32 gContestInterfaceTilemap[];
+extern const u32 gContestCurtainTilemap[];
+extern const u32 gContestSliderHeart_Gfx[];
+extern const u32 gContestNextTurnGfx[];
+extern const u16 gContestPal[];
+extern const u32 gContestFaces_Gfx[];
+extern const u32 gContestApplauseGfx[];
+extern const u32 gContestJudgeGfx[];
+extern const u32 gContestJudgeSymbolsGfx[];
+extern const u32 gContestJudgeSymbolsPal[];
+extern const u32 gContest2Pal[];
+
+// Contest util
+extern const u32 gContestResults_Gfx[];
+extern const u32 gContestResults_WinnerBanner_Tilemap[];
+extern const u32 gContestResults_Interface_Tilemap[];
+extern const u32 gContestResults_Bg_Tilemap[];
+extern const u32 gContestResults_Pal[];
+extern const u16 gContestResultsTitle_Link_Tilemap[];
+extern const u16 gContestResultsTitle_Normal_Tilemap[];
+extern const u16 gContestResultsTitle_Super_Tilemap[];
+extern const u16 gContestResultsTitle_Hyper_Tilemap[];
+extern const u16 gContestResultsTitle_Master_Tilemap[];
+extern const u16 gContestResultsTitle_Cool_Tilemap[];
+extern const u16 gContestResultsTitle_Beauty_Tilemap[];
+extern const u16 gContestResultsTitle_Cute_Tilemap[];
+extern const u16 gContestResultsTitle_Smart_Tilemap[];
+extern const u16 gContestResultsTitle_Tough_Tilemap[];
+extern const u16 gContestResultsTitle_Tilemap[];
+
 #endif //GUARD_GRAPHICS_H

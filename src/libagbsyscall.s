@@ -91,4 +91,16 @@ VBlankIntrWait:
 	bx lr
 	thumb_func_end VBlankIntrWait
 
+	thumb_func_start RLUnCompVram
+RLUnCompVram:
+	svc #21
+	bx lr
+	thumb_func_end RLUnCompVram
+
+	thumb_func_start RLUnCompWram
+RLUnCompWram:
+	svc #20
+	bx lr
+	thumb_func_end RLUnCompWram
+
 	.align 2, 0 @ Don't pad with nop.

@@ -66,8 +66,17 @@
 
 #define ROM_HEADER_SIZE   0xC0
 
+// Dimensions of a tile in pixels
+#define TILE_WIDTH  8
+#define TILE_HEIGHT 8
+
+// Dimensions of the GBA screen in pixels
 #define DISPLAY_WIDTH  240
 #define DISPLAY_HEIGHT 160
+
+// Dimensions of the GBA screen in tiles
+#define DISPLAY_TILE_WIDTH  (DISPLAY_WIDTH / TILE_WIDTH)
+#define DISPLAY_TILE_HEIGHT (DISPLAY_HEIGHT / TILE_HEIGHT)
 
 #define TILE_SIZE_4BPP 32
 #define TILE_SIZE_8BPP 64

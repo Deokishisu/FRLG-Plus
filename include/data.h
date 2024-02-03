@@ -49,6 +49,7 @@ extern const u8 *const gBattleAnims_Special[];
 extern const union AnimCmd *const gAnims_MonPic[];
 extern const union AffineAnimCmd *const gAffineAnims_BattleSpritePlayerSide[];
 extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteOpponentSide[];
+extern const union AffineAnimCmd *const gAffineAnims_BattleSpriteContest[];
 extern const struct SpriteFrameImage gBattlerPicTable_PlayerLeft[];
 extern const struct SpriteFrameImage gBattlerPicTable_OpponentLeft[];
 extern const struct SpriteFrameImage gBattlerPicTable_PlayerRight[];

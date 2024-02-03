@@ -692,3 +692,21 @@ void StripExtCtrlCodes(u8 *str)
     }
     str[destIndex] = 0xFF;
 }
+
+void ConvertInternationalContestantName(u8 *str)
+{
+    if (*str++ == EXT_CTRL_CODE_BEGIN && *str++ == EXT_CTRL_CODE_JPN)
+    {
+        while (*str != EOS)
+        {
+            if (str[0] == EXT_CTRL_CODE_BEGIN && str[1] == EXT_CTRL_CODE_ENG)
+                return;
+
+            str++;
+        }
+
+        *str++ = EXT_CTRL_CODE_BEGIN;
+        *str++ = EXT_CTRL_CODE_ENG;
+        *str = EOS;
+    }
+}

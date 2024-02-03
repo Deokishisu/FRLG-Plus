@@ -11,7 +11,6 @@
 
 #define IS_DOUBLE_BATTLE() (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
 
-static u8 GetBattlerSpriteFinal_Y(u8 battlerId, u16 species, bool8 a3);
 static void PlayerThrowBall_AnimTranslateLinear_WithFollowup(struct Sprite *sprite);
 static void AnimFastTranslateLinearWaitEnd(struct Sprite *sprite);
 static bool8 ShouldRotScaleSpeciesBeFlipped(void);
@@ -230,7 +229,7 @@ static u8 GetBattlerElevation(u8 battlerId, u16 species)
     return ret;
 }
 
-static u8 GetBattlerSpriteFinal_Y(u8 battlerId, u16 species, bool8 a3)
+u8 GetBattlerSpriteFinal_Y(u8 battlerId, u16 species, bool8 a3)
 {
     u16 offset;
     u8 y;
