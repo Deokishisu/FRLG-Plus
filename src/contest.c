@@ -5533,6 +5533,7 @@ bool8 SaveContestWinner(u8 rank)
 {
     s32 i;
     u8 captionId = Random() % NUM_PAINTING_CAPTIONS;
+    u32 shinyValue;
 
     // Get the index of the winner among the contestants
     for (i = 0; i < CONTESTANT_COUNT - 1; i++)
@@ -5569,26 +5570,38 @@ bool8 SaveContestWinner(u8 rank)
         // Used to save any winner for the Contest Hall or the Museum
         // but excludes the temporary save used by the artist
         u8 id = GetContestWinnerSaveIdx(rank, TRUE);
-        gSaveBlock1Ptr->contestWinners[id].personality = gContestMons[i].personality;
-        gSaveBlock1Ptr->contestWinners[id].species = gContestMons[i].species;
-        gSaveBlock1Ptr->contestWinners[id].trainerId = gContestMons[i].otId;
-        StringCopy(gSaveBlock1Ptr->contestWinners[id].monName, gContestMons[i].nickname);
-        StringCopy(gSaveBlock1Ptr->contestWinners[id].trainerName, gContestMons[i].trainerName);
-        if(gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
-            gSaveBlock1Ptr->contestWinners[id].contestRank = CONTEST_RANK_LINK;
+        gSaveBlock2Ptr->contestWinners[id].personality = gContestMons[i].personality;
+        gSaveBlock2Ptr->contestWinners[id].species = gContestMons[i].species;
+
+        shinyValue = GET_SHINY_VALUE(gContestMons[i].otId, gContestMons[i].personality);
+        if(shinyValue < SHINY_ODDS)
+            gSaveBlock2Ptr->contestWinners[id].isShiny = TRUE;
         else
-            gSaveBlock1Ptr->contestWinners[id].contestRank = gSpecialVar_ContestRank;
+            gSaveBlock2Ptr->contestWinners[id].isShiny = FALSE;
+
+        StringCopy(gSaveBlock2Ptr->contestWinners[id].monName, gContestMons[i].nickname);
+        StringCopy(gSaveBlock2Ptr->contestWinners[id].trainerName, gContestMons[i].trainerName);
+        if(gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
+            gSaveBlock2Ptr->contestWinners[id].contestRank = CONTEST_RANK_LINK;
+        else
+            gSaveBlock2Ptr->contestWinners[id].contestRank = gSpecialVar_ContestRank;
 
         if (rank != CONTEST_SAVE_FOR_MUSEUM)
-            gSaveBlock1Ptr->contestWinners[id].contestCategory = gSpecialVar_ContestCategory;
+            gSaveBlock2Ptr->contestWinners[id].contestCategory = gSpecialVar_ContestCategory;
         else
-            gSaveBlock1Ptr->contestWinners[id].contestCategory = captionId;
+            gSaveBlock2Ptr->contestWinners[id].contestCategory = captionId;
     }
     else
     {
         // Set the most recent winner so the artist can show the player their painting
         gCurContestWinner.personality = gContestMons[i].personality;
-        gCurContestWinner.trainerId = gContestMons[i].otId;
+
+        shinyValue = GET_SHINY_VALUE(gContestMons[i].otId, gContestMons[i].personality);
+        if(shinyValue < SHINY_ODDS)
+            gCurContestWinner.isShiny = TRUE;
+        else
+            gCurContestWinner.isShiny = FALSE;
+
         gCurContestWinner.species = gContestMons[i].species;
         StringCopy(gCurContestWinner.monName, gContestMons[i].nickname);
         StringCopy(gCurContestWinner.trainerName, gContestMons[i].trainerName);
@@ -5614,7 +5627,7 @@ u8 GetContestWinnerSaveIdx(u8 rank, bool8 shift)
         if (shift)
         {
             for (i = NUM_CONTEST_HALL_WINNERS - 1; i > 0; i--)
-                memcpy(&gSaveBlock1Ptr->contestWinners[i], &gSaveBlock1Ptr->contestWinners[i - 1], sizeof(struct ContestWinner));
+                memcpy(&gSaveBlock2Ptr->contestWinners[i], &gSaveBlock2Ptr->contestWinners[i - 1], sizeof(struct ContestWinner));
         }
         return CONTEST_WINNER_HALL_1 - 1;
     default:
@@ -5642,7 +5655,7 @@ void ClearContestWinnerPicsInContestHall(void)
     s32 i;
 
     for (i = 0; i < MUSEUM_CONTEST_WINNERS_START; i++)
-        gSaveBlock1Ptr->contestWinners[i] = gDefaultContestWinners[i];
+        gSaveBlock2Ptr->contestWinners[i] = gDefaultContestWinners[i];
 }
 
 /*static void SetContestLiveUpdateFlags(u8 contestant)

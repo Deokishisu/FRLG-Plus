@@ -449,7 +449,7 @@ void ChooseNextBattleTowerTrainer(void)
                 for (i = 0; i < gSaveBlock2Ptr->battleTower.curChallengeBattleNum[levelType] - 1 && gSaveBlock2Ptr->battleTower.battledTrainerIds[i] != trainerId; i++);
             }
             while (i != gSaveBlock2Ptr->battleTower.curChallengeBattleNum[levelType] - 1);
-            gSaveBlock2Ptr->battleTower.battleTowerTrainerId = trainerId;
+                gSaveBlock2Ptr->battleTower.battleTowerTrainerId = trainerId;
         }
         else
         {

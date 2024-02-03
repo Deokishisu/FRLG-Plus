@@ -7719,6 +7719,25 @@ const u32 *GetMonFrontSpritePal(struct Pokemon *mon)
     return GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality);
 }
 
+const u32 *GetMonSpritePalFromContestPainting(u16 species, bool32 isShiny, u32 personality)
+{
+    if (species >= 65530 && species <= 65533) //Deoxys
+    {
+        if(isShiny)
+            return gMonShinyPaletteTable[SPECIES_DEOXYS].data;
+        else
+            return gMonPaletteTable[SPECIES_DEOXYS].data;
+    }
+
+    if (species > SPECIES_EGG)
+        return gMonPaletteTable[0].data;
+
+    if (isShiny)
+        return gMonShinyPaletteTable[species].data;
+    else
+        return gMonPaletteTable[species].data;
+}
+
 const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 personality)
 {
     u32 shinyValue;

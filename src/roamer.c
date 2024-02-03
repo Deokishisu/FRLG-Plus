@@ -135,23 +135,44 @@ u16 GetRoamerSpecies(void)
     return species;
 }
 
+static u16 ConvertMonSpeciesToRoamerSpecies(u16 species)
+{
+    switch(species)
+    {
+        case SPECIES_RAIKOU:
+            return ROAMER_RAIKOU;
+        case SPECIES_ENTEI:
+            return ROAMER_ENTEI;
+        default: // SPECIES_SUICUNE
+            return ROAMER_SUICUNE;
+    }
+}
+
+static u16 ConvertRoamerSpeciesToMonSpecies(u16 species)
+{
+    switch(species)
+    {
+        case ROAMER_RAIKOU:
+            return SPECIES_RAIKOU;
+        case ROAMER_ENTEI:
+            return SPECIES_ENTEI;
+        default: // ROAMER_SUICUNE
+            return SPECIES_SUICUNE;
+    }
+}
+
 void CreateInitialRoamerMon(void)
 {
     struct Pokemon * mon = &gEnemyParty[0];
     u16 species = GetRoamerSpecies();
     CreateMon(mon, species, 50, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
-    ROAMER->species = species;
-    ROAMER->level = 50;
+    ROAMER->species = ConvertMonSpeciesToRoamerSpecies(species);
     ROAMER->status = 0;
     ROAMER->active = TRUE;
     ROAMER->ivs = GetMonData(mon, MON_DATA_IVS);
     ROAMER->personality = GetMonData(mon, MON_DATA_PERSONALITY);
     ROAMER->hp = GetMonData(mon, MON_DATA_MAX_HP);
-    ROAMER->cool = GetMonData(mon, MON_DATA_COOL);
-    ROAMER->beauty = GetMonData(mon, MON_DATA_BEAUTY);
-    ROAMER->cute = GetMonData(mon, MON_DATA_CUTE);
-    ROAMER->smart = GetMonData(mon, MON_DATA_SMART);
-    ROAMER->tough = GetMonData(mon, MON_DATA_TOUGH);
+
     sRoamerLocation[MAP_GRP] = ROAMER_MAP_GROUP;
     sRoamerLocation[MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
 }
@@ -250,21 +271,10 @@ void CreateRoamerMonInstance(void)
     u32 status;
     struct Pokemon *mon = &gEnemyParty[0];
     ZeroEnemyPartyMons();
-    CreateMonWithIVsPersonality(mon, ROAMER->species, ROAMER->level, ROAMER->ivs, ROAMER->personality);
-// The roamer's status field is u8, but SetMonData expects status to be u32, so will set the roamer's status
-// using the status field and the following 3 bytes (cool, beauty, and cute).
-#ifdef BUGFIX
+    CreateMonWithIVsPersonality(mon, ConvertRoamerSpeciesToMonSpecies(ROAMER->species), ROAMER_LEVEL, ROAMER->ivs, ROAMER->personality);
     status = ROAMER->status;
     SetMonData(mon, MON_DATA_STATUS, &status);
-#else
-    SetMonData(mon, MON_DATA_STATUS, &ROAMER->status);
-#endif
     SetMonData(mon, MON_DATA_HP, &ROAMER->hp);
-    SetMonData(mon, MON_DATA_COOL, &ROAMER->cool);
-    SetMonData(mon, MON_DATA_BEAUTY, &ROAMER->beauty);
-    SetMonData(mon, MON_DATA_CUTE, &ROAMER->cute);
-    SetMonData(mon, MON_DATA_SMART, &ROAMER->smart);
-    SetMonData(mon, MON_DATA_TOUGH, &ROAMER->tough);
 }
 
 bool8 TryStartRoamerEncounter(void)

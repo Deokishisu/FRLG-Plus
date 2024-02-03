@@ -1682,3 +1682,10 @@ void FillBagsTest(void)
     //Link Bracelet
     AddBagItem(112, 1);
 }
+
+void SizeOfFieldToResult(void)
+{
+    gSpecialVar_Result = sizeof(struct PokemonJumpRecords);
+    gSpecialVar_0x8000 = sizeof(gSaveBlock2Ptr->contestLinkResults);
+    gSpecialVar_0x8001 = offsetof(struct SaveBlock2, mapView);
+}

@@ -163,7 +163,7 @@ void SetContestWinnerForPainting(int contestWinnerId)
 {
     u8 *saveIdx = &gCurContestWinnerSaveIdx;
     u8 *isForArtist = &gCurContestWinnerIsForArtist;
-    gCurContestWinner = gSaveBlock1Ptr->contestWinners[contestWinnerId - 1];
+    gCurContestWinner = gSaveBlock2Ptr->contestWinners[contestWinnerId - 1];
     *saveIdx = contestWinnerId - 1;
     *isForArtist = FALSE;
 }
@@ -361,7 +361,7 @@ static void VBlankCB_ContestPainting(void)
 
 static void InitContestMonPixels(u16 species, bool8 backPic)
 {
-    const void *pal = GetMonSpritePalFromSpeciesAndPersonality(species, gContestPaintingWinner->trainerId, gContestPaintingWinner->personality);
+    const void *pal = GetMonSpritePalFromContestPainting(species, gContestPaintingWinner->isShiny, gContestPaintingWinner->personality);
     LZDecompressVram(pal, gContestPaintingMonPalette);
     if (!backPic)
     {

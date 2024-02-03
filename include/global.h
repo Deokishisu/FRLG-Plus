@@ -209,10 +209,8 @@ struct Pokedex
 struct PokemonJumpRecords
 {
     u16 jumpsInRow;
-    u16 unused1; // Set to 0, never read
     u16 excellentsInRow;
     u16 gamesWithMaxPlayers;
-    u32 unused2; // Set to 0, never read
     u32 bestJumpScore;
 };
 
@@ -221,21 +219,12 @@ struct BerryPickingResults // possibly used in the game itself? Size may be wron
     u32 bestScore;
     u16 berriesPicked;
     u16 berriesPickedInRow;
-    u8 field_8;
-    u8 field_9;
-    u8 field_A;
-    u8 field_B;
-    u8 field_C;
-    u8 field_D;
-    u8 field_E;
-    u8 field_F;
 };
 
 struct BerryCrush
 {
     u16 pressingSpeeds[4]; // For the record with each possible group size, 2-5 players
-    u32 berryPowderAmount;
-    u32 unk;
+    u32 berryPowderAmount; // 17 bits; max value is 99,999.
 };
 
 #define LINK_B_RECORDS_COUNT 5
@@ -274,6 +263,17 @@ struct RecordMixingGift
 #include "global.berry.h"
 #include "pokemon.h"
 
+struct ContestWinner
+{
+    u32 personality;
+    u16 species:9;
+    u16 contestCategory:3;
+    u16 contestRank:3;
+    u16 isShiny:1;
+    u8 monName[POKEMON_NAME_LENGTH + 1]; // 11 bytes
+    u8 trainerName[PLAYER_NAME_LENGTH + 1]; // 8 bytes
+} __attribute__((packed)); /*size = 0x19*/
+
 struct BattleTowerRecord // record mixing
 {
     /*0x00*/ u8 battleTowerLevelType; // 0 = level 50, 1 = level 100
@@ -311,8 +311,9 @@ struct BattleTowerData // Leftover from R/S
     /*0x03F0, 0x04A0*/ struct BattleTowerEReaderTrainer ereaderTrainer;
     /*0x04AC, 0x055C*/ u8 battleTowerLevelType:1; // 0 = level 50; 1 = level 100
     /*0x04AC, 0x055C*/ u8 unk_554:1;
-    /*0x04AD, 0x055D*/ u8 battleOutcome;
-    /*0x04AE, 0x055E*/ u8 var_4AE[2];
+    /*0x04AC, 0x055C*/ u8 battleOutcome:2; // only three possible outcomes in battle tower
+    /*0x04AC, 0x055C*/ u8 lastStreakLevelType:1; // 0 = level 50, 1 = level 100.  level type of the last streak. Used by tv to report the level mode.
+    /*0x04AD, 0x055D*/ u8 var_4AE[2];
     /*0x04B0, 0x0560*/ u16 curChallengeBattleNum[2]; // 1-based index of battle in the current challenge. (challenges consist of 7 battles)
     /*0x04B4, 0x0564*/ u16 curStreakChallengesNum[2]; // 1-based index of the current challenge in the current streak.
     /*0x04B8, 0x0568*/ u16 recordWinStreaks[2];
@@ -323,9 +324,7 @@ struct BattleTowerData // Leftover from R/S
     /*0x04C8, 0x0578*/ u16 totalBattleTowerWins;
     /*0x04CA, 0x057A*/ u16 bestBattleTowerWinStreak;
     /*0x04CC, 0x057C*/ u16 currentWinStreaks[2];
-    /*0x04D0, 0x0580*/ u8 lastStreakLevelType; // 0 = level 50, 1 = level 100.  level type of the last streak. Used by tv to report the level mode.
-    /*0x04D1, 0x0581*/ u8 filler_4D1[0x317];
-}; /* size = 0x7E8 */
+}; /* size = 0x4D0 */
 
 struct SaveBlock2
 {
@@ -355,15 +354,20 @@ struct SaveBlock2
     /*0x0A8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
     /*0x0AC*/ bool8 unkFlag1; // Set TRUE, never read
     /*0x0AD*/ bool8 unkFlag2; // Set FALSE, never read
-    /*0x0B0*/ struct BattleTowerData battleTower;
+    /*0x0B0*/ struct BattleTowerData battleTower; // 1232 bytes
+              struct ContestWinner contestWinners[NUM_CONTEST_WINNERS]; // 275 bytes
+              u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
+              u8 filler_BattleTowerData[475]; // 477
     /*0x898*/ u16 mapView[0x100];
     /*0xA98*/ struct LinkBattleRecords linkBattleRecords;
     /*0xAF0*/ struct BerryCrush berryCrush;
+              u8 filler_BerryCrush[4];
     /*0xB00*/ struct PokemonJumpRecords pokeJump;
+              u8 filler_PokemonJumpRecords[4];
     /*0xB10*/ struct BerryPickingResults berryPick;
-    /*0xB20*/ u8 filler_B20[0x400];
+              u8 filler_BerryPickingResults[8];
+    /*0xB20*/ u8 filler_B20[1024];
     /*0xF20*/ u32 encryptionKey;
-    u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
 }; // size: 0xF24
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
@@ -426,18 +430,12 @@ struct Roamer
 {
     /*0x00*/ u32 ivs;
     /*0x04*/ u32 personality;
-    /*0x08*/ u16 species;
-    /*0x0A*/ u16 hp;
-    /*0x0C*/ u8 level;
-    /*0x0D*/ u8 status;
-    /*0x0E*/ u8 cool;
-    /*0x0F*/ u8 beauty;
-    /*0x10*/ u8 cute;
-    /*0x11*/ u8 smart;
-    /*0x12*/ u8 tough;
-    /*0x13*/ bool8 active;
-    /*0x14*/ u8 filler[0x8];
-};
+    /*0x08*/ u16 hp;
+    /*0x0A*/ u8 status;
+    /*0x0B*/ u8 species:2; // 0 == Raikou, 1 == Entei, 2 == Suicune
+             u8 active:1;
+             u8 padding:5;
+}; // 12 bytes total, old struct was 28, enough for two in the same space with 4 bytes of padding.
 
 struct RamScriptData
 {
@@ -528,18 +526,6 @@ typedef union OldMan
     struct MauvilleManStoryteller storyteller;
     u8 filler[0x40];
 } OldMan;
-
-struct ContestWinner
-{
-    u32 personality;
-    u32 trainerId;
-    u16 species;
-    u8 contestCategory;
-    u8 monName[POKEMON_NAME_LENGTH + 1];
-    u8 trainerName[PLAYER_NAME_LENGTH + 1];
-    u8 contestRank;
-    //u8 padding;
-};
 
 struct Mail
 {
@@ -843,6 +829,7 @@ struct SaveBlock1
     /*0x30A7*/ struct ExternalEventData externalEventData;
     /*0x30BB*/ struct ExternalEventFlags externalEventFlags;
     /*0x30D0*/ struct Roamer roamer;
+               u8 filler_roamer[16]; // struct Roamer was compacted from 28 bytes to 12. This is the 16 saved bytes.
     /*0x30EC*/ struct EnigmaBerry enigmaBerry;
     /*0x3120*/ struct MysteryGiftSave mysteryGift; //0x36C in length
     /*0x348C*/ u8 unused_348C[176];
@@ -863,7 +850,6 @@ struct SaveBlock1
     /*0x3D24*/ u8 unused_3D24[16]; //some sort of win/loss/draw records that are never referred to. An RFU thing. Mystery Event?
     /*0x3D34*/ u32 towerChallengeId;
     /*0x3D38*/ struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
-               struct ContestWinner contestWinners[NUM_CONTEST_WINNERS]; // 416 bytes
 }; // size: 0x3D68
 
 struct MapPosition
