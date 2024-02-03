@@ -50,7 +50,7 @@ SixIsland_ContestLobby_EventScript_GiveLuxuryBallAtCounter::
 	end
 
 SixIsland_ContestLobby_EventScript_NoRoomForLuxuryBallAtCounter::
-	call EventScript_BagIsFull
+	call EventScript_BagIsFullRet
 	msgbox SixIsland_ContestLobby_Text_ComeBackForPrizeLater, MSGBOX_DEFAULT
 	release
 	end
@@ -209,6 +209,7 @@ ContestHall_EventScript_DoContest::
 	call ContestHall_EventScript_TryWaitForLink
 	call ContestHall_EventScript_GetContestRankStringId
 	call ContestHall_EventScript_GetContestCategory
+    textcolor NPC_TEXT_COLOR_FEMALE
 	call ContestHall_EventScript_ContestGettingStarted
 	call ContestHall_EventScript_ShowContestMons
 	call ContestHall_EventScript_DoContestAppeals
@@ -244,35 +245,9 @@ ContestHall_EventScript_GetMasterStringId::
 	setvar VAR_0x8009, STDSTRING_MASTER
 	return
 
-@ This whole switch is equivalent to copyvar VAR_0x8008, VAR_CONTEST_CATEGORY
 ContestHall_EventScript_GetContestCategory::
-	switch VAR_CONTEST_CATEGORY
-	case CONTEST_CATEGORY_COOL, ContestHall_EventScript_GetCategoryCool
-	case CONTEST_CATEGORY_BEAUTY, ContestHall_EventScript_GetCategoryBeauty
-	case CONTEST_CATEGORY_CUTE, ContestHall_EventScript_GetCategoryCute
-	case CONTEST_CATEGORY_SMART, ContestHall_EventScript_GetCategorySmart
-	case CONTEST_CATEGORY_TOUGH, ContestHall_EventScript_GetCategoryTough
-	return
-
-ContestHall_EventScript_GetCategoryCool::
-	setvar VAR_0x8008, CONTEST_CATEGORY_COOL
-	return
-
-ContestHall_EventScript_GetCategoryBeauty::
-	setvar VAR_0x8008, CONTEST_CATEGORY_BEAUTY
-	return
-
-ContestHall_EventScript_GetCategoryCute::
-	setvar VAR_0x8008, CONTEST_CATEGORY_CUTE
-	return
-
-ContestHall_EventScript_GetCategorySmart::
-	setvar VAR_0x8008, CONTEST_CATEGORY_SMART
-	return
-
-ContestHall_EventScript_GetCategoryTough::
-	setvar VAR_0x8008, CONTEST_CATEGORY_TOUGH
-	return
+    copyvar VAR_0x8008, VAR_CONTEST_CATEGORY
+    return
 
 ContestHall_EventScript_ContestGettingStarted::
 	buffercontestname STR_VAR_2, VAR_0x8008
@@ -821,6 +796,7 @@ ContestHall_EventScript_ContestResults::
 	waitmovement 0
 	call ContestHall_EventScript_JudgeLooksReady
 	call ContestHall_EventScript_TryWaitForLink
+    textcolor NPC_TEXT_COLOR_MALE
 	call ContestHall_EventScript_WeWillDeclareWinner
 	call ContestHall_EventScript_TryWaitForLink
 	applymovement LOCALID_MC, ContestHall_Movement_FaceContestants
@@ -913,6 +889,7 @@ ContestHall_EventScript_CongratulateWinner::
 	addvar VAR_0x8005, 1
 	buffernumberstring STR_VAR_2, VAR_0x8005
 	addvar VAR_0x8005, -1
+    textcolor NPC_TEXT_COLOR_FEMALE
 	call ContestHall_EventScript_CongratsWinner
 	applymovement VAR_TEMP_3, ContestHall_Movement_WinningPlayerWalkUp
 	waitmovement 0
@@ -1130,13 +1107,14 @@ ContestHall_EventScript_GiveContestPrizes::
 	goto_if_eq VAR_RESULT, FALSE, ContestHall_EventScript_ReceiveContestRibbon
 	goto_if_eq VAR_CONTEST_RANK, CONTEST_RANK_MASTER, ContestHall_EventScript_GiveLuxuryBall
 	lockall
+    textcolor NPC_TEXT_COLOR_FEMALE
 	msgbox ContestHall_Text_CongratsPleaseCompeteAgain, MSGBOX_DEFAULT
 	releaseall
 	return
 
 ContestHall_EventScript_NoRoomForLuxuryBall::
 	lockall
-	call EventScript_BagIsFull
+	call EventScript_BagIsFullRet
 	msgbox ContestHall_Text_PickUpPrizeAtCounterLater, MSGBOX_DEFAULT
 	releaseall
 	setvar VAR_CONTEST_PRIZE_PICKUP, 4
@@ -1157,6 +1135,7 @@ ContestHall_EventScript_ReceiveContestRibbon::
 	lockall
 	msgbox ContestHall_Text_ConferRibbonAsPrize, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_ITEM
+    textcolor NPC_TEXT_COLOR_DEFAULT
 	msgbox ContestHall_Text_ReceivedRibbon, MSGBOX_DEFAULT
 	waitfanfare
 	special BufferContestWinnerMonName
@@ -1393,8 +1372,8 @@ SixIsland_ContestLobby_Text_CounterOnlyFor4PlayerContests:
 	.string "for 4-player POKéMON CONTESTS.$"
 
 SixIsland_ContestLobby_Text_EnterContest1:
-	.string "Would you like to enter your POKéMON\n"
-	.string "in our CONTESTS?$"
+	.string "Would you like to enter your\n"
+	.string "POKéMON in our CONTESTS?$"
 
 SixIsland_ContestLobby_Text_WhichTopic1:
 	.string "Which topic would you like?$"
@@ -1413,8 +1392,8 @@ SixIsland_ContestLobby_Text_ExplainContests:
 	.string "most attention of the JUDGE and\l"
 	.string "excite the audience.\l"
 	.string "Do your best to stand out.\p"
-	.string "The primary and secondary scores are\n"
-	.string "added at the end.\p"
+	.string "The primary and secondary scores\n"
+	.string "are added at the end.\p"
 	.string "The POKéMON garnering the highest\n"
 	.string "score is declared the winner.$"
 
@@ -1430,8 +1409,8 @@ SixIsland_ContestLobby_Text_ExplainContestRanks:
 	.string "CONTESTS.\p"
 	.string "NORMAL, SUPER, HYPER, and MASTER\n"
 	.string "are the four ranks.\p"
-	.string "In the NORMAL Rank, any POKéMON may\n"
-	.string "enter.\p"
+	.string "In the NORMAL Rank, any POKéMON\n"
+	.string "may enter.\p"
 	.string "Any POKéMON that won a NORMAL Rank\n"
 	.string "CONTEST may move up to the SUPER\l"
 	.string "Rank in the same category.\p"
@@ -1440,8 +1419,8 @@ SixIsland_ContestLobby_Text_ExplainContestRanks:
 	.string "a HYPER Rank winner can advance to\l"
 	.string "the MASTER Rank in that category.\p"
 	.string "A POKéMON that won in the MASTER\n"
-	.string "Rank may compete in the MASTER Rank\l"
-	.string "as often as its TRAINER wants.$"
+	.string "Rank may compete in the MASTER\l"
+	.string "Rank as often as its TRAINER wants.$"
 
 SixIsland_ContestLobby_Text_EnterWhichRank:
 	.string "Which Rank would you like to enter?$"
@@ -1501,23 +1480,23 @@ ContestHall_Text_GettingStartedParticipantsAsFollows:
 	.string "MC: Hello! We're just getting started\n"
 	.string "with a {STR_VAR_3} Rank POKéMON\l"
 	.string "{STR_VAR_2}!\p"
-	.string "The participating TRAINERS and their\n"
-	.string "POKéMON are as follows:$"
+	.string "The participating TRAINERS and\n"
+	.string "their POKéMON are as follows:$"
 
 ContestHall_Text_GettingStartedParticipantsAsFollowsLink:
 	.string "MC: Hello! We're just getting started\n"
 	.string "with a 4-player linked POKéMON\l"
 	.string "{STR_VAR_2}!\p"
-	.string "The participating TRAINERS and their\n"
-	.string "POKéMON are as follows:$"
+	.string "The participating TRAINERS and\n"
+	.string "their POKéMON are as follows:$"
 
 ContestHall_Text_EntryXTrainersMon:
 	.string "MC: Entry No. {STR_VAR_2}!\n"
 	.string "{STR_VAR_1}'s {STR_VAR_3}!$"
 
 ContestHall_Text_SeenContestantsAudienceWillVote:
-	.string "MC: We've just seen the four POKéMON\n"
-	.string "contestants.\p"
+	.string "MC: We've just seen the four\n"
+	.string "POKéMON contestants.\p"
 	.string "Now it's time for primary judging!\p"
 	.string "The audience will vote on their\n"
 	.string "favorite POKéMON contestants.\p"
@@ -1554,7 +1533,8 @@ ContestHall_Text_JudgeLooksReady:
 	.string "the announcement!$"
 
 ContestHall_Text_WeWillNowDeclareWinner:
-	.string "JUDGE: We will now declare the winner!$"
+	.string "JUDGE: We will now declare\n"
+    .string "the winner!$"
 
 ContestHall_Text_CongratsTrainerXandMon:
 	.string "MC: Entry No. {STR_VAR_2}!\p"
@@ -1598,8 +1578,8 @@ SixIsland_ContestLobby_Text_ProgressWillBeSaved:
 	.string "progress will be saved.$"
 
 SixIsland_ContestLobby_Text_ParticipateAnotherTime:
-	.string "We hope you will participate another\n"
-	.string "time.$"
+	.string "We hope you will participate\n"
+	.string "another time.$"
 
 @ Unused
 SixIsland_ContestLobby_Text_EnterContest2:
@@ -1765,12 +1745,12 @@ ContestHall_Text_GettingStartedWireless:
 	.string "{STR_VAR_2}!$"
 
 ContestHall_Text_ParticipantsAsFollows:
-	.string "The participating TRAINERS and their\n"
-	.string "POKéMON are as follows:$"
+	.string "The participating TRAINERS and\n"
+	.string "their POKéMON are as follows:$"
 
 ContestHall_Text_WeveSeenContestants:
-	.string "MC: We've just seen the four POKéMON\n"
-	.string "contestants.\p"
+	.string "MC: We've just seen the four\n"
+	.string "POKéMON contestants.\p"
 	.string "Now it's time for primary judging!$"
 
 ContestHall_Text_AudienceWillVote:

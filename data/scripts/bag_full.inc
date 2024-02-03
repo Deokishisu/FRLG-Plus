@@ -6,7 +6,9 @@ EventScript_BagIsFull::
 
 @ Unused
 EventScript_BagIsFullRet::
+	textcolor NPC_TEXT_COLOR_NEUTRAL
 	msgbox Text_TooBadBagFull
+	call EventScript_RestorePrevTextColor
 	return
 
 @ Unused
