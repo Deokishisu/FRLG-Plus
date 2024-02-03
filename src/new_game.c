@@ -29,12 +29,19 @@
 #include "berry_powder.h"
 #include "pokemon_jump.h"
 #include "event_scripts.h"
+#include "contest.h"
 
 // this file's functions
 static void ResetMiniGamesResults(void);
 
 // EWRAM vars
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
+
+static const struct ContestWinner sContestWinnerPicDummy =
+{
+    .monName = _(""),
+    .trainerName = _("")
+};
 
 void SetTrainerId(u32 trainerId, u8 *dst)
 {
@@ -76,6 +83,17 @@ static void ClearPokedexFlags(void)
 {
     memset(&gSaveBlock2Ptr->pokedex.owned, 0, sizeof(gSaveBlock2Ptr->pokedex.owned));
     memset(&gSaveBlock2Ptr->pokedex.seen, 0, sizeof(gSaveBlock2Ptr->pokedex.seen));
+}
+
+void ClearAllContestWinnerPics(void)
+{
+    s32 i;
+
+    ClearContestWinnerPicsInContestHall();
+
+    // Clear Museum paintings
+    for (i = MUSEUM_CONTEST_WINNERS_START; i < NUM_CONTEST_WINNERS; i++)
+        gSaveBlock2Ptr->contestWinners[i] = sContestWinnerPicDummy;
 }
 
 static void ClearBattleTower(void)

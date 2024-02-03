@@ -118,3 +118,45 @@ SixIsland_ContestLobby_Movement_ReceptionistWalkToContestHall:
 SixIsland_ContestLobby_Movement_ReceptionistFacePlayer:
 	walk_in_place_faster_right
 	step_end
+
+SixIsland_ContestLobby_EventScript_ContestWinner1::
+	lockall
+	fadescreen FADE_TO_BLACK
+	showcontestpainting CONTEST_WINNER_HALL_1
+	releaseall
+	end
+
+SixIsland_ContestLobby_EventScript_ContestWinner2::
+	lockall
+	fadescreen FADE_TO_BLACK
+	showcontestpainting CONTEST_WINNER_HALL_2
+	releaseall
+	end
+
+SixIsland_ContestLobby_EventScript_ContestWinner3::
+	lockall
+	fadescreen FADE_TO_BLACK
+	showcontestpainting CONTEST_WINNER_HALL_3
+	releaseall
+	end
+
+SixIsland_ContestLobby_EventScript_ContestWinner4::
+	lockall
+	fadescreen FADE_TO_BLACK
+	showcontestpainting CONTEST_WINNER_HALL_4
+	releaseall
+	end
+
+SixIsland_ContestLobby_EventScript_ContestWinner5::
+	lockall
+	fadescreen FADE_TO_BLACK
+	showcontestpainting CONTEST_WINNER_HALL_5
+	releaseall
+	end
+
+SixIsland_ContestLobby_EventScript_ContestWinner6::
+	lockall
+	fadescreen FADE_TO_BLACK
+	showcontestpainting CONTEST_WINNER_HALL_6
+	releaseall
+	end

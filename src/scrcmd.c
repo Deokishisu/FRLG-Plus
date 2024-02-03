@@ -38,6 +38,7 @@
 #include "field_door.h"
 #include "contest.h"
 #include "contest_util.h"
+#include "contest_painting.h"
 #include "constants/event_objects.h"
 #include "constants/maps.h"
 #include "constants/sound.h"
@@ -1546,16 +1547,14 @@ bool8 ScrCmd_hidemonpic(struct ScriptContext * ctx)
 bool8 ScrCmd_showcontestpainting(struct ScriptContext * ctx)
 {
     u8 contestWinnerId = ScriptReadByte(ctx);
-    /*
+
     // Artist's painting is temporary and already has its data loaded
     if (contestWinnerId != CONTEST_WINNER_ARTIST)
         SetContestWinnerForPainting(contestWinnerId);
 
     ShowContestPainting();
-    ScriptContext_Stop()
+    ScriptContext_Stop();
     return TRUE;
-    */
-    return FALSE;
 }
 
 bool8 ScrCmd_braillemessage(struct ScriptContext * ctx)

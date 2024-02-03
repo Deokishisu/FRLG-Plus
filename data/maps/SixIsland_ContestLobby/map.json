@@ -71,7 +71,54 @@
 
   ],
   "bg_events": [
-
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_ContestLobby_EventScript_ContestWinner1"
+    },
+    {
+      "type": "sign",
+      "x": 5,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_ContestLobby_EventScript_ContestWinner2"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_ContestLobby_EventScript_ContestWinner3"
+    },
+    {
+      "type": "sign",
+      "x": 23,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_ContestLobby_EventScript_ContestWinner4"
+    },
+    {
+      "type": "sign",
+      "x": 25,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_ContestLobby_EventScript_ContestWinner5"
+    },
+    {
+      "type": "sign",
+      "x": 27,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_ContestLobby_EventScript_ContestWinner6"
+    }
   ],
   "level_scaling": "0"
 }
