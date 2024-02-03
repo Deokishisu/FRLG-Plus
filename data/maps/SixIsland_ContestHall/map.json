@@ -1,0 +1,43 @@
+{
+  "id": "MAP_SIX_ISLAND_CONTEST_HALL",
+  "name": "SixIsland_ContestHall",
+  "layout": "LAYOUT_SIX_ISLAND_CONTEST_HALL",
+  "music": "MUS_CONTEST_LOBBY",
+  "region_map_section": "MAPSEC_SIX_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 19,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_SIX_ISLAND_CONTEST_LOBBY",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 31,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_SIX_ISLAND_CONTEST_LOBBY",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "level_scaling": "0"
+}

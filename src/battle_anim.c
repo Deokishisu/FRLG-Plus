@@ -1012,9 +1012,12 @@ static void Cmd_goto(void)
     sBattleAnimScriptPtr = T2_READ_PTR(sBattleAnimScriptPtr);
 }
 
-bool8 IsContest(void)
+bool32 IsContest(void)
 {
-    return FALSE;
+    if (!gMain.inBattle)
+        return TRUE;
+    else
+        return FALSE;
 }
 
 // Unused

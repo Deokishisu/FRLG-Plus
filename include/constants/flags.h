@@ -252,9 +252,9 @@
 #define FLAG_GIVEN_CORSOLA_EGG                0x0E8
 #define FLAG_MASTER_TRAINER_BATTLE            0x0E9
 #define FLAG_HIDE_MASTER_TRAINERS             0x0EA
-#define FLAG_0x0EB               0x0EB
-#define FLAG_0x0EC               0x0EC
-#define FLAG_0x0ED               0x0ED
+#define FLAG_HIDE_CONTEST_POKE_BALL           0x0EB
+#define FLAG_ENTERED_CONTEST                  0x0EC
+#define FLAG_RECEIVED_POKEBLOCK_CASE          0x0ED
 #define FLAG_0x0EE               0x0EE
 #define FLAG_0x0EF               0x0EF
 #define FLAG_0x0F0               0x0F0

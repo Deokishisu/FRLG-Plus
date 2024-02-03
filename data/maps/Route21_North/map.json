@@ -15,21 +15,20 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "up",
+      "map": "MAP_PALLET_TOWN",
       "offset": 0,
-      "map": "MAP_PALLET_TOWN"
+      "direction": "up"
     },
     {
-      "direction": "down",
+      "map": "MAP_ROUTE21_SOUTH",
       "offset": 0,
-      "map": "MAP_ROUTE21_SOUTH"
+      "direction": "down"
     }
   ],
   "object_events": [
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
-      "in_connection": false,
       "x": 7,
       "y": 27,
       "elevation": 3,
@@ -39,12 +38,12 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route21_North_EventScript_Ronald",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_FISHER",
-      "in_connection": false,
       "x": 16,
       "y": 26,
       "elevation": 3,
@@ -54,12 +53,12 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route21_North_EventScript_Wade",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_WATER",
-      "in_connection": false,
       "x": 12,
       "y": 44,
       "elevation": 1,
@@ -69,7 +68,8 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route21_North_EventScript_Spencer",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "object",
@@ -88,7 +88,6 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_TUBER_M_WATER",
-      "in_connection": false,
       "x": 15,
       "y": 35,
       "elevation": 1,
@@ -98,7 +97,8 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route21_North_EventScript_Ian",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "clone",
@@ -111,7 +111,6 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MASTER_BEAUTY",
-      "in_connection": false,
       "x": 8,
       "y": 30,
       "elevation": 3,
@@ -121,7 +120,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MasterTrainer_EventScript_Slowbro",
-      "flag": "FLAG_HIDE_MASTER_TRAINERS"
+      "flag": "FLAG_HIDE_MASTER_TRAINERS",
+      "in_connection": false
     }
   ],
   "warp_events": [

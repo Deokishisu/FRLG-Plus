@@ -132,6 +132,7 @@ void Overworld_ResetStateAfterTeleport(void);
 
 void Overworld_FadeOutMapMusic(void);
 void CB2_LoadMap(void);
+void CB2_ReturnToFieldContestHall(void);
 bool8 BGMusicStopped(void);
 bool8 IsMapTypeIndoors(u8 mapType);
 bool32 Overworld_IsBikingAllowed(void);

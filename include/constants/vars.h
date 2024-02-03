@@ -112,7 +112,7 @@
 #define VAR_DEOXYS_INTERACTION_NUM         0x403E
 #define VAR_CONTEST_HALL_STATE             0x403F
 #define VAR_MAGIKARP_SIZE_RECORD           0x4040
-#define VAR_0x4041                         0x4041
+#define VAR_SIX_ISLAND_CONTEST_LOBBY_STATE 0x4041
 #define VAR_TRAINER_CARD_MON_ICON_TINT_IDX 0x4042
 #define VAR_TRAINER_CARD_MON_ICON_1        0x4043
 #define VAR_TRAINER_CARD_MON_ICON_2        0x4044
@@ -192,10 +192,10 @@
 
 
 #define VAR_FARAWAY_ISLAND_STEP_COUNTER  0x408C
-#define VAR_0x408D                 0x408D
-#define VAR_0x408E                 0x408E
-#define VAR_0x408F                 0x408F
-#define VAR_0x4090                 0x4090
+#define VAR_CONTEST_RANK                 0x408D
+#define VAR_CONTEST_CATEGORY             0x408E
+#define VAR_CONTEST_TYPE                 0x408F
+#define VAR_CONTEST_PRIZE_PICKUP         0x4090
 #define VAR_0x4091                 0x4091
 #define VAR_0x4092                 0x4092
 #define VAR_0x4093                 0x4093

@@ -17,3 +17,7 @@ SixIsland_EventScript_Boy::
 SixIsland_EventScript_IslandSign::
 	msgbox SixIsland_Text_IslandSign, MSGBOX_SIGN
 	end
+
+SixIsland_EventScript_ContestHallSign::
+	msgbox SixIsland_Text_ContestHallSign, MSGBOX_SIGN
+	end

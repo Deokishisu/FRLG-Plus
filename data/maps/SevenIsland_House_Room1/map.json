@@ -18,7 +18,6 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
-      "in_connection": false,
       "x": 4,
       "y": 4,
       "elevation": 3,
@@ -28,12 +27,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SevenIsland_House_Room1_EventScript_OldWoman",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SPEAROW",
-      "in_connection": false,
       "x": 9,
       "y": 6,
       "elevation": 3,
@@ -43,7 +42,8 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SevenIsland_House_Room1_EventScript_Spearow",
-      "flag": "FLAG_TEMP_1"
+      "flag": "FLAG_TEMP_1",
+      "in_connection": false
     }
   ],
   "warp_events": [

@@ -163,6 +163,9 @@ const u32 gMetatileAttributes_Condominiums[] = INCBIN_U32("data/tilesets/seconda
 const u16 gMetatiles_BurgledHouse[] = INCBIN_U16("data/tilesets/secondary/burgled_house/metatiles.bin");
 const u32 gMetatileAttributes_BurgledHouse[] = INCBIN_U32("data/tilesets/secondary/burgled_house/metatile_attributes.bin");
 
+const u16 gMetatiles_Contest[] = INCBIN_U16("data/tilesets/secondary/contest/metatiles.bin");
+const u32 gMetatileAttributes_Contest[] = INCBIN_U32("data/tilesets/secondary/contest/metatile_attributes.bin");
+
 const u16 gMetatiles_Dummy3[] = INCBIN_U16("data/tilesets/secondary/dummy_3/metatiles.bin");
 const u32 gMetatileAttributes_Dummy3[] = INCBIN_U32("data/tilesets/secondary/dummy_3/metatile_attributes.bin");
 

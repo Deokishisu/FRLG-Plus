@@ -88,6 +88,10 @@
 #define MULTICHOICE_SOUTHERN_BIRTH_NAVEL                       81
 #define MULTICHOICE_SOUTHERN_BIRTH_NAVEL_FARAWAY               82
 #define MULTICHOICE_MASTER_YOUNGSTER                           83
+#define MULTICHOICE_ENTERINFO                                  84
+#define MULTICHOICE_CONTEST_INFO                               85
+#define MULTICHOICE_CONTEST_RANK                               86
+#define MULTICHOICE_CONTEST_TYPE                               87
 
 
 #define MULTICHOICE_NONE                                      255
@@ -108,10 +112,10 @@
 #define STDSTRING_CUTE              2
 #define STDSTRING_SMART             3
 #define STDSTRING_TOUGH             4
-#define STDSTRING_COOL2             5
-#define STDSTRING_BEAUTY2           6
-#define STDSTRING_CUTE2             7
-#define STDSTRING_SMART2            8
+#define STDSTRING_NORMAL            5
+#define STDSTRING_SUPER             6
+#define STDSTRING_HYPER             7
+#define STDSTRING_MASTER            8
 #define STDSTRING_TOUGH2            9
 #define STDSTRING_ITEMS             10
 #define STDSTRING_KEY_ITEMS         11

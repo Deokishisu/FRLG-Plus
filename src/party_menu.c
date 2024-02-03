@@ -7,6 +7,7 @@
 #include "battle_interface.h"
 #include "battle_tower.h"
 #include "berry_pouch.h"
+#include "contest.h"
 #include "data.h"
 #include "decompress.h"
 #include "easy_chat.h"
@@ -401,6 +402,8 @@ static bool8 MonCanEvolve(void);
 static u16 ItemEffectToMonEv(struct Pokemon *mon, u8 effectType);
 static void ItemEffectToStatString(u8 effectType, u8 *dest);
 static bool8 SetUpFieldMove_Dive(void);
+static void Task_ChooseContestMon(u8 taskId);
+static void CB2_ChooseContestMon(void);
 
 static EWRAM_DATA struct PartyMenuInternal *sPartyMenuInternal = NULL;
 EWRAM_DATA struct PartyMenu gPartyMenu = {0};
@@ -6391,6 +6394,33 @@ static void Task_PartyMenuWaitForFade(u8 taskId)
         UnlockPlayerFieldControls();
         ScriptContext_Enable();
     }
+}
+
+void ChooseContestMon(void)
+{
+    LockPlayerFieldControls();
+    FadeScreen(FADE_TO_BLACK, 0);
+    CreateTask(Task_ChooseContestMon, 10);
+}
+
+static void Task_ChooseContestMon(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        InitPartyMenu(PARTY_MENU_TYPE_CONTEST, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_AND_CLOSE, FALSE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ChooseContestMon);
+        DestroyTask(taskId);
+    }
+}
+
+static void CB2_ChooseContestMon(void)
+{
+    gContestMonPartyIndex = GetCursorSelectionMonId();
+    if (gContestMonPartyIndex >= PARTY_SIZE)
+        gContestMonPartyIndex = 0xFF;
+    gSpecialVar_0x8004 = gContestMonPartyIndex;
+    gFieldCallback2 = CB2_FadeFromPartyMenu;
+    SetMainCallback2(CB2_ReturnToField);
 }
 
 void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)

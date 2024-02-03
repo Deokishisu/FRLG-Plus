@@ -619,6 +619,40 @@ static const struct MenuAction sMultichoiceList_Exit[] = {
     { gOtherText_Exit }
 };
 
+static const struct MenuAction sMultichoiceList_EnterInfo[] =
+{
+    {gText_Enter},
+    {gText_Info},
+    {gText_Exit},
+};
+
+static const struct MenuAction sMultichoiceList_ContestInfo[] =
+{
+    {gText_WhatsAContest},
+    {gText_TypesOfContests},
+    {gText_Ranks},
+    {gText_OptionMenuCancel},
+};
+
+static const struct MenuAction sMultichoiceList_ContestRank[] =
+{
+    {gText_NormalRank},
+    {gText_SuperRank},
+    {gText_HyperRank},
+    {gText_MasterRank},
+    {gText_Exit},
+};
+
+static const struct MenuAction sMultichoiceList_ContestType[] =
+{
+    {gText_CoolnessContest},
+    {gText_BeautyContest},
+    {gText_CutenessContest},
+    {gText_SmartnessContest},
+    {gText_ToughnessContest},
+    {gText_Exit},
+};
+
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
@@ -704,6 +738,10 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
 	[MULTICHOICE_SOUTHERN_BIRTH_NAVEL]                       = MULTICHOICE(sMultichoiceList_SouthernBirthNavel),
 	[MULTICHOICE_SOUTHERN_BIRTH_NAVEL_FARAWAY]               = MULTICHOICE(sMultichoiceList_SouthernBirthNavelFaraway),
 	[MULTICHOICE_MASTER_YOUNGSTER]                           = MULTICHOICE(sMultichoiceList_MasterYoungster),
+    [MULTICHOICE_ENTERINFO]                                  = MULTICHOICE(sMultichoiceList_EnterInfo),
+    [MULTICHOICE_CONTEST_INFO]                               = MULTICHOICE(sMultichoiceList_ContestInfo),
+    [MULTICHOICE_CONTEST_RANK]                               = MULTICHOICE(sMultichoiceList_ContestRank),
+    [MULTICHOICE_CONTEST_TYPE]                               = MULTICHOICE(sMultichoiceList_ContestType),
 };
 
 // From Cool to Berries goes unused
@@ -713,10 +751,10 @@ const u8 *const gStdStringPtrs[] = {
     [STDSTRING_CUTE]             = gText_Cute,
     [STDSTRING_SMART]            = gText_Smart,
     [STDSTRING_TOUGH]            = gText_Tough,
-    [STDSTRING_COOL2]            = gText_Cool_2,
-    [STDSTRING_BEAUTY2]          = gText_Beauty_2,
-    [STDSTRING_CUTE2]            = gText_Cute_2,
-    [STDSTRING_SMART2]           = gText_Smart_2,
+    [STDSTRING_NORMAL]           = gText_Normal,
+    [STDSTRING_SUPER]            = gText_Super,
+    [STDSTRING_HYPER]            = gText_Hyper,
+    [STDSTRING_MASTER]           = gText_Master2,
     [STDSTRING_TOUGH2]           = gText_Tough_2,
     [STDSTRING_ITEMS]            = gText_Items,
     [STDSTRING_KEY_ITEMS]        = gText_KeyItems,

@@ -12,3 +12,6 @@ SixIsland_Text_SkyAtNightIsFantastic::
     .string "When you're this far away from the\n"
     .string "city, the sky at night is fantastic.$"
 
+SixIsland_Text_ContestHallSign:
+	.string "POKéMON CONTEST HALL\n"
+	.string "“The gathering place for TRAINERS!”$"

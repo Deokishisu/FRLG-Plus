@@ -2608,7 +2608,7 @@
     {
       "id": "LAYOUT_SIX_ISLAND",
       "name": "SixIsland_Layout",
-      "width": 25,
+      "width": 32,
       "height": 31,
       "border_width": 2,
       "border_height": 2,
@@ -4764,6 +4764,42 @@
       "secondary_tileset": "gTileset_BattleFrontierRankingHall",
       "border_filepath": "data/layouts/BattleFrontier_RankingHall/border.bin",
       "blockdata_filepath": "data/layouts/BattleFrontier_RankingHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_CONTEST_LOBBY",
+      "name": "SixIsland_ContestLobby_Layout",
+      "width": 31,
+      "height": 13,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/SixIsland_ContestLobby/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_ContestLobby/map.bin"
+    },
+    {
+      "id": "LAYOUT_SIX_ISLAND_CONTEST_HALL",
+      "name": "SixIsland_ContestHall_Layout",
+      "width": 51,
+      "height": 34,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/SixIsland_ContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/SixIsland_ContestHall/map.bin"
+    },
+    {
+      "id": "LAYOUT_CONTEST_HALL",
+      "name": "ContestHall_Layout",
+      "width": 15,
+      "height": 11,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Contest",
+      "border_filepath": "data/layouts/ContestHall/border.bin",
+      "blockdata_filepath": "data/layouts/ContestHall/map.bin"
     }
   ]
 }

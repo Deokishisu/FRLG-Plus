@@ -1649,6 +1649,14 @@
 	.2byte \localId
 	.endm
 
+	@ Buffers the name of the contest category to the buffer.
+	@ For example a category of CONTEST_CATEGORY_COOL will buffer the string "COOLNESS CONTEST".
+	.macro buffercontestname stringVarId:req, category:req
+	.byte 0xd8
+	stringvar \stringVarId
+	.2byte \category
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

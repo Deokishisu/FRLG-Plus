@@ -10,5 +10,6 @@ u8 FldEff_DoubleExclMarkIcon(void);
 u8 FldEff_XIcon(void);
 u8 FldEff_SmileyFaceIcon(void);
 u8 FldEff_QuestionMarkIcon(void);
+u8 FldEff_HeartIcon(void);
 
 #endif //GUARD_TRAINER_SEE_H

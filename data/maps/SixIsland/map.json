@@ -15,17 +15,16 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "direction": "right",
+      "map": "MAP_SIX_ISLAND_WATER_PATH",
       "offset": -40,
-      "map": "MAP_SIX_ISLAND_WATER_PATH"
+      "direction": "right"
     }
   ],
   "object_events": [
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_BOY",
-      "in_connection": false,
-      "x": 11,
+      "x": 18,
       "y": 16,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -34,13 +33,13 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SixIsland_EventScript_Boy",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "in_connection": false,
-      "x": 16,
+      "x": 23,
       "y": 13,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
@@ -49,36 +48,44 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SixIsland_EventScript_Hiker",
-      "flag": "0"
+      "flag": "0",
+      "in_connection": false
     }
   ],
   "warp_events": [
     {
-      "x": 12,
+      "x": 19,
       "y": 24,
       "elevation": 3,
       "dest_map": "MAP_SIX_ISLAND_HARBOR",
       "dest_warp_id": "0"
     },
     {
-      "x": 12,
+      "x": 19,
       "y": 11,
       "elevation": 0,
       "dest_map": "MAP_SIX_ISLAND_POKEMON_CENTER_1F",
       "dest_warp_id": "0"
     },
     {
-      "x": 18,
+      "x": 25,
       "y": 17,
       "elevation": 0,
       "dest_map": "MAP_SIX_ISLAND_HOUSE",
       "dest_warp_id": "0"
     },
     {
-      "x": 20,
+      "x": 27,
       "y": 11,
       "elevation": 0,
       "dest_map": "MAP_SIX_ISLAND_MART",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_SIX_ISLAND_CONTEST_LOBBY",
       "dest_warp_id": "0"
     }
   ],
@@ -88,21 +95,29 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 10,
-      "y": 18,
+      "x": 17,
+      "y": 17,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "SixIsland_EventScript_IslandSign"
     },
     {
       "type": "hidden_item",
-      "x": 10,
+      "x": 17,
       "y": 7,
       "elevation": 3,
       "item": "ITEM_LEPPA_BERRY",
       "flag": "FLAG_HIDDEN_ITEM_SIX_ISLAND_LEPPA_BERRY",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "sign",
+      "x": 8,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "SixIsland_EventScript_ContestHallSign"
     }
   ],
   "level_scaling": "5"

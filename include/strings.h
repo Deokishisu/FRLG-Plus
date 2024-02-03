@@ -1657,5 +1657,15 @@ extern const u8 gText_BeautyContest[];
 extern const u8 gText_CutenessContest[];
 extern const u8 gText_SmartnessContest[];
 extern const u8 gText_ToughnessContest[];
+extern const u8 gText_WhatsAContest[];
+extern const u8 gText_TypesOfContests[];
+extern const u8 gText_Ranks[];
+extern const u8 gText_NormalRank[];
+extern const u8 gText_SuperRank[];
+extern const u8 gText_HyperRank[];
+extern const u8 gText_MasterRank[];
+extern const u8 gText_Super[];
+extern const u8 gText_Hyper[];
+extern const u8 gText_Master2[];
 
 #endif //GUARD_STRINGS_H

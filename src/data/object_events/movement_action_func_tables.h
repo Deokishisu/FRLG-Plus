@@ -161,6 +161,7 @@ static bool8 MovementAction_EmoteQuestionMark_Step0(struct ObjectEvent *, struct
 static bool8 MovementAction_EmoteX_Step0(struct ObjectEvent *, struct Sprite *);
 static bool8 MovementAction_EmoteDoubleExclamationMark_Step0(struct ObjectEvent *, struct Sprite *);
 static bool8 MovementAction_EmoteSmile_Step0(struct ObjectEvent *, struct Sprite *);
+static bool8 MovementAction_EmoteHeart_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite);
 static bool8 MovementAction_RevealTrainer_Step0(struct ObjectEvent *, struct Sprite *);
 static bool8 MovementAction_RevealTrainer_Step1(struct ObjectEvent *, struct Sprite *);
 static bool8 MovementAction_RockSmashBreak_Step0(struct ObjectEvent *, struct Sprite *);
@@ -390,6 +391,7 @@ static bool8 (*const sMovementActionFuncs_EmoteQuestionMark[])(struct ObjectEven
 static bool8 (*const sMovementActionFuncs_EmoteX[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_EmoteDoubleExclMark[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_EmoteSmile[])(struct ObjectEvent *, struct Sprite *);
+static bool8 (*const sMovementActionFuncs_EmoteHeart[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_RevealTrainer[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_RockSmashBreak[])(struct ObjectEvent *, struct Sprite *);
 static bool8 (*const sMovementActionFuncs_CutTree[])(struct ObjectEvent *, struct Sprite *);
@@ -566,6 +568,7 @@ static bool8 (*const *const sMovementActionFuncs[])(struct ObjectEvent *, struct
     [MOVEMENT_ACTION_EMOTE_X]                            = sMovementActionFuncs_EmoteX,
     [MOVEMENT_ACTION_EMOTE_DOUBLE_EXCL_MARK]             = sMovementActionFuncs_EmoteDoubleExclMark,
     [MOVEMENT_ACTION_EMOTE_SMILE]                        = sMovementActionFuncs_EmoteSmile,
+    [MOVEMENT_ACTION_EMOTE_HEART]                        = sMovementActionFuncs_EmoteHeart,
     [MOVEMENT_ACTION_REVEAL_TRAINER]                     = sMovementActionFuncs_RevealTrainer,
     [MOVEMENT_ACTION_ROCK_SMASH_BREAK]                   = sMovementActionFuncs_RockSmashBreak,
     [MOVEMENT_ACTION_CUT_TREE]                           = sMovementActionFuncs_CutTree,
@@ -1318,6 +1321,11 @@ static bool8 (*const sMovementActionFuncs_EmoteDoubleExclMark[])(struct ObjectEv
 
 static bool8 (*const sMovementActionFuncs_EmoteSmile[])(struct ObjectEvent *, struct Sprite *) = {
     MovementAction_EmoteSmile_Step0,
+    MovementAction_Finish,
+};
+
+static bool8 (*const sMovementActionFuncs_EmoteHeart[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmoteHeart_Step0,
     MovementAction_Finish,
 };
 

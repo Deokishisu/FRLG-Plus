@@ -22,6 +22,7 @@
 #include "constants/seagallop.h"
 #include "constants/game_stat.h"
 #include "constants/coins.h"
+#include "constants/contest.h"
 #include "constants/menu.h"
 #include "constants/battle_setup.h"
 #include "constants/map_scripts.h"
@@ -917,6 +918,7 @@ Text_MoveCanOnlyBeLearnedOnce::
 	.string "once for free. Is that okay?$"
 
 EventScript_ResetAllMapFlags::
+	setflag FLAG_HIDE_CONTEST_POKE_BALL
 	setflag FLAG_HIDE_OAK_IN_HIS_LAB
 	setflag FLAG_HIDE_OAK_IN_PALLET_TOWN
 	setflag FLAG_HIDE_BILL_HUMAN_SEA_COTTAGE
@@ -1240,6 +1242,7 @@ EventScript_NoMoreRoomForPokemon::
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
 
+	.include "data/scripts/contest_hall.inc"
 	.include "data/text/contest_strings.inc"
 	.include "data/text/contest_link.inc"
 	.include "data/text/contest_painting.inc"
@@ -1332,3 +1335,12 @@ EventScript_NoMoreRoomForPokemon::
 
 	.include "data/maps/BattleFrontier_RankingHall/scripts.inc"
 	.include "data/maps/BattleFrontier_RankingHall/text.inc"
+
+	.include "data/maps/SixIsland_ContestLobby/scripts.inc"
+	.include "data/maps/SixIsland_ContestLobby/text.inc"
+
+	.include "data/maps/SixIsland_ContestHall/scripts.inc"
+	.include "data/maps/SixIsland_ContestHall/text.inc"
+
+	.include "data/maps/ContestHall/scripts.inc"
+	.include "data/maps/ContestHall/text.inc"

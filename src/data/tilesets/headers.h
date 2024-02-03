@@ -604,6 +604,17 @@ const struct Tileset gTileset_BurgledHouse =
 	.callback = 0x0
 };
 
+const struct Tileset gTileset_Contest = 
+{
+	.isCompressed = TRUE,
+	.isSecondary = TRUE,
+	.tiles = gTilesetTiles_Contest,
+	.palettes = gTilesetPalettes_Contest,
+	.metatiles = gMetatiles_Contest,
+	.metatileAttributes = gMetatileAttributes_Contest,
+	.callback = 0x0
+};
+
 const struct Tileset gTileset_Dummy3 = 
 {
 	.isCompressed = TRUE,

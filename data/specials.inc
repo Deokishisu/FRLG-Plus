@@ -78,28 +78,28 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special HasLeadMonBeenRenamed
-	def_special NullFieldSpecial  @ Contest specials
+	def_special NullFieldSpecial @ Contest specials
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special GetContestWinnerId
+	def_special GetContestPlayerId
+	def_special GetNpcContestantLocalId
+	def_special BufferContestWinnerTrainerName
+	def_special BufferContestWinnerMonName
+	def_special BufferContestTrainerAndMonNames
+	def_special GetContestMonConditionRanking
+	def_special SetContestTrainerGfxIds
+	def_special TryEnterContestMon
+	def_special GetContestantNamesAtRank
+	def_special SetLinkContestPlayerGfx
+	def_special GetContestMonCondition
+	def_special HasMonWonThisContestBefore
+	def_special GiveMonContestRibbon
+	def_special IsContestDebugActive
+	def_special GiveMonArtistRibbon
 	def_special TryContestLinkup
 	def_special Field_AskSaveTheGame
 	def_special DoWateringBerryTreeAnim
@@ -142,10 +142,10 @@ gSpecials::
 	def_special CalculatePlayerPartyCount
 	def_special CountPartyNonEggMons
 	def_special CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
-	def_special NullFieldSpecial  @ Contest specials
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special ShouldReadyContestArtist
+	def_special SaveMuseumContestPainting
+	def_special DoesContestCategoryHaveMuseumPainting
+	def_special CountPlayerMuseumPaintings
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial  @ Mauville Gym specials
 	def_special NullFieldSpecial
@@ -308,7 +308,7 @@ gSpecials::
 	def_special InitRoamer
 	def_special NullFieldSpecial
 	def_special PlayerHasGrassPokemonInParty
-	def_special NullFieldSpecial
+	def_special DoContestHallWarp
 	def_special NullFieldSpecial
 	def_special IsStarterFirstStageInParty
 	def_special NullFieldSpecial
@@ -328,8 +328,8 @@ gSpecials::
 	def_special StartDroughtWeatherBlend
 	def_special DoDiveWarp
 	def_special DoFallWarp
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special ShowContestEntryMonPic
+	def_special HideContestEntryMonPic
 	def_special SetEReaderTrainerGfxId
 	def_special StartSouthernIslandBattle
 	def_special NullFieldSpecial
@@ -452,4 +452,14 @@ gSpecials::
 	def_special UpdateLoreleiDollCollection
 	def_special LoopWingFlapSound
 	def_special CreateEnemyEventMon
+	def_special LinkContestWaitForConnection
+	def_special LinkContestTryShowWirelessIndicator
+	def_special LinkContestTryHideWirelessIndicator
+	def_special IsWirelessContest
+	def_special IsContestWithRSPlayer
+	def_special ClearLinkContestFlags
+	def_special TryContestEModeLinkup
+	def_special LoadLinkContestPlayerPalettes
+	def_special GetContestMultiplayerId
+	def_special GenerateContestRand
 gSpecialsEnd::

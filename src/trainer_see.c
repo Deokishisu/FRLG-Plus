@@ -598,6 +598,14 @@ static const struct SpriteFrameImage sSpriteImages_Emoticons[] = {
     {sGfx_Emoticons + 0x300, 0x80},
     {sGfx_Emoticons + 0x340, 0x80},
     {sGfx_Emoticons + 0x380, 0x80},
+
+    {sGfx_Emoticons + 0x300, 0x80},
+    {sGfx_Emoticons + 0x340, 0x80},
+    {sGfx_Emoticons + 0x380, 0x80},
+
+    {sGfx_Emoticons + 0x3C0, 0x80},
+    {sGfx_Emoticons + 0x400, 0x80},
+    {sGfx_Emoticons + 0x440, 0x80},
 };
 
 static const union AnimCmd sAnimCmd_ExclamationMark1[] = {
@@ -635,12 +643,20 @@ static const union AnimCmd sAnimCmd_QuestionMark[] = {
     ANIMCMD_END
 };
 
+static const union AnimCmd sAnimCmd_Heart[] = {
+    ANIMCMD_FRAME(15,  4),
+    ANIMCMD_FRAME(16,  4),
+    ANIMCMD_FRAME(17, 52),
+    ANIMCMD_END
+};
+
 static const union AnimCmd *const sSpriteAnimTable_Emoticons[] = {
     sAnimCmd_ExclamationMark1,
     sAnimCmd_DoubleExclMark,
     sAnimCmd_X,
     sAnimCmd_SmileyFace,
-    sAnimCmd_QuestionMark
+    sAnimCmd_QuestionMark,
+    sAnimCmd_Heart
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Emoticons = {
@@ -699,6 +715,16 @@ u8 FldEff_QuestionMarkIcon(void)
 
     if (spriteId != MAX_SPRITES)
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_QUESTION_MARK_ICON, 4);
+
+    return 0;
+}
+
+u8 FldEff_HeartIcon(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+        SetIconSpriteData(&gSprites[spriteId], FLDEFF_HEART_ICON, 4);
 
     return 0;
 }

@@ -72,6 +72,7 @@ gFieldEffectScriptPointers::
 	.4byte gFldEffScript_MoveDeoxysRock          @ FLDEFF_MOVE_DEOXYS_ROCK
 	.4byte gFldEffScript_DestroyDeoxysRock       @ FLDEFF_DESTROY_DEOXYS_ROCK
 	.4byte gFldEffScript_PhotoFlash              @ FLDEFF_PHOTO_FLASH
+	.4byte gFldEffScript_HeartIcon               @ FLDEFF_HEART_ICON
 
 gFldEffScript_ExclamationMarkIcon::
 	callnative FldEff_ExclamationMarkIcon1
@@ -343,4 +344,8 @@ gFldEffScript_DestroyDeoxysRock::
 
 gFldEffScript_PhotoFlash::
 	callnative FldEff_PhotoFlash
+	end 
+
+gFldEffScript_HeartIcon::
+	callnative FldEff_HeartIcon
 	end 

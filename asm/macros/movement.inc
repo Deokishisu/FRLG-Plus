@@ -107,6 +107,7 @@
 	create_movement_action emote_x, MOVEMENT_ACTION_EMOTE_X
 	create_movement_action emote_double_exclamation_mark, MOVEMENT_ACTION_EMOTE_DOUBLE_EXCL_MARK
 	create_movement_action emote_smile, MOVEMENT_ACTION_EMOTE_SMILE
+	create_movement_action emote_heart, MOVEMENT_ACTION_EMOTE_HEART
 	create_movement_action reveal_trainer, MOVEMENT_ACTION_REVEAL_TRAINER
 	create_movement_action rock_smash_break, MOVEMENT_ACTION_ROCK_SMASH_BREAK
 	create_movement_action cut_tree, MOVEMENT_ACTION_CUT_TREE

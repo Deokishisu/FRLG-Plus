@@ -788,6 +788,42 @@ static void Task_DoorWarp(u8 taskId)
     }
 }
 
+static void Task_DoContestHallWarp(u8 taskId)
+{
+    struct Task *task = &gTasks[taskId];
+
+    switch (task->data[0])
+    {
+    case 0:
+        FreezeObjectEvents();
+        LockPlayerFieldControls();
+        task->data[0]++;
+        break;
+    case 1:
+        if (!gPaletteFade.active && BGMusicStopped())
+        {
+            task->data[0]++;
+        }
+        break;
+    case 2:
+        WarpIntoMap();
+        SetMainCallback2(CB2_ReturnToFieldContestHall);
+        DestroyTask(taskId);
+        break;
+    }
+}
+
+void DoContestHallWarp(void)
+{
+    LockPlayerFieldControls();
+    TryFadeOutOldMapMusic();
+    WarpFadeOutScreen();
+    PlayRainStoppingSoundEffect();
+    PlaySE(SE_EXIT);
+    gFieldCallback = FieldCB_WarpExitFadeFromBlack;
+    CreateTask(Task_DoContestHallWarp, 10);
+}
+
 static void Task_StairWarp(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;

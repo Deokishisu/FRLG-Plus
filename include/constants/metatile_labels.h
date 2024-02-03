@@ -1,11 +1,11 @@
 #ifndef GUARD_METATILE_LABELS_H
 #define GUARD_METATILE_LABELS_H
 
-// gTileset_BattleFrontierOutsideEast
-#define METATILE_BattleFrontierOutsideEast_BattleTower  0x330
-
 // gTileset_BattleFrontier
 #define METATILE_BattleFrontier_BattleTowerElevator  0x28E
+
+// gTileset_BattleFrontierOutsideEast
+#define METATILE_BattleFrontierOutsideEast_BattleTower  0x330
 
 // gTileset_BerryForest
 #define METATILE_BerryForest_Door               0x2BB
@@ -41,6 +41,12 @@
 
 // gTileset_CinnabarIsland
 #define METATILE_CinnabarIsland_LabDoor  0x2AD
+
+// gTileset_Contest
+#define METATILE_Contest_CounterFlap_Bottom  0x359
+#define METATILE_Contest_CounterFlap_Top     0x351
+#define METATILE_Contest_FloorShadow         0x2E1
+#define METATILE_Contest_WallShadow          0x2A1
 
 // gTileset_DepartmentStore
 #define METATILE_DepartmentStore_ElevatorDoor  0x28D
@@ -239,6 +245,16 @@
 #define METATILE_SeviiIslands5_Micro_Grass                  0x28C
 #define METATILE_SeviiIslands5_Micro_Mowed                  0x28B
 
+// gTileset_SeviiIslands6
+#define METATILE_SeviiIslands6_ContestDoor                   0x37A
+#define METATILE_SeviiIslands6_DO_NOT_DELETE                 0x287
+#define METATILE_SeviiIslands6_ForestTreeCorner_Left         0x2B3
+#define METATILE_SeviiIslands6_ForestTreeCorner_Left_Mowed   0x2A0
+#define METATILE_SeviiIslands6_ForestTreeCorner_Right        0x2B4
+#define METATILE_SeviiIslands6_ForestTreeCorner_Right_Mowed  0x2A2
+#define METATILE_SeviiIslands6_ForestTreeTop                 0x2B5
+#define METATILE_SeviiIslands6_ForestTreeTop_Mowed           0x28F
+
 // gTileset_SeviiIslands67
 #define METATILE_SeviiIslands67_BottomLeftCorner                      0x30E
 #define METATILE_SeviiIslands67_BottomRightCorner                     0x30F
@@ -276,23 +292,6 @@
 #define METATILE_SeviiIslands67_TopLeftCorner                         0x300
 #define METATILE_SeviiIslands67_TopRightCorner                        0x301
 #define METATILE_SeviiIslands67_Up                                    0x332
-
-// gTileset_SeviiIslands6
-#define METATILE_SeviiIslands6_DO_NOT_DELETE                 0x287
-#define METATILE_SeviiIslands6_ForestTreeCorner_Left         0x2B3
-#define METATILE_SeviiIslands6_ForestTreeCorner_Left_Mowed   0x2A0
-#define METATILE_SeviiIslands6_ForestTreeCorner_Right        0x2B4
-#define METATILE_SeviiIslands6_ForestTreeCorner_Right_Mowed  0x2A2
-#define METATILE_SeviiIslands6_ForestTreeTop                 0x2B5
-#define METATILE_SeviiIslands6_ForestTreeTop_Mowed           0x28F
-
-
-// gTileset_ViridianCity
-#define METATILE_ViridianCity_Door  0x299
-
-// gTileset_ViridianForest
-#define METATILE_ViridianForest_HugeTreeTopMiddle_Grass  0x284
-#define METATILE_ViridianForest_HugeTreeTopMiddle_Mowed  0x281
 
 // gTileset_SilphCo
 #define METATILE_SilphCo_Arrow_Down                     0x2A8

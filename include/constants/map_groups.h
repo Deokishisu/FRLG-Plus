@@ -520,6 +520,8 @@
 #define MAP_SIX_ISLAND_HARBOR            (2 | (37 << 8))
 #define MAP_SIX_ISLAND_HOUSE             (3 | (37 << 8))
 #define MAP_SIX_ISLAND_MART              (4 | (37 << 8))
+#define MAP_SIX_ISLAND_CONTEST_LOBBY     (5 | (37 << 8))
+#define MAP_SIX_ISLAND_CONTEST_HALL      (6 | (37 << 8))
 
 // gMapGroup_IndoorThreeIslandRoute
 #define MAP_THREE_ISLAND_HARBOR (0 | (38 << 8))
@@ -560,6 +562,7 @@
 #define MAP_BATTLE_FRONTIER_LOUNGE6                 (19 | (43 << 8))
 #define MAP_BATTLE_FRONTIER_LOUNGE7                 (20 | (43 << 8))
 #define MAP_BATTLE_FRONTIER_LOUNGE8                 (21 | (43 << 8))
+#define MAP_CONTEST_HALL                            (22 | (43 << 8))
 
 #define MAP_GROUPS_COUNT 44
 

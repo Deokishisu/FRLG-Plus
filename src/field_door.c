@@ -81,6 +81,7 @@ static const u8 sDoorAnimTiles_HideoutElevator[] = INCBIN_U8("graphics/door_anim
 static const u16 sDoorNullPalette20[16] = {};
 static const u8 sDoorAnimTiles_SSAnne[] = INCBIN_U8("graphics/door_anims/ss_anne.4bpp");
 static const u16 sDoorNullPalette21[16] = {};
+static const u8 sDoorAnimTiles_Contest[] = INCBIN_U8("graphics/door_anims/contest.4bpp");
 
 // Doors from R/S dummied below
 static const u8 sDoorAnimTiles_Empty1[256 * 3] = {};
@@ -291,6 +292,7 @@ static const struct DoorGraphics sDoorGraphics[] = {
     {METATILE_BerryForest_Door,                            DOOR_SOUND_NORMAL,  DOOR_SIZE_1x1, sDoorAnimTiles_Sevii45, sDoorAnimPalettes_Sevii45},
     {METATILE_BattleFrontierOutsideEast_BattleTower,       DOOR_SOUND_SLIDING, DOOR_SIZE_1x1, sDoorAnimTiles_BattleTower, sDoorAnimPalettes_SlidingSingle},
     {METATILE_BattleFrontier_BattleTowerElevator,          DOOR_SOUND_SLIDING, DOOR_SIZE_1x1, sDoorAnimTiles_BattleTowerElevator, sDoorAnimPalettes_SSAnne},
+    {METATILE_SeviiIslands6_ContestDoor,                   DOOR_SOUND_SLIDING, DOOR_SIZE_1x1, sDoorAnimTiles_Contest, sDoorAnimPalettes_Cerulean},
     {}
 };
 

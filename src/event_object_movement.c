@@ -7153,6 +7153,14 @@ static bool8 MovementAction_EmoteSmile_Step0(struct ObjectEvent *objectEvent, st
     return TRUE;
 }
 
+static bool8 MovementAction_EmoteHeart_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
+{
+    ObjectEventGetLocalIdAndMap(objectEvent, &gFieldEffectArguments[0], &gFieldEffectArguments[1], &gFieldEffectArguments[2]);
+    FieldEffectStart(FLDEFF_HEART_ICON);
+    sprite->data[2] = 1;
+    return TRUE;
+}
+
 static bool8 MovementAction_RevealTrainer_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
     if (objectEvent->movementType == MOVEMENT_TYPE_BURIED)

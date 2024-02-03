@@ -217,6 +217,7 @@ static void MovementStatusHandler_TryAdvanceScript(struct LinkPlayerObjectEvent 
 static u8 FlipVerticalAndClearForced(u8 newFacing, u8 oldFacing);
 static u8 LinkPlayerDetectCollision(u8 selfObjEventId, u8 a2, s16 x, s16 y);
 static void SpriteCB_LinkPlayer(struct Sprite *sprite);
+static bool32 LoadMapInStepsLocal(u8 *state, bool32 inLink);
 
 extern const struct MapLayout * gMapLayouts[];
 extern const struct MapHeader *const *gMapGroups[];
@@ -1688,6 +1689,23 @@ static void CB2_LoadMap2(void)
         QuestLog_AdvancePlayhead_();
     }
     else
+    {
+        SetFieldVBlankCallback();
+        SetMainCallback1(CB1_Overworld);
+        SetMainCallback2(CB2_Overworld);
+    }
+}
+
+void CB2_ReturnToFieldContestHall(void)
+{
+    if (!gMain.state)
+    {
+        FieldClearVBlankHBlankCallbacks();
+        ScriptContext_Init();
+        UnlockPlayerFieldControls();
+        SetMainCallback1(NULL);
+    }
+    if (LoadMapInStepsLocal(&gMain.state, TRUE))
     {
         SetFieldVBlankCallback();
         SetMainCallback1(CB1_Overworld);

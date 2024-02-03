@@ -544,6 +544,13 @@ void TryContestLinkup(void)
     CreateLinkupTask(4, 4);
 }
 
+void TryContestEModeLinkup(void)
+{
+    gLinkType = LINKTYPE_CONTEST_EMODE;
+    gBattleTypeFlags = 0;
+    CreateLinkupTask(2, 4);
+}
+
 u8 CreateTask_ReestablishCableClubLink(void)
 {
     if (FuncIsActiveTask(Task_ReestablishLink))
