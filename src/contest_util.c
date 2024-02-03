@@ -1175,6 +1175,8 @@ static s32 DrawResultsTextWindow(const u8 *text, u8 spriteId)
     u8 *spriteTilePtrs[4];
     u8 *dst;
     s32 i;
+    struct Sprite *sprite;
+    const u8 *src, *windowTilesPtr;
 
     struct WindowTemplate windowTemplate;
     memset(&windowTemplate, 0, sizeof(windowTemplate));
@@ -1190,9 +1192,6 @@ static s32 DrawResultsTextWindow(const u8 *text, u8 spriteId)
 
     AddTextPrinterParameterized3(windowId, FONT_NORMAL, (tileWidth * 8 - strWidth) / 2, 1, sContestLinkTextColors, TEXT_SKIP_DRAW, text);
 
-
-    struct Sprite *sprite;
-    const u8 *src, *windowTilesPtr;
     windowTilesPtr = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
     src = (u8 *)sResultsTextWindow_Gfx;
 
