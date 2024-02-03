@@ -1678,7 +1678,7 @@ static void Cmd_splitbgprio(void)
 
     // Apply only if the given battler is the lead (on left from team's perspective)
     battlerPosition = GetBattlerPosition(battlerId);
-    if (!IsContest() && battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_OPPONENT_RIGHT)
+    if (!IsContest() && (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_OPPONENT_RIGHT))
     {
         SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);
         SetAnimBgAttribute(2, BG_ANIM_PRIORITY, 2);
@@ -1714,7 +1714,7 @@ static void Cmd_splitbgprio_foes(void)
 
         // Apply only if the given battler is the lead (on left from team's perspective)
         battlerPosition = GetBattlerPosition(battlerId);
-        if (!IsContest() && battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_OPPONENT_RIGHT)
+        if (!IsContest() && (battlerPosition == B_POSITION_PLAYER_LEFT || battlerPosition == B_POSITION_OPPONENT_RIGHT))
         {
             SetAnimBgAttribute(1, BG_ANIM_PRIORITY, 1);
             SetAnimBgAttribute(2, BG_ANIM_PRIORITY, 2);

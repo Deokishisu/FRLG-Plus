@@ -959,6 +959,8 @@ static void AnimTask_HazeScrollingFog_Step(u8 taskId)
     struct BattleAnimBgData animBg;
 
     gBattle_BG1_X += -1;
+    gBattle_BG1_Y += 0;
+
     switch (gTasks[taskId].data[12])
     {
     case 0:

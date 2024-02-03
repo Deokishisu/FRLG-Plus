@@ -1001,9 +1001,9 @@ void InitBattleAnimBg(u32 bgId)
 
     GetBattleAnimBgData(&animBgData, bgId);
     CpuFill32(0, animBgData.bgTiles, 0x2000);
-    LoadBgTiles(bgId, animBgData.bgTiles, 0x2000, animBgData.tilesOffset);
-    FillBgTilemapBufferRect(bgId, 0, 0, 0, 32, 64, 17);
-    CopyBgTilemapBufferToVram(bgId);
+    LoadBgTiles(animBgData.bgId, animBgData.bgTiles, 0x2000, animBgData.tilesOffset);
+    FillBgTilemapBufferRect(animBgData.bgId, 0, 0, 0, 32, 64, 17);
+    CopyBgTilemapBufferToVram(animBgData.bgId);
 }
 
 void AnimLoadCompressedBgGfx(u32 bgId, const u32 *src, u32 tilesOffset)

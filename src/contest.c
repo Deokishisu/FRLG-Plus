@@ -1334,8 +1334,6 @@ static bool8 SetupContestGraphics(u8 *stateVar)
     case 4:
         CopyToBgTilemapBuffer(2, gContestInterfaceTilemap, 0, 0);
         CopyBgTilemapBufferToVram(2);
-        // This is a bug, and copies random junk. savedJunk is never read.
-        DmaCopy32Defvars(3, gContestResources->contestBgTilemaps[2], eContestTempSave.savedJunk, sizeof(eContestTempSave.savedJunk));
         break;
     case 5:
         LoadCompressedPalette(gContestInterfaceAudiencePalette, BG_PLTT_OFFSET, BG_PLTT_SIZE);
@@ -1525,7 +1523,7 @@ static void Task_TryShowMoveSelectScreen(u8 taskId)
 
 static void Task_ShowMoveSelectScreen(u8 taskId)
 {
-    u8 i;
+    u32 i;
     u8 moveName[32];
 
     gBattle_BG0_Y = DISPLAY_HEIGHT;
@@ -3981,7 +3979,7 @@ static void CreateApplauseMeterSprite(void)
 
 static void CreateJudgeAttentionEyeTask(void)
 {
-    u8 i;
+    u32 i;
     u8 taskId = CreateTask(Task_FlashJudgeAttentionEye, 30);
 
     eContest.judgeAttentionTaskId = taskId;
@@ -4017,7 +4015,7 @@ static void Task_StopFlashJudgeAttentionEye(u8 taskId)
 
 static void Task_FlashJudgeAttentionEye(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
@@ -4091,7 +4089,7 @@ static void UpdateBlendTaskContestantData(u8 contestant)
 // See comments on CreateUnusedBlendTask
 static void Task_UnusedBlend(u8 taskId)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
@@ -4253,7 +4251,7 @@ static void UNUSED ContestDebugTogglePointTotal(void)
 
 static void ContestDebugDoPrint(void)
 {
-    u8 i;
+    u32 i;
     s16 value;
     u8 *txtPtr;
     u8 text[8];
@@ -4382,7 +4380,7 @@ void SortContestants(bool8 useRanking)
         memset(scratch, CONTESTANT_NONE, sizeof(scratch));
         for (i = 0; i < CONTESTANT_COUNT; i++)
         {
-            u8 j = eContestantStatus[i].ranking;
+            u32 j = eContestantStatus[i].ranking;
 
             while (1)
             {
@@ -5467,7 +5465,7 @@ static void Contest_StartTextPrinter(const u8 *currChar, bool32 b)
 
     printerTemplate.currentChar = currChar;
     printerTemplate.windowId = WIN_GENERAL_TEXT;
-    printerTemplate.fontId = FONT_NORMAL;
+    printerTemplate.fontId = FONT_SMALL;
     printerTemplate.x = 0;
     printerTemplate.y = 1;
     printerTemplate.currentX = 0;
@@ -5959,8 +5957,8 @@ void ContestDebugToggleBitfields(bool8 loserFlags)
 
 static void ContestDebugPrintBitStrings(void)
 {
-    u8 i;
-    s8 j;
+    u32 i;
+    s32 j;
     u8 text1[20];
     u8 text2[20];
     u8 *txtPtr;
@@ -6048,11 +6046,7 @@ static u8 GetMonNicknameLanguage(u8 *nickname)
                 || *nickname == CHAR_DBL_QUOTE_LEFT
                 || *nickname == CHAR_DBL_QUOTE_RIGHT
                 || *nickname == CHAR_SGL_QUOTE_LEFT
-#ifdef BUGFIX
                 || *nickname == CHAR_SGL_QUOTE_RIGHT
-#else
-                || *nickname == CHAR_DBL_QUOTE_LEFT // Most likely a typo, CHAR_SGL_QUOTE_RIGHT should be here instead.
-#endif
                 )
             {
                 nickname++;

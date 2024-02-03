@@ -12,7 +12,7 @@ static EWRAM_DATA struct
 
 bool32 ConfettiUtil_Init(u8 count)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (count == 0)
         return FALSE;
@@ -41,7 +41,7 @@ bool32 ConfettiUtil_Init(u8 count)
 
 bool32 ConfettiUtil_Free(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (sWork == NULL)
         return FALSE;
@@ -59,7 +59,7 @@ bool32 ConfettiUtil_Free(void)
 
 bool32 ConfettiUtil_Update(void)
 {
-    u8 i = 0;
+    u32 i = 0;
 
     if (sWork == NULL || sWork->array == NULL)
         return FALSE;
@@ -130,7 +130,7 @@ u8 ConfettiUtil_SetData(u8 id, u8 dataArrayId, s16 dataValue)
 u8 ConfettiUtil_AddNew(const struct OamData *oam, u16 tileTag, u16 palTag, s16 x, s16 y, u8 animNum, u8 priority)
 {
     struct ConfettiUtil *structPtr = NULL;
-    u8 i;
+    u32 i;
 
     if (sWork == NULL || oam == NULL)
         return 0xFF;

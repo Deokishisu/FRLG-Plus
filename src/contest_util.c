@@ -2079,7 +2079,7 @@ void BufferContestantMonNickname(void)
 // Unused script special
 void GetContestMonConditionRanking(void)
 {
-    u8 i, rank;
+    u32 i, rank;
 
     for (i = 0, rank = 0; i < CONTESTANT_COUNT; i++)
     {
@@ -2097,14 +2097,14 @@ void GetContestMonCondition(void)
 
 void GetContestWinnerId(void)
 {
-    u8 i;
+    u32 i;
     GET_CONTEST_WINNER_ID(i);
     gSpecialVar_0x8005 = i;
 }
 
 void BufferContestWinnerTrainerName(void)
 {
-    u8 i;
+    u32 i;
     GET_CONTEST_WINNER_ID(i);
     StringCopy(gStringVar3, gContestMons[i].trainerName);
     ConvertInternationalContestantName(gStringVar3);
@@ -2112,7 +2112,7 @@ void BufferContestWinnerTrainerName(void)
 
 void BufferContestWinnerMonName(void)
 {
-    u8 i;
+    u32 i;
     GET_CONTEST_WINNER_ID(i);
     StringCopy(gStringVar1, gContestMons[i].nickname);
 }

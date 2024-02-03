@@ -643,7 +643,7 @@ static void ContestEffect_QualityDependsOnTiming(void)
 static void ContestEffect_BetterIfSameType(void)
 {
     s8 turnOrder = eContestAppealResults.turnOrder[eContestAppealResults.contestant];
-    s8 i = turnOrder - 1, j;
+    s32 i = turnOrder - 1, j;
     u16 move;
 
     if (turnOrder == 0)
@@ -750,8 +750,8 @@ static void ContestEffect_BetterWithGoodCondition(void)
 // The next appeal can be made earlier next turn.
 static void ContestEffect_NextAppealEarlier(void)
 {
-    s8 i;
-    s8 j;
+    s32 i;
+    s32 j;
     u8 turnOrder[CONTESTANT_COUNT];
 
     if (eContest.appealNumber != CONTEST_LAST_APPEAL)
@@ -792,8 +792,8 @@ static void ContestEffect_NextAppealEarlier(void)
 // The next appeal can be made later next turn.
 static void ContestEffect_NextAppealLater(void)
 {
-    s8 i;
-    s8 j;
+    s32 i;
+    s32 j;
     u8 turnOrder[CONTESTANT_COUNT];
 
     if (eContest.appealNumber != CONTEST_LAST_APPEAL)
@@ -840,8 +840,8 @@ static void ContestEffect_MakeScramblingTurnOrderEasier(void)
 // Scrambles the order of appeals on the next turn.
 static void ContestEffect_ScrambleNextTurnOrder(void)
 {
-    s8 i;
-    s8 j;
+    s32 i;
+    s32 j;
     u8 turnOrder[CONTESTANT_COUNT];
     u8 unselectedContestants[CONTESTANT_COUNT];
 
