@@ -192,14 +192,14 @@ const u16 *const gTilesetAnims_BattleFrontierOutsideEast_Flower[] = {
     gTilesetAnims_BattleFrontierOutsideEast_Flower_Frame2
 };
 
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame0[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/0.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame1[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/1.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame2[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/2.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame3[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/3.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame4[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/4.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame5[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/5.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame6[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/6.4bpp");
-static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame7[] = INCBIN_U16("data/tilesets/secondary/SeviiIslands5/anim/mossdeep_tree_base/7.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame0[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/0.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame1[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/1.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame2[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/2.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame3[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/3.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame4[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/4.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame5[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/5.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame6[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/6.4bpp");
+static const u16 gTilesetAnims_Mossdeep_Tree_Base_Frame7[] = INCBIN_U16("data/tilesets/secondary/seviiislands5/anim/mossdeep_tree_base/7.4bpp");
 
 static const u16 *const gTilesetAnims_Mossdeep_Tree_Base[] = {
     gTilesetAnims_Mossdeep_Tree_Base_Frame0,
@@ -393,7 +393,7 @@ void InitTilesetAnim_VermilionGym(void)
 static void QueueAnimTiles_CeladonGym_Flowers(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(sTilesetAnims_CeladonGym_Flowers);
-    
+
     AppendTilesetAnimToBuffer(sTilesetAnims_CeladonGym_Flowers[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(739)), 4 * TILE_SIZE_4BPP);
 }
 
@@ -502,20 +502,20 @@ void InitTilesetAnim_SeviiIslands67(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_SeviiIslands67;
 }
 
-static void QueueAnimTiles_SeviiIslands5_ShortGrassFlower(u16 timer)
+static void QueueAnimTiles_seviiislands5_ShortGrassFlower(u16 timer)
 {
     AppendTilesetAnimToBuffer(sTilesetAnims_General_Flower[timer % NELEMS(sTilesetAnims_General_Flower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x324)), 0x80);
 }
 
-static void TilesetAnim_SeviiIslands5(u16 timer)
+static void TilesetAnim_seviiislands5(u16 timer)
 {
     if (timer % 16 == 2)
-        QueueAnimTiles_SeviiIslands5_ShortGrassFlower(timer >> 4);
+        QueueAnimTiles_seviiislands5_ShortGrassFlower(timer >> 4);
 }
 
 void InitTilesetAnim_SeviiIslands5(void)
 {
     sSecondaryTilesetAnimCounter = sPrimaryTilesetAnimCounter;
     sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
-    sSecondaryTilesetAnimCallback = TilesetAnim_SeviiIslands5;
+    sSecondaryTilesetAnimCallback = TilesetAnim_seviiislands5;
 }

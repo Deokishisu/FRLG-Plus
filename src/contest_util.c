@@ -121,9 +121,7 @@ struct ContestResults
 {
     struct ContestResultsInternal *data;
     struct ContestMonResults (*monResults)[CONTESTANT_COUNT];
-    u8 *unusedBg; // Allocated/freed, never used
     u8 *tilemapBuffers[4];
-    u8 *unused; // Allocated/freed, never used
 };
 
 static EWRAM_DATA struct ContestResults *sContestResults = NULL;
@@ -503,6 +501,7 @@ static void LoadContestMonName(u8 monIndex)
 {
     struct ContestPokemon *mon = &gContestMons[monIndex];
     u8 *str = gDisplayedStringBattle;
+    FillWindowPixelBuffer(monIndex, PIXEL_FILL(0));
     if (monIndex == gContestPlayerMonIndex)
         str = StringCopy(gDisplayedStringBattle, gText_ColorDarkGray);
 
@@ -1175,6 +1174,9 @@ static s32 DrawResultsTextWindow(const u8 *text, u8 spriteId)
     int strWidth;
     u8 *spriteTilePtrs[4];
     u8 *dst;
+    s32 i;
+    struct Sprite *sprite;
+    const u8 *src, *windowTilesPtr;
 
     struct WindowTemplate windowTemplate;
     memset(&windowTemplate, 0, sizeof(windowTemplate));
@@ -1189,44 +1191,41 @@ static s32 DrawResultsTextWindow(const u8 *text, u8 spriteId)
         tileWidth = DISPLAY_TILE_WIDTH;
 
     AddTextPrinterParameterized3(windowId, FONT_NORMAL, (tileWidth * 8 - strWidth) / 2, 1, sContestLinkTextColors, TEXT_SKIP_DRAW, text);
+
+    windowTilesPtr = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
+    src = (u8 *)sResultsTextWindow_Gfx;
+
+    sprite = &gSprites[spriteId];
+    spriteTilePtrs[0] = (u8 *)(sprite->oam.tileNum * 32 + OBJ_VRAM0);
+
+    for (i = 1; i < (int)ARRAY_COUNT(spriteTilePtrs); i++)
+        spriteTilePtrs[i] = (void *)(gSprites[sprite->data[i - 1]].oam.tileNum * 32 + OBJ_VRAM0);
+
+    for (i = 0; i < (int)ARRAY_COUNT(spriteTilePtrs); i++)
+        CpuFill32(0, spriteTilePtrs[i], 0x400);
+
+    dst = spriteTilePtrs[0];
+    CpuCopy32(src, dst, 0x20);
+    CpuCopy32(src + 128, dst + 0x100, 0x20);
+    CpuCopy32(src + 128, dst + 0x200, 0x20);
+    CpuCopy32(src + 64,  dst + 0x300, 0x20);
+
+    for (i = 0; i < tileWidth; i++)
     {
-        s32 i;
-        struct Sprite *sprite;
-        const u8 *src, *windowTilesPtr;
-        windowTilesPtr = (u8 *)GetWindowAttribute(windowId, WINDOW_TILE_DATA);
-        src = (u8 *)sResultsTextWindow_Gfx;
-
-        sprite = &gSprites[spriteId];
-        spriteTilePtrs[0] = (u8 *)(sprite->oam.tileNum * 32 + OBJ_VRAM0);
-
-        for (i = 1; i < (int)ARRAY_COUNT(spriteTilePtrs); i++)
-            spriteTilePtrs[i] = (void *)(gSprites[sprite->data[i - 1]].oam.tileNum * 32 + OBJ_VRAM0);
-
-        for (i = 0; i < (int)ARRAY_COUNT(spriteTilePtrs); i++)
-            CpuFill32(0, spriteTilePtrs[i], 0x400);
-
-        dst = spriteTilePtrs[0];
-        CpuCopy32(src, dst, 0x20);
-        CpuCopy32(src + 128, dst + 0x100, 0x20);
-        CpuCopy32(src + 128, dst + 0x200, 0x20);
-        CpuCopy32(src + 64,  dst + 0x300, 0x20);
-
-        for (i = 0; i < tileWidth; i++)
-        {
-            dst = &spriteTilePtrs[(i + 1) / 8][((i + 1) % 8) * 32];
-            CpuCopy32(src + 192, dst, 0x20);
-            CpuCopy32(windowTilesPtr, dst + 0x100, 0x20);
-            CpuCopy32(windowTilesPtr + 960, dst + 0x200, 0x20);
-            CpuCopy32(src + 224, dst + 0x300, 0x20);
-            windowTilesPtr += 0x20;
-        }
-
         dst = &spriteTilePtrs[(i + 1) / 8][((i + 1) % 8) * 32];
-        CpuCopy32(src + 32,  dst, 0x20);
-        CpuCopy32(src + 160, dst + 0x100, 0x20);
-        CpuCopy32(src + 160, dst + 0x200, 0x20);
-        CpuCopy32(src + 96,  dst + 0x300, 0x20);
+        CpuCopy32(src + 192, dst, 0x20);
+        CpuCopy32(windowTilesPtr, dst + 0x100, 0x20);
+        CpuCopy32(windowTilesPtr + 960, dst + 0x200, 0x20);
+        CpuCopy32(src + 224, dst + 0x300, 0x20);
+        windowTilesPtr += 0x20;
     }
+
+    dst = &spriteTilePtrs[(i + 1) / 8][((i + 1) % 8) * 32];
+    CpuCopy32(src + 32,  dst, 0x20);
+    CpuCopy32(src + 160, dst + 0x100, 0x20);
+    CpuCopy32(src + 160, dst + 0x200, 0x20);
+    CpuCopy32(src + 96,  dst + 0x300, 0x20);
+
     RemoveWindow(windowId);
 
     return (DISPLAY_WIDTH - (tileWidth + 2) * 8) / 2;
@@ -1915,12 +1914,10 @@ static void AllocContestResults(void)
     sContestResults = AllocZeroed(sizeof(*sContestResults));
     sContestResults->data = AllocZeroed(sizeof(*sContestResults->data));
     sContestResults->monResults = AllocZeroed(sizeof(*sContestResults->monResults));
-    sContestResults->unusedBg = AllocZeroed(BG_SCREEN_SIZE);
     sContestResults->tilemapBuffers[0] = AllocZeroed(BG_SCREEN_SIZE);
     sContestResults->tilemapBuffers[1] = AllocZeroed(BG_SCREEN_SIZE);
     sContestResults->tilemapBuffers[2] = AllocZeroed(BG_SCREEN_SIZE);
     sContestResults->tilemapBuffers[3] = AllocZeroed(BG_SCREEN_SIZE);
-    sContestResults->unused = AllocZeroed(0x1000);
     AllocateMonSpritesGfx();
 }
 
@@ -1928,12 +1925,10 @@ static void FreeContestResults(void)
 {
     FREE_AND_SET_NULL(sContestResults->data);
     FREE_AND_SET_NULL(sContestResults->monResults);
-    FREE_AND_SET_NULL(sContestResults->unusedBg);
     FREE_AND_SET_NULL(sContestResults->tilemapBuffers[0]);
     FREE_AND_SET_NULL(sContestResults->tilemapBuffers[1]);
     FREE_AND_SET_NULL(sContestResults->tilemapBuffers[2]);
     FREE_AND_SET_NULL(sContestResults->tilemapBuffers[3]);
-    FREE_AND_SET_NULL(sContestResults->unused);
     FREE_AND_SET_NULL(sContestResults);
     FreeMonSpritesGfx();
 }
@@ -2074,20 +2069,6 @@ void BufferContestantTrainerName(void)
 void BufferContestantMonNickname(void)
 {
     StringCopy(gStringVar3, gContestMons[gSpecialVar_0x8006].nickname);
-}
-
-// Unused script special
-void GetContestMonConditionRanking(void)
-{
-    u32 i, rank;
-
-    for (i = 0, rank = 0; i < CONTESTANT_COUNT; i++)
-    {
-        if (gContestMonRound1Points[gSpecialVar_0x8006] < gContestMonRound1Points[i])
-            rank++;
-    }
-
-    gSpecialVar_0x8004 = rank;
 }
 
 void GetContestMonCondition(void)
@@ -2301,65 +2282,11 @@ void SetContestTrainerGfxIds(void)
     gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_2 - VARS_START] = gContestMons[2].trainerGfxId;
 }
 
-// Unused
-void GetNpcContestantLocalId(void)
-{
-    u16 localId;
-    u8 contestant = gSpecialVar_0x8005;
-    switch (contestant)
-    {
-    case 0:
-        localId = 3;
-        break;
-    case 1:
-        localId = 4;
-        break;
-    case 2:
-        localId = 5;
-        break;
-    default: // Invalid
-        localId = 100;
-        break;
-    }
-
-    gSpecialVar_0x8004 = localId;
-}
-
 void BufferContestTrainerAndMonNames(void)
 {
     BufferContestantTrainerName();
     BufferContestantMonNickname();
     BufferContestantMonSpecies();
-}
-
-// Unused
-void DoesContestCategoryHaveMuseumPainting(void)
-{
-    int contestWinner;
-    switch (gSpecialVar_ContestCategory)
-    {
-    case CONTEST_CATEGORY_COOL:
-        contestWinner = CONTEST_WINNER_MUSEUM_COOL - 1;
-        break;
-    case CONTEST_CATEGORY_BEAUTY:
-        contestWinner = CONTEST_WINNER_MUSEUM_BEAUTY - 1;
-        break;
-    case CONTEST_CATEGORY_CUTE:
-        contestWinner = CONTEST_WINNER_MUSEUM_CUTE - 1;
-        break;
-    case CONTEST_CATEGORY_SMART:
-        contestWinner = CONTEST_WINNER_MUSEUM_SMART - 1;
-        break;
-    case CONTEST_CATEGORY_TOUGH:
-    default:
-        contestWinner = CONTEST_WINNER_MUSEUM_TOUGH - 1;
-        break;
-    }
-
-    if (gSaveBlock1Ptr->contestWinners[contestWinner].species == SPECIES_NONE)
-        gSpecialVar_0x8004 = FALSE;
-    else
-        gSpecialVar_0x8004 = TRUE;
 }
 
 void SaveMuseumContestPainting(void)
@@ -2393,84 +2320,6 @@ u8 CountPlayerMuseumPaintings(void)
     }
 
     return count;
-}
-
-// Unused
-void GetContestantNamesAtRank(void)
-{
-    s16 conditions[CONTESTANT_COUNT];
-    int i, j;
-    s16 condition;
-    s8 numAtCondition;
-    u8 contestantOffset;
-    u8 tieRank;
-    u8 rank;
-
-    // Get round 1 points
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-        conditions[i] = gContestMonRound1Points[i];
-
-    // Sort round 1 points
-    for (i = 0; i < CONTESTANT_COUNT - 1; i++)
-    {
-        for (j = CONTESTANT_COUNT - 1; j > i; j--)
-        {
-            if (conditions[j - 1] < conditions[j])
-            {
-                int temp;
-                SWAP(conditions[j], conditions[j - 1], temp)
-            }
-        }
-    }
-
-    // Get round 1 points at specified rank
-    condition = conditions[gSpecialVar_0x8006];
-
-    // Count number of contestants with the same number of points
-    numAtCondition = 0;
-    tieRank = 0;
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-    {
-        if (conditions[i] == condition)
-        {
-            numAtCondition++;
-            if (i == gSpecialVar_0x8006)
-                tieRank = numAtCondition;
-        }
-    }
-
-    // Get rank of first contestant with the same number of points
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-    {
-        if (conditions[i] == condition)
-            break;
-    }
-    rank = i;
-
-    // Get contestant id of player at rank (taking ties into account)
-    contestantOffset = tieRank;
-    for (i = 0; i < CONTESTANT_COUNT; i++)
-    {
-        if (condition == gContestMonRound1Points[i])
-        {
-            if (contestantOffset == 1)
-                break;
-            contestantOffset--;
-        }
-    }
-
-    // Use contestant id to get names
-    StringCopy(gStringVar1, gContestMons[i].nickname);
-    StringCopy(gStringVar2, gContestMons[i].trainerName);
-    ConvertInternationalContestantName(gStringVar2);
-
-    // Return adjusted rank
-    if (numAtCondition == 1)
-        gSpecialVar_0x8006 = rank;
-    else if (tieRank == numAtCondition)
-        gSpecialVar_0x8006 = rank;
-    else
-        gSpecialVar_0x8006 = rank + CONTESTANT_COUNT;
 }
 
 static void ExitContestPainting(void)
