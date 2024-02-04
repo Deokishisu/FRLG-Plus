@@ -1,6 +1,7 @@
 #include "global.h"
 #include "malloc.h"
 #include "battle.h"
+#include "battle_bg.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -716,9 +717,6 @@ static void HandleInitBackgrounds(void)
     SetGpuReg(REG_OFFSET_BLDCNT, 0);
 }
 
-extern const u32 sBattleTerrainTiles_Building[];
-extern const u32 sBattleTerrainPalette_Link[];
-
 static bool8 LoadMonAndSceneGfx(struct Pokemon *mon)
 {
     u16 species;
@@ -764,7 +762,7 @@ static bool8 LoadMonAndSceneGfx(struct Pokemon *mon)
         break;
     case 6:
         ResetTempTileDataBuffers();
-        DecompressAndCopyTileDataToVram(1, sBattleTerrainTiles_Building, 0, 0, 0);
+        DecompressAndCopyTileDataToVram(1, gPokeblockFeedBg_Tiles, 0, 0, 0);
         sPokeblockFeed->loadGfxState++;
         break;
     case 7:
@@ -775,7 +773,7 @@ static bool8 LoadMonAndSceneGfx(struct Pokemon *mon)
         }
         break;
     case 8:
-        LoadCompressedPalette(sBattleTerrainPalette_Link, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
+        LoadCompressedPalette(gPokeblockFeedBg_Palette, BG_PLTT_ID(2), 3 * PLTT_SIZE_4BPP);
         sPokeblockFeed->loadGfxState = 0;
         return TRUE;
     }

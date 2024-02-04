@@ -4659,6 +4659,8 @@ extern const u32 gPokeblockBlack_Pal[];
 extern const u32 gPokeblockWhite_Pal[];
 extern const u32 gPokeblockGold_Pal[];
 extern const u32 gPokeblock_Gfx[];
+extern const u32 gPokeblockFeedBg_Tiles[];
+extern const u32 gPokeblockFeedBg_Palette[];
 extern const u32 gPokeblockFeedBg_Tilemap[];
 extern const u32 gUsePokeblockGraph_Gfx[];
 extern const u32 gUsePokeblockGraph_Tilemap[];
