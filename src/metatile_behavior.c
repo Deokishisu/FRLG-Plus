@@ -823,6 +823,14 @@ bool8 MetatileBehavior_IsSpinTile(u8 metatileBehavior)
     return result;
 }
 
+bool8 MetatileBehavior_IsRecordsSignpost(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_RECORDS_SIGNPOST)
+        return TRUE;
+    else
+        return FALSE;
+}
+
 bool8 MetatileBehavior_IsSignpost(u8 metatileBehavior)
 {
     if (metatileBehavior == MB_SIGNPOST)

@@ -11,6 +11,7 @@
 #include "constants/pokedex.h"
 #include "constants/easy_chat.h"
 #include "constants/rgb.h"
+#include "constants/berry.h"
 
 // Prevent cross-jump optimization.
 #define BLOCK_CROSS_JUMP asm("");
@@ -274,6 +275,17 @@ struct ContestWinner
     u8 trainerName[PLAYER_NAME_LENGTH + 1]; // 8 bytes
 } __attribute__((packed)); /*size = 0x19*/
 
+struct Pokeblock
+{
+    u8 color;
+    u8 spicy;
+    u8 dry;
+    u8 sweet;
+    u8 bitter;
+    u8 sour;
+    u8 feel;
+};
+
 struct BattleTowerRecord // record mixing
 {
     /*0x00*/ u8 battleTowerLevelType; // 0 = level 50, 1 = level 100
@@ -348,7 +360,8 @@ struct SaveBlock2
               u16 optionsBattleIntroAnim:1; // whether battle intro slide is disabled
               u16 optionsExpBarAnimSpeed:1;  // whether exp bar animates instantly
     /*0x018*/ struct Pokedex pokedex;
-    /*0x090*/ u8 filler_90[0x8];
+    /*0x090*/ u8 filler_90[7];
+    /*0x097*/ u8 masterTrainerTitle; // 0 is none, 152 is Grandmaster, 1-151 is {Kanto species} Master
     /*0x098*/ struct Time localTimeOffset;
     /*0x0A0*/ struct Time lastBerryTreeUpdate;
     /*0x0A8*/ u32 gcnLinkFlags; // Read by Pokemon Colosseum/XD
@@ -357,7 +370,8 @@ struct SaveBlock2
     /*0x0B0*/ struct BattleTowerData battleTower; // 1232 bytes
               struct ContestWinner contestWinners[NUM_CONTEST_WINNERS]; // 275 bytes
               u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
-              u8 filler_BattleTowerData[475]; // 477
+              struct Pokeblock pokeblocks[POKEBLOCKS_COUNT]; // 320 bytes
+              u8 filler_BattleTowerData[155]; // 157
     /*0x898*/ u16 mapView[0x100];
     /*0xA98*/ struct LinkBattleRecords linkBattleRecords;
     /*0xAF0*/ struct BerryCrush berryCrush;
@@ -413,17 +427,6 @@ struct ItemSlot
 {
     u16 itemId;
     u16 quantity;
-};
-
-struct Pokeblock
-{
-    u8 color;
-    u8 spicy;
-    u8 dry;
-    u8 sweet;
-    u8 bitter;
-    u8 sour;
-    u8 feel;
 };
 
 struct Roamer
@@ -804,8 +807,7 @@ struct SaveBlock1
                struct ItemSlot bagPocket_HoldItems[BAG_HELD_ITEMS_COUNT];
                u8 leftoverItemSlots[92]; //padding to prevent shifting the saveblock, Berry Pocket was moved elsewhere
     /*0x05F8*/ u8 seen1[52]; //made unreferenced & can be gotten rid of, though PKHeX presumably will still set this
-    /*0x062C*/ u8 filler_062C[5]; // unused; was berryBlenderRecords which was obviously unused
-               u8 masterTrainerTitle; // 0 is none, 152 is Grandmaster, 1-151 is {Kanto species} Master
+    /*0x062C*/ u16 berryBlenderRecords[3];
     /*0x0632*/ u16 lastViewedPokedexEntry; // For easier viewing of roamers
                struct KeySystemFlags keyFlags; //Key System flags
     /*0x0638*/ u16 trainerRematchStepCounter;

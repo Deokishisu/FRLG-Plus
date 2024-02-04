@@ -255,7 +255,7 @@
 #define FLAG_HIDE_CONTEST_POKE_BALL           0x0EB
 #define FLAG_ENTERED_CONTEST                  0x0EC
 #define FLAG_RECEIVED_POKEBLOCK_CASE          0x0ED
-#define FLAG_0x0EE               0x0EE
+#define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER 0x0EE
 #define FLAG_0x0EF               0x0EF
 #define FLAG_0x0F0               0x0F0
 #define FLAG_0x0F1               0x0F1
@@ -1516,24 +1516,28 @@
 #define FLAG_0x8ED                                                  (SYS_FLAGS + 0xED)
 #define FLAG_0x8EE                                                  (SYS_FLAGS + 0xEE)
 #define FLAG_0x8EF                                                  (SYS_FLAGS + 0xEF)
-#define FLAG_0x8F0                                                  (SYS_FLAGS + 0xF0)
-#define FLAG_0x8F1                                                  (SYS_FLAGS + 0xF1)
-#define FLAG_0x8F2                                                  (SYS_FLAGS + 0xF2)
-#define FLAG_0x8F3                                                  (SYS_FLAGS + 0xF3)
-#define FLAG_0x8F4                                                  (SYS_FLAGS + 0xF4)
-#define FLAG_0x8F5                                                  (SYS_FLAGS + 0xF5)
-#define FLAG_0x8F6                                                  (SYS_FLAGS + 0xF6)
-#define FLAG_0x8F7                                                  (SYS_FLAGS + 0xF7)
-#define FLAG_0x8F8                                                  (SYS_FLAGS + 0xF8)
-#define FLAG_0x8F9                                                  (SYS_FLAGS + 0xF9)
-#define FLAG_0x8FA                                                  (SYS_FLAGS + 0xFA)
-#define FLAG_0x8FB                                                  (SYS_FLAGS + 0xFB)
-#define FLAG_0x8FC                                                  (SYS_FLAGS + 0xFC)
-#define FLAG_0x8FD                                                  (SYS_FLAGS + 0xFD)
-#define FLAG_0x8FE                                                  (SYS_FLAGS + 0xFE)
-#define FLAG_0x8FF                                                  (SYS_FLAGS + 0xFF)
 
-#define FLAGS_COUNT (FLAG_0x8FF + 1)
+#define DAILY_FLAGS_START                           (FLAG_0x8EF + (8 - FLAG_0x8EF % 8))
+#define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x0)
+#define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x1)
+#define FLAG_DAILY_PICKED_LOTO_TICKET               (DAILY_FLAGS_START + 0x2)
+#define FLAG_DAILY_ROUTE_114_RECEIVED_BERRY         (DAILY_FLAGS_START + 0x3)
+#define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY         (DAILY_FLAGS_START + 0x4)
+#define FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY      (DAILY_FLAGS_START + 0x5)
+#define FLAG_DAILY_ROUTE_120_RECEIVED_BERRY         (DAILY_FLAGS_START + 0x6)
+#define FLAG_DAILY_LILYCOVE_RECEIVED_BERRY          (DAILY_FLAGS_START + 0x7)
+#define FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY       (DAILY_FLAGS_START + 0x8)
+#define FLAG_DAILY_BERRY_MASTERS_WIFE               (DAILY_FLAGS_START + 0x9)
+#define FLAG_DAILY_SOOTOPOLIS_RECEIVED_BERRY        (DAILY_FLAGS_START + 0xA)
+#define FLAG_DAILY_APPRENTICE_LEAVES                (DAILY_FLAGS_START + 0xB)
+#define FLAG_UNUSED_0x8FC                           (DAILY_FLAGS_START + 0xC)
+#define FLAG_UNUSED_0x8FD                           (DAILY_FLAGS_START + 0xD)
+#define FLAG_UNUSED_0x8FE                           (DAILY_FLAGS_START + 0xE)
+#define FLAG_UNUSED_0x8FF                           (DAILY_FLAGS_START + 0xF)
+#define DAILY_FLAGS_END                             (FLAG_UNUSED_0x8FF + (7 - FLAG_UNUSED_0x8FF % 8))
+#define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
+
+#define FLAGS_COUNT (DAILY_FLAGS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags, not in the SaveBlock)
 #define SPECIAL_FLAGS_START           0x4000

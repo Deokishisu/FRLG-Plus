@@ -322,6 +322,7 @@ void Rfu_StopPartnerSearch(void);
 void RfuSetNormalDisconnectMode(void);
 void SetUnionRoomChatPlayerData(u32 numPlayers);
 void ClearRecvCommands(void);
+void GetOtherPlayersInfoFlags(void);
 
 #include "mystery_gift_server.h"
 extern const struct MysteryGiftServerCmd gServerScript_ClientCanceledCard[];

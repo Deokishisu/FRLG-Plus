@@ -1,3 +1,13 @@
+ALIGNED(4) static const u8 sText_BerryBlender[] = _("BERRY BLENDER");
+ALIGNED(4) static const u8 sText_RecordCorner[] = _("RECORD CORNER");
+ALIGNED(4) static const u8 sText_CoolContest[] = _("COOL CONTEST");
+ALIGNED(4) static const u8 sText_BeautyContest[] = _("BEAUTY CONTEST");
+ALIGNED(4) static const u8 sText_CuteContest[] = _("CUTE CONTEST");
+ALIGNED(4) static const u8 sText_SmartContest[] = _("SMART CONTEST");
+ALIGNED(4) static const u8 sText_ToughContest[] = _("TOUGH CONTEST");
+ALIGNED(4) static const u8 sText_BattleTowerLv50[] = _("BATTLE TOWER LV. 50");
+ALIGNED(4) static const u8 sText_BattleTowerOpenLv[] = _("BATTLE TOWER OPEN LEVEL");
+
 static const u8 *const sLinkGroupActivityNameTexts[] = {
     [ACTIVITY_NONE]            = gText_UR_EmptyString,
     [ACTIVITY_BATTLE_SINGLE]   = gText_UR_SingleBattle,
@@ -13,15 +23,21 @@ static const u8 *const sLinkGroupActivityNameTexts[] = {
     [ACTIVITY_BERRY_PICK]      = gText_UR_BerryPicking,
     [ACTIVITY_SEARCH]          = gText_UR_Search,
     [ACTIVITY_SPIN_TRADE]      = gText_UR_SpinTrade,
-    [ACTIVITY_ITEM_TRADE]      = gText_UR_ItemTrade,
-    [ACTIVITY_RECORD_CORNER]   = gText_UR_EmptyString,
-    [ACTIVITY_BERRY_BLENDER]   = gText_UR_EmptyString,
+    [ACTIVITY_BATTLE_TOWER_OPEN] = sText_BattleTowerOpenLv,
+    [ACTIVITY_RECORD_CORNER]     = sText_RecordCorner,
+    [ACTIVITY_BERRY_BLENDER]     = sText_BerryBlender,
     [ACTIVITY_ACCEPT]          = gText_UR_EmptyString,
     [ACTIVITY_DECLINE]         = gText_UR_EmptyString,
     [ACTIVITY_NPCTALK]         = gText_UR_EmptyString,
     [ACTIVITY_PLYRTALK]        = gText_UR_EmptyString,
     [ACTIVITY_WONDER_CARD]     = gText_UR_WonderCards,
-    [ACTIVITY_WONDER_NEWS]     = gText_UR_WonderNews
+    [ACTIVITY_WONDER_NEWS]     = gText_UR_WonderNews,
+    [ACTIVITY_CONTEST_COOL]      = sText_CoolContest,
+    [ACTIVITY_CONTEST_BEAUTY]    = sText_BeautyContest,
+    [ACTIVITY_CONTEST_CUTE]      = sText_CuteContest,
+    [ACTIVITY_CONTEST_SMART]     = sText_SmartContest,
+    [ACTIVITY_CONTEST_TOUGH]     = sText_ToughContest,
+    [ACTIVITY_BATTLE_TOWER]      = sText_BattleTowerLv50
 };
 
 static const struct WindowTemplate sWindowTemplate_BButtonCancel = {
@@ -41,16 +57,29 @@ static const struct WindowTemplate sWindowTemplate_BButtonCancel = {
 #define GROUP_MIN(capacity)(capacity >> 4)
 #define GROUP_MIN2(capacity)(capacity & 0xF0) // Unnecessary to have both, but needed to match
 
-static const u32 sLinkGroupToActivityAndCapacity[] = {
-    [LINK_GROUP_SINGLE_BATTLE] = ACTIVITY_BATTLE_SINGLE     | LINK_GROUP_CAPACITY(0, 2),
-    [LINK_GROUP_DOUBLE_BATTLE] = ACTIVITY_BATTLE_DOUBLE     | LINK_GROUP_CAPACITY(0, 2),
-    [LINK_GROUP_MULTI_BATTLE]  = ACTIVITY_BATTLE_MULTI      | LINK_GROUP_CAPACITY(0, 4),
-    [LINK_GROUP_TRADE]         = ACTIVITY_TRADE             | LINK_GROUP_CAPACITY(0, 2),
-    [LINK_GROUP_POKEMON_JUMP]  = ACTIVITY_POKEMON_JUMP      | LINK_GROUP_CAPACITY(2, 5),
-    [LINK_GROUP_BERRY_CRUSH]   = ACTIVITY_BERRY_CRUSH       | LINK_GROUP_CAPACITY(2, 5),
-    [LINK_GROUP_BERRY_PICKING] = ACTIVITY_BERRY_PICK        | LINK_GROUP_CAPACITY(3, 5),
-    [LINK_GROUP_WONDER_CARD]   = ACTIVITY_SPIN_TRADE        | LINK_GROUP_CAPACITY(3, 5),
-    [LINK_GROUP_WONDER_NEWS]   = ACTIVITY_ITEM_TRADE        | LINK_GROUP_CAPACITY(3, 5)
+static const u32 sLinkGroupToActivityAndCapacity[NUM_LINK_GROUP_TYPES] = {
+    [LINK_GROUP_SINGLE_BATTLE]     = ACTIVITY_BATTLE_SINGLE     | LINK_GROUP_CAPACITY(0, 2),
+    [LINK_GROUP_DOUBLE_BATTLE]     = ACTIVITY_BATTLE_DOUBLE     | LINK_GROUP_CAPACITY(0, 2),
+    [LINK_GROUP_MULTI_BATTLE]      = ACTIVITY_BATTLE_MULTI      | LINK_GROUP_CAPACITY(0, 4),
+    [LINK_GROUP_TRADE]             = ACTIVITY_TRADE             | LINK_GROUP_CAPACITY(0, 2),
+    [LINK_GROUP_POKEMON_JUMP]      = ACTIVITY_POKEMON_JUMP      | LINK_GROUP_CAPACITY(2, 5),
+    [LINK_GROUP_BERRY_CRUSH]       = ACTIVITY_BERRY_CRUSH       | LINK_GROUP_CAPACITY(2, 5),
+    [LINK_GROUP_BERRY_PICKING]     = ACTIVITY_BERRY_PICK        | LINK_GROUP_CAPACITY(3, 5),
+    [LINK_GROUP_WONDER_CARD]       = ACTIVITY_NONE              | LINK_GROUP_CAPACITY(0, 0),
+    [LINK_GROUP_WONDER_NEWS]       = ACTIVITY_NONE              | LINK_GROUP_CAPACITY(0, 0),
+    [LINK_GROUP_UNION_ROOM_RESUME] = ACTIVITY_NONE              | LINK_GROUP_CAPACITY(0, 0),
+    [LINK_GROUP_UNION_ROOM_INIT]   = ACTIVITY_NONE              | LINK_GROUP_CAPACITY(0, 0),
+    [LINK_GROUP_UNK_11]            = ACTIVITY_NONE              | LINK_GROUP_CAPACITY(0, 0),
+    [LINK_GROUP_RECORD_CORNER]     = ACTIVITY_RECORD_CORNER     | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_BERRY_BLENDER]     = ACTIVITY_BERRY_BLENDER     | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_UNK_14]            = ACTIVITY_NONE              | LINK_GROUP_CAPACITY(0, 0),
+    [LINK_GROUP_COOL_CONTEST]      = ACTIVITY_CONTEST_COOL      | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_BEAUTY_CONTEST]    = ACTIVITY_CONTEST_BEAUTY    | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_CUTE_CONTEST]      = ACTIVITY_CONTEST_CUTE      | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_SMART_CONTEST]     = ACTIVITY_CONTEST_SMART     | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_TOUGH_CONTEST]     = ACTIVITY_CONTEST_TOUGH     | LINK_GROUP_CAPACITY(2, 4),
+    [LINK_GROUP_BATTLE_TOWER]      = ACTIVITY_BATTLE_TOWER      | LINK_GROUP_CAPACITY(0, 2),
+    [LINK_GROUP_BATTLE_TOWER_OPEN] = ACTIVITY_BATTLE_TOWER_OPEN | LINK_GROUP_CAPACITY(0, 2)
 };
 
 static const struct WindowTemplate sWindowTemplate_List_PossibleGroupMembers = {
@@ -430,14 +459,15 @@ ALIGNED(4) static const u8 sAcceptedActivityIds_Unk11[] = {
     ACTIVITY_SPIN_TRADE,
     0xFF
 };
-ALIGNED(4) static const u8 sAcceptedActivityIds_Unk12[] = {
-    ACTIVITY_BATTLE_SINGLE,
-    ACTIVITY_BATTLE_DOUBLE,
-    ACTIVITY_BATTLE_MULTI,
-    ACTIVITY_TRADE,
-    ACTIVITY_BERRY_CRUSH,
-    0xFF
-};
+ALIGNED(4) static const u8 sAcceptedActivityIds_RecordCorner[]    = {ACTIVITY_RECORD_CORNER, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_BerryBlender[]    = {ACTIVITY_BERRY_BLENDER, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_CoolContest[]     = {ACTIVITY_CONTEST_COOL, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_BeautyContest[]   = {ACTIVITY_CONTEST_BEAUTY, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_CuteContest[]     = {ACTIVITY_CONTEST_CUTE, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_SmartContest[]    = {ACTIVITY_CONTEST_SMART, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_ToughContest[]    = {ACTIVITY_CONTEST_TOUGH, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_BattleTower[]     = {ACTIVITY_BATTLE_TOWER, 0xff};
+ALIGNED(4) static const u8 sAcceptedActivityIds_BattleTowerOpen[] = {ACTIVITY_BATTLE_TOWER_OPEN, 0xff};
 
 static const u8 *const sAcceptedActivityIds[NUM_LINK_GROUP_TYPES] = {
     [LINK_GROUP_SINGLE_BATTLE]     = sAcceptedActivityIds_SingleBattle,
@@ -452,19 +482,41 @@ static const u8 *const sAcceptedActivityIds[NUM_LINK_GROUP_TYPES] = {
     [LINK_GROUP_UNION_ROOM_RESUME] = sAcceptedActivityIds_Resume,
     [LINK_GROUP_UNION_ROOM_INIT]   = sAcceptedActivityIds_Init,
     [LINK_GROUP_UNK_11]            = sAcceptedActivityIds_Unk11,
-    [LINK_GROUP_UNK_12]            = sAcceptedActivityIds_Unk12,
+    [LINK_GROUP_RECORD_CORNER]     = sAcceptedActivityIds_RecordCorner,
+    [LINK_GROUP_BERRY_BLENDER]     = sAcceptedActivityIds_BerryBlender,
+    [LINK_GROUP_UNK_14]            = NULL,
+    [LINK_GROUP_COOL_CONTEST]      = sAcceptedActivityIds_CoolContest,
+    [LINK_GROUP_BEAUTY_CONTEST]    = sAcceptedActivityIds_BeautyContest,
+    [LINK_GROUP_CUTE_CONTEST]      = sAcceptedActivityIds_CuteContest,
+    [LINK_GROUP_SMART_CONTEST]     = sAcceptedActivityIds_SmartContest,
+    [LINK_GROUP_TOUGH_CONTEST]     = sAcceptedActivityIds_ToughContest,
+    [LINK_GROUP_BATTLE_TOWER]      = sAcceptedActivityIds_BattleTower,
+    [LINK_GROUP_BATTLE_TOWER_OPEN] = sAcceptedActivityIds_BattleTowerOpen
 };
 
-static const u8 sLinkGroupToURoomActivity[] = {
-    [LINK_GROUP_SINGLE_BATTLE] = ACTIVITY_BATTLE_SINGLE,
-    [LINK_GROUP_DOUBLE_BATTLE] = ACTIVITY_BATTLE_DOUBLE,
-    [LINK_GROUP_MULTI_BATTLE]  = ACTIVITY_BATTLE_MULTI,
-    [LINK_GROUP_TRADE]         = ACTIVITY_TRADE,
-    [LINK_GROUP_POKEMON_JUMP]  = ACTIVITY_POKEMON_JUMP,
-    [LINK_GROUP_BERRY_CRUSH]   = ACTIVITY_BERRY_CRUSH,
-    [LINK_GROUP_BERRY_PICKING] = ACTIVITY_BERRY_PICK,
-    [LINK_GROUP_WONDER_CARD]   = ACTIVITY_WONDER_CARD,
-    [LINK_GROUP_WONDER_NEWS]   = ACTIVITY_WONDER_NEWS
+static const u8 sLinkGroupToURoomActivity[NUM_LINK_GROUP_TYPES + 2] = {
+    [LINK_GROUP_SINGLE_BATTLE]     = ACTIVITY_BATTLE_SINGLE,
+    [LINK_GROUP_DOUBLE_BATTLE]     = ACTIVITY_BATTLE_DOUBLE,
+    [LINK_GROUP_MULTI_BATTLE]      = ACTIVITY_BATTLE_MULTI,
+    [LINK_GROUP_TRADE]             = ACTIVITY_TRADE,
+    [LINK_GROUP_POKEMON_JUMP]      = ACTIVITY_POKEMON_JUMP,
+    [LINK_GROUP_BERRY_CRUSH]       = ACTIVITY_BERRY_CRUSH,
+    [LINK_GROUP_BERRY_PICKING]     = ACTIVITY_BERRY_PICK,
+    [LINK_GROUP_WONDER_CARD]       = ACTIVITY_WONDER_CARD,
+    [LINK_GROUP_WONDER_NEWS]       = ACTIVITY_WONDER_NEWS,
+    [LINK_GROUP_UNION_ROOM_RESUME] = ACTIVITY_NONE,
+    [LINK_GROUP_UNION_ROOM_INIT]   = ACTIVITY_NONE,
+    [LINK_GROUP_UNK_11]            = ACTIVITY_NONE,
+    [LINK_GROUP_RECORD_CORNER]     = ACTIVITY_RECORD_CORNER,
+    [LINK_GROUP_BERRY_BLENDER]     = ACTIVITY_BERRY_BLENDER,
+    [LINK_GROUP_UNK_14]            = ACTIVITY_NONE,
+    [LINK_GROUP_COOL_CONTEST]      = ACTIVITY_CONTEST_COOL,
+    [LINK_GROUP_BEAUTY_CONTEST]    = ACTIVITY_CONTEST_BEAUTY,
+    [LINK_GROUP_CUTE_CONTEST]      = ACTIVITY_CONTEST_CUTE,
+    [LINK_GROUP_SMART_CONTEST]     = ACTIVITY_CONTEST_SMART,
+    [LINK_GROUP_TOUGH_CONTEST]     = ACTIVITY_CONTEST_TOUGH,
+    [LINK_GROUP_BATTLE_TOWER]      = ACTIVITY_BATTLE_TOWER,
+    [LINK_GROUP_BATTLE_TOWER_OPEN] = ACTIVITY_BATTLE_TOWER_OPEN
 };
 
 // Unused

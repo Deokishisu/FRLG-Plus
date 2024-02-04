@@ -30,5 +30,6 @@ void LoadSpecialPokePic_2(const struct CompressedSpriteSheet *src, void *dest, s
 void LoadSpecialPokePic_DontHandleDeoxys(const struct CompressedSpriteSheet *src, void *dest, s32 species, u32 personality, bool8 isFrontPic);
 
 u32 GetDecompressedDataSize(const u8 *ptr);
+u32 GetDecompressedDataSize2(const u32 *ptr);
 
 #endif // GUARD_DECOMPRESS_H

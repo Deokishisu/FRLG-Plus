@@ -7,6 +7,7 @@
 #include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/trainer_types.h"
+#include "constants/berry.h"
 #include "constants/vars.h"
 #include "constants/weather.h"
     .include "asm/macros.inc"

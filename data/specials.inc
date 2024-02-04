@@ -44,9 +44,9 @@ gSpecials::
 	def_special EnterTradeSeat
 	def_special StartWiredCableClubTrade
 	def_special CableClub_AskSaveTheGame
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special TryBerryBlenderLinkup
+	def_special GetLinkPartnerNames
+	def_special SpawnLinkPartnerObjectEvent
 	def_special SavePlayerParty
 	def_special LoadPlayerParty
 	def_special ChooseHalfPartyForBattle
@@ -57,7 +57,7 @@ gSpecials::
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special PlayerHasBerries
 	def_special IsEnigmaBerryValid
 	def_special GetTrainerBattleMode
 	def_special ShowTrainerIntroSpeech
@@ -164,8 +164,8 @@ gSpecials::
 	def_special StartOldManTutorialBattle
 	def_special ChangePokemonNickname
 	def_special ChoosePartyMon
-	def_special NullFieldSpecial  @ Berry Blender/Roulette specials
-	def_special NullFieldSpecial
+	def_special GetFirstFreePokeblockSlot
+	def_special DoBerryBlending
 	def_special NullFieldSpecial
 	def_special Script_IsFanClubMemberFanOfPlayer
 	def_special Script_GetNumFansOfPlayerInTrainerFanClub
@@ -263,7 +263,7 @@ gSpecials::
 	def_special NullFieldSpecial  @ Misc Hoenn specials
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special ShowBerryBlenderRecordWindow
 	def_special NullFieldSpecial
 	def_special NullFieldSpecial
 	def_special CreatePCMenu

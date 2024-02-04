@@ -239,6 +239,7 @@ extern u8 gShouldAdvanceLinkState;
 extern struct LinkPlayer gLinkPlayers[MAX_RFU_PLAYERS];
 extern u16 word_3002910[];
 extern bool8 gReceivedRemoteLinkPlayers;
+extern u32 gBerryBlenderKeySendAttempts;
 extern bool8 gLinkVSyncDisabled;
 extern u8 gWirelessCommType;
 extern struct LinkPlayer gLocalLinkPlayer;
@@ -314,5 +315,7 @@ void CheckLinkPlayersMatchSaved(void);
 void SetLocalLinkPlayerId(u8 playerId);
 bool32 IsSendingKeysToLink(void);
 u32 GetLinkRecvQueueLength(void);
+void SetWirelessCommType0(void);
+void SetBerryBlenderLinkCallback(void);
 
 #endif // GUARD_LINK_H

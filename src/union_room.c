@@ -346,16 +346,39 @@ static void GetAwaitingCommunicationText(u8 *dst, u8 caseId)
     case ACTIVITY_POKEMON_JUMP:
     case ACTIVITY_BERRY_CRUSH:
     case ACTIVITY_BERRY_PICK:
+    case ACTIVITY_BATTLE_TOWER:
+    case ACTIVITY_BATTLE_TOWER_OPEN:
+    case ACTIVITY_RECORD_CORNER:
+    case ACTIVITY_BERRY_BLENDER:
     case ACTIVITY_WONDER_CARD:
     case ACTIVITY_WONDER_NEWS:
-        // BUG: argument *dst isn't used, instead it always prints to gStringVar4
-        // not an issue in practice since Gamefreak never used any other arguments here besides gStringVar4
-    #ifndef BUGFIX
-        StringExpandPlaceholders(gStringVar4, gText_UR_AwaitingCommunication);
-    #else
+    case ACTIVITY_CONTEST_COOL:
+    case ACTIVITY_CONTEST_BEAUTY:
+    case ACTIVITY_CONTEST_CUTE:
+    case ACTIVITY_CONTEST_SMART:
+    case ACTIVITY_CONTEST_TOUGH:
         StringExpandPlaceholders(dst, gText_UR_AwaitingCommunication);
-    #endif
         break;
+    }
+}
+
+static bool32 IsActivityWithVariableGroupSize(u32 activity)
+{
+    switch (activity)
+    {
+    case ACTIVITY_POKEMON_JUMP:
+    case ACTIVITY_BERRY_CRUSH:
+    case ACTIVITY_BERRY_PICK:
+    case ACTIVITY_RECORD_CORNER:
+    case ACTIVITY_BERRY_BLENDER:
+    case ACTIVITY_CONTEST_COOL:
+    case ACTIVITY_CONTEST_BEAUTY:
+    case ACTIVITY_CONTEST_CUTE:
+    case ACTIVITY_CONTEST_SMART:
+    case ACTIVITY_CONTEST_TOUGH:
+        return TRUE;
+    default:
+        return FALSE;
     }
 }
 
@@ -665,6 +688,8 @@ static void Task_TryBecomeLinkLeader(u8 taskId)
         {
             if (gReceivedRemoteLinkPlayers)
             {
+                if (IsActivityWithVariableGroupSize(sPlayerCurrActivity))
+                    GetOtherPlayersInfoFlags();
                 UpdateGameData_GroupLockedIn(TRUE);
                 CreateTask_RunScriptAndFadeToActivity();
                 Leader_DestroyResources(data);
@@ -700,6 +725,8 @@ static void Leader_GetAcceptNewMemberPrompt(u8 *dst, u8 activity)
     case ACTIVITY_BATTLE_SINGLE:
     case ACTIVITY_BATTLE_DOUBLE:
     case ACTIVITY_TRADE:
+    case ACTIVITY_BATTLE_TOWER_OPEN:
+    case ACTIVITY_BATTLE_TOWER:
         StringExpandPlaceholders(dst, gText_UR_PlayerContactedYouForXAccept);
         break;
     case ACTIVITY_WONDER_CARD:
@@ -710,6 +737,13 @@ static void Leader_GetAcceptNewMemberPrompt(u8 *dst, u8 activity)
     case ACTIVITY_POKEMON_JUMP:
     case ACTIVITY_BERRY_CRUSH:
     case ACTIVITY_BERRY_PICK:
+    case ACTIVITY_RECORD_CORNER:
+    case ACTIVITY_BERRY_BLENDER:
+    case ACTIVITY_CONTEST_COOL:
+    case ACTIVITY_CONTEST_BEAUTY:
+    case ACTIVITY_CONTEST_CUTE:
+    case ACTIVITY_CONTEST_SMART:
+    case ACTIVITY_CONTEST_TOUGH:
         StringExpandPlaceholders(dst, gText_UR_PlayerContactedYouAddToMembers);
         break;
     }
@@ -737,6 +771,8 @@ static void GetYouAskedToJoinGroupPleaseWaitMessage(u8 *dst, u8 activity)
     case ACTIVITY_BATTLE_SINGLE:
     case ACTIVITY_BATTLE_DOUBLE:
     case ACTIVITY_TRADE:
+    case ACTIVITY_BATTLE_TOWER:
+    case ACTIVITY_BATTLE_TOWER_OPEN:
     case ACTIVITY_WONDER_CARD:
     case ACTIVITY_WONDER_NEWS:
         StringExpandPlaceholders(dst, gText_UR_AwaitingPlayersResponse);
@@ -745,6 +781,13 @@ static void GetYouAskedToJoinGroupPleaseWaitMessage(u8 *dst, u8 activity)
     case ACTIVITY_POKEMON_JUMP:
     case ACTIVITY_BERRY_CRUSH:
     case ACTIVITY_BERRY_PICK:
+    case ACTIVITY_RECORD_CORNER:
+    case ACTIVITY_BERRY_BLENDER:
+    case ACTIVITY_CONTEST_COOL:
+    case ACTIVITY_CONTEST_BEAUTY:
+    case ACTIVITY_CONTEST_CUTE:
+    case ACTIVITY_CONTEST_SMART:
+    case ACTIVITY_CONTEST_TOUGH:
         StringExpandPlaceholders(dst, gText_UR_PlayerHasBeenAskedToRegisterYouPleaseWait);
         break;
     }
@@ -757,6 +800,8 @@ static void GetGroupLeaderSentAnOKMessage(u8 *dst, u8 caseId)
     case ACTIVITY_BATTLE_SINGLE:
     case ACTIVITY_BATTLE_DOUBLE:
     case ACTIVITY_TRADE:
+    case ACTIVITY_BATTLE_TOWER:
+    case ACTIVITY_BATTLE_TOWER_OPEN:
     case ACTIVITY_WONDER_CARD:
     case ACTIVITY_WONDER_NEWS:
         StringExpandPlaceholders(dst, gText_UR_PlayerSentBackOK);
@@ -765,6 +810,13 @@ static void GetGroupLeaderSentAnOKMessage(u8 *dst, u8 caseId)
     case ACTIVITY_POKEMON_JUMP:
     case ACTIVITY_BERRY_CRUSH:
     case ACTIVITY_BERRY_PICK:
+    case ACTIVITY_RECORD_CORNER:
+    case ACTIVITY_BERRY_BLENDER:
+    case ACTIVITY_CONTEST_COOL:
+    case ACTIVITY_CONTEST_BEAUTY:
+    case ACTIVITY_CONTEST_CUTE:
+    case ACTIVITY_CONTEST_SMART:
+    case ACTIVITY_CONTEST_TOUGH:
         StringExpandPlaceholders(dst, gText_UR_PlayerOKdRegistration);
         break;
     }
@@ -1031,9 +1083,17 @@ static void Task_TryJoinLinkGroup(u8 taskId)
             case ACTIVITY_BERRY_CRUSH:
             case ACTIVITY_BERRY_PICK:
             case ACTIVITY_SPIN_TRADE:
-            case ACTIVITY_ITEM_TRADE:
+            case ACTIVITY_BATTLE_TOWER:
+            case ACTIVITY_BATTLE_TOWER_OPEN:
+            case ACTIVITY_RECORD_CORNER:
+            case ACTIVITY_BERRY_BLENDER:
             case ACTIVITY_WONDER_CARD:
             case ACTIVITY_WONDER_NEWS:
+            case ACTIVITY_CONTEST_COOL:
+            case ACTIVITY_CONTEST_BEAUTY:
+            case ACTIVITY_CONTEST_CUTE:
+            case ACTIVITY_CONTEST_SMART:
+            case ACTIVITY_CONTEST_TOUGH:
                 data->state = LG_STATE_READY_START_ACTIVITY;
                 break;
             }
@@ -1554,7 +1614,7 @@ static void Task_StartActivity(u8 taskId)
     case ACTIVITY_BERRY_CRUSH:
     case ACTIVITY_BERRY_PICK:
     case ACTIVITY_SPIN_TRADE:
-    case ACTIVITY_ITEM_TRADE:
+    case ACTIVITY_RECORD_CORNER:
         SaveLinkTrainerNames();
         break;
     }
@@ -1598,6 +1658,12 @@ static void Task_StartActivity(u8 taskId)
         CreateTrainerCardInBuffer(gBlockSendBuffer, TRUE);
         CleanupOverworldWindowsAndTilemaps();
         WarpForCableClubActivity(MAP_GROUP(TRADE_CENTER), MAP_NUM(TRADE_CENTER), 5, 8, USING_TRADE_CENTER);
+        SetMainCallback2(CB2_TransitionToCableClub);
+        break;
+    case ACTIVITY_RECORD_CORNER:
+        CreateTrainerCardInBuffer(gBlockSendBuffer, TRUE);
+        CleanupOverworldWindowsAndTilemaps();
+        WarpForCableClubActivity(MAP_GROUP(RECORD_CORNER), MAP_NUM(RECORD_CORNER), 8, 9, USING_RECORD_CORNER);
         SetMainCallback2(CB2_TransitionToCableClub);
         break;
     case ACTIVITY_TRADE | IN_UNION_ROOM:
@@ -1649,8 +1715,33 @@ static void Task_RunScriptAndFadeToActivity(u8 taskId)
     {
     case 0:
         gSpecialVar_Result = LINKUP_SUCCESS;
-        ScriptContext_Enable();
-        data[0]++;
+        switch (sPlayerCurrActivity)
+        {
+        case ACTIVITY_BATTLE_TOWER:
+        case ACTIVITY_BATTLE_TOWER_OPEN:
+            gLinkPlayers[0].linkType = LINKTYPE_BATTLE;
+            gLinkPlayers[0].id = 0;
+            gLinkPlayers[1].id = 2;
+            sendBuff[0] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[0] - 1], MON_DATA_SPECIES);
+            sendBuff[1] = GetMonData(&gPlayerParty[gSelectedOrderFromParty[1] - 1], MON_DATA_SPECIES, NULL);
+            gMain.savedCallback = NULL;
+            data[0] = 4;
+            SaveLinkTrainerNames();
+            ResetBlockReceivedFlags();
+            break;
+        case ACTIVITY_BERRY_BLENDER:
+        case ACTIVITY_CONTEST_COOL:
+        case ACTIVITY_CONTEST_BEAUTY:
+        case ACTIVITY_CONTEST_CUTE:
+        case ACTIVITY_CONTEST_SMART:
+        case ACTIVITY_CONTEST_TOUGH:
+            SaveLinkTrainerNames();
+            DestroyTask(taskId);
+        default:
+            ScriptContext_Enable();
+            data[0] = 1;
+            break;
+        }
         break;
     case 1:
         if (!ScriptContext_IsEnabled())
@@ -4254,6 +4345,15 @@ static u8 GetLinkPlayerInfoFlags(s32 linkPlayer)
     retval |= gLinkPlayers[linkPlayer].gender << 3;
     retval |= gLinkPlayers[linkPlayer].trainerId & 7;
     return retval;
+}
+
+void GetOtherPlayersInfoFlags(void)
+{
+    struct RfuGameData *data = &gHostRfuGameData;
+    s32 i;
+
+    for (i = 1; i < GetLinkPlayerCount(); i++)
+        data->partnerInfo[i - 1] = GetLinkPlayerInfoFlags(i);
 }
 
 static u8 GetActivePartnersInfo(struct WirelessLink_URoom * uroom)

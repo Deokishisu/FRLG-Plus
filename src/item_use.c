@@ -19,10 +19,12 @@
 #include "itemfinder.h"
 #include "mail.h"
 #include "event_object_lock.h"
+#include "menu_helpers.h"
 #include "metatile_behavior.h"
 #include "new_menu_helpers.h"
 #include "overworld.h"
 #include "party_menu.h"
+#include "pokeblock.h"
 #include "quest_log.h"
 #include "region_map.h"
 #include "script.h"
@@ -69,6 +71,8 @@ static void UseFameCheckerFromBag(void);
 static void Task_UseFameCheckerFromField(u8 taskId);
 static void Task_BattleUse_StatBooster_DelayAndPrint(u8 taskId);
 static void Task_BattleUse_StatBooster_WaitButton_ReturnToBattle(u8 taskId);
+static void CB2_OpenPokeblockFromBag(void);
+static void Task_OpenRegisteredPokeblockCase(u8);
 
 // unknown unused data.
 // It's curiously about the size of an array of values indexed by species (including padding),
@@ -950,4 +954,38 @@ void ItemUseOutOfBattle_ReduceEV(u8 taskId)
 {
     gItemUseCB = ItemUseCB_ReduceEV;
     DoSetUpItemUseCallback(taskId);
+}
+
+void ItemUseOutOfBattle_PokeblockCase(u8 taskId)
+{
+    if (MenuHelpers_IsLinkActive() == TRUE)
+    {
+        PrintNotTheTimeToUseThat(taskId, gTasks[taskId].data[3]);
+    }
+    else if (gTasks[taskId].data[3] == 0)
+    {
+        ItemMenu_SetExitCallback(CB2_OpenPokeblockFromBag);
+        ItemMenu_StartFadeToExitCallback(taskId);
+    }
+    else
+    {
+        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenRegisteredPokeblockCase;
+    }
+}
+
+static void CB2_OpenPokeblockFromBag(void)
+{
+    OpenPokeblockCase(PBLOCK_CASE_FIELD, CB2_BagMenuFromStartMenu);
+}
+
+static void Task_OpenRegisteredPokeblockCase(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        OpenPokeblockCase(PBLOCK_CASE_FIELD, CB2_ReturnToField);
+        DestroyTask(taskId);
+    }
 }

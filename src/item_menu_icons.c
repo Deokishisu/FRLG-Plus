@@ -3,6 +3,7 @@
 #include "decompress.h"
 #include "graphics.h"
 #include "item_menu_icons.h"
+#include "menu_helpers.h"
 #include "constants/items.h"
 
 enum {
@@ -449,5 +450,54 @@ void CreateBerryPouchItemIcon(u16 itemId, u8 idx)
             gSprites[spriteId].x2 = 24;
             gSprites[spriteId].y2 = 147; // This value is the only difference from CreateItemMenuIcon
         }
+    }
+}
+
+void LoadListMenuSwapLineGfx(void)
+{
+    LoadCompressedSpriteSheet(&gBagSwapSpriteSheet);
+    LoadCompressedSpritePalette(&gBagSwapSpritePalette);
+}
+
+void CreateSwapLineSprites(u8 *spriteIds, u8 count)
+{
+    u32 i;
+
+    for (i = 0; i < count; i++)
+    {
+        spriteIds[i] = CreateSprite(&sSpriteTemplate_SwapLine, i * 16, 0, 0);
+        if (i != 0)
+            StartSpriteAnim(&gSprites[spriteIds[i]], 1);
+
+        gSprites[spriteIds[i]].invisible = TRUE;
+    }
+}
+
+void SetSwapLineSpritesInvisibility(u8 *spriteIds, u8 count, bool8 invisible)
+{
+    u32 i;
+
+    for (i = 0; i < count; i++)
+        gSprites[spriteIds[i]].invisible = invisible;
+}
+
+void UpdateSwapLineSpritesPos(u8 *spriteIds, u8 count, s16 x, u16 y)
+{
+    u8 i;
+    bool8 hasMargin = count & SWAP_LINE_HAS_MARGIN;
+    count &= ~SWAP_LINE_HAS_MARGIN;
+
+    for (i = 0; i < count; i++)
+    {
+        // If the list menu has a right margin, the swap line
+        // shouldn't extend all the way to the edge of the screen.
+        // If this is the last sprite in the line, move it a bit
+        // to the left to keep it out of the margin.
+        if (i == count - 1 && hasMargin)
+            gSprites[spriteIds[i]].x2 = x - 8;
+        else
+            gSprites[spriteIds[i]].x2 = x;
+
+        gSprites[spriteIds[i]].y = 1 + y;
     }
 }

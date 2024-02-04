@@ -1337,3 +1337,49 @@ const u8 gText_MasterRank[] = _("MASTER RANK");
 const u8 gText_Super[] = _("SUPER");
 const u8 gText_Hyper[] = _("HYPER");
 const u8 gText_Master2[] = _("MASTER");
+
+//PokeBlocks
+const u8 gText_RedPokeblock[] = _("RED {POKEBLOCK}");
+const u8 gText_BluePokeblock[] = _("BLUE {POKEBLOCK}");
+const u8 gText_PinkPokeblock[] = _("PINK {POKEBLOCK}");
+const u8 gText_GreenPokeblock[] = _("GREEN {POKEBLOCK}");
+const u8 gText_YellowPokeblock[] = _("YELLOW {POKEBLOCK}");
+const u8 gText_PurplePokeblock[] = _("PURPLE {POKEBLOCK}");
+const u8 gText_IndigoPokeblock[] = _("INDIGO {POKEBLOCK}");
+const u8 gText_BrownPokeblock[] = _("BROWN {POKEBLOCK}");
+const u8 gText_LiteBluePokeblock[] = _("LITEBLUE {POKEBLOCK}");
+const u8 gText_OlivePokeblock[] = _("OLIVE {POKEBLOCK}");
+const u8 gText_GrayPokeblock[] = _("GRAY {POKEBLOCK}");
+const u8 gText_BlackPokeblock[] = _("BLACK {POKEBLOCK}");
+const u8 gText_WhitePokeblock[] = _("WHITE {POKEBLOCK}");
+const u8 gText_GoldPokeblock[] = _("GOLD {POKEBLOCK}");
+const u8 gText_Spicy[] = _("SPICY");
+const u8 gText_Dry[] = _("DRY");
+const u8 gText_Sweet[] = _("SWEET");
+const u8 gText_Bitter[] = _("BITTER");
+const u8 gText_Sour[] = _("SOUR");
+const u8 gText_StowCase[] = _("Stow CASE.");
+const u8 gText_LvVar1[] = _("{LV}{STR_VAR_1}");
+const u8 gText_ThrowAwayVar1[] = _("Throw away this\n{STR_VAR_1}?");
+const u8 gText_Var1ThrownAway[] = _("The {STR_VAR_1}\nwas thrown away.");
+const u8 gText_Var1AteTheVar2[] = _("{STR_VAR_1} ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Var1HappilyAteVar2[] = _("{STR_VAR_1} happily ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
+const u8 gText_Var1DisdainfullyAteVar2[] = _("{STR_VAR_1} disdainfully ate the\n{STR_VAR_2}.{PAUSE_UNTIL_PRESS}");
+
+const u8 gText_GetsAPokeBlockQuestion[] = _(" gets a {POKEBLOCK}?");
+const u8 gText_Coolness[] = _("Coolness ");
+const u8 gText_Beauty3[] = _("Beauty ");
+const u8 gText_Cuteness[] = _("Cuteness ");
+const u8 gText_Smartness[] = _("Smartness ");
+const u8 gText_Toughness[] = _("Toughness ");
+const u8 gText_WasEnhanced[] = _("was enhanced!");
+const u8 gText_NothingChanged[] = _("Nothing changed!");
+const u8 gText_WontEatAnymore[] = _("It won't eat anymore…");
+const u8 gText_NatureSlash[] = _("NATURE/");
+const u8 gText_InParty[] = _("IN PARTY");
+
+// Berry Blender
+const u8 gText_BlenderMaxSpeedRecord[] = _("BERRY BLENDER\nMAXIMUM SPEED RECORD!");
+const u8 gText_234Players[] = _("2 PLAYERS\n3 PLAYERS\n4 PLAYERS");
+const u8 gOtherText_Confirm[] = _("CONFIRM");
+const u8 gOtherText_CheckTag[] = _("SEE TAG");

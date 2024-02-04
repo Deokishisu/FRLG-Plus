@@ -8,6 +8,8 @@
 #define MENU_L_PRESSED 1
 #define MENU_R_PRESSED 2
 
+#define SWAP_LINE_HAS_MARGIN (1 << 7)
+
 struct YesNoFuncTable
 {
     TaskFunc yesFunc;
@@ -29,5 +31,6 @@ u8 GetLRKeysPressedAndHeld(void);
 bool8 IsHoldingItemAllowed(u16 itemId);
 bool8 IsWritingMailAllowed(u16 itemId);
 void ResetVramOamAndBgCntRegs(void);
+void ResetAllBgsCoordinates(void);
 
 #endif //GUARD_MENU_HELPERS_H

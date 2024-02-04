@@ -152,6 +152,23 @@ static void Task_ContinueScript(u8 taskId)
     }
 }
 
+static void Task_ReturnToFieldNoScript(u8 taskId)
+{
+    if (FieldFadeTransitionBackgroundEffectIsFinished() == TRUE)
+    {
+        UnlockPlayerFieldControls();
+        DestroyTask(taskId);
+        ClearPlayerHeldMovementAndUnfreezeObjectEvents();
+    }
+}
+
+void FieldCB_ReturnToFieldNoScript(void)
+{
+    LockPlayerFieldControls();
+    FadeInFromBlack();
+    CreateTask(Task_ReturnToFieldNoScript, 10);
+}
+
 void FieldCB_ContinueScriptHandleMusic(void)
 {
     LockPlayerFieldControls();

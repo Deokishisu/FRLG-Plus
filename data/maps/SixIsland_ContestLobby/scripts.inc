@@ -160,3 +160,11 @@ SixIsland_ContestLobby_EventScript_ContestWinner6::
 	showcontestpainting CONTEST_WINNER_HALL_6
 	releaseall
 	end
+
+SixIsland_ContestLobby_EventScript_BerryBlenderSpeedRecords::
+	lockall
+	special ShowBerryBlenderRecordWindow
+	waitbuttonpress
+	callnative RemoveRecordsWindow
+	releaseall
+	end

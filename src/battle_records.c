@@ -18,6 +18,7 @@
 #include "constants/songs.h"
 #include "constants/maps.h"
 
+EWRAM_DATA u8 gRecordsWindowId = 0;
 static EWRAM_DATA u16 * sBg3TilemapBuffer_p = NULL;
 
 static void MainCB2_SetUp(void);
@@ -686,11 +687,10 @@ void ShowBattleTowerRecords(void)
     TowerPrintRecordStreak(battleMode, 1, 72, 121, 113, gRecordsWindowId);
     PutWindowTilemap(gRecordsWindowId);
     CopyWindowToVram(gRecordsWindowId, 3);
-    gSpecialVar_Result = gRecordsWindowId;
 }
 
 void RemoveRecordsWindow(void)
 {
-    ClearStdWindowAndFrame(gSpecialVar_Result, FALSE);
-    RemoveWindow(gSpecialVar_Result);
+    ClearStdWindowAndFrame(gRecordsWindowId, FALSE);
+    RemoveWindow(gRecordsWindowId);
 }

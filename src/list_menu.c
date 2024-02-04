@@ -386,17 +386,17 @@ static void ListMenuDrawCursor(struct ListMenu *list)
     
     switch (list->template.cursorKind)
     {
-    case 0:
+    case CURSOR_BLACK_ARROW:
         ListMenuPrint(list, gText_SelectorArrow2, x, y);
         break;
-    case 1:
+    case CURSOR_INVISIBLE:
         break;
-    case 2:
+    case CURSOR_RED_OUTLINE:
         if (list->taskId == TAIL_SENTINEL)
             list->taskId = ListMenuAddCursorObject(list, 0);
         ListMenuUpdateCursorObject(list->taskId, GetWindowAttribute(list->template.windowId, WINDOW_TILEMAP_LEFT) * 8 - 1, GetWindowAttribute(list->template.windowId, WINDOW_TILEMAP_TOP) * 8 + y - 1, 0);
         break;
-    case 3:
+    case CURSOR_RED_ARROW:
         if (list->taskId == TAIL_SENTINEL)
             list->taskId = ListMenuAddCursorObject(list, 1);
         ListMenuUpdateCursorObject(list->taskId, GetWindowAttribute(list->template.windowId, WINDOW_TILEMAP_LEFT) * 8 + x, GetWindowAttribute(list->template.windowId, WINDOW_TILEMAP_TOP) * 8 + y, 1);

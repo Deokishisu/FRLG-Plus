@@ -1668,4 +1668,49 @@ extern const u8 gText_Super[];
 extern const u8 gText_Hyper[];
 extern const u8 gText_Master2[];
 
+// PokeBlocks
+extern const u8 gText_Spicy[];
+extern const u8 gText_Dry[];
+extern const u8 gText_Sweet[];
+extern const u8 gText_Bitter[];
+extern const u8 gText_Sour[];
+extern const u8 gText_StowCase[];
+extern const u8 gText_LvVar1[];
+extern const u8 gText_ThrowAwayVar1[];
+extern const u8 gText_Var1ThrownAway[];
+extern const u8 gText_Var1AteTheVar2[];
+extern const u8 gText_Var1HappilyAteVar2[];
+extern const u8 gText_Var1DisdainfullyAteVar2[];
+extern const u8 gText_RedPokeblock[];
+extern const u8 gText_BluePokeblock[];
+extern const u8 gText_PinkPokeblock[];
+extern const u8 gText_GreenPokeblock[];
+extern const u8 gText_YellowPokeblock[];
+extern const u8 gText_PurplePokeblock[];
+extern const u8 gText_IndigoPokeblock[];
+extern const u8 gText_BrownPokeblock[];
+extern const u8 gText_LiteBluePokeblock[];
+extern const u8 gText_OlivePokeblock[];
+extern const u8 gText_GrayPokeblock[];
+extern const u8 gText_BlackPokeblock[];
+extern const u8 gText_WhitePokeblock[];
+extern const u8 gText_GoldPokeblock[];
+extern const u8 gText_Coolness[];
+extern const u8 gText_Toughness[];
+extern const u8 gText_Smartness[];
+extern const u8 gText_Cuteness[];
+extern const u8 gText_Beauty3[];
+extern const u8 gText_GetsAPokeBlockQuestion[];
+extern const u8 gText_WontEatAnymore[];
+extern const u8 gText_WasEnhanced[];
+extern const u8 gText_NothingChanged[];
+extern const u8 gText_NatureSlash[];
+extern const u8 gText_InParty[];
+
+// Berry Blender
+extern const u8 gText_BlenderMaxSpeedRecord[];
+extern const u8 gText_234Players[];
+extern const u8 gOtherText_Confirm[];
+extern const u8 gOtherText_CheckTag[];
+
 #endif //GUARD_STRINGS_H

@@ -39,6 +39,7 @@
 #define SIGNPOST_INDIGO_1 2
 #define SIGNPOST_INDIGO_2 3
 #define SIGNPOST_SAFARI 4
+#define SIGNPOST_RECORDS 5
 #define SIGNPOST_SCRIPTED 240
 #define SIGNPOST_NA 255
 
@@ -62,6 +63,7 @@ static void UpdateHappinessStepCounter(void);
 static bool8 UpdatePoisonStepCounter(void);
 static bool8 CheckStandardWildEncounter(u32 metatileAttributes);
 static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 metatileBehavior, u8 playerDirection);
+static void SetUpWalkIntoRecordsScript(const u8 *script, u8 playerDirection);
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection);
 static u8 GetFacingSignpostType(u16 metatileBehvaior, u8 direction);
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition * position);
@@ -324,7 +326,7 @@ void FieldInput_HandleCancelSignpost(struct FieldInput * input)
     {
         if (gWalkAwayFromSignInhibitTimer != 0)
             gWalkAwayFromSignInhibitTimer--;
-        else if (CanWalkAwayToCancelMsgBox() == TRUE)
+        else if (CanWalkAwayToCancelMsgBox() == 1)
         {
             if (input->dpadDirection != 0 && GetPlayerFacingDirection() != input->dpadDirection)
             {
@@ -344,6 +346,31 @@ void FieldInput_HandleCancelSignpost(struct FieldInput * input)
             else if (input->pressedStartButton)
             {
                 ScriptContext_SetupScript(EventScript_CancelMessageBox);
+                LockPlayerFieldControls();
+                if (!FuncIsActiveTask(Task_QuestLogPlayback_OpenStartMenu))
+                    CreateTask(Task_QuestLogPlayback_OpenStartMenu, 8);
+            }
+        }
+        else if (CanWalkAwayToCancelMsgBox() == 2) // records
+        {
+            if (input->dpadDirection != 0 && GetPlayerFacingDirection() != input->dpadDirection)
+            {
+                if (IsMsgBoxWalkawayDisabled() == TRUE)
+                    return;
+                if (input->dpadDirection == DIR_NORTH)
+                    RegisterQuestLogInput(QL_INPUT_UP);
+                else if (input->dpadDirection == DIR_SOUTH)
+                    RegisterQuestLogInput(QL_INPUT_DOWN);
+                else if (input->dpadDirection == DIR_WEST)
+                    RegisterQuestLogInput(QL_INPUT_LEFT);
+                else if (input->dpadDirection == DIR_EAST)
+                    RegisterQuestLogInput(QL_INPUT_RIGHT);
+                ScriptContext_SetupScript(EventScript_CancelRecordsBox);
+                LockPlayerFieldControls();
+            }
+            else if (input->pressedStartButton)
+            {
+                ScriptContext_SetupScript(EventScript_CancelRecordsBox);
                 LockPlayerFieldControls();
                 if (!FuncIsActiveTask(Task_QuestLogPlayback_OpenStartMenu))
                     CreateTask(Task_QuestLogPlayback_OpenStartMenu, 8);
@@ -528,6 +555,7 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
 
     if (signpostType != SIGNPOST_NA)
         MsgSetSignpost();
+
     gSpecialVar_Facing = direction;
     return bgEvent->bgUnion.script;
 }
@@ -803,6 +831,16 @@ static bool8 TrySetUpWalkIntoSignpostScript(struct MapPosition * position, u16 m
         SetUpWalkIntoSignScript(EventScript_SafariZone_ExtensionSign, playerDirection);
         return TRUE;
     }
+    else if(signpostType == SIGNPOST_RECORDS)
+    {
+        script = GetSignpostScriptAtMapPosition(position);
+        if (script == NULL)
+            return FALSE;
+        if (signpostType != SIGNPOST_RECORDS)
+            return FALSE;
+        SetUpWalkIntoRecordsScript(script, playerDirection);
+        return TRUE;
+    }
     else
     {
         script = GetSignpostScriptAtMapPosition(position);
@@ -832,10 +870,21 @@ static u8 GetFacingSignpostType(u16 metatileBehavior, u8 playerDirection)
     if (MetatileBehavior_IsSafariExtensionSign(metatileBehavior, playerDirection) == TRUE)
         return SIGNPOST_SAFARI;
 
+    if (MetatileBehavior_IsRecordsSignpost(metatileBehavior) == TRUE)
+        return SIGNPOST_RECORDS;
+
     if (MetatileBehavior_IsSignpost(metatileBehavior) == TRUE)
         return SIGNPOST_SCRIPTED;
 
     return SIGNPOST_NA;
+}
+
+static void SetUpWalkIntoRecordsScript(const u8 *script, u8 playerDirection)
+{
+    gSpecialVar_Facing = playerDirection;
+    ScriptContext_SetupScript(script);
+    SetWalkingIntoRecordSignVars();
+    MsgSetSignpost();
 }
 
 static void SetUpWalkIntoSignScript(const u8 *script, u8 playerDirection)

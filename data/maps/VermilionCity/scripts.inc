@@ -481,5 +481,15 @@ VermilionCity_EventScript_GymSign::
 	end
 
 VermilionCity_EventScript_HarborSign::
-	msgbox VermilionCity_Text_VermilionHarbor, MSGBOX_SIGN
+	callnative SizeOfFieldToResult
+	buffernumberstring 0, VAR_RESULT
+	buffernumberstring 1, VAR_0x8000
+	buffernumberstring 2, VAR_0x8001
+	msgbox VermilionCity_Text_DEBUG, MSGBOX_SIGN
+	@msgbox VermilionCity_Text_VermilionHarbor, MSGBOX_SIGN
 	end
+
+VermilionCity_Text_DEBUG:
+	.string "FLAGS-COUNT is {STR_VAR_1}.\n"
+	.string "sizeof in SaveBlock is {STR_VAR_2}.\l"
+	.string "offsetof vars is {STR_VAR_3}.$"

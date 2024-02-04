@@ -438,5 +438,6 @@ u16 ExtendedToNationalOrder(u16 expandedNum);
 u16 ExtendedPokedexNumToSpecies(u16 nationalNum);
 u16 NationalToExtendedOrder(u16 nationalNum);
 u16 SpeciesToExtendedPokedexNum(u16 species);
+s8 GetMonFlavorRelation(struct Pokemon *mon, u8 flavor);
 
 #endif // GUARD_POKEMON_H

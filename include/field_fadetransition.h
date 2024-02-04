@@ -13,6 +13,7 @@ void DoTeleportWarp(void);
 void DoTeleport2Warp(void);
 void FieldCB_DefaultWarpExit(void);
 void WarpFadeOutScreen(void);
+void FieldCB_ReturnToFieldNoScript(void);
 void FieldCB_ContinueScriptHandleMusic(void);
 void FadeInFromBlack(void);
 void FadeTransition_FadeInOnReturnToStartMenu(void);
@@ -32,7 +33,6 @@ void FieldCB_ReturnToFieldWirelessLink(void);
 void FieldCB_ReturnToFieldCableLink(void);
 bool8 FieldCB_ReturnToFieldOpenStartMenu(void);
 void FieldCB_ContinueScript(void);
-void FieldCB_ContinueScriptHandleMusic(void);
 void FieldCB_WarpExitFadeFromBlack(void);
 
 #endif // GUARD_FIELD_FADETRANSITION_H

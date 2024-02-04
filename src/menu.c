@@ -893,3 +893,59 @@ static s8 Menu_ProcessGridInputRepeat(void)
     }
     return MENU_NOTHING_CHOSEN;
 }
+
+u8 InitMenuInUpperLeftCorner(u8 windowId, u8 itemCount, u8 initialCursorPos, bool8 APressMuted)
+{
+    s32 pos;
+
+    sMenu.left = 0;
+    sMenu.top = 1;
+    sMenu.minCursorPos = 0;
+    sMenu.maxCursorPos = itemCount - 1;
+    sMenu.windowId = windowId;
+    sMenu.fontId = FONT_NORMAL;
+    sMenu.optionHeight = 16;
+    sMenu.APressMuted = APressMuted;
+
+    pos = initialCursorPos;
+
+    if (pos < 0 || pos > sMenu.maxCursorPos)
+        sMenu.cursorPos = 0;
+    else
+        sMenu.cursorPos = pos;
+
+    return Menu_MoveCursor(0);
+}
+
+// There is no muted version of this function, so the version that plays sound when A is pressed is the "Normal" one.
+u8 InitMenuInUpperLeftCornerNormal(u8 windowId, u8 itemCount, u8 initialCursorPos)
+{
+    return InitMenuInUpperLeftCorner(windowId, itemCount, initialCursorPos, FALSE);
+}
+
+void PrintMenuActionTextsInUpperLeftCorner(u8 windowId, u8 itemCount, const struct MenuAction *menuActions, const u8 *actionIds)
+{
+    u8 i;
+    struct TextPrinterTemplate printer;
+
+    printer.windowId = windowId;
+    printer.fontId = FONT_NORMAL;
+    printer.fgColor = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_FOREGROUND);
+    printer.bgColor = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_BACKGROUND);
+    printer.shadowColor = GetFontAttribute(FONT_NORMAL, FONTATTR_COLOR_SHADOW);
+    printer.unk = GetFontAttribute(FONT_NORMAL, FONTATTR_UNKNOWN);
+    printer.letterSpacing = 0;
+    printer.lineSpacing = 0;
+    printer.x = 8;
+    printer.currentX = 8;
+
+    for (i = 0; i < itemCount; i++)
+    {
+        printer.currentChar = menuActions[actionIds[i]].text;
+        printer.y = (i * 16) + 1;
+        printer.currentY = (i * 16) + 1;
+        AddTextPrinter(&printer, TEXT_SKIP_DRAW, NULL);
+    }
+
+    CopyWindowToVram(windowId, COPYWIN_GFX);
+}

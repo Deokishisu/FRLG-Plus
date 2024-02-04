@@ -89,6 +89,7 @@
 //
 #define MB_UNION_ROOM_WARP 0x71
 //
+#define MB_RECORDS_SIGNPOST 0x7F
 #define MB_COUNTER 0x80
 #define MB_BOOKSHELF 0x81
 #define MB_POKEMART_SHELF 0x82

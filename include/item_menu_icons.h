@@ -30,5 +30,9 @@ void SetBagVisualPocketId(u8);
 void ShakeBagSprite(void);
 const u32 *GetItemIconGfxPtr(u16 itemId, u8 ptrId);
 void CreateBagSprite(u8 animNum);
+void LoadListMenuSwapLineGfx(void);
+void CreateSwapLineSprites(u8 *spriteIds, u8 count);
+void SetSwapLineSpritesInvisibility(u8 *spriteIds, u8 count, bool8 invisible);
+void UpdateSwapLineSpritesPos(u8 *spriteIds, u8 count, s16 x, u16 y);
 
 #endif // GUARD_ITEM_MENU_ICONS

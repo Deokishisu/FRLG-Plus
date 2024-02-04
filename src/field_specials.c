@@ -34,6 +34,7 @@
 #include "dynamic_placeholder_text_util.h"
 #include "new_menu_helpers.h"
 #include "battle_setup.h"
+#include "link.h"
 #include "constants/songs.h"
 #include "constants/items.h"
 #include "constants/maps.h"
@@ -42,6 +43,7 @@
 #include "constants/menu.h"
 #include "constants/event_objects.h"
 #include "constants/metatile_labels.h"
+#include "constants/event_object_movement.h"
 
 static EWRAM_DATA u8 sElevatorCurrentFloorWindowId = 0;
 static EWRAM_DATA u16 sElevatorScroll = 0;
@@ -82,6 +84,7 @@ static void Task_DoDeoxysTriangleInteraction(u8 taskId);
 static void MoveDeoxysObject(u8 num);
 static void Task_WaitDeoxysFieldEffect(u8 taskId);
 static void Task_WingFlapSound(u8 taskId);
+static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum);
 
 static u8 *const sStringVarPtrs[] = {
     gStringVar1,
@@ -2835,3 +2838,152 @@ static const u8 gTitleNames[][18] = {
     _("MEW MASTER"),
     _("GRAND MASTER"),
 };
+
+u8 *const gTVStringVarPtrs[] = {
+    gStringVar1,
+    gStringVar2,
+    gStringVar3
+};
+
+u8 GetLinkPartnerNames(void)
+{
+    u32 i;
+    u32 j = 0;
+    u8 myLinkPlayerNumber = GetMultiplayerId();
+    u8 nLinkPlayers = GetLinkPlayerCount();
+    for (i = 0; i < nLinkPlayers; i++)
+    {
+        if (myLinkPlayerNumber != i)
+        {
+            StringCopy(gTVStringVarPtrs[j], gLinkPlayers[i].name);
+            j++;
+        }
+    }
+    return nLinkPlayers;
+}
+
+void SpawnLinkPartnerObjectEvent(void)
+{
+    u32 j = 0;
+    s16 x = 0;
+    s16 y = 0;
+    u8 movementTypes[] = {
+        MOVEMENT_TYPE_FACE_UP,
+        MOVEMENT_TYPE_FACE_LEFT,
+        MOVEMENT_TYPE_FACE_DOWN,
+        MOVEMENT_TYPE_FACE_RIGHT
+    };
+    s8 coordOffsets[][2] = {
+        { 0,  1},
+        { 1,  0},
+        { 0, -1},
+        {-1,  0}
+    };
+    u8 myLinkPlayerNumber;
+    u8 playerFacingDirection;
+    u8 linkSpriteId;
+    u32 i;
+
+    myLinkPlayerNumber = GetMultiplayerId();
+    playerFacingDirection = GetPlayerFacingDirection();
+    switch (playerFacingDirection)
+    {
+    case DIR_WEST:
+        j = 2;
+        x = gSaveBlock1Ptr->pos.x - 1;
+        y = gSaveBlock1Ptr->pos.y;
+        break;
+    case DIR_NORTH:
+        j = 1;
+        x = gSaveBlock1Ptr->pos.x;
+        y = gSaveBlock1Ptr->pos.y - 1;
+        break;
+    case DIR_EAST:
+        x = gSaveBlock1Ptr->pos.x + 1;
+        y = gSaveBlock1Ptr->pos.y;
+        break;
+    case DIR_SOUTH:
+        j = 3;
+        x = gSaveBlock1Ptr->pos.x;
+        y = gSaveBlock1Ptr->pos.y + 1;
+    }
+    for (i = 0; i < gSpecialVar_0x8004; i++)
+    {
+        if (myLinkPlayerNumber != i)
+        {
+            switch ((u8)gLinkPlayers[i].version)
+            {
+            case VERSION_RUBY:
+            case VERSION_SAPPHIRE:
+                if (gLinkPlayers[i].gender == 0)
+                    linkSpriteId = OBJ_EVENT_GFX_RS_BRENDAN;
+                else
+                    linkSpriteId = OBJ_EVENT_GFX_RS_MAY;
+                break;
+            case VERSION_FIRE_RED:
+            case VERSION_LEAF_GREEN:
+                if (gLinkPlayers[i].gender == 0)
+                    linkSpriteId = OBJ_EVENT_GFX_RED_NORMAL;
+                else
+                    linkSpriteId = OBJ_EVENT_GFX_GREEN_NORMAL;
+                break;
+            default:
+                if (gLinkPlayers[i].gender == 0)
+                    linkSpriteId = OBJ_EVENT_GFX_EM_BRENDAN;
+                else
+                    linkSpriteId = OBJ_EVENT_GFX_EM_MAY;
+                break;
+            }
+            SpawnSpecialObjectEventParameterized(linkSpriteId, movementTypes[j], 240 - i, coordOffsets[j][0] + x + MAP_OFFSET, coordOffsets[j][1] + y + MAP_OFFSET, 0);
+            LoadLinkPartnerObjectEventSpritePalette(linkSpriteId, 240 - i, i);
+            j++;
+            if (j == MAX_LINK_PLAYERS)
+                j = 0;
+        }
+    }
+}
+
+extern const u16 gObjectEventPal_Player[];
+extern const u16 gObjectEventPal_NpcWhite[];
+extern const u16 gEmBrendanPalette[];
+extern const u16 gEmMayPalette[];
+
+static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum)
+{
+    u8 adjustedPaletteNum;
+    // Note: This temp var is necessary; paletteNum += 6 doesn't match.
+    adjustedPaletteNum = paletteNum + 6;
+    if (graphicsId == OBJ_EVENT_GFX_RS_BRENDAN ||
+        graphicsId == OBJ_EVENT_GFX_RS_MAY ||
+        graphicsId == OBJ_EVENT_GFX_RED_NORMAL ||
+        graphicsId == OBJ_EVENT_GFX_GREEN_NORMAL ||
+        graphicsId == OBJ_EVENT_GFX_EM_BRENDAN ||
+        graphicsId == OBJ_EVENT_GFX_EM_MAY)
+    {
+        u8 obj = GetObjectEventIdByLocalIdAndMap(localEventId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+        if (obj != OBJECT_EVENTS_COUNT)
+        {
+            u8 spriteId = gObjectEvents[obj].spriteId;
+            struct Sprite *sprite = &gSprites[spriteId];
+            sprite->oam.paletteNum = adjustedPaletteNum;
+
+            switch (graphicsId)
+            {
+            case OBJ_EVENT_GFX_RS_BRENDAN:
+            case OBJ_EVENT_GFX_RS_MAY:
+                LoadPalette(gObjectEventPal_NpcWhite, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+                break;
+            case OBJ_EVENT_GFX_RED_NORMAL:
+            case OBJ_EVENT_GFX_GREEN_NORMAL:
+                LoadPalette(gObjectEventPal_Player, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+                break;
+            case OBJ_EVENT_GFX_EM_BRENDAN:
+                LoadPalette(gEmBrendanPalette, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+                break;
+            case OBJ_EVENT_GFX_EM_MAY:
+                LoadPalette(gEmMayPalette, OBJ_PLTT_ID(adjustedPaletteNum), PLTT_SIZE_4BPP);
+                break;
+            }
+        }
+    }
+}

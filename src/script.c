@@ -281,17 +281,20 @@ void SetWalkingIntoSignVars(void)
     sMsgBoxIsCancelable = TRUE;
 }
 
+void SetWalkingIntoRecordSignVars(void)
+{
+    gWalkAwayFromSignInhibitTimer = 6;
+    sMsgBoxIsCancelable = 2;
+}
+
 void ClearMsgBoxCancelableState(void)
 {
     sMsgBoxIsCancelable = FALSE;
 }
 
-bool8 CanWalkAwayToCancelMsgBox(void)
+u32 CanWalkAwayToCancelMsgBox(void)
 {
-    if(sMsgBoxIsCancelable == TRUE)
-        return TRUE;
-    else
-        return FALSE;
+    return sMsgBoxIsCancelable;
 }
 
 void MsgSetSignpost(void)
@@ -608,12 +611,12 @@ void GetStartingLevelOfRoute5DaycareMon(void)
 
 void CheckCurrentMasterTitle(void)
 {
-    gSpecialVar_Result = gSaveBlock1Ptr->masterTrainerTitle;
+    gSpecialVar_Result = gSaveBlock2Ptr->masterTrainerTitle;
 }
 
 void SetCurrentMasterTitle(void)
 {
-    gSaveBlock1Ptr->masterTrainerTitle = gSpecialVar_Result;
+    gSaveBlock2Ptr->masterTrainerTitle = gSpecialVar_Result;
 }
 
 void CheckHasAnyMasterTitle(void)
@@ -621,7 +624,7 @@ void CheckHasAnyMasterTitle(void)
     u32 i;
     bool8 flag = TRUE;
 
-    if(gSaveBlock1Ptr->masterTrainerTitle != 0)
+    if(gSaveBlock2Ptr->masterTrainerTitle != 0)
     {
         gSpecialVar_Result = TRUE;
         return;
@@ -1685,7 +1688,21 @@ void FillBagsTest(void)
 
 void SizeOfFieldToResult(void)
 {
-    gSpecialVar_Result = sizeof(struct PokemonJumpRecords);
-    gSpecialVar_0x8000 = sizeof(gSaveBlock2Ptr->contestLinkResults);
-    gSpecialVar_0x8001 = offsetof(struct SaveBlock2, mapView);
+    gSpecialVar_Result = FLAGS_COUNT;
+    gSpecialVar_0x8000 = sizeof(gSaveBlock1Ptr->flags);
+    gSpecialVar_0x8001 = offsetof(struct SaveBlock1, vars);
+}
+
+void ClearBerryPouch(void)
+{
+    u32 i;
+
+    struct ItemSlot * slots = gSaveBlock1Ptr->bagPocket_Berries;
+    u8 capacity = BAG_BERRIES_COUNT;
+
+    for (i = 0; i < capacity; i++)
+    {
+        slots[i].itemId = ITEM_NONE;
+        SetBagItemQuantity(&slots[i].quantity, 0);
+    }
 }

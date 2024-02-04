@@ -128,7 +128,6 @@ static bool32 InitBlockSend(const void *src, size_t size);
 static void LinkCB_BlockSendBegin(void);
 static void LinkCB_BlockSend(void);
 static void LinkCB_BlockSendEnd(void);
-static void SetBerryBlenderLinkCallback(void);
 static void SetBlockReceivedFlag(u8 id);
 static u16 LinkTestCalcBlockChecksum(const u16 *src, u16 size);
 static void LinkTest_PrintHex(u32 pos, u8 a0, u8 a1, u8 a2);
@@ -319,7 +318,7 @@ static void InitLocalLinkPlayer(void)
     gLocalLinkPlayer.lp_field_2 = 0x8000;
     gLocalLinkPlayer.progressFlags = TRUE; //IsNationalPokedexEnabled();
     gLocalLinkPlayer.progressFlags |= 0x10;
-    gLocalLinkPlayer.neverRead = gSaveBlock1Ptr->masterTrainerTitle; // should only ever be read by FRLG++
+    gLocalLinkPlayer.neverRead = gSaveBlock2Ptr->masterTrainerTitle; // should only ever be read by FRLG++
 }
 
 static void VBlankCB_LinkError(void)
@@ -901,19 +900,17 @@ static void LinkCB_BerryBlenderSendHeldKeys(void)
     gBerryBlenderKeySendAttempts++;
 }
 
-static void SetBerryBlenderLinkCallback(void)
+void SetBerryBlenderLinkCallback(void)
 {
     gBerryBlenderKeySendAttempts = 0;
     gLinkCallback = LinkCB_BerryBlenderSendHeldKeys;
 }
 
-// Unused
 static u32 GetBerryBlenderKeySendAttempts(void)
 {
     return gBerryBlenderKeySendAttempts;
 }
 
-// Unused
 static void SendBerryBlenderNoSpaceForPokeblocks(void)
 {
     BuildSendCmd(LINKCMD_BLENDER_NO_PBLOCK_SPACE);
@@ -1599,7 +1596,6 @@ static void SetWirelessCommType0_Internal(void)
         gWirelessCommType = 0;
 }
 
-// Unused
 void SetWirelessCommType0(void)
 {
     if (!gReceivedRemoteLinkPlayers)

@@ -1350,8 +1350,8 @@ SixIsland_ContestLobby_Text_ReceptionDontHavePokeblockCase:
 	.string "POKéMON CONTESTS.\p"
 	.string "Oh? It appears that you don't have\n"
 	.string "a {POKEBLOCK} CASE yet.\p"
-	.string "In that case, we need to provide you\n"
-	.string "with this!$"
+	.string "In that case, we need to provide\n"
+	.string "you with this!$"
 
 SixIsland_ContestLobby_Text_NowThatWeveClearedThatUp:
 	.string "Okay, now that we've cleared that\n"

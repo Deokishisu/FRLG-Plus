@@ -710,7 +710,7 @@ static void Bag_BuildListMenuTemplate(u8 pocket)
 
 static void BagListMenuGetItemNameColored(u8 *dest, u16 itemId)
 {
-    if (itemId == ITEM_TM_CASE || itemId == ITEM_BERRY_POUCH)
+    if (itemId == ITEM_TM_CASE || itemId == ITEM_BERRY_POUCH || itemId == ITEM_POKEBLOCK_CASE)
         StringCopy(dest, sListItemTextColor_TmCase_BerryPouch);
     else
         StringCopy(dest, sListItemTextColor_RegularItem);

@@ -149,6 +149,18 @@ void ResetVramOamAndBgCntRegs(void)
     CpuFill16(0, (void *) PLTT, PLTT_SIZE);
 }
 
+void ResetAllBgsCoordinates(void)
+{
+    ChangeBgX(0, 0, BG_COORD_SET);
+    ChangeBgY(0, 0, BG_COORD_SET);
+    ChangeBgX(1, 0, BG_COORD_SET);
+    ChangeBgY(1, 0, BG_COORD_SET);
+    ChangeBgX(2, 0, BG_COORD_SET);
+    ChangeBgY(2, 0, BG_COORD_SET);
+    ChangeBgX(3, 0, BG_COORD_SET);
+    ChangeBgY(3, 0, BG_COORD_SET);
+}
+
 void ResetAllBgsCoordinatesAndBgCntRegs(void)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, 0);

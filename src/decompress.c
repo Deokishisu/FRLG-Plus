@@ -348,6 +348,12 @@ u32 GetDecompressedDataSize(const u8 *ptr)
     return ptr32[0];
 }
 
+u32 GetDecompressedDataSize2(const u32 *ptr)
+{
+    const u8 *ptr8 = (const u8 *)ptr;
+    return (ptr8[3] << 16) | (ptr8[2] << 8) | (ptr8[1]);
+}
+
 void DecompressPicFromTable_DontHandleDeoxys(const struct CompressedSpriteSheet *src, void *buffer, s32 species)
 {
     if (species > NUM_SPECIES)

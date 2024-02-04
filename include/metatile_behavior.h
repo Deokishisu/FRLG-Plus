@@ -104,6 +104,7 @@ bool8 MetatileBehavior_IsSpinUp(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSpinDown(u8 metatileBehavior);
 bool8 MetatileBehavior_IsStopSpinning(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSpinTile(u8 metatileBehavior);
+bool8 MetatileBehavior_IsRecordsSignpost(u8 metatileBehavior);
 bool8 MetatileBehavior_IsSignpost(u8 metatileBehavior);
 bool8 MetatileBehavior_IsCabinet(u8 metatileBehavior);
 bool8 MetatileBehavior_IsKitchen(u8 metatileBehavior);
