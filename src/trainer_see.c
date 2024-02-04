@@ -599,10 +599,6 @@ static const struct SpriteFrameImage sSpriteImages_Emoticons[] = {
     {sGfx_Emoticons + 0x340, 0x80},
     {sGfx_Emoticons + 0x380, 0x80},
 
-    {sGfx_Emoticons + 0x300, 0x80},
-    {sGfx_Emoticons + 0x340, 0x80},
-    {sGfx_Emoticons + 0x380, 0x80},
-
     {sGfx_Emoticons + 0x3C0, 0x80},
     {sGfx_Emoticons + 0x400, 0x80},
     {sGfx_Emoticons + 0x440, 0x80},
@@ -724,7 +720,7 @@ u8 FldEff_HeartIcon(void)
     u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
-        SetIconSpriteData(&gSprites[spriteId], FLDEFF_HEART_ICON, 4);
+        SetIconSpriteData(&gSprites[spriteId], FLDEFF_HEART_ICON, 5);
 
     return 0;
 }
