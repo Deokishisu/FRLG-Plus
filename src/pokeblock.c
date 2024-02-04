@@ -731,7 +731,7 @@ static void UpdatePokeblockList(void)
     sPokeblockMenu->items[i].index = LIST_CANCEL;
 
     gMultiuseListMenuTemplate = sPokeblockListMenuTemplate;
-    gMultiuseListMenuTemplate.fontId = FONT_SMALL;
+    gMultiuseListMenuTemplate.fontId = FONT_NARROW;
     gMultiuseListMenuTemplate.totalItems = sPokeblockMenu->itemsNo;
     gMultiuseListMenuTemplate.items = sPokeblockMenu->items;
     gMultiuseListMenuTemplate.maxShowed = sPokeblockMenu->maxShowed;

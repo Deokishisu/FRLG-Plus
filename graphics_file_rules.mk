@@ -85,6 +85,16 @@ $(FONTGFXDIR)/japanese_male.fwjpnfont: $(FONTGFXDIR)/japanese_male.png
 $(FONTGFXDIR)/latin_female.latfont: $(FONTGFXDIR)/latin_female.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/latin_narrow.latfont: $(FONTGFXDIR)/latin_narrow.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/latin_small_narrow.latfont: $(FONTGFXDIR)/latin_small_narrow.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/latin_normal_emerald.latfont: $(FONTGFXDIR)/latin_normal_emerald.png
+	$(GFX) $< $@
+
+
 $(FONTGFXDIR)/japanese_female.fwjpnfont: $(FONTGFXDIR)/japanese_female.png
 	$(GFX) $< $@
 

@@ -139,13 +139,14 @@ enum {
 #define CONTEST_AI_SET_21 (CONTEST_AI_COMMON | CONTEST_AI_DUMMY_7  | CONTEST_AI_DUMMY_25)
 
 // All AI contestants have the same trainer ID
-#define CONTEST_AI_TRAINER_ID FALSE
+#define CONTEST_AI_TRAINER_ID 0xFFFF
+// an ID of 0 makes them shiny
 
 const struct ContestWinner gDefaultContestWinners[] =
 {
     [CONTEST_WINNER_HALL_1 - 1] = {
         .personality = 0,
-        .isShiny = CONTEST_AI_TRAINER_ID,
+        .isShiny = FALSE,
         .species = SPECIES_ELECTRIKE,
         .contestCategory = CONTEST_CATEGORY_CUTE,
         .monName = _("ELECTER"),
@@ -154,7 +155,7 @@ const struct ContestWinner gDefaultContestWinners[] =
     },
     [CONTEST_WINNER_HALL_2 - 1] = {
         .personality = 0,
-        .isShiny = CONTEST_AI_TRAINER_ID,
+        .isShiny = FALSE,
         .species = SPECIES_TROPIUS,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .monName = _("TROPO"),
@@ -163,7 +164,7 @@ const struct ContestWinner gDefaultContestWinners[] =
     },
     [CONTEST_WINNER_HALL_3 - 1] = {
         .personality = 0,
-        .isShiny = CONTEST_AI_TRAINER_ID,
+        .isShiny = FALSE,
         .species = SPECIES_XATU,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
         .monName = _("TUXA"),
@@ -172,7 +173,7 @@ const struct ContestWinner gDefaultContestWinners[] =
     },
     [CONTEST_WINNER_HALL_4 - 1] = {
         .personality = 0,
-        .isShiny = CONTEST_AI_TRAINER_ID,
+        .isShiny = FALSE,
         .species = SPECIES_PLUSLE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
         .monName = _("PULSE"),
@@ -181,7 +182,7 @@ const struct ContestWinner gDefaultContestWinners[] =
     },
     [CONTEST_WINNER_HALL_5 - 1] = {
         .personality = 0,
-        .isShiny = CONTEST_AI_TRAINER_ID,
+        .isShiny = FALSE,
         .species = SPECIES_SHUPPET,
         .contestCategory = CONTEST_CATEGORY_SMART,
         .monName = _("SHUPUP"),
@@ -190,7 +191,7 @@ const struct ContestWinner gDefaultContestWinners[] =
     },
     [CONTEST_WINNER_HALL_6 - 1] = {
         .personality = 0,
-        .isShiny = CONTEST_AI_TRAINER_ID,
+        .isShiny = FALSE,
         .species = SPECIES_ZANGOOSE,
         .contestCategory = CONTEST_CATEGORY_COOL,
         .monName = _("GOOZAN"),

@@ -1938,7 +1938,7 @@ static void AddContestTextPrinter(int windowId, u8 *str, int x)
     struct TextPrinterTemplate textPrinter;
     textPrinter.currentChar = str;
     textPrinter.windowId = windowId;
-    textPrinter.fontId = FONT_SMALL;
+    textPrinter.fontId = FONT_NARROW;
     textPrinter.x = x;
     textPrinter.y = 2;
     textPrinter.currentX = x;

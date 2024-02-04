@@ -20,6 +20,9 @@ enum {
     FONT_MALE,
     FONT_FEMALE,
     FONT_BRAILLE,
+    FONT_NARROW,
+    FONT_SMALL_NARROW, // Very similar to FONT_SMALL, some glyphs are narrower
+    FONT_NORMAL_EMERALD,
     FONT_BOLD,
 };
 
@@ -167,6 +170,9 @@ u16 FontFunc_NormalCopy2(struct TextPrinter *textPrinter);
 u16 FontFunc_Male(struct TextPrinter *textPrinter);
 u16 FontFunc_Female(struct TextPrinter *textPrinter);
 u16 FontFunc_Braille(struct TextPrinter *textPrinter);
+u16 FontFunc_Narrow(struct TextPrinter *textPrinter);
+u16 FontFunc_NormalEmerald(struct TextPrinter *textPrinter);
+u16 FontFunc_SmallNarrow(struct TextPrinter *textPrinter);
 
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter);
 void TextPrinterDrawDownArrow(struct TextPrinter *textPrinter);

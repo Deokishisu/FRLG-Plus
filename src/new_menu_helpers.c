@@ -129,6 +129,36 @@ static const struct FontInfo gFontInfos[] =
         .bgColor = 1,
         .shadowColor = 3,
     },
+    [FONT_NARROW] = {
+        .fontFunction = FontFunc_Narrow,
+        .maxLetterWidth = 5,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    [FONT_SMALL_NARROW] = {
+        .fontFunction = FontFunc_SmallNarrow,
+        .maxLetterWidth = 5,
+        .maxLetterHeight = 8,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    [FONT_NORMAL_EMERALD] = {
+        .fontFunction = FontFunc_NormalEmerald,
+        .maxLetterWidth = 6,
+        .maxLetterHeight = 16,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
     [FONT_BOLD] = {
         .fontFunction = NULL,
         .maxLetterWidth = 8,
@@ -150,6 +180,9 @@ static const u8 gMenuCursorDimensions[][2] =
     [FONT_MALE]          = { 8,  14 },
     [FONT_FEMALE]        = { 8,  14 },
     [FONT_BRAILLE]       = { 8,  16 },
+    [FONT_NARROW]        = { 8,  15 },
+    [FONT_SMALL_NARROW]  = { 8,   8 },
+    [FONT_NORMAL_EMERALD] = { 8,  15 },
     [FONT_BOLD]          = {}
 };
 
