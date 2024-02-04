@@ -1,6 +1,7 @@
 #include "global.h"
 #include "malloc.h"
 #include "bg.h"
+#include "berry_tag_screen.h"
 #include "decompress.h"
 #include "gpu_regs.h"
 #include "palette.h"
@@ -43,16 +44,6 @@ struct BerryPouchStruct_203F36C
     s16 data[4];
 };
 
-struct BerryPouchStruct_203F370
-{
-    void (*savedCallback)(void);
-    u8 type;
-    u8 allowSelect;
-    u8 unused_06;
-    u16 listMenuSelectedRow;
-    u16 listMenuScrollOffset;
-};
-
 enum
 {
     BP_ACTION_USE = 0,
@@ -65,7 +56,7 @@ enum
 };
 
 static EWRAM_DATA struct BerryPouchStruct_203F36C *sResources = NULL;
-static EWRAM_DATA struct BerryPouchStruct_203F370 sStaticCnt = {};
+EWRAM_DATA struct BerryPouchStruct_203F370 sStaticCnt = {};
 static EWRAM_DATA struct ListMenuItem *sListMenuItems = NULL;
 static EWRAM_DATA u8 * sListMenuStrbuf = NULL;
 static EWRAM_DATA const u8 * sContextMenuOptions = NULL;
@@ -186,26 +177,29 @@ static const struct MenuAction sContextMenuActions[] = {
     {gOtherText_Toss, Task_BerryPouch_Toss},
     {gOtherText_Give, Task_BerryPouch_Give},
     {gOtherText_Exit, Task_BerryPouch_Exit},
-    {gOtherText_Confirm, Task_BerryPouch_Confirm},
     {gOtherText_CheckTag, Task_BerryPouch_CheckTag},
+    {gOtherText_Confirm, Task_BerryPouch_Confirm},
     {gString_Dummy,   NULL}
 };
 
 static const u8 sOptions_UseGiveTossExit[] = {
     BP_ACTION_USE,
     BP_ACTION_GIVE,
+    BP_ACTION_CHECK_TAG,
     BP_ACTION_TOSS,
     BP_ACTION_EXIT
 };
 
 static const u8 sOptions_GiveExit[] = {
     BP_ACTION_GIVE,
+    BP_ACTION_CHECK_TAG,
     BP_ACTION_EXIT,
     BP_ACTION_DUMMY,
     BP_ACTION_DUMMY
 };
 
 static const u8 sOptions_Exit[] = {
+    BP_ACTION_CHECK_TAG,
     BP_ACTION_EXIT,
     BP_ACTION_DUMMY,
     BP_ACTION_DUMMY,
@@ -1091,8 +1085,8 @@ static void Task_BerryPouch_Confirm(u8 taskId)
 }
 
 static void Task_BerryPouch_CheckTag(u8 taskId)
-{   // DUMMY
-    //gSpecialVar_ItemId = BagGetItemIdByPocketPosition(POCKET_BERRY_POUCH, menuInput);
+{   
+    sResources->exitCallback = DoBerryTagScreen;
     gTasks[taskId].func = BerryPouch_StartFadeToExitCallback;
 }
 

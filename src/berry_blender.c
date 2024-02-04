@@ -219,6 +219,7 @@ static void SetPlayerIdMaps(void);
 static void PrintPlayerNames(void);
 static void InitBlenderBgs(void);
 static void SetPlayerBerryData(u8, u16);
+static void Blender_AddTextPrinterEmerald(u8, const u8 *, u8, u8, s32, s32);
 static void Blender_AddTextPrinter(u8, const u8 *, u8, u8, s32, s32);
 static void ResetLinkCmds(void);
 static void CreateParticleSprites(void);
@@ -1188,14 +1189,13 @@ static void SetBerrySpriteData(struct Sprite *sprite, s16 x, s16 y, s16 bounceSp
 
 static void CreateBerrySprite(u16 itemId, u8 playerId)
 {
-    /* TODO FIX THIS
     u8 spriteId = CreateSpinningBerrySprite(ITEM_TO_BERRY(itemId) - 1, 0, 80, playerId & 1);
     SetBerrySpriteData(&gSprites[spriteId],
                         sBerrySpriteData[playerId][0],
                         sBerrySpriteData[playerId][1],
                         sBerrySpriteData[playerId][2],
                         sBerrySpriteData[playerId][3],
-                        sBerrySpriteData[playerId][4]);*/
+                        sBerrySpriteData[playerId][4]);
 }
 
 static void ConvertItemToBlenderBerry(struct BlenderBerry* berry, u16 itemId)
@@ -1605,12 +1605,12 @@ static void PrintPlayerNames(void)
 
             text[0] = EOS;
             StringCopy(text, gLinkPlayers[sBerryBlender->arrowIdToPlayerId[i]].name);
-            xPos = GetStringCenterAlignXOffset(FONT_NORMAL, text, 0x38);
+            xPos = GetStringCenterAlignXOffset(FONT_NORMAL_EMERALD, text, 0x38);
 
             if (playerId == sBerryBlender->arrowIdToPlayerId[i])
-                Blender_AddTextPrinter(i, text, xPos, 1, 0, 2); // Highlight player's name in red
+                Blender_AddTextPrinterEmerald(i, text, xPos, 1, 0, 2); // Highlight player's name in red
             else
-                Blender_AddTextPrinter(i, text, xPos, 1, 0, 1);
+                Blender_AddTextPrinterEmerald(i, text, xPos, 1, 0, 1);
 
             PutWindowTilemap(i);
             CopyWindowToVram(i, COPYWIN_FULL);
@@ -1776,10 +1776,10 @@ static void CB2_StartBlenderLocal(void)
                 sBerryBlender->opponentTaskIds[i] = CreateTask(sLocalOpponentTasks[i], 10 + i);
         }
 
-        if (GetCurrentMapMusic() != MUS_CYCLING)
+        if (GetCurrentMapMusic() != MUS_RS_CYCLING)
             sBerryBlender->savedMusic = GetCurrentMapMusic();
 
-        PlayBGM(MUS_CYCLING);
+        PlayBGM(MUS_RS_CYCLING);
         PlaySE(SE_BERRY_BLENDER);
         UpdateHitPitch();
         break;
@@ -2660,7 +2660,7 @@ static void CB2_EndBlenderGame(void)
         break;
     case 9:
         sBerryBlender->yesNoAnswer = 0;
-        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, FONT_NORMAL, 0, 1, 1, 0xD, 0);
+        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, FONT_NORMAL_EMERALD, 0, 1, 1, 0xD, 0);
         sBerryBlender->gameEndState++;
         break;
     case 10:
@@ -3485,8 +3485,8 @@ static bool8 PrintBlendingResults(void)
             u16 minutes, seconds;
             u8 *txtPtr;
 
-            xPos = GetStringCenterAlignXOffset(FONT_NORMAL, sText_BlendingResults, 0xA8);
-            Blender_AddTextPrinter(WIN_RESULTS, sText_BlendingResults, xPos, 1, TEXT_SKIP_DRAW, 0);
+            xPos = GetStringCenterAlignXOffset(FONT_NORMAL_EMERALD, sText_BlendingResults, 0xA8);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sText_BlendingResults, xPos, 1, TEXT_SKIP_DRAW, 0);
 
             if (sBerryBlender->numPlayers == BLENDER_MAX_PLAYERS)
                 yPos = 17;
@@ -3501,15 +3501,15 @@ static bool8 PrintBlendingResults(void)
                 StringAppend(sBerryBlender->stringVar, sText_Dot);
                 StringAppend(sBerryBlender->stringVar, sText_Space);
                 StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
-                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 8, yPos, TEXT_SKIP_DRAW, 3);
+                Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, 8, yPos, TEXT_SKIP_DRAW, 3);
 
                 StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
                 ConvertInternationalString(sBerryBlender->stringVar, gLinkPlayers[place].language);
                 StringAppend(sBerryBlender->stringVar, sText_SpaceBerry);
-                Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 0x54, yPos, TEXT_SKIP_DRAW, 3);
+                Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, 0x54, yPos, TEXT_SKIP_DRAW, 3);
             }
 
-            Blender_AddTextPrinter(WIN_RESULTS, sText_MaximumSpeed, 0, 0x51, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sText_MaximumSpeed, 0, 0x51, TEXT_SKIP_DRAW, 3);
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->maxRPM / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
             StringAppend(sBerryBlender->stringVar, sText_Dot);
 
@@ -3517,9 +3517,9 @@ static bool8 PrintBlendingResults(void)
             StringAppend(sBerryBlender->stringVar, text);
             StringAppend(sBerryBlender->stringVar, sText_RPM);
 
-            xPos = GetStringRightAlignXOffset(FONT_NORMAL, sBerryBlender->stringVar, 0xA8);
-            Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, xPos, 0x51, TEXT_SKIP_DRAW, 3);
-            Blender_AddTextPrinter(WIN_RESULTS, sText_Time, 0, 0x61, TEXT_SKIP_DRAW, 3);
+            xPos = GetStringRightAlignXOffset(FONT_NORMAL_EMERALD, sBerryBlender->stringVar, 0xA8);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, xPos, 0x51, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sText_Time, 0, 0x61, TEXT_SKIP_DRAW, 3);
 
             seconds = (sBerryBlender->gameFrameTime / 60) % 60;
             minutes = (sBerryBlender->gameFrameTime / (60 * 60));
@@ -3530,8 +3530,8 @@ static bool8 PrintBlendingResults(void)
             ConvertIntToDecimalStringN(txtPtr, seconds, STR_CONV_MODE_LEADING_ZEROS, 2);
             StringAppend(sBerryBlender->stringVar, sText_Sec);
 
-            xPos = GetStringRightAlignXOffset(FONT_NORMAL, sBerryBlender->stringVar, 0xA8);
-            Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, xPos, 0x61, TEXT_SKIP_DRAW, 3);
+            xPos = GetStringRightAlignXOffset(FONT_NORMAL_EMERALD, sBerryBlender->stringVar, 0xA8);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, xPos, 0x61, TEXT_SKIP_DRAW, 3);
 
             sBerryBlender->framesToWait = 0;
             sBerryBlender->mainState++;
@@ -3684,8 +3684,8 @@ static bool8 PrintBlendingRanking(void)
         break;
     case 3:
         DrawStdFrameWithCustomTileAndPalette(WIN_RESULTS, FALSE, 1, 0xD);
-        xPos = GetStringCenterAlignXOffset(FONT_NORMAL, sText_Ranking, 168);
-        Blender_AddTextPrinter(WIN_RESULTS, sText_Ranking, xPos, 1, TEXT_SKIP_DRAW, 0);
+        xPos = GetStringCenterAlignXOffset(FONT_NORMAL_EMERALD, sText_Ranking, 168);
+        Blender_AddTextPrinterEmerald(WIN_RESULTS, sText_Ranking, xPos, 1, TEXT_SKIP_DRAW, 0);
 
         sBerryBlender->scoreIconIds[SCORE_BEST] = CreateSprite(&sSpriteTemplate_ScoreSymbols, 128, 52, 0);
         StartSpriteAnim(&gSprites[sBerryBlender->scoreIconIds[SCORE_BEST]], SCOREANIM_BEST_STATIC);
@@ -3709,16 +3709,16 @@ static bool8 PrintBlendingRanking(void)
             StringAppend(sBerryBlender->stringVar, sText_Dot);
             StringAppend(sBerryBlender->stringVar, sText_Space);
             StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
-            Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 0, yPos, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, 0, yPos, TEXT_SKIP_DRAW, 3);
 
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_BEST], STR_CONV_MODE_RIGHT_ALIGN, 3);
-            Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 78, yPos, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, 78, yPos, TEXT_SKIP_DRAW, 3);
 
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_GOOD], STR_CONV_MODE_RIGHT_ALIGN, 3);
-            Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 78 + 32, yPos, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, 78 + 32, yPos, TEXT_SKIP_DRAW, 3);
 
             ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_MISS], STR_CONV_MODE_RIGHT_ALIGN, 3);
-            Blender_AddTextPrinter(WIN_RESULTS, sBerryBlender->stringVar, 78 + 64, yPos, TEXT_SKIP_DRAW, 3);
+            Blender_AddTextPrinterEmerald(WIN_RESULTS, sBerryBlender->stringVar, 78 + 64, yPos, TEXT_SKIP_DRAW, 3);
         }
 
         PutWindowTilemap(WIN_RESULTS);
@@ -3758,9 +3758,9 @@ void ShowBerryBlenderRecordWindow(void)
     DrawStdWindowFrame(gRecordsWindowId, FALSE);
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
 
-    xPos = GetStringCenterAlignXOffset(FONT_NORMAL, gText_BlenderMaxSpeedRecord, 144);
-    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, gText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
-    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, gText_234Players, 4, 41, 0, NULL);
+    xPos = GetStringCenterAlignXOffset(FONT_NORMAL_EMERALD, gText_BlenderMaxSpeedRecord, 144);
+    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL_EMERALD, gText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL_EMERALD, gText_234Players, 4, 41, 0, NULL);
 
     for (i = 0, yPos = 41; i < NUM_SCORE_TYPES; i++)
     {
@@ -3774,8 +3774,8 @@ void ShowBerryBlenderRecordWindow(void)
         txtPtr = ConvertIntToDecimalStringN(txtPtr, record % 100, STR_CONV_MODE_LEADING_ZEROS, 2);
         txtPtr = StringAppend(txtPtr, sText_RPM);
 
-        xPos = GetStringRightAlignXOffset(FONT_NORMAL, text, 140);
-        AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL, text, xPos, yPos + (i * 16), 0, NULL);
+        xPos = GetStringRightAlignXOffset(FONT_NORMAL_EMERALD, text, 140);
+        AddTextPrinterParameterized(gRecordsWindowId, FONT_NORMAL_EMERALD, text, xPos, yPos + (i * 16), 0, NULL);
     }
 
     PutWindowTilemap(gRecordsWindowId);
@@ -3840,7 +3840,7 @@ static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlen
     return FALSE;
 }
 
-static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId)
+static void Blender_AddTextPrinterEmerald(u8 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId)
 {
     u8 txtColor[3];
     u32 letterSpacing = 0;
@@ -3849,9 +3849,7 @@ static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s3
     {
     case 0:
     case 3:
-#ifdef UBFIX
     default:
-#endif
         txtColor[0] = TEXT_COLOR_WHITE;
         txtColor[1] = TEXT_COLOR_DARK_GRAY;
         txtColor[2] = TEXT_COLOR_LIGHT_GRAY;
@@ -3871,7 +3869,39 @@ static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s3
     if (caseId != 3)
         FillWindowPixelBuffer(windowId, PIXEL_FILL(txtColor[0]));
 
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, letterSpacing, 1, txtColor, speed, string);
+    AddTextPrinterParameterized4(windowId, FONT_NORMAL_EMERALD, x, y, letterSpacing, 0, txtColor, speed, string);
+}
+
+static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId)
+{
+    u8 txtColor[3];
+    u32 letterSpacing = 0;
+
+    switch (caseId)
+    {
+    case 0:
+    case 3:
+    default:
+        txtColor[0] = TEXT_COLOR_WHITE;
+        txtColor[1] = TEXT_COLOR_DARK_GRAY;
+        txtColor[2] = TEXT_COLOR_LIGHT_GRAY;
+        break;
+    case 1:
+        txtColor[0] = TEXT_COLOR_TRANSPARENT;
+        txtColor[1] = TEXT_COLOR_DARK_GRAY;
+        txtColor[2] = TEXT_COLOR_LIGHT_GRAY;
+        break;
+    case 2:
+        txtColor[0] = TEXT_COLOR_TRANSPARENT;
+        txtColor[1] = TEXT_COLOR_RED;
+        txtColor[2] = TEXT_COLOR_LIGHT_RED;
+        break;
+    }
+
+    if (caseId != 3)
+        FillWindowPixelBuffer(windowId, PIXEL_FILL(txtColor[0]));
+
+    AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, letterSpacing, 0, txtColor, speed, string);
 }
 
 static bool32 PrintMessage(s16 *textState, const u8 *string, s32 textSpeed)

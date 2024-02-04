@@ -163,6 +163,7 @@ SixIsland_ContestLobby_EventScript_ContestWinner6::
 
 SixIsland_ContestLobby_EventScript_BerryBlenderSpeedRecords::
 	lockall
+	callnative SetWalkingIntoRecordSignVars
 	special ShowBerryBlenderRecordWindow
 	waitbuttonpress
 	callnative RemoveRecordsWindow

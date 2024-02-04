@@ -357,6 +357,7 @@ BattleTower_Lobby_EventScript_16071E::
 
 BattleTower_Lobby_EventScript_160727::
 	lockall
+	callnative SetWalkingIntoRecordSignVars
 	callnative ShowBattleTowerRecords
 	waitbuttonpress
 	callnative RemoveRecordsWindow

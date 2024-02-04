@@ -14,6 +14,17 @@ enum BerryPouchType
     BERRYPOUCH_FROMBERRYCRUSH,
     BERRYPOUCH_NA
 };
+struct BerryPouchStruct_203F370
+{
+    void (*savedCallback)(void);
+    u8 type;
+    u8 allowSelect;
+    u8 unused_06;
+    u16 listMenuSelectedRow;
+    u16 listMenuScrollOffset;
+};
+
+extern struct BerryPouchStruct_203F370 sStaticCnt;
 
 void BerryPouch_StartFadeToExitCallback(u8 taskId);
 void BerryPouch_SetExitCallback(void (*exitCallback)(void));

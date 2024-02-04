@@ -88,5 +88,6 @@ void ChoosePartyMonByMenuType(u8 menuType);
 void ChooseContestMon(void);
 void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task);
 void ItemUseCB_ReduceEV2(u8 taskId, TaskFunc task);
+void CB2_ReturnToBerryPouchMenu(void);;
 
 #endif // GUARD_PARTY_MENU_H

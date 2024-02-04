@@ -1383,3 +1383,16 @@ const u8 gText_BlenderMaxSpeedRecord[] = _("BERRY BLENDER\nMAXIMUM SPEED RECORD!
 const u8 gText_234Players[] = _("2 PLAYERS\n3 PLAYERS\n4 PLAYERS");
 const u8 gOtherText_Confirm[] = _("CONFIRM");
 const u8 gOtherText_CheckTag[] = _("SEE TAG");
+
+// Berry firmness strings
+const u8 gBerryFirmnessString_VerySoft[] = _("Very soft");
+const u8 gBerryFirmnessString_Soft[] = _("Soft");
+const u8 gBerryFirmnessString_Hard[] = _("Hard");
+const u8 gBerryFirmnessString_VeryHard[] = _("Very hard");
+const u8 gBerryFirmnessString_SuperHard[] = _("Super hard");
+const u8 gText_NumberVar1Var2[] = _("{NO}{STR_VAR_1} {STR_VAR_2}");
+const u8 gText_BerryTag[] = _("BERRY TAG");
+const u8 gText_SizeSlash[] = _("SIZE /");
+const u8 gText_FirmSlash[] = _("FIRM /");
+const u8 gText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
+const u8 gText_ThreeMarks[] = _("???");

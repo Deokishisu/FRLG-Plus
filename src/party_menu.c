@@ -348,7 +348,6 @@ static void DisplayMonLearnedMove(u8 taskId, u16 move);
 static void Task_SacredAshDisplayHPRestored(u8 taskId);
 static void Task_SacredAshLoop(u8 taskId);
 static void UseSacredAsh(u8 taskId);
-static void CB2_ReturnToBerryPouchMenu(void);
 static void CB2_ReturnToTMCaseMenu(void);
 static void GiveItemOrMailToSelectedMon(u8 taskId);
 static void RemoveItemToGiveFromBag(u16 item);
@@ -4291,7 +4290,7 @@ static void CB2_ReturnToTMCaseMenu(void)
     InitTMCase(TMCASE_REOPENING, NULL, TMCASE_KEEP_PREV);
 }
 
-static void CB2_ReturnToBerryPouchMenu(void)
+void CB2_ReturnToBerryPouchMenu(void)
 {
     InitBerryPouch(BERRYPOUCH_NA, NULL, 0xFF);
 }

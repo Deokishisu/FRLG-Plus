@@ -16,6 +16,9 @@ extern const struct CompressedSpritePalette gSpritePalette_Bag;
 extern const struct CompressedSpriteSheet gBagSwapSpriteSheet;
 extern const struct CompressedSpritePalette gBagSwapSpritePalette;
 
+extern const struct CompressedSpriteSheet gBerryCheckCircleSpriteSheet;
+extern const struct CompressedSpritePalette gBerryCheckCirclePaletteTable;
+
 void ResetItemMenuIconState(void);
 void CreateSwapLine(void);
 void DestroyItemMenuIcon(bool8 a0);
@@ -34,5 +37,9 @@ void LoadListMenuSwapLineGfx(void);
 void CreateSwapLineSprites(u8 *spriteIds, u8 count);
 void SetSwapLineSpritesInvisibility(u8 *spriteIds, u8 count, bool8 invisible);
 void UpdateSwapLineSpritesPos(u8 *spriteIds, u8 count, s16 x, u16 y);
+u8 CreateBerryTagSprite(u8 id, s16 x, s16 y);
+void FreeBerryTagSpritePalette(void);
+u8 CreateSpinningBerrySprite(u8 berryId, u8 x, u8 y, bool8 startAffine);
+u8 CreateBerryFlavorCircleSprite(s16 x);
 
 #endif // GUARD_ITEM_MENU_ICONS
