@@ -202,3 +202,11 @@ FiveIsland_ResortGorgeous_House_Text_SelphyWithCorsola::
 	.string "It's a photo of SELPHY relaxing\n"
 	.string "at a resort surrounded by many\l"
 	.string "pink, coral POKéMON.$"
+
+FiveIsland_ResortGorgeous_EventScript_BirdSculpture::
+	msgbox FiveIsland_ResortGorgeous_Text_BirdPokemonSculptureReplica, MSGBOX_SIGN
+	end
+
+FiveIsland_ResortGorgeous_Text_BirdPokemonSculptureReplica:
+	.string "It's a replica of a famous\nsculpture.\p"
+	.string "It depicts an ancient BIRD POKéMON.$"
