@@ -14,7 +14,6 @@ ContestHall_OnTransition:
 	call ContestHall_EventScript_ReadyContestMusic
 	setvar VAR_TEMP_0, 1
 	call ContestHall_EventScript_AddRandomAudienceMembers
-	call ContestHall_EventScript_SetCategoryTiles
 	end
 
 ContestHall_EventScript_SetCategoryTiles:
@@ -166,6 +165,7 @@ ContestHall_EventScript_SetContestObjects::
 	special LoadLinkContestPlayerPalettes
 	hideobjectat OBJ_EVENT_ID_PLAYER, 0
 	call ContestHall_EventScript_CreateAudience
+	call ContestHall_EventScript_SetCategoryTiles
 	end
 
 @ There are 8 audience member object events, 7 of which are given random gfx below (the 8th is the Artist)

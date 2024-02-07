@@ -375,11 +375,13 @@ ContestHall_EventScript_EntryXTrainersMon::
 	goto_if_eq VAR_CONTEST_TYPE, CONTEST_TYPE_LINK, ContestHall_EventScript_EntryXTrainersMonLink
 	message ContestHall_Text_EntryXTrainersMon
 	waitmessage
+	waitse
 	return
 
 ContestHall_EventScript_EntryXTrainersMonLink::
 	messageautoscroll ContestHall_Text_EntryXTrainersMon
 	waitmessage
+	waitse
 	return
 
 ContestHall_EventScript_AudienceVote::
