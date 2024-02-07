@@ -256,11 +256,11 @@
 #define FLAG_ENTERED_CONTEST                  0x0EC
 #define FLAG_RECEIVED_POKEBLOCK_CASE          0x0ED
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER 0x0EE
-#define FLAG_0x0EF               0x0EF
-#define FLAG_0x0F0               0x0F0
-#define FLAG_0x0F1               0x0F1
-#define FLAG_0x0F2               0x0F2
-#define FLAG_0x0F3               0x0F3
+#define FLAG_COOL_PAINTING_MADE               0x0EF // check if the paintings are non-empty instead to save flags?
+#define FLAG_BEAUTY_PAINTING_MADE             0x0F0
+#define FLAG_CUTE_PAINTING_MADE               0x0F1
+#define FLAG_SMART_PAINTING_MADE              0x0F2
+#define FLAG_TOUGH_PAINTING_MADE              0x0F3
 #define FLAG_0x0F4               0x0F4
 #define FLAG_0x0F5               0x0F5
 #define FLAG_0x0F6               0x0F6

@@ -1,0 +1,265 @@
+const LOCALID_SELPHY = 1
+const LOCALID_BUTLER = 2
+const TILE_LEFT_PAINTING = 0x30B
+const TILE_MID_PAINTING = 0x30C
+const TILE_RIGHT_PAINTING = 0x30D
+const SHOWN_REQUESTED_MON = FLAG_TEMP_2
+const MAPSEC_FOUR_ISLAND = 0x92
+
+mapscripts FiveIsland_ResortGorgeous_House_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if(!flag(FLAG_COOL_PAINTING_MADE))
+        {
+            setmetatile(7, 6, TILE_LEFT_PAINTING, 1)
+            setmetatile(8, 6, TILE_MID_PAINTING, 1)
+            setmetatile(9, 6, TILE_RIGHT_PAINTING, 1)
+        }
+        if(!flag(FLAG_BEAUTY_PAINTING_MADE))
+        {
+            setmetatile(13, 6, TILE_LEFT_PAINTING, 1)
+            setmetatile(14, 6, TILE_MID_PAINTING, 1)
+            setmetatile(15, 6, TILE_RIGHT_PAINTING, 1)
+        }
+        if(!flag(FLAG_CUTE_PAINTING_MADE))
+        {
+            setmetatile(10, 2, TILE_LEFT_PAINTING, 1)
+            setmetatile(11, 2, TILE_MID_PAINTING, 1)
+            setmetatile(12, 2, TILE_RIGHT_PAINTING, 1)
+        }
+        if(!flag(FLAG_SMART_PAINTING_MADE))
+        {
+            setmetatile(4, 2, TILE_LEFT_PAINTING, 1)
+            setmetatile(5, 2, TILE_MID_PAINTING, 1)
+            setmetatile(6, 2, TILE_RIGHT_PAINTING, 1)
+        }
+        if(!flag(FLAG_TOUGH_PAINTING_MADE))
+        {
+            setmetatile(1, 6, TILE_LEFT_PAINTING, 1)
+            setmetatile(2, 6, TILE_MID_PAINTING, 1)
+            setmetatile(3, 6, TILE_RIGHT_PAINTING, 1)
+        }
+    }
+}
+
+script FiveIsland_ResortGorgeous_House_EventScript_Selphy{
+    goto_if_questlog(EventScript_ReleaseEnd)
+    special(QuestLog_CutRecording)
+    lock
+    faceplayer
+    if(flag(SHOWN_REQUESTED_MON))
+    {
+        msgbox("SELPHY: I wish you the best of\nluck.")
+        release
+        end
+    }
+    if(var(VAR_RESORT_GORGEOUS_REQUESTED_MON) == 0xFFFF)
+    {
+        msgbox("SELPHY: Oh, I'm tired of this.\nI'm tired of waiting for you.\pI'll forgive you this time, but\nplease don't fail me next time.")
+        goto(FiveIsland_ResortGorgeous_House_EventScript_RequestMon)
+    }
+    if(var(VAR_RESORT_GORGEOUS_REQUESTED_MON) != SPECIES_NONE)
+    {
+        copyvar(VAR_0x8004, VAR_RESORT_GORGEOUS_REQUESTED_MON)
+        specialvar(VAR_RESULT, DoesPlayerPartyContainSpecies)
+        if(var(VAR_RESULT) == TRUE)
+        {
+            special(SampleResortGorgeousMonAndReward)
+            bufferstring(1, "\p… …  … …  … …\n")
+            msgbox("SELPHY: Oh, hello, there.\pOh, my gracious. That must be the\n{STR_VAR_1} you caught for me.\pGiggle…\nI see a resemblance to you.\pThank you so kindly.{STR_VAR_2}Is something the matter?\pYou may leave.{STR_VAR_2}Oh, fine. I understand now.\pSEBASTIAN!\nI need you here this instant!")
+            closemessage
+            playse(SE_PIN)
+            turnobject(LOCALID_BUTLER, DIR_SOUTH)
+            applymovement(LOCALID_BUTLER, Common_Movement_ExclamationMark)
+            waitmovement(0)
+            waitse
+            applymovement(LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerEnter)
+            waitmovement(0)
+            textcolor(NPC_TEXT_COLOR_MALE)
+            msgbox("Butler: Yes, my lady.")
+            applymovement(LOCALID_SELPHY, Common_Movement_WalkInPlaceFasterUp)
+            waitmovement(0)
+            textcolor(NPC_TEXT_COLOR_FEMALE)
+            msgbox("SELPHY: See to it that this person\nis given a token of appreciation.")
+            applymovement(LOCALID_BUTLER, Common_Movement_WalkInPlaceFasterDown)
+            waitmovement(0)
+            textcolor(NPC_TEXT_COLOR_MALE)
+            msgbox("Butler: I shall do as you bid,\nmy lady.")
+            closemessage
+            switch(var(VAR_FACING)){
+                case DIR_NORTH:
+                    applymovement(LOCALID_SELPHY, Common_Movement_WalkInPlaceFasterDown)
+                    applymovement(LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth)
+                    waitmovement(0)
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft)
+                    waitmovement(0)
+                case DIR_SOUTH:
+                    applymovement(LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth)
+                    waitmovement(0)
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp)
+                    waitmovement(0)
+                default: //case DIR_EAST:
+                    applymovement(LOCALID_SELPHY, Common_Movement_WalkInPlaceFasterLeft)
+                    applymovement(LOCALID_BUTLER, FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast)
+                    waitmovement(0)
+                    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp)
+                    waitmovement(0)
+                // DIR_WEST is impossible
+            }
+            copyobjectxytoperm(LOCALID_BUTLER)
+            msgbox("Butler: I sincerely thank you for\npleasing Lady SELPHY.\pPlease accept this as her thanks…")
+            if(!flag(FLAG_GIVEN_CORSOLA_EGG))
+            {
+                specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+                if(var(VAR_RESULT) == 6)
+                {
+                    textcolor(NPC_TEXT_COLOR_MALE)
+                    msgbox("Butler: Your party appears to be\nunfortunately full.")
+                    textcolor(NPC_TEXT_COLOR_FEMALE)
+                    msgbox("Oh…\nHow disappointing.")
+                    setflag(SHOWN_REQUESTED_MON)
+                    setvar(VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE)
+                    release
+                    end
+                }
+                playfanfare(MUS_LEVEL_UP)
+                textcolor(NPC_TEXT_COLOR_NEUTRAL)
+                msgbox("{PLAYER} received the EGG from\nSEBASTIAN.")
+                waitmessage
+                waitfanfare
+                closemessage
+                callnative(GiveSelphyCorsolaEgg)
+                specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+                subvar(VAR_RESULT, 1)
+                setmonmetlocation(VAR_RESULT, MAPSEC_FOUR_ISLAND)
+                setflag(SHOWN_REQUESTED_MON)
+                setflag(FLAG_GIVEN_CORSOLA_EGG)
+                setvar(VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE)
+                release
+                end
+            }
+            giveitem(VAR_RESORT_GORGEOUS_REWARD)
+            if(!var(VAR_RESULT))
+            {
+                textcolor(NPC_TEXT_COLOR_MALE)
+                msgbox("Butler: Your BAG appears to be\nunfortunately full.")
+                textcolor(NPC_TEXT_COLOR_FEMALE)
+                msgbox("Oh…\nHow disappointing.")
+                setflag(SHOWN_REQUESTED_MON)
+                setvar(VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE)
+                release
+                end
+            }
+            setflag(SHOWN_REQUESTED_MON)
+            setvar(VAR_RESORT_GORGEOUS_REQUESTED_MON, SPECIES_NONE)
+            release
+            end
+        }
+        goto(FiveIsland_ResortGorgeous_House_EventScript_RequestMon)
+    }
+    msgbox("SELPHY: Oh?\nDo I know you from somewhere?\pOh, but that doesn't matter.\pI am exquisitely bored.\nPlease, hear my wish.")
+FiveIsland_ResortGorgeous_House_EventScript_RequestMon:
+    special(SampleResortGorgeousMonAndReward)
+	msgbox("I wish to see a POKéMON.\nA darling {STR_VAR_1}.\pI want to see one right away.\nPlease, make my wish come true.")
+	release
+	end
+}movement(local) FiveIsland_ResortGorgeous_House_Movement_ButlerEnter{
+    delay_16 * 2
+    delay_4
+    walk_fast_down
+    walk_fast_left * 2
+    walk_in_place_faster_down
+}movement(local) FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerNorth{
+    walk_left * 3
+	walk_down * 3
+	walk_in_place_faster_right
+}movement(local) FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerSouth{
+    walk_left * 2
+    walk_in_place_faster_down
+}movement(local) FiveIsland_ResortGorgeous_House_Movement_ButlerApproachPlayerEast{
+    walk_left * 3
+    walk_down
+}
+
+script FiveIsland_ResortGorgeous_House_EventScript_Butler{
+    msgbox("Butler: The smile of Lady SELPHY\nhas the brilliance of the sun.\pPlease, I beg you to bring joy\nto Lady SELPHY.", MSGBOX_NPC)
+    end
+}
+
+script FiveIsland_ResortGorgeous_House_EventScript_Painting{
+    bufferstring(0, "a woman")
+    if(!flag(FLAG_HIDE_RESORT_GORGEOUS_INSIDE_SELPHY))
+    {
+        bufferstring(0, "SELPHY")
+    }
+    msgbox("It's a photo of {STR_VAR_1} relaxing\nat a resort surrounded by many\lpink, coral POKéMON.", MSGBOX_SIGN)
+    end
+}
+
+script FiveIsland_ResortGorgeous_EventScript_BirdSculpture{
+    msgbox("It's a replica of a famous\nsculpture.\pIt depicts an ancient BIRD POKéMON.", MSGBOX_SIGN)
+}
+
+script FiveIsland_ResortGorgeous_EventScript_CutePainting{
+    if(flag(FLAG_CUTE_PAINTING_MADE))
+    {
+        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        fadescreen(FADE_TO_BLACK)
+        showcontestpainting(CONTEST_WINNER_MUSEUM_CUTE)
+        releaseall
+        end
+    }
+    bufferstring(0, "pink")
+    msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
+}
+
+script FiveIsland_ResortGorgeous_EventScript_ToughPainting{
+    if(flag(FLAG_CUTE_PAINTING_MADE))
+    {
+        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        fadescreen(FADE_TO_BLACK)
+        showcontestpainting(CONTEST_WINNER_MUSEUM_TOUGH)
+        releaseall
+        end
+    }
+    bufferstring(0, "yellow")
+    msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
+}
+
+script FiveIsland_ResortGorgeous_EventScript_CoolPainting{
+    if(flag(FLAG_CUTE_PAINTING_MADE))
+    {
+        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        fadescreen(FADE_TO_BLACK)
+        showcontestpainting(CONTEST_WINNER_MUSEUM_COOL)
+        releaseall
+        end
+    }
+    bufferstring(0, "red")
+    msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
+}
+
+script FiveIsland_ResortGorgeous_EventScript_BeautyPainting{
+    if(flag(FLAG_CUTE_PAINTING_MADE))
+    {
+        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        fadescreen(FADE_TO_BLACK)
+        showcontestpainting(CONTEST_WINNER_MUSEUM_BEAUTY)
+        releaseall
+        end
+    }
+    bufferstring(0, "blue")
+    msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
+}
+
+script FiveIsland_ResortGorgeous_EventScript_SmartPainting{
+    if(flag(FLAG_CUTE_PAINTING_MADE))
+    {
+        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        fadescreen(FADE_TO_BLACK)
+        showcontestpainting(CONTEST_WINNER_MUSEUM_SMART)
+        releaseall
+        end
+    }
+    bufferstring(0, "green")
+    msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
+}

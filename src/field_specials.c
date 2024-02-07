@@ -669,7 +669,7 @@ void IncrementResortGorgeousStepCounter(void)
     if (VarGet(VAR_RESORT_GORGEOUS_REQUESTED_MON) != SPECIES_NONE)
     {
         var4035++;
-        if (var4035 >= 250)
+        if (var4035 >= 258)
         {
             VarSet(VAR_RESORT_GORGEOUS_REQUESTED_MON, 0xFFFF);
             VarSet(VAR_RESORT_GOREGEOUS_STEP_COUNTER, 0);
