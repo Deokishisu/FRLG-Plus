@@ -2608,7 +2608,7 @@
     {
       "id": "LAYOUT_SIX_ISLAND",
       "name": "SixIsland_Layout",
-      "width": 32,
+      "width": 30,
       "height": 31,
       "border_width": 2,
       "border_height": 2,
