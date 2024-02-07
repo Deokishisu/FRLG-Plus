@@ -136,6 +136,7 @@
 - All Revision 1 fixes are included here. This includes the missing "Presents" graphic in the intro, and several Pokédex errors and oversights.
 - The Nugget Bridge Rocket can no longer give the player infinite Nuggets.
 - Assist, Block, Camouflage, Charge, Conversion 2, Follow Me, Grudge, Helping Hand, Imprison, Ingrain, Magic Coat, Mean Look, Memento, Mimic, Mud Sport, Nightmare, Pain Split, Recycle, Refresh, Role Play, Skill Swap, Slack Off, Snatch, Softboiled, Spider Web, Tail Glow, Vital Throw, Water Sport, Wish and Yawn display as --- accuracy instead of 100 accuracy.
+- Razor Wind's description no longer incorrectly states that it has a high critical-hit ratio (Razor Wind does not have a secondary effect in Generation III).
 - The misspelling of "Pokcet" in the Teachy TV program has been fixed.
 - Raikou and Entei will not disappear if they Roar the player out of their battles.
 	* The roaming IV glitch will __not__ be fixed, as it affects the legality of the legendary beasts.
@@ -151,7 +152,7 @@
 - All Kanto Pokémon, along with 90% of Johto Pokémon, will be available in one playthrough. All Hoenn Pokémon (except for Azurill, Wynaut, Latias, Latios, and Deoxys) will still need to be traded for.
 - Abilities have effects in the overworld ported from Emerald.
 	* As Lightningrod's Emerald overworld effect is inapplicable, it has been changed. Lightningrod now charges the Vs. Seeker twice as fast.
-- The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Gen 3, including Pokémon from Orre.
+- The Pokémon Summary Screen can accurately show the met location of any Pokémon obtained in Generation III, including Pokémon from Orre.
 - Silph Co. is populated by workers once it is liberated from Team Rocket.
 - Some aesthetic and music changes which are mostly confined to the Sevii Islands to make each island more distinct.
 - Cycling Road forces the bike theme, like in RGBY.
