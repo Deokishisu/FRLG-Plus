@@ -653,6 +653,22 @@ static const struct MenuAction sMultichoiceList_ContestType[] =
     {gText_Exit},
 };
 
+static const struct MenuAction sMultichoiceList_LinkContestInfo[] =
+{
+    {gText_LinkContest},
+    {gText_AboutE_Mode},
+    {gText_AboutG_Mode},
+    {gText_OptionMenuCancel},
+};
+
+static const struct MenuAction sMultichoiceList_LinkContestMode[] =
+{
+    {gText_E_Mode},
+    {gText_G_Mode},
+    {gText_Exit},
+};
+
+
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
@@ -742,6 +758,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_CONTEST_INFO]                               = MULTICHOICE(sMultichoiceList_ContestInfo),
     [MULTICHOICE_CONTEST_RANK]                               = MULTICHOICE(sMultichoiceList_ContestRank),
     [MULTICHOICE_CONTEST_TYPE]                               = MULTICHOICE(sMultichoiceList_ContestType),
+    [MULTICHOICE_LINK_CONTEST_INFO]                          = MULTICHOICE(sMultichoiceList_LinkContestInfo),
+    [MULTICHOICE_LINK_CONTEST_MODE]                          = MULTICHOICE(sMultichoiceList_LinkContestMode),
 };
 
 // From Cool to Berries goes unused

@@ -1,0 +1,593 @@
+const LOCALID_RECEPTIONIST = 1
+const LOCALID_LINK_RECEPTIONIST = 2
+const LOCALID_ARTIST = 3
+const LOCALID_ARTIST_LINK = 4
+
+mapscripts SixIsland_ContestLobby_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_2)
+        //call(SixIsland_ContestLobby_EventScript_TryShowContestReporter)
+        //getpokenewsactive(POKENEWS_BLENDMASTER)
+        if(var(VAR_RESULT) == TRUE)
+        {
+            setflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT)
+	        clearflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER)
+            end
+        }
+        clearflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT)
+        setflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER)
+        end
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_SIX_ISLAND_CONTEST_LOBBY_STATE, 1: SixIsland_ContestLobby_MapScript_TryDoArtist
+        VAR_SIX_ISLAND_CONTEST_LOBBY_STATE, 2: SixIsland_ContestLobby_MapScript_TryDoArtist
+    ]
+}script SixIsland_ContestLobby_MapScript_TryDoArtist{
+    if(defeated(TRAINER_LADY_SELPHY))
+    {
+        lockall
+        if(var(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE) == 1)
+        {   // regular artist
+            addobject(LOCALID_ARTIST)
+            applymovement(LOCALID_ARTIST, SixIsland_ContestLobby_Movement_ArtistApproachPlayer)
+            waitmovement(LOCALID_ARTIST)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft)
+            waitmovement(0)
+        }
+        else
+        {   // link artist
+            addobject(LOCALID_ARTIST_LINK)
+            applymovement(LOCALID_ARTIST_LINK, SixIsland_ContestLobby_Movement_LinkArtistApproachPlayer)
+            waitmovement(LOCALID_ARTIST_LINK)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight)
+            waitmovement(0)
+        }
+        textcolor(NPC_TEXT_COLOR_FEMALE)
+        msgbox("Congratulations!\pI did a painting of your POKéMON\nto commemorate its victory…\pWell, your POKéMON's appeals were\nso fantastic, it spurred me into\lpainting better than I usually do.\lLook, see?")
+        lockall
+        fadescreen(FADE_TO_BLACK)
+        showcontestpainting(CONTEST_WINNER_ARTIST)
+        lockall
+        //msgbox("What do you think? I'm confident in\nwhat I've done, but do you like it?\pA work of this caliber, it wouldn't look\nout of place in an art museum.\pHuh? An art museum really is looking\nfor paintings?\pDo you think I should take this there?", MSGBOX_YESNO)
+        msgbox("What do you think? I'm confident in\nwhat I've done, but do you like it?\pA work of this caliber, it's a perfect\nfit for a private collection.\pHuh? SELPHY's gallery in RESORT\nGORGEOUS has room for this?\pDo you think I should take this\nover to her?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES)
+        {
+SixIsland_ContestLobby_EventScript_TakePaintingToMuseum:
+            msgbox("What, really? Then, sure, I'll take\nthis painting there right now.\pI'll give it a proper title, too.\pI hope SELPHY will like it and\nconsider displaying this.\pPlease swing by RESORT GORGEOUS\nand see if she hung it up.\pThank you!")
+            closemessage
+            special(SaveMuseumContestPainting)
+            specialvar(VAR_RESULT, GiveMonArtistRibbon)
+            if(var(VAR_RESULT) == TRUE)
+            {
+                incrementgamestat(GAME_STAT_RECEIVED_RIBBONS)
+                setflag(FLAG_SYS_RIBBON_GET)
+                special(BufferContestWinnerMonName)
+                if(var(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE) == 1)
+                {   // regular artist
+                    applymovement(LOCALID_ARTIST, SixIsland_ContestLobby_Movement_ArtistBeginToExit)
+                    waitmovement(0)
+                    playse(SE_PIN)
+                    applymovement(LOCALID_ARTIST, Common_Movement_ExclamationMark)
+                    waitmovement(0)
+                    applymovement(LOCALID_ARTIST, SixIsland_ContestLobby_Movement_ArtistReturnToPlayer)
+                    waitmovement(0)
+                    applymovement(LOCALID_ARTIST, Common_Movement_WalkInPlaceFasterRight)
+                    waitmovement(0)
+                }
+                else
+                {   // link artist
+                    applymovement(LOCALID_ARTIST_LINK, SixIsland_ContestLobby_Movement_ArtistBeginToExit)
+                    waitmovement(0)
+                    playse(SE_PIN)
+                    applymovement(LOCALID_ARTIST_LINK, Common_Movement_ExclamationMark)
+                    waitmovement(0)
+                    applymovement(LOCALID_ARTIST_LINK, SixIsland_ContestLobby_Movement_ArtistReturnToPlayer)
+                    waitmovement(0)
+                    applymovement(LOCALID_ARTIST_LINK, Common_Movement_WalkInPlaceFasterLeft)
+                    waitmovement(0)
+                }
+                msgbox("Oh, that's right!\pAs a memento of me painting your\nPOKéMON, please take this.",)
+                playfanfare(MUS_OBTAIN_ITEM)
+                textcolor(NPC_TEXT_COLOR_NEUTRAL)
+                msgbox("{PLAYER} received a RIBBON.", MSGBOX_DEFAULT)
+                waitfanfare
+                msgbox("{PLAYER} put the RIBBON on\n{STR_VAR_1}.", MSGBOX_DEFAULT)
+                textcolor(NPC_TEXT_COLOR_FEMALE)
+                msgbox("Okay, see you!", MSGBOX_DEFAULT)
+                closemessage
+            }
+            if(var(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE) == 1)
+            {   // regular artist
+                applymovement(LOCALID_ARTIST, SixIsland_ContestLobby_Movement_ArtistExit)
+                waitmovement(0)
+                removeobject(LOCALID_ARTIST)
+            }
+            else
+            {   // link artist
+                applymovement(LOCALID_ARTIST_LINK, SixIsland_ContestLobby_Movement_ArtistExit)
+                waitmovement(0)
+                removeobject(LOCALID_ARTIST_LINK)
+            }
+            call(SixIsland_ContestLobby_EventScript_UpdateMuseumPatrons)
+            setvar(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE, 0)
+            releaseall
+            end
+        }
+        // NO
+        msgbox("Oh… Then, I guess I'll just take\nthis home with me…\pBut, you know, I would like to have\nthis displayed somewhere… Okay?", MSGBOX_YESNO)
+        if(var(VAR_RESULT) == YES)
+        {
+            goto(SixIsland_ContestLobby_EventScript_TakePaintingToMuseum)
+        }
+        msgbox("Oh, fine, that's the way it is.\nI will hang this in my own house.\pI'll just have to try harder next\ntime. Well, be seeing you.")
+        closemessage
+        if(var(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE) == 1)
+        {   // regular artist
+            applymovement(LOCALID_ARTIST, SixIsland_ContestLobby_Movement_ArtistExit)
+            waitmovement(0)
+            removeobject(LOCALID_ARTIST)
+        }
+        else
+        {   // link artist
+            applymovement(LOCALID_ARTIST_LINK, SixIsland_ContestLobby_Movement_ArtistExit)
+            waitmovement(0)
+            removeobject(LOCALID_ARTIST_LINK)
+        }
+        setvar(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE, 0)
+        releaseall
+        end
+    }
+    setvar(VAR_SIX_ISLAND_CONTEST_LOBBY_STATE, 0)
+    end
+}movement(local) SixIsland_ContestLobby_Movement_ArtistApproachPlayer{
+	walk_down * 3
+	walk_right * 4
+}movement(local) SixIsland_ContestLobby_Movement_ArtistExit{
+	walk_down * 8
+}movement(local) SixIsland_ContestLobby_Movement_ArtistBeginToExit{
+    walk_down * 3
+}movement(local) SixIsland_ContestLobby_Movement_ArtistReturnToPlayer{
+	delay_16 * 4
+	walk_fast_up * 3
+}movement(local) SixIsland_ContestLobby_Movement_LinkArtistApproachPlayer{
+    walk_down * 3
+	walk_left * 5
+}script(local) SixIsland_ContestLobby_EventScript_UpdateMuseumPatrons{
+	specialvar(VAR_0x8004, CountPlayerMuseumPaintings)
+	switch(var(VAR_0x8004))
+    {
+        case 1:
+            //clearflag(FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_1)
+        case 2:
+            //clearflag(FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_2)
+        case 3:
+            //clearflag(FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_3)
+        case 4:
+            //clearflag(FLAG_HIDE_LILYCOVE_MUSEUM_PATRON_4)
+        case 5:
+            //clearflag(FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS)
+    }
+	return
+}
+
+script SixIsland_ContestLobby_EventScript_ContestWinner1
+{
+    lockall
+	fadescreen(FADE_TO_BLACK)
+	showcontestpainting(CONTEST_WINNER_HALL_1)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_ContestWinner2
+{
+    lockall
+	fadescreen(FADE_TO_BLACK)
+	showcontestpainting(CONTEST_WINNER_HALL_2)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_ContestWinner3
+{
+    lockall
+	fadescreen(FADE_TO_BLACK)
+	showcontestpainting(CONTEST_WINNER_HALL_3)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_ContestWinner4
+{
+    lockall
+	fadescreen(FADE_TO_BLACK)
+	showcontestpainting(CONTEST_WINNER_HALL_4)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_ContestWinner5
+{
+    lockall
+	fadescreen(FADE_TO_BLACK)
+	showcontestpainting(CONTEST_WINNER_HALL_5)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_ContestWinner6
+{
+    lockall
+	fadescreen(FADE_TO_BLACK)
+	showcontestpainting(CONTEST_WINNER_HALL_6)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_BerryBlenderSpeedRecords{
+	lockall
+	callnative(SetWalkingIntoRecordSignVars)
+	special(ShowBerryBlenderRecordWindow)
+	waitbuttonpress
+	callnative(RemoveRecordsWindow)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_LinkContestResults{
+	lockall
+    callnative(SetWalkingIntoRecordSignVars)
+	//frontier_results(FACILITY_LINK_CONTEST)
+    msgbox("NYI.\nNeed Frontier port.", MSGBOX_SIGN)
+	waitbuttonpress
+	//special(RemoveRecordsWindow)
+	releaseall
+	end
+}
+
+script SixIsland_ContestLobby_EventScript_ContestReceptionist{
+    special(ClearLinkContestFlags)
+    call(SixIsland_ContestLobby_EventScript_SpeakToContestReceptionist)
+    lockall
+	applymovement(LOCALID_RECEPTIONIST, SixIsland_ContestLobby_Movement_ReceptionistApproachCounter)
+	waitmovement(0)
+	playse(SE_BRIDGE_WALK)
+	setmetatile(12, 2, METATILE_Contest_WallShadow, TRUE)
+	setmetatile(12, 3, METATILE_Contest_FloorShadow, TRUE)
+	special(DrawWholeMapView)
+	applymovement(LOCALID_RECEPTIONIST, SixIsland_ContestLobby_Movement_ReceptionistExitCounter)
+	waitmovement(0)
+	playse(SE_BRIDGE_WALK)
+	setmetatile(12, 2, METATILE_Contest_CounterFlap_Top, TRUE)
+	setmetatile(12, 3, METATILE_Contest_CounterFlap_Bottom, TRUE)
+	special(DrawWholeMapView)
+	delay(20)
+	applymovement(LOCALID_RECEPTIONIST, Common_Movement_WalkInPlaceFasterRight)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, SixIsland_ContestLobby_Movement_PlayerApproachReceptionist)
+	waitmovement(0)
+	msgbox(SixIsland_ContestLobby_Text_ComeThroughHere, MSGBOX_DEFAULT)
+	closemessage
+	applymovement(LOCALID_RECEPTIONIST, SixIsland_ContestLobby_Movement_ReceptionistWalkToContestHall)
+	applymovement(OBJ_EVENT_ID_PLAYER, SixIsland_ContestLobby_Movement_PlayerWalkToContestHall)
+	waitmovement(0)
+	releaseall
+	special(SetContestTrainerGfxIds)
+	call(SixIsland_ContestLobby_EventScript_SetPlayerGfx)
+    switch(var(VAR_CONTEST_RANK))
+    {
+        case CONTEST_RANK_NORMAL:
+            setvar(VAR_CONTEST_TYPE, CONTEST_TYPE_NPC_NORMAL)
+        case CONTEST_RANK_SUPER:
+            setvar(VAR_CONTEST_TYPE, CONTEST_TYPE_NPC_SUPER)
+        case CONTEST_RANK_HYPER:
+            setvar(VAR_CONTEST_TYPE, CONTEST_TYPE_NPC_HYPER)
+        case CONTEST_RANK_MASTER:
+            setvar(VAR_CONTEST_TYPE, CONTEST_TYPE_NPC_MASTER)
+    }
+	setflag(FLAG_ENTERED_CONTEST)
+	setwarp(MAP_CONTEST_HALL, 7, 5)
+	special(DoContestHallWarp)
+	waitstate
+	end
+}movement(local) SixIsland_ContestLobby_Movement_ReceptionistApproachCounter{
+	walk_left * 2
+	walk_in_place_faster_down
+}movement(local) SixIsland_ContestLobby_Movement_ReceptionistExitCounter{
+    walk_down * 2
+	walk_in_place_faster_up
+}movement(local) SixIsland_ContestLobby_Movement_PlayerApproachReceptionist{
+    walk_in_place_faster_left
+	walk_left
+}movement(local) SixIsland_ContestLobby_Movement_ReceptionistWalkToContestHall{
+    walk_left * 3
+	walk_up * 3
+	delay_8
+	set_invisible
+}movement(local) SixIsland_ContestLobby_Movement_PlayerWalkToContestHall{
+    walk_left * 4
+	walk_up * 3
+	delay_8
+	set_invisible
+}
+
+script SixIsland_ContestLobby_EventScript_LinkContestReceptionist{
+    special(ClearLinkContestFlags)
+    lock
+    faceplayer
+    msgbox("Welcome! This is the POKéMON\nCONTEST link reception counter.\pYou may enter CONTESTS together\nwith one or more friends.")
+SixIsland_ContestLobby_EventScript_AskEnterLinkContest:
+    message("Would you like to enter a CONTEST?")
+    waitmessage
+    multichoice(0, 0, MULTICHOICE_ENTERINFO, FALSE)
+    switch(var(VAR_RESULT))
+    {
+        case 0:
+            msgbox("Before entering a CONTEST, your\nprogress will be saved.", MSGBOX_YESNO)
+            if(var(VAR_RESULT) == NO)
+            {
+                goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            }
+            call(EventScript_AskSaveGame)
+            if(var(VAR_RESULT) == NO)
+            {
+                goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            }
+            message("Which CONTEST MODE would you\nlike to enter?")
+            waitmessage
+            specialvar(VAR_TEMP_0, IsWirelessAdapterConnected)
+            multichoice(0, 0, MULTICHOICE_LINK_CONTEST_MODE, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    setvar(VAR_TEMP_C, 0)
+                case 1:
+                    setvar(VAR_TEMP_C, 1)
+                    if(var(VAR_TEMP_0) == TRUE)
+                    {
+                        special(CloseLink)
+                        msgbox("I'm terribly sorry.\pG-MODE does not function\nwith Wireless Adapters.\pPlease select E-MODE or try\nagain using a GBA Game Link cable.")
+                        release
+                        end
+                    }
+                default:
+                    goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            }
+            message("Which CONTEST would you\nlike to enter?")
+            waitmessage
+            multichoice(0, 0, MULTICHOICE_CONTEST_TYPE, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case CONTEST_CATEGORIES_COUNT:
+                case 127:
+                    goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            }
+            copyvar(VAR_CONTEST_CATEGORY, VAR_RESULT)
+SixIsland_ContestLobby_EventScript_ChooseLinkContestMon:
+            msgbox("Which POKéMON would you\nlike to enter?")
+            setvar(VAR_CONTEST_RANK, 0)
+            choosecontestmon
+            if(var(VAR_0x8004) == 0xFF)
+            {
+                goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            }
+            special(TryEnterContestMon)
+            switch(var(VAR_RESULT))
+            {
+                case CANT_ENTER_CONTEST:
+                    msgbox(SixIsland_ContestLobby_Text_MonNotQualifiedForRank)
+                    goto(SixIsland_ContestLobby_EventScript_ChooseLinkContestMon)
+                case CANT_ENTER_CONTEST_EGG:
+                    msgbox(SixIsland_ContestLobby_Text_EggCannotTakePart)
+                    goto(SixIsland_ContestLobby_EventScript_ChooseLinkContestMon)
+                case CANT_ENTER_CONTEST_FAINTED:
+                    msgbox(SixIsland_ContestLobby_Text_MonInNoConditionForContest)
+	                goto(SixIsland_ContestLobby_EventScript_ChooseLinkContestMon)
+                default: // CAN_ENTER_CONTEST_EQUAL_RANK / CAN_ENTER_CONTEST_HIGH_RANK
+                    goto(SixIsland_ContestLobby_EventScript_TrySetUpLinkContest)
+            }
+        case 1:
+SixIsland_ContestLobby_EventScript_LinkContestInfo:
+            message(SixIsland_ContestLobby_Text_WhichTopic)
+            waitmessage
+            multichoice(0, 0, MULTICHOICE_LINK_CONTEST_INFO, FALSE)
+            switch(var(VAR_RESULT))
+            {
+                case 0:
+                    msgbox("This is a CONTEST for two to four\nplayers linked using a Wireless\lAdapter or a GBA Game Link cable.\pParticipants are first asked to choose\nthe mode they wish to enter.\pThere are two different modes.\pE-MODE (EMERALD MODE) is for\ntwo to four players, each with a\lPOKéMON Emerald Game Pak.\pG-MODE (GLOBAL MODE) is only for\nfour players, each with a POKéMON\lEmerald, Ruby, or Sapphire Game\lPak.\pThe players should discuss which\nmode they want, then choose the\lsame mode.\pOnce all the players have chosen\nthe same CONTEST in the same mode,\lthe entry registration is complete.\pAfter that, a CONTEST will start in\nthe usual manner.\pFor LINK CONTESTS, this Game Pak\ncounts as POKéMON Emerald.")
+	                goto(SixIsland_ContestLobby_EventScript_LinkContestInfo)
+                case 1:
+                    msgbox("In E-MODE (EMERALD MODE),\na LINK CONTEST can be held with\ltwo to four players.\pEach player must have a POKéMON\nEmerald Game Pak.\pThe players must be linked with each\nother using Wireless Adapters or\lGBA Game Link cables.\pIf there are fewer than four players,\nTRAINERS in the hall will join to\lfill the 4-player CONTEST lineup.\pPlease be aware that E-MODE is\nnot available in POKéMON Ruby\lor Sapphire.\pFor LINK CONTESTS, this Game Pak\ncounts as POKéMON Emerald.")
+	                goto(SixIsland_ContestLobby_EventScript_LinkContestInfo)
+                case 2:
+                    msgbox("G-MODE (GLOBAL MODE) is specifically\nfor four players who are linked\lusing GBA Game Link cables.\pEach player must have a POKéMON\nEmerald, Ruby, or Sapphire Game\lPak.\pThe CONTEST begins when all players\ngo through the 4-player reception\lcounter (POKéMON Ruby or Sapphire)\lor pick G-MODE (POKéMON Emerald).\pFor LINK CONTESTS, this Game Pak\ncounts as POKéMON Emerald.")
+                    goto(SixIsland_ContestLobby_EventScript_LinkContestInfo)
+                default:
+                    goto(SixIsland_ContestLobby_EventScript_AskEnterLinkContest)
+            }
+        default:
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+    }
+}script(local) SixIsland_ContestLobby_EventScript_CancelLinkContest{
+	special(CloseLink)
+	msgbox(SixIsland_ContestLobby_Text_ParticipateAnotherTime, MSGBOX_DEFAULT)
+	release
+	end
+}script(local) SixIsland_ContestLobby_EventScript_TrySetUpLinkContest{
+    copyvar(VAR_0x8008, VAR_0x8004)
+    if(var(VAR_TEMP_D) >= 2)
+    {
+        goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+    }
+    if(var(VAR_TEMP_D) == 1)
+    {
+        switch(var(VAR_CONTEST_CATEGORY))
+        {
+            case CONTEST_CATEGORY_COOL:
+                setvar(VAR_0x8004, LINK_GROUP_COOL_CONTEST)
+            case CONTEST_CATEGORY_BEAUTY:
+                setvar(VAR_0x8004, LINK_GROUP_BEAUTY_CONTEST)
+            case CONTEST_CATEGORY_CUTE:
+                setvar(VAR_0x8004, LINK_GROUP_CUTE_CONTEST)
+            case CONTEST_CATEGORY_SMART:
+                setvar(VAR_0x8004, LINK_GROUP_SMART_CONTEST)
+            case CONTEST_CATEGORY_TOUGH:
+                setvar(VAR_0x8004, LINK_GROUP_TOUGH_CONTEST)
+        }
+SixIsland_ContestLobby_EventScript_DecideLinkLeader:
+        message(SixIsland_ContestLobby_Text_PleaseDecideLinkLeader)
+        waitmessage
+        multichoice(16, 6, MULTICHOICE_JOIN_OR_LEAD, FALSE)
+        switch(var(VAR_RESULT))
+        {
+            case 0:
+SixIsland_ContestLobby_EventScript_TryJoinGroup:
+                special(TryJoinLinkGroup)
+                waitstate
+                switch(var(VAR_RESULT))
+                {
+                    case LINKUP_SUCCESS:
+                        goto(SixIsland_ContestLobby_EventScript_LinkLeaderDecided)
+                    case LINKUP_FAILED:
+                        goto(SixIsland_ContestLobby_EventScript_DecideLinkLeader)
+                    case LINKUP_RETRY_ROLE_ASSIGN:
+                        goto(SixIsland_ContestLobby_EventScript_TryJoinGroup)
+                }
+            case 1:
+SixIsland_ContestLobby_EventScript_TryLeadGroup:
+                special(TryBecomeLinkLeader)
+                waitstate
+                switch(var(VAR_RESULT))
+                {
+                    case LINKUP_SUCCESS:
+                        goto(SixIsland_ContestLobby_EventScript_LinkLeaderDecided)
+                    case LINKUP_FAILED:
+                        goto(SixIsland_ContestLobby_EventScript_DecideLinkLeader)
+                    case LINKUP_RETRY_ROLE_ASSIGN:
+                        goto(SixIsland_ContestLobby_EventScript_TryLeadGroup)
+                }
+            default:
+                goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+        }
+        end
+    }
+    message("Please wait.\n… … B Button: Cancel")
+    waitmessage
+    copyvar(VAR_0x8004, VAR_RESULT)
+    switch(var(VAR_TEMP_C))
+    {
+        case 0:
+            special(TryContestEModeLinkup)
+	        waitstate
+        case 1:
+            special(TryContestLinkup)
+	        waitstate
+        default:
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+    }
+    switch(var(VAR_RESULT))
+    {
+        case LINKUP_WRONG_NUM_PLAYERS:
+        case LINKUP_DIFF_SELECTIONS:
+            msgbox("You may have made a different\nchoice than another player.")
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+        case LINKUP_FAILED:
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+        case LINKUP_CONNECTION_ERROR:
+            special(CloseLink)
+            msgbox(CableClub_Text_LinkErrorPleaseReset)
+            release
+            end
+        case LINKUP_FAILED_CONTEST_GMODE:
+            msgbox("At least one player has entered using\nthe 4-player reception counter.\pThere must be four players connected\nusing a GBA Game Link cable.\pWhen the four players are ready,\nselect G-MODE (GLOBAL MODE),\lthen register to enter again, please.")
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            end
+    }
+    messageinstant("Transmitting…")
+    contestlinktransfer
+    switch(var(VAR_0x8004))
+    {
+        case 0:
+            goto(SixIsland_ContestLobby_EventScript_StartLinkContest)
+        case 1:
+            msgbox("You may have chosen a different\nCONTEST than another player.")
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            end
+        case 2:
+            msgbox("Transmission error…")
+            goto(SixIsland_ContestLobby_EventScript_CancelLinkContest)
+            end
+    }
+    end
+}script(local) SixIsland_ContestLobby_EventScript_LinkLeaderDecided{
+	messageinstant("Transmitting…")
+	contestlinktransfer
+	goto(SixIsland_ContestLobby_EventScript_StartLinkContest)
+	end
+}script(local) SixIsland_ContestLobby_EventScript_StartLinkContest{
+	special(GetContestPlayerId)
+	addvar(VAR_0x8004, 1)
+	buffernumberstring(STR_VAR_2, VAR_0x8004)
+	messageautoscroll("Your POKéMON will be entered in\nthe CONTEST.\pYour POKéMON is Entry No. {STR_VAR_2}.")
+	waitmessage
+	subvar(VAR_0x8004, 1)
+	messageautoscroll("The CONTEST will begin shortly.")
+	waitmessage
+	delay(20)
+	closemessage
+	applymovement(LOCALID_LINK_RECEPTIONIST, SixIsland_ContestLobby_Movement_LinkReceptionistApproachCounter)
+	waitmovement(0)
+	playse(SE_BRIDGE_WALK)
+	setmetatile(17, 2, METATILE_Contest_WallShadow, TRUE)
+	setmetatile(17, 3, METATILE_Contest_FloorShadow, TRUE)
+	special(DrawWholeMapView)
+	applymovement(LOCALID_LINK_RECEPTIONIST, SixIsland_ContestLobby_Movement_ReceptionistExitCounter)
+	waitmovement(0)
+	playse(SE_BRIDGE_WALK)
+	setmetatile(17, 2, METATILE_Contest_CounterFlap_Top, TRUE)
+	setmetatile(17, 3, METATILE_Contest_CounterFlap_Bottom, TRUE)
+	special(DrawWholeMapView)
+	delay(20)
+	applymovement(LOCALID_LINK_RECEPTIONIST, Common_Movement_WalkInPlaceFasterLeft)
+	waitmovement(0)
+	applymovement(OBJ_EVENT_ID_PLAYER, SixIsland_ContestLobby_Movement_PlayerApproachLinkReceptionist)
+	waitmovement(0)
+	messageautoscroll(SixIsland_ContestLobby_Text_ComeThroughHere)
+	waitmessage
+	delay(20)
+	closemessage
+	specialvar(VAR_RESULT, IsContestWithRSPlayer)
+    if(var(VAR_RESULT))
+    {
+        delay(9)
+    }
+	applymovement(LOCALID_LINK_RECEPTIONIST, SixIsland_ContestLobby_Movement_LinkReceptionistWalkToContestHall)
+	applymovement(OBJ_EVENT_ID_PLAYER, SixIsland_ContestLobby_Movement_PlayerWalkToLinkContestHall)
+	waitmovement(0)
+	release
+	setvar(VAR_CONTEST_HALL_STATE, 1)
+	special(SetLinkContestPlayerGfx)
+	setvar(VAR_CONTEST_TYPE, CONTEST_TYPE_LINK)
+	setvar(VAR_CONTEST_RANK, CONTEST_RANK_MASTER)
+	setflag(FLAG_ENTERED_CONTEST)
+	setwarp(MAP_CONTEST_HALL, 7, 5)
+	special(DoContestHallWarp)
+	waitstate
+	end
+}movement(local) SixIsland_ContestLobby_Movement_LinkReceptionistApproachCounter{
+    walk_right * 2
+	walk_in_place_faster_down
+}movement(local) SixIsland_ContestLobby_Movement_PlayerApproachLinkReceptionist{
+    walk_right
+}movement(local) SixIsland_ContestLobby_Movement_LinkReceptionistWalkToContestHall{
+    walk_right * 4
+	walk_up * 3
+	delay_8
+	set_invisible
+}movement(local) SixIsland_ContestLobby_Movement_PlayerWalkToLinkContestHall{
+    walk_right * 5
+	walk_up * 3
+	delay_8
+	set_invisible
+}

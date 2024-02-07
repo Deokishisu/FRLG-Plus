@@ -1657,6 +1657,19 @@
 	.2byte \category
 	.endm
 
+	@ Prints and draws the message all at once rather than character by character.
+	@ Does not wait for player input to continue.
+	.macro messageinstant text:req
+	.byte 0xd9
+	.4byte \text
+	.endm
+
+	@ Check whether a painting of the winner of a contest is present. winnerId is any CONTEST_WINNER_* constant.
+	.macro checkcontestpainting winnerId:req
+	.byte 0xda
+	.byte \winnerId
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req

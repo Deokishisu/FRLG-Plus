@@ -92,6 +92,8 @@
 #define MULTICHOICE_CONTEST_INFO                               85
 #define MULTICHOICE_CONTEST_RANK                               86
 #define MULTICHOICE_CONTEST_TYPE                               87
+#define MULTICHOICE_LINK_CONTEST_INFO                          88
+#define MULTICHOICE_LINK_CONTEST_MODE                          89
 
 
 #define MULTICHOICE_NONE                                      255

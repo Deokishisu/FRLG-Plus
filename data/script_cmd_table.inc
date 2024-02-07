@@ -218,6 +218,8 @@ gScriptCmdTable::
 	.4byte ScrCmd_setobjectmovementtypeinstant   @ 0xd6
 	.4byte ScrCmd_resetobjectmovementtype        @ 0xd7
 	.4byte ScrCmd_buffercontestname              @ 0xd8
+	.4byte ScrCmd_messageinstant                 @ 0xd9
+	.4byte ScrCmd_checkcontestpainting           @ 0xdA
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

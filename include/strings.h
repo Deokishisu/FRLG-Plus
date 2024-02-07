@@ -1726,4 +1726,11 @@ extern const u8 gText_Var1DotVar2[];
 extern const u8 gText_ThreeMarks[];
 extern const u8 gText_FirmSlash[];
 
+// Link Contests
+extern const u8 gText_LinkContest[];
+extern const u8 gText_AboutE_Mode[];
+extern const u8 gText_AboutG_Mode[];
+extern const u8 gText_E_Mode[];
+extern const u8 gText_G_Mode[];
+
 #endif //GUARD_STRINGS_H

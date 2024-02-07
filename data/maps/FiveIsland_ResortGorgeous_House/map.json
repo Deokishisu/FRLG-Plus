@@ -96,7 +96,7 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_BirdSculpture"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_BirdSculpture"
     },
     {
       "type": "sign",
@@ -104,7 +104,7 @@
       "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_BirdSculpture"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_BirdSculpture"
     },
     {
       "type": "sign",
@@ -112,7 +112,7 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_BirdSculpture"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_BirdSculpture"
     },
     {
       "type": "sign",
@@ -120,7 +120,7 @@
       "y": 13,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_BirdSculpture"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_BirdSculpture"
     },
     {
       "type": "sign",
@@ -128,7 +128,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_CutePainting"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_CutePainting"
     },
     {
       "type": "sign",
@@ -136,7 +136,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_ToughPainting"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_ToughPainting"
     },
     {
       "type": "sign",
@@ -144,7 +144,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_CoolPainting"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_CoolPainting"
     },
     {
       "type": "sign",
@@ -152,7 +152,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_BeautyPainting"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_BeautyPainting"
     },
     {
       "type": "sign",
@@ -160,7 +160,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FiveIsland_ResortGorgeous_EventScript_SmartPainting"
+      "script": "FiveIsland_ResortGorgeous_House_EventScript_SmartPainting"
     }
   ],
   "level_scaling": "0"

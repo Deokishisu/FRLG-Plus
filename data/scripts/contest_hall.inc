@@ -67,7 +67,7 @@ SixIsland_ContestLobby_EventScript_AskEnterContest::
 	end
 
 SixIsland_ContestLobby_EventScript_ContestInfo::
-	message SixIsland_ContestLobby_Text_WhichTopic1
+	message SixIsland_ContestLobby_Text_WhichTopic
 	waitmessage
 	multichoice 0, 0, MULTICHOICE_CONTEST_INFO, FALSE
 	switch VAR_RESULT
@@ -1337,15 +1337,6 @@ ContestHall_EventScript_CheckIfContestWithRSPlayer::
 ContestHall_EventScript_RetRSPlayer::
 	return
 
-SixIsland_ContestLobby_EventScript_DelayIfContestWithRSPlayer::
-	specialvar VAR_RESULT, IsContestWithRSPlayer
-	goto_if_eq VAR_RESULT, TRUE, SixIsland_ContestLobby_EventScript_DelayForRSPlayer
-	return
-
-SixIsland_ContestLobby_EventScript_DelayForRSPlayer::
-	delay 9
-	return
-
 SixIsland_ContestLobby_Text_ReceptionDontHavePokeblockCase:
 	.string "Hello!\p"
 	.string "This is the reception counter for\n"
@@ -1377,7 +1368,7 @@ SixIsland_ContestLobby_Text_EnterContest1:
 	.string "Would you like to enter your\n"
 	.string "POKéMON in our CONTESTS?$"
 
-SixIsland_ContestLobby_Text_WhichTopic1:
+SixIsland_ContestLobby_Text_WhichTopic:
 	.string "Which topic would you like?$"
 
 SixIsland_ContestLobby_Text_ExplainContests:
@@ -1567,104 +1558,12 @@ ContestHall_Text_PickUpPrizeAtCounterLater:
 	.string "the reception counter later.\l"
 	.string "Please do compete again!$"
 
-@ Unused
-ContestHall_Text_OnlyRegister4Players:
-	.string "I only register four players for\n"
-	.string "POKéMON CONTESTS.\p"
-	.string "If three other players link up, all\n"
-	.string "four may enter the same CONTEST.\p"
-	.string "Would you like to take part?$"
-
-SixIsland_ContestLobby_Text_ProgressWillBeSaved:
-	.string "Before entering a CONTEST, your\n"
-	.string "progress will be saved.$"
-
 SixIsland_ContestLobby_Text_ParticipateAnotherTime:
 	.string "We hope you will participate\n"
 	.string "another time.$"
 
-@ Unused
-SixIsland_ContestLobby_Text_EnterContest2:
-	.string "Would you like to enter a CONTEST?$"
-
-@ Unused
-SixIsland_ContestLobby_Text_Explain4PlayerContest:
-	.string "When four players are ready, connect\n"
-	.string "over a Game Link cable, and register\l"
-	.string "with me, please.\p"
-	.string "Please choose the same CONTEST\n"
-	.string "as your fellow contestants.\p"
-	.string "The CONTEST begins as soon as all\n"
-	.string "players register their entry.\p"
-	.string "After that, the usual CONTEST rules\n"
-	.string "apply.$"
-
-@ Unused
-SixIsland_ContestLobby_Text_EnterWhichContest2:
-	.string "Which CONTEST would you like to enter?$"
-
-@ Unused
-SixIsland_ContestLobby_Text_EnterWhichPokemon2:
-	.string "Which POKéMON would you like to enter?$"
-
-SixIsland_ContestLobby_Text_Transmitting:
-	.string "Transmitting…$"
-
-SixIsland_ContestLobby_Text_TransmissionError:
-	.string "Transmission error…$"
-
-SixIsland_ContestLobby_Text_PlayersChoseDifferentContest:
-	.string "You may have chosen a different\n"
-	.string "CONTEST than another player.$"
-
-SixIsland_ContestLobby_Text_PlayersMadeDifferentChoice:
-	.string "You may have made a different\n"
-	.string "choice than another player.$"
-
-SixIsland_ContestLobby_Text_PleaseWaitBButtonCancel:
-	.string "Please wait.\n"
-	.string "… … B Button: Cancel$"
-
-@ Unused
-SixIsland_ContestLobby_Text_ParticipateAnotherTime2:
-	.string "We hope you will participate another\n"
-	.string "time.$"
-
-@ Unused
-SixIsland_ContestLobby_Text_TransmissionErrorTryAgain:
-	.string "Transmission error.\n"
-	.string "Please try again.$"
-
-SixIsland_ContestLobby_Text_YourMonIsEntryNumX:
-	.string "Your POKéMON will be entered in\n"
-	.string "the CONTEST.\p"
-	.string "Your POKéMON is Entry No. {STR_VAR_2}.$"
-
-SixIsland_ContestLobby_Text_ContestBeginShortly:
-	.string "The CONTEST will begin shortly.$"
-
-SixIsland_ContestLobby_Text_LinkContestReception:
-	.string "Welcome! This is the POKéMON CONTEST\n"
-	.string "link reception counter.\p"
-	.string "You may enter CONTESTS together with\n"
-	.string "one or more friends.$"
-
-SixIsland_ContestLobby_Text_WhichTopic2:
-	.string "Which topic would you like?$"
-
-SixIsland_ContestLobby_Text_EnterContest3:
-	.string "Would you like to enter a CONTEST?$"
-
 SixIsland_ContestLobby_Text_EnterWhichContest3:
 	.string "Which CONTEST would you like to enter?$"
-
-SixIsland_ContestLobby_Text_MonInNoCondition2:
-	.string "Your POKéMON appears to be in no\n"
-	.string "condition to take part in a CONTEST…$"
-
-SixIsland_ContestLobby_Text_EggCannotTakePart2:
-	.string "I'm sorry, but an EGG cannot take part\n"
-	.string "in a POKéMON CONTEST.$"
 
 SixIsland_ContestLobby_Text_EnterWhichPokemon3:
 	.string "Which POKéMON would you like to enter?$"
@@ -1683,63 +1582,6 @@ SixIsland_ContestLobby_Text_PlayerAt4PCounterUseGMode:
 	.string "When the four players are ready,\n"
 	.string "select G-MODE (GLOBAL MODE),\l"
 	.string "then register to enter again, please.$"
-
-SixIsland_ContestLobby_Text_ExplainLinkContest:
-	.string "This is a CONTEST for two to four\n"
-	.string "players linked using a Wireless\l"
-	.string "Adapter or a GBA Game Link cable.\p"
-	.string "Participants are first asked to choose\n"
-	.string "the mode they wish to enter.\p"
-	.string "There are two different modes.\p"
-	.string "E-MODE (EMERALD MODE) is for\n"
-	.string "two to four players, each with a\l"
-	.string "POKéMON Emerald Game Pak.\p"
-	.string "G-MODE (GLOBAL MODE) is only for\n"
-	.string "four players, each with a POKéMON\l"
-	.string "Emerald, Ruby, or Sapphire Game Pak.\p"
-	.string "The players should discuss which mode\n"
-	.string "they want, then choose the same mode.\p"
-	.string "Once all the players have chosen\n"
-	.string "the same CONTEST in the same mode,\l"
-	.string "the entry registration is complete.\p"
-	.string "After that, a CONTEST will start in\n"
-	.string "the usual manner.$"
-
-SixIsland_ContestLobby_Text_ExplainEMode:
-	.string "In E-MODE (EMERALD MODE),\n"
-	.string "a LINK CONTEST can be held with\l"
-	.string "two to four players. Each player must\l"
-	.string "have a POKéMON Emerald Game Pak.\p"
-	.string "The players must be linked with each\n"
-	.string "other using Wireless Adapters or\l"
-	.string "GBA Game Link cables.\p"
-	.string "If there are fewer than four players,\n"
-	.string "TRAINERS in the hall will join to fill\l"
-	.string "the 4-player CONTEST lineup.\p"
-	.string "Please be aware that E-MODE is not\n"
-	.string "available in POKéMON Ruby or Sapphire.$"
-
-SixIsland_ContestLobby_Text_ExplainGMode:
-	.string "G-MODE (GLOBAL MODE) is specifically\n"
-	.string "for four players who are linked using\l"
-	.string "GBA Game Link cables.\p"
-	.string "Each player must have a POKéMON\n"
-	.string "Emerald, Ruby, or Sapphire Game Pak.\p"
-	.string "The CONTEST starts after all players\n"
-	.string "choose G-MODE (POKéMON Emerald) or\l"
-	.string "enter through the 4-player reception\l"
-	.string "counter (POKéMON Ruby or Sapphire).$"
-
-SixIsland_ContestLobby_Text_NoWirelessAdapterInGMode:
-	.string "I'm terribly sorry.\p"
-	.string "G-MODE does not function\n"
-	.string "with Wireless Adapters.\p"
-	.string "Please select E-MODE or try\n"
-	.string "again using a GBA Game Link cable.$"
-
-SixIsland_ContestLobby_Text_WhichContestMode:
-	.string "Which CONTEST MODE would you like\n"
-	.string "to enter?$"
 
 ContestHall_Text_GettingStartedWireless:
 	.string "MC: Hello! We're just getting started\n"

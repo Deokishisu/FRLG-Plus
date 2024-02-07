@@ -8,31 +8,36 @@ const MAPSEC_FOUR_ISLAND = 0x92
 
 mapscripts FiveIsland_ResortGorgeous_House_MapScripts {
     MAP_SCRIPT_ON_LOAD {
-        if(!flag(FLAG_COOL_PAINTING_MADE))
+        checkcontestpainting(CONTEST_WINNER_MUSEUM_COOL)
+        if(!var(VAR_RESULT))
         {
             setmetatile(7, 6, TILE_LEFT_PAINTING, 1)
             setmetatile(8, 6, TILE_MID_PAINTING, 1)
             setmetatile(9, 6, TILE_RIGHT_PAINTING, 1)
         }
-        if(!flag(FLAG_BEAUTY_PAINTING_MADE))
+        checkcontestpainting(CONTEST_WINNER_MUSEUM_BEAUTY)
+        if(!var(VAR_RESULT))
         {
             setmetatile(13, 6, TILE_LEFT_PAINTING, 1)
             setmetatile(14, 6, TILE_MID_PAINTING, 1)
             setmetatile(15, 6, TILE_RIGHT_PAINTING, 1)
         }
-        if(!flag(FLAG_CUTE_PAINTING_MADE))
+        checkcontestpainting(CONTEST_WINNER_MUSEUM_CUTE)
+        if(!var(VAR_RESULT))
         {
             setmetatile(10, 2, TILE_LEFT_PAINTING, 1)
             setmetatile(11, 2, TILE_MID_PAINTING, 1)
             setmetatile(12, 2, TILE_RIGHT_PAINTING, 1)
         }
-        if(!flag(FLAG_SMART_PAINTING_MADE))
+        checkcontestpainting(CONTEST_WINNER_MUSEUM_SMART)
+        if(!var(VAR_RESULT))
         {
             setmetatile(4, 2, TILE_LEFT_PAINTING, 1)
             setmetatile(5, 2, TILE_MID_PAINTING, 1)
             setmetatile(6, 2, TILE_RIGHT_PAINTING, 1)
         }
-        if(!flag(FLAG_TOUGH_PAINTING_MADE))
+        checkcontestpainting(CONTEST_WINNER_MUSEUM_TOUGH)
+        if(!var(VAR_RESULT))
         {
             setmetatile(1, 6, TILE_LEFT_PAINTING, 1)
             setmetatile(2, 6, TILE_MID_PAINTING, 1)
@@ -195,14 +200,16 @@ script FiveIsland_ResortGorgeous_House_EventScript_Painting{
     end
 }
 
-script FiveIsland_ResortGorgeous_EventScript_BirdSculpture{
+script FiveIsland_ResortGorgeous_House_EventScript_BirdSculpture{
     msgbox("It's a replica of a famous\nsculpture.\pIt depicts an ancient BIRD POKéMON.", MSGBOX_SIGN)
+    end
 }
 
-script FiveIsland_ResortGorgeous_EventScript_CutePainting{
-    if(flag(FLAG_CUTE_PAINTING_MADE))
+script FiveIsland_ResortGorgeous_House_EventScript_CutePainting{
+    checkcontestpainting(CONTEST_WINNER_MUSEUM_CUTE)
+    if(var(VAR_RESULT))
     {
-        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        msgbox("It's a painting of a POKéMON.", MSGBOX_SIGN)
         fadescreen(FADE_TO_BLACK)
         showcontestpainting(CONTEST_WINNER_MUSEUM_CUTE)
         releaseall
@@ -212,10 +219,11 @@ script FiveIsland_ResortGorgeous_EventScript_CutePainting{
     msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
 }
 
-script FiveIsland_ResortGorgeous_EventScript_ToughPainting{
-    if(flag(FLAG_CUTE_PAINTING_MADE))
+script FiveIsland_ResortGorgeous_House_EventScript_ToughPainting{
+    checkcontestpainting(CONTEST_WINNER_MUSEUM_TOUGH)
+    if(var(VAR_RESULT))
     {
-        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        msgbox("It's a painting of a POKéMON.", MSGBOX_SIGN)
         fadescreen(FADE_TO_BLACK)
         showcontestpainting(CONTEST_WINNER_MUSEUM_TOUGH)
         releaseall
@@ -225,10 +233,11 @@ script FiveIsland_ResortGorgeous_EventScript_ToughPainting{
     msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
 }
 
-script FiveIsland_ResortGorgeous_EventScript_CoolPainting{
-    if(flag(FLAG_CUTE_PAINTING_MADE))
+script FiveIsland_ResortGorgeous_House_EventScript_CoolPainting{
+    checkcontestpainting(CONTEST_WINNER_MUSEUM_COOL)
+    if(var(VAR_RESULT))
     {
-        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        msgbox("It's a painting of a POKéMON.", MSGBOX_SIGN)
         fadescreen(FADE_TO_BLACK)
         showcontestpainting(CONTEST_WINNER_MUSEUM_COOL)
         releaseall
@@ -238,10 +247,11 @@ script FiveIsland_ResortGorgeous_EventScript_CoolPainting{
     msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
 }
 
-script FiveIsland_ResortGorgeous_EventScript_BeautyPainting{
-    if(flag(FLAG_CUTE_PAINTING_MADE))
+script FiveIsland_ResortGorgeous_House_EventScript_BeautyPainting{
+    checkcontestpainting(CONTEST_WINNER_MUSEUM_BEAUTY)
+    if(var(VAR_RESULT))
     {
-        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        msgbox("It's a painting of a POKéMON.", MSGBOX_SIGN)
         fadescreen(FADE_TO_BLACK)
         showcontestpainting(CONTEST_WINNER_MUSEUM_BEAUTY)
         releaseall
@@ -251,10 +261,11 @@ script FiveIsland_ResortGorgeous_EventScript_BeautyPainting{
     msgbox("It's a picture frame with\n{STR_VAR_1}-colored adornments.", MSGBOX_SIGN)
 }
 
-script FiveIsland_ResortGorgeous_EventScript_SmartPainting{
-    if(flag(FLAG_CUTE_PAINTING_MADE))
+script FiveIsland_ResortGorgeous_House_EventScript_SmartPainting{
+    checkcontestpainting(CONTEST_WINNER_MUSEUM_SMART)
+    if(var(VAR_RESULT))
     {
-        msgbox("It's a painting of POKéMON.", MSGBOX_SIGN)
+        msgbox("It's a painting of a POKéMON.", MSGBOX_SIGN)
         fadescreen(FADE_TO_BLACK)
         showcontestpainting(CONTEST_WINNER_MUSEUM_SMART)
         releaseall

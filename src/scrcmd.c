@@ -2298,3 +2298,30 @@ bool8 ScrCmd_buffercontestname(struct ScriptContext *ctx)
     BufferContestName(sScriptStringVars[stringVarIndex], category);
     return FALSE;
 }
+
+bool8 ScrCmd_messageinstant(struct ScriptContext *ctx)
+{
+    const u8 *msg = (const u8 *)ScriptReadWord(ctx);
+
+    if (msg == NULL)
+        msg = (const u8 *)ctx->data[0];
+    LoadStdWindowFrameGfx();
+    DrawDialogueFrame(0, TRUE);
+    AddTextPrinterParameterized(0, FONT_NORMAL, msg, 0, 1, 0, NULL);
+    return FALSE;
+}
+
+bool8 ScrCmd_checkcontestpainting(struct ScriptContext *ctx)
+{
+    u8 contestWinnerId = ScriptReadByte(ctx);
+
+    if (contestWinnerId != CONTEST_WINNER_ARTIST)
+    {
+        if(gSaveBlock2Ptr->contestWinners[contestWinnerId - 1].species != SPECIES_NONE)
+            gSpecialVar_Result = TRUE;
+        else
+            gSpecialVar_Result = FALSE;
+    }
+
+    return TRUE;
+}

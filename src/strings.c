@@ -1396,3 +1396,10 @@ const u8 gText_SizeSlash[] = _("SIZE /");
 const u8 gText_FirmSlash[] = _("FIRM /");
 const u8 gText_Var1DotVar2[] = _("{STR_VAR_1}.{STR_VAR_2}”");
 const u8 gText_ThreeMarks[] = _("???");
+
+// Link Contests
+const u8 gText_LinkContest[] = _("LINK CONTEST");
+const u8 gText_AboutE_Mode[] = _("ABOUT E-MODE");
+const u8 gText_AboutG_Mode[] = _("ABOUT G-MODE");
+const u8 gText_E_Mode[] = _("E-MODE");
+const u8 gText_G_Mode[] = _("G-MODE");
