@@ -2859,7 +2859,7 @@ void SetContestants(u8 contestType, u8 rank)
     s32 i;
     u8 opponentsCount = 0;
     u8 opponents[100];
-    bool8 allowPostgameContestants = FALSE;
+    bool32 allowPostgameContestants = FALSE;
     const u8 * filter;
 
     TryPutPlayerLast();
@@ -2869,9 +2869,9 @@ void SetContestants(u8 contestType, u8 rank)
 
     // Find all suitable opponents
     filter = gPostgameContestOpponentFilter;
-    for (i = 0; i < ARRAY_COUNT(gContestOpponents); i++)
+    for (i = 0; i < ARRAY_COUNT(gContestOpponentsFRLG); i++)
     {
-        if (rank == gContestOpponents[i].whichRank)
+        if (rank == gContestOpponentsFRLG[i].whichRank)
         {
             if (allowPostgameContestants == TRUE)
             {
@@ -2883,15 +2883,15 @@ void SetContestants(u8 contestType, u8 rank)
                 if (filter[i] == CONTEST_FILTER_ONLY_POSTGAME)
                     continue;
             }
-            if      (contestType == CONTEST_CATEGORY_COOL && gContestOpponents[i].aiPool_Cool)
+            if      (contestType == CONTEST_CATEGORY_COOL && gContestOpponentsFRLG[i].aiPool_Cool)
                 opponents[opponentsCount++] = i;
-            else if (contestType == CONTEST_CATEGORY_BEAUTY && gContestOpponents[i].aiPool_Beauty)
+            else if (contestType == CONTEST_CATEGORY_BEAUTY && gContestOpponentsFRLG[i].aiPool_Beauty)
                 opponents[opponentsCount++] = i;
-            else if (contestType == CONTEST_CATEGORY_CUTE && gContestOpponents[i].aiPool_Cute)
+            else if (contestType == CONTEST_CATEGORY_CUTE && gContestOpponentsFRLG[i].aiPool_Cute)
                 opponents[opponentsCount++] = i;
-            else if (contestType == CONTEST_CATEGORY_SMART && gContestOpponents[i].aiPool_Smart)
+            else if (contestType == CONTEST_CATEGORY_SMART && gContestOpponentsFRLG[i].aiPool_Smart)
                 opponents[opponentsCount++] = i;
-            else if (contestType == CONTEST_CATEGORY_TOUGH && gContestOpponents[i].aiPool_Tough)
+            else if (contestType == CONTEST_CATEGORY_TOUGH && gContestOpponentsFRLG[i].aiPool_Tough)
                 opponents[opponentsCount++] = i;
         }
     }
@@ -2903,7 +2903,27 @@ void SetContestants(u8 contestType, u8 rank)
         u16 rnd = Random() % opponentsCount;
         s32 j;
 
-        gContestMons[i] = gContestOpponents[opponents[rnd]];
+        if(VarGet(VAR_STARTER_MON) == 0 && opponents[rnd] == CONTEST_OPPONENT_ATLAS)
+        {
+            gContestMons[i] = gContestOpponentsDaisy[CONTEST_OPPONENT_DAISY_BLASTOISE];
+        }
+        else if(opponents[rnd] == CONTEST_OPPONENT_AIDEN)
+        {
+            gContestMons[i] = gContestOpponentsFRLG[opponents[rnd]];
+            if(VarGet(VAR_STARTER_MON) == 1)
+            {
+                gContestMons[i] = gContestOpponentsDaisy[CONTEST_OPPONENT_DAISY_CHARIZARD];
+            }
+            if((VarGet(VAR_STARTER_MON) == 2))
+            {
+                gContestMons[i] = gContestOpponentsDaisy[CONTEST_OPPONENT_DAISY_VENUSAUR];
+            }
+        }
+        else
+        {
+            gContestMons[i] = gContestOpponentsFRLG[opponents[rnd]];
+        }
+
         for (j = rnd; opponents[j] != CONTESTANT_NONE; j++)
             opponents[j] = opponents[j + 1];
         opponentsCount--;

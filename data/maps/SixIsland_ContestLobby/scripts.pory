@@ -49,7 +49,6 @@ mapscripts SixIsland_ContestLobby_MapScripts{
         fadescreen(FADE_TO_BLACK)
         showcontestpainting(CONTEST_WINNER_ARTIST)
         lockall
-        //msgbox("What do you think? I'm confident in\nwhat I've done, but do you like it?\pA work of this caliber, it wouldn't look\nout of place in an art museum.\pHuh? An art museum really is looking\nfor paintings?\pDo you think I should take this there?", MSGBOX_YESNO)
         msgbox("What do you think? I'm confident in\nwhat I've done, but do you like it?\pA work of this caliber, it's a perfect\nfit for a private collection.\pHuh? SELPHY's gallery in RESORT\nGORGEOUS has room for this?\pDo you think I should take this\nover to her?", MSGBOX_YESNO)
         if(var(VAR_RESULT) == YES)
         {
