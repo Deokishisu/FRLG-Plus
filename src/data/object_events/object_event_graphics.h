@@ -243,6 +243,7 @@ const u16 gObjectEventPic_Noland[] = INCBIN_U16("graphics/object_events/pics/peo
 const u16 gObjectEventPic_Lucy[] = INCBIN_U16("graphics/object_events/pics/people/lucy.4bpp");
 const u16 gObjectEventPic_Brandon[] = INCBIN_U16("graphics/object_events/pics/people/brandon.4bpp");
 const u16 gObjectEventPic_ContestJudge[] = INCBIN_U16("graphics/object_events/pics/people/contest_judge.4bpp");
+const u16 gObjectEventPic_BlendMaster[] = INCBIN_U16("graphics/object_events/pics/people/blend_master.4bpp");
 const u16 gFieldEffectObjectPic_ShadowSmall[] = INCBIN_U16("graphics/field_effects/pics/shadow_small.4bpp");
 const u16 gFieldEffectObjectPic_ShadowMedium[] = INCBIN_U16("graphics/field_effects/pics/shadow_medium.4bpp");
 const u16 gFieldEffectObjectPic_ShadowLarge[] = INCBIN_U16("graphics/field_effects/pics/shadow_large.4bpp");

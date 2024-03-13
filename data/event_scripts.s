@@ -1221,9 +1221,6 @@ EventScript_NoMoreRoomForPokemon::
 	release
 	end
 
-gText_PokeblockLinkCanceled::
-	.string "The link was canceled.$"
-
 	.include "data/text/braille.inc"
 	.include "data/scripts/trainers.inc"
 	.include "data/scripts/master_trainers.inc"
@@ -1240,7 +1237,6 @@ gText_PokeblockLinkCanceled::
 	.include "data/scripts/day_care.inc"
 	.include "data/text/day_care.inc"
 	.include "data/scripts/flash.inc"
-	.include "data/text/blend_master.inc"
 	.include "data/scripts/berry_blender.inc"
 	.include "data/scripts/repel.inc"
 	.include "data/scripts/safari_zone.inc"

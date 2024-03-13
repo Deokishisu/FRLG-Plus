@@ -202,6 +202,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Noland;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Lucy;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brandon;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ContestJudge;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BlendMaster;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_RED_NORMAL]               = &gObjectEventGraphicsInfo_RedNormal,
@@ -408,4 +409,5 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LUCY]                     = &gObjectEventGraphicsInfo_Lucy,
     [OBJ_EVENT_GFX_BRANDON]                  = &gObjectEventGraphicsInfo_Brandon,
     [OBJ_EVENT_GFX_CONTEST_JUDGE]            = &gObjectEventGraphicsInfo_ContestJudge,
+    [OBJ_EVENT_GFX_BLEND_MASTER]             = &gObjectEventGraphicsInfo_BlendMaster,
 };

@@ -69,12 +69,13 @@ enum {
 };
 
 enum {
-    BLENDER_MISTER,
-    BLENDER_LADDIE,
-    BLENDER_LASSIE,
+    BLENDER_MISSUS,
+    BLENDER_GUY,
+    BLENDER_GAL,
     BLENDER_MASTER,
-    BLENDER_DUDE,
-    BLENDER_MISS
+    BLENDER_DAUGHTER,
+    BLENDER_CHEF,
+    BLENDER_FATHER
 };
 
 #define BLENDER_MAX_PLAYERS MAX_LINK_PLAYERS
@@ -256,21 +257,23 @@ static const u16 sBlenderOuter_Pal[] = INCBIN_U16("graphics/berry_blender/outer.
 static const u8 sText_BerryBlenderStart[] = _("Starting up the BERRY BLENDER.\pPlease select a BERRY from your BAG\nto put in the BERRY BLENDER.\p");
 static const u8 sText_NewParagraph[] = _("\p");
 static const u8 sText_WasMade[] = _(" was made!");
-static const u8 sText_Mister[] = _("MISTER");
-static const u8 sText_Laddie[] = _("LADDIE");
-static const u8 sText_Lassie[] = _("LASSIE");
+static const u8 sText_Missus[] = _("MISSUS");
+static const u8 sText_Gal[] = _("GAL");
+static const u8 sText_Guy[] = _("GUY");
 static const u8 sText_Master[] = _("MASTER");
-static const u8 sText_Dude[] = _("DUDE");
-static const u8 sText_Miss[] = _("MISS");
+static const u8 sText_Daughter[] = _("DAUGHTER");
+static const u8 sText_Father[] = _("FATHER");
+static const u8 sText_Chef[] = _("CHEF");
 
 static const u8 *const sBlenderOpponentsNames[] =
 {
-    [BLENDER_MISTER] = sText_Mister,
-    [BLENDER_LADDIE] = sText_Laddie,
-    [BLENDER_LASSIE] = sText_Lassie,
-    [BLENDER_MASTER] = sText_Master,
-    [BLENDER_DUDE]   = sText_Dude,
-    [BLENDER_MISS]   = sText_Miss
+    [BLENDER_MISSUS]   = sText_Missus,
+    [BLENDER_GAL]      = sText_Gal,
+    [BLENDER_GUY]      = sText_Guy,
+    [BLENDER_MASTER]   = sText_Master,
+    [BLENDER_DAUGHTER] = sText_Daughter,
+    [BLENDER_CHEF]     = sText_Chef,
+    [BLENDER_FATHER]   = sText_Father
 };
 
 static const u8 sText_PressAToStart[] = _("Press the A Button to start.");
@@ -1224,10 +1227,10 @@ static void InitLocalPlayers(u8 opponentsNum)
         sBerryBlender->numPlayers = 2;
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
 
-        if (!FlagGet(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER))
+        if (!FlagGet(FLAG_TEMP_3))
             StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_MASTER]);
         else
-            StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_MISTER]);
+            StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_MISSUS]);
 
         gLinkPlayers[0].language = GAME_LANGUAGE;
         gLinkPlayers[1].language = GAME_LANGUAGE;
@@ -1236,8 +1239,8 @@ static void InitLocalPlayers(u8 opponentsNum)
         gInGameOpponentsNo = 2;
         sBerryBlender->numPlayers = 3;
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
-        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_DUDE]);
-        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_LASSIE]);
+        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_DAUGHTER]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_FATHER]);
 
         gLinkPlayers[0].language = GAME_LANGUAGE;
         gLinkPlayers[1].language = GAME_LANGUAGE;
@@ -1247,9 +1250,9 @@ static void InitLocalPlayers(u8 opponentsNum)
         gInGameOpponentsNo = 3;
         sBerryBlender->numPlayers = 4;
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
-        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_MISS]);
-        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_LADDIE]);
-        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_LASSIE]);
+        StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_CHEF]);
+        StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_GAL]);
+        StringCopy(gLinkPlayers[3].name, sBlenderOpponentsNames[BLENDER_GUY]);
 
         gLinkPlayers[0].language = GAME_LANGUAGE;
         gLinkPlayers[1].language = GAME_LANGUAGE;
@@ -1554,7 +1557,7 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
     {
         opponentBerryId = sOpponentBerrySets[opponentSetId][i];
         berryMasterDiff = ITEM_TO_BERRY(playerBerryItemId) - ITEM_TO_BERRY(ITEM_SPELON_BERRY);
-        if (!FlagGet(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER) && gSpecialVar_0x8004 == 1)
+        if (!FlagGet(FLAG_TEMP_3) && gSpecialVar_0x8004 == 1)
         {
             opponentSetId %= ARRAY_COUNT(sBerryMasterBerries);
             opponentBerryId = sBerryMasterBerries[opponentSetId];
@@ -1764,7 +1767,7 @@ static void CB2_StartBlenderLocal(void)
 
         if (gSpecialVar_0x8004 == 1)
         {
-            if (!FlagGet(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER))
+            if (!FlagGet(FLAG_TEMP_3))
                 sBerryBlender->opponentTaskIds[0] = CreateTask(Task_HandleBerryMaster, 10);
             else
                 sBerryBlender->opponentTaskIds[0] = CreateTask(sLocalOpponentTasks[0], 10);

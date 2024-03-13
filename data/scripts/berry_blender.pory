@@ -1,0 +1,414 @@
+
+const LOCALID_FATHER = 5
+const LOCALID_DAUGHTER = 6
+const LOCALID_CHEF = 7
+const LOCALID_GUY = 8
+const LOCALID_GAL = 9
+const LOCALID_MISSUS = 10
+
+const NUM_OPPONENTS = VAR_0x8009
+
+script(local) BerryBlender_EventScript_DoBerryBlending{
+	copyvar(VAR_0x8004, NUM_OPPONENTS)
+	fadescreen(FADE_TO_BLACK)
+	special(DoBerryBlending)
+	waitstate
+	releaseall
+	end
+}movement(local) BerryBlender_Movement_BlendLeaderWalkInPlace{
+	walk_in_place_faster_right
+}
+
+script BerryBlender_EventScript_Missus{
+    lock
+    faceplayer
+    if(!flag(FLAG_TEMP_3))
+    {
+        msgbox("BLEND MASTER: Indeed I am!\nThe BLEND MASTER am I!\pBlend with me, and you shall witness\nthe mastery I bring to blending!")
+        closemessage
+        applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+        waitmovement(0)
+        release
+        end
+    }
+    bufferstring(0, "man")
+    checkplayergender
+    if(var(VAR_RESULT) == FEMALE)
+    {
+        bufferstring(0, "lady")
+    }
+    msgbox("I adore making {POKEBLOCK}S.\nI always carry BERRIES with me.")
+    specialvar(VAR_RESULT, PlayerHasBerries)
+    if(var(VAR_RESULT))
+    {
+        msgbox("Young {STR_VAR_1}, we could make some\n{POKEBLOCK}S together using the BERRY\lBLENDER if you'd like.")
+        release
+        end
+    }
+    checkitem(ITEM_POKEBLOCK_CASE)
+    specialvar(VAR_0x8008, GetFirstFreePokeblockSlot)
+    dotimebasedevents
+    if(!var(VAR_RESULT) || var(VAR_0x8008) == -1 || flag(FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY))
+    {
+        msgbox("Hm?\nYou're fresh out of BERRIES?\pIf I had any BERRIES to spare,\nI'd gladly share one with you…\pBut I have none left over today.\nSorry about that.")
+        release
+        end
+    }
+    msgbox("Hm?\nYou're fresh out of BERRIES?\pWell, that's just unacceptable,\nisn't it?\pA nice young {STR_VAR_1} like you should\nbe able to make {POKEBLOCK}S whenever\lyou please.\pTake one of my spare BERRIES.\nGo on, don't be shy!")
+	giveitem(ITEM_PECHA_BERRY)
+	setflag(FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY)
+	msgbox("Now we can make {POKEBLOCK}S together\nwith the BERRY BLENDER.")
+	release
+	end
+}
+
+script BerryBlender_EventScript_BerryBlender1{
+    lockall
+    if(!flag(FLAG_TEMP_3))
+    {
+        goto(BerryBlender_EventScript_BlendMasterPresent)
+    }
+    setvar(NUM_OPPONENTS, 1)
+    applymovement(LOCALID_MISSUS, BerryBlender_Movement_BlendLeaderWalkInPlace)
+    waitmovement(0)
+    bufferstring(0, "man")
+    checkplayergender
+    if(var(VAR_RESULT) == FEMALE)
+    {
+        bufferstring(0, "lady")
+    }
+    textcolor(NPC_TEXT_COLOR_FEMALE)
+    msgbox("Hm? Would you like to make {POKEBLOCK}S\nwith me, young {STR_VAR_1}?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_DeclineBlender1
+        msgbox("Oh…\nKids these days!")
+        releaseall
+        end
+    }
+    // BerryBlender_EventScript_TryUseBerryBlender1
+    checkitem(ITEM_POKEBLOCK_CASE)
+    specialvar(VAR_0x8008, GetFirstFreePokeblockSlot)
+    specialvar(VAR_0x800A, PlayerHasBerries)
+    if(!var(VAR_RESULT) || var(VAR_0x8008) == -1 || !var(VAR_0x800A))
+    {
+        if(!var(VAR_RESULT))
+        {   // BerryBlender_EventScript_Blender1NoCase:
+            msgbox("Young {STR_VAR_1}, you're not carrying\na {POKEBLOCK} CASE.\pCome back and see me when\nyou get one.")
+            releaseall
+            end
+        }
+        if(var(VAR_0x8008) == -1)
+        {   // BerryBlender_EventScript_Blender1CaseFull
+            msgbox("Your {POKEBLOCK} CASE is stuffed full.\pYou should use up some {POKEBLOCK}S\nbefore you come back to see me.")
+            releaseall
+            end
+        }
+        if(!var(VAR_0x800A))
+        {   // BerryBlender_EventScript_Blender1NoBerries
+            msgbox("Hm?\nYou're fresh out of BERRIES?\pWithout BERRIES, you can't make\nany {POKEBLOCK}S.")
+            dotimebasedevents
+            if(flag(FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY))
+            {   // BerryBlender_EventScript_Blender1NoSpareBerries
+                msgbox("If I had any BERRIES to spare,\nI'd gladly share one with you…\pBut I have none left over today.\nWe'll blend BERRIES some other time.")
+                releaseall
+                end
+            }
+            msgbox("Well, that's just unacceptable,\nisn't it?\pA nice young {STR_VAR_1} like you should\nbe able to make {POKEBLOCK}S whenever\lyou please.\pTake one of my spare BERRIES so\nwe can blend BERRIES together.")
+            giveitem(ITEM_PECHA_BERRY)
+            setflag(FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY)
+        }
+    }
+    else
+    {
+        msgbox("Wonderful!")
+    }
+    // BerryBlender_EventScript_UseBerryBlender1
+    msgbox("Do you know how to make {POKEBLOCK}S,\nyoung {STR_VAR_1}?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_ExplainBlending1
+        msgbox("Alright young {STR_VAR_1}, I'll explain.\nDon't fret, it's very easy to learn.\pWhen the BLENDER's arrow gets to\nyour marker, press the A Button.\pThat's all that's required!\nIt's not so hard when you try it.")
+    }
+    // BerryBlender_EventScript_StartBlender1
+    msgbox("Let's begin, then!\pLet's BERRY BLENDER!")
+    goto(BerryBlender_EventScript_DoBerryBlending)
+}
+
+script BerryBlender_EventScript_BerryBlender2{
+    lockall
+    setvar(NUM_OPPONENTS, 2)
+    applymovement(LOCALID_FATHER, Common_Movement_FaceOriginalDirection)
+    applymovement(LOCALID_DAUGHTER, BerryBlender_Movement_BlendLeaderWalkInPlace)
+    waitmovement(0)
+    textcolor(NPC_TEXT_COLOR_FEMALE)
+    msgbox("Hiya! You wanna blend some {POKEBLOCK}S\nwith my daddy and me?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_DeclineBlender2
+        msgbox("Oh, okay…\pWe were hoping with three people\nour {POKEBLOCK}S would be super yummy…")
+        releaseall
+        end
+    }
+    // BerryBlender_EventScript_TryUseBerryBlender2
+    checkitem(ITEM_POKEBLOCK_CASE)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Wait…\nYou don't have a {POKEBLOCK} CASE!\pWhere would you put your {POKEBLOCK}S\nwithout one, silly?\pThe nice lady at the counter is\ngiving them out, so go get one!")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, GetFirstFreePokeblockSlot)
+    if(var(VAR_RESULT) == -1)
+    {   // BerryBlender_EventScript_Blender2CaseFull
+        msgbox("Wait…\nYour {POKEBLOCK} CASE is all filled up!\pThere's no place to put new\n{POKEBLOCK}S, silly!\pUse up some {POKEBLOCK}S and then\ncome right back here!")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, PlayerHasBerries)
+    if(!var(VAR_RESULT))
+    {   // BerryBlender_EventScript_Blender2NoBerries
+        msgbox("Wait…\nWhere are your BERRIES?\pYou can't make any {POKEBLOCK}S without\nBERRIES, silly!\pGet some BERRIES and then come\nright back here so we can blend!")
+        release
+        end
+    }
+    // BerryBlender_EventScript_UseBerryBlender2
+    msgbox("Wait… You know how to blend\n{POKEBLOCK}S, right?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_ExplainBlending2
+        msgbox("It's so simple!\nLet me explain!\pWhen the BLENDER's spinning arrow\npoints at your marker, hit the\lA Button fast!\pYou see? It's so easy even my\ndaddy can do it!")
+    }
+    // BerryBlender_EventScript_StartBlender2
+    msgbox("Let's go, let's go, let's go!\pLet's BERRY BLENDER!")
+	goto(BerryBlender_EventScript_DoBerryBlending)
+}
+
+script BerryBlender_EventScript_BerryBlender3{
+    lockall
+    setvar(NUM_OPPONENTS, 3)
+    applymovement(LOCALID_GUY, Common_Movement_FaceOriginalDirection)
+	applymovement(LOCALID_GAL, Common_Movement_FaceOriginalDirection)
+	applymovement(LOCALID_CHEF, BerryBlender_Movement_BlendLeaderWalkInPlace)
+    waitmovement(0)
+    textcolor(NPC_TEXT_COLOR_MALE)
+    msgbox(BerryBlender_Text_ChefOpening, MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_DeclineBlender3
+        msgbox("Sacré bleu!\nI am in état de choc!")
+        releaseall
+        end
+    }
+    // BerryBlender_EventScript_TryUseBlender3
+    checkitem(ITEM_POKEBLOCK_CASE)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Ah, mon ami!\pIt appears you haven't acquired\na {POKEBLOCK} CASE yet, oui?\pGet one and then make your\ngrand return, d'accord?")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, GetFirstFreePokeblockSlot)
+    if(var(VAR_RESULT) == -1)
+    {   // BerryBlender_EventScript_Blender3CaseFull
+        msgbox("Sacré bleu!\pYour {POKEBLOCK} CASE is filled to the\nbrim, it seems.\pYour POKéMON should savor some\n{POKEBLOCK}S and then, voilà, make\lyour triumphant comeback.")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, PlayerHasBerries)
+    if(!var(VAR_RESULT))
+    {   // BerryBlender_EventScript_Blender3NoBerries
+        msgbox("Ah, mon ami!\pIt appears you haven't any\nBERRIES, non?\pWithout BERRIES, you cannot concoct\nany {POKEBLOCK}S du tout!\pAlways we pursue le {POKEBLOCK}\nparfait here.\pWhen you find a BERRY or deux,\ncome back, d'accord?")
+        release
+        end
+    }
+    // BerryBlender_EventScript_UseBerryBlender3
+    msgbox("Naturellement, you know how to\nmake {POKEBLOCK}S, n'est-ce pas?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_ExplainBlending3
+        msgbox("Ah, mon ami!\nAllow me to explain it!\pWhen the BLENDER's arrow twirls to\nyour marker, press the A Button.\pVoilà!\nIsn't it magnifique in its simplicity?")
+    }
+    // BerryBlender_EventScript_StartBlender3
+    msgbox("Ah, mon ami!\nWe commence!\pLet's BERRY BLENDER!")
+    goto(BerryBlender_EventScript_DoBerryBlending)
+}text BerryBlender_Text_ChefOpening{
+    "Zut alors! You appear to be très\nskilled at blending, non?\lYou'll come join our soirée, oui?"
+}
+
+script BerryBlender_EventScript_BlendMasterPresent{
+    lockall
+    setvar(NUM_OPPONENTS, 1)
+    textcolor(NPC_TEXT_COLOR_MALE)
+    msgbox("BLEND MASTER: Hmmm! So, you wish\nto see my mastery in action?$", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+        msgbox ("Hmmm!\pSo, you are too busy now, I see!\pBut fear not!\nI shall be here all day!\lHurry back from your errand!")
+        releaseall
+        end
+    }
+    // BerryBlender_EventScript_TryBlendWithBlendMaster
+    checkitem(ITEM_POKEBLOCK_CASE)
+    if(!var(VAR_RESULT))
+    {   // BerryBlender_EventScript_BlendMasterNoCase
+        msgbox("Hmmm!\pYou don't appear to have gotten\nthe {POKEBLOCK} CASE!\pI shall be here all day!\nGet the {POKEBLOCK} CASE and hurry back!")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, GetFirstFreePokeblockSlot)
+    if(var(VAR_RESULT) == -1)
+    {   // BerryBlender_EventScript_BlendMasterCaseFull
+        msgbox("Hmmm!\pYour {POKEBLOCK} CASE appears to\nbe full!\pI shall be here all day!\nUse some {POKEBLOCK}S and hurry back!")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, PlayerHasBerries)
+    if(!var(VAR_RESULT))
+    {   // BerryBlender_EventScript_BlendMasterNoBerries
+        msgbox("Hmmm!\pYou haven't got a single BERRY!\pI shall be here all day!\nHurry back with some BERRIES!")
+        release
+        end
+    }
+    // BerryBlender_EventScript_BlendWithBlendMaster
+    msgbox("Of course!\nOf course!\pIncidentally…\nYou do know how to blend {POKEBLOCK}S\lfrom BERRIES?$", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {   // BerryBlender_EventScript_BlendMasterExplainBlending
+        msgbox("Hmmm!\pAh, but it is a simple process!\pWhen the BLENDER's arrow comes to\nyour marker, press the A Button.\pThat's all you have to do.\pWhen you see how precisely I press\nthe A Button, you will understand.")
+    }
+    msgbox("Fine!\pLet's get started, then!\pAll together with the BLEND MASTER,\nlet's BERRY BLENDER!")
+    goto(BerryBlender_EventScript_DoBerryBlending)
+}
+
+script BerryBlender_EventScript_BerryBlenderLink{
+    lockall
+    checkitem(ITEM_POKEBLOCK_CASE)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("You don't have a {POKEBLOCK} CASE.\nThe BERRY BLENDER can't be used.")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, GetFirstFreePokeblockSlot)
+    if(var(VAR_RESULT) == -1)
+    {   // BerryBlender_EventScript_Blender2CaseFull
+        msgbox("Your {POKEBLOCK} CASE is full.\nThe BERRY BLENDER can't be used.")
+        releaseall
+        end
+    }
+    specialvar(VAR_RESULT, PlayerHasBerries)
+    if(!var(VAR_RESULT))
+    {   // BerryBlender_EventScript_Blender2NoBerries
+        msgbox("You have no BERRIES.\nThe BERRY BLENDER can't be used.")
+        release
+        end
+    }
+    // BerryBlender_EventScript_LinkBlenderSaveGame
+    msgbox("{POKEBLOCK}S will be made with your friends\nfrom BERRIES in the BERRY BLENDER.\pIs it okay to save the game before\nlinking with your friends?", MSGBOX_YESNO)
+    if(var(VAR_RESULT) == NO)
+    {
+BerryBlender_EventScript_CancelLinkBlender:
+        releaseall
+        end
+    }
+    // BerryBlender_EventScript_TryDoLinkBlender
+    call(EventScript_AskSaveGame)
+    if(!var(VAR_RESULT))
+    {
+        goto(BerryBlender_EventScript_CancelLinkBlender)
+    }
+    specialvar(VAR_RESULT, IsWirelessAdapterConnected)
+    if(var(VAR_RESULT))
+    {   // BerryBlender_EventScript_StartDecideLinkLeader
+        setvar(VAR_0x8004, LINK_GROUP_BERRY_BLENDER)
+BerryBlender_EventScript_DecideLinkLeader:
+        message(SixIsland_ContestLobby_Text_PleaseDecideLinkLeader)
+        waitmessage
+        multichoice(16, 6, MULTICHOICE_JOIN_OR_LEAD, FALSE)
+        switch(var(VAR_RESULT))
+        {
+            case 0:
+BerryBlender_EventScript_TryJoinGroup:
+                special(TryJoinLinkGroup)
+                waitstate
+                switch(var(VAR_RESULT))
+                {
+                    case LINKUP_SUCCESS:
+                        // BerryBlender_EventScript_LinkLeaderDecided
+                        goto(BerryBlender_EventScript_SpawnLinkPartners)
+                    case LINKUP_FAILED:
+                        goto(BerryBlender_EventScript_DecideLinkLeader)
+                    case LINKUP_RETRY_ROLE_ASSIGN:
+                        goto(BerryBlender_EventScript_TryJoinGroup)
+                }
+            case 1:
+BerryBlender_EventScript_TryLeadGroup:
+                special(TryBecomeLinkLeader)
+                waitstate
+                switch(var(VAR_RESULT))
+                {
+                    case LINKUP_SUCCESS:
+                        // BerryBlender_EventScript_LinkLeaderDecided
+                        goto(BerryBlender_EventScript_SpawnLinkPartners)
+                    case LINKUP_FAILED:
+                        goto(BerryBlender_EventScript_DecideLinkLeader)
+                    case LINKUP_RETRY_ROLE_ASSIGN:
+                        goto(BerryBlender_EventScript_TryLeadGroup)
+                }
+            default:
+                goto(BerryBlender_EventScript_CloseLink)
+        }
+    }
+    message("Searching for your friends…\n… … B Button: Cancel")
+    waitmessage
+    special(TryBerryBlenderLinkup)
+    waitstate
+    switch(var(VAR_RESULT))
+    {
+        case LINKUP_SUCCESS:
+BerryBlender_EventScript_SpawnLinkPartners:
+            fadescreen(FADE_TO_BLACK)
+            specialvar(VAR_RESULT, GetLinkPartnerNames)
+            copyvar(VAR_0x8008, VAR_RESULT)
+            copyvar(VAR_0x8004, VAR_0x8008)
+            special(SpawnLinkPartnerObjectEvent)
+            fadescreen(FADE_FROM_BLACK)
+            switch(var(VAR_0x8008))
+            {
+                case 2:
+                    msgbox("{STR_VAR_1} arrived.")
+                case 3:
+                    msgbox("{STR_VAR_1} and {STR_VAR_2} arrived.")
+                case 4:
+                    msgbox("{STR_VAR_1}, {STR_VAR_2}, and\n{STR_VAR_3} arrived.")
+            }
+            // BerryBlender_EventScript_DoLinkBerryBlending
+            setvar(VAR_0x8004, 0)  // number of opponents, 0 indicates Link
+            fadescreen(FADE_TO_BLACK)
+            removeobject(240) // Unclear where these local IDs come from,
+            removeobject(239) // but presumably they'd be the 4 link players
+            removeobject(238)
+            removeobject(237)
+            special(DoBerryBlending)
+            waitstate
+            releaseall
+            end
+        case LINKUP_SOMEONE_NOT_READY:
+            // BerryBlender_EventScript_CloseLinkNotReady
+            special(CloseLink)
+            msgbox(CableClub_Text_SomeoneIsNotReadyToLink)
+            releaseall
+            end
+        case LINKUP_DIFF_SELECTIONS:
+            // BerryBlender_EventScript_CloseLinkDifferentSelections
+            special(CloseLink)
+            msgbox(CableClub_Text_PlayersMadeDifferentSelections)
+            releaseall
+            end
+        case LINKUP_FAILED:
+BerryBlender_EventScript_CloseLink:
+            special(CloseLink)
+            msgbox("The link was canceled.")
+            releaseall
+            end
+        case LINKUP_CONNECTION_ERROR:
+            // BerryBlender_EventScript_LinkError
+            special(CloseLink)
+            msgbox(CableClub_Text_LinkErrorPleaseReset)
+            releaseall
+            end
+    }
+}

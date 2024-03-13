@@ -7,16 +7,16 @@ mapscripts SixIsland_ContestLobby_MapScripts{
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_TEMP_1)
         setflag(FLAG_TEMP_2)
+        setflag(FLAG_TEMP_3)
         //call(SixIsland_ContestLobby_EventScript_TryShowContestReporter)
         //getpokenewsactive(POKENEWS_BLENDMASTER)
         if(var(VAR_RESULT) == TRUE)
         {
-            setflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT)
-	        clearflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_BLEND_MASTER)
+	        clearflag(FLAG_TEMP_3)
             end
         }
-        clearflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT)
-        setflag(FLAG_HIDE_CONTEST_HALL_BLEND_MASTER)
+        setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_OLD_WOMAN)
         end
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
@@ -168,6 +168,61 @@ SixIsland_ContestLobby_EventScript_TakePaintingToMuseum:
             //clearflag(FLAG_HIDE_LILYCOVE_MUSEUM_TOURISTS)
     }
 	return
+}
+
+script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker1{
+    msgbox("Blending with the MASTER would give\nme the edge I need in CONTESTS.\pI've never seen him miss on the\nBERRY BLENDER.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker2{
+    msgbox("How does he do it?\nHis skill is unreal!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker3{
+    msgbox("They say that the BLEND MASTER\ntravels here from a faraway region.\pWhen he's not here, he's practicing\nhis skills deep in the mountains.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker4{
+    msgbox("The speed…\nThe dexterity…\pIf I could battle like the MASTER\nblends {POKEBLOCK}S…", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker5{
+    msgbox("The {POKEBLOCK}S I made with the MASTER\nare the best I've ever seen!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker6{
+    msgbox("Zoom! Zing! Zip!\nLook how fast he can make it go!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Chef{
+    msgbox(BerryBlender_Text_ChefOpening, MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Gal{
+    msgbox("The BERRY BLENDER spins so fast\nwhen we're doing well that it\lsometimes makes me dizzy!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Guy{
+    msgbox("The guy across from me is from\na faraway region.\pI can barely understand a word\nhe says!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Daughter{
+    msgbox("My daddy takes me here to make\n{POKEBLOCK}S all the time.\pI love how the BERRY BLENDER\narrow twirls round and round!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Father{
+    msgbox("I'm lucky that my daughter likes\nthe same things that I do.\pIt makes bonding with her much\nmore fun for both of us.", MSGBOX_NPC)
+    end
 }
 
 script SixIsland_ContestLobby_EventScript_ContestWinner1

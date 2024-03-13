@@ -1348,7 +1348,7 @@ u8 GetPokeblocksFeel(const struct Pokeblock *pokeblock)
 
 s8 GetFirstFreePokeblockSlot(void)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < POKEBLOCKS_COUNT; i++)
     {
