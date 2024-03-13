@@ -255,11 +255,11 @@
 #define FLAG_HIDE_CONTEST_POKE_BALL           0x0EB
 #define FLAG_ENTERED_CONTEST                  0x0EC
 #define FLAG_RECEIVED_POKEBLOCK_CASE          0x0ED
-#define FLAG_0x0EE                            0x0EE
-#define FLAG_0x0EF               0x0EF
-#define FLAG_0x0F0               0x0F0
-#define FLAG_0x0F1               0x0F1
-#define FLAG_0x0F2               0x0F2
+#define FLAG_RECEIVED_YELLOW_SCARF            0x0EE
+#define FLAG_RECEIVED_GREEN_SCARF             0x0EF
+#define FLAG_RECEIVED_PINK_SCARF              0x0F0
+#define FLAG_RECEIVED_BLUE_SCARF              0x0F1
+#define FLAG_RECEIVED_RED_SCARF               0x0F2
 #define FLAG_0x0F3               0x0F3
 #define FLAG_0x0F4               0x0F4
 #define FLAG_0x0F5               0x0F5

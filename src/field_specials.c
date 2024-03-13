@@ -2987,3 +2987,73 @@ static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEvent
         }
     }
 }
+
+static bool8 CheckLeadMonCool(void)
+{
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_COOL) < 200)
+        return FALSE;
+
+    return TRUE;
+}
+
+static bool8 CheckLeadMonBeauty(void)
+{
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_BEAUTY) < 200)
+        return FALSE;
+
+    return TRUE;
+}
+
+static bool8 CheckLeadMonCute(void)
+{
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_CUTE) < 200)
+        return FALSE;
+
+    return TRUE;
+}
+
+static bool8 CheckLeadMonSmart(void)
+{
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_SMART) < 200)
+        return FALSE;
+
+    return TRUE;
+}
+
+static bool8 CheckLeadMonTough(void)
+{
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], MON_DATA_TOUGH) < 200)
+        return FALSE;
+
+    return TRUE;
+}
+
+bool8 CheckLeadMonContestStat(void)
+{
+    s32 statId = gSpecialVar_0x8004;
+    s32 field = 0;
+
+    switch(statId)
+    {
+        case CONTEST_CATEGORY_COOL:
+            field = MON_DATA_COOL;
+            break;
+        case CONTEST_CATEGORY_BEAUTY:
+            field = MON_DATA_BEAUTY;
+            break;
+        case CONTEST_CATEGORY_CUTE:
+            field = MON_DATA_CUTE;
+            break;
+        case CONTEST_CATEGORY_SMART:
+            field = MON_DATA_SMART;
+            break;
+        case CONTEST_CATEGORY_TOUGH:
+            field = MON_DATA_TOUGH;
+            break;
+    }
+
+    if (GetMonData(&gPlayerParty[GetLeadMonIndex()], field) < 200)
+        return FALSE;
+
+    return TRUE;
+}

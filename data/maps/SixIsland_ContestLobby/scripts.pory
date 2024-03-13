@@ -170,6 +170,58 @@ SixIsland_ContestLobby_EventScript_TakePaintingToMuseum:
 	return
 }
 
+script SixIsland_ContestLobby_EventScript_LittleBoy{
+    checkitem(ITEM_POKEBLOCK_CASE)
+    if(!var(VAR_RESULT))
+    {
+        msgbox("Hooray!\pThe lady at the reception counter\ngave me a case for {POKEBLOCK}S!", MSGBOX_NPC)
+        end
+    }
+    msgbox("Blend BERRIES to make {POKEBLOCK}S.\nPut them in your {POKEBLOCK} CASE.\pWhen you make {POKEBLOCK}S, everyone\nshould put in a different BERRY.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Fisher{
+    msgbox("I linked up with my fishing buddies\nto make {POKEBLOCK}S.\pThey turned out fantastic!\pYou can make smoother, better\n{POKEBLOCK}S if you blend with friends.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Lass{
+    msgbox("The CUTENESS CONTEST is, like,\nan adorableness overload!\pThose charming appeals…\nThe cuddly POKéMON… I'm mesmerized!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_BlackBelt{
+    msgbox("I trained hard with my POKéMON in\nthe wilderness to make it tougher.\p…Huh?\pI need to feed it {POKEBLOCK}S to\nraise its TOUGHNESS?", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_CooltrainerF{
+    msgbox("Some moves combo off of each other\nin POKéMON CONTESTS.\pIf you know the right combinations,\nyour appeals will be unbeatable!", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Nurse{
+    msgbox("Welcome to our POKéMON CENTER!\nOops! It's a force of habit.\pI'm off duty and thought I'd\nwatch a POKéMON CONTEST.\pEven from the audience I can tell\nhow healthy the POKéMON are.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_PokeManiac{
+    msgbox("I'm here to cheer on my friend!\nHis POKéMON is the coolest around!\p…When was his CONTEST scheduled\nto start again?", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestLobby_EventScript_Machoke{
+	lock
+	faceplayer
+	waitse
+	playmoncry(SPECIES_MACHOKE, CRY_MODE_NORMAL)
+	msgbox("RICKY: Gwoh! Goggoh!")
+	waitmoncry
+	release
+	end
+}
+
 script SixIsland_ContestLobby_EventScript_BlendMasterOnlooker1{
     msgbox("Blending with the MASTER would give\nme the edge I need in CONTESTS.\pI've never seen him miss on the\nBERRY BLENDER.", MSGBOX_NPC)
     end

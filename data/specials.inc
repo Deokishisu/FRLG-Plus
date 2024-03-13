@@ -269,11 +269,11 @@ gSpecials::
 	def_special CreatePCMenu
 	def_special HallOfFamePCBeginFade
 	def_special ShowDiploma
-	def_special NullFieldSpecial  @ Check lead mon Contest strength specials
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
-	def_special NullFieldSpecial
+	def_special CheckLeadMonContestStat  @ CheckLeadMonCool in Emerald, all stats checked by one special in FRLG+
+	def_special NullFieldSpecial @ CheckLeadMonBeauty in Emerald, all stats checked by one special in FRLG+
+	def_special NullFieldSpecial @ CheckLeadMonCute in Emerald, all stats checked by one special in FRLG+
+	def_special NullFieldSpecial @ CheckLeadMonSmart in Emerald, all stats checked by one special in FRLG+
+	def_special NullFieldSpecial @ CheckLeadMonTough in Emerald, all stats checked by one special in FRLG+
 	def_special LookThroughPorthole
 	def_special DoSoftReset
 	def_special EnterHallOfFame

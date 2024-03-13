@@ -1,0 +1,479 @@
+mapscripts SixIsland_ContestHall_MapScripts{}
+
+script SixIsland_ContestHall_EventScript_SmartStageSign{
+    msgbox("SMARTNESS CONTEST STAGE\nBE IMPRESSED BY SMART POKéMON!", MSGBOX_SIGN)
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyStageSign{
+    msgbox("BEAUTY CONTEST STAGE\nBE ALLURED BY BEAUTIFUL POKéMON!", MSGBOX_SIGN)
+    end
+}
+
+script SixIsland_ContestHall_EventScript_CuteStageSign{
+    msgbox("CUTENESS CONTEST STAGE\nBE CHARMED BY CUTE POKéMON!", MSGBOX_SIGN)
+    end
+}
+
+script SixIsland_ContestHall_EventScript_LittleBoyJudge{
+    lock
+    msgbox("PIKACHU! Stop fidgeting!\nYou're supposed to be a contestant!")
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_LittleGirlMC{
+    lock
+    faceplayer
+    msgbox("This is our EPIC Rank POKéMON\nAWESOMENESS CONTEST!\nNo grownups allowed!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_FakeContestant1{
+    lock
+    msgbox("Appeal with a kick and a punch!")
+    closemessage
+    faceplayer
+    msgbox("We only have a PIKACHU, so I'm\nappealing with an imaginary POKéMON!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_Pikachu{
+    lock
+	faceplayer
+	waitse
+	playmoncry(SPECIES_PIKACHU, CRY_MODE_NORMAL)
+	msgbox("PIKACHU: Biggah bii!")
+	waitmoncry
+    closemessage
+    msgbox("It looks very unsure of what\nit should be doing.")
+    closemessage
+	release
+	end
+}
+
+script SixIsland_ContestHall_EventScript_FakeContestant2{
+    lock
+    faceplayer
+    msgbox("I'm going to win a bunch of\nCONTESTS when I grow up!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_FakeContestant3{
+    lock
+    faceplayer
+    msgbox("I appeal with SPLASH!\nSplish splosh!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_FakeAudience1{
+    lock
+    faceplayer
+    msgbox("When there's no contest going on, the\nstages are open for kids to use.\pMy family loves coming here to\nwatch contests and use the stages.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_FakeAudience2{
+    lock
+    faceplayer
+    msgbox("I think it's time I get my grandkids\nPOKéMON to enter CONTESTS with.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_FakeAudience3{
+    lock
+    faceplayer
+    msgbox("My granddaughter's PIKACHU has stage\nfright, but it plays along anyway.\pPOKéMON will endure discomfort to\nspend time with people they love.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyJudge{
+    lock
+    faceplayer
+    msgbox("JUDGE: …Hm…\nSure, it was a beautiful appeal…\pBut was it beautiful enough\nto score this high?")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyMC{
+    lock
+    faceplayer
+    msgbox("MC: I love getting assigned to\nBEAUTY CONTESTS.\pThe dazzling beauty of the appeals\nalmost brings me to tears!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyContestant1{
+    lock
+    faceplayer
+    msgbox("These chumps have never seen true\nbeauty before!\pRATICATE and I will show them!\nGaze upon its elegance!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyContestant2{
+    lock
+    faceplayer
+    msgbox("I sometimes feel that I'm too\nbeautiful for the stage.\pI hope people will look at my\nPOKéMON instead of at me!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyContestant3{
+    lock
+    faceplayer
+    msgbox("Psst!\pI make my boyfriend enter CONTESTS\nwith my POKéMON alongside me.\pThat way, my babies have double\nthe chance of winning!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyContestant4{
+    lock
+    faceplayer
+    msgbox("I don't know anything about CONTESTS,\nbut my girlfriend loves them.\p…Now what move should we use\nnext turn?")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyAudience1{
+    lock
+    faceplayer
+    msgbox("Did that kid really bring a wet\nRATICATE to a BEAUTY CONTEST?\pIt's disgusting, it's horrible, it's…\nit's completely unexpected…\lA total upset! A paradigm shift!\pHe's either a CONTEST visionary,\nan appeal genius, or totally insane.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyAudience2{
+    lock
+    faceplayer
+    msgbox("I want to enter a BEAUTY CONTEST\nwith my absolute favorite POKéMON,\lbut I keep messing up its {POKEBLOCK}S.\pWhat flavor makes POKéMON more\nbeautiful again?")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BeautyAudience3{
+    lock
+    faceplayer
+    msgbox("I'm thinking about entering a\nBEAUTY CONTEST.\pI'd appeal with my dazzling smile\nand stunning good looks.\pWhat?\nOnly POKéMON can appeal?")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartJudge{
+    lock
+    faceplayer
+    msgbox("JUDGE: When judging SMART CONTESTS,\nyou have to be smart yourself.\pWithout intelligence, you can't tell\nwhich appeals are more technically\limpressive and complicated.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartMC{
+    lock
+    faceplayer
+    msgbox("MC: We're in the middle of a contest\nhere!\pGet off the stage before you break\none of our contestant's concentration!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartContestant1{
+    lock
+    faceplayer
+    msgbox("Would POKéMON revived from fossils\nbe as smart as modern-day POKéMON?\pMy hypothesis requires further\ntesting and examination.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartContestant2{
+    lock
+    faceplayer
+    msgbox("You don't need to be smart if you\ncan see the future!\pOops! I didn't predict us whiffing\nwith that appeal!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartContestant3{
+    lock
+    faceplayer
+    msgbox("I won my PORYGON at the GAME\nCORNER in CELADON CITY.\pI went all the way to KANTO and\nback to win this CONTEST!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartContestant4{
+    lock
+    faceplayer
+    msgbox("My DODRIO has three brains!\nIt's gotta be smarter than every\lother POKéMON on this stage!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartAudience1{
+    lock
+    faceplayer
+    msgbox("I don't get this CONTEST at all.\pWhere's the muscle? The sweat?\nThe daring feats of strength?")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartAudience2{
+    lock
+    faceplayer
+    msgbox("We mariners are super smart!\pWe have to be able to determine\nwhere we are in the world using\lonly the positions of the stars!\p…Well…\pWe do have machines for that now…\nAnd it's not done by us anymore…\pBut we still have to be clever\nand think on our feet out at sea!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartAudience3{
+    lock
+    faceplayer
+    msgbox("My boyfriend might look like a\nCOOLTRAINER, but he's a total\lSUPER NERD.\pHe loves going to these CONTESTS\nand thinking up the smartest appeals.")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_SmartAudience4{
+    lock
+    faceplayer
+    msgbox("By tweaking their move by 27.41%\nand taking into account the level\lof excitement in the audience…\pYes, with those calculations, they\njust might win this whole thing!")
+    closemessage
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script SixIsland_ContestHall_EventScript_Boy{
+    msgbox("POKéMON eventually get sick of\n{POKEBLOCK}S and won't eat more.\pOnce that happens, their condition\ncan't be raised anymore.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestHall_EventScript_PokefanF{
+    msgbox("I'm so glad that they built a\nCONTEST HALL here on SIX ISLAND.\pBefore it was built, the nearest one\nwas in a totally different region!\pImagine not having the option to\nenter POKéMON CONTESTS at all?\lThat's not a world I want to live in.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestHall_EventScript_BugCatcher{
+    msgbox("An old man in here looked at my\nPOKéMON and gave me a scarf!\pApparently, CONTEST audiences love\nseeing POKéMON wear certain scarves.", MSGBOX_NPC)
+    end
+}
+
+script SixIsland_ContestHall_EventScript_ScarfMan{
+    if(!flag(FLAG_ENTERED_CONTEST))
+    {
+        msgbox("I see you have POKéMON, but it\ntakes only one look to know that\lyou have never entered a CONTEST!\pI want to see the POKéMON of a\nTRAINER that enters CONTESTS.", MSGBOX_NPC)
+        end
+    }
+    lock
+    faceplayer
+    msgbox("Hello! I see you've participated in\na POKéMON CONTEST!\pHow do I know?\nI have a keen eye for such things.\pPlease, let me examine your POKéMON.\nI'd like to see its condition.")
+    if(flag(FLAG_RECEIVED_YELLOW_SCARF) && flag(FLAG_RECEIVED_GREEN_SCARF) && flag(FLAG_RECEIVED_PINK_SCARF) && flag(FLAG_RECEIVED_BLUE_SCARF) && flag(FLAG_RECEIVED_RED_SCARF))
+    {
+        msgbox("Your POKéMON are impeccable, but\nI have nothing else to give you!\pYou have such a gift for raising\nPOKéMON that I doubt you'd need\lanything from me anyway!")
+        release
+        end
+    }
+    msgbox("Hm, hm…\nI see…")
+    setvar(VAR_TEMP_1, 0)
+    if(!flag(FLAG_RECEIVED_YELLOW_SCARF))
+    {
+        setvar(VAR_0x8004, CONTEST_CATEGORY_TOUGH)
+        specialvar(VAR_RESULT, CheckLeadMonContestStat)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_1, 5)
+        }
+    }
+    if(!flag(FLAG_RECEIVED_GREEN_SCARF))
+    {
+        setvar(VAR_0x8004, CONTEST_CATEGORY_SMART)
+        specialvar(VAR_RESULT, CheckLeadMonContestStat)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_1, 4)
+        }
+    }
+    if(!flag(FLAG_RECEIVED_PINK_SCARF))
+    {
+        setvar(VAR_0x8004, CONTEST_CATEGORY_CUTE)
+        specialvar(VAR_RESULT, CheckLeadMonContestStat)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_1, 3)
+        }
+    }
+    if(!flag(FLAG_RECEIVED_BLUE_SCARF))
+    {
+        setvar(VAR_0x8004, CONTEST_CATEGORY_BEAUTY)
+        specialvar(VAR_RESULT, CheckLeadMonContestStat)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_1, 2)
+        }
+    }
+    if(!flag(FLAG_RECEIVED_RED_SCARF))
+    {
+        setvar(VAR_0x8004, CONTEST_CATEGORY_COOL)
+        specialvar(VAR_RESULT, CheckLeadMonContestStat)
+        if(var(VAR_RESULT))
+        {
+            setvar(VAR_TEMP_1, 1)
+        }
+    }
+    bufferleadmonspeciesname(STR_VAR_1)
+    switch(var(VAR_TEMP_1))
+    {
+        case 0: // No stats high enough
+            msgbox("Hmmm… It's not bad, but it's not\ngood, either…\pYou need to raise it with more\neffort to make it a CONTEST star.\pMight I suggest that you feed it\nsome more {POKEBLOCK}S?")
+            release
+            end
+        case 1: // Red Scarf
+            checkitemspace(ITEM_RED_SCARF)
+            if(!var(VAR_RESULT))
+            {
+SixIsland_ContestHall_EventScript_NoRoomForScarf:
+                msgbox("Spectacular!\pYour POKéMON is clearly being well\ntaken care of.\pYou deserve a reward, but you don't\nhave space for it in your bag.")
+                release
+                end
+            }
+            msgbox(SixIsland_ContestHall_Text_MonMostImpressiveGiveItThis)
+            setflag(FLAG_RECEIVED_RED_SCARF)
+            giveitem(ITEM_RED_SCARF)
+            msgbox("Let a POKéMON hold that\n{STR_VAR_2}.\pIt will make its coolness the talk\nof the town!")
+            release
+            end
+        case 2: // Blue Scarf
+            checkitemspace(ITEM_BLUE_SCARF)
+            if(!var(VAR_RESULT))
+            {
+                goto(SixIsland_ContestHall_EventScript_NoRoomForScarf)
+            }
+            msgbox(SixIsland_ContestHall_Text_MonMostImpressiveGiveItThis)
+            setflag(FLAG_RECEIVED_BLUE_SCARF)
+            giveitem(ITEM_BLUE_SCARF)
+            msgbox("Let a POKéMON hold that\n{STR_VAR_2}.\pIt will make its beauty be known\nforevermore!")
+            release
+            end
+        case 3: // Pink Scarf
+            checkitemspace(ITEM_PINK_SCARF)
+            if(!var(VAR_RESULT))
+            {
+                goto(SixIsland_ContestHall_EventScript_NoRoomForScarf)
+            }
+            msgbox(SixIsland_ContestHall_Text_MonMostImpressiveGiveItThis)
+            setflag(FLAG_RECEIVED_PINK_SCARF)
+            giveitem(ITEM_PINK_SCARF)
+            msgbox("Let a POKéMON hold that\n{STR_VAR_2}.\pIts cuteness will be irresistable,\neven to the most stone-hearted!")
+            release
+            end
+        case 4: // Green Scarf
+            checkitemspace(ITEM_GREEN_SCARF)
+            if(!var(VAR_RESULT))
+            {
+                goto(SixIsland_ContestHall_EventScript_NoRoomForScarf)
+            }
+            msgbox(SixIsland_ContestHall_Text_MonMostImpressiveGiveItThis)
+            setflag(FLAG_RECEIVED_GREEN_SCARF)
+            giveitem(ITEM_GREEN_SCARF)
+            msgbox("Let a POKéMON hold that\n{STR_VAR_2}.\pIt will make the POKéMON's vast\nintellect apparent to all!")
+            release
+            end
+        case 5: // Yellow Scarf
+            checkitemspace(ITEM_YELLOW_SCARF)
+            if(!var(VAR_RESULT))
+            {
+                goto(SixIsland_ContestHall_EventScript_NoRoomForScarf)
+            }
+            msgbox(SixIsland_ContestHall_Text_MonMostImpressiveGiveItThis)
+            setflag(FLAG_RECEIVED_YELLOW_SCARF)
+            giveitem(ITEM_YELLOW_SCARF)
+            msgbox("Let a POKéMON hold that\n{STR_VAR_2}.\pIt will accentuate your POKéMON's\nmuscles to make it look tougher!")
+            release
+            end
+    }
+    release
+    end
+}text(local) SixIsland_ContestHall_Text_MonMostImpressiveGiveItThis{
+    "Your {STR_VAR_1}, it's growing in\na most spectacular manner!\pIt is one fine specimen!\pHowever! Give it this and it will\nstand out even more!"
+}

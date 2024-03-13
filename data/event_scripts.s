@@ -1345,10 +1345,6 @@ EventScript_NoMoreRoomForPokemon::
 	.include "data/maps/BattleFrontier_RankingHall/text.inc"
 
 	.include "data/maps/SixIsland_ContestLobby/scripts.inc"
-	.include "data/maps/SixIsland_ContestLobby/text.inc"
-
 	.include "data/maps/SixIsland_ContestHall/scripts.inc"
-	.include "data/maps/SixIsland_ContestHall/text.inc"
 
 	.include "data/maps/ContestHall/scripts.inc"
-	.include "data/maps/ContestHall/text.inc"
