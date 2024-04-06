@@ -533,7 +533,7 @@ static void LoadUsePokeblockMenu(void)
         sInfo->mainState++;
         break;
     case 11:
-        ConditionGraph_CalcPositions(sMenu->graph.conditions[0], sMenu->graph.savedPositions[0]);
+        ConditionGraph_CalcPositions(&sMenu->graph, sMenu->graph.conditions[0], sMenu->graph.savedPositions[0]);
         ConditionGraph_InitResetScanline(&sMenu->graph);
         sInfo->mainState++;
         break;
@@ -777,7 +777,7 @@ static void ShowPokeblockResults(void)
         break;
     case 2:
         CalculateConditionEnhancements();
-        ConditionGraph_CalcPositions(sInfo->conditionsAfterBlock, sMenu->graph.savedPositions[CONDITION_GRAPH_LOAD_MAX - 1]);
+        ConditionGraph_CalcPositions(&sMenu->graph, sInfo->conditionsAfterBlock, sMenu->graph.savedPositions[CONDITION_GRAPH_LOAD_MAX - 1]);
         ConditionGraph_SetNewPositions(&sMenu->graph, sMenu->graph.savedPositions[sMenu->curLoadId], sMenu->graph.savedPositions[CONDITION_GRAPH_LOAD_MAX - 1]);
         LoadAndCreateUpDownSprites();
         sInfo->mainState++;

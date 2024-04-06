@@ -32,6 +32,11 @@ static void ConditionGraph_CalcLeftHalf(struct ConditionGraph *);
 static void SetNextConditionSparkle(struct Sprite *);
 static void SpriteCB_ConditionSparkle(struct Sprite *);
 static void ShowAllConditionSparkles(struct Sprite *);
+static u32 GetGraphTopY(struct ConditionGraph *graph);
+static u32 GetGraphBottomY(struct ConditionGraph *graph);
+static u32 GetGraphHeight(struct ConditionGraph *graph);
+static u32 GetGraphCenterX(struct ConditionGraph *graph);
+static u32 GetGraphCenterY(struct ConditionGraph *graph);
 
 static const struct ScanlineEffectParams sConditionGraphScanline =
 {
@@ -75,7 +80,9 @@ static const u8 sConditionToLineLength[MAX_CONDITION + 1] =
 
 void ConditionGraph_Init(struct ConditionGraph *graph)
 {
-    u8 i, j;
+    u32 i, j;
+    u32 centerX = GetGraphCenterX(graph);
+    u32 centerY = GetGraphCenterY(graph);
 
     for (j = 0; j < CONDITION_COUNT; j++)
     {
@@ -88,8 +95,8 @@ void ConditionGraph_Init(struct ConditionGraph *graph)
         for (i = 0; i < CONDITION_GRAPH_LOAD_MAX; i++)
         {
             graph->conditions[i][j] = 0;
-            graph->savedPositions[i][j].x = CONDITION_GRAPH_CENTER_X;
-            graph->savedPositions[i][j].y = CONDITION_GRAPH_CENTER_Y;
+            graph->savedPositions[i][j].x = centerX;
+            graph->savedPositions[i][j].y = centerY;
         }
 
         graph->curPositions[j].x = 0;
@@ -104,7 +111,7 @@ void ConditionGraph_Init(struct ConditionGraph *graph)
 // old and new for the graph transition when switching between Pokémon.
 void ConditionGraph_SetNewPositions(struct ConditionGraph *graph, struct UCoords16 *old, struct UCoords16 *new)
 {
-    u16 i, j;
+    u32 i, j;
     s32 coord, increment;
 
     for (i = 0; i < CONDITION_COUNT; i++)
@@ -171,7 +178,9 @@ bool8 ConditionGraph_ResetScanline(struct ConditionGraph *graph)
 
 void ConditionGraph_Draw(struct ConditionGraph *graph)
 {
-    u16 i;
+    u32 i;
+    u32 topY = GetGraphTopY(graph);
+    u32 height = GetGraphHeight(graph);
 
     if (!graph->needsDraw)
         return;
@@ -179,14 +188,14 @@ void ConditionGraph_Draw(struct ConditionGraph *graph)
     ConditionGraph_CalcRightHalf(graph);
     ConditionGraph_CalcLeftHalf(graph);
 
-    for (i = 0; i < CONDITION_GRAPH_HEIGHT; i++)
+    for (i = 0; i < height; i++)
     {
         // Draw right half
-        gScanlineEffectRegBuffers[1][(i + CONDITION_GRAPH_TOP_Y - 1) * 2 + 0] = // double assignment
-        gScanlineEffectRegBuffers[0][(i + CONDITION_GRAPH_TOP_Y - 1) * 2 + 0] = (graph->scanlineRight[i][0] << 8) | (graph->scanlineRight[i][1]);
+        gScanlineEffectRegBuffers[1][(i + topY - 1) * 2 + 0] = // double assignment
+        gScanlineEffectRegBuffers[0][(i + topY - 1) * 2 + 0] = (graph->scanlineRight[i][0] << 8) | (graph->scanlineRight[i][1]);
         // Draw left half
-        gScanlineEffectRegBuffers[1][(i + CONDITION_GRAPH_TOP_Y - 1) * 2 + 1] = // double assignment
-        gScanlineEffectRegBuffers[0][(i + CONDITION_GRAPH_TOP_Y - 1) * 2 + 1] = (graph->scanlineLeft[i][0] << 8) | (graph->scanlineLeft[i][1]);
+        gScanlineEffectRegBuffers[1][(i + topY - 1) * 2 + 1] = // double assignment
+        gScanlineEffectRegBuffers[0][(i + topY - 1) * 2 + 1] = (graph->scanlineLeft[i][0] << 8) | (graph->scanlineLeft[i][1]);
     }
 
     graph->needsDraw = FALSE;
@@ -211,9 +220,28 @@ void ConditionGraph_InitWindow(u8 bg)
     SetGpuReg(REG_OFFSET_WINOUT, flags);
 }
 
+void ConditionGraph_InitPSSWindow(u8 bg)
+{
+    u32 flags;
+
+    if (bg >= 4)
+        bg = 0;
+
+    // Unset the WINOUT flag for the bg.
+    flags = (WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ) & ~(1 << bg);
+
+    // Set limits for graph data
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE( 0, DISPLAY_WIDTH)); // Right side horizontal
+    SetGpuReg(REG_OFFSET_WIN1H, WIN_RANGE( 0, PSS_GRAPH_CENTER_X)); // Left side horizontal
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(PSS_GRAPH_TOP_Y, PSS_GRAPH_BOTTOM_Y)); // Right side vertical
+    SetGpuReg(REG_OFFSET_WIN1V, WIN_RANGE(PSS_GRAPH_TOP_Y, PSS_GRAPH_BOTTOM_Y)); // Left side vertical
+    SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ | WININ_WIN1_CLR);
+    SetGpuReg(REG_OFFSET_WINOUT, flags);
+}
+
 void ConditionGraph_Update(struct ConditionGraph *graph)
 {
-    u16 i;
+    u32 i;
     for (i = 0; i < CONDITION_COUNT; i++)
         graph->curPositions[i] = graph->newPositions[graph->updateCounter][i];
 
@@ -222,9 +250,12 @@ void ConditionGraph_Update(struct ConditionGraph *graph)
 
 static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline, struct UCoords16 *pos1, struct UCoords16 *pos2, bool8 dir, u16 *overflowScanline)
 {
-    u16 i, height, top, bottom, x2;
+    u32 i;
+    u16 height, top, bottom, x2;
     u16 *ptr;
     s32 x, xIncrement = 0;
+    u32 topY = GetGraphTopY(graph);
+    u32 centerX = GetGraphCenterX(graph);
 
     if (pos1->y < pos2->y)
     {
@@ -250,7 +281,7 @@ static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline,
     height++;
     if (overflowScanline == NULL)
     {
-        scanline += (top - CONDITION_GRAPH_TOP_Y) * 2;
+        scanline += (top - topY) * 2;
         for (i = 0; i < height; i++)
         {
             scanline[dir] = SHIFT_RIGHT_ADJUSTED(x, 10) + dir;
@@ -262,16 +293,16 @@ static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline,
     }
     else if (xIncrement > 0)
     {
-        overflowScanline += (top - CONDITION_GRAPH_TOP_Y) * 2;
+        overflowScanline += (top - topY) * 2;
         // Less readable than the other loops, but it has to be written this way to match.
         for (i = 0; i < height; overflowScanline[dir] = SHIFT_RIGHT_ADJUSTED(x, 10) + dir, x += xIncrement, overflowScanline += 2, i++)
         {
-            if (x >= (CONDITION_GRAPH_CENTER_X << 10))
+            if (x >= (centerX << 10))
                 break;
         }
 
         graph->bottom = top + i;
-        scanline += (graph->bottom - CONDITION_GRAPH_TOP_Y) * 2;
+        scanline += (graph->bottom - topY) * 2;
         for (; i < height; i++)
         {
             scanline[dir] = SHIFT_RIGHT_ADJUSTED(x, 10) + dir;
@@ -283,13 +314,13 @@ static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline,
     }
     else if (xIncrement < 0)
     {
-        scanline += (top - CONDITION_GRAPH_TOP_Y) * 2;
+        scanline += (top - topY) * 2;
         for (i = 0; i < height; i++)
         {
             scanline[dir] = SHIFT_RIGHT_ADJUSTED(x, 10) + dir;
-            if (x < (CONDITION_GRAPH_CENTER_X << 10))
+            if (x < (centerX << 10))
             {
-                scanline[dir] = CONDITION_GRAPH_CENTER_X;
+                scanline[dir] = centerX;
                 break;
             }
             x += xIncrement;
@@ -297,7 +328,7 @@ static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline,
         }
 
         graph->bottom = top + i;
-        overflowScanline += (graph->bottom - CONDITION_GRAPH_TOP_Y) * 2;
+        overflowScanline += (graph->bottom - topY) * 2;
         for (; i < height; i++)
         {
             overflowScanline[dir] = SHIFT_RIGHT_ADJUSTED(x, 10) + dir;
@@ -310,11 +341,11 @@ static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline,
     else
     {
         graph->bottom = top;
-        scanline += (top - CONDITION_GRAPH_TOP_Y) * 2;
-        overflowScanline += (top - CONDITION_GRAPH_TOP_Y) * 2;
+        scanline += (top - topY) * 2;
+        overflowScanline += (top - topY) * 2;
         scanline[1] = pos1->x + 1;
         overflowScanline[0] = pos2->x;
-        overflowScanline[1] = CONDITION_GRAPH_CENTER_X;
+        overflowScanline[1] = centerX;
         return;
     }
 
@@ -323,7 +354,11 @@ static void ConditionGraph_CalcLine(struct ConditionGraph *graph, u16 *scanline,
 
 static void ConditionGraph_CalcRightHalf(struct ConditionGraph *graph)
 {
-    u16 i, y, bottom;
+    u32 i;
+    u16 y, bottom;
+    u32 topY = GetGraphTopY(graph);
+    u32 bottomY = GetGraphBottomY(graph);
+    u32 centerX = GetGraphCenterX(graph);
 
     // Calculate Cool -> Beauty line
     if (graph->curPositions[GRAPH_COOL].y < graph->curPositions[GRAPH_BEAUTY].y)
@@ -346,34 +381,38 @@ static void ConditionGraph_CalcRightHalf(struct ConditionGraph *graph)
     ConditionGraph_CalcLine(graph, graph->scanlineRight[0], &graph->curPositions[GRAPH_CUTE], &graph->curPositions[GRAPH_SMART], i, graph->scanlineLeft[0]);
 
     // Clear down to new top
-    for (i = CONDITION_GRAPH_TOP_Y; i < y; i++)
+    for (i = topY; i < y; i++)
     {
-        graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][0] = 0;
-        graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][1] = 0;
+        graph->scanlineRight[i - topY][0] = 0;
+        graph->scanlineRight[i - topY][1] = 0;
     }
 
     for (i = graph->curPositions[GRAPH_COOL].y; i <= graph->bottom; i++)
-        graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][0] = CONDITION_GRAPH_CENTER_X;
+        graph->scanlineRight[i - topY][0] = centerX;
 
     // Clear after new bottom
     bottom = max(graph->bottom, graph->curPositions[GRAPH_CUTE].y);
-    for (i = bottom + 1; i <= CONDITION_GRAPH_BOTTOM_Y; i++)
+    for (i = bottom + 1; i <= bottomY; i++)
     {
-        graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][0] = 0;
-        graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][1] = 0;
+        graph->scanlineRight[i - topY][0] = 0;
+        graph->scanlineRight[i - topY][1] = 0;
     }
 
-    for (i = CONDITION_GRAPH_TOP_Y; i <= CONDITION_GRAPH_BOTTOM_Y; i++)
+    for (i = topY; i <= bottomY; i++)
     {
-        if (graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][0] == 0
-         && graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][1] != 0)
-            graph->scanlineRight[i - CONDITION_GRAPH_TOP_Y][0] = CONDITION_GRAPH_CENTER_X;
+        if (graph->scanlineRight[i - topY][0] == 0
+         && graph->scanlineRight[i - topY][1] != 0)
+            graph->scanlineRight[i - topY][0] = centerX;
     }
 }
 
 static void ConditionGraph_CalcLeftHalf(struct ConditionGraph *graph)
 {
     s32 i, y, bottom;
+    u32 topY = GetGraphTopY(graph);
+    u32 bottomY = GetGraphBottomY(graph);
+    u32 height = GetGraphHeight(graph);
+    u32 centerX = GetGraphCenterX(graph);
 
     // Calculate Cool -> Tough line
     if (graph->curPositions[GRAPH_COOL].y < graph->curPositions[GRAPH_TOUGH].y)
@@ -392,24 +431,24 @@ static void ConditionGraph_CalcLeftHalf(struct ConditionGraph *graph)
     ConditionGraph_CalcLine(graph, graph->scanlineLeft[0], &graph->curPositions[GRAPH_TOUGH], &graph->curPositions[GRAPH_SMART], FALSE, NULL);
 
     // Clear down to new top
-    for (i = CONDITION_GRAPH_TOP_Y; i < y; i++)
+    for (i = topY; i < y; i++)
     {
-        graph->scanlineLeft[i - CONDITION_GRAPH_TOP_Y][0] = 0;
-        graph->scanlineLeft[i - CONDITION_GRAPH_TOP_Y][1] = 0;
+        graph->scanlineLeft[i - topY][0] = 0;
+        graph->scanlineLeft[i - topY][1] = 0;
     }
 
     for (i = graph->curPositions[GRAPH_COOL].y; i <= graph->bottom; i++)
-        graph->scanlineLeft[i - CONDITION_GRAPH_TOP_Y][1] = CONDITION_GRAPH_CENTER_X;
+        graph->scanlineLeft[i - topY][1] = centerX;
 
     // Clear after new bottom
     bottom = max(graph->bottom, graph->curPositions[GRAPH_SMART].y + 1);
-    for (i = bottom; i <= CONDITION_GRAPH_BOTTOM_Y; i++)
+    for (i = bottom; i <= bottomY; i++)
     {
-        graph->scanlineLeft[i - CONDITION_GRAPH_TOP_Y][0] = 0;
-        graph->scanlineLeft[i - CONDITION_GRAPH_TOP_Y][1] = 0;
+        graph->scanlineLeft[i - topY][0] = 0;
+        graph->scanlineLeft[i - topY][1] = 0;
     }
 
-    for (i = 0; i < CONDITION_GRAPH_HEIGHT; i++)
+    for (i = 0; i < height; i++)
     {
         if (graph->scanlineLeft[i][0] >= graph->scanlineLeft[i][1])
         {
@@ -419,16 +458,18 @@ static void ConditionGraph_CalcLeftHalf(struct ConditionGraph *graph)
     }
 }
 
-void ConditionGraph_CalcPositions(u8 *conditions, struct UCoords16 *positions)
+void ConditionGraph_CalcPositions(struct ConditionGraph *graph, u8 *conditions, struct UCoords16 *positions)
 {
     u8 lineLength, sinIdx;
-    s8 posIdx;
-    u16 i;
+    s32 posIdx;
+    u32 i;
+    u32 centerX = GetGraphCenterX(graph);
+    u32 centerY = GetGraphCenterY(graph);
 
     // Cool is straight up-and-down (not angled), so no need for Sin
     lineLength = sConditionToLineLength[*(conditions++)];
-    positions[GRAPH_COOL].x = CONDITION_GRAPH_CENTER_X;
-    positions[GRAPH_COOL].y = CONDITION_GRAPH_CENTER_Y - lineLength;
+    positions[GRAPH_COOL].x = centerX;
+    positions[GRAPH_COOL].y = centerY - lineLength;
 
     sinIdx = 64;
     posIdx = GRAPH_COOL;
@@ -442,12 +483,46 @@ void ConditionGraph_CalcPositions(u8 *conditions, struct UCoords16 *positions)
             sinIdx++;
 
         lineLength = sConditionToLineLength[*(conditions++)];
-        positions[posIdx].x = CONDITION_GRAPH_CENTER_X + ((lineLength * gSineTable[64 + sinIdx]) >> 8);
-        positions[posIdx].y = CONDITION_GRAPH_CENTER_Y - ((lineLength * gSineTable[sinIdx]) >> 8);
+        positions[posIdx].x = centerX + ((lineLength * gSineTable[64 + sinIdx]) >> 8);
+        positions[posIdx].y = centerY - ((lineLength * gSineTable[sinIdx]) >> 8);
 
         if (posIdx <= GRAPH_CUTE && (lineLength != 32 || posIdx != GRAPH_CUTE))
             positions[posIdx].x++;
     }
+}
+
+static u32 GetGraphTopY(struct ConditionGraph *graph)
+{
+    if(graph->onSummary)
+        return PSS_GRAPH_TOP_Y;
+    return CONDITION_GRAPH_TOP_Y;
+}
+
+static u32 GetGraphBottomY(struct ConditionGraph *graph)
+{
+    if(graph->onSummary)
+        return PSS_GRAPH_BOTTOM_Y;
+    return CONDITION_GRAPH_BOTTOM_Y;
+}
+
+static u32 GetGraphHeight(struct ConditionGraph *graph)
+{
+    if(graph->onSummary)
+        return PSS_GRAPH_HEIGHT;
+    return CONDITION_GRAPH_HEIGHT;
+}
+
+static u32 GetGraphCenterX(struct ConditionGraph *graph)
+{
+    if(graph->onSummary)
+        return PSS_GRAPH_CENTER_X;
+    return CONDITION_GRAPH_CENTER_X;
+}
+static u32 GetGraphCenterY(struct ConditionGraph *graph)
+{
+    if(graph->onSummary)
+        return PSS_GRAPH_CENTER_Y;
+    return CONDITION_GRAPH_CENTER_Y;
 }
 
 //----------------
@@ -479,7 +554,7 @@ s32 GetBoxOrPartyMonData(u16 boxId, u16 monId, s32 request, u8 *dst)
 // Gets the name/gender/level string for the condition menu
 static u8 *GetConditionMenuMonString(u8 *dst, u16 boxId, u16 monId)
 {
-    u16 box, mon, species, level, gender;
+    u32 box, mon, species, level, gender;
     struct BoxPokemon *boxMon;
     u8 *str;
 
@@ -574,9 +649,9 @@ static u8 *BufferConditionMenuSpacedStringN(u8 *dst, const u8 *src, s16 n)
 
 void GetConditionMenuMonNameAndLocString(u8 *locationDst, u8 *nameDst, u16 boxId, u16 monId, u16 partyId, u16 numMons, bool8 excludesCancel)
 {
-    u16 i;
-    u16 box = boxId;
-    u16 mon = monId;
+    u32 i;
+    u32 box = boxId;
+    u32 mon = monId;
 
     // In this and the below 2 functions, numMons is passed as the number of menu selections (which includes Cancel)
     // To indicate that the Cancel needs to be subtracted they pass an additional bool
@@ -610,7 +685,9 @@ void GetConditionMenuMonNameAndLocString(u8 *locationDst, u8 *nameDst, u16 boxId
 
 void GetConditionMenuMonConditions(struct ConditionGraph *graph, u8 *numSparkles, u16 boxId, u16 monId, u16 partyId, u16 id, u16 numMons, bool8 excludesCancel)
 {
-    u16 i;
+    u32 i;
+    u32 centerX = GetGraphCenterX(graph);
+    u32 centerY = GetGraphCenterY(graph);
 
     if (!excludesCancel)
         numMons--;
@@ -625,15 +702,15 @@ void GetConditionMenuMonConditions(struct ConditionGraph *graph, u8 *numSparkles
 
         numSparkles[id] = GET_NUM_CONDITION_SPARKLES(GetBoxOrPartyMonData(boxId, monId, MON_DATA_SHEEN, NULL));
 
-        ConditionGraph_CalcPositions(graph->conditions[id], graph->savedPositions[id]);
+        ConditionGraph_CalcPositions(graph, graph->conditions[id], graph->savedPositions[id]);
     }
     else
     {
         for (i = 0; i < CONDITION_COUNT; i++)
         {
             graph->conditions[id][i] = 0;
-            graph->savedPositions[id][i].x = CONDITION_GRAPH_CENTER_X;
-            graph->savedPositions[id][i].y = CONDITION_GRAPH_CENTER_Y;
+            graph->savedPositions[id][i].x = centerX;
+            graph->savedPositions[id][i].y = centerY;
         }
     }
 }
@@ -654,7 +731,7 @@ void GetConditionMenuMonGfx(void *tilesDst, void *palDst, u16 boxId, u16 monId, 
     }
 }
 
-bool8 MoveConditionMonOnscreen(s16 *x)
+bool32 MoveConditionMonOnscreen(s16 *x)
 {
     *x += 24;
     if (*x > 0)
@@ -663,7 +740,7 @@ bool8 MoveConditionMonOnscreen(s16 *x)
     return (*x != 0);
 }
 
-bool8 MoveConditionMonOffscreen(s16 *x)
+bool32 MoveConditionMonOffscreen(s16 *x)
 {
     *x -= 24;
     if (*x < -80)
@@ -672,18 +749,18 @@ bool8 MoveConditionMonOffscreen(s16 *x)
     return (*x != -80);
 }
 
-bool8 ConditionMenu_UpdateMonEnter(struct ConditionGraph *graph, s16 *x)
+bool32 ConditionMenu_UpdateMonEnter(struct ConditionGraph *graph, s16 *x)
 {
-    bool8 graphUpdating = ConditionGraph_TryUpdate(graph);
-    bool8 monUpdating = MoveConditionMonOnscreen(x);
+    bool32 graphUpdating = ConditionGraph_TryUpdate(graph);
+    bool32 monUpdating = MoveConditionMonOnscreen(x);
 
     return (graphUpdating || monUpdating);
 }
 
-bool8 ConditionMenu_UpdateMonExit(struct ConditionGraph *graph, s16 *x)
+bool32 ConditionMenu_UpdateMonExit(struct ConditionGraph *graph, s16 *x)
 {
-    bool8 graphUpdating = ConditionGraph_TryUpdate(graph);
-    bool8 monUpdating = MoveConditionMonOffscreen(x);
+    bool32 graphUpdating = ConditionGraph_TryUpdate(graph);
+    bool32 monUpdating = MoveConditionMonOffscreen(x);
 
     return (graphUpdating || monUpdating);
 }
@@ -770,7 +847,7 @@ void LoadConditionMonPicTemplate(struct SpriteSheet *sheet, struct SpriteTemplat
 
 void LoadConditionSelectionIcons(struct SpriteSheet *sheets, struct SpriteTemplate * template, struct SpritePalette *pals)
 {
-    u8 i;
+    u32 i;
 
     struct SpriteSheet dataSheets[] =
     {
@@ -920,7 +997,7 @@ static void SetConditionSparklePosition(struct Sprite *sprite)
 
 static void InitConditionSparkles(u8 count, bool8 allowFirstShowAll, struct Sprite **sprites)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < MAX_CONDITION_SPARKLES; i++)
     {
@@ -947,8 +1024,8 @@ static void InitConditionSparkles(u8 count, bool8 allowFirstShowAll, struct Spri
 
 static void SetNextConditionSparkle(struct Sprite *sprite)
 {
-    u16 i;
-    u8 id = sprite->sNextSparkleSpriteId;
+    u32 i;
+    u32 id = sprite->sNextSparkleSpriteId;
     for (i = 0; i < sprite->sNumExtraSparkles + 1; i++)
     {
         gSprites[id].sDelayTimer = (gSprites[id].sSparkleId * 16) + 1;
@@ -959,7 +1036,7 @@ static void SetNextConditionSparkle(struct Sprite *sprite)
 
 void ResetConditionSparkleSprites(struct Sprite **sprites)
 {
-    u8 i;
+    u32 i;
 
     for (i = 0; i < MAX_CONDITION_SPARKLES; i++)
         sprites[i] = NULL;
@@ -967,8 +1044,8 @@ void ResetConditionSparkleSprites(struct Sprite **sprites)
 
 void CreateConditionSparkleSprites(struct Sprite **sprites, u8 monSpriteId, u8 _count)
 {
-    u16 i, spriteId, firstSpriteId = 0;
-    u8 count = _count;
+    u32 i, spriteId, firstSpriteId = 0;
+    u32 count = _count;
 
     for (i = 0; i < count + 1; i++)
     {
@@ -995,7 +1072,7 @@ void CreateConditionSparkleSprites(struct Sprite **sprites, u8 monSpriteId, u8 _
 
 void DestroyConditionSparkleSprites(struct Sprite **sprites)
 {
-    u16 i;
+    u32 i;
 
     for (i = 0; i < MAX_CONDITION_SPARKLES; i++)
     {
@@ -1057,7 +1134,7 @@ static void SpriteCB_ConditionSparkle(struct Sprite *sprite)
 
 static void ShowAllConditionSparkles(struct Sprite *sprite)
 {
-    u8 i, id = sprite->sNextSparkleSpriteId;
+    u32 i, id = sprite->sNextSparkleSpriteId;
 
     for (i = 0; i < sprite->sNumExtraSparkles + 1; i++)
     {

@@ -1199,6 +1199,7 @@ const u32 gSummaryScreen_PageSkills_Tilemap[] = INCBIN_U32("graphics/summary_scr
 const u32 gSummaryScreen_PageMoves_Tilemap[] = INCBIN_U32("graphics/summary_screen/page_moves.bin.lz");
 const u32 gSummaryScreen_PageMovesInfo_Tilemap[] = INCBIN_U32("graphics/summary_screen/page_moves_info.bin.lz");
 const u32 gSummaryScreen_PageEgg_Tilemap[] = INCBIN_U32("graphics/summary_screen/page_egg.bin.lz");
+const u32 gSummaryScreen_PageCondition_Tilemap[] = INCBIN_U32("graphics/summary_screen/condition_page.bin.lz");
 
 const u16 gUnusedRedPalette[] = INCBIN_U16("graphics/unused/red_palette.gbapal");
 

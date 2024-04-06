@@ -37,6 +37,12 @@ enum {
 #define CONDITION_GRAPH_UPDATE_STEPS 10
 #define CONDITION_GRAPH_LOAD_MAX 4
 
+#define PSS_GRAPH_TOP_Y 37
+#define PSS_GRAPH_BOTTOM_Y 102
+#define PSS_GRAPH_HEIGHT  (PSS_GRAPH_BOTTOM_Y - PSS_GRAPH_TOP_Y + 1)
+#define PSS_GRAPH_CENTER_X 181
+#define PSS_GRAPH_CENTER_Y ((PSS_GRAPH_BOTTOM_Y + PSS_GRAPH_TOP_Y) / 2 + 3)
+
 // Equivalent to flavor and contest values, but in a different order.
 enum {
     CONDITION_COOL,
@@ -66,26 +72,28 @@ struct ConditionGraph
     /*0x248*/ u16 scanlineLeft[CONDITION_GRAPH_HEIGHT][2];
     /*0x350*/ u16 bottom;
     /*0x352*/ u16 updateCounter;
-    /*0x354*/ bool8 needsDraw;
+    /*0x354*/ bool8 needsDraw:4;
+              bool8 onSummary:4;
     /*0x355*/ u8 scanlineResetState;
 };
 
 // Condition graph
 void ConditionGraph_Init(struct ConditionGraph *graph);
 void ConditionGraph_InitWindow(u8 bg);
+void ConditionGraph_InitPSSWindow(u8 bg);
 void ConditionGraph_InitResetScanline(struct ConditionGraph *graph);
 bool8 ConditionGraph_ResetScanline(struct ConditionGraph *graph);
 void ConditionGraph_Draw(struct ConditionGraph *graph);
 bool8 ConditionGraph_TryUpdate(struct ConditionGraph *graph);
 void ConditionGraph_Update(struct ConditionGraph *graph);
-void ConditionGraph_CalcPositions(u8 *conditions, struct UCoords16 *positions);
+void ConditionGraph_CalcPositions(struct ConditionGraph *graph, u8 *conditions, struct UCoords16 *positions);
 void ConditionGraph_SetNewPositions(struct ConditionGraph *graph, struct UCoords16 *old, struct UCoords16 *new);
 
 // Condition menu
-bool8 ConditionMenu_UpdateMonEnter(struct ConditionGraph *graph, s16 *x);
-bool8 ConditionMenu_UpdateMonExit(struct ConditionGraph *graph, s16 *x);
-bool8 MoveConditionMonOnscreen(s16 *x);
-bool8 MoveConditionMonOffscreen(s16 *x);
+bool32 ConditionMenu_UpdateMonEnter(struct ConditionGraph *graph, s16 *x);
+bool32 ConditionMenu_UpdateMonExit(struct ConditionGraph *graph, s16 *x);
+bool32 MoveConditionMonOnscreen(s16 *x);
+bool32 MoveConditionMonOffscreen(s16 *x);
 void GetConditionMenuMonNameAndLocString(u8 *locationDst, u8 *nameDst, u16 boxId, u16 monId, u16 partyId, u16 numMons, bool8 excludesCancel);
 void GetConditionMenuMonConditions(struct ConditionGraph *graph, u8 *sheen, u16 boxId, u16 monId, u16 partyId, u16 id, u16 numMons, bool8 excludesCancel);
 void GetConditionMenuMonGfx(void *tilesDst, void *palDst, u16 boxId, u16 monId, u16 partyId, u16 numMons, bool8 excludesCancel);

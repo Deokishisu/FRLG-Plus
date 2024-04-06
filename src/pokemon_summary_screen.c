@@ -40,6 +40,7 @@
 #include "constants/weather.h"
 #include "field_weather.h"
 #include "battle_setup.h"
+#include "menu_specialized.h"
 
 // needs conflicting header to match (curIndex is s8 in the function, but has to be defined as u8 here)
 extern s16 SeekToNextMonInBox(struct BoxPokemon * boxMons, u8 curIndex, u8 maxIndex, u8 flags);
@@ -252,6 +253,7 @@ struct PokemonSummaryScreenData
 
     u8 ALIGNED(4) lastPageFlipDirection; /* 0x3300 */
     u8 ALIGNED(4) unk3304; /* 0x3304 */
+    struct ConditionGraph graph;
 };
 
 struct Struct203B144
@@ -349,6 +351,7 @@ extern const u32 gSummaryScreen_StatusAilmentIcon_Gfx[];
 extern const u16 gSummaryScreen_StatusAilmentIcon_Pal[];
 extern const u32 gSummaryScreen_HpBar_Gfx[];
 extern const u32 gSummaryScreen_ExpBar_Gfx[];
+extern const u32 gSummaryScreen_PageCondition_Tilemap[];
 
 static const u32 sTextHeaderPalette[] = INCBIN_U32("graphics/summary_screen/text_header.gbapal");
 static const u16 sMonMarkingSpritePalette[] = INCBIN_U16("graphics/summary_screen/marking.gbapal");
@@ -729,7 +732,7 @@ static const struct WindowTemplate sWindowTemplates_Permanent_Bg1[] =
         .width = 13,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 0x0258
+        .baseBlock = 0x0299 //0x0258
     },
     [POKESUM_WIN_CONTROLS] = {
         .bg = 1,
@@ -738,7 +741,7 @@ static const struct WindowTemplate sWindowTemplates_Permanent_Bg1[] =
         .width = 11,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 0x0272
+        .baseBlock = 0x02B3 //0x0272
     },
     [POKESUM_WIN_LVL_NICK] = {
         .bg = 1,
@@ -747,7 +750,7 @@ static const struct WindowTemplate sWindowTemplates_Permanent_Bg1[] =
         .width = 15,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 0x0288
+        .baseBlock = 0x02C9 //0x02B3
     }
 };
 
@@ -760,7 +763,7 @@ static const struct WindowTemplate sWindowTemplates_Permanent_Bg2[] =
         .width = 13,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 0x0258
+        .baseBlock = 0x02E7 //0x0258
     },
     {
         .bg = 2,
@@ -769,7 +772,7 @@ static const struct WindowTemplate sWindowTemplates_Permanent_Bg2[] =
         .width = 11,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 0x0272
+        .baseBlock = 0x0301 //0x0272
     },
     {
         .bg = 2,
@@ -778,7 +781,7 @@ static const struct WindowTemplate sWindowTemplates_Permanent_Bg2[] =
         .width = 15,
         .height = 2,
         .paletteNum = 7,
-        .baseBlock = 0x0288
+        .baseBlock = 0x0317 //0x0288
     },
 };
 
@@ -1142,13 +1145,17 @@ static void Task_InputHandler_Info(u8 taskId)
                     sMonSummaryScreen->lastPageFlipDirection = 1;
                     return;
                 }
-                else if (sMonSummaryScreen->curPageIndex < PSS_PAGE_MOVES)
+                else if (sMonSummaryScreen->curPageIndex < PSS_PAGE_CONTEST_STATS)
                 {
                     PlaySE(SE_SELECT);
                     HideBg(0);
                     sMonSummaryScreen->pageFlipDirection = 1;
                     PokeSum_RemoveWindows(sMonSummaryScreen->curPageIndex);
-                    sMonSummaryScreen->curPageIndex++;
+                    if(sMonSummaryScreen->curPageIndex == PSS_PAGE_MOVES)
+                        sMonSummaryScreen->curPageIndex+=2;
+                    else
+                        sMonSummaryScreen->curPageIndex++;
+                    
                     sMonSummaryScreen->state3270 = PSS_STATE3270_FLIPPAGES;
                 }
                 return;
@@ -1166,7 +1173,10 @@ static void Task_InputHandler_Info(u8 taskId)
                     HideBg(0);
                     sMonSummaryScreen->pageFlipDirection = 0;
                     PokeSum_RemoveWindows(sMonSummaryScreen->curPageIndex);
-                    sMonSummaryScreen->curPageIndex--;
+                    if(sMonSummaryScreen->curPageIndex == PSS_PAGE_CONTEST_STATS)
+                        sMonSummaryScreen->curPageIndex-=2;
+                    else
+                        sMonSummaryScreen->curPageIndex--;
                     sMonSummaryScreen->state3270 = PSS_STATE3270_FLIPPAGES;
                 }
                 return;
@@ -1837,17 +1847,34 @@ static void PokeSum_UpdateBgPriorityForPageFlip(u8 setBg0Priority, u8 keepBg1Bg2
 
 static void PokeSum_CopyNewBgTilemapBeforePageFlip_2(void)
 {
-    u8 newPage;
+    u32 newPage;
+    bool32 isCondition = FALSE;
 
-    if (sMonSummaryScreen->pageFlipDirection == 1)
+    if (sMonSummaryScreen->curPageIndex == PSS_PAGE_CONTEST_STATS)
+    {
+        if(sMonSummaryScreen->pageFlipDirection == 1)
+        {
+            newPage = PSS_PAGE_MOVES;
+            isCondition = TRUE;
+        }
+    }
+    else if (sMonSummaryScreen->pageFlipDirection == 1)
         newPage = sMonSummaryScreen->curPageIndex - 1;
     else
-        newPage = sMonSummaryScreen->curPageIndex + 1;
+    {
+        if(sMonSummaryScreen->curPageIndex == PSS_PAGE_MOVES)
+            newPage = PSS_PAGE_CONTEST_STATS;
+        else
+            newPage = sMonSummaryScreen->curPageIndex + 1;
+    }
 
     switch (newPage)
     {
     case PSS_PAGE_INFO:
-        CopyToBgTilemapBuffer(sMonSummaryScreen->infoAndMovesPageBgNum, gSummaryScreen_PageSkills_Tilemap, 0, 0);
+        if (sMonSummaryScreen->pageFlipDirection == 1)
+            CopyToBgTilemapBuffer(sMonSummaryScreen->infoAndMovesPageBgNum, gSummaryScreen_PageSkills_Tilemap, 0, 0);
+        else
+            CopyToBgTilemapBuffer(sMonSummaryScreen->infoAndMovesPageBgNum, gSummaryScreen_PageCondition_Tilemap, 0, 0);
         break;
     case PSS_PAGE_SKILLS:
         if (sMonSummaryScreen->pageFlipDirection == 1)
@@ -1857,15 +1884,33 @@ static void PokeSum_CopyNewBgTilemapBeforePageFlip_2(void)
 
         break;
     case PSS_PAGE_MOVES:
-        if (sMonSummaryScreen->pageFlipDirection == 1)
+        if (isCondition)
+        {
+            CopyToBgTilemapBuffer(sMonSummaryScreen->infoAndMovesPageBgNum, gSummaryScreen_PageCondition_Tilemap, 0, 0);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 7], BG_PLTT_ID(2), PLTT_SIZE_4BPP);
+        }
+        else if (sMonSummaryScreen->pageFlipDirection == 1)
             CopyToBgTilemapBuffer(sMonSummaryScreen->infoAndMovesPageBgNum, gSummaryScreen_PageMovesInfo_Tilemap, 0, 0);
         else
+        {
             CopyToBgTilemapBuffer(sMonSummaryScreen->infoAndMovesPageBgNum, gSummaryScreen_PageSkills_Tilemap, 0, 0);
+            LoadPalette(&gSummaryScreen_Bg_Pal[16 * 2], BG_PLTT_ID(2), PLTT_SIZE_4BPP);
+        }
 
         break;
     case PSS_PAGE_MOVES_INFO:
         CopyToBgTilemapBuffer(sMonSummaryScreen->skillsPageBgNum, gSummaryScreen_PageMoves_Tilemap, 0, 0);
         break;
+    case PSS_PAGE_CONTEST_STATS:
+        /*ConditionGraph_Init(&sMonSummaryScreen->graph);
+        ConditionGraph_InitPSSWindow(2);
+        ConditionGraph_CalcPositions(&sMonSummaryScreen->graph, sMonSummaryScreen->graph.conditions[0], sMonSummaryScreen->graph.savedPositions[0]);
+        ConditionGraph_InitResetScanline(&sMonSummaryScreen->graph);
+        ConditionGraph_Draw(&sMonSummaryScreen->graph);
+        ScanlineEffect_InitHBlankDmaTransfer();*/
+        CopyToBgTilemapBuffer(sMonSummaryScreen->skillsPageBgNum, gSummaryScreen_PageMoves_Tilemap, 0, 0);
+        break;
+
     }
 }
 
@@ -1895,6 +1940,9 @@ static void PokeSum_CopyNewBgTilemapBeforePageFlip(void)
     case PSS_PAGE_MOVES_INFO:
         CopyToBgTilemapBuffer(3, sBgTilemap_MovesInfoPage, 0, 0);
         break;
+    case PSS_PAGE_CONTEST_STATS:
+        CopyToBgTilemapBuffer(sMonSummaryScreen->skillsPageBgNum, gSummaryScreen_PageMoves_Tilemap, 0, 0);
+        break; 
     }
 }
 
@@ -1937,7 +1985,7 @@ static void CB2_SetUpPSS(void)
         PokeSum_PrintMonTypeIcons();
         break;
     case 10:
-        if (sMonSummaryScreen->mode == PSS_MODE_SELECT_MOVE || sMonSummaryScreen->mode == PSS_MODE_FORGET_MOVE)
+        if (sMonSummaryScreen->mode == PSS_MODE_SELECT_MOVE || sMonSummaryScreen->mode == PSS_MODE_FORGET_MOVE) // Here for sprite window switch
             CopyToBgTilemapBuffer(3, sBgTilemap_MovesPage, 0, 0);
         else
             CopyToBgTilemapBuffer(3, sBgTilemap_MovesInfoPage, 0, 0);
@@ -2668,6 +2716,8 @@ static void PokeSum_PrintRightPaneText(void)
     case PSS_PAGE_MOVES_INFO:
         PrintMovesPage();
         break;
+    case PSS_PAGE_CONTEST_STATS:
+        break;
     }
 
     PutWindowTilemap(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE]);
@@ -2804,6 +2854,7 @@ static void PokeSum_PrintBottomPaneText(void)
         PokeSum_PrintSelectedMoveStats();
         break;
     case PSS_PAGE_MOVES:
+    case PSS_PAGE_CONTEST_STATS:
         break;
     }
 
@@ -3155,13 +3206,14 @@ static void PokeSum_PrintAbilityDataOrMoveTypes(void)
     switch (sMonSummaryScreen->curPageIndex)
     {
     case PSS_PAGE_INFO:
+    case PSS_PAGE_CONTEST_STATS:
         break;
     case PSS_PAGE_SKILLS:
         PokeSum_PrintAbilityNameAndDesc();
         break;
     case PSS_PAGE_MOVES:
     case PSS_PAGE_MOVES_INFO:
-        PokeSum_DrawMoveTypeIcons();
+        PokeSum_DrawMoveTypeIcons(); // here for contest types
         break;
     }
 
@@ -3228,6 +3280,11 @@ static void PokeSum_PrintPageHeaderText(u8 curPageIndex)
             PokeSum_PrintControlsString(gText_PokeSum_Controls_PickSwitch);
         else
             PokeSum_PrintControlsString(gText_PokeSum_Controls_Pick);
+        PrintMonLevelNickOnWindow2(gText_PokeSum_NoData);
+        break;
+    case PSS_PAGE_CONTEST_STATS:
+        PokeSum_PrintPageName(gText_PokeSum_PageName_Contest);
+        PokeSum_PrintControlsString(gText_PokeSum_Controls_PageRibbons);
         PrintMonLevelNickOnWindow2(gText_PokeSum_NoData);
         break;
     case PSS_PAGE_MOVE_DELETER:
@@ -3370,7 +3427,7 @@ static void PokeSum_FlipPages_HandleBgHofs(void)
         else
             PokeSum_FlipPages_SlideLayeRight();
     }
-    else
+    else // left
     {
         if (sMonSummaryScreen->curPageIndex != PSS_PAGE_MOVES)
             PokeSum_FlipPages_SlideLayeRight();
@@ -3553,78 +3610,115 @@ static void PokeSum_DrawPageProgressTiles(void)
     case PSS_PAGE_INFO:
         if (!sMonSummaryScreen->isEgg)
         {
-            FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 16 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 32 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 20 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 36 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 21 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 37 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 16 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 32 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 20 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 36 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 20 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 36 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 21 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 37 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 1, 1, 1, 0);
         }
         else
         {
-            FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 48 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 64 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3,  2 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 4, 2, 0);
+            FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 48 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 64 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3,  2 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 4, 2, 0);
+            FillBgTilemapBufferRect(3,  2 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3,  2 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3,  2 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3,  2 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 1, 1, 1, 0);
         }
         break;
     case PSS_PAGE_SKILLS:
-        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 16 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 32 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 21 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 37 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 16 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 32 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 20 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 36 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 21 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 37 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 1, 1, 1, 0);
         break;
     case PSS_PAGE_MOVES:
-        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 48 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 64 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 16 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 32 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 21 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 37 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 1, 1, 1, 0);
         break;
     case PSS_PAGE_MOVES_INFO:
         if (sMonSummaryScreen->mode == PSS_MODE_SELECT_MOVE)
         {
-            FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 4, 1, 0);
-            FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 4, 1, 0);
+            FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 4, 1, 0);
+            FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 4, 1, 0);
         }
         else
         {
-            FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
-            FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
-            FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
+            FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
+            FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
         }
-        FillBgTilemapBufferRect(3, 50 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 66 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 48 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
-        FillBgTilemapBufferRect(3, 64 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 50 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 66 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 16 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 32 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 18 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 34 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 21 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 37 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 1, 1, 1, 0);
         break;
+    case PSS_PAGE_CONTEST_STATS:
+        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 12, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 13, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 14, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 15, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 49 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 65 + PAGE_PROGRESS_BASE_TILE_NUM, 16, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3,  1 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 19 + PAGE_PROGRESS_BASE_TILE_NUM, 17, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 17 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 33 + PAGE_PROGRESS_BASE_TILE_NUM, 18, 1, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 48 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 0, 1, 1, 0);
+        FillBgTilemapBufferRect(3, 64 + PAGE_PROGRESS_BASE_TILE_NUM, 19, 1, 1, 1, 0);
     }
 }
 
@@ -5482,6 +5576,7 @@ static void PokeSum_UpdateWin1ActiveFlag(u8 curPageIndex)
     case PSS_PAGE_INFO:
     case PSS_PAGE_SKILLS:
     case PSS_PAGE_MOVES:
+    case PSS_PAGE_CONTEST_STATS:
         SetGpuReg(REG_OFFSET_DISPCNT, GetGpuReg(REG_OFFSET_DISPCNT) | DISPCNT_WIN1_ON);
         break;
     default:
