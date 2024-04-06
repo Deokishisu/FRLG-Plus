@@ -15,6 +15,7 @@ static bool8 IsFlagOrVarStoredInQuestLog(u16 idx, u8 a1);
 
 #define SPECIAL_FLAGS_SIZE (NUM_SPECIAL_FLAGS / 8)  // 8 flags per byte
 #define TEMP_FLAGS_SIZE    (NUM_TEMP_FLAGS / 8)
+#define DAILY_FLAGS_SIZE    (NUM_DAILY_FLAGS / 8)
 #define TEMP_VARS_SIZE     (NUM_TEMP_VARS * 2)      // 1/2 var per byte
 
 EWRAM_DATA u16 gSpecialVar_0x8000 = 0;
@@ -60,6 +61,11 @@ void ClearTempFieldEventData(void)
     FlagClear(FLAG_SYS_SPECIAL_WILD_BATTLE);
     FlagClear(FLAG_SYS_CTRL_OBJ_DELETE);
     FlagClear(FLAG_SYS_INFORMED_OF_LOCAL_WIRELESS_PLAYER);
+}
+
+void ClearDailyFlags(void)
+{
+    memset(&gSaveBlock1Ptr->flags[DAILY_FLAGS_START / 8], 0, DAILY_FLAGS_SIZE);
 }
 
 // Unused

@@ -88,7 +88,7 @@
 #define VAR_LAST_REPEL_USED                0x4029
 #define VAR_BATTLE_HOUSE                   0x402A //usage overflows into next var
 #define VAR_BATTLE_HOUSE2                  0x402B 
-#define VAR_0x402C                         0x402C
+#define VAR_DAYS                           0x402C // was VAR_RESET_RTC_ENABLE
 #define VAR_DAYCARE_MAN_TRIGGERS           0x402D
 
 #define VAR_GLASS_WORKSHOP_STATE           0x402E
@@ -96,7 +96,7 @@
 
 #define VAR_ICE_STEP_COUNT                 0x4030
 #define VAR_STARTER_MON                    0x4031 // 0: Bulbasaur, 1: Squirtle, 2: Charmander
-#define VAR_RESET_RTC_ENABLE               0x4032
+#define VAR_RESET_RTC_ENABLE               0x4032 // this var is recognised by FRLG as the RTC reset flag
 #define VAR_ENIGMA_BERRY_AVAILABLE         0x4033
 
 #define VAR_CABLE_CAR_STATION_STATE        0x4034

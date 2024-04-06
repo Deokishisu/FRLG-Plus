@@ -1187,6 +1187,7 @@ extern const u8 gText_WouldYouLikeToSaveTheGame[];
 extern const u8 gText_AlreadySaveFile_WouldLikeToOverwrite[];
 extern const u8 gText_SavingDontTurnOffThePower[];
 extern const u8 gText_PlayerSavedTheGame[];
+extern const u8 gText_SaveFailed[];
 extern const u8 gText_DifferentGameFile[];
 
 // script_menu

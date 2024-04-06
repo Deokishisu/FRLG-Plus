@@ -1394,8 +1394,8 @@
 #define FLAG_SYS_EXTENDED_DEX_TOGGLE                                (SYS_FLAGS + 0x32)
 #define FLAG_SYS_ON_RESUME                                          (SYS_FLAGS + 0x33) // Cleared when an OnResume map script could fire
 #define FLAG_SYS_NOT_SOMEONES_PC                                    (SYS_FLAGS + 0x34)
-#define FLAG_0x835                                                  (SYS_FLAGS + 0x35)
-#define FLAG_0x836                                                  (SYS_FLAGS + 0x36)
+#define FLAG_SET_WALL_CLOCK                                         (SYS_FLAGS + 0x35)
+#define FLAG_SYS_CLOCK_SET                                          (SYS_FLAGS + 0x36)
 #define FLAG_SYS_RESET_RTC_ENABLE                                   (SYS_FLAGS + 0x37)
 #define FLAG_0x838                                                  (SYS_FLAGS + 0x38) // Set, never read
 #define FLAG_SYS_MYSTERY_GIFT_ENABLED                               (SYS_FLAGS + 0x39)

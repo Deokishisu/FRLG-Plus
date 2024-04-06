@@ -25,6 +25,7 @@ extern u16 gSpecialVar_PrevTextColor;
 
 void InitEventData(void);
 void ClearTempFieldEventData(void);
+void ClearDailyFlags(void);
 void ClearUpperFlags(void);
 void DisableNationalPokedex(void);
 void EnableNationalPokedex(void);
@@ -53,7 +54,6 @@ void ClearMysteryGiftFlags(void);
 void ClearMysteryGiftVars(void);
 bool32 IsNationalPokedexEnabled(void);
 void EnableNationalPokedex_RSE(void);
-void ClearTempFieldEventData(void);
 u8 NuzlockeFlagSet(u8 mapsec);
 u8 NuzlockeFlagClear(u8 mapsec);
 u8 NuzlockeFlagGet(u8 mapsec);

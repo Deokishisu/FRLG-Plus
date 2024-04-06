@@ -6,6 +6,7 @@
 #include "libgcnmultiboot.h"
 #include "new_menu_helpers.h"
 #include "link.h"
+#include "load_save.h"
 #include "menu.h"
 #include "random.h"
 #include "save.h"
@@ -990,12 +991,31 @@ void CB2_InitCopyrightScreenAfterBootup(void)
 {
     if (!SetUpCopyrightScreen())
     {
+        u8 KeyVersionBackup = gSaveBlock1Ptr->keyFlags.version;
+        u8 KeyDifficultyBackup = gSaveBlock1Ptr->keyFlags.difficulty;
+        u8 KeyNuzlockeBackup = gSaveBlock1Ptr->keyFlags.nuzlocke;
+        u8 KeyIvCalcBackup = gSaveBlock1Ptr->keyFlags.ivCalcMode;
+        u8 KeyEvCalcBackup = gSaveBlock1Ptr->keyFlags.evCalcMode;
+        u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
+        u8 noPMCBackup = gSaveBlock1Ptr->keyFlags.noPMC;
+        u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
+        SeedRngAndSetTrainerId();
+        SetSaveBlocksPointers();
         ResetMenuAndMonGlobals();
         Save_ResetSaveCounters();
         LoadGameSave(SAVE_NORMAL);
         if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_INVALID)
             Sav2_ClearSetDefault();
+        gSaveBlock1Ptr->keyFlags.version = KeyVersionBackup;
+        gSaveBlock1Ptr->keyFlags.difficulty = KeyDifficultyBackup;
+        gSaveBlock1Ptr->keyFlags.nuzlocke = KeyNuzlockeBackup;
+        gSaveBlock1Ptr->keyFlags.ivCalcMode = KeyIvCalcBackup;
+        gSaveBlock1Ptr->keyFlags.evCalcMode = KeyEvCalcBackup;
+        gSaveBlock1Ptr->keyFlags.changedCalcMode = ChangedCalcBackup;
+        gSaveBlock1Ptr->keyFlags.noPMC = noPMCBackup;
+        gSaveBlock1Ptr->keyFlags.expMod = expModBackup;
         SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
+        InitHeap(gHeap, HEAP_SIZE);
     }
 }
 

@@ -25,6 +25,7 @@ const u8 gText_MysteryGiftCantUse[] = _("MYSTERY GIFT can't be used while\nthe W
 const u8 gText_SaveFileCorrupted[] = _("The save file is corrupted.\pThe previous save file will be\nloaded.");
 const u8 gText_SaveFileHasBeenDeleted[] = _("The save file has been\ndeleted...");
 const u8 gText_1MSubCircuitBoardNotInstalled[] = _("The 1M sub-circuit board is\nnot installed.");
+const u8 gText_BatteryRunDry[] = _("The internal battery has run dry.\nThe game can be played.\pHowever, clock-based events will\nno longer occur.");
 const u8 gText_MainMenuTime[] = _("TIME");
 const u8 gText_Controls[] = _("CONTROLS");
 ALIGNED(4) const u8 gText_ABUTTONNext[] = _("{A_BUTTON}NEXT");
@@ -1405,3 +1406,18 @@ const u8 gText_AboutE_Mode[] = _("ABOUT E-MODE");
 const u8 gText_AboutG_Mode[] = _("ABOUT G-MODE");
 const u8 gText_E_Mode[] = _("E-MODE");
 const u8 gText_G_Mode[] = _("G-MODE");
+
+// RTC Reset Screen
+const u8 gText_ResetRTCConfirmCancel[] = _("Reset RTC?\nA: Confirm, B: Cancel");
+const u8 gText_PresentTime[] = _("Present time in game");
+const u8 gText_PreviousTime[] = _("Previous time in game");
+const u8 gText_PleaseResetTime[] = _("Please reset the time.");
+const u8 gText_ClockHasBeenReset[] = _("The clock has been reset.\nData will be saved. Please wait.");
+const u8 gText_SaveCompleted[] = _("Save completed.");
+const u8 gText_NoSaveFileCantSetTime[] = _("There is no save file, so the time\ncan't be set.");
+const u8 gText_InGameClockUsable[] = _("The in-game clock adjustment system\nis now useable.");
+const u8 gText_Day[] = _("DAY");
+
+const u8 gText_IsThisTheCorrectTime[] = _("Is this the correct time?");
+const u8 gText_Confirm3[] = _("CONFIRM");
+const u8 gText_Cancel4[] = _("CANCEL");

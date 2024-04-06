@@ -315,14 +315,14 @@
 	.2byte \flag
 	.endm
 
-	@ In FRLG, this command is a nop. In RSE, initializes the RTC's local time offset to the given hour and minute.
+	@ In RSE/FRLG+, initializes the RTC's local time offset to the given hour and minute.
 	.macro initclock hour:req, minute:req
 	.byte 0x2c
 	.2byte \hour
 	.2byte \minute
 	.endm
 
-	@ In FRLG, this command is a nop. In RSE, updates local time using the RTC and runs time based events.
+	@ In RSE/FRLG+, updates local time using the RTC and runs time based events.
 	.macro dotimebasedevents
 	.byte 0x2d
 	.endm
