@@ -58,8 +58,8 @@ static void FieldEffectScript_LoadTiles(const u8 **script);
 static void FieldEffectScript_LoadFadedPal(const u8 **script);
 static void FieldEffectScript_LoadPal(const u8 **script);
 static void FieldEffectScript_CallNative(const u8 **script, u32 *result);
+static void FieldEffectFreeGraphicsResources(struct Sprite *sprite);
 static void FieldEffectFreeTilesIfUnused(u16 tilesTag);
-static void FieldEffectFreePaletteIfUnused(u8 paletteNum);
 static void Task_PokecenterHeal(u8 taskId);
 static void SpriteCB_PokeballGlow(struct Sprite *sprite);
 static void SpriteCB_PokecenterMonitor(struct Sprite *sprite);
@@ -446,6 +446,28 @@ static void FieldEffectScript_LoadTiles(const u8 **script)
     *script += sizeof(u32);
 }
 
+void ApplyGlobalObjPaletteTint(u8 paletteIdx)
+{
+    switch (gGlobalFieldTintMode)
+    {
+    case 0:
+        return;
+    case 1:
+        TintPalette_GrayScale(&gPlttBufferUnfaded[OBJ_PLTT_ID(paletteIdx)], 16);
+        break;
+    case 2:
+        TintPalette_SepiaTone(&gPlttBufferUnfaded[OBJ_PLTT_ID(paletteIdx)], 16);
+        break;
+    case 3:
+        QuestLog_BackUpPalette(OBJ_PLTT_ID(paletteIdx), 16);
+        TintPalette_GrayScale(&gPlttBufferUnfaded[OBJ_PLTT_ID(paletteIdx)], 16);
+        break;
+    default:
+        return;
+    }
+    CpuFastCopy(&gPlttBufferUnfaded[OBJ_PLTT_ID2(paletteIdx)], &gPlttBufferFaded[OBJ_PLTT_ID2(paletteIdx)], PLTT_SIZE_4BPP);
+}
+
 void ApplyGlobalFieldPaletteTint(u8 paletteIdx)
 {
     switch (gGlobalFieldTintMode)
@@ -557,7 +579,7 @@ static void FieldEffectFreeTilesIfUnused(u16 tileStart)
     FreeSpriteTilesByTag(tileTag);
 }
 
-static void FieldEffectFreePaletteIfUnused(u8 paletteNum)
+void FieldEffectFreePaletteIfUnused(u8 paletteNum)
 {
     u32 i;
     u16 paletteTag = GetSpritePaletteTagByPaletteNum(paletteNum);
@@ -3233,7 +3255,7 @@ u8 FldEff_NpcFlyOut(void)
     u8 spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0x78, 0, 1);
     struct Sprite *sprite = &gSprites[spriteId];
 
-    sprite->oam.paletteNum = 0;
+    sprite->oam.paletteNum = LoadObjectEventPalette(gSaveBlock2Ptr->playerGender ? FLDEFF_PAL_TAG_PLAYER_GREEN : FLDEFF_PAL_TAG_PLAYER_RED);
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_NPCFlyOut;
     sprite->data[1] = gFieldEffectArguments[0];
@@ -3431,7 +3453,7 @@ static u8 CreateFlyBirdSprite(void)
     struct Sprite *sprite;
     spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 255, 180, 1);
     sprite = &gSprites[spriteId];
-    sprite->oam.paletteNum = 0;
+    sprite->oam.paletteNum = LoadObjectEventPalette(gSaveBlock2Ptr->playerGender ? FLDEFF_PAL_TAG_PLAYER_GREEN : FLDEFF_PAL_TAG_PLAYER_RED);
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_FlyBirdLeaveBall;
     return spriteId;

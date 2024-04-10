@@ -1,5 +1,6 @@
 #include "global.h"
 #include "gflib.h"
+#include "field_effect.h"
 
 #define MAX_SPRITE_COPY_REQUESTS 64
 
@@ -1541,7 +1542,7 @@ u8 LoadSpritePalette(const struct SpritePalette *palette)
 
 void LoadSpritePalettes(const struct SpritePalette *palettes)
 {
-    u32 i;
+    u8 i;
     for (i = 0; palettes[i].data != NULL; i++)
         if (LoadSpritePalette(&palettes[i]) == 0xFF)
             break;
@@ -1549,7 +1550,7 @@ void LoadSpritePalettes(const struct SpritePalette *palettes)
 
 static void DoLoadSpritePalette(const u16 *src, u16 paletteOffset)
 {
-    LoadPalette(src, paletteOffset + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
+    LoadPaletteFast(src, paletteOffset + OBJ_PLTT_OFFSET, PLTT_SIZE_4BPP);
 }
 
 u8 AllocSpritePalette(u16 tag)
@@ -1568,7 +1569,7 @@ u8 AllocSpritePalette(u16 tag)
 
 u8 IndexOfSpritePaletteTag(u16 tag)
 {
-    u32 i;
+    u8 i;
     for (i = gReservedSpritePaletteCount; i < 16; i++)
         if (sSpritePaletteTags[i] == tag)
             return i;

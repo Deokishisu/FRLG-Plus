@@ -11,6 +11,7 @@
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/trainer_types.h"
+#include "constants/object_event_palette_tags.h"
 
 typedef u8 (*TrainerApproachFunc)(struct ObjectEvent *, s16, s16, s16);
 typedef bool8 (*TrainerSeeFunc)(u8, struct Task *, struct ObjectEvent *);
@@ -655,9 +656,19 @@ static const union AnimCmd *const sSpriteAnimTable_Emoticons[] = {
     sAnimCmd_Heart
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Emoticons = {
+static const struct SpriteTemplate sSpriteTemplate_EmoticonsMale = {
     .tileTag = 0xFFFF,
-    .paletteTag = 0xFFFF,
+    .paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_RED,
+    .oam = &sOamData_Emoticons,
+    .anims = sSpriteAnimTable_Emoticons,
+    .images = sSpriteImages_Emoticons,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmoticonsFemale = {
+    .tileTag = 0xFFFF,
+    .paletteTag = OBJ_EVENT_PAL_TAG_PLAYER_GREEN,
     .oam = &sOamData_Emoticons,
     .anims = sSpriteAnimTable_Emoticons,
     .images = sSpriteImages_Emoticons,
@@ -667,60 +678,120 @@ static const struct SpriteTemplate sSpriteTemplate_Emoticons = {
 
 u8 FldEff_ExclamationMarkIcon1(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x53);
+    u8 spriteId;
+    if(gSaveBlock2Ptr->playerGender == MALE)
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsMale, 0, 0, 0x53);
+    else
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsFemale, 0, 0, 0x53);
 
     if (spriteId != MAX_SPRITES)
+    {
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_EXCLAMATION_MARK_ICON, 0);
+        if(gSaveBlock2Ptr->playerGender == MALE)
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsMale, &gSprites[spriteId]);
+        else
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsFemale, &gSprites[spriteId]);
+    }
 
     return 0;
 }
 
 u8 FldEff_DoubleExclMarkIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
+    u8 spriteId;
+    if(gSaveBlock2Ptr->playerGender == MALE)
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsMale, 0, 0, 0x52);
+    else
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsFemale, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
+    {
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_DOUBLE_EXCL_MARK_ICON, 1);
+        if(gSaveBlock2Ptr->playerGender == MALE)
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsMale, &gSprites[spriteId]);
+        else
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsFemale, &gSprites[spriteId]);
+    }
 
     return 0;
 }
 
 u8 FldEff_XIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
+    u8 spriteId;
+    if(gSaveBlock2Ptr->playerGender == MALE)
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsMale, 0, 0, 0x52);
+    else
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsFemale, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
+    {
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_X_ICON, 2);
+        if(gSaveBlock2Ptr->playerGender == MALE)
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsMale, &gSprites[spriteId]);
+        else
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsFemale, &gSprites[spriteId]);
+    }
 
     return 0;
 }
 
 u8 FldEff_SmileyFaceIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
+    u8 spriteId;
+    if(gSaveBlock2Ptr->playerGender == MALE)
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsMale, 0, 0, 0x52);
+    else
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsFemale, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
+    {
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_SMILEY_FACE_ICON, 3);
+        if(gSaveBlock2Ptr->playerGender == MALE)
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsMale, &gSprites[spriteId]);
+        else
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsFemale, &gSprites[spriteId]);
+    }
 
     return 0;
 }
 
 u8 FldEff_QuestionMarkIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
+    u8 spriteId;
+    if(gSaveBlock2Ptr->playerGender == MALE)
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsMale, 0, 0, 0x52);
+    else
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsFemale, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
+    {
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_QUESTION_MARK_ICON, 4);
+        if(gSaveBlock2Ptr->playerGender == MALE)
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsMale, &gSprites[spriteId]);
+        else
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsFemale, &gSprites[spriteId]);
+    }
 
     return 0;
 }
 
 u8 FldEff_HeartIcon(void)
 {
-    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_Emoticons, 0, 0, 0x52);
+    u8 spriteId;
+    if(gSaveBlock2Ptr->playerGender == MALE)
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsMale, 0, 0, 0x52);
+    else
+        spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmoticonsFemale, 0, 0, 0x52);
 
     if (spriteId != MAX_SPRITES)
+    {
         SetIconSpriteData(&gSprites[spriteId], FLDEFF_HEART_ICON, 5);
+        if(gSaveBlock2Ptr->playerGender == MALE)
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsMale, &gSprites[spriteId]);
+        else
+            UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmoticonsFemale, &gSprites[spriteId]);
+    }
 
     return 0;
 }

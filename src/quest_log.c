@@ -9,6 +9,7 @@
 #include "overworld.h"
 #include "field_fadetransition.h"
 #include "field_weather.h"
+#include "fieldmap.h"
 #include "event_object_movement.h"
 #include "event_object_lock.h"
 #include "field_player_avatar.h"
@@ -1035,6 +1036,7 @@ void QL_HandleInput(void)
         // Pressed B, end playback
         sPlaybackControl.endMode = END_MODE_FINISH;
         gQuestLogPlaybackState = QL_PLAYBACK_STATE_STOPPED;
+        gGlobalFieldTintMode = QL_TINT_NONE;
         DoSkipToEndTransition(-3);
     }
 }
@@ -1048,6 +1050,8 @@ bool8 QuestLogScenePlaybackIsEnding(void)
 
 void QuestLog_DrawPreviouslyOnQuestHeaderIfInPlaybackMode(void)
 {
+    if (gQuestLogState == QL_STATE_PLAYBACK_LAST || gQuestLogState == QL_STATE_PLAYBACK)
+        TintPalette_GrayScale(&gPlttBufferUnfaded[OBJ_PLTT_ID(gSprites[gObjectEvents[gPlayerAvatar.objectEventId].spriteId].oam.paletteNum)], 16);
     if (gQuestLogState == QL_STATE_PLAYBACK)
         DrawPreviouslyOnQuestHeader(sNumScenes);
 }

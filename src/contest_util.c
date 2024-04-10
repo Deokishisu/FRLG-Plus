@@ -2377,6 +2377,13 @@ extern const u16 gObjectEventPal_NpcWhite[];
 extern const u16 gEmBrendanPalette[];
 extern const u16 gEmMayPalette[];
 
+// copied from event_object_movement
+#define OBJ_EVENT_PAL_TAG_PLAYER_RED                  0x1100
+#define OBJ_EVENT_PAL_TAG_PLAYER_GREEN                0x1110
+#define OBJ_EVENT_PAL_TAG_28                          0x111D
+#define OBJ_EVENT_PAL_TAG_29                          0x111E
+#define OBJ_EVENT_PAL_TAG_NPC_WHITE                   0x1106
+
 void LoadLinkContestPlayerPalettes(void)
 {
     int i;
@@ -2385,7 +2392,8 @@ void LoadLinkContestPlayerPalettes(void)
     struct Sprite *sprite;
     static const u8 sContestantLocalIds[CONTESTANT_COUNT] = { 3, 4, 5, 14 };
 
-    gReservedSpritePaletteCount = 12;
+    //gReservedSpritePaletteCount = 12;
+    // TODO: Does dynamically allocating link player palettes break link contests?
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
     {
         for (i = 0; i < gNumLinkContestPlayers; i++)
@@ -2396,18 +2404,21 @@ void LoadLinkContestPlayerPalettes(void)
             version = (u8)gLinkPlayers[i].version;
             if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
             {
-                LoadPalette(gObjectEventPal_NpcWhite, OBJ_PLTT_ID(6 + i), PLTT_SIZE_4BPP);
+                sprite->oam.paletteNum = LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_NPC_WHITE);
             }
             else if(version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
             {
-                LoadPalette(gObjectEventPal_Player, OBJ_PLTT_ID(6 + i), PLTT_SIZE_4BPP);
+                if (gLinkPlayers[i].gender == MALE)
+                    sprite->oam.paletteNum = LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_PLAYER_RED);
+                else
+                    sprite->oam.paletteNum = LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_PLAYER_GREEN);
             }
             else // Emerald
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    LoadPalette(gEmBrendanPalette, OBJ_PLTT_ID(6 + i), PLTT_SIZE_4BPP);
+                    sprite->oam.paletteNum = LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_28);
                 else
-                    LoadPalette(gEmMayPalette, OBJ_PLTT_ID(6 + i), PLTT_SIZE_4BPP);
+                    sprite->oam.paletteNum = LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_29);
             }
         }
     }
