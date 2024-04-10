@@ -11,6 +11,7 @@
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
 #include "constants/trainer_types.h"
+#include "constants/object_event_palette_tags.h"
 
 typedef u8 (*TrainerApproachFunc)(struct ObjectEvent *, s16, s16, s16);
 typedef bool8 (*TrainerSeeFunc)(u8, struct Task *, struct ObjectEvent *);
@@ -645,7 +646,7 @@ static const union AnimCmd *const sSpriteAnimTable_Emoticons[] = {
 
 static const struct SpriteTemplate sSpriteTemplate_Emoticons = {
     .tileTag = 0xFFFF,
-    .paletteTag = 0xFFFF,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOTES,
     .oam = &sOamData_Emoticons,
     .anims = sSpriteAnimTable_Emoticons,
     .images = sSpriteImages_Emoticons,

@@ -3,6 +3,7 @@
 #include "blend_palette.h"
 #include "field_camera.h"
 #include "field_effect.h"
+#include "fieldmap.h"
 #include "field_weather.h"
 #include "field_weather_util.h"
 #include "field_weather_effects.h"
@@ -13,13 +14,6 @@
 #include "constants/songs.h"
 
 #define DROUGHT_COLOR_INDEX(color) ((((color) >> 1) & 0xF) | (((color) >> 2) & 0xF0) | (((color) >> 3) & 0xF00))
-
-enum
-{
-    GAMMA_NONE,
-    GAMMA_NORMAL,
-    GAMMA_ALT,
-};
 
 struct RGBColor
 {
@@ -136,7 +130,7 @@ static void (*const sWeatherPalStateFuncs[])(void) = {
     DoNothing
 };
 
-static const u8 sBasePaletteGammaTypes[32] = {
+EWRAM_DATA u8 ALIGNED(2) sBasePaletteGammaTypes[32] = {
     // background palettes
     GAMMA_NORMAL,
     GAMMA_NORMAL,
@@ -157,15 +151,15 @@ static const u8 sBasePaletteGammaTypes[32] = {
     // sprite palettes
     GAMMA_ALT,
     GAMMA_NORMAL,
-    GAMMA_ALT,
-    GAMMA_ALT,
-    GAMMA_ALT,
-    GAMMA_ALT,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
-    GAMMA_ALT,
+    GAMMA_NORMAL,
+    GAMMA_NORMAL,
+    GAMMA_NORMAL,
+    GAMMA_NORMAL,
+    GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
     GAMMA_NORMAL,
@@ -201,9 +195,12 @@ void StartWeather(void)
     if (!FuncIsActiveTask(Task_WeatherMain))
     {
         u8 index = AllocSpritePalette(0x1200);
+        u32 i;
         CpuCopy32(gDefaultWeatherSpritePalette, &gPlttBufferUnfaded[OBJ_PLTT_ID(index)], PLTT_SIZE_4BPP);
-        ApplyGlobalFieldPaletteTint(index);
+        for (i = 0; i < NUM_PALS_TOTAL; i++)
+            sBasePaletteGammaTypes[i] = GAMMA_NORMAL;
         sPaletteGammaTypes = sBasePaletteGammaTypes;
+        ApplyGlobalFieldPaletteTint(index);
         gWeatherPtr->altGammaSpritePalIndex = index;
         gWeatherPtr->weatherPicSpritePalIndex = index;
         gWeatherPtr->rainSpriteCount = 0;
@@ -1154,4 +1151,10 @@ void SlightlyDarkenPalsInWeather(u16 *palbuf, u16 *unused, u32 size)
         BlendPalettesAt(palbuf, RGB_BLACK, 3, size);
         break;
     }
+}
+
+void UpdatePaletteGammaType(u8 index, u8 gammaType)
+{
+	if (index != 0xFF)
+		sBasePaletteGammaTypes[index + 16] = gammaType;
 }

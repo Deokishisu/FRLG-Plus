@@ -91,6 +91,14 @@ void LoadPalette(const void *src, u16 offset, u16 size)
     CpuCopy16(src, &gPlttBufferFaded[offset], size);
 }
 
+void LoadPaletteFast(const void *src, u16 offset, u16 size)
+{
+    if ((u32)src & 3)
+        return LoadPalette(src, offset, size);
+    CpuFastCopy(src, &gPlttBufferUnfaded[offset], size);
+    CpuFastCopy(&gPlttBufferUnfaded[offset], &gPlttBufferFaded[offset], size);
+}
+
 void FillPalette(u16 value, u16 offset, u16 size)
 {
     CpuFill16(value, &gPlttBufferUnfaded[offset], size);
