@@ -446,6 +446,7 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_BridgeReflection,        OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
     {gObjectEventPal_RSQuintyPlump,           OBJ_EVENT_PAL_TAG_RS_QUINTY_PLUMP},
     {gObjectEventPal_RSQuintyPlumpReflection, OBJ_EVENT_PAL_TAG_RS_QUINTY_PLUMP_REFLECTION},
+    {gObjectEventPal_RSPoochyena,             OBJ_EVENT_PAL_TAG_RS_POOCHYENA},
     {gObjectEventPal_Player,                  OBJ_EVENT_PAL_TAG_PLAYER_GREEN},
     {gObjectEventPal_PlayerReflection,        OBJ_EVENT_PAL_TAG_PLAYER_GREEN_REFLECTION},
     {gObjectEventPal_Meteorite,               OBJ_EVENT_PAL_TAG_METEORITE},
@@ -456,6 +457,15 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gEmMayPalette,                           OBJ_EVENT_PAL_TAG_29},
     {gObjectEventPal_CableCar,                OBJ_EVENT_PAL_TAG_CABLE_CAR},
     {gObjectEventPal_Lady,                    OBJ_EVENT_PAL_TAG_LADY},
+    {gObjectEventPal_RSNpc1,                  OBJ_EVENT_PAL_TAG_RS_NPC_1},
+    {gObjectEventPal_RSNpc2,                  OBJ_EVENT_PAL_TAG_RS_NPC_2},
+    {gObjectEventPal_RSNpc3,                  OBJ_EVENT_PAL_TAG_RS_NPC_3},
+    {gObjectEventPal_RSNpc4,                  OBJ_EVENT_PAL_TAG_RS_NPC_4},
+    {gObjectEventPal_RSNpc1Reflection,        OBJ_EVENT_PAL_TAG_RS_NPC_1_REFLECTION},
+    {gObjectEventPal_RSNpc2Reflection,        OBJ_EVENT_PAL_TAG_RS_NPC_2_REFLECTION},
+    {gObjectEventPal_RSNpc3Reflection,        OBJ_EVENT_PAL_TAG_RS_NPC_3_REFLECTION},
+    {gObjectEventPal_RSNpc4Reflection,        OBJ_EVENT_PAL_TAG_RS_NPC_4_REFLECTION},
+    {gObjectEventPal_RSZigzagoon,             OBJ_EVENT_PAL_TAG_RS_ZIGZAGOON},
     {},
 };
 
@@ -1599,7 +1609,7 @@ u8 SpawnSpecialObjectEvent(struct ObjectEventTemplate *objectEventTemplate)
     return TrySpawnObjectEventTemplate(objectEventTemplate, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, cameraX, cameraY);
 }
 
-int SpawnSpecialObjectEventParameterized(u8 graphicsId, u8 movementBehavior, u8 localId, s16 x, s16 y, u8 elevation)
+int SpawnSpecialObjectEventParameterized(u16 graphicsId, u8 movementBehavior, u8 localId, s16 x, s16 y, u8 elevation)
 {
     struct ObjectEventTemplate objectEventTemplate;
 
@@ -1687,7 +1697,7 @@ u8 CreateObjectGraphicsSprite(u16 graphicsId, SpriteCallback callback, s16 x, s1
 #define sVirtualObjId   data[0]
 #define sVirtualObjElev data[1]
 
-u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevation, u8 direction)
+u8 CreateVirtualObject(u16 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevation, u8 direction)
 {
     u8 spriteId;
     struct Sprite *sprite;
@@ -1726,7 +1736,7 @@ u8 CreateVirtualObject(u8 graphicsId, u8 virtualObjId, s16 x, s16 y, u8 elevatio
     return spriteId;
 }
 
-u8 CreateFameCheckerObject(u8 graphicsId, u8 localId, s16 x, s16 y)
+u8 CreateFameCheckerObject(u16 graphicsId, u8 localId, s16 x, s16 y)
 {
     u8 spriteId;
     struct Sprite *sprite;
@@ -1970,14 +1980,14 @@ static void ObjectEventSetGraphics(struct ObjectEvent *objectEvent, const struct
     }
 }
 
-void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 graphicsId)
+void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u16 graphicsId)
 {
     objectEvent->graphicsId = graphicsId;
     ObjectEventSetGraphics(objectEvent, GetObjectEventGraphicsInfo(graphicsId));
     objectEvent->graphicsId = graphicsId;
 }
 
-void ObjectEventSetGraphicsIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, u8 graphicsId)
+void ObjectEventSetGraphicsIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup, u16 graphicsId)
 {
     u8 objectEventId;
 
@@ -2012,7 +2022,7 @@ void PlayerObjectTurn(struct PlayerAvatar *playerAvatar, u8 direction)
     ObjectEventTurn(&gObjectEvents[playerAvatar->objectEventId], direction);
 }
 
-const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u8 graphicsId)
+const struct ObjectEventGraphicsInfo *GetObjectEventGraphicsInfo(u16 graphicsId)
 {
     if (graphicsId >= OBJ_EVENT_GFX_VARS)
         graphicsId = VarGetObjectEventGraphicsId(graphicsId - OBJ_EVENT_GFX_VARS);
@@ -9144,7 +9154,7 @@ void TurnVirtualObject(u8 virtualObjId, u8 direction)
     }
 }
 
-void SetVirtualObjectGraphics(u8 virtualObjId, u8 direction)
+void SetVirtualObjectGraphics(u8 virtualObjId, u16 direction)
 {
     int spriteId = GetVirtualObjectSpriteId(virtualObjId);
 

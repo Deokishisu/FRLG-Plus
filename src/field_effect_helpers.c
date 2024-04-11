@@ -153,6 +153,14 @@ u32 PalTagToReflectionTag(u32 palTag)
             return OBJ_EVENT_PAL_TAG_RS_QUINTY_PLUMP_REFLECTION;
         case OBJ_EVENT_PAL_TAG_PLAYER_GREEN:
             return OBJ_EVENT_PAL_TAG_PLAYER_GREEN_REFLECTION;
+        case OBJ_EVENT_PAL_TAG_RS_NPC_1:
+            return OBJ_EVENT_PAL_TAG_RS_NPC_1_REFLECTION;
+        case OBJ_EVENT_PAL_TAG_RS_NPC_2:
+            return OBJ_EVENT_PAL_TAG_RS_NPC_2_REFLECTION;
+        case OBJ_EVENT_PAL_TAG_RS_NPC_3_REFLECTION:
+            return OBJ_EVENT_PAL_TAG_RS_NPC_3_REFLECTION;
+        case OBJ_EVENT_PAL_TAG_RS_NPC_4:
+            return OBJ_EVENT_PAL_TAG_RS_NPC_4_REFLECTION;
         default:
             return OBJ_EVENT_PAL_TAG_NONE;
     }

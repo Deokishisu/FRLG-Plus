@@ -57,7 +57,7 @@ static const u8 sUnused[] = {
 
 struct SinglesTrainerInfo
 {
-    u8 objGfx;
+    u16 objGfx;
     u8 facilityClass;
     bool8 gender;
 };
@@ -487,7 +487,8 @@ void ChooseNextBattleTowerTrainer(void)
 static void SetBattleTowerTrainerGfxId(u8 trainerClass)
 {
     u32 i;
-    u8 facilityClass, trainerGfx1;
+    u8 facilityClass;
+    u16 trainerGfx1;
 
     facilityClass = gBattleTowerTrainers[trainerClass].trainerClass;
     for (i = 0; i < NELEMS(sSingleBattleTrainerInfo); i++)

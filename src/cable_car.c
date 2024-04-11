@@ -797,14 +797,14 @@ static void SetBgRegs(bool8 active)
 static void CreateCableCarSprites(void)
 {
     u8 spriteId;
-    u8 i;
+    u32 i;
 
-    u8 playerGraphicsIds[2] = {
+    u16 playerGraphicsIds[2] = {
         [MALE]   = OBJ_EVENT_GFX_RED_NORMAL,
         [FEMALE] = OBJ_EVENT_GFX_GREEN_NORMAL
     };
     u16 rval = Random();
-    u8 hikerGraphicsIds[4] = {
+    u16 hikerGraphicsIds[4] = {
         OBJ_EVENT_GFX_HIKER,
         OBJ_EVENT_GFX_CAMPER,
         OBJ_EVENT_GFX_PICNICKER,

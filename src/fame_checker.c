@@ -262,7 +262,7 @@ static const u8 *const sFameCheckerFlavorTextPointers[] = {
     gFameCheckerFlavorText_Giovanni0, gFameCheckerFlavorText_Giovanni1, gFameCheckerFlavorText_Giovanni2, gFameCheckerFlavorText_Giovanni3, gFameCheckerFlavorText_Giovanni4, gFameCheckerFlavorText_Giovanni5
 };
 
-static const u8 sFameCheckerArrayNpcGraphicsIds[] = {
+static const u16 sFameCheckerArrayNpcGraphicsIds[] = {
     // OAK
     OBJ_EVENT_GFX_SIGN,
     OBJ_EVENT_GFX_PROF_OAK,

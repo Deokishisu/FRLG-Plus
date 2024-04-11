@@ -4,8 +4,8 @@
 #include "global.h"
 
 void ClearPlayerAvatarInfo(void);
-void SetPlayerAvatarExtraStateTransition(u8, u8);
-u8 GetPlayerAvatarGenderByGraphicsId(u8);
+void SetPlayerAvatarExtraStateTransition(u16, u8);
+u8 GetPlayerAvatarGenderByGraphicsId(u16);
 bool8 TestPlayerAvatarFlags(u8);
 void PlayerGetDestCoords(s16 *, s16 *);
 u8 GetPlayerFacingDirection(void);
@@ -17,7 +17,7 @@ void MovementType_Player(struct Sprite *sprite);
 void HandleEnforcedLookDirectionOnPlayerStopMoving(void);
 void StopPlayerAvatar(void);
 void GetXYCoordsOneStepInFrontOfPlayer(s16 *xPtr, s16 *yPtr);
-u8 GetPlayerAvatarGraphicsIdByStateId(u8);
+u16 GetPlayerAvatarGraphicsIdByStateId(u8);
 void SetPlayerAvatarStateMask(u8 mask);
 void AlignFishingAnimationFrames(struct Sprite *sprite);
 void CreateStopSurfingTask_NoMusicChange(u8 direction);
@@ -27,7 +27,7 @@ bool8 IsPlayerFacingSurfableFishableWater(void);
 void StartFishing(u8 secondaryId);
 u8 GetPlayerAvatarObjectId(void);
 u8 PlayerGetElevation(void);
-u8 GetPlayerAvatarGraphicsIdByCurrentState(void);
+u16 GetPlayerAvatarGraphicsIdByCurrentState(void);
 void StartPlayerAvatarSummonMonForFieldMoveAnim(void);
 void SetPlayerInvisibility(bool8);
 void StartTeleportInPlayerAnim(void);
@@ -38,8 +38,8 @@ bool8 PartyHasMonWithSurf(void);
 bool8 IsPlayerSurfingNorth(void);
 u8 player_get_pos_including_state_based_drift(s16 *x, s16 *y);
 void StartPlayerAvatarVsSeekerAnim(void);
-u8 GetRivalAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender);
-u8 GetPlayerAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender);
+u16 GetRivalAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender);
+u16 GetPlayerAvatarGraphicsIdByStateIdAndGender(u8 state, u8 gender);
 u8 CheckForObjectEventCollision(struct ObjectEvent *objectEvent, s16 x, s16 y, u8 direction, u8 metatileBehavior);
 void PlayerWalkSlower(u8 direction);
 void PlayerWalkSlow(u8 direction);
@@ -63,7 +63,7 @@ void UpdatePlayerAvatarTransitionState(void);
 void InitPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender);
 void InitDivingPlayerAvatar(s16 x, s16 y, u8 direction, u8 gender);
 void PlayerUseAcroBikeOnBumpySlope(u8 direction);
-u8 GetRSAvatarGraphicsIdByGender(u8 gender);
-u8 GetEMAvatarGraphicsIdByGender(u8 gender);
+u16 GetRSAvatarGraphicsIdByGender(u8 gender);
+u16 GetEMAvatarGraphicsIdByGender(u8 gender);
 
 #endif //GUARD_FIELD_PLAYER_AVATAR_H

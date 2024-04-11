@@ -86,7 +86,7 @@ static void Task_DoDeoxysTriangleInteraction(u8 taskId);
 static void MoveDeoxysObject(u8 num);
 static void Task_WaitDeoxysFieldEffect(u8 taskId);
 static void Task_WingFlapSound(u8 taskId);
-static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum);
+static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEventId, u8 paletteNum);
 
 static u8 *const sStringVarPtrs[] = {
     gStringVar1,
@@ -341,7 +341,7 @@ void AnimatePcTurnOff()
 
 void SpawnCameraObject(void)
 {
-    u8 objectEventId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_YOUNGSTER, 8, OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->pos.x + MAP_OFFSET, gSaveBlock1Ptr->pos.y + MAP_OFFSET, 3);
+    u32 objectEventId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_YOUNGSTER, 8, OBJ_EVENT_ID_CAMERA, gSaveBlock1Ptr->pos.x + MAP_OFFSET, gSaveBlock1Ptr->pos.y + MAP_OFFSET, 3);
     gObjectEvents[objectEventId].invisible = TRUE;
     CameraObjectSetFollowedObjectId(gObjectEvents[objectEventId].spriteId);
 }
@@ -1689,7 +1689,7 @@ void ResetContextNpcTextColor(void)
 
 u8 ContextNpcGetTextColor(void)
 {
-    u8 gfxId;
+    u16 gfxId;
     if (gSpecialVar_TextColor != NPC_TEXT_COLOR_DEFAULT)
     {
         // A text color has been specified, use that
@@ -2900,7 +2900,7 @@ void SpawnLinkPartnerObjectEvent(void)
     };
     u8 myLinkPlayerNumber;
     u8 playerFacingDirection;
-    u8 linkSpriteId;
+    u16 linkSpriteId;
     u32 i;
 
     myLinkPlayerNumber = GetMultiplayerId();
@@ -2967,7 +2967,7 @@ extern const u16 gObjectEventPal_NpcWhite[];
 extern const u16 gEmBrendanPalette[];
 extern const u16 gEmMayPalette[];
 
-static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEventId, u8 paletteNum)
+static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEventId, u8 paletteNum)
 {
     u8 adjustedPaletteNum;
     // Note: This temp var is necessary; paletteNum += 6 doesn't match.

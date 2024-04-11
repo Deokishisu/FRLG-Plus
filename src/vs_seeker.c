@@ -69,7 +69,7 @@ struct VsSeekerTrainerInfo
     u8 objectEventId;
     s16 xCoord;
     s16 yCoord;
-    u8 graphicsId;
+    u16 graphicsId;
 };
 
 struct VsSeekerStruct
@@ -103,7 +103,7 @@ static u8 ShouldTryRematchBattleInternal(const struct RematchData * vsSeekerData
 static u8 HasRematchTrainerAlreadyBeenFought(const struct RematchData * vsSeekerData, u16 trainerBattleOpponent);
 static int LookupVsSeekerOpponentInArray(const struct RematchData * array, u16 trainerId);
 static bool8 IsTrainerReadyForRematchInternal(const struct RematchData * array, u16 trainerIdx);
-static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId);
+static u8 GetRunningBehaviorFromGraphicsId(u16 graphicsId);
 static u16 GetTrainerFlagFromScript(const u8 * script);
 static int GetRematchIdx(const struct RematchData * vsSeekerData, u16 trainerFlagIdx);
 static bool32 IsThisTrainerRematchable(u32 localId);
@@ -1155,7 +1155,7 @@ static u8 GetRandomFaceDirectionMovementType()
     }
 }
 
-static u8 GetRunningBehaviorFromGraphicsId(u8 graphicsId)
+static u8 GetRunningBehaviorFromGraphicsId(u16 graphicsId)
 {
     switch (graphicsId)
     {

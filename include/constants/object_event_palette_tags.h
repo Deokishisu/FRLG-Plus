@@ -38,6 +38,15 @@
 #define OBJ_EVENT_PAL_TAG_33                          0x1122
 #define OBJ_EVENT_PAL_TAG_34                          0x1123
 #define OBJ_EVENT_PAL_TAG_LADY                        0x1124
+#define OBJ_EVENT_PAL_TAG_RS_NPC_1                    0x1125
+#define OBJ_EVENT_PAL_TAG_RS_NPC_2                    0x1126
+#define OBJ_EVENT_PAL_TAG_RS_NPC_3                    0x1127
+#define OBJ_EVENT_PAL_TAG_RS_NPC_4                    0x1128
+#define OBJ_EVENT_PAL_TAG_RS_NPC_1_REFLECTION         0x1129
+#define OBJ_EVENT_PAL_TAG_RS_NPC_2_REFLECTION         0x112A
+#define OBJ_EVENT_PAL_TAG_RS_NPC_3_REFLECTION         0x112B
+#define OBJ_EVENT_PAL_TAG_RS_NPC_4_REFLECTION         0x112C
+#define OBJ_EVENT_PAL_TAG_RS_ZIGZAGOON                0x1129
 
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
