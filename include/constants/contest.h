@@ -217,4 +217,159 @@
 #define COMBO_STARTER_SMOG          61
 #define COMBO_STARTER_CALM_MIND     62
 
+// Contest OBJ_EVENT_GFX_ constants
+// This is necessary because struct ContestPokemon's trainerGfxId field
+// needs to stay u8 for compatibility with vanilla. These constants get
+// converted to either vanilla or FRLG+ OBJ_EVENT_GFX_* for display or
+// sending to vanilla in E-Mode link contests.
+
+// FRLG+
+#define CONTEST_OBJ_DAISY                    1
+#define CONTEST_OBJ_LITTLE_BOY               2
+#define CONTEST_OBJ_BALDING_MAN              3
+#define CONTEST_OBJ_BEAUTY                   4
+#define CONTEST_OBJ_LITTLE_GIRL              5
+#define CONTEST_OBJ_YOUNGSTER                6
+#define CONTEST_OBJ_BLACKBELT                7
+#define CONTEST_OBJ_PICNICKER                8
+#define CONTEST_OBJ_BATTLE_GIRL              9
+#define CONTEST_OBJ_GENTLEMAN               10
+#define CONTEST_OBJ_POKEMON_RANGER_F        11
+#define CONTEST_OBJ_BOY                     12
+#define CONTEST_OBJ_FAT_MAN                 13
+#define CONTEST_OBJ_CHANNELER               14
+#define CONTEST_OBJ_PSYCHIC_F               15
+#define CONTEST_OBJ_ENGINEER                16
+#define CONTEST_OBJ_CAMPER                  17
+#define CONTEST_OBJ_BUG_CATCHER             18
+#define CONTEST_OBJ_PAINTER                 19
+#define CONTEST_OBJ_TUBER_F                 20
+#define CONTEST_OBJ_POKE_MANIAC             21
+#define CONTEST_OBJ_POKEMON_RANGER_M        22
+#define CONTEST_OBJ_WOMAN_3                 23
+#define CONTEST_OBJ_CHEF                    24
+#define CONTEST_OBJ_AROMA_LADY              25
+#define CONTEST_OBJ_BIRD_KEEPER             26
+#define CONTEST_OBJ_OLD_WOMAN               27
+#define CONTEST_OBJ_JUGGLER                 28
+#define CONTEST_OBJ_OLD_MAN_1               29
+#define CONTEST_OBJ_SAILOR                  30
+#define CONTEST_OBJ_WORKER_M                31
+#define CONTEST_OBJ_YOUNG_COUPLE_M          32
+#define CONTEST_OBJ_CLERK                   33
+#define CONTEST_OBJ_CAPTAIN                 34
+#define CONTEST_OBJ_HIKER                   35
+#define CONTEST_OBJ_RUIN_MANIAC             36
+#define CONTEST_OBJ_YOUNG_COUPLE_F          37
+#define CONTEST_OBJ_WOMAN_1                 38
+#define CONTEST_OBJ_COOLTRAINER_M           39
+#define CONTEST_OBJ_CABLE_CLUB_RECEPTIONIST 40
+#define CONTEST_OBJ_SCIENTIST               41
+#define CONTEST_OBJ_ROCKER                  42
+#define CONTEST_OBJ_FISHER                  43
+#define CONTEST_OBJ_TUBER_M_LAND            44
+#define CONTEST_OBJ_SUPER_NERD              45
+#define CONTEST_OBJ_MAN                     46
+#define CONTEST_OBJ_BURGLAR                 47
+#define CONTEST_OBJ_POKEMON_BREEDER         48
+#define CONTEST_OBJ_COOLTRAINER_F           49
+
+// Emerald (Only Emerald can have AI Contest Opponents in Link Mode)
+#define CONTEST_OBJ_RS_MAN_4                50
+#define CONTEST_OBJ_RS_BOY_1                51
+#define CONTEST_OBJ_RS_GIRL_1               52
+#define CONTEST_OBJ_RS_LITTLE_BOY           53
+#define CONTEST_OBJ_RS_WOMAN_1              54
+#define CONTEST_OBJ_RS_POKEFAN_F            55
+#define CONTEST_OBJ_RS_BLACK_BELT           56
+#define CONTEST_OBJ_RS_YOUNGSTER            57
+#define CONTEST_OBJ_RS_WOMAN_4              58
+#define CONTEST_OBJ_RS_CAMPER               59
+#define CONTEST_OBJ_RS_LASS                 60
+#define CONTEST_OBJ_RS_SCHOOL_KID_M         61
+#define CONTEST_OBJ_RS_GIRL_2               62
+#define CONTEST_OBJ_RS_MAN_3                63
+#define CONTEST_OBJ_RS_TWIN                 64
+#define CONTEST_OBJ_RS_RICH_BOY             65
+#define CONTEST_OBJ_RS_WOMAN_2              66
+#define CONTEST_OBJ_RS_HEX_MANIAC           67
+#define CONTEST_OBJ_RS_WOMAN_5              68
+#define CONTEST_OBJ_RS_HIKER                69
+#define CONTEST_OBJ_RS_TUBER_F              70
+#define CONTEST_OBJ_RS_NINJA_BOY            71
+#define CONTEST_OBJ_RS_BEAUTY               72
+#define CONTEST_OBJ_RS_MAN_5                73
+#define CONTEST_OBJ_RS_MANIAC               74
+#define CONTEST_OBJ_RS_PICNICKER            75
+#define CONTEST_OBJ_RS_RUNNING_TRIATHLETE_M 76
+#define CONTEST_OBJ_RS_FAT_MAN              77
+#define CONTEST_OBJ_RS_PSYCHIC_M            78
+#define CONTEST_OBJ_RS_EXPERT_M             79
+#define CONTEST_OBJ_RS_TEALA                80
+#define CONTEST_OBJ_RS_GENTLEMAN            81
+#define CONTEST_OBJ_RS_EXPERT_F             82
+#define CONTEST_OBJ_RS_SAILOR               83
+#define CONTEST_OBJ_RS_GIRL_3               84
+#define CONTEST_OBJ_RS_BUG_CATCHER          85
+#define CONTEST_OBJ_RS_POKEFAN_M            86
+#define CONTEST_OBJ_RS_SCIENTIST_1          87
+
+// Player Characters
+#define CONTEST_OBJ_RED_NORMAL              88
+#define CONTEST_OBJ_GREEN_NORMAL            89
+#define CONTEST_OBJ_RS_BRENDAN              90
+#define CONTEST_OBJ_RS_MAY                  91
+#define CONTEST_OBJ_EM_BRENDAN              92
+#define CONTEST_OBJ_EM_MAY                  93
+
+// Vanilla Emerald OBJ_EVENT_GFX_* constants that
+// correspond to vanilla contest AI opponents.
+// Used in ConvertContestObjToEmerald() and
+// ConvertEmeraldToContestObj().
+
+#define EM_OBJ_EVT_GFX_MAN_4                65
+#define EM_OBJ_EVT_GFX_BOY_1                 7
+#define EM_OBJ_EVT_GFX_GIRL_1                8
+#define EM_OBJ_EVT_GFX_LITTLE_BOY           11
+#define EM_OBJ_EVT_GFX_WOMAN_1              16
+#define EM_OBJ_EVT_GFX_POKEFAN_F            18
+#define EM_OBJ_EVT_GFX_BLACK_BELT           44
+#define EM_OBJ_EVT_GFX_YOUNGSTER            35
+#define EM_OBJ_EVT_GFX_WOMAN_4              26
+#define EM_OBJ_EVT_GFX_CAMPER               31
+#define EM_OBJ_EVT_GFX_LASS                 47
+#define EM_OBJ_EVT_GFX_SCHOOL_KID_M         38
+#define EM_OBJ_EVT_GFX_GIRL_2               10
+#define EM_OBJ_EVT_GFX_MAN_3                33
+#define EM_OBJ_EVT_GFX_TWIN                  6
+#define EM_OBJ_EVT_GFX_RICH_BOY             15
+#define EM_OBJ_EVT_GFX_WOMAN_2              20
+#define EM_OBJ_EVT_GFX_HEX_MANIAC           40
+#define EM_OBJ_EVT_GFX_WOMAN_5              34
+#define EM_OBJ_EVT_GFX_HIKER                55
+#define EM_OBJ_EVT_GFX_TUBER_F              53
+#define EM_OBJ_EVT_GFX_NINJA_BOY             5
+#define EM_OBJ_EVT_GFX_BEAUTY               45
+#define EM_OBJ_EVT_GFX_MAN_5                66
+#define EM_OBJ_EVT_GFX_MANIAC               39
+#define EM_OBJ_EVT_GFX_PICNICKER            32
+#define EM_OBJ_EVT_GFX_RUNNING_TRIATHLETE_M 51
+#define EM_OBJ_EVT_GFX_FAT_MAN              17
+#define EM_OBJ_EVT_GFX_PSYCHIC_M            37
+#define EM_OBJ_EVT_GFX_EXPERT_M             21
+#define EM_OBJ_EVT_GFX_TEALA                85
+#define EM_OBJ_EVT_GFX_GENTLEMAN            48
+#define EM_OBJ_EVT_GFX_EXPERT_F             22
+#define EM_OBJ_EVT_GFX_SAILOR               49
+#define EM_OBJ_EVT_GFX_GIRL_3               14
+#define EM_OBJ_EVT_GFX_BUG_CATCHER          36
+#define EM_OBJ_EVT_GFX_POKEFAN_M            25
+#define EM_OBJ_EVT_GFX_SCIENTIST_1          46
+#define EM_OBJ_EVT_GFX_RED                  230
+#define EM_OBJ_EVT_GFX_LEAF                 231
+#define EM_OBJ_EVT_GFX_RS_BRENDAN           235
+#define EM_OBJ_EVT_GFX_RS_MAY               236
+#define EM_OBJ_EVT_GFX_LINK_BRENDAN         216
+#define EM_OBJ_EVT_GFX_LINK_MAY             217
+
 #endif  // GUARD_CONSTANTS_CONTEST_H

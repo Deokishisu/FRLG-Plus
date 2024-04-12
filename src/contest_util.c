@@ -883,6 +883,7 @@ static void Task_ShowWinnerMonBanner(u8 taskId)
     u16 species;
     u32 otId;
     u32 personality;
+    u32 deoxysForme;
     const struct CompressedSpritePalette *pokePal;
 
     switch (gTasks[taskId].tState)
@@ -895,22 +896,16 @@ static void Task_ShowWinnerMonBanner(u8 taskId)
         species = gContestMons[i].species;
         personality = gContestMons[i].personality;
         otId = gContestMons[i].otId;
-        if (i == gContestPlayerMonIndex)
-        {
-            HandleLoadSpecialPokePic(
-                &gMonFrontPicTable[species],
-                gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT],
-                species,
-                personality);
-        }
-        else
-        {
-            HandleLoadSpecialPokePic_DontHandleDeoxys(
-                &gMonFrontPicTable[species],
-                gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT],
-                species,
-                personality);
-        }
+        deoxysForme = gContestMons[i].deoxysForme - 1;
+
+        if(species != SPECIES_DEOXYS)
+            deoxysForme = personality;
+
+        HandleLoadSpecialPokePic(
+            &gMonFrontPicTable[species],
+            gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT],
+            species,
+            deoxysForme);
 
         pokePal = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
         LoadCompressedSpritePalette(pokePal);
@@ -1106,17 +1101,31 @@ static void Task_FlashStarsAndHearts(u8 taskId)
         sContestResults->data->pointsFlashing = TRUE;
 }
 
-static void LoadContestMonIcon(u16 species, u8 monIndex, u8 srcOffset, u8 useDmaNow, u32 personality)
+static void LoadContestMonIcon(u16 species, u8 monIndex, u8 srcOffset, u8 useDmaNow, u32 personality, u32 deoxysForme)
 {
     const u8 *iconPtr;
-    u16 var0, var1, frameNum;
+    u16 var0, var1;
 
-    if (monIndex == gContestPlayerMonIndex)
-        frameNum = 1;
-    else
-        frameNum = 0;
+    if(species == SPECIES_DEOXYS)
+    {
+        switch(deoxysForme - 1)
+        {
+            case 1: //Attack Forme
+                species = 65531;
+                break;
+            case 2: //Defense Forme
+                species = 65532;
+                break;
+            case 3: //Speed Forme
+                species = 65533;
+                break;
+            default:
+                species = 65530;
+                break;
+        }
+    }
 
-    iconPtr = GetMonIconPtr(species, personality, frameNum);
+    iconPtr = GetMonIconPtr(species, personality, TRUE);
     iconPtr += srcOffset * 0x200 + 0x80;
     if (useDmaNow)
     {
@@ -1136,7 +1145,7 @@ static void LoadAllContestMonIcons(u8 srcOffset, bool8 useDmaNow)
     int i;
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
-        LoadContestMonIcon(gContestMons[i].species, i, srcOffset, useDmaNow, gContestMons[i].personality);
+        LoadContestMonIcon(gContestMons[i].species, i, srcOffset, useDmaNow, gContestMons[i].personality, gContestMons[i].deoxysForme);
 }
 
 static void LoadAllContestMonIconPalettes(void)
@@ -1145,8 +1154,12 @@ static void LoadAllContestMonIconPalettes(void)
 
     for (i = 0; i < CONTESTANT_COUNT; i++)
     {
-        species = gContestMons[i].species;
-        LoadPalette(gMonIconPalettes[gMonIconPaletteIndices[GetIconSpecies(species, 0)]], BG_PLTT_ID(10 + i), PLTT_SIZE_4BPP);
+        species = GetIconSpecies(gContestMons[i].species, 0);
+
+        if(species >= 65530 && species <= 65533)
+            species = SPECIES_DEOXYS;
+        
+        LoadPalette(gMonIconPalettes[gMonIconPaletteIndices[species]], BG_PLTT_ID(10 + i), PLTT_SIZE_4BPP);
     }
 }
 
@@ -1682,7 +1695,7 @@ static void Task_BounceMonIconInBox(u8 taskId)
     if (gTasks[taskId].tTimer++ == gTasks[taskId].tNumFrames)
     {
         gTasks[taskId].tTimer = 0;
-        LoadContestMonIcon(gTasks[taskId].tSpecies, monIndex, gTasks[taskId].tBounced, FALSE, gContestMons[monIndex].personality);
+        LoadContestMonIcon(gTasks[taskId].tSpecies, monIndex, gTasks[taskId].tBounced, FALSE, gContestMons[monIndex].personality, gContestMons[monIndex].deoxysForme);
         gTasks[taskId].tBounced ^= 1;
     }
 }
@@ -2277,9 +2290,9 @@ static void Task_LinkContest_WaitDisconnect(u8 taskId)
 
 void SetContestTrainerGfxIds(void)
 {
-    gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_0 - VARS_START] = gContestMons[0].trainerGfxId;
-    gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_1 - VARS_START] = gContestMons[1].trainerGfxId;
-    gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_2 - VARS_START] = gContestMons[2].trainerGfxId;
+    gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_0 - VARS_START] = ConvertContestObjToFRLGPlus(gContestMons[0].trainerGfxId);
+    gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_1 - VARS_START] = ConvertContestObjToFRLGPlus(gContestMons[1].trainerGfxId);
+    gSaveBlock1Ptr->vars[VAR_OBJ_GFX_ID_2 - VARS_START] = ConvertContestObjToFRLGPlus(gContestMons[2].trainerGfxId);
 }
 
 void BufferContestTrainerAndMonNames(void)
@@ -2345,37 +2358,46 @@ void SetLinkContestPlayerGfx(void)
             if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_RS_BRENDAN;
+                    gContestMons[i].trainerGfxId = EM_OBJ_EVT_GFX_RS_BRENDAN;
                 else
-                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_RS_MAY;
+                    gContestMons[i].trainerGfxId = EM_OBJ_EVT_GFX_RS_MAY;
+
+                if(gContestMons[i].species == SPECIES_DEOXYS && gContestMons[i].canChangeDeoxysForme == FALSE)
+                    gContestMons[i].deoxysForme = 1; // set Deoxys Normal forme
             }
             else if(version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_RED_NORMAL;
+                    gContestMons[i].trainerGfxId = EM_OBJ_EVT_GFX_RED;
                 else
-                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_GREEN_NORMAL;
+                    gContestMons[i].trainerGfxId = EM_OBJ_EVT_GFX_LEAF;
+
+                if(gContestMons[i].species == SPECIES_DEOXYS && gContestMons[i].canChangeDeoxysForme == FALSE)
+                {
+                    if(version == VERSION_FIRE_RED)
+                        gContestMons[i].deoxysForme = 2; // set Deoxys Attack forme
+                    else
+                        gContestMons[i].deoxysForme = 3; // set Deoxys Defense forme
+                }
             }
             else // Emerald
             {
                 if (gLinkPlayers[i].gender == MALE)
-                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_EM_BRENDAN;
+                    gContestMons[i].trainerGfxId = EM_OBJ_EVT_GFX_LINK_BRENDAN;
                 else
-                    gContestMons[i].trainerGfxId = OBJ_EVENT_GFX_EM_MAY;
+                    gContestMons[i].trainerGfxId = EM_OBJ_EVT_GFX_LINK_MAY;
+
+                if(gContestMons[i].species == SPECIES_DEOXYS && gContestMons[i].canChangeDeoxysForme == FALSE)
+                    gContestMons[i].deoxysForme = 4; // set Deoxys Speed forme
             }
         }
 
-        VarSet(VAR_OBJ_GFX_ID_0, gContestMons[0].trainerGfxId);
-        VarSet(VAR_OBJ_GFX_ID_1, gContestMons[1].trainerGfxId);
-        VarSet(VAR_OBJ_GFX_ID_2, gContestMons[2].trainerGfxId);
-        VarSet(VAR_OBJ_GFX_ID_3, gContestMons[3].trainerGfxId);
+        VarSet(VAR_OBJ_GFX_ID_0, ConvertContestObjToFRLGPlus(ConvertEmeraldToContestObj(gContestMons[0].trainerGfxId)));
+        VarSet(VAR_OBJ_GFX_ID_1, ConvertContestObjToFRLGPlus(ConvertEmeraldToContestObj(gContestMons[1].trainerGfxId)));
+        VarSet(VAR_OBJ_GFX_ID_2, ConvertContestObjToFRLGPlus(ConvertEmeraldToContestObj(gContestMons[2].trainerGfxId)));
+        VarSet(VAR_OBJ_GFX_ID_3, ConvertContestObjToFRLGPlus(ConvertEmeraldToContestObj(gContestMons[3].trainerGfxId)));
     }
 }
-
-extern const u16 gObjectEventPal_Player[];
-extern const u16 gObjectEventPal_NpcWhite[];
-extern const u16 gEmBrendanPalette[];
-extern const u16 gEmMayPalette[];
 
 // copied from event_object_movement
 #define OBJ_EVENT_PAL_TAG_PLAYER_RED                  0x1100
@@ -2392,8 +2414,6 @@ void LoadLinkContestPlayerPalettes(void)
     struct Sprite *sprite;
     static const u8 sContestantLocalIds[CONTESTANT_COUNT] = { 3, 4, 5, 14 };
 
-    //gReservedSpritePaletteCount = 12;
-    // TODO: Does dynamically allocating link player palettes break link contests?
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
     {
         for (i = 0; i < gNumLinkContestPlayers; i++)
@@ -2460,6 +2480,7 @@ void ShowContestEntryMonPic(void)
     u8 spriteId;
     u8 taskId;
     u8 left, top;
+    u32 deoxysForme;
 
     if (FindTaskIdByFunc(Task_ShowContestEntryMonPic) == TASK_NONE)
     {
@@ -2469,14 +2490,18 @@ void ShowContestEntryMonPic(void)
         species = gContestMons[gSpecialVar_0x8006].species;
         personality = gContestMons[gSpecialVar_0x8006].personality;
         otId = gContestMons[gSpecialVar_0x8006].otId;
+        deoxysForme = gContestMons[gSpecialVar_0x8006].deoxysForme - 1;
         taskId = CreateTask(Task_ShowContestEntryMonPic, 0x50);
         gTasks[taskId].data[0] = 0;
         gTasks[taskId].data[1] = species;
-        if (gSpecialVar_0x8006 == gContestPlayerMonIndex)
-            HandleLoadSpecialPokePic(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT], species, personality);
-        else
-            HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT], species, personality);
+        if(species != SPECIES_DEOXYS)
+            deoxysForme = personality;
+        //if (gSpecialVar_0x8006 == gContestPlayerMonIndex)
+            HandleLoadSpecialPokePic(&gMonFrontPicTable[gContestMons[gSpecialVar_0x8006].species], gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT], species, deoxysForme);
+        //else
+        //    HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_LEFT], species, personality);
 
+        species = gContestMons[gSpecialVar_0x8006].species;
         palette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
         LoadCompressedSpritePalette(palette);
         SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_OPPONENT_LEFT);
@@ -2657,4 +2682,396 @@ bool8 IsWirelessContest(void)
         return TRUE;
     else
         return FALSE;
+}
+
+u16 ConvertContestObjToFRLGPlus(u8 contestObj)
+{
+    switch(contestObj)
+    {
+        case CONTEST_OBJ_DAISY:
+            return OBJ_EVENT_GFX_DAISY;
+        case CONTEST_OBJ_LITTLE_BOY:
+            return OBJ_EVENT_GFX_LITTLE_BOY;
+        case CONTEST_OBJ_BALDING_MAN:
+            return OBJ_EVENT_GFX_BALDING_MAN;
+        case CONTEST_OBJ_BEAUTY:
+            return OBJ_EVENT_GFX_BEAUTY;
+        case CONTEST_OBJ_LITTLE_GIRL:
+            return OBJ_EVENT_GFX_LITTLE_GIRL;
+        case CONTEST_OBJ_YOUNGSTER:
+            return OBJ_EVENT_GFX_YOUNGSTER;
+        case CONTEST_OBJ_BLACKBELT:
+            return OBJ_EVENT_GFX_BLACKBELT;
+        case CONTEST_OBJ_PICNICKER:
+            return OBJ_EVENT_GFX_PICNICKER;
+        case CONTEST_OBJ_BATTLE_GIRL:
+            return OBJ_EVENT_GFX_BATTLE_GIRL;
+        case CONTEST_OBJ_GENTLEMAN:
+            return OBJ_EVENT_GFX_GENTLEMAN;
+        case CONTEST_OBJ_POKEMON_RANGER_F:
+            return OBJ_EVENT_GFX_POKEMON_RANGER_F;
+        case CONTEST_OBJ_BOY:
+            return OBJ_EVENT_GFX_BOY;
+        case CONTEST_OBJ_FAT_MAN:
+            return OBJ_EVENT_GFX_FAT_MAN;
+        case CONTEST_OBJ_CHANNELER:
+            return OBJ_EVENT_GFX_CHANNELER;
+        case CONTEST_OBJ_PSYCHIC_F:
+            return OBJ_EVENT_GFX_PSYCHIC_F;
+        case CONTEST_OBJ_ENGINEER:
+            return OBJ_EVENT_GFX_ENGINEER;
+        case CONTEST_OBJ_CAMPER:
+            return OBJ_EVENT_GFX_CAMPER;
+        case CONTEST_OBJ_BUG_CATCHER:
+            return OBJ_EVENT_GFX_BUG_CATCHER;
+        case CONTEST_OBJ_PAINTER:
+            return OBJ_EVENT_GFX_PAINTER;
+        case CONTEST_OBJ_TUBER_F:
+            return OBJ_EVENT_GFX_TUBER_F;
+        case CONTEST_OBJ_POKE_MANIAC:
+            return OBJ_EVENT_GFX_POKE_MANIAC;
+        case CONTEST_OBJ_POKEMON_RANGER_M:
+            return OBJ_EVENT_GFX_POKEMON_RANGER_M;
+        case CONTEST_OBJ_WOMAN_3:
+            return OBJ_EVENT_GFX_WOMAN_3;
+        case CONTEST_OBJ_CHEF:
+            return OBJ_EVENT_GFX_CHEF;
+        case CONTEST_OBJ_AROMA_LADY:
+            return OBJ_EVENT_GFX_AROMA_LADY;
+        case CONTEST_OBJ_BIRD_KEEPER:
+            return OBJ_EVENT_GFX_BIRD_KEEPER;
+        case CONTEST_OBJ_OLD_WOMAN:
+            return OBJ_EVENT_GFX_OLD_WOMAN;
+        case CONTEST_OBJ_JUGGLER:
+            return OBJ_EVENT_GFX_JUGGLER;
+        case CONTEST_OBJ_OLD_MAN_1:
+            return OBJ_EVENT_GFX_OLD_MAN_1;
+        case CONTEST_OBJ_SAILOR:
+            return OBJ_EVENT_GFX_SAILOR;
+        case CONTEST_OBJ_WORKER_M:
+            return OBJ_EVENT_GFX_WORKER_M;
+        case CONTEST_OBJ_YOUNG_COUPLE_M:
+            return OBJ_EVENT_GFX_YOUNG_COUPLE_M;
+        case CONTEST_OBJ_CLERK:
+            return OBJ_EVENT_GFX_CLERK;
+        case CONTEST_OBJ_CAPTAIN:
+            return OBJ_EVENT_GFX_CAPTAIN;
+        case CONTEST_OBJ_HIKER:
+            return OBJ_EVENT_GFX_HIKER;
+        case CONTEST_OBJ_RUIN_MANIAC:
+            return OBJ_EVENT_GFX_RUIN_MANIAC;
+        case CONTEST_OBJ_YOUNG_COUPLE_F:
+            return OBJ_EVENT_GFX_YOUNG_COUPLE_F;
+        case CONTEST_OBJ_WOMAN_1:
+            return OBJ_EVENT_GFX_WOMAN_1;
+        case CONTEST_OBJ_COOLTRAINER_M:
+            return OBJ_EVENT_GFX_COOLTRAINER_M;
+        case CONTEST_OBJ_CABLE_CLUB_RECEPTIONIST:
+            return OBJ_EVENT_GFX_CABLE_CLUB_RECEPTIONIST;
+        case CONTEST_OBJ_SCIENTIST:
+            return OBJ_EVENT_GFX_SCIENTIST;
+        case CONTEST_OBJ_ROCKER:
+            return OBJ_EVENT_GFX_ROCKER;
+        case CONTEST_OBJ_FISHER:
+            return OBJ_EVENT_GFX_FISHER;
+        case CONTEST_OBJ_TUBER_M_LAND:
+            return OBJ_EVENT_GFX_TUBER_M_LAND;
+        case CONTEST_OBJ_SUPER_NERD:
+            return OBJ_EVENT_GFX_SUPER_NERD;
+        case CONTEST_OBJ_MAN:
+            return OBJ_EVENT_GFX_MAN;
+        case CONTEST_OBJ_BURGLAR:
+            return OBJ_EVENT_GFX_BURGLAR;
+        case CONTEST_OBJ_POKEMON_BREEDER:
+            return OBJ_EVENT_GFX_POKEMON_BREEDER;
+        case CONTEST_OBJ_COOLTRAINER_F:
+            return OBJ_EVENT_GFX_COOLTRAINER_F;
+        case CONTEST_OBJ_RS_MAN_4:
+            return OBJ_EVENT_GFX_Z_RS_MAN_4;
+        case CONTEST_OBJ_RS_BOY_1:
+            return OBJ_EVENT_GFX_Z_RS_BOY_1;
+        case CONTEST_OBJ_RS_GIRL_1:
+            return OBJ_EVENT_GFX_Z_RS_GIRL_1;
+        case CONTEST_OBJ_RS_LITTLE_BOY:
+            return OBJ_EVENT_GFX_Z_RS_LITTLE_BOY;
+        case CONTEST_OBJ_RS_WOMAN_1:
+            return OBJ_EVENT_GFX_Z_RS_WOMAN_1;
+        case CONTEST_OBJ_RS_POKEFAN_F:
+            return OBJ_EVENT_GFX_Z_RS_POKEFAN_F;
+        case CONTEST_OBJ_RS_BLACK_BELT:
+            return OBJ_EVENT_GFX_Z_RS_BLACK_BELT;
+        case CONTEST_OBJ_RS_YOUNGSTER:
+            return OBJ_EVENT_GFX_Z_RS_YOUNGSTER;
+        case CONTEST_OBJ_RS_WOMAN_4:
+            return OBJ_EVENT_GFX_Z_RS_WOMAN_4;
+        case CONTEST_OBJ_RS_CAMPER:
+            return OBJ_EVENT_GFX_Z_RS_CAMPER;
+        case CONTEST_OBJ_RS_LASS:
+            return OBJ_EVENT_GFX_Z_RS_LASS;
+        case CONTEST_OBJ_RS_SCHOOL_KID_M:
+            return OBJ_EVENT_GFX_Z_RS_SCHOOL_KID_M;
+        case CONTEST_OBJ_RS_GIRL_2:
+            return OBJ_EVENT_GFX_Z_RS_GIRL_2;
+        case CONTEST_OBJ_RS_MAN_3:
+            return OBJ_EVENT_GFX_Z_RS_MAN_3;
+        case CONTEST_OBJ_RS_TWIN:
+            return OBJ_EVENT_GFX_Z_RS_TWIN;
+        case CONTEST_OBJ_RS_RICH_BOY:
+            return OBJ_EVENT_GFX_Z_RS_RICH_BOY;
+        case CONTEST_OBJ_RS_WOMAN_2:
+            return OBJ_EVENT_GFX_Z_RS_WOMAN_2;
+        case CONTEST_OBJ_RS_HEX_MANIAC:
+            return OBJ_EVENT_GFX_Z_RS_HEX_MANIAC;
+        case CONTEST_OBJ_RS_WOMAN_5:
+            return OBJ_EVENT_GFX_Z_RS_WOMAN_5;
+        case CONTEST_OBJ_RS_HIKER:
+            return OBJ_EVENT_GFX_Z_RS_HIKER;
+        case CONTEST_OBJ_RS_TUBER_F:
+            return OBJ_EVENT_GFX_Z_RS_TUBER_F;
+        case CONTEST_OBJ_RS_NINJA_BOY:
+            return OBJ_EVENT_GFX_Z_RS_NINJA_BOY;
+        case CONTEST_OBJ_RS_BEAUTY:
+            return OBJ_EVENT_GFX_Z_RS_BEAUTY;
+        case CONTEST_OBJ_RS_MAN_5:
+            return OBJ_EVENT_GFX_Z_RS_MAN_5;
+        case CONTEST_OBJ_RS_MANIAC:
+            return OBJ_EVENT_GFX_Z_RS_MANIAC;
+        case CONTEST_OBJ_RS_PICNICKER:
+            return OBJ_EVENT_GFX_Z_RS_PICNICKER;
+        case CONTEST_OBJ_RS_RUNNING_TRIATHLETE_M:
+            return OBJ_EVENT_GFX_Z_RS_RUNNING_TRIATHLETE_M;
+        case CONTEST_OBJ_RS_FAT_MAN:
+            return OBJ_EVENT_GFX_Z_RS_FAT_MAN;
+        case CONTEST_OBJ_RS_PSYCHIC_M:
+            return OBJ_EVENT_GFX_Z_RS_PSYCHIC_M;
+        case CONTEST_OBJ_RS_EXPERT_M:
+            return OBJ_EVENT_GFX_Z_RS_EXPERT_M;
+        case CONTEST_OBJ_RS_TEALA:
+            return OBJ_EVENT_GFX_Z_RS_TEALA;
+        case CONTEST_OBJ_RS_GENTLEMAN:
+            return OBJ_EVENT_GFX_Z_RS_GENTLEMAN;
+        case CONTEST_OBJ_RS_EXPERT_F:
+            return OBJ_EVENT_GFX_Z_RS_EXPERT_F;
+        case CONTEST_OBJ_RS_SAILOR:
+            return OBJ_EVENT_GFX_Z_RS_SAILOR;
+        case CONTEST_OBJ_RS_GIRL_3:
+            return OBJ_EVENT_GFX_Z_RS_GIRL_3;
+        case CONTEST_OBJ_RS_BUG_CATCHER:
+            return OBJ_EVENT_GFX_Z_RS_BUG_CATCHER;
+        case CONTEST_OBJ_RS_POKEFAN_M:
+            return OBJ_EVENT_GFX_Z_RS_POKEFAN_M;
+        case CONTEST_OBJ_RS_SCIENTIST_1:
+            return OBJ_EVENT_GFX_Z_RS_SCIENTIST_1;
+        case CONTEST_OBJ_RED_NORMAL:
+            return OBJ_EVENT_GFX_RED_NORMAL;
+        case CONTEST_OBJ_GREEN_NORMAL:
+            return OBJ_EVENT_GFX_GREEN_NORMAL;
+        case CONTEST_OBJ_RS_BRENDAN:
+            return OBJ_EVENT_GFX_RS_BRENDAN;
+        case CONTEST_OBJ_RS_MAY:
+            return OBJ_EVENT_GFX_RS_MAY;
+        case CONTEST_OBJ_EM_BRENDAN:
+            return OBJ_EVENT_GFX_EM_BRENDAN;
+        case CONTEST_OBJ_EM_MAY:
+            return OBJ_EVENT_GFX_EM_MAY;
+        default:
+            // Handle unknown constants or return a default value
+            return OBJ_EVENT_GFX_YOUNGSTER;
+    }
+}
+
+u8 ConvertContestObjToEmerald(u8 contestObj)
+{
+    switch(contestObj)
+    {
+        case CONTEST_OBJ_RS_MAN_4:
+            return EM_OBJ_EVT_GFX_MAN_4;
+        case CONTEST_OBJ_RS_BOY_1:
+            return EM_OBJ_EVT_GFX_BOY_1;
+        case CONTEST_OBJ_RS_GIRL_1:
+            return EM_OBJ_EVT_GFX_GIRL_1;
+        case CONTEST_OBJ_RS_LITTLE_BOY:
+            return EM_OBJ_EVT_GFX_LITTLE_BOY;
+        case CONTEST_OBJ_RS_WOMAN_1:
+            return EM_OBJ_EVT_GFX_WOMAN_1;
+        case CONTEST_OBJ_RS_POKEFAN_F:
+            return EM_OBJ_EVT_GFX_POKEFAN_F;
+        case CONTEST_OBJ_RS_BLACK_BELT:
+            return EM_OBJ_EVT_GFX_BLACK_BELT;
+        case CONTEST_OBJ_RS_YOUNGSTER:
+            return EM_OBJ_EVT_GFX_YOUNGSTER;
+        case CONTEST_OBJ_RS_WOMAN_4:
+            return EM_OBJ_EVT_GFX_WOMAN_4;
+        case CONTEST_OBJ_RS_CAMPER:
+            return EM_OBJ_EVT_GFX_CAMPER;
+        case CONTEST_OBJ_RS_LASS:
+            return EM_OBJ_EVT_GFX_LASS;
+        case CONTEST_OBJ_RS_SCHOOL_KID_M:
+            return EM_OBJ_EVT_GFX_SCHOOL_KID_M;
+        case CONTEST_OBJ_RS_GIRL_2:
+            return EM_OBJ_EVT_GFX_GIRL_2;
+        case CONTEST_OBJ_RS_MAN_3:
+            return EM_OBJ_EVT_GFX_MAN_3;
+        case CONTEST_OBJ_RS_TWIN:
+            return EM_OBJ_EVT_GFX_TWIN;
+        case CONTEST_OBJ_RS_RICH_BOY:
+            return EM_OBJ_EVT_GFX_RICH_BOY;
+        case CONTEST_OBJ_RS_WOMAN_2:
+            return EM_OBJ_EVT_GFX_WOMAN_2;
+        case CONTEST_OBJ_RS_HEX_MANIAC:
+            return EM_OBJ_EVT_GFX_HEX_MANIAC;
+        case CONTEST_OBJ_RS_WOMAN_5:
+            return EM_OBJ_EVT_GFX_WOMAN_5;
+        case CONTEST_OBJ_RS_HIKER:
+            return EM_OBJ_EVT_GFX_HIKER;
+        case CONTEST_OBJ_RS_TUBER_F:
+            return EM_OBJ_EVT_GFX_TUBER_F;
+        case CONTEST_OBJ_RS_NINJA_BOY:
+            return EM_OBJ_EVT_GFX_NINJA_BOY;
+        case CONTEST_OBJ_RS_BEAUTY:
+            return EM_OBJ_EVT_GFX_BEAUTY;
+        case CONTEST_OBJ_RS_MAN_5:
+            return EM_OBJ_EVT_GFX_MAN_5;
+        case CONTEST_OBJ_RS_MANIAC:
+            return EM_OBJ_EVT_GFX_MANIAC;
+        case CONTEST_OBJ_RS_PICNICKER:
+            return EM_OBJ_EVT_GFX_PICNICKER;
+        case CONTEST_OBJ_RS_RUNNING_TRIATHLETE_M:
+            return EM_OBJ_EVT_GFX_RUNNING_TRIATHLETE_M;
+        case CONTEST_OBJ_RS_FAT_MAN:
+            return EM_OBJ_EVT_GFX_FAT_MAN;
+        case CONTEST_OBJ_RS_PSYCHIC_M:
+            return EM_OBJ_EVT_GFX_PSYCHIC_M;
+        case CONTEST_OBJ_RS_EXPERT_M:
+            return EM_OBJ_EVT_GFX_EXPERT_M;
+        case CONTEST_OBJ_RS_TEALA:
+            return EM_OBJ_EVT_GFX_TEALA;
+        case CONTEST_OBJ_RS_GENTLEMAN:
+            return EM_OBJ_EVT_GFX_GENTLEMAN;
+        case CONTEST_OBJ_RS_EXPERT_F:
+            return EM_OBJ_EVT_GFX_EXPERT_F;
+        case CONTEST_OBJ_RS_SAILOR:
+            return EM_OBJ_EVT_GFX_SAILOR;
+        case CONTEST_OBJ_RS_GIRL_3:
+            return EM_OBJ_EVT_GFX_GIRL_3;
+        case CONTEST_OBJ_RS_BUG_CATCHER:
+            return EM_OBJ_EVT_GFX_BUG_CATCHER;
+        case CONTEST_OBJ_RS_POKEFAN_M:
+            return EM_OBJ_EVT_GFX_POKEFAN_M;
+        case CONTEST_OBJ_RS_SCIENTIST_1:
+            return EM_OBJ_EVT_GFX_SCIENTIST_1;
+        case CONTEST_OBJ_RED_NORMAL:
+            return EM_OBJ_EVT_GFX_RED;
+        case CONTEST_OBJ_GREEN_NORMAL:
+            return EM_OBJ_EVT_GFX_LEAF;
+        case CONTEST_OBJ_RS_BRENDAN:
+            return EM_OBJ_EVT_GFX_RS_BRENDAN;
+        case CONTEST_OBJ_RS_MAY:
+            return EM_OBJ_EVT_GFX_RS_MAY;
+        case CONTEST_OBJ_EM_BRENDAN:
+            return EM_OBJ_EVT_GFX_LINK_BRENDAN;
+        case CONTEST_OBJ_EM_MAY:
+            return EM_OBJ_EVT_GFX_LINK_MAY;
+        default:
+            // Handle unknown constants or return a default value
+            return EM_OBJ_EVT_GFX_YOUNGSTER;
+    }
+}
+
+u8 ConvertEmeraldToContestObj(u8 contestObj)
+{
+    switch(contestObj)
+    {
+        case EM_OBJ_EVT_GFX_MAN_4:
+            return CONTEST_OBJ_RS_MAN_4;
+        case EM_OBJ_EVT_GFX_BOY_1:
+            return CONTEST_OBJ_RS_BOY_1;
+        case EM_OBJ_EVT_GFX_GIRL_1:
+            return CONTEST_OBJ_RS_GIRL_1;
+        case EM_OBJ_EVT_GFX_LITTLE_BOY:
+            return CONTEST_OBJ_RS_LITTLE_BOY;
+        case EM_OBJ_EVT_GFX_WOMAN_1:
+            return CONTEST_OBJ_RS_WOMAN_1;
+        case EM_OBJ_EVT_GFX_POKEFAN_F:
+            return CONTEST_OBJ_RS_POKEFAN_F;
+        case EM_OBJ_EVT_GFX_BLACK_BELT:
+            return CONTEST_OBJ_RS_BLACK_BELT;
+        case EM_OBJ_EVT_GFX_YOUNGSTER:
+            return CONTEST_OBJ_RS_YOUNGSTER;
+        case EM_OBJ_EVT_GFX_WOMAN_4:
+            return CONTEST_OBJ_RS_WOMAN_4;
+        case EM_OBJ_EVT_GFX_CAMPER:
+            return CONTEST_OBJ_RS_CAMPER;
+        case EM_OBJ_EVT_GFX_LASS:
+            return CONTEST_OBJ_RS_LASS;
+        case EM_OBJ_EVT_GFX_SCHOOL_KID_M:
+            return CONTEST_OBJ_RS_SCHOOL_KID_M;
+        case EM_OBJ_EVT_GFX_GIRL_2:
+            return CONTEST_OBJ_RS_GIRL_2;
+        case EM_OBJ_EVT_GFX_MAN_3:
+            return CONTEST_OBJ_RS_MAN_3;
+        case EM_OBJ_EVT_GFX_TWIN:
+            return CONTEST_OBJ_RS_TWIN;
+        case EM_OBJ_EVT_GFX_RICH_BOY:
+            return CONTEST_OBJ_RS_RICH_BOY;
+        case EM_OBJ_EVT_GFX_WOMAN_2:
+            return CONTEST_OBJ_RS_WOMAN_2;
+        case EM_OBJ_EVT_GFX_HEX_MANIAC:
+            return CONTEST_OBJ_RS_HEX_MANIAC;
+        case EM_OBJ_EVT_GFX_WOMAN_5:
+            return CONTEST_OBJ_RS_WOMAN_5;
+        case EM_OBJ_EVT_GFX_HIKER:
+            return CONTEST_OBJ_RS_HIKER;
+        case EM_OBJ_EVT_GFX_TUBER_F:
+            return CONTEST_OBJ_RS_TUBER_F;
+        case EM_OBJ_EVT_GFX_NINJA_BOY:
+            return CONTEST_OBJ_RS_NINJA_BOY;
+        case EM_OBJ_EVT_GFX_BEAUTY:
+            return CONTEST_OBJ_RS_BEAUTY;
+        case EM_OBJ_EVT_GFX_MAN_5:
+            return CONTEST_OBJ_RS_MAN_5;
+        case EM_OBJ_EVT_GFX_MANIAC:
+            return CONTEST_OBJ_RS_MANIAC;
+        case EM_OBJ_EVT_GFX_PICNICKER:
+            return CONTEST_OBJ_RS_PICNICKER;
+        case EM_OBJ_EVT_GFX_RUNNING_TRIATHLETE_M:
+            return CONTEST_OBJ_RS_RUNNING_TRIATHLETE_M;
+        case EM_OBJ_EVT_GFX_FAT_MAN:
+            return CONTEST_OBJ_RS_FAT_MAN;
+        case EM_OBJ_EVT_GFX_PSYCHIC_M:
+            return CONTEST_OBJ_RS_PSYCHIC_M;
+        case EM_OBJ_EVT_GFX_EXPERT_M:
+            return CONTEST_OBJ_RS_EXPERT_M;
+        case EM_OBJ_EVT_GFX_TEALA:
+            return CONTEST_OBJ_RS_TEALA;
+        case EM_OBJ_EVT_GFX_GENTLEMAN:
+            return CONTEST_OBJ_RS_GENTLEMAN;
+        case EM_OBJ_EVT_GFX_EXPERT_F:
+            return CONTEST_OBJ_RS_EXPERT_F;
+        case EM_OBJ_EVT_GFX_SAILOR:
+            return CONTEST_OBJ_RS_SAILOR;
+        case EM_OBJ_EVT_GFX_GIRL_3:
+            return CONTEST_OBJ_RS_GIRL_3;
+        case EM_OBJ_EVT_GFX_BUG_CATCHER:
+            return CONTEST_OBJ_RS_BUG_CATCHER;
+        case EM_OBJ_EVT_GFX_POKEFAN_M:
+            return CONTEST_OBJ_RS_POKEFAN_M;
+        case EM_OBJ_EVT_GFX_SCIENTIST_1:
+            return CONTEST_OBJ_RS_SCIENTIST_1;
+        case EM_OBJ_EVT_GFX_RED:
+            return CONTEST_OBJ_RED_NORMAL;
+        case EM_OBJ_EVT_GFX_LEAF:
+            return CONTEST_OBJ_GREEN_NORMAL;
+        case EM_OBJ_EVT_GFX_RS_BRENDAN:
+            return CONTEST_OBJ_RS_BRENDAN;
+        case EM_OBJ_EVT_GFX_RS_MAY:
+            return CONTEST_OBJ_RS_MAY;
+        case EM_OBJ_EVT_GFX_LINK_BRENDAN:
+            return CONTEST_OBJ_EM_BRENDAN;
+        case EM_OBJ_EVT_GFX_LINK_MAY:
+            return CONTEST_OBJ_EM_MAY;
+        default:
+            // Handle unknown constants or return a default value
+            return CONTEST_OBJ_RS_YOUNGSTER;
+    }
 }

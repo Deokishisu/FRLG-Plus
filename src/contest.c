@@ -97,7 +97,7 @@ static void PrintContestantMonName(u8);
 static void PrintContestantMonNameWithColor(u8, u8);
 static u8 CreateJudgeSprite(void);
 static u8 CreateJudgeSpeechBubbleSprite(void);
-static u8 CreateContestantSprite(u16, u32, u32, u32);
+static u8 CreateContestantSprite(u16, u32, u32, u32, u32);
 static void PrintContestMoveDescription(u16);
 static u16 SanitizeSpecies(u16);
 static void ContestClearGeneralTextWindow(void);
@@ -1792,7 +1792,8 @@ static void Task_DoAppeals(u8 taskId)
             gContestMons[eContest.currentContestant].species,
             gContestMons[eContest.currentContestant].otId,
             gContestMons[eContest.currentContestant].personality,
-            eContest.currentContestant);
+            eContest.currentContestant,
+            gContestMons[eContest.currentContestant].deoxysForme - 1);
         gSprites[spriteId].x2 = 120;
         gSprites[spriteId].callback = SpriteCB_MonSlideIn;
         gTasks[taskId].tMonSpriteId = spriteId;
@@ -2793,13 +2794,28 @@ void CreateContestMonFromParty(u8 partyIndex)
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
         StripPlayerNameForLinkContest(name);
     memcpy(gContestMons[gContestPlayerMonIndex].trainerName, name, PLAYER_NAME_LENGTH + 1);
-    if (gSaveBlock2Ptr->playerGender == MALE)
-        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_RED_NORMAL;
-    else
-        gContestMons[gContestPlayerMonIndex].trainerGfxId = OBJ_EVENT_GFX_GREEN_NORMAL;
+   if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
+   {
+        if (gSaveBlock2Ptr->playerGender == MALE)
+            gContestMons[gContestPlayerMonIndex].trainerGfxId = EM_OBJ_EVT_GFX_LINK_BRENDAN;
+        else
+            gContestMons[gContestPlayerMonIndex].trainerGfxId = EM_OBJ_EVT_GFX_LINK_MAY;
+   }
+   else
+   {
+        if (gSaveBlock2Ptr->playerGender == MALE)
+            gContestMons[gContestPlayerMonIndex].trainerGfxId = CONTEST_OBJ_RED_NORMAL;
+        else
+            gContestMons[gContestPlayerMonIndex].trainerGfxId = CONTEST_OBJ_GREEN_NORMAL;
+   }
     gContestMons[gContestPlayerMonIndex].aiFlags = 0;
     gContestMons[gContestPlayerMonIndex].highestRank = 0;
     gContestMons[gContestPlayerMonIndex].species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);
+    if(gContestMons[gContestPlayerMonIndex].species == SPECIES_DEOXYS)
+    {
+        gContestMons[gContestPlayerMonIndex].deoxysForme = GetMonData(&gPlayerParty[partyIndex], MON_DATA_FORME) + 1;
+        gContestMons[gContestPlayerMonIndex].canChangeDeoxysForme = TRUE;
+    }
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, name);
     StringGet_Nickname(name);
     if (gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
@@ -2972,6 +2988,7 @@ void SetLinkAIContestants(u8 contestType, u8 rank, bool32 isPostgame)
         u16 rnd = GetContestRand() % opponentsCount;
 
         gContestMons[gNumLinkContestPlayers + i] = gContestOpponents[opponents[rnd]];
+        gContestMons[gNumLinkContestPlayers + i].trainerGfxId = ConvertContestObjToEmerald(gContestMons[gNumLinkContestPlayers + i].trainerGfxId);
         StripPlayerNameForLinkContest(gContestMons[gNumLinkContestPlayers + i].trainerName);
         StripMonNameForLinkContest(gContestMons[gNumLinkContestPlayers + i].nickname, GAME_LANGUAGE);
         for (j = rnd; opponents[j] != CONTESTANT_NONE; j++)
@@ -3148,15 +3165,20 @@ static u8 CreateJudgeSpeechBubbleSprite(void)
     return spriteId;
 }
 
-static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 index)
+static u8 CreateContestantSprite(u16 species, u32 otId, u32 personality, u32 index, u32 deoxysForme)
 {
     u8 spriteId;
     species = SanitizeSpecies(species);
 
-    if (index == gContestPlayerMonIndex)
-        HandleLoadSpecialPokePic(&gMonBackPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_PLAYER_LEFT], species, personality);
-    else
-        HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonBackPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_PLAYER_LEFT], species, personality);
+    if(species != SPECIES_DEOXYS)
+    {
+        deoxysForme = personality;
+    }
+
+    //if (index == gContestPlayerMonIndex)
+        HandleLoadSpecialPokePic(&gMonBackPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_PLAYER_LEFT], species, deoxysForme);
+    //else
+    //    HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonBackPicTable[species], gMonSpritesGfxPtr->sprites[B_POSITION_PLAYER_LEFT], species, personality);
 
     LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(species, otId, personality), OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
     SetMultiuseSpriteTemplateToPokemon(species, B_POSITION_PLAYER_LEFT);
@@ -5595,6 +5617,9 @@ bool8 SaveContestWinner(u8 rank)
             gSaveBlock2Ptr->contestWinners[id].isShiny = TRUE;
         else
             gSaveBlock2Ptr->contestWinners[id].isShiny = FALSE;
+
+        if(gContestMons[i].species == SPECIES_DEOXYS)
+            gSaveBlock2Ptr->contestWinners[id].personality = gContestMons[i].deoxysForme - 1;
 
         StringCopy(gSaveBlock2Ptr->contestWinners[id].monName, gContestMons[i].nickname);
         StringCopy(gSaveBlock2Ptr->contestWinners[id].trainerName, gContestMons[i].trainerName);

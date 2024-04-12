@@ -89,7 +89,7 @@ struct ContestPokemon
     u16 species;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 trainerName[PLAYER_NAME_LENGTH + 1];
-    u16 trainerGfxId;
+    u8 trainerGfxId;
     u32 aiFlags;
     u8 whichRank:2;
     u8 aiPool_Cool:1;
@@ -106,6 +106,9 @@ struct ContestPokemon
     u8 sheen;
     u8 highestRank;
     bool8 gameCleared;
+    u8 deoxysForme;
+    bool8 canChangeDeoxysForme; // can link partner change Deoxys' forme or are they vanilla?
+    u8 unused[8];
     u32 personality;
     u32 otId;
 };

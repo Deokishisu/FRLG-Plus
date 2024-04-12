@@ -10,5 +10,8 @@ void ContestLinkTransfer(u8);
 void ShowContestPainting(void);
 u16 GetContestRand(void);
 u8 CountPlayerMuseumPaintings(void);
+u16 ConvertContestObjToFRLGPlus(u8 contestObj);
+u8 ConvertContestObjToEmerald(u8 contestObj);
+u8 ConvertEmeraldToContestObj(u8 contestObj);
 
 #endif // GUARD_CONTEST_UTIL_H

@@ -13,7 +13,10 @@ ContestHall_OnReturn:
 ContestHall_OnTransition:
 	call ContestHall_EventScript_ReadyContestMusic
 	setvar VAR_TEMP_0, 1
-	call ContestHall_EventScript_AddRandomAudienceMembers
+	compare VAR_CONTEST_TYPE, CONTEST_TYPE_LINK
+	call_if_eq ContestHall_EventScript_AddRandomAudienceMembersLink
+	compare VAR_CONTEST_TYPE, CONTEST_TYPE_LINK
+	call_if_ne ContestHall_EventScript_AddRandomAudienceMembers
 	end
 
 ContestHall_EventScript_SetCategoryTiles:
@@ -164,9 +167,294 @@ ContestHall_EventScript_Contest::
 ContestHall_EventScript_SetContestObjects::
 	special LoadLinkContestPlayerPalettes
 	hideobjectat OBJ_EVENT_ID_PLAYER, 0
+	compare VAR_CONTEST_TYPE, CONTEST_TYPE_LINK
+	goto_if_eq ContestHall_EventScript_SetContestObjectsLink
 	call ContestHall_EventScript_CreateAudience
 	call ContestHall_EventScript_SetCategoryTiles
 	end
+
+ContestHall_EventScript_SetContestObjectsLink::
+	call ContestHall_EventScript_CreateAudienceLink
+	call ContestHall_EventScript_SetCategoryTiles
+	end
+
+ContestHall_EventScript_CreateAudienceLink::
+	specialvar VAR_RESULT, IsWirelessContest
+	goto_if_eq VAR_RESULT, TRUE, ContestHall_EventScript_CreateWirelessContestAudienceLink
+	switch VAR_CONTEST_TYPE
+	case CONTEST_TYPE_NPC_NORMAL, ContestHall_EventScript_CreateNormalContestAudienceLink
+	case CONTEST_TYPE_NPC_SUPER, ContestHall_EventScript_CreateSuperContestAudienceLink
+	case CONTEST_TYPE_NPC_HYPER, ContestHall_EventScript_CreateHyperContestAudienceLink
+	case CONTEST_TYPE_NPC_MASTER, ContestHall_EventScript_CreateMasterContestAudienceLink
+	case CONTEST_TYPE_LINK, ContestHall_EventScript_CreateMasterContestAudienceLink
+	return
+
+ContestHall_EventScript_CreateNormalContestAudienceLink::
+	createvobject OBJ_EVENT_GFX_Z_RS_NINJA_BOY, 20, 3, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCIENTIST_1, 24, 11, 2, 3, DIR_SOUTH
+	return
+
+ContestHall_EventScript_CreateSuperContestAudienceLink::
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_5, 1, 2, 4, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_HIKER, 2, 2, 7, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_SCIENTIST_1, 3, 2, 8, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_2, 11, 12, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_3, 12, 12, 7, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_LITTLE_GIRL, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_LASS, 20, 3, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCIENTIST_1, 24, 11, 2, 3, DIR_SOUTH
+	return
+
+ContestHall_EventScript_CreateHyperContestAudienceLink::
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_5, 1, 2, 4, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_HIKER, 2, 2, 7, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_GENTLEMAN, 3, 2, 8, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_2, 11, 12, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_3, 12, 12, 7, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_EXPERT_F, 20, 3, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_2, 20, 6, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_5, 20, 7, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCIENTIST_1, 24, 8, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_GENTLEMAN, 24, 11, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_LITTLE_BOY, 25, 3, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_YOUNGSTER, 26, 4, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_FAT_MAN, 27, 5, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_HEX_MANIAC, 28, 9, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCHOOL_KID_M, 29, 10, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_MART_EMPLOYEE, 30, 11, 9, 3, DIR_NORTH
+	return
+
+ContestHall_EventScript_CreateMasterContestAudienceLink::
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_5, 1, 2, 4, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_HIKER, 2, 2, 7, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_LITTLE_GIRL, 3, 2, 8, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_MANIAC, 4, 1, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_5, 6, 1, 5, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_4, 7, 1, 6, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_GENTLEMAN, 9, 1, 8, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_2, 11, 12, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_3, 12, 12, 7, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_FISHERMAN, 14, 13, 3, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_RUNNING_TRIATHLETE_F, 15, 13, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_4, 17, 13, 6, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_MART_EMPLOYEE, 18, 13, 7, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_DEVON_EMPLOYEE, 19, 13, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_POKEFAN_M, 20, 3, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_CAMPER, 21, 6, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_3, 22, 7, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCIENTIST_1, 24, 11, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SAILOR, 25, 3, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_YOUNGSTER, 26, 4, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_GENTLEMAN, 27, 5, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_HEX_MANIAC, 28, 9, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCHOOL_KID_M, 29, 10, 9, 3, DIR_NORTH
+	createvobject OBJ_EVENT_GFX_Z_RS_MART_EMPLOYEE, 30, 11, 9, 3, DIR_NORTH
+	return
+
+ContestHall_EventScript_CreateWirelessContestAudienceLink::
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 0, 2, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_5, 1, 2, 4, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_HIKER, 2, 2, 7, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_LITTLE_GIRL, 3, 2, 8, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_MANIAC, 4, 1, 3, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_5, 6, 1, 5, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_4, 7, 1, 6, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_GENTLEMAN, 9, 1, 8, 3, DIR_EAST
+	createvobject OBJ_EVENT_GFX_Z_RS_NINJA_BOY, 10, 12, 3, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_2, 11, 12, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_WOMAN_3, 12, 12, 7, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_BEAUTY, 13, 12, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_FISHERMAN, 14, 13, 3, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_RUNNING_TRIATHLETE_F, 15, 13, 4, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_4, 17, 13, 6, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_MART_EMPLOYEE, 18, 13, 7, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_DEVON_EMPLOYEE, 19, 13, 8, 3, DIR_WEST
+	createvobject OBJ_EVENT_GFX_Z_RS_POKEFAN_M, 20, 3, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_CAMPER, 21, 6, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_MAN_3, 22, 7, 2, 3, DIR_SOUTH
+	createvobject OBJ_EVENT_GFX_Z_RS_SCIENTIST_1, 24, 11, 2, 3, DIR_SOUTH
+	return
+
+ContestHall_EventScript_AddRandomAudienceMembersLink::
+	call ContestHall_EventScript_GetRandomAudienceGfxIdLink
+	call ContestHall_EventScript_SetRandomAudienceGfx
+	goto_if_lt VAR_TEMP_0, 8, ContestHall_EventScript_AddRandomAudienceMembersLink
+	return
+
+ContestHall_EventScript_GetRandomAudienceGfxIdLink::
+	setvar VAR_RESULT, 32
+	special GenerateContestRand
+	addvar VAR_RESULT, 1
+	switch VAR_RESULT
+	case 1, ContestHall_EventScript_RandomAudienceNinjaBoyLink
+	case 2, ContestHall_EventScript_RandomAudienceTwinLink
+	case 3, ContestHall_EventScript_RandomAudienceBoy1Link
+	case 4, ContestHall_EventScript_RandomAudienceGirl1Link
+	case 5, ContestHall_EventScript_RandomAudienceGirl2Link
+	case 6, ContestHall_EventScript_RandomAudienceLittleBoyLink
+	case 7, ContestHall_EventScript_RandomAudienceGirlLink
+	case 8, ContestHall_EventScript_RandomAudienceBoy3Link
+	case 9, ContestHall_EventScript_RandomAudienceGirl3Link
+	case 10, ContestHall_EventScript_RandomAudienceRichBoyLink
+	case 11, ContestHall_EventScript_RandomAudienceFatManLink
+	case 12, ContestHall_EventScript_RandomAudiencePokefanFLink
+	case 13, ContestHall_EventScript_RandomAudienceMan1Link
+	case 14, ContestHall_EventScript_RandomAudienceWoman2Link
+	case 15, ContestHall_EventScript_RandomAudienceExpertMLink
+	case 16, ContestHall_EventScript_RandomAudienceExpertFLink
+	case 17, ContestHall_EventScript_RandomAudiencePokefanMLink
+	case 18, ContestHall_EventScript_RandomAudienceWoman4Link
+	case 19, ContestHall_EventScript_RandomAudienceCookLink
+	case 20, ContestHall_EventScript_RandomAudienceLassLink
+	case 21, ContestHall_EventScript_RandomAudienceOldWomanLink
+	case 22, ContestHall_EventScript_RandomAudienceCamperLink
+	case 23, ContestHall_EventScript_RandomAudiencePicnickerLink
+	case 24, ContestHall_EventScript_RandomAudienceMan3Link
+	case 25, ContestHall_EventScript_RandomAudienceWoman5Link
+	case 26, ContestHall_EventScript_RandomAudienceYoungsterLink
+	case 27, ContestHall_EventScript_RandomAudienceBugCatcherLink
+	case 28, ContestHall_EventScript_RandomAudiencePsychicMLink
+	case 29, ContestHall_EventScript_RandomAudienceSchoolKidMLink
+	case 30, ContestHall_EventScript_RandomAudienceBlackBeltLink
+	case 31, ContestHall_EventScript_RandomAudienceBeautyLink
+	case 32, ContestHall_EventScript_RandomAudienceScientist1Link
+	end
+
+ContestHall_EventScript_RandomAudienceNinjaBoyLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_NINJA_BOY
+	return
+
+ContestHall_EventScript_RandomAudienceTwinLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_TWIN
+	return
+
+ContestHall_EventScript_RandomAudienceBoy1Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_BOY_1
+	return
+
+ContestHall_EventScript_RandomAudienceGirl1Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_GIRL_1
+	return
+
+ContestHall_EventScript_RandomAudienceGirl2Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_GIRL_2
+	return
+
+ContestHall_EventScript_RandomAudienceLittleBoyLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_LITTLE_BOY
+	return
+
+ContestHall_EventScript_RandomAudienceGirlLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_LITTLE_GIRL
+	return
+
+ContestHall_EventScript_RandomAudienceBoy3Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_BOY_3
+	return
+
+ContestHall_EventScript_RandomAudienceGirl3Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_GIRL_3
+	return
+
+ContestHall_EventScript_RandomAudienceRichBoyLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_RICH_BOY
+	return
+
+ContestHall_EventScript_RandomAudienceFatManLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_FAT_MAN
+	return
+
+ContestHall_EventScript_RandomAudiencePokefanFLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_POKEFAN_F
+	return
+
+ContestHall_EventScript_RandomAudienceMan1Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_MAN_1
+	return
+
+ContestHall_EventScript_RandomAudienceWoman2Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_WOMAN_2
+	return
+
+ContestHall_EventScript_RandomAudienceExpertMLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_EXPERT_M
+	return
+
+ContestHall_EventScript_RandomAudienceExpertFLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_EXPERT_F
+	return
+
+ContestHall_EventScript_RandomAudiencePokefanMLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_POKEFAN_M
+	return
+
+ContestHall_EventScript_RandomAudienceWoman4Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_WOMAN_4
+	return
+
+ContestHall_EventScript_RandomAudienceCookLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_COOK
+	return
+
+ContestHall_EventScript_RandomAudienceLassLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_LASS
+	return
+
+ContestHall_EventScript_RandomAudienceOldWomanLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_OLD_WOMAN
+	return
+
+ContestHall_EventScript_RandomAudienceCamperLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_CAMPER
+	return
+
+ContestHall_EventScript_RandomAudiencePicnickerLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_PICNICKER
+	return
+
+ContestHall_EventScript_RandomAudienceMan3Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_MAN_3
+	return
+
+ContestHall_EventScript_RandomAudienceWoman5Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_WOMAN_5
+	return
+
+ContestHall_EventScript_RandomAudienceYoungsterLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_YOUNGSTER
+	return
+
+ContestHall_EventScript_RandomAudienceBugCatcherLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_BUG_CATCHER
+	return
+
+ContestHall_EventScript_RandomAudiencePsychicMLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_PSYCHIC_M
+	return
+
+ContestHall_EventScript_RandomAudienceSchoolKidMLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_SCHOOL_KID_M
+	return
+
+ContestHall_EventScript_RandomAudienceBlackBeltLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_BLACK_BELT
+	return
+
+ContestHall_EventScript_RandomAudienceBeautyLink::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_BEAUTY
+	return
+
+ContestHall_EventScript_RandomAudienceScientist1Link::
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_Z_RS_SCIENTIST_1
+	return
 
 @ There are 8 audience member object events, 7 of which are given random gfx below (the 8th is the Artist)
 @ The rest of the audience is created statically by ContestHall_EventScript_CreateAudience
@@ -342,7 +630,7 @@ ContestHall_EventScript_RandomAudienceLass::
 	return
 
 ContestHall_EventScript_RandomAudienceOldWoman::
-	setvar VAR_TEMP_1, OBJ_EVENT_GFX_OLD_WOMAN
+	setvar VAR_TEMP_1, OBJ_EVENT_GFX_YOUNG_COUPLE_F
 	return
 
 ContestHall_EventScript_RandomAudienceCamper::
