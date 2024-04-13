@@ -254,55 +254,55 @@ const struct ContestWinner gDefaultContestWinners[] =
     [CONTEST_WINNER_HALL_1 - 1] = {
         .personality = 0,
         .isShiny = FALSE,
-        .species = SPECIES_ELECTRIKE,
+        .species = SPECIES_MUK,
         .contestCategory = CONTEST_CATEGORY_CUTE,
-        .monName = _("ELECTER"),
-        .trainerName = _("EZRA"),
+        .monName = _("STICKY"),
+        .trainerName = _("GARETT"),
         .contestRank = CONTEST_RANK_NORMAL
     },
     [CONTEST_WINNER_HALL_2 - 1] = {
         .personality = 0,
         .isShiny = FALSE,
-        .species = SPECIES_TROPIUS,
+        .species = SPECIES_RHYDON,
         .contestCategory = CONTEST_CATEGORY_COOL,
-        .monName = _("TROPO"),
-        .trainerName = _("ALLAN"),
+        .monName = _("BUFFY"),
+        .trainerName = _("CLIFTON"),
         .contestRank = CONTEST_RANK_HYPER
     },
     [CONTEST_WINNER_HALL_3 - 1] = {
         .personality = 0,
         .isShiny = FALSE,
-        .species = SPECIES_XATU,
+        .species = SPECIES_DEWGONG,
         .contestCategory = CONTEST_CATEGORY_BEAUTY,
-        .monName = _("TUXA"),
-        .trainerName = _("JULIET"),
+        .monName = _("CEZANNE"),
+        .trainerName = _("NORMA"),
         .contestRank = CONTEST_RANK_NORMAL
     },
     [CONTEST_WINNER_HALL_4 - 1] = {
         .personality = 0,
         .isShiny = FALSE,
-        .species = SPECIES_PLUSLE,
+        .species = SPECIES_MACHOKE,
         .contestCategory = CONTEST_CATEGORY_TOUGH,
-        .monName = _("PULSE"),
-        .trainerName = _("BAILY"),
+        .monName = _("GURIO"),
+        .trainerName = _("TURNER"),
         .contestRank = CONTEST_RANK_MASTER
     },
     [CONTEST_WINNER_HALL_5 - 1] = {
         .personality = 0,
         .isShiny = FALSE,
-        .species = SPECIES_SHUPPET,
+        .species = SPECIES_MR_MIME,
         .contestCategory = CONTEST_CATEGORY_SMART,
-        .monName = _("SHUPUP"),
-        .trainerName = _("MELANY"),
+        .monName = _("MILES"),
+        .trainerName = _("REYLEY"),
         .contestRank = CONTEST_RANK_SUPER
     },
     [CONTEST_WINNER_HALL_6 - 1] = {
         .personality = 0,
         .isShiny = FALSE,
-        .species = SPECIES_ZANGOOSE,
+        .species = SPECIES_PARASECT,
         .contestCategory = CONTEST_CATEGORY_COOL,
-        .monName = _("GOOZAN"),
-        .trainerName = _("HANA"),
+        .monName = _("SPIKE"),
+        .trainerName = _("HADEN"),
         .contestRank = CONTEST_RANK_HYPER
     },
 };
