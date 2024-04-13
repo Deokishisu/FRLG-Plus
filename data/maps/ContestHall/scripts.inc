@@ -284,6 +284,9 @@ ContestHall_EventScript_CreateWirelessContestAudienceLink::
 	return
 
 ContestHall_EventScript_AddRandomAudienceMembersLink::
+	setvar VAR_OBJ_GFX_ID_B, OBJ_EVENT_GFX_Z_RS_ARTIST
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_Z_RS_RUNNING_TRIATHLETE_F
+	setvar VAR_OBJ_GFX_ID_D, OBJ_EVENT_GFX_Z_RS_CONTEST_JUDGE
 	call ContestHall_EventScript_GetRandomAudienceGfxIdLink
 	call ContestHall_EventScript_SetRandomAudienceGfx
 	goto_if_lt VAR_TEMP_0, 8, ContestHall_EventScript_AddRandomAudienceMembersLink
@@ -459,6 +462,9 @@ ContestHall_EventScript_RandomAudienceScientist1Link::
 @ There are 8 audience member object events, 7 of which are given random gfx below (the 8th is the Artist)
 @ The rest of the audience is created statically by ContestHall_EventScript_CreateAudience
 ContestHall_EventScript_AddRandomAudienceMembers::
+	setvar VAR_OBJ_GFX_ID_B, OBJ_EVENT_GFX_PAINTER
+	setvar VAR_OBJ_GFX_ID_C, OBJ_EVENT_GFX_WORKER_F
+	setvar VAR_OBJ_GFX_ID_D, OBJ_EVENT_GFX_CONTEST_JUDGE
 	call ContestHall_EventScript_GetRandomAudienceGfxId
 	call ContestHall_EventScript_SetRandomAudienceGfx
 	goto_if_lt VAR_TEMP_0, 8, ContestHall_EventScript_AddRandomAudienceMembers

@@ -34,6 +34,7 @@ mapscripts SixIsland_ContestLobby_MapScripts{
             waitmovement(LOCALID_ARTIST)
             applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft)
             waitmovement(0)
+            textcolor(NPC_TEXT_COLOR_FEMALE)
         }
         else
         {   // link artist
@@ -42,8 +43,8 @@ mapscripts SixIsland_ContestLobby_MapScripts{
             waitmovement(LOCALID_ARTIST_LINK)
             applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight)
             waitmovement(0)
+            textcolor(NPC_TEXT_COLOR_MALE)
         }
-        textcolor(NPC_TEXT_COLOR_FEMALE)
         msgbox("Congratulations!\pI did a painting of your POKéMON\nto commemorate its victory…\pWell, your POKéMON's appeals were\nso fantastic, it spurred me into\lpainting better than I usually do.\lLook, see?")
         lockall
         fadescreen(FADE_TO_BLACK)
