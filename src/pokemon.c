@@ -2469,7 +2469,6 @@ static const s8 sNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 
 #include "data/pokemon/tmhm_learnsets.h"
 #include "data/pokemon/trainer_class_lookups.h"
-#include "data/pokemon/cry_ids.h"
 #include "data/pokemon/experience_tables.h"
 #include "data/pokemon/species_info.h"
 #include "data/pokemon/level_up_learnsets.h"
@@ -6772,13 +6771,12 @@ u16 ExtendedToNationalOrder(u16 extendedNum)
 
 u16 SpeciesToCryId(u16 species)
 {
-    if (species < SPECIES_OLD_UNOWN_B - 1)
-        return species;
-
-    if (species <= SPECIES_OLD_UNOWN_Z - 1)
+    if ((species > SPECIES_CELEBI - 1) && (species < SPECIES_TREECKO - 1))
         return SPECIES_UNOWN - 1;
 
-    return sHoennSpeciesIdToCryId[species - ((SPECIES_OLD_UNOWN_Z + 1) - 1)];
+    if (species > SPECIES_OLD_UNOWN_B - 1)
+        return species - (26 - 1);
+    return species;
 }
 
 // Spots can be drawn on Spinda's color indexes 1, 2, or 3
