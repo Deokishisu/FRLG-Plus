@@ -2921,19 +2921,27 @@ void SetContestants(u8 contestType, u8 rank)
 
         if(VarGet(VAR_STARTER_MON) == 0 && opponents[rnd] == CONTEST_OPPONENT_ATLAS)
         {
-            gContestMons[i] = gContestOpponentsDaisy[CONTEST_OPPONENT_DAISY_BLASTOISE];
+            gContestMons[i] = gContestOpponentsSpecial[CONTEST_OPPONENT_DAISY_BLASTOISE];
         }
         else if(opponents[rnd] == CONTEST_OPPONENT_AIDEN)
         {
             gContestMons[i] = gContestOpponentsFRLG[opponents[rnd]];
             if(VarGet(VAR_STARTER_MON) == 1)
             {
-                gContestMons[i] = gContestOpponentsDaisy[CONTEST_OPPONENT_DAISY_CHARIZARD];
+                gContestMons[i] = gContestOpponentsSpecial[CONTEST_OPPONENT_DAISY_CHARIZARD];
             }
             if((VarGet(VAR_STARTER_MON) == 2))
             {
-                gContestMons[i] = gContestOpponentsDaisy[CONTEST_OPPONENT_DAISY_VENUSAUR];
+                gContestMons[i] = gContestOpponentsSpecial[CONTEST_OPPONENT_DAISY_VENUSAUR];
             }
+        }
+        else if(opponents[rnd] == CONTEST_OPPONENT_CHARLES && Random() % 15 == 0)
+        {
+            gContestMons[i] = gContestOpponentsSpecial[CONTEST_OPPONENT_BONNY];
+        }
+        else if(opponents[rnd] == CONTEST_OPPONENT_HOWARD && Random() % 15 == 0)
+        {
+            gContestMons[i] = gContestOpponentsSpecial[CONTEST_OPPONENT_REUBEN];
         }
         else
         {
@@ -3006,6 +3014,9 @@ u8 GetContestEntryEligibility(struct Pokemon *pkmn)
         return CANT_ENTER_CONTEST_EGG;
     if (GetMonData(pkmn, MON_DATA_HP) == 0)
         return CANT_ENTER_CONTEST_FAINTED;
+    if(gSpecialVar_LastTalked == 2 && GetMonData(pkmn, MON_DATA_SPECIES) > SPECIES_EGG) // gSpecialVar_LastTalked == Link Contest Receptionist
+        return CANT_ENTER_CONTEST_BANNED;
+
     switch (gSpecialVar_ContestCategory)
     {
     case CONTEST_CATEGORY_COOL:

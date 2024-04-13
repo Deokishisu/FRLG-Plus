@@ -2065,6 +2065,16 @@ const struct MonCoords gMonBackPicCoords[] =
         .size = MON_COORDS_SIZE(24, 48),
         .y_offset = 10,
     },
+    [SPECIES_BONSLY] =
+    {
+        .size = MON_COORDS_SIZE(48, 48),
+        .y_offset = 11,
+    },
+    [SPECIES_MUNCHLAX] =
+    {
+        .size = MON_COORDS_SIZE(48, 48),
+        .y_offset = 8,
+    },
     [SPECIES_UNOWN_B] =
     {
         .size = MON_COORDS_SIZE(40, 48),

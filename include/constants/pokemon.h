@@ -286,6 +286,7 @@
 #define EVO_LEVEL_SHEDINJA   14 // Pokémon reaches the specified level (special value for Shedinja)
 #define EVO_BEAUTY           15 // Pokémon levels up with beauty ≥ specified value
 #define EVO_STONE_HELD       16 // specified item is used on Pokémon and it's holding the specified item
+#define EVO_MOVE             17 // Pokémon levels up, knows specified move
 
 #define EVOS_PER_MON 5
 #define EVOS_PER_LINE 6

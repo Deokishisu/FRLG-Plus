@@ -1010,6 +1010,14 @@ void RejectEggFromDayCare(void)
 static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare)
 {
     u16 motherItem, fatherItem;
+    if (*species == SPECIES_BONSLY)
+    {
+        *species = SPECIES_SUDOWOODO;
+    }
+    if (*species == SPECIES_MUNCHLAX)
+    {
+        *species = SPECIES_SNORLAX;
+    }
     if (*species == SPECIES_WYNAUT || *species == SPECIES_AZURILL)
     {
         motherItem = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM);

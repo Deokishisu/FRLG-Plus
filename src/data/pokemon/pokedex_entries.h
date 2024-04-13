@@ -5030,4 +5030,30 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerScale = 337,
         .trainerOffset = 2,
     },
+
+    [NATIONAL_DEX_BONSLY] =
+    {
+        .categoryName = _("BONSAI"),
+        .height = 5,
+        .weight = 150,
+        .description_FR = gDummyPokedexText_FR,
+        .description_LG = gDummyPokedexText_FR,
+        .pokemonScale = 432,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_MUNCHLAX] =
+    {
+        .categoryName = _("BIG EATER"),
+        .height = 6,
+        .weight = 1050,
+        .description_FR = gDummyPokedexText_FR,
+        .description_LG = gDummyPokedexText_FR,
+        .pokemonScale = 422,
+        .pokemonOffset = 14,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },1
 };

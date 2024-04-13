@@ -490,6 +490,9 @@ SixIsland_ContestLobby_EventScript_ChooseLinkContestMon:
                 case CANT_ENTER_CONTEST_FAINTED:
                     msgbox(SixIsland_ContestLobby_Text_MonInNoConditionForContest)
 	                goto(SixIsland_ContestLobby_EventScript_ChooseLinkContestMon)
+                case CANT_ENTER_CONTEST_BANNED:
+                    msgbox("I'm terribly sorry, but your POKéMON\nis not eligible to compete in a\lLINK CONTEST.")
+	                goto(SixIsland_ContestLobby_EventScript_ChooseLinkContestMon)
                 default: // CAN_ENTER_CONTEST_EQUAL_RANK / CAN_ENTER_CONTEST_HIGH_RANK
                     goto(SixIsland_ContestLobby_EventScript_TrySetUpLinkContest)
             }

@@ -203,7 +203,9 @@ enum {
 enum {
     CONTEST_OPPONENT_DAISY_VENUSAUR,
     CONTEST_OPPONENT_DAISY_CHARIZARD,
-    CONTEST_OPPONENT_DAISY_BLASTOISE
+    CONTEST_OPPONENT_DAISY_BLASTOISE,
+    CONTEST_OPPONENT_BONNY,
+    CONTEST_OPPONENT_REUBEN,
 };
 
 // All contest opponents have a common set of AI flags (which contains all of the actually
@@ -305,9 +307,9 @@ const struct ContestWinner gDefaultContestWinners[] =
     },
 };
 
-const struct ContestPokemon gContestOpponentsDaisy[] =
+const struct ContestPokemon gContestOpponentsSpecial[] =
 {
-    [CONTEST_OPPONENT_DAISY_VENUSAUR] = {
+    [CONTEST_OPPONENT_DAISY_VENUSAUR] = { // replaces CONTEST_OPPONENT_AIDEN if starter is Charizard
         .species = SPECIES_VENUSAUR,
         .nickname = _("BRUTEROOT"),
         .trainerName = _("DAISY"),
@@ -335,7 +337,7 @@ const struct ContestPokemon gContestOpponentsDaisy[] =
         .personality = 0,
         .otId = CONTEST_AI_TRAINER_ID,
     },
-    [CONTEST_OPPONENT_DAISY_CHARIZARD] = {
+    [CONTEST_OPPONENT_DAISY_CHARIZARD] = { // replaces CONTEST_OPPONENT_AIDEN if starter is Blastoise
         .species = SPECIES_CHARIZARD,
         .nickname = _("CINDERWING"),
         .trainerName = _("DAISY"),
@@ -363,7 +365,7 @@ const struct ContestPokemon gContestOpponentsDaisy[] =
         .personality = 0,
         .otId = CONTEST_AI_TRAINER_ID,
     },
-    [CONTEST_OPPONENT_DAISY_BLASTOISE] = {
+    [CONTEST_OPPONENT_DAISY_BLASTOISE] = { // replaces CONTEST_OPPONENT_ATLAS if starter is Venusaur
         .species = SPECIES_BLASTOISE,
         .nickname = _("SHELLSHOCK"),
         .trainerName = _("DAISY"),
@@ -388,6 +390,62 @@ const struct ContestPokemon gContestOpponentsDaisy[] =
         .smart = 40,
         .tough = 160,
         .sheen = 255,
+        .personality = 0,
+        .otId = CONTEST_AI_TRAINER_ID,
+    },
+    [CONTEST_OPPONENT_BONNY] = { // Replaces CONTEST_OPPONENT_CHARLES sometimes
+        .species = SPECIES_BONSLY,
+        .nickname = _("BONBON"),
+        .trainerName = _("BONNY"),
+        .trainerGfxId = CONTEST_OBJ_OLD_WOMAN,
+        .aiFlags = CONTEST_AI_SET_9,
+        .whichRank = CONTEST_RANK_NORMAL,
+        .aiPool_Cool = FALSE,
+        .aiPool_Beauty = TRUE,
+        .aiPool_Cute = TRUE,
+        .aiPool_Smart = FALSE,
+        .aiPool_Tough = TRUE,
+        .moves =
+        {
+            MOVE_SLAM,
+            MOVE_COUNTER,
+            MOVE_BLOCK,
+            MOVE_ATTRACT
+        },
+        .cool = 10,
+        .beauty = 4,
+        .cute = 4,
+        .smart = 5,
+        .tough = 18,
+        .sheen = 70,
+        .personality = 0,
+        .otId = CONTEST_AI_TRAINER_ID,
+    },
+    [CONTEST_OPPONENT_REUBEN] = { // Replaces CONTEST_OPPONENT_HOWARD sometimes
+        .species = SPECIES_MUNCHLAX,
+        .nickname = _("GLUTTON"),
+        .trainerName = _("REUBEN"),
+        .trainerGfxId = CONTEST_OBJ_CHEF,
+        .aiFlags = CONTEST_AI_SET_2,
+        .whichRank = CONTEST_RANK_NORMAL,
+        .aiPool_Cool = FALSE,
+        .aiPool_Beauty = FALSE,
+        .aiPool_Cute = TRUE,
+        .aiPool_Smart = FALSE,
+        .aiPool_Tough = FALSE,
+        .moves =
+        {
+            MOVE_REST,
+            MOVE_FACADE,
+            MOVE_MEGA_PUNCH,
+            MOVE_COVET
+        },
+        .cool = 10,
+        .beauty = 10,
+        .cute = 6,
+        .smart = 1,
+        .tough = 2,
+        .sheen = 60,
         .personality = 0,
         .otId = CONTEST_AI_TRAINER_ID,
     },

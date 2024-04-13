@@ -1034,7 +1034,7 @@ static void HallOfFame_PrintMonInfo(struct HallofFameMon* currMon, u8 unused1, u
     {
         StringCopy(text2, gText_Number);
         dexNumber = SpeciesToPokedexNum(currMon->species);
-        if (dexNumber != 0xFFFF)
+        if (dexNumber != 0xFFFF && !(currMon->species > SPECIES_EGG))
         {
             text[0] = (dexNumber / 100) + CHAR_0;
             text[1] = ((dexNumber %= 100) / 10) + CHAR_0;

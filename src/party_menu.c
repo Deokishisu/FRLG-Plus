@@ -191,6 +191,7 @@ static void DisplayPartyPokemonDataForMultiBattle(u8 slot);
 static void DisplayPartyPokemonDataForChooseMultiple(u8 slot);
 static bool8 DisplayPartyPokemonDataForMoveTutorOrEvolutionItem(u8 slot);
 static void DisplayPartyPokemonData(u8 slot);
+static void DisplayPartyPokemonDataForContest(u8 slot);
 static void DisplayPartyPokemonDataForWirelessMinigame(u8 slot);
 static void LoadPartyBoxPalette(struct PartyMenuBox *menuBox, u8 palFlags);
 static void DrawEmptySlot(u8 windowId);
@@ -765,6 +766,8 @@ static void RenderPartyMenuBox(u8 slot)
         {
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_MULTIPLE_MONS)
                 DisplayPartyPokemonDataForChooseMultiple(slot);
+            else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CONTEST)
+                DisplayPartyPokemonDataForContest(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_MINIGAME)
                 DisplayPartyPokemonDataForWirelessMinigame(slot);
             else if (!DisplayPartyPokemonDataForMoveTutorOrEvolutionItem(slot))
@@ -838,6 +841,23 @@ static void DisplayPartyPokemonDataForChooseMultiple(u8 slot)
             }
         }
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_3);
+    }
+}
+
+static void DisplayPartyPokemonDataForContest(u8 slot)
+{
+    switch (GetContestEntryEligibility(&gPlayerParty[slot]))
+    {
+    case CANT_ENTER_CONTEST:
+    case CANT_ENTER_CONTEST_EGG:
+    case CANT_ENTER_CONTEST_FAINTED:
+    case CANT_ENTER_CONTEST_BANNED:
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE);
+        break;
+    case CAN_ENTER_CONTEST_EQUAL_RANK:
+    case CAN_ENTER_CONTEST_HIGH_RANK:
+        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE);
+        break;
     }
 }
 
@@ -1255,7 +1275,7 @@ static void HandleChooseMonCancel(u8 taskId, s8 *slotPtr)
         break;
     default:
         PlaySE(SE_SELECT);
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_MULTIPLE_MONS)
+        if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_MULTIPLE_MONS || gPartyMenu.menuType == PARTY_MENU_TYPE_CONTEST)
             DisplayCancelChooseMonYesNo(taskId);
         else
         {
@@ -1271,8 +1291,15 @@ static void HandleChooseMonCancel(u8 taskId, s8 *slotPtr)
 
 static void DisplayCancelChooseMonYesNo(u8 taskId)
 {
+    const u8 *stringPtr = NULL;
+
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_CONTEST)
+        stringPtr = gText_CancelParticipation;
+    else
+        stringPtr = gText_CancelBattle;
+    
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
-    StringExpandPlaceholders(gStringVar4, gText_CancelBattle);
+    StringExpandPlaceholders(gStringVar4, stringPtr);
     DisplayPartyMenuMessage(gStringVar4, TRUE);
     gTasks[taskId].func = Task_CancelChooseMonYesNo;
 }

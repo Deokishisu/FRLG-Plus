@@ -529,6 +529,8 @@ static const u16 sSpeciesToHoennPokedexNum[NUM_SPECIES - 1] =
     SPECIES_TO_HOENN(JIRACHI),
     SPECIES_TO_HOENN(DEOXYS),
     SPECIES_TO_HOENN(CHIMECHO),
+    SPECIES_TO_HOENN(BONSLY),
+    SPECIES_TO_HOENN(MUNCHLAX),
 };
 
  // Assigns all species to the National Dex Index (Summary No. for National Dex)
@@ -945,6 +947,8 @@ static const u16 sSpeciesToNationalPokedexNum[NUM_SPECIES - 1] =
     SPECIES_TO_NATIONAL(JIRACHI),
     SPECIES_TO_NATIONAL(DEOXYS),
     SPECIES_TO_NATIONAL(CHIMECHO),
+    SPECIES_TO_NATIONAL(BONSLY),
+    SPECIES_TO_NATIONAL(MUNCHLAX),
 };
 
 static const u16 sSpeciesToExtendedPokedexNum[] = // Assigns all species to the Extended Dex Index (Summary No. for Extended Dex)
@@ -1360,6 +1364,8 @@ static const u16 sSpeciesToExtendedPokedexNum[] = // Assigns all species to the 
     SPECIES_TO_EXTENDED(JIRACHI),
     SPECIES_TO_EXTENDED(DEOXYS),
     SPECIES_TO_EXTENDED(CHIMECHO),
+    SPECIES_TO_EXTENDED(BONSLY),
+    SPECIES_TO_EXTENDED(MUNCHLAX),
 };
 
 // Assigns all Hoenn Dex Indexes to a National Dex Index
@@ -1776,6 +1782,8 @@ static const u16 sHoennToNationalOrder[NUM_SPECIES - 1] =
     HOENN_TO_NATIONAL(OLD_UNOWN_X),
     HOENN_TO_NATIONAL(OLD_UNOWN_Y),
     HOENN_TO_NATIONAL(OLD_UNOWN_Z),
+    HOENN_TO_NATIONAL(BONSLY),
+    HOENN_TO_NATIONAL(MUNCHLAX),
 };
 
 static const u16 sExtendedToNationalOrder[] = // Assigns Extended Dex Pokémon (Using National Dex Index)
@@ -2191,6 +2199,8 @@ static const u16 sExtendedToNationalOrder[] = // Assigns Extended Dex Pokémon (
     EXTENDED_TO_NATIONAL(OLD_UNOWN_X),
     EXTENDED_TO_NATIONAL(OLD_UNOWN_Y),
     EXTENDED_TO_NATIONAL(OLD_UNOWN_Z),
+    EXTENDED_TO_NATIONAL(BONSLY),
+    EXTENDED_TO_NATIONAL(MUNCHLAX),
 };
 
 static const struct SpindaSpot sSpindaSpotGraphics[] =
@@ -6579,6 +6589,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 if (gEvolutionTable[species][i].param <= beauty)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_MOVE:
+                if (MonKnowsMove(mon, gEvolutionTable[species][i].param))
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
             }
         }
         break;
@@ -7799,7 +7813,7 @@ const u32 *GetMonSpritePalFromContestPainting(u16 species, bool32 isShiny, u32 p
             return gMonPaletteTable[SPECIES_DEOXYS].data;
     }
 
-    if (species > SPECIES_EGG)
+    if (species > NUM_SPECIES)
         return gMonPaletteTable[0].data;
 
     if (isShiny)
@@ -7821,7 +7835,7 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
             return gMonPaletteTable[SPECIES_DEOXYS].data;
     }
 
-    if (species > SPECIES_EGG)
+    if (species > NUM_SPECIES)
         return gMonPaletteTable[0].data;
 
     if (shinyValue < SHINY_ODDS)

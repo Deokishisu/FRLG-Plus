@@ -250,6 +250,8 @@ const u16 gBattleTowerBannedSpecies[] = {
     SPECIES_RAYQUAZA,
     SPECIES_JIRACHI,
     SPECIES_DEOXYS,
+    SPECIES_BONSLY,
+    SPECIES_MUNCHLAX,
     0xFFFF
 };
 

@@ -1851,18 +1851,39 @@ u8 GetUnlockedSeviiAreas(void)
 
 void UpdateTrainerCardPhotoIcons(void)
 {
-    u16 species[PARTY_SIZE];
+    u32 species[PARTY_SIZE];
     u32 personality[PARTY_SIZE];
     u32 i;
-    u8 partyCount;
+    u32 partyCount;
+    u32 nonNoneIdx = 0;
+    bool32 needCompaction = FALSE;
+
     for (i = 0; i < PARTY_SIZE; i++)
         species[i] = SPECIES_NONE;
+    
     partyCount = CalculatePlayerPartyCount();
     for (i = 0; i < partyCount; i++)
     {
         species[i] = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL);
+        if(species[i] > SPECIES_EGG)
+        {
+            species[i] = SPECIES_NONE;
+            needCompaction = TRUE;
+        }
         personality[i] = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY, NULL);
     }
+
+    if(needCompaction)
+    {   // Compact the party if Bonsly or Munchlax are present.
+        for (i = 0; i < partyCount; i++)
+        {
+            if (species[i] != SPECIES_NONE)
+                species[nonNoneIdx++] = species[i];
+        }
+        while (nonNoneIdx < partyCount)
+            species[nonNoneIdx++] = SPECIES_NONE;
+    }
+
     VarSet(VAR_TRAINER_CARD_MON_ICON_1, SpeciesToMailSpecies(species[0], personality[0]));
     VarSet(VAR_TRAINER_CARD_MON_ICON_2, SpeciesToMailSpecies(species[1], personality[1]));
     VarSet(VAR_TRAINER_CARD_MON_ICON_3, SpeciesToMailSpecies(species[2], personality[2]));
@@ -2593,11 +2614,16 @@ void SetDeoxysTrianglePalette(void)
 
 bool8 IsBadEggInParty(void)
 {
-    u8 partyCount = CalculatePlayerPartyCount();
+    u32 partyCount = CalculatePlayerPartyCount();
     u32 i;
+    u32 species;
     for (i = 0; i < partyCount; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_BAD_EGG) == TRUE)
+            return TRUE;
+        
+        species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+        if(species > SPECIES_EGG)
             return TRUE;
     }
     return FALSE;

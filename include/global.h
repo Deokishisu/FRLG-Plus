@@ -142,7 +142,7 @@ extern u8 gStringVar4[];
 
 #define ROUND_BITS_TO_BYTES(numBits) DIV_ROUND_UP(numBits, 8)
 
-#define DEX_FLAGS_NO ROUND_BITS_TO_BYTES(NUM_SPECIES)
+#define DEX_FLAGS_NO ROUND_BITS_TO_BYTES(SPECIES_EGG)
 #define NUM_FLAG_BYTES ROUND_BITS_TO_BYTES(FLAGS_COUNT)
 #define NUM_ADDITIONAL_PHRASE_BYTES ROUND_BITS_TO_BYTES(NUM_ADDITIONAL_PHRASES)
 
@@ -371,7 +371,7 @@ struct SaveBlock2
               struct ContestWinner contestWinners[NUM_CONTEST_WINNERS]; // 275 bytes
               u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
               struct Pokeblock pokeblocks[POKEBLOCKS_COUNT]; // 320 bytes
-              u8 filler_BattleTowerData[155]; // 157
+              u8 filler_BattleTowerData[155]; // 155
     /*0x898*/ u16 mapView[0x100];
     /*0xA98*/ struct LinkBattleRecords linkBattleRecords;
     /*0xAF0*/ struct BerryCrush berryCrush;
@@ -603,18 +603,18 @@ struct QuestLogObjectEvent
     /*0x02*/ u8 unused:3;
     /*0x03*/ u8 currentElevation:4;
     /*0x03*/ u8 previousElevation:4;
-    /*0x04*/ u16 graphicsId;
-    /*0x05*/ u8 movementType;
-    /*0x06*/ u8 trainerType;
-    /*0x07*/ u8 localId;
-    /*0x08*/ u8 mapNum;
-    /*0x09*/ u8 mapGroup;
-    /*0x0a*/ s16 x;
-    /*0x0c*/ s16 y;
-    /*0x0e*/ u8 trainerRange_berryTreeId;
-    /*0x0f*/ u8 previousMetatileBehavior;
-    /*0x10*/ u8 directionSequenceIndex;
-    /*0x11*/ u8 animId;
+    /*0x04*/ s16 x;
+    /*0x06*/ s16 y;
+    /*0x08*/ u16 graphicsId;
+    /*0x0a*/ u8 movementType;
+    /*0x0b*/ u8 trainerType;
+    /*0x0c*/ u8 localId;
+    /*0x0d*/ u8 mapNum;
+    /*0x0e*/ u8 mapGroup;
+    /*0x0f*/ u8 trainerRange_berryTreeId;
+    /*0x10*/ u8 previousMetatileBehavior;
+    /*0x11*/ u8 directionSequenceIndex;
+    /*0x12*/ u8 animId;
 };
 
 // This represents all the data needed to display a single scene for the "Quest Log" when the player resumes playing.
