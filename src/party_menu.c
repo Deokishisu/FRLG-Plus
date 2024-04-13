@@ -5383,15 +5383,20 @@ static void CB2_UseEvolutionStone(void)
     gCB2_AfterEvolution = gPartyMenu.exitCallback;
     ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0);
     ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, &gPlayerParty[gPartyMenu.slotId], gSpecialVar_ItemId, 0xFFFF);
-    if(gSpecialVar_ItemId != ITEM_LINK_BRACELET)
-        RemoveBagItem(gSpecialVar_ItemId, 1);
     species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
-    if(species == SPECIES_SLOWPOKE || species == SPECIES_POLIWHIRL || species == SPECIES_ONIX
-    || species == SPECIES_SEADRA || species == SPECIES_SCYTHER || species == SPECIES_PORYGON
-    || species == SPECIES_CLAMPERL)
-    { //just evolved by Link Bracelet, remove held item of trade+item mons
-        u16 heldItem = 0;
-        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_HELD_ITEM, &heldItem);
+    if(gSpecialVar_ItemId != ITEM_LINK_BRACELET)
+    {
+        RemoveBagItem(gSpecialVar_ItemId, 1);
+    }
+    else
+    {
+        if(species == SPECIES_SLOWPOKE || species == SPECIES_POLIWHIRL || species == SPECIES_ONIX
+        || species == SPECIES_SEADRA || species == SPECIES_SCYTHER || species == SPECIES_PORYGON
+        || species == SPECIES_CLAMPERL)
+        { // just evolved by Link Bracelet, remove held item of trade+item mons
+            u16 heldItem = 0;
+            SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_HELD_ITEM, &heldItem);
+        }
     }
 }
 
