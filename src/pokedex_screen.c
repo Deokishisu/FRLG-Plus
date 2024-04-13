@@ -2539,6 +2539,13 @@ static u32 DexScreen_GetDefaultPersonality(int species)
 
 static void DexScreen_LoadMonPicInWindow(u8 windowId, u16 species, u16 paletteOffset)
 {
+    if(species == SPECIES_DEOXYS)
+    {
+        if(gSaveBlock1Ptr->keyFlags.version == 0)
+            species = 65531;
+        else
+            species = 65532;
+    }
     LoadMonPicInWindow(species, SHINY_ODDS, DexScreen_GetDefaultPersonality(species), TRUE, paletteOffset >> 4, windowId);
 }
 
