@@ -238,6 +238,69 @@ u16 CreateMonPicSprite_HandleDeoxys(u16 species, u32 otId, u32 personality, bool
     return CreateMonPicSprite(species, otId, personality, isFrontPic, x, y, paletteSlot, paletteTag, FALSE);
 }
 
+u16 CreateMonPicSprite_HallOfFame(u32 species, bool32 isShiny, u32 personality, s16 x, s16 y, u32 paletteSlot, u32 paletteTag)
+{
+    u32 i;
+    u8 *framePics;
+    struct SpriteFrameImage *images;
+    int j;
+    u32 spriteId;
+
+    for (i = 0; i < PICS_COUNT; i ++)
+    {
+        if (!sSpritePics[i].active)
+            break;
+    }
+    if (i == PICS_COUNT)
+        return 0xFFFF;
+
+    framePics = Alloc(4 * 0x800);
+    if (!framePics)
+        return 0xFFFF;
+
+    images = Alloc(4 * sizeof(struct SpriteFrameImage));
+    if (!images)
+    {
+        Free(framePics);
+        return 0xFFFF;
+    }
+    if (DecompressPic(species, personality, TRUE, framePics, FALSE, FALSE))
+    {
+        // debug trap?
+        return 0xFFFF;
+    }
+    for (j = 0; j < 4; j ++)
+    {
+        images[j].data = framePics + 0x800 * j;
+        images[j].size = 0x800;
+    }
+    sCreatingSpriteTemplate.tileTag = TAG_NONE;
+    sCreatingSpriteTemplate.oam = &sOamData_Normal;
+    AssignSpriteAnimsTable(FALSE);
+    sCreatingSpriteTemplate.images = images;
+    sCreatingSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
+    sCreatingSpriteTemplate.callback = DummyPicSpriteCallback;
+    if (paletteTag == TAG_NONE)
+    {
+        sCreatingSpriteTemplate.paletteTag = TAG_NONE;
+        LoadCompressedPalette(GetMonSpritePalFromSpeciesAndShinyBit(species, isShiny, personality), OBJ_PLTT_ID(paletteSlot), PLTT_SIZE_4BPP);
+    }
+    else
+    {
+        sCreatingSpriteTemplate.paletteTag = paletteTag;
+        LoadCompressedSpritePalette(GetMonSpritePalStructFromShinyBitPersonality(species, isShiny, personality));
+    }
+    spriteId = CreateSprite(&sCreatingSpriteTemplate, x, y, 0);
+    if (paletteTag == TAG_NONE)
+        gSprites[spriteId].oam.paletteNum = paletteSlot;
+    sSpritePics[i].frames = framePics;
+    sSpritePics[i].images = images;
+    sSpritePics[i].paletteTag = paletteTag;
+    sSpritePics[i].spriteId = spriteId;
+    sSpritePics[i].active = TRUE;
+    return spriteId;
+}
+
 u16 FreeAndDestroyMonPicSprite(u16 spriteId)
 {
     return FreeAndDestroyPicSpriteInternal(spriteId);

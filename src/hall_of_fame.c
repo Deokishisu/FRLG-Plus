@@ -31,7 +31,10 @@
 
 struct HallofFameMon
 {
-    u32 tid;
+    u16 tid; // reduced to u16, only stores visible tid now
+    u16 isShiny:1;
+    u16 deoxysForme:4;
+    u16 padding:11;
     u32 personality;
     u16 species:9;
     u16 lvl:7;
@@ -289,7 +292,9 @@ static const u16 sHallOfFame_Pal[] = INCBIN_U16("graphics/hall_of_fame/hall_of_f
 static const u32 sHallOfFame_Gfx[] = INCBIN_U32("graphics/hall_of_fame/hall_of_fame.4bpp.lz");
 
 static const struct HallofFameMon sDummyHofMon = {
-    .tid = 0x03EA03EA, // (u16[]){1002, 1002} corrupted sprite template?
+    .tid = LOHALF(0x03EA03EA), // (u16[]){1002, 1002} corrupted sprite template?
+    .isShiny = FALSE,
+    .deoxysForme = 0,
     .personality = 0,
     .species = SPECIES_NONE,
     .lvl = 0,
@@ -384,33 +389,26 @@ static void Task_Hof_InitMonData(u8 taskId)
     u32 i;
     u32 j;
     u8 nick[11];
+    u32 shinyValue;
 
     gTasks[taskId].data[2] = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE)
         {
+            u32 otId = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
             sHofMonPtr[0].mon[i].species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
-            sHofMonPtr[0].mon[i].tid = GetMonData(&gPlayerParty[i], MON_DATA_OT_ID);
+            sHofMonPtr[0].mon[i].tid = LOHALF(otId);
             sHofMonPtr[0].mon[i].personality = GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY);
+
+
+            shinyValue = HIHALF(otId) ^ LOHALF(otId) ^ HIHALF(sHofMonPtr[0].mon[i].personality) ^ LOHALF(sHofMonPtr[0].mon[i].personality);
+            if (shinyValue < SHINY_ODDS)
+                sHofMonPtr[0].mon[i].isShiny = TRUE;
+
             if(sHofMonPtr[0].mon[i].species == SPECIES_DEOXYS)
-            {
-                switch(GetMonData(&gPlayerParty[i], MON_DATA_FORME))
-                {
-                case 1: //Attack Forme
-                    sHofMonPtr[0].mon[i].personality = 65531;
-                    break;
-                case 2: //Defense Forme
-                    sHofMonPtr[0].mon[i].personality = 65532;
-                    break;
-                case 3: //Speed Forme
-                    sHofMonPtr[0].mon[i].personality = 65533;
-                    break;
-                default: //Normal Forme
-                    sHofMonPtr[0].mon[i].personality = 65530;
-                    break;
-                }
-            }
+                sHofMonPtr[0].mon[i].deoxysForme = GetMonData(&gPlayerParty[i], MON_DATA_FORME);
+            
             sHofMonPtr[0].mon[i].lvl = GetMonData(&gPlayerParty[i], MON_DATA_LEVEL);
             GetMonData(&gPlayerParty[i], MON_DATA_NICKNAME, nick);
             for (j = 0; j < 10; j++)
@@ -421,6 +419,8 @@ static void Task_Hof_InitMonData(u8 taskId)
         {
             sHofMonPtr[0].mon[i].species = SPECIES_NONE;
             sHofMonPtr[0].mon[i].tid = 0;
+            sHofMonPtr[0].mon[i].isShiny = FALSE;
+            sHofMonPtr[0].mon[i].deoxysForme = 0;
             sHofMonPtr[0].mon[i].personality = 0;
             sHofMonPtr[0].mon[i].lvl = 0;
             sHofMonPtr[0].mon[i].nick[0] = EOS;
@@ -527,9 +527,9 @@ static void Task_Hof_DisplayMon(u8 taskId)
     }
 
     if(currMon->species == SPECIES_DEOXYS)
-        spriteId = CreateMonPicSprite_HandleDeoxys(currMon->personality, currMon->tid, currMon->personality, 1, srcX, srcY, currMonId, 0xFFFF);
+        spriteId = CreateMonPicSprite_HallOfFame(currMon->deoxysForme + 65530, currMon->isShiny, currMon->personality, srcX, srcY, currMonId, 0xFFFF);
     else
-        spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, 1, srcX, srcY, currMonId, 0xFFFF);
+        spriteId = CreateMonPicSprite_HallOfFame(currMon->species, currMon->isShiny, currMon->personality, srcX, srcY, currMonId, 0xFFFF);
     gSprites[spriteId].data[1] = dstX;
     gSprites[spriteId].data[2] = dstY;
     gSprites[spriteId].data[0] = 0;
@@ -847,11 +847,11 @@ static void Task_HofPC_DrawSpritesPrintText(u8 taskId)
                 posY = sHallOfFame_MonHalfTeamPositions[i][3];
             }
 
-            if(currMon->species == SPECIES_DEOXYS && (currMon->personality >= 65530 && currMon->personality <= 655333))
-                spriteId = CreateMonPicSprite_HandleDeoxys(currMon->personality, currMon->tid, currMon->personality, TRUE, posX,
+            if(currMon->species == SPECIES_DEOXYS)
+                spriteId = CreateMonPicSprite_HallOfFame(currMon->deoxysForme + 65530, currMon->isShiny, currMon->personality, posX,
                                                        posY, i, 0xFFFF);
             else
-                spriteId = CreateMonPicSprite_HandleDeoxys(currMon->species, currMon->tid, currMon->personality, TRUE, posX,
+                spriteId = CreateMonPicSprite_HallOfFame(currMon->species, currMon->isShiny, currMon->personality, posX,
                                                        posY, i, 0xFFFF);
             gSprites[spriteId].oam.priority = 1;
             gTasks[taskId].data[5 + i] = spriteId;

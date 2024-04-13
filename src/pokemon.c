@@ -7844,6 +7844,25 @@ const u32 *GetMonSpritePalFromSpeciesAndPersonality(u16 species, u32 otId, u32 p
         return gMonPaletteTable[species].data;
 }
 
+const u32 *GetMonSpritePalFromSpeciesAndShinyBit(u16 species, bool32 isShiny, u32 personality)
+{
+    if (species >= 65530 && species <= 65533) //Deoxys
+    {
+        if(isShiny)
+            return gMonShinyPaletteTable[SPECIES_DEOXYS].data;
+        else
+            return gMonPaletteTable[SPECIES_DEOXYS].data;
+    }
+
+    if (species > NUM_SPECIES)
+        return gMonPaletteTable[0].data;
+
+    if (isShiny)
+        return gMonShinyPaletteTable[species].data;
+    else
+        return gMonPaletteTable[species].data;
+}
+
 const struct CompressedSpritePalette *GetMonSpritePalStruct(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, NULL);
@@ -7865,6 +7884,21 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
             return &gMonPaletteTable[SPECIES_DEOXYS];
     }
     if (shinyValue < SHINY_ODDS)
+        return &gMonShinyPaletteTable[species];
+    else
+        return &gMonPaletteTable[species];
+}
+
+const struct CompressedSpritePalette *GetMonSpritePalStructFromShinyBitPersonality(u16 species, bool32 isShiny , u32 personality)
+{
+    if (species >= 65530 && species <= 65533) //Deoxys
+    {
+        if(isShiny)
+            return &gMonShinyPaletteTable[SPECIES_DEOXYS];
+        else
+            return &gMonPaletteTable[SPECIES_DEOXYS];
+    }
+    if (isShiny)
         return &gMonShinyPaletteTable[species];
     else
         return &gMonPaletteTable[species];
