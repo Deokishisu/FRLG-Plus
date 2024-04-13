@@ -837,9 +837,14 @@ EventScript_MimicTaught2::
 	checkplayergender
 	call_if_eq VAR_RESULT, MALE, EventScript_MimicTaughtMale2
 	call_if_eq VAR_RESULT, FEMALE, EventScript_MimicTaughtFemale2
+	call_if_lt VAR_MIMIC_RETAUGHT, 7, EventScript_AddVarMimicRetaught
 	hidemoneybox
 	release
 	end
+
+EventScript_AddVarMimicRetaught:
+	addvar VAR_MIMIC_RETAUGHT, 1
+	return
 
 EventScript_MimicTaughtMale2::
 	msgbox Text_MimicTaughtMale2

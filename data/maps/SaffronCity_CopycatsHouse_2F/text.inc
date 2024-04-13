@@ -1,23 +1,3 @@
-SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyMale::
-    .string "{PLAYER}: Hi!\n"
-    .string "Do you like POKéMON?\p"
-    .string "{PLAYER}: Uh, no, I just asked you.\p"
-    .string "{PLAYER}: Huh?\n"
-    .string "You're strange!\p"
-    .string "COPYCAT: Hmm? Quit mimicking?\n"
-    .string "But, that's my favorite hobby!$"
-
-SaffronCity_CopycatsHouse_2F_Text_MimickingFavoriteHobbyFemale::
-    .string "{PLAYER}: Hi.\n"
-    .string "You must like POKéMON.\p"
-    .string "{PLAYER}: No, not me.\n"
-    .string "I asked you.\p"
-    .string "{PLAYER}: Pardon?\n"
-    .string "You're weird!\l"
-    .string " \l"
-    .string "COPYCAT: Hmm? Quit mimicking?\l"
-    .string "But that's my favorite hobby!$"
-
 Text_MimicTeach::
     .string "Oh wow!\n"
     .string "A POKé DOLL!\p"
@@ -52,8 +32,7 @@ Text_MimicTaughtFemale::
     .string "It's a scream!$"
 
 Text_MimicReteach::
-    .string "{PLAYER}: Hi!\n"
-    .string "Could you teach us MIMIC again?\p"
+    .string "{PLAYER}: Could you teach us\nMIMIC again?\p"
     .string "{PLAYER}: Pardon?\p"
     .string "{PLAYER}: Is it that fun to copy my\n"
     .string "every word?\p"
@@ -71,7 +50,7 @@ Text_MimicNotEnoughMoney::
     .string "But a POKé DOLL only costs ¥1000!\p"
     .string "I don't have enough money for\n"
     .string "that right now…\p"
-    .string "COPYCAT: I want to buy five\n"
+    .string "COPYCAT: I'm saving up for the big\n"
     .string "POKé DOLLS! So I need ¥5000!\p"
     .string "I'll mimic teaching MIMIC to\n"
     .string "your POKéMON when you have it!$"
@@ -93,23 +72,3 @@ Text_MimicTaughtFemale2::
     .string "copy what I say and do?\p"
     .string "COPYCAT: You bet!\n"
     .string "It's a scream!$"
-
-SaffronCity_CopycatsHouse_2F_Text_Doduo::
-    .string "DODUO: Giiih!\p"
-    .string "PRETTY MIRROR LOOK AT ME,\n"
-    .string "SEE HOW PRETTY I CAN BE?$"
-
-SaffronCity_CopycatsHouse_2F_Text_RareMonOnlyDoll::
-    .string "This is a rare POKéMON!\n"
-    .string "Huh? It's only a doll!$"
-
-SaffronCity_CopycatsHouse_2F_Text_MarioWearingABucket::
-    .string "A game with MARIO wearing a bucket\n"
-    .string "on his head!$"
-
-SaffronCity_CopycatsHouse_2F_Text_MySecrets::
-    .string "…\p"
-    .string "My Secrets!\p"
-    .string "Skill: Mimicry!\n"
-    .string "Hobby: Collecting dolls!\l"
-    .string "Favorite POKéMON: CLEFAIRY!$"

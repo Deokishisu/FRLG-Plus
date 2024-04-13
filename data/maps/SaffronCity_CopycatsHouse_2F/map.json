@@ -13,7 +13,7 @@
   "show_map_name": false,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "type": "object",
@@ -31,7 +31,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_PIKACHU_DOLL",
       "x": 4,
       "y": 6,
       "elevation": 3,
@@ -45,7 +45,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_JIGGLYPUFF",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_JIGGLYPUFF_DOLL",
       "x": 7,
       "y": 2,
       "elevation": 3,
@@ -70,6 +70,118 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SaffronCity_CopycatsHouse_2F_EventScript_Copycat",
       "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_CLEFAIRY_DOLL",
+      "x": 5,
+      "y": 2,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_8"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_DITTO_DOLL",
+      "x": 2,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_MEOWTH_DOLL",
+      "x": 4,
+      "y": 4,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_7"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_UNUSED_MAGNEMITE_DOLL",
+      "x": 3,
+      "y": 2,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_6"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_UNUSED_SQUIRTLE_DOLL",
+      "x": 10,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_BIG_LAPRAS_DOLL",
+      "x": 6,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_BIG_RHYDON_DOLL",
+      "x": 2,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_Z_RS_BIG_SNORLAX_DOLL",
+      "x": 9,
+      "y": 4,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_CopycatsHouse_2F_EventScript_Doll",
+      "flag": "FLAG_TEMP_3"
     }
   ],
   "warp_events": [
@@ -81,7 +193,9 @@
       "dest_warp_id": "3"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -110,5 +224,5 @@
       "underfoot": false
     }
   ],
-	"level_scaling": "0"
+  "level_scaling": "0"
 }

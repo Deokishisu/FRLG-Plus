@@ -1,0 +1,85 @@
+mapscripts SaffronCity_CopycatsHouse_2F_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION {
+        if(!flag(FLAG_TUTOR_MIMIC))
+        {
+            setflag(FLAG_TEMP_8)
+        }
+        if(var(VAR_MIMIC_RETAUGHT) < 7)
+        {
+            setflag(FLAG_TEMP_1)
+            if(var(VAR_MIMIC_RETAUGHT) < 6)
+            {
+                setflag(FLAG_TEMP_2)
+                if(var(VAR_MIMIC_RETAUGHT) < 5)
+                {
+                    setflag(FLAG_TEMP_3)
+                    if(var(VAR_MIMIC_RETAUGHT) < 4)
+                    {
+                        setflag(FLAG_TEMP_4)
+                        if(var(VAR_MIMIC_RETAUGHT) < 3)
+                        {
+                            setflag(FLAG_TEMP_5)
+                            if(var(VAR_MIMIC_RETAUGHT) < 2)
+                            {
+                                setflag(FLAG_TEMP_6)
+                                if(var(VAR_MIMIC_RETAUGHT) < 1)
+                                {
+                                    setflag(FLAG_TEMP_7)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Doduo{
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_DODUO, CRY_MODE_NORMAL)
+    bufferspeciesname(0, SPECIES_DODUO)
+    msgbox("{STR_VAR_1}: Giiih!\pPRETTY MIRROR LOOK AT ME,\nSEE HOW PRETTY I CAN BE?")
+    waitmoncry
+    release
+    end
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Doll{
+    lock
+	msgbox("This is a rare POKéMON!\nHuh? It's only a doll!")
+	release
+	end
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Copycat{
+    goto_if_questlog(EventScript_ReleaseEnd)
+    special(QuestLog_CutRecording)
+    lock
+    faceplayer
+    checkitem(ITEM_POKE_DOLL)
+    if(var(VAR_RESULT))
+    {
+        goto(EventScript_MimicTutor)
+    }
+    checkplayergender
+    if(var(VAR_RESULT) == MALE)
+    {
+        msgbox("{PLAYER}: Hi!\nDo you like POKéMON?\p{PLAYER}: Uh, no, I just asked you.\p{PLAYER}: Huh?\nYou're strange!\pCOPYCAT: Hmm? Quit mimicking?\nBut, that's my favorite hobby!")
+	    goto(EventScript_MimicTutor)
+    }
+    msgbox("{PLAYER}: Hi.\nYou must like POKéMON.\p{PLAYER}: No, not me.\nI asked you.\p{PLAYER}: Pardon?\nYou're weird!\l\lCOPYCAT: Hmm? Quit mimicking?\lBut that's my favorite hobby!")
+	goto(EventScript_MimicTutor)
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Computer{
+    msgbox("…\pMy Secrets!\pSkill: Mimicry!\nHobby: Collecting dolls!\lFavorite POKéMON: CLEFAIRY!", MSGBOX_SIGN)
+    end
+}
+
+script SaffronCity_CopycatsHouse_2F_EventScript_Game{
+    msgbox("A game with MARIO wearing a bucket\non his head!", MSGBOX_SIGN)
+    end
+}

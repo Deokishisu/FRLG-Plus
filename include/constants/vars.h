@@ -194,7 +194,7 @@
 #define VAR_CONTEST_TYPE                 0x408D
 #define VAR_CONTEST_PRIZE_PICKUP         0x408E
 
-#define VAR_0x408F                 0x408F
+#define VAR_MIMIC_RETAUGHT         0x408F // Copycat buys up to seven more dolls when Mimic is retaught.
 #define VAR_0x4090                 0x4090
 #define VAR_0x4091                 0x4091
 #define VAR_0x4092                 0x4092
