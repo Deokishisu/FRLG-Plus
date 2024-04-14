@@ -27,11 +27,11 @@ extern u8 gExpandedPlaceholder_Empty[];
 extern u8 gExpandedPlaceholder_Kun[];
 extern u8 gExpandedPlaceholder_Chan[];
 extern u8 gExpandedPlaceholder_Sapphire[];
-extern u8 gExpandedPlaceholder_Ruby[];
-extern u8 gExpandedPlaceholder_Aqua[];
-extern u8 gExpandedPlaceholder_Magma[];
-extern u8 gExpandedPlaceholder_Archie[];
-extern u8 gExpandedPlaceholder_Maxie[];
+extern u8 gExpandedPlaceholder_Pokemon[];
+extern u8 gExpandedPlaceholder_Pokedex[];
+extern u8 gExpandedPlaceholder_Poke[];
+extern u8 gExpandedPlaceholder_NoFreeHeals[];
+extern u8 gExpandedPlaceholder_NuzlockeMode[];
 extern u8 gExpandedPlaceholder_Kyogre[];
 extern u8 gExpandedPlaceholder_Groudon[];
 extern u8 gExpandedPlaceholder_Red[];
@@ -402,29 +402,29 @@ static u8 *ExpandPlaceholder_RivalName(void)
     }
 }
 
-static u8 *ExpandPlaceholder_Version(void)
+static u8 *ExpandPlaceholder_Pokemon(void)
 {
-    return gExpandedPlaceholder_Ruby;
+    return gExpandedPlaceholder_Pokemon;
 }
 
-static u8 *ExpandPlaceholder_Magma(void)
+static u8 *ExpandPlaceholder_Poke(void)
 {
-    return gExpandedPlaceholder_Magma;
+    return gExpandedPlaceholder_Poke;
 }
 
-static u8 *ExpandPlaceholder_Aqua(void)
+static u8 *ExpandPlaceholder_Pokedex(void)
 {
-    return gExpandedPlaceholder_Aqua;
+    return gExpandedPlaceholder_Pokedex;
 }
 
-static u8 *ExpandPlaceholder_Maxie(void)
+static u8 *ExpandPlaceholder_NuzlockeMode(void)
 {
-    return gExpandedPlaceholder_Maxie;
+    return gExpandedPlaceholder_NuzlockeMode;
 }
 
-static u8 *ExpandPlaceholder_Archie(void)
+static u8 *ExpandPlaceholder_NoFreeHeals(void)
 {
-    return gExpandedPlaceholder_Archie;
+    return gExpandedPlaceholder_NoFreeHeals;
 }
 
 static u8 *ExpandPlaceholder_Groudon(void)
@@ -441,22 +441,28 @@ u8 *GetExpandedPlaceholder(u32 id)
 {
     typedef u8 *(*ExpandPlaceholderFunc)(void);
 
+#define PLACEHOLDER_ID_POKEMON       0x7
+#define PLACEHOLDER_ID_POKE          0x8
+#define PLACEHOLDER_ID_POKEDEX       0x9
+#define PLACEHOLDER_ID_NUZLOCKE_MODE 0xA
+#define PLACEHOLDER_ID_NO_FREE_HEALS 0xB
+
     static const ExpandPlaceholderFunc funcs[] =
     {
-        [PLACEHOLDER_ID_UNKNOWN]      = ExpandPlaceholder_UnknownStringVar,
-        [PLACEHOLDER_ID_PLAYER]       = ExpandPlaceholder_PlayerName,
-        [PLACEHOLDER_ID_STRING_VAR_1] = ExpandPlaceholder_StringVar1,
-        [PLACEHOLDER_ID_STRING_VAR_2] = ExpandPlaceholder_StringVar2,
-        [PLACEHOLDER_ID_STRING_VAR_3] = ExpandPlaceholder_StringVar3,
-        [PLACEHOLDER_ID_KUN]          = ExpandPlaceholder_KunChan,
-        [PLACEHOLDER_ID_RIVAL]        = ExpandPlaceholder_RivalName,
-        [PLACEHOLDER_ID_VERSION]      = ExpandPlaceholder_Version,
-        [PLACEHOLDER_ID_MAGMA]        = ExpandPlaceholder_Magma,
-        [PLACEHOLDER_ID_AQUA]         = ExpandPlaceholder_Aqua,
-        [PLACEHOLDER_ID_MAXIE]        = ExpandPlaceholder_Maxie,
-        [PLACEHOLDER_ID_ARCHIE]       = ExpandPlaceholder_Archie,
-        [PLACEHOLDER_ID_GROUDON]      = ExpandPlaceholder_Groudon,
-        [PLACEHOLDER_ID_KYOGRE]       = ExpandPlaceholder_Kyogre,
+        [PLACEHOLDER_ID_UNKNOWN]       = ExpandPlaceholder_UnknownStringVar,
+        [PLACEHOLDER_ID_PLAYER]        = ExpandPlaceholder_PlayerName,
+        [PLACEHOLDER_ID_STRING_VAR_1]  = ExpandPlaceholder_StringVar1,
+        [PLACEHOLDER_ID_STRING_VAR_2]  = ExpandPlaceholder_StringVar2,
+        [PLACEHOLDER_ID_STRING_VAR_3]  = ExpandPlaceholder_StringVar3,
+        [PLACEHOLDER_ID_KUN]           = ExpandPlaceholder_KunChan,
+        [PLACEHOLDER_ID_RIVAL]         = ExpandPlaceholder_RivalName,
+        [PLACEHOLDER_ID_POKEMON]       = ExpandPlaceholder_Pokemon,
+        [PLACEHOLDER_ID_POKE]          = ExpandPlaceholder_Poke,
+        [PLACEHOLDER_ID_POKEDEX]       = ExpandPlaceholder_Pokedex,
+        [PLACEHOLDER_ID_NUZLOCKE_MODE] = ExpandPlaceholder_NuzlockeMode,
+        [PLACEHOLDER_ID_NO_FREE_HEALS] = ExpandPlaceholder_NoFreeHeals,
+        [PLACEHOLDER_ID_GROUDON]       = ExpandPlaceholder_Groudon,
+        [PLACEHOLDER_ID_KYOGRE]        = ExpandPlaceholder_Kyogre,
     };
 
     if (id >= NELEMS(funcs))

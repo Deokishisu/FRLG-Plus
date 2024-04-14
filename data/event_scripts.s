@@ -670,8 +670,6 @@ gStdScriptsEnd::
 	.include "data/maps/SevenIsland_SevaultCanyon_Entrance/text.inc"
 	.include "data/maps/SevenIsland_SevaultCanyon/text.inc"
 	.include "data/maps/SevenIsland_TanobyRuins/text.inc"
-	.include "data/maps/PalletTown_PlayersHouse_1F/text.inc"
-	.include "data/maps/PalletTown_PlayersHouse_2F/text.inc"
 	.include "data/maps/PalletTown_RivalsHouse/text.inc"
 	.include "data/maps/PalletTown_ProfessorOaksLab/text.inc"
 	.include "data/maps/ViridianCity_House/text.inc"
@@ -899,7 +897,6 @@ Text_TheDoorIsOpen::
 	.string "The door is open…$"
 
 	.include "data/text/pc_transfer.inc"
-	.include "data/text/white_out.inc"
 	.include "data/text/poke_mart.inc"
 
 Text_MonFlewAway::

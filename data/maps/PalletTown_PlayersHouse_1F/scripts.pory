@@ -1,0 +1,48 @@
+const LOCALID_MOM = 1
+
+mapscripts PalletTown_PlayersHouse_1F_MapScripts{}
+
+script PalletTown_PlayersHouse_1F_EventScript_Mom
+{
+	lock
+	faceplayer
+    if(flag(FLAG_SYS_POKEMON_GET))
+    {
+        msgbox("MOM: {PLAYER}!\nYou should take a quick rest.")
+        closemessage
+        call(EventScript_OutOfCenterPartyHeal)
+        msgbox("MOM: Oh, good! You and your\n{POKEMON} are looking great.\lTake care now!")
+        release
+        end
+    }
+	checkplayergender
+    if(var(VAR_RESULT) == MALE)
+    {
+        msgbox("MOM: …Right.\nAll boys leave home someday.\lIt said so on TV.\pOh, yes. PROF. OAK, next door, was\nlooking for you.")
+    }
+    else // FEMALE
+    {
+        msgbox("MOM: …Right.\nAll girls dream of traveling.\lIt said so on TV.\pOh, yes. PROF. OAK, next door, was\nlooking for you.")
+    }
+    closemessage
+    applymovement(LOCALID_MOM, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    release
+    end
+}
+
+script PalletTown_PlayersHouse_1F_EventScript_TV
+{
+    lockall
+    checkplayergender
+    if(var(VAR_RESULT) == MALE)
+    {
+        msgbox("There's a movie on TV.\nFour boys are walking on railroad\ltracks.\p…I better go, too.")
+    }
+    else // FEMALE
+    {
+        msgbox("There's a movie on TV.\nA girl with her hair in pigtails is\lwalking up a brick road.\p…I better go, too.")
+    }
+    releaseall
+    end
+}

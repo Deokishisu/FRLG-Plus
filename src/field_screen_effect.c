@@ -1,5 +1,6 @@
 #include "global.h"
 #include "gflib.h"
+#include "event_data.h"
 #include "field_screen_effect.h"
 #include "overworld.h"
 #include "pokemon_storage_system.h"
@@ -443,22 +444,15 @@ static void Task_RushInjuredPokemonToCenter(u8 taskId)
             {
                 if(GetFirstAliveBoxMon() == 420) //no usable Pokemon
                 {
+                    VarSet(VAR_TEMP_A, 0);
                     gGlobalFieldTintMode = 1; //should grayscale palettes?
-                    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && gSaveBlock1Ptr->keyFlags.noPMC == 1)
-                        ScriptContext_SetupScript(EventScript_BothGameOver); //both noPMC and Nuzlocke
-                    else if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
-                        ScriptContext_SetupScript(EventScript_NuzlockeGameOver); //just Nuzlocke
-                    else
-                        ScriptContext_SetupScript(EventScript_NoPMCGameOver); //just noPMC
+                    ScriptContext_SetupScript(EventScript_GameOver);
                     break;
                 }
                 else
                 {
                     SwapFirstAliveBoxPokemon();
-                    if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
-                        ScriptContext_SetupScript(EventScript_NuzlockeHaveMons_Nurse);
-                    else
-                        ScriptContext_SetupScript(EventScript_NoPMCHaveMons_Nurse);
+                    ScriptContext_SetupScript(EventScript_NuzlockeNoPMCHaveMons_Nurse);
                     break;
                 }
             }
@@ -473,22 +467,15 @@ static void Task_RushInjuredPokemonToCenter(u8 taskId)
             {
                 if(GetFirstAliveBoxMon() == 420) //no usable Pokemon
                 {
+                    VarSet(VAR_TEMP_A, 1);
                     gGlobalFieldTintMode = 1; //should grayscale palettes?
-                    if(gSaveBlock1Ptr->keyFlags.nuzlocke == 1 && gSaveBlock1Ptr->keyFlags.noPMC == 1)
-                        ScriptContext_SetupScript(EventScript_BothGameOver_Mom); //both noPMC and Nuzlocke
-                    else if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
-                        ScriptContext_SetupScript(EventScript_NuzlockeGameOver_Mom); //just Nuzlocke
-                    else
-                        ScriptContext_SetupScript(EventScript_NoPMCGameOver_Mom); //just noPMC
+                    ScriptContext_SetupScript(EventScript_GameOver);
                     break;
                 }
                 else
                 {
                     SwapFirstAliveBoxPokemon();
-                    if(gSaveBlock1Ptr->keyFlags.noPMC == 0)
-                        ScriptContext_SetupScript(EventScript_NuzlockeHaveMons_Mom);
-                    else
-                        ScriptContext_SetupScript(EventScript_NoPMCHaveMons_Mom);
+                    ScriptContext_SetupScript(EventScript_NuzlockeNoPMCHaveMons_Mom);
                     break;
                 }
             }

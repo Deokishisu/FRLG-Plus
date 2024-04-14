@@ -1,0 +1,176 @@
+script EventScript_AfterWhiteOutHeal
+{
+	lockall
+	textcolor(NPC_TEXT_COLOR_FEMALE)
+	msgbox("First, you should restore your\n{POKEMON} to full health.")
+	call(EventScript_PkmnCenterNurse_TakeAndHealPkmn)
+    if(!flag(FLAG_DEFEATED_BROCK))
+    {
+        textcolor(NPC_TEXT_COLOR_FEMALE)
+	    msgbox("Your {POKEMON} have been healed\nto perfect health.\pIf your {POKEMON}'s energy, HP,\nis down, please come see us.\pIf you're planning to go far in the\nfield, you should buy some POTIONS\lat the {POKEMON} MART.\pWe hope you excel!")
+    }
+    else
+    {
+        textcolor(NPC_TEXT_COLOR_FEMALE)
+        msgbox("Your {POKEMON} have been healed\nto perfect health.\pWe hope you excel!")
+    }
+	applymovement(VAR_LAST_TALKED, Movement_Bow)
+	waitmovement(0)
+	fadedefaultbgm
+	releaseall
+	end
+}
+
+script EventScript_NuzlockeNoPMCHaveMons_Nurse
+{
+	lockall
+	textcolor(NPC_TEXT_COLOR_FEMALE)
+    callnative(CheckNoFreeHealsMode)
+    if(var(VAR_RESULT))
+    {
+        msgbox("I've swapped a {POKEMON} from your\nBOX with a {POKEMON} in your party.\pIf you're planning to go far in the\nfield, you should buy some POTIONS\lat the {POKEMON} MART.\pWe hope you excel!")
+    }
+    else
+    {
+        msgbox("I've swapped a {POKEMON} from your\nBOX with a {POKEMON} in your party.\pIf your {POKEMON}'s energy, HP, is\nlow, come see us before they faint.\pIf you're planning to go far in the\nfield, you should buy some POTIONS\lat the {POKEMON} MART.\pWe hope you excel!")
+    }
+	applymovement(VAR_LAST_TALKED, Movement_Bow)
+	waitmovement(0)
+	fadedefaultbgm
+	releaseall
+	end
+}
+
+const LOCALID_MOM = 1
+
+script EventScript_AfterWhiteOutMomHeal
+{
+	lockall
+	textcolor(NPC_TEXT_COLOR_FEMALE)
+	applymovement(LOCALID_MOM, Common_Movement_WalkInPlaceFasterDown)
+	waitmovement(0)
+	msgbox("MOM: {PLAYER}!\nWelcome home.\pIt sounds like you had quite\nan experience.\pMaybe you should take a quick\nrest.")
+	call(EventScript_OutOfCenterPartyHeal)
+	textcolor(1)
+	msgbox("MOM: Oh, good! You and your\n{POKEMON} are looking great.\pI just heard from PROF. OAK.\pHe said that {POKEMON}'s energy is\nmeasured in HP.\pIf your {POKEMON} lose their HP,\nyou can restore them at any\l{POKEMON} CENTER.\pIf you're going to travel far away,\nthe smart TRAINER stocks up on\lPOTIONS at the {POKEMON} MART.\pMake me proud, honey!\pTake care!")
+	fadedefaultbgm
+	releaseall
+	end
+}
+
+script EventScript_NuzlockeNoPMCHaveMons_Mom
+{
+    lockall
+	textcolor(NPC_TEXT_COLOR_FEMALE)
+	applymovement(LOCALID_MOM, Common_Movement_WalkInPlaceFasterDown)
+	waitmovement(0)
+    callnative(CheckNoFreeHealsMode)
+    if(var(VAR_RESULT))
+    {
+        msgbox("MOM: {PLAYER}!\nWelcome home.\pIt sounds like you had quite\nan experience.\pI've swapped a {POKEMON} from your\nBOX with a {POKEMON} in your party.\pI just heard from PROF. OAK.\pHe said that {POKEMON}'s energy is\nmeasured in HP.\pIf you're going to travel far away,\nthe smart TRAINER stocks up on\lPOTIONS at the {POKEMON} MART to\lrestore their {POKEMON}'s HP.\pMake me proud, honey!\pTake care!")
+    }
+    else
+    {
+        msgbox("MOM: {PLAYER}!\nWelcome home.\pIt sounds like you had quite\nan experience.\pI've swapped a {POKEMON} from your\nBOX with a {POKEMON} in your party.\pI just heard from PROF. OAK.\pHe said that {POKEMON}'s energy is\nmeasured in HP.\pIf your {POKEMON} lose their HP,\nyou can restore them at any\l{POKEMON} CENTER before they faint.\pIf you're going to travel far away,\nthe smart TRAINER stocks up on\lPOTIONS at the {POKEMON} MART.\pMake me proud, honey!\pTake care!")
+    }
+	fadedefaultbgm
+	releaseall
+	end
+}
+
+script EventScript_FieldPoison
+{
+	lockall
+	textcolor(NPC_TEXT_COLOR_NEUTRAL)
+	special(TryFieldPoisonWhiteOut)
+	waitstate
+    if(var(VAR_RESULT) == TRUE)
+    {
+        checkmoney(1)
+        if(!var(VAR_RESULT))
+        {   // Player has no money
+            msgbox("{PLAYER} is out of usable\n{POKEMON}!\p{PLAYER} whited out!")
+            goto(EventScript_FieldWhiteOutFade)
+        }
+        else
+        {   // Player has money
+            special(OverworldWhiteOutGetMoneyLoss)
+            msgbox("{PLAYER} is out of usable\n{POKEMON}!\p{PLAYER} panicked and lost ¥{STR_VAR_1}…\p… … … …\p{PLAYER} whited out!")
+            goto(EventScript_FieldWhiteOutFade)
+        }
+    }
+	releaseall
+	end
+}script(local) EventScript_FieldWhiteOutFade{
+    special(Script_FadeOutMapMusic)
+	waitstate
+	fadescreen(FADE_TO_BLACK)
+	special(SetCB2WhiteOut)
+	waitstate
+	end
+}
+
+script EventScript_GameOver
+{
+    lockall
+	textcolor(NPC_TEXT_COLOR_NEUTRAL)
+	signmsg
+    callnative(CheckNuzlockeAndNoFreeHealsModes)
+    switch(var(VAR_RESULT))
+    {
+        case 1: // Nuzlocke Only
+            bufferstring(1, "{NUZLOCKE_MODE} ")
+            bufferstring(0, "\n{NUZLOCKE_MODE} and heal ")
+            bufferstring(2, "{NUZLOCKE_MODE} has")
+        case 2: // NoPMC Only
+            bufferstring(1, "{NO_FREE_HEALS} ")
+            bufferstring(0, "\n{NO_FREE_HEALS} and heal ")
+            bufferstring(2, "{NO_FREE_HEALS} has")
+        case 3: // Both
+            bufferstring(1, "{NUZLOCKE_MODE} and {NO_FREE_HEALS}\l")
+            bufferstring(0, " NUZLOCKE\nMODE and {NO_FREE_HEALS} and heal\l")
+            bufferstring(2, "{NUZLOCKE_MODE} and {NO_FREE_HEALS}\nhave")
+    }
+	msgbox("You have no more {POKEMON} that can\nbattle in your {POKEMON} PC.\pYou can either reset to the last\ntime you saved, or turn off\l{STR_VAR_2}and heal your party.")
+    setvar(VAR_TEMP_9, 0)
+    while(var(VAR_TEMP_9) != 2)
+    {
+        switch(var(VAR_TEMP_9))
+        {
+            case 0:
+                msgbox("Would you like to reset to the\nlast save point?", MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES)
+                {
+                    msgbox("Are you sure?\pYou will lose all progress since\nyou last saved.", MSGBOX_YESNO)
+                    if(var(VAR_RESULT) == YES)
+                    {
+                        msgbox("The game will now reset.")
+                        callnative(DoSoftReset)
+                        delay_16
+                    }
+                }
+                setvar(VAR_TEMP_9, 1)
+            case 1:
+
+                msgbox("Would you like to turn off{STR_VAR_1}your party?", MSGBOX_YESNO)
+                if(var(VAR_RESULT) == YES)
+                {
+                    msgbox("{STR_VAR_3} been turned off.")
+                    normalmsg
+                    callnative(TurnOffNuzlockeMode)
+                    callnative(TurnOffNoPMC)
+                    if(var(VAR_TEMP_A) == 1)
+                    {
+                        callnative(ResetTintFilter) // this resets VAR_TEMP_A so it can't be before the check.
+                        goto(EventScript_AfterWhiteOutMomHeal)
+                    }
+                    else
+                    {
+                        callnative(ResetTintFilter) // this resets VAR_TEMP_A so it can't be before the check.
+                        goto(EventScript_AfterWhiteOutHeal)
+                    }
+                }
+                setvar(VAR_TEMP_9, 0)
+        }
+    }
+}

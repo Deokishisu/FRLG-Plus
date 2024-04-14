@@ -824,6 +824,29 @@ void CheckNoFreeHealsMode(void)
     gSpecialVar_Result = gSaveBlock1Ptr->keyFlags.noPMC;
 }
 
+void CheckNuzlockeAndNoFreeHealsModes(void)
+{
+    bool16 nuzlocke = gSaveBlock1Ptr->keyFlags.nuzlocke;
+    bool16 noPMC = gSaveBlock1Ptr->keyFlags.noPMC;
+    
+    if(nuzlocke && noPMC)
+    {
+        gSpecialVar_Result = 3;
+        return;
+    }
+    if(!nuzlocke && noPMC)
+    {
+        gSpecialVar_Result = 2;
+        return;
+    }
+    if(nuzlocke && !noPMC)
+    {
+        gSpecialVar_Result = 1;
+        return;
+    }
+    gSpecialVar_Result = 0;
+}
+
 #define SET_SPEAROW_STATE 0
 #define SET_TOLD_FAMECHECKER 1
 #define SET_VISITOR_STATE 2
