@@ -1892,3 +1892,18 @@
 	setvar VAR_0x8006, \item
 	special CreateEnemyEventMon
 	.endm
+
+	@ calls EventScript_RestorePrevTextColor
+	.macro restoreprevtextcolor
+	call EventScript_RestorePrevTextColor
+	.endm
+
+	@ alias of applymovement with OBJ_EVENT_ID_PLAYER as the localid argument
+	.macro applymoveplayer movements:req, map
+	applymovement OBJ_EVENT_ID_PLAYER, \movements, \map
+	.endm
+
+	@ alias of turnobject with OBJ_EVENT_ID_PLAYER as the localid argument
+	.macro turnplayer direction:req
+	turnobject OBJ_EVENT_ID_PLAYER, \direction
+	.endm

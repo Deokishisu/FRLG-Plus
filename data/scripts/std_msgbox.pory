@@ -1,0 +1,66 @@
+script Std_MsgboxNPC
+{
+    lock
+	faceplayer
+	message(0x0)
+	waitmessage
+	waitbuttonpress
+	release
+	return
+}
+
+script Std_MsgboxSign
+{
+	lockall
+	message(0x0)
+	waitmessage
+	waitbuttonpress
+	releaseall
+	return
+}
+
+script Std_MsgboxDefault
+{
+	message(0x0)
+	waitmessage
+	waitbuttonpress
+	return
+}
+
+script Std_MsgboxYesNo
+{
+	message(0x0)
+	waitmessage
+	yesnobox(20, 8)
+	return
+}
+
+script Std_ReceivedItem
+{
+	textcolor(NPC_TEXT_COLOR_NEUTRAL)
+    switch(var(VAR_0x8002))
+    {
+        case MUS_LEVEL_UP:
+            playfanfare(MUS_LEVEL_UP)
+        case MUS_OBTAIN_KEY_ITEM:
+            playfanfare(MUS_OBTAIN_KEY_ITEM)
+
+    }
+	message(0x0)
+	waitmessage
+	waitfanfare
+    if(var(VAR_0x8002) == MUS_LEVEL_UP)
+    {
+        delay(50)
+    }
+	putitemaway(VAR_0x8000, VAR_0x8001)
+    restoreprevtextcolor
+	return
+}
+
+script EventScript_AskSaveGame
+{
+	special(Field_AskSaveTheGame)
+	waitstate
+	return
+}

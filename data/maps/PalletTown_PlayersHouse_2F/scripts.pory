@@ -1,0 +1,60 @@
+mapscripts PalletTown_PlayersHouse_2F_MapScripts{
+    MAP_SCRIPT_ON_TRANSITION {
+        getplayerxy(VAR_RESULT, VAR_0x8008)
+        if(var(VAR_RESULT) != 6 && var(VAR_0x8008) != 6)
+        {
+            setvar(VAR_TEMP_0, 1)
+        }
+        if(var(VAR_TEMP_0) == 0)
+        {
+            setrespawn(SPAWN_PALLET_TOWN)
+            end
+        }
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_TEMP_0, 0 {
+            turnplayer(DIR_NORTH)
+            setvar(VAR_TEMP_0, 1)
+            end
+        }
+    ]
+}
+
+script PalletTown_PlayersHouse_2F_EventScript_NES
+{
+    msgbox("{PLAYER} played with the NES.\p…Okay!\nIt's time to go!", MSGBOX_SIGN)
+	end
+}
+
+script PalletTown_PlayersHouse_2F_EventScript_Sign
+{
+	msgbox("It's a posted notice…\pIf you're confused, ask for HELP!\nPress the L Button!", MSGBOX_SIGN)
+	end
+}
+
+script PalletTown_PlayersHouse_2F_EventScript_PC
+{
+    goto_if_questlog(EventScript_ReleaseEnd)
+	lockall
+	setvar(VAR_0x8004, HELPCONTEXT_BEDROOM_PC)
+	special(Script_SetHelpContext)
+	setvar(VAR_0x8004, 1)
+	special(AnimatePcTurnOn)
+	playse(SE_PC_ON)
+	msgbox(Text_PlayerBootedUpPC)
+	special(BedroomPC)
+	waitstate
+	special(SetHelpContextForMap)
+	releaseall
+	end
+}
+
+script EventScript_PalletTown_PlayersHouse_2F_ShutDownPC
+{
+	setvar(VAR_0x8004, 1)
+	playse(SE_PC_OFF)
+	special(AnimatePcTurnOff)
+	special(SetHelpContextForMap)
+	releaseall
+	end
+}

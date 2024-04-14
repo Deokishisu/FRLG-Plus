@@ -135,7 +135,7 @@
 #define VAR_VERMILION_CITY_TICKET_CHECK_TRIGGER                                0x4053
 #define VAR_MAP_SCENE_ROUTE22                                                  0x4054
 #define VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB                           0x4055
-#define VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F                             0x4056
+#define VAR_0x4056                                                             0x4056  // was VAR_MAP_SCENE_PALLET_TOWN_PLAYERS_HOUSE_2F
 #define VAR_MAP_SCENE_VIRIDIAN_CITY_MART                                       0x4057
 #define VAR_MAP_SCENE_PALLET_TOWN_RIVALS_HOUSE                                 0x4058
 #define VAR_MAP_SCENE_POKEMON_TOWER_6F                                         0x4059
