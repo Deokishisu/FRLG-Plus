@@ -2950,6 +2950,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     u32 value;
     u16 checksum;
     u8 version;
+    u8 language;
 
     ZeroBoxMonData(boxMon);
 
@@ -3005,7 +3006,27 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     {
         version = VERSION_LEAF_GREEN;
     }
+    switch(gSaveBlock1Ptr->keyFlags.language)
+    {
+        case KEY_LANG_SPANISH:
+        case KEY_LANG_PORTUGUESE:
+            language = LANGUAGE_SPANISH;
+            break;
+        case KEY_LANG_FRENCH:
+            language = LANGUAGE_FRENCH;
+            break;
+        case KEY_LANG_ITALIAN:
+            language = LANGUAGE_ITALIAN;
+            break;
+        case KEY_LANG_GERMAN:
+            language = LANGUAGE_GERMAN;
+            break;
+        default:
+            language = LANGUAGE_ENGLISH;
+            break;
+    }
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &version);
+    SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &language);
     value = ITEM_POKE_BALL;
     SetBoxMonData(boxMon, MON_DATA_POKEBALL, &value);
     SetBoxMonData(boxMon, MON_DATA_OT_GENDER, &gSaveBlock2Ptr->playerGender);

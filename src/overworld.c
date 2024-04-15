@@ -1625,6 +1625,7 @@ static bool8 RunFieldCallback(void)
 void CB2_NewGame(void)
 {
     u8 versionBackup = gSaveBlock1Ptr->keyFlags.version;
+    u8 languageBackup = gSaveBlock1Ptr->keyFlags.language;
     FieldClearVBlankHBlankCallbacks();
     StopMapMusic();
     ResetSafariZoneFlag_();
@@ -1632,6 +1633,7 @@ void CB2_NewGame(void)
     AddBagItem(ITEM_BERRY_POUCH, 1);
     AddBagItem(ITEM_TM_CASE, 1);
     gSaveBlock1Ptr->keyFlags.version = versionBackup;
+    gSaveBlock1Ptr->keyFlags.language = languageBackup;
     ResetInitialPlayerAvatarState();
     PlayTimeCounter_Start();
     ScriptContext_Init();

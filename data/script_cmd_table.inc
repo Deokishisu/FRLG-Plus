@@ -220,6 +220,7 @@ gScriptCmdTable::
 	.4byte ScrCmd_buffercontestname              @ 0xd8
 	.4byte ScrCmd_messageinstant                 @ 0xd9
 	.4byte ScrCmd_checkcontestpainting           @ 0xdA
+	.4byte ScrCmd_loadwordbylanguage             @ 0xdb
 
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

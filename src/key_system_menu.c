@@ -20,6 +20,7 @@ enum
 {
     MENUITEM_VERSION = 0,
     MENUITEM_DIFFICULTY,
+    MENUITEM_LANGUAGE,
     MENUITEM_ADVANCED,
     MENUITEM_CANCEL,
     MENUITEM_COUNT
@@ -143,13 +144,14 @@ static const struct BgTemplate sKeySystemMenuBgTemplates[] =
 };
 
 static const u16 sKeySystemMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 1, 0};
+static const u16 sKeySystemMenuItemCounts[MENUITEM_COUNT] = {2, 3, 6, 1, 0};
 static const u16 sKeySystemSubMenuItemCounts[MENUITEM_COUNT2] = {2, 3, 2, 2, 4, 0};
 
 static const u8 *const sKeySystemMenuItemsNames[MENUITEM_COUNT] =
 {
     [MENUITEM_VERSION]    = gText_Version,
     [MENUITEM_DIFFICULTY] = gText_Difficulty,
+    [MENUITEM_LANGUAGE]   = gText_Language,
     [MENUITEM_ADVANCED]   = gText_Advanced,
     [MENUITEM_CANCEL]     = gText_OptionMenuSaveAndExit,
 };
@@ -174,6 +176,16 @@ static const u8 *const sDifficultyOptions[] =
     gText_NormalDifficulty,
     gText_ChallengeDifficulty,
     gText_EasyDifficulty
+};
+
+static const u8 *const sLanguageOptions[] =
+{
+    gText_English,
+    gText_Spanish,
+    gText_French,
+    gText_Italian,
+    gText_German,
+    gText_Portuguese
 };
 
 static const u8 *const sAdvancedOptions[] =
@@ -240,6 +252,7 @@ void CB2_KeySystemMenuFromContinueScreen(void)
     sKeySystemMenuPtr->inSubMenu = 0;
     sKeySystemMenuPtr->option[MENUITEM_VERSION] = gSaveBlock1Ptr->keyFlags.version;
     sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY] = gSaveBlock1Ptr->keyFlags.difficulty;
+    sKeySystemMenuPtr->option[MENUITEM_LANGUAGE] = gSaveBlock1Ptr->keyFlags.language;
     sKeySystemMenuPtr->option[MENUITEM_ADVANCED] = 0;
     sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE] = gSaveBlock1Ptr->keyFlags.nuzlocke;
     sKeySystemMenuPtr->subOption[MENUITEM_IV] = gSaveBlock1Ptr->keyFlags.ivCalcMode;
@@ -454,13 +467,31 @@ static void Task_KeySystemMenu(u8 taskId)
         case 2:
             LoadBgTiles(1, GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->tiles, 0x120, 0x1AA);
             LoadPalette(GetUserWindowGraphics(gSaveBlock2Ptr->optionsWindowFrameType)->palette, 0x20, 0x20);
-            BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
+            if(sKeySystemMenuPtr->cursorPos != MENUITEM_ADVANCED)
+            {
+                if(sKeySystemMenuPtr->cursorPos == MENUITEM_DIFFICULTY)
+                {   // redraw language because ESPAÑOL and PORTUGUÊS'accents get cut off.
+                    BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
+                    BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos + 1);
+                }
+                else
+                    BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
+            }
             break;
         case 3:
             UpdateSettingSelectionDisplay(sKeySystemMenuPtr->cursorPos);
             break;
         case 4:
-            BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
+            if(sKeySystemMenuPtr->cursorPos != MENUITEM_ADVANCED)
+            {
+                if(sKeySystemMenuPtr->cursorPos == MENUITEM_DIFFICULTY)
+                {   // redraw language because ESPAÑOL and PORTUGUÊS'accents get cut off.
+                    BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
+                    BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos + 1);
+                }
+                else
+                    BufferKeySystemMenuString(sKeySystemMenuPtr->cursorPos);
+            }
             break;
         case 6:
             if(!sKeySystemMenuPtr->inSubMenu)
@@ -636,8 +667,11 @@ static void BufferKeySystemMenuString(u8 selection)
             case MENUITEM_DIFFICULTY:
                 AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sDifficultyOptions[sKeySystemMenuPtr->option[selection]]);
                 break;
+            case MENUITEM_LANGUAGE:
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sLanguageOptions[sKeySystemMenuPtr->option[selection]]);
+                break;
             case MENUITEM_ADVANCED:
-                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, sAdvancedOptions[sKeySystemMenuPtr->option[selection]]);
+                AddTextPrinterParameterized3(1, 2, x, y, dst, -1, gText_BattleScenePressA);
                 break;
             default:
                 break;
@@ -677,6 +711,7 @@ static void CloseAndSaveKeySystemMenu(u8 taskId)
     FreeAllWindowBuffers();
     gSaveBlock1Ptr->keyFlags.version = sKeySystemMenuPtr->option[MENUITEM_VERSION];
     gSaveBlock1Ptr->keyFlags.difficulty = sKeySystemMenuPtr->option[MENUITEM_DIFFICULTY];
+    gSaveBlock1Ptr->keyFlags.language = sKeySystemMenuPtr->option[MENUITEM_LANGUAGE];
     gSaveBlock1Ptr->keyFlags.nuzlocke = sKeySystemMenuPtr->subOption[MENUITEM_NUZLOCKE];
     if(gSaveBlock1Ptr->keyFlags.ivCalcMode != sKeySystemMenuPtr->subOption[MENUITEM_IV] || gSaveBlock1Ptr->keyFlags.evCalcMode != sKeySystemMenuPtr->subOption[MENUITEM_EV])
     {

@@ -145,7 +145,7 @@ static const struct BgTemplate sOptionMenuBgTemplates[] =
 };
 
 static const u16 sOptionMenuPalette[] = INCBIN_U16("graphics/misc/option_menu.gbapal");
-static const u16 sOptionMenuItemCounts[MENUITEM_COUNT]     = {4, 1, 3, 2, 3, 11, 0};
+static const u16 sOptionMenuItemCounts[MENUITEM_COUNT]     = {4, 1, 3, 6, 3, 11, 0}; // the 6 should be a 2 for sound options
 static const u16 sOptionSubMenuItemCounts[MENUITEM_COUNT2] = {2, 2, 2, 4, 2, 0};
 
 static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
@@ -153,7 +153,8 @@ static const u8 *const sOptionMenuItemsNames[MENUITEM_COUNT] =
     [MENUITEM_TEXTSPEED]   = gText_TextSpeed,
     [MENUITEM_BATTLESCENE] = gText_BattleScene,
     [MENUITEM_BATTLESTYLE] = gText_BattleStyle,
-    [MENUITEM_SOUND]       = gText_Sound,
+    [MENUITEM_SOUND]       = gText_Language,
+    //[MENUITEM_SOUND]       = gText_Sound,
     [MENUITEM_BUTTONMODE]  = gText_ButtonMode,
     [MENUITEM_FRAMETYPE]   = gText_Frame,
     [MENUITEM_CANCEL]      = gText_OptionMenuSaveAndExit,
@@ -192,8 +193,14 @@ static const u8 *const sBattleStyleOptions[] =
 
 static const u8 *const sSoundOptions[] =
 {
-    gText_SoundMono, 
-    gText_SoundStereo
+    gText_English,
+    gText_Spanish,
+    gText_French,
+    gText_Italian,
+    gText_German,
+    gText_Portuguese,
+    //gText_SoundMono, 
+    //gText_SoundStereo
 };
 
 static const u8 *const sButtonTypeOptions[] =
@@ -269,7 +276,8 @@ void CB2_OptionsMenuFromStartMenu(void)
     sOptionMenuPtr->option[MENUITEM_TEXTSPEED] = gSaveBlock2Ptr->optionsTextSpeed;
     sOptionMenuPtr->option[MENUITEM_BATTLESCENE] = 0;
     sOptionMenuPtr->option[MENUITEM_BATTLESTYLE] = gSaveBlock2Ptr->optionsBattleStyle;
-    sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
+    sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock1Ptr->keyFlags.language;
+    //sOptionMenuPtr->option[MENUITEM_SOUND] = gSaveBlock2Ptr->optionsSound;
     sOptionMenuPtr->option[MENUITEM_BUTTONMODE] = gSaveBlock2Ptr->optionsButtonMode;
     sOptionMenuPtr->option[MENUITEM_FRAMETYPE] = gSaveBlock2Ptr->optionsWindowFrameType;
     sOptionMenuPtr->subOption[MENUITEM_BATTLETRANSITIONS] = gSaveBlock2Ptr->optionsBattleTransitions;
@@ -725,7 +733,8 @@ static void CloseAndSaveOptionMenu(u8 taskId)
     FreeAllWindowBuffers();
     gSaveBlock2Ptr->optionsTextSpeed = sOptionMenuPtr->option[MENUITEM_TEXTSPEED];
     gSaveBlock2Ptr->optionsBattleStyle = sOptionMenuPtr->option[MENUITEM_BATTLESTYLE];
-    gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
+    gSaveBlock1Ptr->keyFlags.language = sOptionMenuPtr->option[MENUITEM_SOUND];
+    //gSaveBlock2Ptr->optionsSound = sOptionMenuPtr->option[MENUITEM_SOUND];
     gSaveBlock2Ptr->optionsButtonMode = sOptionMenuPtr->option[MENUITEM_BUTTONMODE];
     gSaveBlock2Ptr->optionsWindowFrameType = sOptionMenuPtr->option[MENUITEM_FRAMETYPE];
 

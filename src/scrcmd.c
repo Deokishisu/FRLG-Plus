@@ -1266,7 +1266,34 @@ bool8 ScrCmd_textcolor(struct ScriptContext * ctx)
 
 bool8 ScrCmd_message(struct ScriptContext * ctx)
 {
-    const u8 *msg = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msgEng = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msgSpa = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msgFre = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msgIta = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msgGer = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msgPor = (const u8 *)ScriptReadWord(ctx);
+    const u8 *msg;
+
+    switch(gSaveBlock1Ptr->keyFlags.language)
+    {
+        case KEY_LANG_SPANISH:
+            msg = msgSpa;
+            break;
+        case KEY_LANG_FRENCH:
+            msg = msgFre;
+            break;
+        case KEY_LANG_ITALIAN:
+            msg = msgIta;
+            break;
+        case KEY_LANG_GERMAN:
+            msg = msgGer;
+            break;
+        case KEY_LANG_PORTUGUESE:
+            msg = msgPor;
+            break;
+        default:
+            msg = msgEng;
+    }
 
     if (msg == NULL)
         msg = (const u8 *)ctx->data[0];
@@ -2323,4 +2350,38 @@ bool8 ScrCmd_checkcontestpainting(struct ScriptContext *ctx)
     }
 
     return TRUE;
+}
+
+bool8 ScrCmd_loadwordbylanguage(struct ScriptContext * ctx)
+{
+    u8 index = ScriptReadByte(ctx);
+    u32 textEng = ScriptReadWord(ctx);
+    u32 textSpa = ScriptReadWord(ctx);
+    u32 textFre = ScriptReadWord(ctx);
+    u32 textIta = ScriptReadWord(ctx);
+    u32 textGer = ScriptReadWord(ctx);
+    u32 textPor = ScriptReadWord(ctx);
+
+    switch(gSaveBlock1Ptr->keyFlags.language)
+    {
+        case KEY_LANG_SPANISH:
+            ctx->data[index] = textSpa;
+            break;
+        case KEY_LANG_FRENCH:
+            ctx->data[index] = textFre;
+            break;
+        case KEY_LANG_ITALIAN:
+            ctx->data[index] = textIta;
+            break;
+        case KEY_LANG_GERMAN:
+            ctx->data[index] = textGer;
+            break;
+        case KEY_LANG_PORTUGUESE:
+            ctx->data[index] = textPor;
+            break;
+        default:
+            ctx->data[index] = textEng;
+    }
+
+    return FALSE;
 }

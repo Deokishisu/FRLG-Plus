@@ -26,6 +26,13 @@
 #define LANGUAGE_SPANISH  7
 #define NUM_LANGUAGES     7
 
+#define KEY_LANG_ENGLISH    0
+#define KEY_LANG_SPANISH    1
+#define KEY_LANG_FRENCH     2
+#define KEY_LANG_ITALIAN    3
+#define KEY_LANG_GERMAN     4
+#define KEY_LANG_PORTUGUESE 5
+
 #define GAME_LANGUAGE (LANGUAGE_ENGLISH)
 
 // capacities of various saveblock objects

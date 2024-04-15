@@ -427,4 +427,12 @@
 #define LOCALID_UNION_ROOM_PLAYER_2 8
 #define LOCALID_UNION_ROOM_PLAYER_1 9
 
+// Emotes for emote scripting macro
+#define EMOTE_EXCLAM 0
+#define EMOTE_QUESTION 1
+#define EMOTE_X 2
+#define EMOTE_DOUBLE_EXCLAM 3
+#define EMOTE_SMILE 4
+#define EMOTE_HEART 5
+
 #endif // GUARD_CONSTANTS_EVENT_OBJECTS_H

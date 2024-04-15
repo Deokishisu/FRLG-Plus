@@ -731,7 +731,9 @@ struct KeySystemFlags
     u16 padding:4;
     u16 changedCalcMode:1; //set if calc mode is changed to recalc party on save load
     u16 inKeySystemMenu:1; //Needed for Help Menu regardless of Button Mode
-    u16 padding2;
+    //
+    u16 language:3;     // Uses KEY_LANG_* constants
+    u16 padding2:13;
 };
 
 // For external event data storage. The majority of these may have never been used.

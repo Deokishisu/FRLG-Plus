@@ -846,6 +846,7 @@ static void QuestLog_StartFinalScene(void)
     u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
     u8 noPMCBackup = gSaveBlock1Ptr->keyFlags.noPMC;
     u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
+    u8 language = gSaveBlock1Ptr->keyFlags.language;
     ResetSpecialVars();
     Save_ResetSaveCounters();
     LoadGameSave(SAVE_NORMAL);
@@ -857,6 +858,7 @@ static void QuestLog_StartFinalScene(void)
     gSaveBlock1Ptr->keyFlags.noPMC = noPMCBackup;
     gSaveBlock1Ptr->keyFlags.expMod = expModBackup;
     gSaveBlock1Ptr->keyFlags.changedCalcMode = 0;
+    gSaveBlock1Ptr->keyFlags.language = language;
     //recalculate party stats for IV and EV keys if they were changed
     if(ChangedCalcBackup == 1)
     {

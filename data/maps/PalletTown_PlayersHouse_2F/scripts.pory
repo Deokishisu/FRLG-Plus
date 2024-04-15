@@ -22,14 +22,34 @@ mapscripts PalletTown_PlayersHouse_2F_MapScripts{
 
 script PalletTown_PlayersHouse_2F_EventScript_NES
 {
-    msgbox("{PLAYER} played with the NES.\p…Okay!\nIt's time to go!", MSGBOX_SIGN)
+    msgbox("{PLAYER} played with the NES.\p…Okay!\nIt's time to go!", MSGBOX_SIGN, PalletTown_PlayersHouse_2F_Text_NES_Spa, PalletTown_PlayersHouse_2F_Text_NES_Fre, PalletTown_PlayersHouse_2F_Text_NES_Ita, PalletTown_PlayersHouse_2F_Text_NES_Ger, PalletTown_PlayersHouse_2F_Text_NES_Por)
 	end
+}text(local) PalletTown_PlayersHouse_2F_Text_NES_Spa{
+    "¡{PLAYER} está jugando a la NES!\pBueno, más vale que me ponga\nen marcha."
+}text(local) PalletTown_PlayersHouse_2F_Text_NES_Fre{
+    "{PLAYER} joue à la NES!\p… Bon!\nFaut y aller!"
+}text(local) PalletTown_PlayersHouse_2F_Text_NES_Ita{
+    "{PLAYER} ha giocato con il NES!\pBene!\nAndiamo ora!"
+}text(local) PalletTown_PlayersHouse_2F_Text_NES_Ger{
+    "{PLAYER} spielt NES!\pO.K.!\nDie Reise kann beginnen!"
+}text(local) PalletTown_PlayersHouse_2F_Text_NES_Por{
+    "{PLAYER} jogou com a NES!\p...Está bem!\nÉ hora de ir!"
 }
 
 script PalletTown_PlayersHouse_2F_EventScript_Sign
 {
-	msgbox("It's a posted notice…\pIf you're confused, ask for HELP!\nPress the L Button!", MSGBOX_SIGN)
+	msgbox("It's a posted notice…\pIf you're confused, ask for HELP!\nPress the L Button!", MSGBOX_SIGN, PalletTown_PlayersHouse_2F_Text_Sign_Spa, PalletTown_PlayersHouse_2F_Text_Sign_Fre, PalletTown_PlayersHouse_2F_Text_Sign_Ita, PalletTown_PlayersHouse_2F_Text_Sign_Ger, PalletTown_PlayersHouse_2F_Text_Sign_Por)
 	end
+}text(local) PalletTown_PlayersHouse_2F_Text_Sign_Spa{
+    "Anda, una nota...\pSi no sabes qué hacer, busca\nAYUDA. Pulsa el Botón L."
+}text(local) PalletTown_PlayersHouse_2F_Text_Sign_Fre{
+    "C’est un message…\pEn cas de problème, demande\nde l’AIDE avec le bouton L."
+}text(local) PalletTown_PlayersHouse_2F_Text_Sign_Ita{
+    "È un biglietto appeso.\nC’è scritto:\pSe non sai cosa fare, usa la\nGUIDA! Premi il pulsante L."
+}text(local) PalletTown_PlayersHouse_2F_Text_Sign_Ger{
+    "Eine Nachricht…\pWenn du nicht weiter weißt,\nrufe das HILFE-Menü durch\lDrücken der L-Taste auf."
+}text(local) PalletTown_PlayersHouse_2F_Text_Sign_Por{
+    "É um aviso afixado...\pSe estiveres confuso, pede AJUDA!\nPressiona o Botão L."
 }
 
 script PalletTown_PlayersHouse_2F_EventScript_PC

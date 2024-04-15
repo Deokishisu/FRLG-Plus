@@ -844,10 +844,72 @@
 	@ Starts displaying a standard message box containing the specified text. If text is a pointer, then the string at
 	@ that offset will be loaded and used. If text is NULL, then the value of script data 0 will be treated as
 	@ a pointer to the text. The 'loadword 0' in msgbox sets this value, for instance.
-	.macro message text:req
+	.macro message textEng:req, textSpa, textFre, textIta, textGer, textPor
 	.byte 0x67
-	.4byte \text
-	.endm
+    @ Check if Spanish text is provided, if not, default to English text
+    .ifnb \textSpa
+        @ Check if French text is provided, if not, default to English text
+        .ifnb \textFre
+            @ Check if Italian text is provided, if not, default to English text
+            .ifnb \textIta
+                @ Check if German text is provided, if not, default to English text
+                .ifnb \textGer
+                    @ Check if Portuguese text is provided, if not, default to English text
+                    .ifnb \textPor
+                        @ All texts are provided, use them accordingly
+                        .4byte \textEng
+                        .4byte \textSpa
+                        .4byte \textFre
+                        .4byte \textIta
+                        .4byte \textGer
+                        .4byte \textPor
+                    .else
+                        @ Default to English text for Portuguese
+                        .4byte \textEng
+                        .4byte \textSpa
+                        .4byte \textFre
+                        .4byte \textIta
+                        .4byte \textGer
+                        .4byte \textEng
+                    .endif
+                .else
+                    @ Default to English text for German and Portuguese
+                    .4byte \textEng
+                    .4byte \textSpa
+                    .4byte \textFre
+                    .4byte \textIta
+                    .4byte \textEng
+                    .4byte \textPor
+                .endif
+            .else
+                @ Default to English text for Italian, German, and Portuguese
+                .4byte \textEng
+                .4byte \textSpa
+                .4byte \textFre
+                .4byte \textEng
+                .4byte \textEng
+                .4byte \textPor
+            .endif
+        .else
+            @ Default to English text for French, Italian, German, and Portuguese
+            .4byte \textEng
+            .4byte \textSpa
+            .4byte \textEng
+            .4byte \textEng
+            .4byte \textEng
+            .4byte \textPor
+        .endif
+    .else
+        @ Default to English text for Spanish, French, Italian, German, and Portuguese
+        .4byte \textEng
+        .4byte \textEng
+        .4byte \textEng
+        .4byte \textEng
+        .4byte \textEng
+        .4byte \textEng
+    .endif
+.endm
+
 
 	@ Closes the current message box.
 	.macro closemessage
@@ -1670,6 +1732,18 @@
 	.byte \winnerId
 	.endm
 
+	@ Sets the value at the specified script data index to a fixed 4-byte value.
+	.macro loadwordbylanguage destIndex:req, eng:req, spa:req, fre:req, ita:req, ger:req, por:req
+	.byte 0xdb
+	.byte \destIndex
+	.4byte \eng
+	.4byte \spa
+	.4byte \fre
+	.4byte \ita
+	.4byte \ger
+	.4byte \por
+	.endm
+
 @ Supplementary
 
 	.macro goto_if_unset flag:req, dest:req
@@ -1811,10 +1885,146 @@
 	NO  = 0
 
 	@ Buffers the given text and calls the relevant standard message script (see gStdScripts).
-	.macro msgbox text:req, type=MSGBOX_DEFAULT
-	loadword 0, \text
-	callstd \type
+	@ This monstrosity of a macro will be reduced to loading each language without the checks
+	@ once localization is complete.
+	.macro msgbox textEng:req, type=MSGBOX_DEFAULT, textSpa, textFre, textIta, textGer, textPor
+    @ Check if Spanish text is provided, if not, default to English text
+    .ifnb \textSpa
+        @ Check if French text is provided, if not, default to English text
+        .ifnb \textFre
+            @ Check if Italian text is provided, if not, default to English text
+            .ifnb \textIta
+                @ Check if German text is provided, if not, default to English text
+                .ifnb \textGer
+                    @ Check if Portuguese text is provided, if not, default to English text
+                    .ifnb \textPor
+                        @ All texts are provided, load them accordingly
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textIta, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textIta, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textIta, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textIta, \textEng, \textEng
+                    .endif
+                .endif
+            .else
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textEng, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textEng, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textEng, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textFre, \textEng, \textEng, \textEng
+                    .endif
+                .endif
+            .endif
+        .else
+            .ifnb \textIta
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textIta, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textIta, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textIta, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textIta, \textEng, \textEng
+                    .endif
+                .endif
+            .else
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textEng, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textEng, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textEng, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textSpa, \textEng, \textEng, \textEng, \textEng
+                    .endif
+                .endif
+            .endif
+        .endif
+    .else
+        @ Default to English text for all languages
+        .ifnb \textFre
+            .ifnb \textIta
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textIta, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textIta, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textIta, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textIta, \textEng, \textEng
+                    .endif
+                .endif
+            .else
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textEng, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textEng, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textEng, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textFre, \textEng, \textEng, \textEng
+                    .endif
+                .endif
+            .endif
+        .else
+            .ifnb \textIta
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textIta, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textIta, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textIta, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textIta, \textEng, \textEng
+                    .endif
+                .endif
+            .else
+                .ifnb \textGer
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textEng, \textGer, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textEng, \textGer, \textEng
+                    .endif
+                .else
+                    .ifnb \textPor
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textEng, \textEng, \textPor
+                    .else
+                        loadwordbylanguage 0, \textEng, \textEng, \textEng, \textEng, \textEng, \textEng
+                    .endif
+                .endif
+            .endif
+        .endif
+    .endif
+    
+    @ Call the relevant standard message script
+    callstd \type
 	.endm
+
 
 	@ Gives 'amount' of the specified 'item' to the player and prints a message with fanfare.
 	@ If the player doesn't have space for all the items then as many are added as possible, the
@@ -1898,12 +2108,145 @@
 	call EventScript_RestorePrevTextColor
 	.endm
 
-	@ alias of applymovement with OBJ_EVENT_ID_PLAYER as the localid argument
-	.macro applymoveplayer movements:req, map
+	@ applymovement with OBJ_EVENT_ID_PLAYER as the localid and waitmovement 0 built in.
+	@ If wait is left empty, then waitmovement 0 is emitted.
+	@ If you don't want that emitted (ex: the player and another NPC are moving
+	@ at the same time), then provide any argument for wait.
+	.macro applymoveplayer movements:req, wait, map
 	applymovement OBJ_EVENT_ID_PLAYER, \movements, \map
+	.ifb \wait
+		waitmovement 0
+	.endif
 	.endm
 
 	@ alias of turnobject with OBJ_EVENT_ID_PLAYER as the localid argument
 	.macro turnplayer direction:req
 	turnobject OBJ_EVENT_ID_PLAYER, \direction
+	.endm
+
+	@ Calls Common_Movement_WalkInPlaceFaster(Up/Down/Left/Right) for provided localid.
+	@ If wait is left empty, then waitmovement 0 is emitted. If you don't want that
+	@ emitted (ex: multiple NPCs are moving at the same time), then provide any
+	@ argument for wait.
+	.macro stepinplace localid:req, direction:req, wait
+	.if \direction == DIR_NORTH
+		applymovement \localid, Common_Movement_WalkInPlaceFasterUp
+		.ifb \wait
+			waitmovement 0
+	.elseif \direction == DIR_SOUTH
+		applymovement \localid, Common_Movement_WalkInPlaceFasterDown
+		.ifb \wait
+			waitmovement 0
+	.elseif \direction == DIR_WEST
+		applymovement \localid, Common_Movement_WalkInPlaceFasterLeft
+		.ifb \wait
+			waitmovement 0
+	.elseif \direction == DIR_EAST
+		applymovement \localid, Common_Movement_WalkInPlaceFasterRight
+		.ifb \wait
+			waitmovement 0
+	.endif
+	.endm
+
+	@ Does Common_Movement_WalkInPlaceFaster(Up/Down/Left/Right) for the player.
+	@ If wait is left empty, then waitmovement 0 is emitted. If you don't want that
+	@ emitted (ex: multiple NPCs are moving at the same time), then provide any
+	@ argument for wait.
+	.macro stepinplaceplayer direction:req, wait
+	.if \direction == DIR_NORTH
+		applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+		.ifb \wait
+			waitmovement 0
+	.elseif \direction == DIR_SOUTH
+		applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+		.ifb \wait
+			waitmovement 0
+	.elseif \direction == DIR_WEST
+		applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+		.ifb \wait
+			waitmovement 0
+	.elseif \direction == DIR_EAST
+		applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+		.ifb \wait
+			waitmovement 0
+	.endif
+	.endm
+
+	@ applymovement with waitmovement built-in.
+	@ If wait is empty, waitmovement 0 is emitted.
+	@ If wait has a value, the emitted waitmovement will have that value.
+	@ i.e. if wait is 7, waitmovement 7 will be emitted.
+	@ If you don't want a waitmovement emitted, use applymovement instead.
+	.macro applymove localid:req, movements:req, wait, map
+	applymovement \localid, \movements, \map
+	.ifb \wait
+		waitmovement 0
+	.else
+		waitmovement \wait
+	.endif
+	.endm
+
+	@ This replicates the typical OW NPC Pokemon script, which is:
+	@ -----
+	@ lock
+	@ faceplayer
+	@ waitse
+	@ playmoncry SPECIES, MODE
+	@ msgbox SOME_MESSAGE
+	@ waitmoncry
+	@ -----
+	@ release and end should follow this macro in most cases.
+	@ message should just be what the Pokemon says, not its species name.
+	@ Its species name is automatically buffered, rendering the msgbox as:
+	@ "SPECIES: MESSAGE"
+	@ If mode is left blank, it will use CRY_MODE_NORMAL. Otherwise,
+	@ it'll use the CRY_MODE_* constants.
+	.macro moncryscript species:req, message:req, mode
+	lock
+	faceplayer
+	waitse
+	.ifb \mode
+		playmoncry \species, CRY_MODE_NORMAL
+	.else
+		playmoncry \species, mode
+	.endif
+		bufferspeciesname 1, \species
+		bufferstring 2, \message
+		msgbox Text_MonCryScript
+		waitmoncry
+	.endm
+
+	@ This replicates the most common emote structure in the game, which is:
+	@ -----
+	@ playse SE_PIN
+	@ applymovement LOCALID, Common_Movement_ExclamationMark @ (or others)
+	@ waitmovement 0
+	@ applymovement LOCALID, Common_Movement_Delay48
+	@ waitmovement 0
+	@ -----
+	@ If emote is left blank, then it will do an exclamation mark emote.
+	@ Other params include:
+	@ EMOTE_EXCLAM, EMOTE_QUESTION, EMOTE_X, EMOTE_DOUBLE_EXCLAM, EMOTE_SMILE
+	@ EMOTE_HEART. Invalid entries do the exclamation mark emote.
+	.macro emote localid:req, emoteArg
+	playse SE_PIN
+	.ifb \emoteArg
+		applymovement \localid, Common_Movement_ExclamationMark
+	.else
+		.if \emoteArg == EMOTE_QUESTION
+			applymovement \localid, Common_Movement_QuestionMark
+		.elseif \emoteArg == EMOTE_X
+			applymovement \localid, Common_Movement_X
+		.elseif \emoteArg == EMOTE_DOUBLE_EXCLAM
+			applymovement \localid, Common_Movement_DoubleExclamationMark
+		.elseif \emoteArg == EMOTE_SMILE
+			applymovement \localid, Common_Movement_Smile
+		.elseif \emoteArg == EMOTE_HEART
+			applymovement \localid, Common_Movement_Heart
+		.else
+			applymovement \localid, Common_Movement_ExclamationMark
+	.endif
+	waitmovement 0
+	applymovement \localid, Common_Movement_Delay48
+	waitmovement 0
 	.endm

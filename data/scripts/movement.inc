@@ -6,6 +6,22 @@ Common_Movement_ExclamationMark::
 	emote_exclamation_mark
 	step_end
 
+Common_Movement_X::
+	emote_x
+	step_end
+
+Common_Movement_DoubleExclamationMark::
+	emote_double_exclamation_mark
+	step_end
+
+Common_Movement_Smile::
+	emote_smile
+	step_end
+
+Common_Movement_Heart::
+	emote_heart
+	step_end
+
 Common_Movement_Delay48::
 	delay_16
 	delay_16

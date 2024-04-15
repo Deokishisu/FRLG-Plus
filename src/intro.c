@@ -999,6 +999,7 @@ void CB2_InitCopyrightScreenAfterBootup(void)
         u8 ChangedCalcBackup = gSaveBlock1Ptr->keyFlags.changedCalcMode;
         u8 noPMCBackup = gSaveBlock1Ptr->keyFlags.noPMC;
         u8 expModBackup = gSaveBlock1Ptr->keyFlags.expMod;
+        u8 languageBackup = gSaveBlock1Ptr->keyFlags.language;
         SeedRngAndSetTrainerId();
         SetSaveBlocksPointers();
         ResetMenuAndMonGlobals();
@@ -1014,6 +1015,7 @@ void CB2_InitCopyrightScreenAfterBootup(void)
         gSaveBlock1Ptr->keyFlags.changedCalcMode = ChangedCalcBackup;
         gSaveBlock1Ptr->keyFlags.noPMC = noPMCBackup;
         gSaveBlock1Ptr->keyFlags.expMod = expModBackup;
+        gSaveBlock1Ptr->keyFlags.language = languageBackup;
         SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
         InitHeap(gHeap, HEAP_SIZE);
     }

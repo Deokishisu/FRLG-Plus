@@ -1129,6 +1129,9 @@ Common_EventScript_DirectCornerAttendant::
 	call CableClub_EventScript_DirectCornerAttendant
 	end
 
+Text_MonCryScript::
+	.string "{STR_VAR_2}: {STR_VAR_3}$"
+
 VermilionCity_PokemonCenter_1F_EventScript_VSSeekerWoman::
 	lock
 	faceplayer
