@@ -1001,16 +1001,6 @@ EventScript_OutOfCenterPartyHeal::
 	fadescreen FADE_FROM_BLACK
 	return
 
-EventScript_WallTownMap::
-	lockall
-	msgbox Text_ATownMap
-	goto_if_questlog EventScript_ReleaseEnd
-	fadescreen FADE_TO_BLACK
-	special ShowTownMap
-	waitstate
-	releaseall
-	end
-
 	.include "data/text/pokedex_rating.inc"
 	.include "data/scripts/pokedex_rating.inc"
 	.include "data/scripts/cave_of_origin.inc"
@@ -1241,7 +1231,6 @@ EventScript_NoMoreRoomForPokemon::
 	.include "data/scripts/repel.inc"
 	.include "data/scripts/safari_zone.inc"
 	.include "data/text/safari_zone.inc"
-	.include "data/text/flavor_text.inc"
 	.include "data/scripts/hole.inc"
 	.include "data/text/trainers.inc"
 	.include "data/scripts/move_tutors.inc"

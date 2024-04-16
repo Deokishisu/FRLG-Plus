@@ -331,7 +331,7 @@ SilphCo_7F_Text_WorkerFPhone2:
 
 SilphCo_7F_EventScript_Painting::
 	goto_if_unset FLAG_HIDE_SAFFRON_CIVILIANS, SilphCo_7F_EventScript_NewPainting
-	msgbox Text_Painting, MSGBOX_SIGN
+	msgbox EventScript_Painting_Text_0, MSGBOX_SIGN, Text_Painting_Spa, Text_Painting_Fre, Text_Painting_Ita, Text_Painting_Ger, Text_Painting_Por
 	end
 
 SilphCo_7F_EventScript_NewPainting::

@@ -1,0 +1,490 @@
+// Flavor text for interacting with various background objects
+
+script EventScript_WallTownMap{
+	lockall
+	msgbox("A TOWN MAP.", MSGBOX_DEFAULT, Text_WallTownMap_Spa, Text_WallTownMap_Fre, Text_WallTownMap_Ita, Text_WallTownMap_Ger, Text_WallTownMap_Por)
+	goto_if_questlog(EventScript_ReleaseEnd)
+	fadescreen(FADE_TO_BLACK)
+	special(ShowTownMap)
+	waitstate
+	releaseall
+	end
+}text(local) Text_WallTownMap_Spa{
+    "MAPA"
+}text(local) Text_WallTownMap_Fre{
+    "Une CARTE."
+}text(local) Text_WallTownMap_Ita{
+    "Una MAPPA CITTÀ."
+}text(local) Text_WallTownMap_Ger{
+    "Eine KARTE!"
+}text(local) Text_WallTownMap_Por{
+    "Um MAPA DA CIDADE."
+}
+
+script EventScript_Bookshelf
+{
+	msgbox("It's crammed full of POKéMON\nbooks.", MSGBOX_SIGN, Text_Bookshelf_Spa, Text_Bookshelf_Fre, Text_Bookshelf_Ita, Text_Bookshelf_Ger, Text_Bookshelf_Por)
+	end
+}text(local) Text_Bookshelf_Spa{
+    "¡Totalmente lleno de libros sobre\nlos POKéMON!"
+}text(local) Text_Bookshelf_Fre{
+    "Des bouquins sur les POKéMON!"
+}text(local) Text_Bookshelf_Ita{
+    "Pieno zeppo di libri POKéMON!"
+}text(local) Text_Bookshelf_Ger{
+    "Wow!\nUnmengen Bücher über POKéMON!"
+}text(local) Text_Bookshelf_Por{
+    "Está repleto de livros sobre\nPOKéMON!"
+}
+
+script EventScript_PokeMartShelf
+{
+	msgbox("Wow!\nTons of POKéMON stuff!", MSGBOX_SIGN, Text_PokeMartShelf_Spa, Text_PokeMartShelf_Fre, Text_PokeMartShelf_Ita, Text_PokeMartShelf_Ger, Text_PokeMartShelf_Por)
+	end
+}text(local) Text_PokeMartShelf_Spa{
+    "¡Uauu!\n¡Cantidad de artículos de POKéMON!"
+}text(local) Text_PokeMartShelf_Fre{
+    "Cool! Plein de machins sur les\nPOKéMON!"
+}text(local) Text_PokeMartShelf_Ita{
+    "Wow!\nMontagne di oggetti POKéMON!"
+}text(local) Text_PokeMartShelf_Ger{
+    "Wow!\nJede Menge POKéMON-Gegenstände!"
+}text(local) Text_PokeMartShelf_Por{
+    "Uau!\nMontes de coisas de POKéMON!"
+}
+
+script EventScript_Food
+{
+	msgbox("It should be packed with all kinds\nof delicious things to eat.", MSGBOX_SIGN, Text_Food_Spa, Text_Food_Fre, Text_Food_Ita, Text_Food_Ger, Text_Food_Por)
+	end
+}text(local) Text_Food_Spa{
+    "Seguramente está lleno de cosas\nde lo más apetecibles."
+}text(local) Text_Food_Fre{
+    "Il doit y avoir plein de bonnes\nchoses à manger."
+}text(local) Text_Food_Ita{
+    "Dev’essere pieno di cibi\ndeliziosi."
+}text(local) Text_Food_Ger{
+    "Darin sollten viele verschiedene\nleckere Dinge zum Essen sein."
+}text(local) Text_Food_Por{
+    "Deve estar repleto de todo o tipo\nde coisas deliciosas para comer."
+}
+
+script EventScript_VideoGame
+{
+	msgbox("It's the latest video game!\nIt sure looks fun!", MSGBOX_SIGN, Text_VideoGame_Spa, Text_VideoGame_Fre, Text_VideoGame_Ita, Text_VideoGame_Ger, Text_VideoGame_Por)
+	end
+}text(local) Text_VideoGame_Spa{
+    "¡Lo último en videojuegos!\n¡Qué guay!"
+}text(local) Text_VideoGame_Fre{
+    "Le dernier jeu vidéo qui vient de\nsortir. Ça a l’air génial."
+}text(local) Text_VideoGame_Ita{
+    "È un videogioco appena uscito.\nDev’essere divertente!"
+}text(local) Text_VideoGame_Ger{
+    "Das neueste Videospiel! Es macht\nbestimmt Spaß!"
+}text(local) Text_VideoGame_Por{
+    "É o mais recente jogo de vídeo!\nParece divertido!"
+}
+
+script EventScript_Computer
+{
+	msgbox("It's all complicated words and\nnumbers that make no sense…", MSGBOX_SIGN, Text_Computer_Spa, Text_Computer_Fre, Text_Computer_Ita, Text_Computer_Ger, Text_Computer_Por)
+	end
+}text(local) Text_Computer_Spa{
+    "Qué combinación de números\ny letras más complicada..."
+}text(local) Text_Computer_Fre{
+    "C’est rempli de mots et de chiffres\nincompréhensibles."
+}text(local) Text_Computer_Ita{
+    "È pieno di parole e numeri\nincomprensibili…"
+}text(local) Text_Computer_Ger{
+    "Es sind nur komplizierte Worte\nund Zahlen, die keinen Sinn\lergeben…"
+}text(local) Text_Computer_Por{
+    "São palavras e números complicados\nque não fazem sentido algum..."
+}
+
+
+script EventScript_ImpressiveMachine
+{
+	msgbox("It's a machine of some sort.\nIt sure is impressive.", MSGBOX_SIGN, Text_ImpressiveMachine_Spa, Text_ImpressiveMachine_Fre, Text_ImpressiveMachine_Ita, Text_ImpressiveMachine_Ger, Text_ImpressiveMachine_Por)
+	end
+}text(local) Text_ImpressiveMachine_Spa{
+    "No sé qué será esta máquina,\npero es impresionante."
+}text(local) Text_ImpressiveMachine_Fre{
+    "C’est une sorte de machine.\nElle est vraiment impressionnante."
+}text(local) Text_ImpressiveMachine_Ita{
+    "È uno strano macchinario,\nimpressionante."
+}text(local) Text_ImpressiveMachine_Ger{
+    "Es ist eine Art Maschine. Sie ist\ngewiss beeindruckend."
+}text(local) Text_ImpressiveMachine_Por{
+    "É uma máquina de algum tipo.\nÉ realmente impressionante."
+}
+
+script EventScript_Blueprints
+{
+	msgbox("It's a blueprint of some sort.\nIt's filled with diagrams and text.", MSGBOX_SIGN, Text_Blueprints_Spa, Text_Blueprints_Fre, Text_Blueprints_Ita, Text_Blueprints_Ger, Text_Blueprints_Por)
+	end
+}text(local) Text_Blueprints_Spa{
+    "Y este plano... ¿de dónde será?\pTiene gráficos y anotaciones\nrarísimas."
+}text(local) Text_Blueprints_Fre{
+    "C’est une sorte de plan. Il y a\nquelque chose d’écrit dessus."
+}text(local) Text_Blueprints_Ita{
+    "Sembra un progetto. Le pagine sono\npiene di testi e diagrammi."
+}text(local) Text_Blueprints_Ger{
+    "Es ist eine Blaupause mit vielen\nDiagrammen und Text."
+}text(local) Text_Blueprints_Por{
+    "É uma planta de algum tipo.\nEstá cheia de diagramas e texto."
+}
+
+script EventScript_Burglary
+{
+	msgbox("There are obvious signs of burglary\nhere…", MSGBOX_SIGN, Text_Burglary_Spa, Text_Burglary_Fre, Text_Burglary_Ita, Text_Burglary_Ger, Text_Burglary_Por)
+	end
+}text(local) Text_Burglary_Spa{
+    "Salta a la vista que han entrado\na robar..."
+}text(local) Text_Burglary_Fre{
+    "Il y a des signes d’effraction ici…"
+}text(local) Text_Burglary_Ita{
+    "I ladri hanno lasciato chiari segni\ndel loro passaggio."
+}text(local) Text_Burglary_Ger{
+    "Die Indizien hier sprechen für\neinen Einbruch…"
+}text(local) Text_Burglary_Por{
+    "Há sinais óbvios de arrombamento\naqui…"
+}
+
+script EventScript_PlayerFacingTVScreen
+{
+	msgbox("There's a POKéMON on TV!\nIt looks like it's having fun.", MSGBOX_SIGN, Text_PlayerFacingTVScreen_Spa, Text_PlayerFacingTVScreen_Fre, Text_PlayerFacingTVScreen_Ita, Text_PlayerFacingTVScreen_Ger, Text_PlayerFacingTVScreen_Por)
+	end
+}text(local) Text_PlayerFacingTVScreen_Spa{
+    "¡Está saliendo un POKéMON\npor la tele! Se le ve encantado..."
+}text(local) Text_PlayerFacingTVScreen_Fre{
+    "Une émission avec des POKéMON.\nÇa a l’air cool!"
+}text(local) Text_PlayerFacingTVScreen_Ita{
+    "C’è un POKéMON in TV! Sembra\ndivertirsi un mondo!"
+}text(local) Text_PlayerFacingTVScreen_Ger{
+    "Ein POKéMON ist im Fernsehen!\nEs scheint Spaß zu haben!"
+}text(local) Text_PlayerFacingTVScreen_Por{
+    "Está um POKéMON na TV!\nParece estar a divertir-se."
+}
+
+script EventScript_Cabinet
+{
+	msgbox("Dishes and plates are neatly\nlined up.", MSGBOX_SIGN, Text_DishesPlatesNeatlyLinedUp_Spa, Text_DishesPlatesNeatlyLinedUp_Fre, Text_DishesPlatesNeatlyLinedUp_Ita, Text_DishesPlatesNeatlyLinedUp_Ger, Text_DishesPlatesNeatlyLinedUp_Por)
+	end
+}text(local) Text_DishesPlatesNeatlyLinedUp_Spa{
+    "Hay un montón de platos y bandejas\nmuy bien colocados."
+}text(local) Text_DishesPlatesNeatlyLinedUp_Fre{
+    "De la vaisselle est rangée\ndans ce placard."
+}text(local) Text_DishesPlatesNeatlyLinedUp_Ita{
+    "Ci sono piatti e vassoi in perfetto\nordine."
+}text(local) Text_DishesPlatesNeatlyLinedUp_Ger{
+    "Die Teller sind ordentlich\naufgeräumt."
+}text(local) Text_DishesPlatesNeatlyLinedUp_Por{
+    "Há pratos e travessas arrumados\ncom cuidado."
+}
+
+script EventScript_Kitchen
+{
+	msgbox("It smells delicious!\nSomebody's been cooking here.", MSGBOX_SIGN, Text_Kitchen_Spa, Text_Kitchen_Fre, Text_Kitchen_Ita, Text_Kitchen_Ger, Text_Kitchen_Por)
+	end
+}text(local) Text_Kitchen_Spa{
+    "¡Mmm, huele que alimenta!\nAquí han debido de cocinar algo..."
+}text(local) Text_Kitchen_Fre{
+    "Quelqu’un a cuisiné ici,\nça sent vraiment bon."
+}text(local) Text_Kitchen_Ita{
+    "Che profumino… C’è qualcosa sul\nfuoco…"
+}text(local) Text_Kitchen_Ger{
+    "Es riecht lecker!\nJemand hier muss gekocht haben!"
+}text(local) Text_Kitchen_Por{
+    "Cheira deliciosamente!\nAlguém esteve a cozinhar aqui."
+}
+
+script EventScript_Dresser
+{
+	msgbox("It's a nicely made dresser.\nIt will hold a lot of stuff.", MSGBOX_SIGN, Text_Dresser_Spa, Text_Dresser_Fre, Text_Dresser_Ita, Text_Dresser_Ger, Text_Dresser_Por)
+	end
+}text(local) Text_Dresser_Spa{
+    "Qué mueble más estupendo...\nAquí caben un montón de cosas."
+}text(local) Text_Dresser_Fre{
+    "C’est une belle commode.\nOn peut y ranger plein de trucs."
+}text(local) Text_Dresser_Ita{
+    "È una bella credenza. Sembra\nmolto capiente."
+}text(local) Text_Dresser_Ger{
+    "Das ist eine schön gefertigte\nAnrichte. Es passen eine Menge\lSachen hinein."
+}text(local) Text_Dresser_Por{
+    "Que móvel tão fantástico...\nAqui cabe imensa coisa."
+}
+
+script EventScript_Snacks
+{
+	msgbox("There's a pile of snacks here.", MSGBOX_SIGN, Text_Snacks_Spa, Text_Snacks_Fre, Text_Snacks_Ita, Text_Snacks_Ger, Text_Snacks_Por)
+	end
+}text(local) Text_Snacks_Spa{
+    "Mmm, cuántas cosas ricas..."
+}text(local) Text_Snacks_Fre{
+    "Il y a plusieurs sandwichs."
+}text(local) Text_Snacks_Ita{
+    "Ci sono parecchi snack."
+}text(local) Text_Snacks_Ger{
+    "Hier ist ein Stapel Snacks!"
+}text(local) Text_Snacks_Por{
+    "Há um monte de snacks aqui."
+}
+
+script EventScript_Painting
+{
+	msgbox("It's a pretty picture of a POKéMON.\nIt looks like it's feeling good.", MSGBOX_SIGN, Text_Painting_Spa, Text_Painting_Fre, Text_Painting_Ita, Text_Painting_Ger, Text_Painting_Por)
+	end
+}text(local) Text_Painting_Spa{
+    "Qué foto más bonita.\nEl POKéMON parece estar encantado."
+}text(local) Text_Painting_Fre{
+    "Une belle image d’un POKéMON.\nIl semble heureux."
+}text(local) Text_Painting_Ita{
+    "È una bella immagine di un\nPOKéMON. Sembra contento."
+}text(local) Text_Painting_Ger{
+    "Ein schönes Bild eines POKéMON.\nEs scheint sich wohl zu fühlen."
+}text(local) Text_Painting_Por{
+    "É uma imagem bonita de um POKéMON.\nParece estar a sentir-se bem."
+}
+
+script EventScript_PowerPlantMachine
+{
+	msgbox("What could this machine be?\nBetter not mess around with it!", MSGBOX_SIGN, Text_PowerPlantMachine_Spa, Text_PowerPlantMachine_Fre, Text_PowerPlantMachine_Ita, Text_PowerPlantMachine_Ger, Text_PowerPlantMachine_Por)
+	end
+}text(local) Text_PowerPlantMachine_Spa{
+    "¿Para qué servirá?\nPrefiero no tocar, por si acaso..."
+}text(local) Text_PowerPlantMachine_Fre{
+    "A quoi ça peut bien servir? Mieux\nvaut ne pas y toucher!"
+}text(local) Text_PowerPlantMachine_Ita{
+    "Uno strano macchinario. Meglio\nstargli alla larga…"
+}text(local) Text_PowerPlantMachine_Ger{
+    "Was ist das für eine Maschine?\nEs ist besser, nicht daran herum-\lzuspielen!"
+}text(local) Text_PowerPlantMachine_Por{
+    "O que poderá ser esta máquina?\nMais vale não mexer nela!"
+}
+
+script EventScript_Telephone
+{
+	msgbox("It's a telephone.\nBetter not use it.", MSGBOX_SIGN, Text_Telephone_Spa, Text_Telephone_Fre, Text_Telephone_Ita, Text_Telephone_Ger, Text_Telephone_Por)
+	end
+}text(local) Text_Telephone_Spa{
+    "Anda, un teléfono.\nPaso de usarlo."
+}text(local) Text_Telephone_Fre{
+    "C’est un téléphone. Il vaut mieux\nne pas l’utiliser."
+}text(local) Text_Telephone_Ita{
+    "È un telefono. Meglio non usarlo…"
+}text(local) Text_Telephone_Ger{
+    "Ein Telefon! Es ist besser,\nes nicht zu benutzen!"
+}text(local) Text_Telephone_Por{
+    "É um telefone. Mais vale não usar."
+}
+
+script EventScript_AdvertisingPoster
+{
+	msgbox("It's an advertising poster about\nall kinds of products.", MSGBOX_SIGN, Text_AdvertisingPoster_Spa, Text_AdvertisingPoster_Fre, Text_AdvertisingPoster_Ita, Text_AdvertisingPoster_Ger, Text_AdvertisingPoster_Por)
+	end
+}text(local) Text_AdvertisingPoster_Spa{
+    "Es un póster promocional\ncon todo tipo de productos."
+}text(local) Text_AdvertisingPoster_Fre{
+    "C’est une publicité pour de\nnombreux articles."
+}text(local) Text_AdvertisingPoster_Ita{
+    "È un cartellone pubblicitario con\nprodotti di ogni tipo."
+}text(local) Text_AdvertisingPoster_Ger{
+    "Es ist ein Werbeplakat für\nverschiedene Produkte."
+}text(local) Text_AdvertisingPoster_Por{
+    "É um cartaz publicitário sobre\ntodos os tipos de produtos."
+}
+
+script EventScript_TastyFood
+{
+	msgbox("Oh, that smells tasty!\nIt might get the stomach growling!", MSGBOX_SIGN, Text_TastyFood_Spa, Text_TastyFood_Fre, Text_TastyFood_Ita, Text_TastyFood_Ger, Text_TastyFood_Por)
+	end
+}text(local) Text_TastyFood_Spa{
+    "Mmm, ¡qué bien huele!\n¡Se me hace la boca agua!"
+}text(local) Text_TastyFood_Fre{
+    "Mmm, quelle bonne odeur.\nÇa donne vraiment faim!"
+}text(local) Text_TastyFood_Ita{
+    "Che profumino!\nFa venire l’acquolina in bocca!"
+}text(local) Text_TastyFood_Ger{
+    "Hmm, das riecht lecker! Mir läuft\ndas Wasser im Mund zusammen."
+}text(local) Text_TastyFood_Por{
+    "Mmm, que cheiro bom!\nPode abrir o apetite!"
+}
+
+
+script EventScript_TrashBin
+{
+	msgbox("Inside this…\n……\pThere's nothing here!", MSGBOX_SIGN, Text_TrashBin_Spa, Text_TrashBin_Fre, Text_TrashBin_Ita, Text_TrashBin_Ger, Text_TrashBin_Por)
+	end
+}text(local) Text_TrashBin_Spa{
+    "A ver...\n... ...\p¡Pero si no hay nada!"
+}text(local) Text_TrashBin_Fre{
+    "Alors ici…\n… …\pIl n’y a absolument rien!"
+}text(local) Text_TrashBin_Ita{
+    "Qui dentro…\n……\p…non c’è niente!"
+}text(local) Text_TrashBin_Ger{
+    "Hier drinnen ist…\n……\pHier ist nichts!"
+}text(local) Text_TrashBin_Por{
+    "Dentro disto...\n... ...\pNão há nada aqui!"
+}
+
+script EventScript_Cup
+{
+	msgbox("It's a cup with a POKéMON mark\non it.", MSGBOX_SIGN, Text_Cup_Spa, Text_Cup_Fre, Text_Cup_Ita, Text_Cup_Ger, Text_Cup_Por)
+	end
+}text(local) Text_Cup_Spa{
+    "¡Qué taza más guay!\n¡Tiene la huella de un POKéMON!"
+}text(local) Text_Cup_Fre{
+    "C’est une tasse avec une\nmarque de POKéMON."
+}text(local) Text_Cup_Ita{
+    "È una tazza con un POKéMON\ndisegnato."
+}text(local) Text_Cup_Ger{
+    "Eine Tasse mit einem\nPOKéMON-Zeichen."
+}text(local) Text_Cup_Por{
+    "Que caneca fixe!\nTem a marca de um POKéMON!"
+}
+
+script EventScript_PolishedWindow
+{
+	msgbox("The window is very well polished.", MSGBOX_SIGN, Text_PolishedWindow_Spa, Text_PolishedWindow_Fre, Text_PolishedWindow_Ita, Text_PolishedWindow_Ger, Text_PolishedWindow_Por)
+	end
+}text(local) Text_PolishedWindow_Spa{
+    "La ventana está requetelimpia."
+}text(local) Text_PolishedWindow_Fre{
+    "La fenêtre est super propre!"
+}text(local) Text_PolishedWindow_Ita{
+    "I vetri della finestra sembrano\nappena stati lavati."
+}text(local) Text_PolishedWindow_Ger{
+    "Das Fenster ist gut geputzt."
+}text(local) Text_PolishedWindow_Por{
+    "A janela está limpa que nem um pipo."
+}
+
+script EventScript_BeautifulSkyWindow
+{
+	msgbox("Outside the window…\pThe sky looks fantastically\nbeautiful.", MSGBOX_SIGN, Text_BeautifulSkyWindow_Spa, Text_BeautifulSkyWindow_Fre, Text_BeautifulSkyWindow_Ita, Text_BeautifulSkyWindow_Ger, Text_BeautifulSkyWindow_Por)
+	end
+}text(local) Text_BeautifulSkyWindow_Spa{
+    "Da gusto mirar por la ventana...\pEl cielo está impresionante."
+}text(local) Text_BeautifulSkyWindow_Fre{
+    "A l’extérieur…\pIl fait un temps magnifique!"
+}text(local) Text_BeautifulSkyWindow_Ita{
+    "Dalla finestra…\p…si vede un cielo terso,\nmagnifico."
+}text(local) Text_BeautifulSkyWindow_Ger{
+    "Vor dem Fenster…\pDer Himmel sieht wunderschön aus."
+}text(local) Text_BeautifulSkyWindow_Por{
+    "É um prazer olhar pela janela...\pO céu está impressionante."
+}
+
+script EventScript_BlinkingLights
+{
+	msgbox("Lights in different colors are\nflashing on and off.", MSGBOX_SIGN, Text_BlinkingLights_Spa, Text_BlinkingLights_Fre, Text_BlinkingLights_Ita, Text_BlinkingLights_Ger, Text_BlinkingLights_Por)
+	end
+}text(local) Text_BlinkingLights_Spa{
+    "Cuántas lucecitas de colores\nque se encienden y se apagan..."
+}text(local) Text_BlinkingLights_Fre{
+    "Il y a plein de petites lampes\nqui clignotent."
+}text(local) Text_BlinkingLights_Ita{
+    "Ci sono luci lampeggianti di vario\ncolore."
+}text(local) Text_BlinkingLights_Ger{
+    "Verschiedenfarbige Lichter blinken."
+}text(local) Text_BlinkingLights_Por{
+    "Quantas luzinhas coloridas\nque se acendem e se apagam..."
+}
+
+script EventScript_NeatlyLinedUpTools
+{
+	msgbox("All sorts of tools are lined up\nneatly.", MSGBOX_SIGN, Text_NeatlyLinedUpTools_Spa, Text_NeatlyLinedUpTools_Fre, Text_NeatlyLinedUpTools_Ita, Text_NeatlyLinedUpTools_Ger, Text_NeatlyLinedUpTools_Por)
+	end
+}text(local) Text_NeatlyLinedUpTools_Spa{
+    "Hay un montón de relucientes\nherramientas muy bien ordenadas."
+}text(local) Text_NeatlyLinedUpTools_Fre{
+    "Plusieurs outils sont rangés ici."
+}text(local) Text_NeatlyLinedUpTools_Ita{
+    "Vi sono oggetti di ogni tipo."
+}text(local) Text_NeatlyLinedUpTools_Ger{
+    "Die ganzen Artikel sind\nordentlich aufgereiht."
+}text(local) Text_NeatlyLinedUpTools_Por{
+    "Há todo um conjunto de ferramentas\nreluzentes muito bem arrumadas."
+}
+
+script EventScript_PokemartSign
+{
+	msgbox("All your item needs fulfilled!\nPOKéMON MART", MSGBOX_SIGN, Text_PokemartSign_Spa, Text_PokemartSign_Fre, Text_PokemartSign_Ita, Text_PokemartSign_Ger, Text_PokemartSign_Por)
+	end
+}text(local) Text_PokemartSign_Spa{
+    "TIENDAS POKéMON\n¡Compra aquí todos tus objetos!"
+}text(local) Text_PokemartSign_Fre{
+    "Faites le plein d’objets!\nBOUTIQUE POKéMON"
+}text(local) Text_PokemartSign_Ita{
+    "Abbiamo tutti gli strumenti per te!\nPOKéMON-MARKET"
+}text(local) Text_PokemartSign_Ger{
+    "Wir erfüllen alle Item-Wünsche!\nPOKéMON-SUPERMARKT"
+}text(local) Text_PokemartSign_Por{
+    "LOJAS POKéMON\nCompre aqui todos os seus objetos!"
+}
+
+script EventScript_PokecenterSign
+{
+	msgbox("Heal Your POKéMON!\nPOKéMON CENTER", MSGBOX_SIGN, Text_PokecenterSign_Spa, Text_PokecenterSign_Fre, Text_PokecenterSign_Ita, Text_PokecenterSign_Ger, Text_PokecenterSign_Por)
+	end
+}text(local) Text_PokecenterSign_Spa{
+    "CENTRO POKéMON\n¡Cura a tus POKéMON!"
+}text(local) Text_PokecenterSign_Fre{
+    "Soignez vos POKéMON!\nCENTRE POKéMON"
+}text(local) Text_PokecenterSign_Ita{
+    "Rimetti in sesto i tuoi POKéMON!\nCENTRO POKéMON"
+}text(local) Text_PokecenterSign_Ger{
+    "Erfrische deine POKéMON!\nPOKéMON-CENTER"
+}text(local) Text_PokecenterSign_Por{
+    "CENTRO POKéMON\nCure os seus POKéMON!"
+}
+
+script EventScript_Indigo_UltimateGoal
+{
+	msgbox("INDIGO PLATEAU\pThe ultimate goal of TRAINERS!\nPOKéMON LEAGUE HQ", MSGBOX_SIGN, Text_UltimateGoal_Spa, Text_UltimateGoal_Fre, Text_UltimateGoal_Ita, Text_UltimateGoal_Ger, Text_UltimateGoal_Por)
+	end
+}text(local) Text_UltimateGoal_Spa{
+    "MESETA AÑIL\p¡El objetivo de todo ENTRENADOR:\nEl CG de la LIGA POKéMON!"
+}text(local) Text_UltimateGoal_Fre{
+    "PLATEAU INDIGO\pLe rêve de tout DRESSEUR!\nQuartier général de la LIGUE\lPOKéMON"
+}text(local) Text_UltimateGoal_Ita{
+    "ALTOPIANO BLU\pLa grande meta degli ALLENATORI!\nSEDE CENTRALE LEGA POKéMON."
+}text(local) Text_UltimateGoal_Ger{
+    "INDIGO PLATEAU\pDas große Ziel aller TRAINER ist\ndie POKéMON LIGA!"
+}text(local) Text_UltimateGoal_Por{
+    "PLANALTO INDIGO\pO objetivo final de todos os TREINADORES:\nA Sede da LIGA POKéMON!"
+}
+
+script EventScript_Indigo_HighestAuthority
+{
+	msgbox("INDIGO PLATEAU\pThe highest POKéMON authority!\nPOKéMON LEAGUE HQ", MSGBOX_SIGN, Text_HighestAuthority_Spa, Text_HighestAuthority_Fre, Text_HighestAuthority_Ita, Text_HighestAuthority_Ger, Text_HighestAuthority_Por)
+	end
+}text(local) Text_HighestAuthority_Spa{
+    "MESETA AÑIL\pLa máxima autoridad POKéMON\ndel CG de la LIGA POKéMON."
+}text(local) Text_HighestAuthority_Fre{
+    "PLATEAU INDIGO\pLa plus haute instance POKéMON.\nQuartier général de la LIGUE\lPOKéMON"
+}text(local) Text_HighestAuthority_Ita{
+    "ALTOPIANO BLU\pLa massima autorità POKéMON:\nSEDE CENTRALE LEGA POKéMON."
+}text(local) Text_HighestAuthority_Ger{
+    "INDIGO PLATEAU\pDas POKéMON LIGA-HAUPTQUARTIER\nist die höchste POKéMON-AUTORITÄT!"
+}text(local) Text_HighestAuthority_Por{
+    "PLANALTO INDIGO\pA máxima autoridade POKéMON\nna Sede da LIGA POKéMON."
+}
+
+script EventScript_SafariZone_ExtensionSign
+{
+	msgbox("The SAFARI ZONE's expansion project\nis finally complete!\pThe new AREA 4 is straight ahead!", MSGBOX_SIGN, Text_SafariZone_ExtensionSign_Spa, Text_SafariZone_ExtensionSign_Fre, Text_SafariZone_ExtensionSign_Ita, Text_SafariZone_ExtensionSign_Ger, Text_SafariZone_ExtensionSign_Por)
+	end
+}text (local) Text_SafariZone_ExtensionSign_Spa{
+    "¡El proyecto de expansión de la Zona\nSafari al fin se ha completado!\p¡La nueva Área 4 está justo\nen frente!"
+}text (local) Text_SafariZone_ExtensionSign_Fre{
+    "Le projet d'expansion de la ZONE\nSAFARI est enfin terminé!\pLa nouvelle ZONE 4 est juste devant!"
+}text (local) Text_SafariZone_ExtensionSign_Ita{
+    "Il progetto di espansione della ZONA\nSAFARI è finalmente completo!\pLa nuova AREA 4 è proprio di fronte!"
+}text (local) Text_SafariZone_ExtensionSign_Ger{
+    "Das Erweiterungsprojekt der SAFARI-\nZONE ist endlich abgeschlossen!\pDer neue BEREICH 4 ist direkt\nvor Ihnen!"
+}text (local) Text_SafariZone_ExtensionSign_Por{
+    "O projeto de expansão da ZONA\nSAFARI está finalmente completo!\pA nova ÁREA 4 está mesmo em frente!"
+}
+
+
