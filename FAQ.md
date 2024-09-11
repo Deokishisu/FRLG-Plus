@@ -24,6 +24,7 @@
   * [How do I get the other legendary beasts?](#how-do-i-get-the-other-legendary-beasts)
   * [Where do I get the event tickets so I can obtain Mew, Lugia and Ho-oh, Deoxys, and Latias and Latias?](#where-do-i-get-the-event-tickets-so-i-can-obtain-mew-lugia-and-ho-oh-deoxys-and-latias-and-latias)
   * [How do I get Sudowoodo to battle me?](#how-do-i-get-sudowoodo-to-battle-me)
+  * [How do I get the other Fighting Dojo Pokémon? How do I get the missing Hitmonchan/Hitmonlee?](#how-do-i-get-the-other-fighting-dojo-pokémon-how-do-i-get-the-missing-hitmonchanhitmonlee)
 * Gameplay:
   * [I just started the game, where is the Key System Menu? I can't change my difficulty after a new game!](#i-just-started-the-game-where-is-the-key-system-menu-i-cant-change-my-difficulty-after-a-new-game)
   * [Where do I unlock Gym Leader rematches?](#where-do-i-unlock-gym-leader-rematches)
@@ -152,6 +153,9 @@ Every time you enter the Hall of Fame, an uncaught legendary beast will begin to
   <summary>To get Sudowoodo to battle,</summary>
   have a Fresh Water in your bag and talk to it.
 </details>
+
+### How do I get the other Fighting Dojo Pokémon? How do I get the missing Hitmonchan/Hitmonlee?
+Breed your Hitmonchan/Hitmonlee for a Tyrogue and then evolve that Tyrogue into the Fighting Dojo Pokémon that you didn't pick.
 
 ## Gameplay:
 
