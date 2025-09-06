@@ -10,7 +10,37 @@
 	* __No Free Heals__: Can disable free party heals, most notably the Pokémon Center heals and the Lavender Tower purified zone, but also many others. This also prevents PC Boxes from healing Pokémon deposited into them.
 	* __Exp. Modifier__: Can alter experience gains using a multiplier. The possible options are 0×, 1/2×, 1×, and 2×. Pokémon still gain EVs normally when this is set to 0×.
 
-- Nuzlocke Info: This is a special implementation of the Nuzlocke ruleset. While the Nuzlocke toggle is on, fainted Pokémon cannot be healed by any means (including depositing them in a PC Box). Like under a standard Nuzlocke ruleset, only the first Pokémon caught or received from NPCs in an area is usable, but under this implementation Pokémon other than the first may be caught, they will just be automatically fainted after capture. Pokémon captured in this way will not count for the dupe clause (A Rattata will count as a first encounter on Route 2 if you caught a fainted Rattata on Route 1). Pokémon that are already owned, or evolutionary relatives of already owned Pokémon, will not count if they are the first encounter in an area and not caught. There is a UI element drawn to the enemy's healthbar to indicate if it counts as the first encounter in an area. If a white out occurs, the player will be prompted to grab a usable Pokémon from their PC Box. If there are no usable Pokémon left, they will be given a choice of soft-resetting or turning off the Nuzlocke toggle and healing their party normally. These rules do not come into effect until after the first Rival battle. Encounters are not tracked while the Nuzlocke toggle is off and are not retroactive (starting a Nuzlocke midway through a regular playthrough will allow new "first" encounters). Additionally, encounters are not tracked before the player obtains the Pokédex, to prevent losing the opportunity to catch Route 1 Pokémon before catching Pokémon is possible. Each outdoor Safari Zone map counts as a separate area for the purposes of catching Pokémon. The player is not asked whether or not they want to give a nickname to obtained Pokémon while Nuzlocke Mode is on. In-game trades will be fainted if the Pokémon traded for them was fainted but will be usable if not, and otherwise do not count as a first encounter. In-game trades do invoke the dupe clause for additional Pokémon of that species. Eggs, when hatched, will set the encounter flag of the place the egg was first obtained. If that place already had a first encounter, then the egg will hatch fainted.
+##### Nuzlocke Info:
+<details>
+<summary>This is a special implementation of the Nuzlocke ruleset. While the Nuzlocke toggle is on (click for details):</summary>
+<ul>
+<li>Fainted Pokémon cannot be healed by any means (including depositing them in a PC Box).</li>
+<li>The player is not asked whether or not they want to give a nickname to obtained Pokémon while Nuzlocke Mode is on.</li>
+<li>Pokémon can be obtained at any time, but only the first Pokémon obtained in an area is usable barring duplicates (dupe clause).</li>
+    <ul>
+    <li>There is a UI element drawn to the enemy's healthbar to indicate if it counts as the first encounter in an area.</li>
+   <li>Unusable Pokémon will be automatically fainted if received, and will not count as an encounter for the purposes of the built-in dupe clause.</li>
+   <li>In-game trades will be fainted if the Pokémon traded for them was fainted but will be usable if not, and otherwise do not count as a first encounter.</li>
+   <li>Eggs, when hatched, will set the encounter flag of the place the egg was first obtained. If that place already had a first encounter, then the egg will hatch fainted.</li>
+   </ul>
+<li>The Dupe Clause is in effect. Pokémon that are already owned, or evolutionary relatives of already owned Pokémon, will not count if they are the first encounter in an area and not caught.</li>
+    <ul>
+    <li>In-game trades do invoke the dupe clause for additional Pokémon of that species.</li>
+    </ul>
+<li>If a white out occurs, the player will be prompted to grab a usable Pokémon from their PC Box.</li>
+    <ul>
+    <li>If there are no usable Pokémon left, they will be given a choice of soft-resetting or turning off the Nuzlocke toggle and healing their party normally.</li>
+    </ul>
+<li>None of these rules come into effect until after the player obtains Poké Balls.</li>
+<li>Encounters are not tracked:</li>
+    <ul>
+    <li>While the Nuzlocke toggle is off,</li>
+    <li>retroactively (starting a Nuzlocke midway through a regular playthrough will allow new "first" encounters) and,</li>
+    <li>before the player obtains the Pokédex, to prevent losing the opportunity to catch Route 1 Pokémon before catching Pokémon is possible.</li>
+    </ul>
+<li>Each outdoor Safari Zone map counts as a separate area for the purposes of catching Pokémon.</li>
+<ul>
+</details>
 
 #### Story Changes:
 - The player may progress to the Sevii Islands postgame content immediately after becoming the Champion; the National Dex is no longer required to do so.
