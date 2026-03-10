@@ -183,9 +183,9 @@ Misty: 22<br>
 Lt. Surge: 26<br>
 Rocket Hideout Giovanni: 31<br>
 Erika: 31<br>
-Koga: 46<br>
 Silph Co. Giovanni: 44<br>
 Sabrina: 46<br>
+Koga: 46<br>
 Blaine: 51<br>
 Leader Giovanni: 54<br>
 Lorelei: 58<br>
