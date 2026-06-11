@@ -828,7 +828,7 @@ gFameCheckerFlavorTextOriginLocation_Daisy3::
 	.string "VIRIDIAN CITY$"
 
 gFameCheckerFlavorTextOriginLocation_Daisy4::
-	.string "CELADON MANSION$"
+	.string "CELADON CONDOMINIUMS$"
 
 gFameCheckerFlavorTextOriginLocation_Daisy5::
 	.string "FOUR ISLAND$"
@@ -903,7 +903,7 @@ gFameCheckerFlavorTextOriginLocation_Erika4::
 	.string "CELADON GYM$"
 
 gFameCheckerFlavorTextOriginLocation_Erika5::
-	.string "CELADON MANSION$"
+	.string "CELADON CONDOMINIUMS$"
 
 gFameCheckerFlavorTextOriginLocation_Koga0::
 	.string "FUCHSIA CITY$"

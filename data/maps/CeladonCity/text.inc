@@ -53,7 +53,7 @@ CeladonCity_Text_GymSign::
     .string "The Nature-Loving Princess!$"
 
 CeladonCity_Text_MansionSign::
-    .string "CELADON MANSION$"
+    .string "CELADON CONDOMINIUMS$"
 
 CeladonCity_Text_DeptStoreSign::
     .string "Find what you need at the\n"
@@ -78,8 +78,8 @@ CeladonCity_Text_GameCornerSign::
 CeladonCity_Text_ScaldedTongueOnTea::
     .string "Aaaagh, ow…\n"
     .string "I scalded my tongue!\p"
-    .string "This nice old lady in the MANSION\n"
-    .string "gave me some TEA.\p"
+    .string "This nice old lady in the\n"
+    .string "CONDOMINIUMS gave me some TEA.\p"
     .string "But it was boiling hot!\n"
     .string "Gotta cool it to drink it.$"
 

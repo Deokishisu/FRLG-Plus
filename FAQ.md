@@ -22,7 +22,7 @@
   * [Can I evolve trade evolutions without trading?](#can-i-evolve-trade-evolutions-without-trading)
   * [Are trade evolution items available before the postgame?](#are-trade-evolution-items-available-before-the-postgame)
   * [How do I get the other legendary beasts?](#how-do-i-get-the-other-legendary-beasts)
-  * [Where do I get the event tickets so I can obtain Mew, Lugia and Ho-oh, Deoxys, and Latias and Latias?](#where-do-i-get-the-event-tickets-so-i-can-obtain-mew-lugia-and-ho-oh-deoxys-and-latias-and-latias)
+  * [Where do I get the event tickets so I can obtain Mew, Lugia and Ho-Oh, Deoxys, and Latias and Latias?](#where-do-i-get-the-event-tickets-so-i-can-obtain-mew-lugia-and-ho-oh-deoxys-and-latias-and-latias)
   * [How do I get Sudowoodo to battle me?](#how-do-i-get-sudowoodo-to-battle-me)
   * [How do I get the other Fighting Dojo Pokémon? How do I get the missing Hitmonchan/Hitmonlee?](#how-do-i-get-the-other-fighting-dojo-pokémon-how-do-i-get-the-missing-hitmonchanhitmonlee)
 * Gameplay:
@@ -127,15 +127,15 @@ Yes. Most are available as wild held items. Items like the Up-grade have been mo
 ### How do I get the other legendary beasts?
 Every time you enter the Hall of Fame, an uncaught legendary beast will begin to roam Kanto if there are no legendary beasts currently roaming.
 
-### Where do I get the event tickets so I can obtain Mew, Lugia and Ho-oh, Deoxys, and Latias and Latias?
+### Where do I get the event tickets so I can obtain Mew, Lugia and Ho-Oh, Deoxys, and Latias and Latias?
 <details>
   <summary>The Old Sea Map for Mew on Faraway Island:</summary>
   Become the Champion, then talk to Mr. Fuji in his home in Lavender Town.
 </details>
 
 <details>
-  <summary>The MysticTicket for Lugia and Ho-oh on Navel Rock:</summary>
-  Obtain the Extended Dex, then get the diploma for completing the Kanto Pokédex in Celadon Mansion.
+  <summary>The MysticTicket for Lugia and Ho-Oh on Navel Rock:</summary>
+  Obtain the Extended Dex, then get the diploma for completing the Kanto Pokédex in Celadon Condomiums.
 </details>
 
 <details>

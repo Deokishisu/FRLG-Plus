@@ -119,8 +119,7 @@ FuchsiaCity_Gym_Text_ShawnIntro::
     .string "What did you descend from?$"
 
 FuchsiaCity_Gym_Text_ShawnDefeat::
-    .string "You're more skilled than I'd\n"
-    .string "thought!$"
+    .string "Dropped my balls!"
 
 FuchsiaCity_Gym_Text_ShawnPostBattle::
     .string "Where there is light, there is\n"

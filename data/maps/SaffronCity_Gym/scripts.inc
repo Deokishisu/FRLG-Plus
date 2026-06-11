@@ -24,7 +24,7 @@ SaffronCity_Gym_EventScript_Sabrina::
 	trainerbattle_single TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
 	settrainerflag TRAINER_LEADER_SABRINA_CHALLENGE
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
-	msgbox SaffronCity_Gym_Text_ExplainTM04
+	msgbox SaffronCity_Gym_Text_SabrinaPostBattle
 	release
 	end
 
@@ -32,7 +32,7 @@ SaffronCity_Gym_EventScript_Sabrina_ChallengeMode::
 	trainerbattle_single TRAINER_LEADER_SABRINA_CHALLENGE, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
 	settrainerflag TRAINER_LEADER_SABRINA
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
-	msgbox SaffronCity_Gym_Text_ExplainTM04
+	msgbox SaffronCity_Gym_Text_SabrinaPostBattle
 	release
 	end
 
@@ -52,7 +52,7 @@ SaffronCity_Gym_EventScript_GiveTM04::
 	goto_if_eq VAR_RESULT, FALSE, SaffronCity_Gym_EventScript_NoRoomForTM04
 	giveitem_msg SaffronCity_Gym_Text_ReceivedTM04FromSabrina, ITEM_TM04
 	setflag FLAG_GOT_TM04_FROM_SABRINA
-	msgbox SaffronCity_Gym_Text_SabrinaPostBattle
+	msgbox SaffronCity_Gym_Text_ExplainTM04
 	release
 	end
 
